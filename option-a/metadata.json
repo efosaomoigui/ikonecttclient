@@ -1,0 +1,6 @@
+{
+  "name": "Ikonectt",
+  "description": "Enterprise-grade fiber optic broadband, dedicated internet access, and residential ultra-fast connectivity across Nigeria.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

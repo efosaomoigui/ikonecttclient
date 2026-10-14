@@ -1,0 +1,20 @@
+{
+  "name": "ikonecttclient",
+  "version": "1.0.0",
+  "description": "iKonectt Client Presentation & Dual-Option Architecture Showcase",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node scripts/build_showcase.js"
+  },
+  "keywords": [
+    "telecom",
+    "fiber",
+    "broadband",
+    "nigeria",
+    "ikonectt"
+  ],
+  "author": "Intelivision Technologies Limited",
+  "license": "ISC"
+}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 160" width="540" height="160" fill="none">
+  <!-- iKonectt Red Logo on Transparent Background extracted from official brand asset -->
+  <!-- Red 'i' with lightning bolt in stem, red dot -->
+  <circle cx="36" cy="28" r="14" fill="#ED101A" />
+  <path d="M23 54 H49 V82 L38 98 H49 L23 146 V108 L34 94 H23 Z" fill="#ED101A" />
+  
+  <!-- Red 'Konectt' wordmark matching official bold geometric font -->
+  <!-- K -->
+  <path d="M68 54 H85 V90 L115 54 H138 L104 94 L140 146 H118 L90 106 L85 112 V146 H68 Z" fill="#ED101A" />
+  <!-- o -->
+  <path d="M190 73 C172 73 158 87 158 111 C158 135 172 149 190 149 C208 149 222 135 222 111 C222 87 208 73 190 73 Z M190 90 C199 90 205 98 205 111 C205 124 199 132 190 132 C181 132 175 124 175 111 C175 98 181 90 190 90 Z" fill="#ED101A" />
+  <!-- n -->
+  <path d="M239 75 H255 V86 C260 78 270 73 282 73 C298 73 306 83 306 100 V146 H289 V103 C289 94 284 89 275 89 C264 89 256 96 256 107 V146 H239 Z" fill="#ED101A" />
+  <!-- e -->
+  <path d="M362 108 H326 C328 123 336 133 349 133 C357 133 363 129 367 123 H382 C376 138 364 149 348 149 C327 149 310 134 310 111 C310 88 326 73 347 73 C369 73 382 89 382 110 C382 111 382 112 362 108 Z M347 88 C337 88 329 95 327 104 H366 C365 96 357 88 347 88 Z" fill="#ED101A" />
+  <!-- c -->
+  <path d="M428 89 C422 89 416 93 413 99 C410 104 409 110 409 111 C409 125 416 133 427 133 C435 133 441 129 445 122 H461 C455 138 443 149 427 149 C406 149 392 135 392 111 C392 88 406 73 427 73 C443 73 454 83 460 98 H444 C440 92 435 89 428 89 Z" fill="#ED101A" />
+  <!-- t 1 -->
+  <path d="M479 60 V75 H495 V90 H479 V130 C479 135 482 137 487 137 H495 V146 C490 148 484 149 478 149 C468 149 462 142 462 130 V90 H452 V75 H462 V60 Z" fill="#ED101A" />
+  <!-- t 2 -->
+  <path d="M511 60 V75 H527 V90 H511 V130 C511 135 514 137 519 137 H527 V146 C522 148 516 149 510 149 C500 149 494 142 494 130 V90 H484 V75 H494 V60 Z" fill="#ED101A" />
+  <!-- Registered trademark symbol ® -->
+  <circle cx="534" cy="58" r="9" stroke="#ED101A" stroke-width="1.8" />
+  <text x="534" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="bold" fill="#ED101A" text-anchor="middle">R</text>
+</svg>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iKonectt — Client Presentation & Design Concepts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#ED101A',
+              dark: '#0A0D14',
+              surface: '#0F131D',
+              slate: '#1E293B'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .display-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .mono-font { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-[#090D16] text-[#F8FAFC] antialiased min-h-screen flex flex-col">
+
+  <!-- TOP BANNER: Client Presentation Mode -->
+  <header class="border-b border-white/10 bg-[#0E1524]/90 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Logo + Badge -->
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          <img src="/assets/logos/ikonectt_transparent.png" alt="iKonectt®" class="h-9 sm:h-10 md:h-11 w-auto object-contain" />
+        </div>
+        <span class="h-5 w-px bg-white/20"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-white/70">Client Design Selection</span>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="flex items-center gap-3 text-xs">
+        <a href="#comparison" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+          Feature Comparison
+        </a>
+        <a href="#preview-area" class="px-3.5 py-1.5 rounded-full bg-[#ED101A] hover:bg-[#d50913] text-white font-semibold transition-colors flex items-center gap-1.5">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i>
+          Live Preview Arena
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="max-w-7xl mx-auto px-6 py-16 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ED101A]/10 border border-[#ED101A]/30 text-[#FF4D55] text-xs font-semibold uppercase tracking-wider mb-6">
+      <span class="w-2 h-2 rounded-full bg-[#ED101A] animate-pulse"></span>
+      iKonectt Optical Fibre — Brand & Digital Experience Proposals
+    </div>
+    
+    <h1 class="display-font text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-tight mb-6">
+      Two Distinct Visions for <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ED101A] via-[#FF5C64] to-[#FFA3A7]">Nigeria's Next-Gen Telco.</span>
+    </h1>
+
+    <p class="text-white/60 max-w-2xl mx-auto text-base sm:text-lg mb-12">
+      We have scaffolded and optimized two working architectural directions for the client's review. Review both options below, explore them interactively, and pick the winner or combine elements.
+    </p>
+
+    <!-- SIDE-BY-SIDE PROPOSAL CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-5xl mx-auto">
+      
+      <!-- OPTION A CARD -->
+      <div class="relative rounded-2xl bg-gradient-to-b from-[#141B2D] to-[#0D121F] border border-white/10 p-8 hover:border-[#ED101A]/50 transition-all duration-300 shadow-xl flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider border border-blue-500/30">
+              Option A (Ikonectt 1)
+            </span>
+            <span class="text-xs text-white/50 flex items-center gap-1.5 mono-font">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Port :3001
+            </span>
+          </div>
+
+          <h2 class="display-font text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+            Clean Editorial & Multi-Page Journey
+          </h2>
+          <p class="text-white/70 text-sm leading-relaxed mb-6">
+            A balanced, clean corporate telecom design emphasizing high-contrast editorial typography, distinct consumer vs business landing sections, and focused conversion flows.
+          </p>
+
+          <ul class="space-y-2.5 text-xs text-white/80 mb-8">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-blue-400 shrink-0"></i>
+              <span>Modular React 19 + TypeScript multi-page architecture</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-blue-400 shrink-0"></i>
+              <span>High-contrast light-mode residential and business matrix</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-blue-400 shrink-0"></i>
+              <span>Self-service MyIkonectt modal & Concierge interface</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-blue-400 shrink-0"></i>
+              <span>Streamlined 4-page hierarchy (Home, Residential, Business, Coverage)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/10">
+          <a href="http://localhost:3001" target="_blank" class="flex-1 text-center px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
+            <span>Open Option A (Full Screen)</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+          <button onclick="switchLivePreview('http://localhost:3001', 'Option A')" class="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-semibold border border-white/10 transition-colors">
+            Preview Inside Hub
+          </button>
+        </div>
+      </div>
+
+      <!-- OPTION B CARD -->
+      <div class="relative rounded-2xl bg-gradient-to-b from-[#221014] to-[#120B0D] border border-[#ED101A]/30 p-8 hover:border-[#ED101A] transition-all duration-300 shadow-xl flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full bg-[#ED101A]/20 text-[#FF4D55] text-xs font-bold uppercase tracking-wider border border-[#ED101A]/40 flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3 h-3"></i>
+              Option B (Ikonectt 2)
+            </span>
+            <span class="text-xs text-white/50 flex items-center gap-1.5 mono-font">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Port :3002
+            </span>
+          </div>
+
+          <h2 class="display-font text-2xl font-bold text-white mb-3 group-hover:text-[#FF4D55] transition-colors">
+            Panoramic Velocity & AI Experience
+          </h2>
+          <p class="text-white/70 text-sm leading-relaxed mb-6">
+            A high-energy, photography-led telecom showcase featuring multi-column mega menus, integrated Gemini AI digital concierge, and dual-mode residential vs dark-slate enterprise workbench.
+          </p>
+
+          <ul class="space-y-2.5 text-xs text-white/80 mb-8">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-[#FF4D55] shrink-0"></i>
+              <span>Integrated Google Gemini AI Concierge assistant</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-[#FF4D55] shrink-0"></i>
+              <span>Panoramic photography & Nigerian telecom lifestyle art direction</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-[#FF4D55] shrink-0"></i>
+              <span>Built-in live Client Comparison control bar at top</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-[#FF4D55] shrink-0"></i>
+              <span>Instant Plan Order flow & Interactive street feasibility maps</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/10">
+          <a href="http://localhost:3002" target="_blank" class="flex-1 text-center px-5 py-3 rounded-xl bg-[#ED101A] hover:bg-[#d50913] text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#ED101A]/30">
+            <span>Open Option B (Full Screen)</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+          <button onclick="switchLivePreview('http://localhost:3002', 'Option B')" class="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-semibold border border-white/10 transition-colors">
+            Preview Inside Hub
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIVE PREVIEW ARENA -->
+  <section id="preview-area" class="w-full bg-[#05070D] border-y border-white/10 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Preview Header Controls -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="display-font text-xl font-bold text-white flex items-center gap-2">
+            <span id="active-preview-label">Live Preview: Option B</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-white/60 font-normal">Interactive Iframe</span>
+          </h2>
+          <p class="text-xs text-white/50">Interact directly with the prototype below or toggle between designs.</p>
+        </div>
+
+        <!-- Controls: Switcher & Viewport Size -->
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="bg-white/10 p-1 rounded-xl flex items-center gap-1 text-xs">
+            <button id="btn-toggle-a" onclick="switchLivePreview('a', 'Option A')" class="px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white transition-colors">
+              Option A
+            </button>
+            <button id="btn-toggle-b" onclick="switchLivePreview('b', 'Option B (Active)')" class="px-3.5 py-1.5 rounded-lg bg-[#ED101A] text-white font-bold transition-all shadow-sm">
+              Option B (Active)
+            </button>
+          </div>
+
+          <!-- Device Dimensions -->
+          <div class="hidden sm:flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 text-xs text-white/60">
+            <button onclick="setViewportWidth('100%')" class="px-2.5 py-1 rounded hover:bg-white/10 hover:text-white" title="Desktop">
+              <i data-lucide="monitor" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="setViewportWidth('768px')" class="px-2.5 py-1 rounded hover:bg-white/10 hover:text-white" title="Tablet">
+              <i data-lucide="tablet" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="setViewportWidth('390px')" class="px-2.5 py-1 rounded hover:bg-white/10 hover:text-white" title="Mobile">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Iframe Container -->
+      <div class="w-full flex justify-center">
+        <div id="preview-wrapper" class="w-full transition-all duration-300 rounded-2xl overflow-hidden border border-white/20 bg-white shadow-2xl">
+          <div class="bg-[#18181b] px-4 py-2 border-b border-white/10 flex items-center justify-between text-xs text-white/60">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span id="preview-url-display" class="mono-font text-[11px] text-white/40 ml-2">http://localhost:3002</span>
+            </div>
+            <a id="preview-external-link" href="http://localhost:3002" target="_blank" class="hover:text-white flex items-center gap-1 text-[11px]">
+              <span>Open in new window</span>
+              <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
+          </div>
+          <iframe id="preview-frame" src="http://localhost:3002" class="w-full h-[780px] bg-white border-0"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section id="comparison" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <h2 class="display-font text-3xl font-extrabold text-white mb-3">Feature & Design Matrix</h2>
+      <p class="text-white/60 text-sm max-w-xl mx-auto">Detailed breakdown of how Option A and Option B approach iKonectt's brand, customer journey, and operational conversion goals.</p>
+    </div>
+
+    <div class="overflow-x-auto rounded-2xl border border-white/10 bg-[#0E1524]">
+      <table class="w-full text-left text-xs sm:text-sm text-white/80">
+        <thead class="bg-white/5 border-b border-white/10 text-white font-bold uppercase tracking-wider text-[11px]">
+          <tr>
+            <th class="p-4 sm:p-5">Dimension</th>
+            <th class="p-4 sm:p-5 text-blue-400">Option A (Ikonectt 1)</th>
+            <th class="p-4 sm:p-5 text-[#FF4D55]">Option B (Ikonectt 2)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          <tr>
+            <td class="p-4 sm:p-5 font-semibold text-white">Visual Art Direction</td>
+            <td class="p-4 sm:p-5 text-white/70">Clean, crisp editorial white canvases with restrained red accents.</td>
+            <td class="p-4 sm:p-5 text-white/90">Panoramic lifestyle photography, radiant optical glows, and atmospheric dark-slate enterprise.</td>
+          </tr>
+          <tr>
+            <td class="p-4 sm:p-5 font-semibold text-white">AI Capabilities</td>
+            <td class="p-4 sm:p-5 text-white/70">Floating Concierge Modal widget.</td>
+            <td class="p-4 sm:p-5 text-white/90 font-medium text-[#FF4D55]">Integrated server-side Google Gemini AI Concierge with natural Nigerian telecommunication context.</td>
+          </tr>
+          <tr>
+            <td class="p-4 sm:p-5 font-semibold text-white">Navigation Architecture</td>
+            <td class="p-4 sm:p-5 text-white/70">Classic top navigation with hover mega menus and route triggers.</td>
+            <td class="p-4 sm:p-5 text-white/90">Multi-column enriched mega menus with live network telemetry chips & quick ordering.</td>
+          </tr>
+          <tr>
+            <td class="p-4 sm:p-5 font-semibold text-white">Residential vs Business</td>
+            <td class="p-4 sm:p-5 text-white/70">Dedicated page views for Residential and Business.</td>
+            <td class="p-4 sm:p-5 text-white/90">Dynamic dual-mode switch with live SLA uptime metrics and custom bandwidth sliders.</td>
+          </tr>
+          <tr>
+            <td class="p-4 sm:p-5 font-semibold text-white">Coverage Verification</td>
+            <td class="p-4 sm:p-5 text-white/70">Step-by-step estate and street address checking form.</td>
+            <td class="p-4 sm:p-5 text-white/90">Interactive 5-stage GIS feasibility engine with instant plan recommendations.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 bg-[#070A12] py-8 text-center text-xs text-white/40">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#ED101A]"></span>
+        <span class="text-white/70 font-semibold">iKonectt Telecom Client Presentation</span>
+      </div>
+      <div>
+        Option A running on port 3001 • Option B running on port 3002
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const OPTION_A_URL = isLocalhost ? 'http://localhost:3001' : './option-a/';
+    const OPTION_B_URL = isLocalhost ? 'http://localhost:3002' : './option-b/';
+
+    function switchLivePreview(target, label) {
+      const url = target === 'a' ? OPTION_A_URL : (target === 'b' ? OPTION_B_URL : target);
+      const frame = document.getElementById('preview-frame');
+      const labelEl = document.getElementById('active-preview-label');
+      const urlEl = document.getElementById('preview-url-display');
+      const linkEl = document.getElementById('preview-external-link');
+      const btnA = document.getElementById('btn-toggle-a');
+      const btnB = document.getElementById('btn-toggle-b');
+
+      frame.src = url;
+      labelEl.innerText = 'Live Preview: ' + label;
+      urlEl.innerText = url;
+      linkEl.href = url;
+
+      if (label.indexOf('Option A') !== -1) {
+        btnA.className = 'px-3.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold transition-all shadow-sm';
+        btnB.className = 'px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white transition-colors';
+      } else {
+        btnB.className = 'px-3.5 py-1.5 rounded-lg bg-[#ED101A] text-white font-bold transition-all shadow-sm';
+        btnA.className = 'px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white transition-colors';
+      }
+    }
+
+    function setViewportWidth(width) {
+      const wrapper = document.getElementById('preview-wrapper');
+      wrapper.style.maxWidth = width;
+    }
+
+    // Auto-initialize with Option B
+    window.addEventListener('DOMContentLoaded', () => {
+      switchLivePreview('b', 'Option B (Active)');
+    });
+  </script>
+</body>
+</html>

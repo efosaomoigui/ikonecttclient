@@ -1,0 +1,389 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   Ikonectt design system — tokens from design.md
+   ========================================================================= */
+
+@theme {
+  --font-sans: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+
+  /* Readability floor: no body copy smaller than 13px */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.47;
+
+  --color-ik-primary: #ED101A;
+  --color-ik-primary-focus: #D50913;
+  --color-ik-primary-on-dark: #FF616A;
+  --color-ik-ink: #1d1d1f;
+  --color-ik-muted-80: #333333;
+  --color-ik-muted-48: #7a7a7a;
+  --color-ik-body-muted: #cccccc;
+  --color-ik-divider: #f0f0f0;
+  --color-ik-hairline: #e0e0e0;
+  --color-ik-parchment: #f5f5f7;
+  --color-ik-pearl: #fafafc;
+  --color-ik-tile-1: #272729;
+  --color-ik-tile-2: #2a2a2c;
+  --color-ik-tile-3: #252527;
+  --color-ik-chip: #d2d2d7;
+
+  --radius-ik-xs: 5px;
+  --radius-ik-sm: 8px;
+  --radius-ik-md: 11px;
+  --radius-ik-lg: 18px;
+}
+
+@layer base {
+  :root {
+    --color-primary: #ED101A;
+    --color-primary-focus: #D50913;
+    --color-primary-on-dark: #FF616A;
+    --color-ink: #1d1d1f;
+    --color-body: #1d1d1f;
+    --color-body-on-dark: #ffffff;
+    --color-body-muted: #cccccc;
+    --color-ink-muted-80: #333333;
+    --color-ink-muted-48: #7a7a7a;
+    --color-divider-soft: #f0f0f0;
+    --color-hairline: #e0e0e0;
+    --color-canvas: #ffffff;
+    --color-canvas-parchment: #f5f5f7;
+    --color-surface-pearl: #fafafc;
+    --color-surface-tile-1: #272729;
+    --color-surface-tile-2: #2a2a2c;
+    --color-surface-tile-3: #252527;
+    --color-surface-black: #000000;
+    --color-surface-chip-translucent: #d2d2d7;
+    --font-sf: var(--font-sans);
+    --font-mono: "SF Mono", ui-monospace, "Cascadia Mono", Menlo, monospace;
+  }
+
+  html {
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.47;
+    letter-spacing: -0.374px;
+    color: var(--color-body);
+    background-color: var(--color-canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: #ED101A;
+    color: #ffffff;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Readability floor for legacy arbitrary sizes and over-tracked labels
+   ------------------------------------------------------------------------- */
+[class*="text-[9px]"],
+[class*="text-[10px]"],
+[class*="text-[11px]"] {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+.tracking-widest,
+.tracking-\[0\.2em\],
+.tracking-\[0\.25em\] {
+  letter-spacing: 0.04em !important;
+}
+
+.tracking-wider {
+  letter-spacing: 0.03em !important;
+}
+
+/* =========================================================================
+   Typography scale (design.md)
+   ========================================================================= */
+.font-hero-display {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.4vw, 56px);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
+}
+
+.font-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.font-display-md {
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.374px;
+}
+
+.font-lead {
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.4vw, 28px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0.196px;
+}
+
+.font-lead-airy {
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.font-tagline {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.19;
+  letter-spacing: 0.231px;
+}
+
+.font-body-strong {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.374px;
+}
+
+.font-body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+
+.font-caption {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+}
+
+.font-caption-strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+}
+
+.font-button-utility {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+}
+
+.font-fine-print {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.12px;
+}
+
+.font-nav-link {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.12px;
+}
+
+.font-mono-stat {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================================
+   Layout primitives
+   ========================================================================= */
+.ik-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ik-container {
+    padding-inline: 48px;
+  }
+}
+
+.ik-section {
+  padding-block: 64px;
+}
+
+@media (min-width: 1024px) {
+  .ik-section {
+    padding-block: 80px;
+  }
+}
+
+.ik-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+}
+
+.ik-eyebrow-on-dark {
+  color: var(--color-primary-on-dark);
+}
+
+/* =========================================================================
+   Components (design.md)
+   ========================================================================= */
+.ik-btn-primary,
+.ik-btn-secondary,
+.ik-btn-on-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.374px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.ik-btn-primary {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.ik-btn-primary:hover,
+.ik-btn-primary:focus-visible {
+  background: var(--color-primary-focus);
+}
+
+.ik-btn-secondary {
+  background: #ffffff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.ik-btn-secondary:hover {
+  background: #fff5f5;
+}
+
+.ik-btn-on-dark {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.ik-btn-on-dark:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ik-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 17px;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.ik-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.ik-link-on-dark {
+  color: var(--color-primary-on-dark);
+}
+
+.ik-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 6px 6px 20px;
+  background: #ffffff;
+  border: 1px solid var(--color-hairline);
+  border-radius: 9999px;
+}
+
+.ik-search:focus-within {
+  border-color: var(--color-ink);
+}
+
+.ik-search input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  background: transparent;
+  font-size: 17px;
+  color: var(--color-ink);
+  outline: none;
+}
+
+.ik-search input::placeholder {
+  color: var(--color-ink-muted-48);
+}
+
+.ik-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px;
+}
+
+/* =========================================================================
+   Motion & scrollbars
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d2d2d7;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7a7a7a;
+}
