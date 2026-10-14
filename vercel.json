@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "installCommand": "npm ci --prefix option-a --include=dev && npm ci --prefix option-b --include=dev && npm ci --prefix option-c --include=dev",
   "buildCommand": "npm run build",
   "outputDirectory": "public_html",
   "cleanUrls": true,
