@@ -8,15 +8,19 @@ const outDir = path.join(rootDir, 'public_html');
 console.log('--- Building iKonectt Client Showcase Distribution for Vercel ---');
 
 // 1. Build Option A
-console.log('[1/4] Building Option A...');
+console.log('[1/5] Building Option A...');
 execSync('npm run build', { cwd: path.join(rootDir, 'option-a'), stdio: 'inherit' });
 
 // 2. Build Option B
-console.log('[2/4] Building Option B...');
+console.log('[2/5] Building Option B...');
 execSync('npm run build', { cwd: path.join(rootDir, 'option-b'), stdio: 'inherit' });
 
-// 3. Create output directory
-console.log('[3/4] Preparing public_html directory...');
+// 3. Build Option C (Option 03)
+console.log('[3/5] Building Option C (Option 03 Starlink-Restrained)...');
+execSync('npm run build', { cwd: path.join(rootDir, 'option-c'), stdio: 'inherit' });
+
+// 4. Create output directory
+console.log('[4/5] Preparing public_html directory...');
 if (fs.existsSync(outDir)) {
   fs.rmSync(outDir, { recursive: true, force: true });
 }
@@ -66,5 +70,9 @@ copyFolderSync(path.join(rootDir, 'option-a', 'dist'), path.join(outDir, 'option
 console.log('Copying Option B build...');
 copyFolderSync(path.join(rootDir, 'option-b', 'dist'), path.join(outDir, 'option-b'));
 
-console.log('[4/4] Showcase distribution ready in public_html/');
-console.log('All files built and verified successfully!');
+// Copy Option C build
+console.log('Copying Option C build...');
+copyFolderSync(path.join(rootDir, 'option-c', 'dist'), path.join(outDir, 'option-c'));
+
+console.log('[5/5] Showcase distribution ready in public_html/');
+console.log('All 3 options built and verified successfully!');

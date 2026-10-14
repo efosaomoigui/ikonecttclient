@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-display: "SF Pro Display", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+
+  --color-brand-red: #ED101A;
+  --color-brand-red-focus: #D50913;
+  --color-brand-red-light: #FF616A;
+
+  --color-surface-dark: #090909;
+  --color-surface-charcoal: #101010;
+  --color-surface-card: #151517;
+  --color-surface-pearl: #F5F5F7;
+  --color-surface-pearl-light: #FAFAFC;
+
+  --color-text-primary-dark: #FFFFFF;
+  --color-text-secondary-dark: #A1A1AA;
+  --color-text-primary-light: #1D1D1F;
+  --color-text-secondary-light: #52525B;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-surface-dark);
+    color: var(--color-text-primary-dark);
+    font-size: 1.0625rem; /* 17px body base */
+    line-height: 1.47;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Custom utility classes */
+.container-custom {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Starlink-inspired restrained pill buttons */
+.btn-pill-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ED101A;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.625rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-pill-primary:hover {
+  background-color: #D50913;
+  transform: translateY(-1px);
+}
+
+.btn-pill-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.625rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-pill-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-pill-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #1D1D1F;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.625rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-pill-dark:hover {
+  background-color: #000000;
+  transform: translateY(-1px);
+}
+
+.btn-pill-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #1D1D1F;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.625rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-pill-outline-dark:hover {
+  border-color: #1D1D1F;
+  background-color: rgba(0, 0, 0, 0.04);
+}
