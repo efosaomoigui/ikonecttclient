@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ikonectt | Fibre Broadband for Homes and Businesses</title>
+<meta name="description" content="Explore Ikonectt fibre broadband for your home or business. Check availability, compare plans and get in touch.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --base:#12070a;
+  --deep:#2a0a10;
+  --red:#d6213a;
+  --glow:#ff5a6e;
+  --text:#f6f1f1;
+  --muted:#b3a3a6;
+  --line:rgba(246,241,241,.16);
+  --font:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  box-sizing:border-box;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;background:var(--base)}
+body{margin:0;background:var(--base);color:var(--text);font-family:var(--font);font-weight:300;font-size:1rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+
+/* Header */
+.nav{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  padding:calc(env(safe-area-inset-top,0px) + 1.1rem) clamp(1.25rem,4vw,3rem) 1.1rem;
+  background:linear-gradient(rgba(18,7,10,.85),rgba(18,7,10,0))}
+.logo{font-weight:500;font-size:1.3rem;letter-spacing:.01em}
+.logo i{font-style:normal;color:var(--red)}
+.links{display:flex;gap:1.75rem;font-size:.9rem;font-weight:400}
+.links a{color:var(--muted);transition:color .2s}
+.links a:hover{color:var(--text)}
+.menu{display:none}
+.btn{display:inline-block;padding:.8rem 1.6rem;border-radius:4px;font:400 .95rem/1 var(--font);border:1px solid var(--text);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn.solid{background:var(--text);color:var(--base)}
+.btn.solid:hover{background:var(--glow);border-color:var(--glow)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--text)}
+
+/* Mega menu */
+.nav.open{background:#17080b}
+.links button{background:none;border:0;padding:.4rem 0;font:400 .95rem var(--font);color:var(--muted);cursor:pointer;position:relative;transition:color .2s}
+.links button:hover,.links button[aria-expanded="true"]{color:var(--text)}
+.links button[aria-expanded="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-.2rem;height:1px;background:var(--glow)}
+.mega{position:absolute;top:100%;left:0;right:0;display:grid;grid-template-columns:1fr 1fr;min-height:18rem;background:#17080b;border-top:1px solid var(--line);border-bottom:1px solid var(--line);visibility:hidden;opacity:0;transform:translateY(-6px);transition:opacity .22s,transform .22s,visibility 0s .22s}
+.mega.show{visibility:visible;opacity:1;transform:none;transition:opacity .22s,transform .22s}
+.mega-links{display:flex;align-items:flex-start;gap:clamp(2rem,6vw,5rem);padding:2.5rem 2rem 2.5rem calc(max(0px,(100vw - 72rem)/2) + clamp(1.25rem,4vw,3rem))}
+.grp{min-width:12rem}
+.grp h3{font-weight:300;font-size:.85rem;color:var(--muted);margin-bottom:.9rem}
+.grp a{display:block;font-size:1.05rem;line-height:1.3;padding:.4rem 0;white-space:nowrap;transition:color .2s,transform .2s}
+.grp a:hover{color:var(--glow);transform:translateX(4px)}
+.feature{position:relative;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;min-height:18rem}
+.feature svg,.art{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.feature::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#17080b 0%,rgba(23,8,11,0) 45%),linear-gradient(0deg,rgba(18,7,10,.85),transparent 55%)}
+.cap{padding:2.5rem clamp(1.25rem,4vw,3rem)}
+.cap h3{font-weight:300;font-size:clamp(1.25rem,2vw,1.65rem);line-height:1.15;margin-bottom:.5rem}
+.cap p{color:var(--muted);font-size:.95rem;margin-bottom:1.2rem;max-width:22rem}
+.cap .btn{padding:.65rem 1.2rem;font-size:.88rem}
+.art.generic{background:repeating-radial-gradient(circle at 85% 120%,transparent 0 48px,rgba(255,90,110,.18) 49px 50px),radial-gradient(70% 90% at 80% 100%,rgba(214,33,58,.35),transparent 70%)}
+.scrim{position:fixed;inset:0;z-index:9;background:rgba(8,3,5,.55);opacity:0;visibility:hidden;transition:opacity .22s,visibility 0s .22s}
+.scrim.show{opacity:1;visibility:visible;transition:opacity .22s}
+@media (max-width:860px){.mega,.scrim{display:none}}
+@media (prefers-reduced-motion:reduce){.mega,.scrim,.grp a{transition:none}}
+
+/* Hero */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;
+  padding:7rem clamp(1.25rem,4vw,3rem) 6rem;
+  background:radial-gradient(120% 70% at 50% 110%,var(--deep) 0%,var(--base) 70%)}
+.horizon{position:absolute;left:50%;bottom:-88vw;width:150vw;height:150vw;border-radius:50%;transform:translateX(-50%);
+  background:radial-gradient(circle at 50% 0%,rgba(214,33,58,.22),var(--base) 38%);
+  border-top:1px solid rgba(255,150,160,.55);
+  box-shadow:0 -4px 70px 6px rgba(214,33,58,.42),inset 0 30px 90px rgba(214,33,58,.22);
+  animation:rise 2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translate(-50%,22vh);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.hero-inner{position:relative;max-width:60rem}
+.hero p.eyebrow{color:var(--muted);font-size:1rem;margin-bottom:1.5rem}
+h1{font-weight:300;font-size:clamp(2.1rem,5.2vw,4rem);line-height:1.02;letter-spacing:-.02em}
+.hero .lead{max-width:34rem;margin:1.5rem auto 2.25rem;color:var(--muted);font-size:1.05rem}
+.actions{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center}
+
+/* Sections */
+section{position:relative}
+.wrap{max-width:72rem;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+h2{font-weight:300;font-size:clamp(1.55rem,3vw,2.4rem);line-height:1.08;letter-spacing:-.015em}
+.sub{color:var(--muted);max-width:30rem;margin-top:1rem}
+
+/* Coverage */
+.coverage{padding:5rem 0;border-bottom:1px solid var(--line)}
+.coverage .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:center}
+.finder{display:flex;gap:.6rem}
+.finder input{flex:1;min-width:0;padding:.95rem 1.1rem;border-radius:4px;border:1px solid var(--line);background:rgba(246,241,241,.05);color:var(--text);font:300 1rem var(--font)}
+.finder input::placeholder{color:var(--muted)}
+.finder input:focus{outline:2px solid var(--glow);outline-offset:2px;border-color:transparent}
+.helper{margin-top:.8rem;font-size:.9rem;color:var(--muted);min-height:1.4em}
+.helper .btn{margin-left:.6rem;padding:.5rem .9rem;font-size:.85rem}
+
+/* Audience split */
+.split{display:grid;grid-template-columns:1fr 1fr}
+.pane{position:relative;min-height:min(78vh,44rem);display:flex;flex-direction:column;justify-content:flex-end;gap:1.6rem;padding:clamp(1.5rem,4vw,3.5rem);overflow:hidden;isolation:isolate}
+.pane::before{content:"";position:absolute;inset:0;z-index:-1;transition:transform .8s ease}
+.pane:hover::before{transform:scale(1.04)}
+.pane.res::before{background:radial-gradient(90% 80% at 80% 15%,rgba(255,150,130,.34),transparent 60%),linear-gradient(160deg,#4a1218,var(--base) 85%)}
+.pane.biz::before{background:radial-gradient(90% 80% at 20% 15%,rgba(214,33,58,.3),transparent 60%),linear-gradient(200deg,#34080f,#0b0406 85%)}
+.pane .sub{margin-top:.75rem}
+.pane .btn{align-self:flex-start}
+
+/* Plans */
+.plans{padding:7rem 0}
+.plans-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap}
+.empty{margin-top:3rem;padding:3rem clamp(1.5rem,4vw,3rem);border:1px solid var(--line);border-radius:4px;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;
+  background:linear-gradient(120deg,rgba(214,33,58,.12),transparent 60%)}
+.empty h3{font-weight:400;font-size:1.2rem}
+
+/* Confidence */
+.about{padding:3rem 0 8rem}
+.about .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:end}
+.about .btn{margin-top:2rem}
+
+/* Portal */
+.portal{padding:0 0 7rem}
+.portal-box{padding:clamp(2rem,5vw,4rem);border-radius:4px;border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;
+  background:radial-gradient(70% 140% at 100% 100%,rgba(214,33,58,.28),transparent 70%)}
+.portal-box h2{font-size:clamp(1.5rem,2.6vw,2rem);max-width:28rem}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);color:var(--muted);font-size:.95rem}
+.foot{display:flex;justify-content:space-between;gap:2.5rem;flex-wrap:wrap}
+.foot nav{display:flex;flex-direction:column;gap:.6rem}
+.foot nav strong{color:var(--text);font-weight:400;margin-bottom:.3rem}
+.foot a:hover{color:var(--text)}
+.legal{margin-top:3rem;font-size:.85rem}
+
+@media (max-width:860px){
+  .links,.nav>.btn{display:none}
+  .menu{display:block;position:relative}
+  .menu summary{list-style:none;cursor:pointer;padding:.5rem 0;font-weight:400}
+  .menu summary::-webkit-details-marker{display:none}
+  .menu div{position:absolute;right:0;top:2.6rem;min-width:13rem;display:flex;flex-direction:column;gap:1rem;padding:1.2rem 1.4rem;background:var(--deep);border:1px solid var(--line);border-radius:4px}
+  .coverage .wrap,.about .wrap,.split{grid-template-columns:1fr}
+  .pane{min-height:30rem}
+  .finder{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  .horizon{animation:none}
+  .pane::before,.btn,.links a{transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="logo" href="#top" aria-label="Ikonectt home">Ikonect<i>t</i></a>
+  <nav class="links" aria-label="Primary">
+    <button type="button" data-mega="m-residential" aria-expanded="false" aria-controls="m-residential">Residential</button>
+    <button type="button" data-mega="m-business" aria-expanded="false" aria-controls="m-business">Business</button>
+    <button type="button" data-mega="m-coverage" aria-expanded="false" aria-controls="m-coverage">Coverage</button>
+    <button type="button" data-mega="m-support" aria-expanded="false" aria-controls="m-support">Support</button>
+    <button type="button" data-mega="m-about" aria-expanded="false" aria-controls="m-about">About Us</button>
+  </nav>
+  <a class="btn ghost" href="#portal">My Ikonectt</a>
+  <details class="menu">
+    <summary>Menu</summary>
+    <div>
+      <a href="#residential">Residential</a>
+      <a href="#business">Business</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#support">Support</a>
+      <a href="#about">About Us</a>
+      <a href="#portal">My Ikonectt</a>
+    </div>
+  </details>
+
+  <div class="mega" id="m-residential">
+    <div class="mega-links">
+      <div class="grp"><h3>Discover</h3><a href="#residential">Residential Overview</a><a href="#plans">Residential Plans</a><a href="#plans">Compare Plans</a></div>
+      <div class="grp"><h3>Get Connected</h3><a href="#coverage">Check Coverage</a><a href="#support">Installation Enquiry</a></div>
+    </div>
+    <a class="feature" href="#residential">
+      <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gr1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a1a25"/><stop offset="1" stop-color="#12070a"/></linearGradient></defs><rect width="600" height="400" fill="url(#gr1)"/><circle cx="450" cy="120" r="80" fill="#ff5a6e" opacity=".22"/><path d="M330 335V235L430 172L530 235V335Z" fill="#1d0a0f"/><g fill="#ffb4a0"><rect x="360" y="258" width="26" height="30" rx="2"/><rect x="474" y="258" width="26" height="30" rx="2"/><rect x="416" y="288" width="28" height="47" rx="2" opacity=".6"/></g><path d="M0 335Q300 285 600 335V400H0Z" fill="#12070a"/><path d="M0 335Q300 285 600 335" stroke="#ff5a6e" stroke-width="1.5" fill="none" opacity=".7"/></svg>
+      <div class="cap"><h3>Internet for the way you live.</h3><p>Explore home broadband options.</p><span class="btn solid">Explore Residential</span></div>
+    </a>
+  </div>
+
+  <div class="mega" id="m-business">
+    <div class="mega-links">
+      <div class="grp"><h3>Explore</h3><a href="#business">Business Overview</a><a href="#business">Business Solutions</a><a href="#plans">Business Plans</a></div>
+      <div class="grp"><h3>Get Started</h3><a href="#coverage">Check Coverage</a><a href="#support">Request a Quote</a></div>
+    </div>
+    <a class="feature" href="#support">
+      <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gr2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1018"/><stop offset="1" stop-color="#0b0406"/></linearGradient><pattern id="win" width="14" height="18" patternUnits="userSpaceOnUse"><rect x="3" y="4" width="6" height="8" fill="#ffb4a0" opacity=".6"/></pattern></defs><rect width="600" height="400" fill="url(#gr2)"/><circle cx="420" cy="150" r="90" fill="#ff5a6e" opacity=".18"/><g fill="#1a080c"><rect x="300" y="170" width="70" height="230"/><rect x="380" y="110" width="80" height="290"/><rect x="470" y="200" width="60" height="200"/><rect x="540" y="150" width="60" height="250"/></g><g fill="url(#win)"><rect x="300" y="170" width="70" height="230"/><rect x="380" y="110" width="80" height="290"/><rect x="470" y="200" width="60" height="200"/><rect x="540" y="150" width="60" height="250"/></g></svg>
+      <div class="cap"><h3>Built around your business.</h3><p>Talk to our team about your connectivity needs.</p><span class="btn solid">Request a Quote</span></div>
+    </a>
+  </div>
+
+  <div class="mega" id="m-coverage">
+    <div class="mega-links"><div class="grp"><a href="#coverage">Check Coverage</a><a href="#coverage">Availability Results</a><a href="#coverage">Request Verification</a></div></div>
+    <div class="feature"><div class="art generic"></div></div>
+  </div>
+
+  <div class="mega" id="m-support">
+    <div class="mega-links"><div class="grp"><a href="#support">Help Centre</a><a href="#support">FAQs</a><a href="#support">Contact Support</a></div></div>
+    <div class="feature"><div class="art generic"></div></div>
+  </div>
+
+  <div class="mega" id="m-about">
+    <div class="mega-links"><div class="grp"><a href="#about">Our Company</a><a href="#support">Contact Us</a></div></div>
+    <div class="feature"><div class="art generic"></div></div>
+  </div>
+</header>
+<div class="scrim"></div>
+
+<main id="top">
+  <section class="hero">
+    <div class="horizon" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">Fibre internet for a brighter Nigeria</p>
+      <h1>Connectivity without limits.</h1>
+      <p class="lead">Fibre broadband for homes, businesses and everything you do online.</p>
+      <div class="actions">
+        <a class="btn solid" href="#coverage">Check Coverage</a>
+        <a class="btn ghost" href="#plans">Explore Plans</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage" id="coverage">
+    <div class="wrap">
+      <div>
+        <h2>Is Ikonectt available in your area?</h2>
+        <p class="sub">Check service availability at your address.</p>
+      </div>
+      <div>
+        <div class="finder">
+          <input id="addr" type="text" placeholder="Enter your street or estate" aria-label="Street or estate" aria-describedby="helper" autocomplete="street-address">
+          <button class="btn solid" type="button" id="check">Check Coverage</button>
+        </div>
+        <p class="helper" id="helper" aria-live="polite">Availability is subject to address verification.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="split">
+    <section class="pane res" id="residential">
+      <div>
+        <h2>Internet for every day.</h2>
+        <p class="sub">Stay connected at home for work, learning and entertainment.</p>
+      </div>
+      <a class="btn ghost" href="#residential">Explore Residential</a>
+    </section>
+    <section class="pane biz" id="business">
+      <div>
+        <h2>Connectivity that works for business.</h2>
+        <p class="sub">Explore broadband options for your team, office or organisation.</p>
+      </div>
+      <a class="btn ghost" href="#business">Explore Business</a>
+    </section>
+  </div>
+
+  <section class="plans" id="plans">
+    <div class="wrap">
+      <div class="plans-head">
+        <div>
+          <h2>Find your connection.</h2>
+          <p class="sub">Browse available plans and choose what suits your needs.</p>
+        </div>
+        <a class="btn ghost" href="#plans">View All Plans</a>
+      </div>
+      <!-- Plan cards are DYNAMIC: render 2–3 verified plans here once the approved catalogue exists. -->
+      <div class="empty">
+        <h3>Explore our plans</h3>
+        <a class="btn solid" href="#support">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div>
+        <h2>Connecting people and possibilities.</h2>
+      </div>
+      <div>
+        <p>Ikonectt is the broadband brand of Intelivision Technologies, serving homes and businesses.</p>
+        <a class="btn ghost" href="#about">About Ikonectt</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="portal" id="portal">
+    <div class="wrap">
+      <div class="portal-box">
+        <div>
+          <h2>Manage your services with My Ikonectt.</h2>
+          <p class="sub">Access your account, view your services and find support in one place.</p>
+        </div>
+        <a class="btn solid" href="#portal">My Ikonectt</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="support">
+  <div class="wrap">
+    <div class="foot">
+      <a class="logo" href="#top" aria-label="Ikonectt home">Ikonect<i>t</i></a>
+      <nav aria-label="Residential"><strong>Residential</strong><a href="#residential">Residential Overview</a><a href="#plans">Residential Plans</a><a href="#coverage">Check Coverage</a></nav>
+      <nav aria-label="Business"><strong>Business</strong><a href="#business">Business Overview</a><a href="#business">Business Solutions</a><a href="#business">Request a Quote</a></nav>
+      <nav aria-label="Support"><strong>Support</strong><a href="#support">Help Centre</a><a href="#support">FAQs</a><a href="#support">Contact Support</a></nav>
+    </div>
+    <p class="legal">© 2026 Intelivision Technologies Limited. Privacy Policy · Terms</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input=document.getElementById('addr'),helper=document.getElementById('helper');
+  document.getElementById('check').addEventListener('click',function(){
+    if(!input.value.trim()){helper.textContent='Please complete this field.';input.focus();return;}
+    helper.innerHTML='We need to confirm service availability at this address. <a class="btn ghost" href="#support">Request Verification</a>';
+  });
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'){document.getElementById('check').click();}});
+})();
+(function(){
+  var nav=document.querySelector('.nav'),scrim=document.querySelector('.scrim'),btns=[].slice.call(document.querySelectorAll('[data-mega]')),t;
+  function closeAll(){btns.forEach(function(b){b.setAttribute('aria-expanded','false');document.getElementById(b.dataset.mega).classList.remove('show');});nav.classList.remove('open');scrim.classList.remove('show');}
+  function openOne(b){closeAll();b.setAttribute('aria-expanded','true');document.getElementById(b.dataset.mega).classList.add('show');nav.classList.add('open');scrim.classList.add('show');}
+  btns.forEach(function(b){
+    b.addEventListener('mouseenter',function(){clearTimeout(t);openOne(b);});
+    b.addEventListener('click',function(e){if(b.getAttribute('aria-expanded')==='true'&&e.detail===0){closeAll();}else{openOne(b);}});
+  });
+  nav.addEventListener('mouseenter',function(){clearTimeout(t);});
+  nav.addEventListener('mouseleave',function(){t=setTimeout(closeAll,140);});
+  scrim.addEventListener('click',closeAll);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll();});
+  [].forEach.call(document.querySelectorAll('.mega a'),function(a){a.addEventListener('click',closeAll);});
+})();
+</script>
+</body>
+</html>

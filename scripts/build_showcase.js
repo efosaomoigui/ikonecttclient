@@ -74,5 +74,15 @@ copyFolderSync(path.join(rootDir, 'option-b', 'dist'), path.join(outDir, 'option
 console.log('Copying Option C build...');
 copyFolderSync(path.join(rootDir, 'option-c', 'dist'), path.join(outDir, 'option-c'));
 
+// Options D and E are supplied standalone HTML prototypes; no compilation needed.
+for (const option of ['option-d', 'option-e']) {
+  const source = path.join(rootDir, option);
+  if (!fs.existsSync(path.join(source, 'index.html'))) {
+    throw new Error(`Missing ${option}/index.html`);
+  }
+  console.log(`Copying ${option} prototype...`);
+  copyFolderSync(source, path.join(outDir, option));
+}
+
 console.log('[5/5] Showcase distribution ready in public_html/');
-console.log('All 3 options built and verified successfully!');
+console.log('All 5 options packaged successfully!');

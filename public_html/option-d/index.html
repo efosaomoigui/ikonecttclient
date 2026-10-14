@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ikonectt</title>
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--tint:#fff1f2;--text:#1b0f11;--muted:#6b5a5d;--line:#eadcde;--card:#fff;--red:#e1102d;--red-d:#b60c23;--ink:#14080b;--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color-scheme:light;box-sizing:border-box}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12070a;--tint:#1d0c10;--text:#f6f1f1;--muted:#b3a3a6;--line:rgba(246,241,241,.14);--card:#1a0b0f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12070a;--tint:#1d0c10;--text:#f6f1f1;--muted:#b3a3a6;--line:rgba(246,241,241,.14);--card:#1a0b0f;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.55 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:74rem;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.5rem;border-radius:999px;font:600 .9rem/1 var(--font);border:1.5px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn.red{background:var(--red);color:#fff}.btn.red:hover{background:var(--red-d)}
+.btn.line{border-color:rgba(255,255,255,.55);color:#fff}.btn.line:hover{background:#fff;color:var(--ink)}
+.btn.out{border-color:var(--line);color:var(--text)}.btn.out:hover{border-color:var(--red);color:var(--red)}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:4rem}
+.logo{font-weight:800;font-size:1.5rem;letter-spacing:-.03em;color:var(--red)}
+.links{display:flex;gap:1.75rem;font-size:.88rem;font-weight:500;color:var(--muted)}
+.links a:hover,.links a.on{color:var(--red)}
+.menu{display:none}
+.mark{display:block;width:2.2rem;height:3px;background:var(--red);margin-bottom:1rem}
+.phero{position:relative;background:var(--ink);color:#fff;padding:4rem 0 3.5rem;overflow:hidden;isolation:isolate;background-image:radial-gradient(55% 120% at 85% 30%,#7d1022,transparent 70%)}
+.phero svg{position:absolute;right:0;top:0;height:100%;width:55%;z-index:-1;opacity:.8}
+h1{font-weight:800;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.08;letter-spacing:-.025em;max-width:34rem}
+.lead{margin:1rem 0 1.75rem;max-width:30rem;color:#f2dcdf}
+.row{display:flex;flex-wrap:wrap;gap:.8rem}
+.subnav{display:flex;gap:.5rem;flex-wrap:wrap;padding:1.25rem 0;border-bottom:1px solid var(--line)}
+.subnav a{padding:.5rem 1rem;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--muted);border:1px solid var(--line)}
+.subnav a.on,.subnav a:hover{background:var(--red);border-color:var(--red);color:#fff}
+.sec{padding:3.5rem 0}.sec.tint{background:var(--tint)}
+h2{font-weight:800;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.15;letter-spacing:-.02em}
+.sub{color:var(--muted);margin-top:.6rem;max-width:34rem}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin-top:1.75rem}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem;transition:border-color .2s,transform .2s}
+.tile:hover{border-color:var(--red);transform:translateY(-2px)}
+.tile h3{font-size:1.02rem;font-weight:800}.tile p{color:var(--muted);font-size:.92rem;margin-top:.4rem}
+.demo{font-size:.75rem;font-weight:600;color:var(--red);background:var(--tint);padding:.25rem .65rem;border-radius:999px;margin-left:.6rem;vertical-align:middle}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:1.75rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card i{height:5rem;background:linear-gradient(135deg,#7a1523,#260a10)}
+.card:nth-child(2) i{background:linear-gradient(135deg,#e1102d,#4a0f19)}
+.card:nth-child(3) i{background:linear-gradient(135deg,#5b1f6e,#1a0a22)}
+.card div{padding:1.1rem;display:flex;flex-direction:column;gap:.3rem;flex:1}
+.card h3{font-size:1rem;font-weight:800}.card p{font-size:.88rem;color:var(--muted)}.card p:last-of-type{flex:1;margin-bottom:.7rem}
+.card .btn{border-radius:8px;padding:.65rem 1rem}
+.note{font-size:.85rem;color:var(--muted);margin-top:1.25rem}
+.formbox{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.25rem;margin-top:1.75rem;max-width:46rem}
+label{display:flex;flex-direction:column;gap:.35rem;font-size:.88rem;font-weight:600}
+label small{font-weight:400;color:var(--muted);font-size:.78rem}
+label.full{grid-column:1/-1}
+input,select,textarea{font:400 .95rem var(--font);color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem;width:100%}
+textarea{min-height:7rem;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--red);outline-offset:1px;border-color:transparent}
+.formbox .btn{grid-column:1/-1;justify-self:start}
+.status{grid-column:1/-1;font-size:.9rem;color:var(--muted);min-height:1.3em}
+.status.err{color:var(--red)}
+.result{margin-top:1.5rem;max-width:46rem;padding:1.5rem;border:1px solid var(--red);border-radius:12px;background:var(--tint)}
+.result h3{font-weight:800;margin-bottom:.3rem}.result .row{margin-top:1rem}
+details{border-bottom:1px solid var(--line);max-width:46rem}
+summary{cursor:pointer;padding:1.1rem 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--red);font-weight:800}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 1.2rem;color:var(--muted)}
+.legal-box{margin-top:1.75rem;padding:1.5rem;border:1px dashed var(--line);border-radius:12px;color:var(--muted);max-width:46rem}
+.cta{background:var(--ink);color:#fff;padding:3.5rem 0}
+.cta p{color:#e5d3d6;margin:.7rem 0 1.5rem}
+footer{background:var(--ink);color:#bfaeb1;padding:3rem 0 calc(env(safe-area-inset-bottom,0px) + 1.75rem);font-size:.9rem;border-top:1px solid rgba(255,255,255,.1)}
+.foot{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:2rem}
+.foot nav{display:flex;flex-direction:column;gap:.55rem}.foot strong{color:#fff;font-weight:600;margin-bottom:.3rem}.foot a:hover{color:#fff}
+.legal{margin-top:2rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.12);font-size:.82rem}
+@media (max-width:900px){
+ .links,header .bar>.btn{display:none}
+ .menu{display:block;position:relative}.menu summary{padding:0;font-size:.9rem}.menu summary::after{content:none}
+ .menu div{position:absolute;right:0;top:2.2rem;min-width:13rem;display:flex;flex-direction:column;gap:.9rem;padding:1.1rem 1.3rem;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+ .phero svg{width:100%;opacity:.4}.foot{grid-template-columns:1fr 1fr}.formbox{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.btn,.tile{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="#/residential" aria-label="Ikonectt home">Ikonectt</a>
+  <nav class="links" id="nav" aria-label="Primary">
+    <a href="#/residential" data-s="residential">Residential</a><a href="#/business" data-s="business">Business</a><a href="#/coverage" data-s="coverage">Coverage</a><a href="#/support" data-s="support">Support</a><a href="#/about" data-s="about">About Us</a>
+  </nav>
+  <a class="btn red" href="#/my-ikonectt/login">My Ikonectt</a>
+  <details class="menu"><summary>Menu</summary><div><a href="#/residential">Residential</a><a href="#/business">Business</a><a href="#/coverage">Coverage</a><a href="#/support">Support</a><a href="#/about">About Us</a><a href="#/my-ikonectt/login">My Ikonectt</a></div></details>
+</div></header>
+<main id="app"></main>
+<footer><div class="wrap">
+  <div class="foot">
+    <div><a class="logo" style="color:#fff" href="#/residential">Ikonectt</a><p style="margin-top:.8rem;max-width:15rem">Fibre broadband for homes and businesses.</p></div>
+    <nav aria-label="Residential"><strong>Residential</strong><a href="#/residential">Residential Overview</a><a href="#/residential/plans">Residential Plans</a><a href="#/residential/compare">Compare Plans</a></nav>
+    <nav aria-label="Business"><strong>Business</strong><a href="#/business">Business Overview</a><a href="#/business/solutions">Business Solutions</a><a href="#/business/quote">Request a Quote</a></nav>
+    <nav aria-label="Support"><strong>Support</strong><a href="#/support">Help Centre</a><a href="#/support/faqs">FAQs</a><a href="#/contact">Contact Us</a></nav>
+  </div>
+  <p class="legal">© 2026 Intelivision Technologies Limited. <a href="#/privacy">Privacy Policy</a> · <a href="#/terms">Terms &amp; Conditions</a></p>
+</div></footer>
+
+<script>
+(function(){
+var app=document.getElementById('app');
+var A=function(p,t,c){return '<a class="btn '+(c||'red')+'" href="#/'+p+'">'+t+'</a>';};
+var S=function(h,p,i,c){return '<section class="sec '+(c||'')+'"><div class="wrap"><span class="mark"></span><h2>'+h+'</h2>'+(p?'<p class="sub">'+p+'</p>':'')+(i||'')+'</div></section>';};
+var T=function(a){return '<div class="tiles">'+a.map(function(x){return '<a class="tile" href="#/'+(x[2]||'coverage')+'"><h3>'+x[0]+'</h3>'+(x[1]?'<p>'+x[1]+'</p>':'')+'</a>';}).join('')+'</div>';};
+var D=function(n,to,cta){var c='<article class="card"><i></i><div><h3>Plan name</h3><p>Speed</p><p>Contact us for current pricing.</p><a class="btn red" href="#/'+to+'">'+(cta||'View Plan')+'</a></div></article>';return '<div class="grid">'+new Array(n+1).join(c)+'</div>';};
+var F=function(id,fields,cta){
+  return '<form class="formbox" data-f="'+id+'" novalidate>'+fields.map(function(f){
+    if(typeof f==='string')f=[f];var l=f[0],t=f[1]||'text',o=f[2],opts=f[3],full=(t==='area'||f[4])?' full':'';
+    var ctl=t==='area'?'<textarea name="'+l+'"'+(o?'':' required')+'></textarea>':t==='select'?'<select name="'+l+'">'+opts.map(function(x){return '<option>'+x+'</option>';}).join('')+'</select>':'<input name="'+l+'" type="'+t+'"'+(o?'':' required')+(l==='Account number'?' placeholder="Enter your account number" inputmode="numeric"':'')+(l==='Country'?' value="Nigeria"':'')+'>';
+    return '<label class="'+full.trim()+'">'+l+'<small>'+(o?'Optional':'Required')+'</small>'+ctl+'</label>';
+  }).join('')+'<p class="status" aria-live="polite"></p><button class="btn red" type="submit">'+cta+'</button></form>';
+};
+var FAQ=function(a){return a.map(function(x){return '<details><summary>'+x[0]+'</summary><p>'+x[1]+'</p></details>';}).join('');};
+var CTA=function(h,p,btns){return '<section class="cta"><div class="wrap"><span class="mark"></span><h2>'+h+'</h2><p>'+p+'</p><div class="row">'+btns+'</div></div></section>';};
+var SUB={residential:[['Overview','residential'],['Plans','residential/plans'],['Compare Plans','residential/compare'],['Installation Enquiry','residential/enquire']],business:[['Overview','business'],['Solutions','business/solutions'],['Plans','business/plans'],['Request a Quote','business/quote']],coverage:[['Check Coverage','coverage'],['Request Verification','coverage/verify']],support:[['Help Centre','support'],['FAQs','support/faqs'],['Contact Support','support/contact']],about:[['Our Company','about'],['Contact Us','contact']]};
+var ART='<svg viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke-linecap="round"><g stroke="#ff6b7d" stroke-width="1.4" opacity=".7"><path d="M20 260Q200 40 380 170T590 40"/><path d="M60 290Q260 100 430 220T600 120" opacity=".6"/></g><g fill="#ff2a45"><circle cx="380" cy="170" r="5"/><circle cx="590" cy="40" r="4"/></g></svg>';
+var qFaq=[['Is fibre broadband available in my area?','Availability depends on your address. Use our coverage checker to see the current status or request verification from our team.'],['How do I get connected?','Start by checking coverage and selecting a suitable plan. Our team will confirm eligibility, installation requirements and the next steps.'],['How does installation work?','Once service is confirmed, our team will arrange the installation process, connect the required equipment and help you get started. The details depend on your location.'],['Can I connect several devices?','You can connect multiple compatible devices through your home network. Your experience will depend on your plan, Wi-Fi setup and the devices in use.'],['Does Ikonectt offer unlimited data?','Ikonectt advertises unlimited fibre options. Please review the current plan terms and Fair Usage Policy before subscribing.'],['What speeds and prices are available?','Available plans and prices are listed in our current catalogue. Service availability and final terms are confirmed for your address.'],['Can I improve Wi-Fi coverage around my home?','Wi-Fi coverage depends on your equipment, building layout and interference. Contact support if you need help improving coverage.'],['How do I renew or manage my service?','Existing customers can use My Ikonectt to view available account services. Contact support if you need assistance.'],['Do you offer TV or phone bundles?','Please contact our team for the latest information about additional services.'],['How do I contact support?','Use the contact form or the confirmed support details on our Contact page.']];
+var V={
+'residential':{s:'residential',t:'Internet that keeps your home connected.',l:'Find broadband options for the way you live, work and enjoy your home.',c:[['Explore Plans','residential/plans'],['Check Coverage','coverage','line']],
+ b:function(){return S('Made for everyday moments.','From video calls to movie nights, make room for everything you do online.',T([['Work from home','Stay connected through meetings and daily tasks.','residential/plans'],['Stream and unwind','Enjoy the shows, music and content you love.','residential/plans'],['Connect the household','Keep your family\'s devices connected.','residential/plans']]))+S('A plan for your home.','Explore available speeds and choose the option that suits your household.',D(3,'residential/enquire')+'<p class="note"><span class="demo" style="margin:0">Demo layout</span> Plan cards load from the verified catalogue.</p><div class="row" style="margin-top:1.25rem">'+A('residential/compare','Compare Plans','out')+'</div>','tint')+S('Getting connected.','Check your address, choose a plan and arrange the next steps with our team.','<div class="row" style="margin-top:1.5rem">'+A('residential/enquire','Start an Enquiry')+'</div>')+S('A few things worth knowing.','',FAQ(qFaq.slice(0,1).concat(qFaq.slice(2,4)))+'<div class="row" style="margin-top:1.5rem">'+A('support/faqs','View All FAQs','out')+'</div>','tint')+CTA('Ready to get connected?','Start by checking availability at your address.',A('coverage','Check Coverage'));}},
+'residential/plans':{s:'residential',t:'Find your home internet plan.',l:'Compare available broadband options for your household.',c:[['Compare Plans','residential/compare','line']],
+ b:function(){return S('Home plans<span class="demo">Demo layout</span>','Speed, price and billing period filters appear once the verified catalogue is connected.',D(4,'residential/enquire')+'<p class="note">Plan availability and installation are subject to location verification and applicable terms.</p>');}},
+'residential/compare':{s:'residential',t:'Compare home plans.',l:'See available options side by side.',c:[],
+ b:function(){var h=['Plan','Speed','Price','Billing period','Data policy','Installation','Availability'];return S('Plan comparison','',"<div style='overflow-x:auto;margin-top:1.5rem'><table style='border-collapse:collapse;width:100%;min-width:40rem;font-size:.9rem'><thead><tr>"+h.map(function(x){return "<th style='text-align:left;padding:.8rem;border-bottom:2px solid var(--red)'>"+x+"</th>";}).join('')+"</tr></thead></table></div><div class='result'><h3>Select at least two plans to compare.</h3><div class='row'>"+A('residential/plans','View Plan','out')+A('coverage','Check Coverage')+"</div></div><p class='note'>Availability and plan terms may vary by location.</p>");}},
+'residential/enquire':{s:'residential',t:'Let\'s get your home connected.',l:'Tell us where you need service and we\'ll guide you through the next steps.',c:[],
+ b:function(){return S('Your details','',F('enq',['Full name',['Email address','email'],['Phone number','tel'],'State','City or LGA','Area or estate',['Street and address','text',0,0,1],['Interested plan','text',1],['Additional information','area',1]],'Send Enquiry'));}},
+'business':{s:'business',t:'Connectivity built for business.',l:'Explore broadband solutions for your workplace, team and business operations.',c:[['Explore Solutions','business/solutions'],['Request a Quote','business/quote','line']],
+ b:function(){return S('Keep business moving.','From daily communication to connected teams, find a service that fits your operations.')+S('Explore business connectivity.','Tell us what your business needs and we\'ll help identify suitable options.',T([['Small &amp; Growing Businesses','','business/quote'],['Offices &amp; Workplaces','','business/quote'],['Enterprise Enquiries','','business/quote']]),'tint')+S('Find the right business connection.','Review available business plans or request a tailored conversation.','<div class="row" style="margin-top:1.5rem">'+A('business/plans','Business Plans')+A('business/quote','Request a Quote','out')+'</div>')+S('Start with your location.','Service options depend on the address and technical requirements.','<div class="row" style="margin-top:1.5rem">'+A('coverage','Check Coverage','out')+'</div>','tint')+CTA('Let\'s talk about your business.','Share your requirements and our team will follow up.',A('business/quote','Request a Quote'));}},
+'business/solutions':{s:'business',t:'Connectivity for the way you work.',l:'Explore the services available for your business requirements.',c:[],
+ b:function(){return S('Tell us what your business needs.','Our team can discuss suitable connectivity options.','<div class="row" style="margin-top:1.5rem">'+A('business/quote','Request a Quote')+'</div><p class="note">Verified solutions will be listed here once the business catalogue is approved.</p>');}},
+'business/plans':{s:'business',t:'Explore business plans.',l:'Review available business broadband options and request details for your location.',c:[['Request a Quote','business/quote','line']],
+ b:function(){return S('Business plans<span class="demo">Demo layout</span>','',D(3,'business/quote','Request a Quote')+'<p class="note">Service terms, installation and availability are confirmed during assessment.</p>');}},
+'business/quote':{s:'business',t:'Let\'s discuss your connectivity needs.',l:'Tell us about your business and we\'ll follow up with suitable options.',c:[],
+ b:function(){return S('Your business','',F('quote',['Business name','Contact person',['Work email','email'],['Phone number','tel'],['Business type','text',1],['Number of locations','text',1],['Service address','text',0,0,1],['Connectivity requirements','area'],['Preferred contact method','select',1,['Phone','Email']]],'Request a Quote'));}},
+'coverage':{s:'coverage',t:'Is Ikonectt available at your address?',l:'Enter your location to check service availability.',c:[],
+ b:function(){return S('Your address','',F('cov',['Country','State','City / LGA','District / Area',['Street / Estate','text'],['Building / Address','text',1]],'Check Coverage')+'<p class="note">Results depend on the address details provided and may require confirmation.</p><div id="res"></div>');}},
+'coverage/verify':{s:'coverage',t:'Request an address check.',l:'Share your address and contact details so our team can confirm availability.',c:[],
+ b:function(){return S('Your details','',F('ver',['Full name',['Phone number','tel'],['Email address','email'],['Full service address','text',0,0,1],['Nearest landmark','text',1],['Additional information','area',1]],'Request Verification'));}},
+'support':{s:'support',t:'How can we help?',l:'Find answers, get guidance or contact our team.',c:[['Browse FAQs','support/faqs'],['Contact Support','support/contact','line']],
+ b:function(){return S('Choose a topic','',T([['Coverage &amp; Installation','','coverage'],['Plans &amp; Billing','','support/faqs'],['Wi-Fi &amp; Connectivity','','support/faqs'],['Account &amp; My Ikonectt','','my-ikonectt/login'],['Contact Support','','support/contact']]));}},
+'support/faqs':{s:'support',t:'Frequently asked questions.',l:'Quick answers to common questions about Ikonectt services.',c:[],
+ b:function(){return S('Common questions','',FAQ(qFaq),'')+CTA('Still need help?','Tell us what you need help with.',A('support/contact','Contact Support'));}},
+'support/contact':{s:'support',t:'Contact support.',l:'Tell us what you need help with.',c:[],
+ b:function(){return S('Your request','',F('sup',['Full name',['Email','email'],['Phone number','tel'],['Account number','text',1],['Issue category','select',0,['Coverage & Installation','Plans & Billing','Wi-Fi & Connectivity','Account & My Ikonectt']],['Your message','area']],'Send Request')+'<p class="note">Never share your password or one-time codes in this form.</p>');}},
+'about':{s:'about',t:'Connecting people and possibilities.',l:'Ikonectt is the broadband brand of Intelivision Technologies, serving homes and businesses in Nigeria.',c:[],
+ b:function(){return S('About Ikonectt.','Intelivision Technologies provides internet connectivity services. Through Ikonectt, the company offers fibre broadband options for residential and business customers.')+S('Built around different needs.','From households and estates to offices and organisations, Ikonectt supports different connectivity requirements.','','tint')+CTA('Find the right connection.','Explore home and business broadband options.',A('residential','Explore Residential')+A('business','Explore Business','line'));}},
+'contact':{s:'about',t:'Let\'s talk.',l:'Have a question about our services? Send us a message.',c:[],
+ b:function(){return S('Get in touch','',T([['General enquiries','Contact details to be confirmed.','contact'],['Sales enquiries','Contact details to be confirmed.','contact'],['Customer support','Contact details to be confirmed.','support/contact']])+F('con',['Full name',['Email address','email'],['Phone number','tel'],['Enquiry type','select',0,['General enquiries','Sales enquiries','Customer support']],['Your message','area']],'Send Message'));}},
+'my-ikonectt/login':{s:'',t:'Welcome to My Ikonectt.',l:'Sign in to manage your account and services.',c:[],
+ b:function(){return S('Sign in','',F('login',['Account number',['Password','password']],'Sign In').replace('<p class="status"','<p class="note" style="grid-column:1/-1;margin:0">Forgot password? <a href="#/my-ikonectt/forgot-password" style="color:var(--red);font-weight:600">Reset it here</a>. Need help accessing your account? <a href="#/support/contact" style="color:var(--red);font-weight:600">Contact Support</a>.</p><p class="status"'));}},
+'my-ikonectt/forgot-password':{s:'',t:'Reset your password.',l:'Follow the steps to recover access to your account.',c:[],
+ b:function(){return S('Recover access','',F('rec',['Account number'],'Continue'));}},
+'privacy':{s:'',t:'Privacy Policy',l:'',c:[],b:function(){return S('Policy text','','<div class="legal-box">Client-approved complete legal text required. Effective date and last-updated date to be added once confirmed.</div>');}},
+'terms':{s:'',t:'Terms &amp; Conditions',l:'',c:[],b:function(){return S('Terms text','','<div class="legal-box">Client-approved complete legal text required. Effective date and last-updated date to be added once confirmed.</div>');}}
+};
+function render(){
+  var r=location.hash.replace(/^#\/?/,'')||'residential',v=V[r]||V.residential;
+  var sub=SUB[v.s]?'<div class="wrap"><nav class="subnav" aria-label="Section">'+SUB[v.s].map(function(x){return '<a href="#/'+x[1]+'"'+(x[1]===r?' class="on" aria-current="page"':'')+'>'+x[0]+'</a>';}).join('')+'</nav></div>':'';
+  app.innerHTML='<section class="phero">'+ART+'<div class="wrap"><span class="mark"></span><h1>'+v.t+'</h1>'+(v.l?'<p class="lead">'+v.l+'</p>':'')+(v.c.length?'<div class="row">'+v.c.map(function(x){return A(x[1],x[0],x[2]);}).join('')+'</div>':'')+'</div></section>'+sub+v.b();
+  document.title=v.t.replace(/&amp;/g,'&')+' | Ikonectt';
+  [].forEach.call(document.querySelectorAll('#nav a'),function(a){a.classList.toggle('on',a.dataset.s===v.s);});
+  window.scrollTo(0,0);
+}
+app.addEventListener('submit',function(e){
+  e.preventDefault();var f=e.target,st=f.querySelector('.status'),id=f.dataset.f;
+  var miss=[].some.call(f.querySelectorAll('[required]'),function(x){return !x.value.trim();});
+  st.className='status';
+  if(id==='cov'){
+    if(!f.elements['Street / Estate'].value.trim()){st.className='status err';st.textContent='Please provide more address information to continue.';return;}
+    document.getElementById('res').innerHTML='<div class="result"><h3>We need to confirm service availability at this address.</h3><p>Send your details for a manual check.</p><div class="row">'+A('coverage/verify','Request Verification')+'<a class="btn out" href="#/coverage">Check Another Address</a></div></div>';return;
+  }
+  if(miss){st.className='status err';st.textContent='Please complete this field.';return;}
+  st.textContent='Demo form: not yet connected to a server, so nothing was sent.';
+});
+window.addEventListener('hashchange',render);render();
+})();
+</script>
+</body>
+</html>
