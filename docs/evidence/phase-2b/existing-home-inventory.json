@@ -1,0 +1,147 @@
+[
+  {
+    "template": "a",
+    "images": [
+      {
+        "alt": "A woman working online at home with Ikonectt fibre broadband",
+        "height": 3595,
+        "loaded": true,
+        "src": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2400&q=85",
+        "width": 2400
+      },
+      {
+        "alt": "Residential customers connected with Ikonectt",
+        "height": 900,
+        "loaded": true,
+        "src": "https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=1600&q=80",
+        "width": 1600
+      },
+      {
+        "alt": "Business customers connected with Ikonectt",
+        "height": 2400,
+        "loaded": true,
+        "src": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1600&q=80",
+        "width": 1600
+      }
+    ],
+    "headings": [
+      "Connectivity without limits.",
+      "Is Ikonectt available in your area?",
+      "Internet for every day.",
+      "Connectivity that works for business.",
+      "Find your connection.",
+      "Connecting people and possibilities.",
+      "Manage your services with My Ikonectt."
+    ]
+  },
+  {
+    "template": "b",
+    "images": [
+      {
+        "alt": "Nigerian family enjoying fiber broadband in a modern home",
+        "height": 0,
+        "loaded": false,
+        "src": "/src/assets/images/hero_nigerian_family_gigabit_1791941970852.jpg",
+        "width": 0
+      },
+      {
+        "alt": "Residential fibre broadband for modern homes",
+        "height": 0,
+        "loaded": false,
+        "src": "/src/assets/images/residential_fibre_living_room_1791941971218.jpg",
+        "width": 0
+      },
+      {
+        "alt": "Business broadband solutions for modern enterprise workplaces",
+        "height": 0,
+        "loaded": false,
+        "src": "/src/assets/images/business_enterprise_workspace_1791941971989.jpg",
+        "width": 0
+      }
+    ],
+    "headings": [
+      "Connectivity without limits.",
+      "Is Ikonectt available in your area?",
+      "Internet for every day.",
+      "Connectivity that works for business.",
+      "Find your connection.",
+      "Connecting people and possibilities.",
+      "Manage your services with My Ikonectt."
+    ]
+  },
+  {
+    "template": "c",
+    "images": [
+      {
+        "alt": "Modern Nigerian home powered by Ikonectt optical fibre broadband",
+        "height": 768,
+        "loaded": true,
+        "src": "http://127.0.0.1:3020/option-c/assets/hero_nigerian_family_gigabit_1791941970852-DntgndUk.jpg",
+        "width": 1376
+      },
+      {
+        "alt": "Nigerian home interior connected to Ikonectt high-speed fibre",
+        "height": 896,
+        "loaded": true,
+        "src": "http://127.0.0.1:3020/option-c/assets/residential_fibre_living_room_1791941971218-DMt0xn5w.jpg",
+        "width": 1200
+      },
+      {
+        "alt": "Nigerian corporate team collaborating over enterprise connectivity",
+        "height": 896,
+        "loaded": true,
+        "src": "http://127.0.0.1:3020/option-c/assets/business_enterprise_workspace_1791941971989-C_PgeAQF.jpg",
+        "width": 1200
+      },
+      {
+        "alt": "Nigerian remote professional working seamlessly with Ikonectt fibre",
+        "height": 896,
+        "loaded": true,
+        "src": "http://127.0.0.1:3020/option-c/assets/creative_creator_fibre_1791941972055-CM3C0Yph.jpg",
+        "width": 1200
+      },
+      {
+        "alt": "Contemporary Nigerian enterprise team collaborating over Ikonectt fibre",
+        "height": 2400,
+        "loaded": true,
+        "src": "http://127.0.0.1:3020/option-c/assets/nigerian_business_collaboration-CHiwxZu0.jpg",
+        "width": 1600
+      }
+    ],
+    "headings": [
+      "Connectivity without limits.",
+      "Internet for every possibility.",
+      "Find your connection.",
+      "Made for the moments that matter.",
+      "Keep your business connected.",
+      "Is Ikonectt available at your address?",
+      "Your connection. Your control.",
+      "Here when you need us."
+    ]
+  },
+  {
+    "template": "d",
+    "images": [],
+    "headings": [
+      "Internet that keeps your home connected.",
+      "Made for everyday moments.",
+      "Plans for home and business.",
+      "Getting connected.",
+      "A few things worth knowing.",
+      "Ready to get connected?"
+    ]
+  },
+  {
+    "template": "e",
+    "images": [],
+    "headings": [
+      "Connectivity without limits.",
+      "Is Ikonectt available in your area?",
+      "Internet for every day.",
+      "Connectivity that works for business.",
+      "Find your connection.",
+      "Connecting people and possibilities.",
+      "Manage your services with My Ikonectt."
+    ]
+  }
+]
