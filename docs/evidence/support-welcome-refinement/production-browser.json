@@ -1,0 +1,117 @@
+[
+  {
+    "template": "a",
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:38 PM"
+    },
+    "welcome": {
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "name": "",
+      "needsScroll": false,
+      "phone": "",
+      "toolbarHidden": true
+    }
+  },
+  {
+    "template": "b",
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:38 PM"
+    },
+    "welcome": {
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "name": "",
+      "needsScroll": false,
+      "phone": "",
+      "toolbarHidden": true
+    }
+  },
+  {
+    "template": "c",
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:39 PM"
+    },
+    "welcome": {
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "name": "",
+      "needsScroll": false,
+      "phone": "",
+      "toolbarHidden": true
+    }
+  },
+  {
+    "template": "d",
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:39 PM"
+    },
+    "welcome": {
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "name": "",
+      "needsScroll": false,
+      "phone": "",
+      "toolbarHidden": true
+    }
+  },
+  {
+    "template": "e",
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:39 PM"
+    },
+    "welcome": {
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "name": "",
+      "needsScroll": false,
+      "phone": "",
+      "toolbarHidden": true
+    }
+  }
+]

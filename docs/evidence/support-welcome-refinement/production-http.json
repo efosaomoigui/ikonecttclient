@@ -1,0 +1,53 @@
+{
+  "commit": "e5d6156",
+  "checkedAtUTC": "2026-10-15T17:37:56.580310+00:00",
+  "templates": [
+    {
+      "template": "a",
+      "entryStatus": 200,
+      "codeStatus": 200,
+      "refinementPresent": true
+    },
+    {
+      "template": "b",
+      "entryStatus": 200,
+      "codeStatus": 200,
+      "refinementPresent": true
+    },
+    {
+      "template": "c",
+      "entryStatus": 200,
+      "codeStatus": 200,
+      "refinementPresent": true
+    },
+    {
+      "template": "d",
+      "entryStatus": 200,
+      "codeStatus": 200,
+      "refinementPresent": true
+    },
+    {
+      "template": "e",
+      "entryStatus": 200,
+      "codeStatus": 200,
+      "refinementPresent": true
+    }
+  ],
+  "sharedSource": [
+    {
+      "file": "assistant.js",
+      "status": 200,
+      "matches": true
+    },
+    {
+      "file": "assistant-view.js",
+      "status": 200,
+      "matches": true
+    },
+    {
+      "file": "assistant.css",
+      "status": 200,
+      "matches": true
+    }
+  ]
+}
