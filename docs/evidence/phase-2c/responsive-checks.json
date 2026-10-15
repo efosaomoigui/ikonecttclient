@@ -1,0 +1,1652 @@
+[
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1440
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1440
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1440
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 1000.924560546875,
+        "right": 1419.099090576172,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 1000.924560546875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1024
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1024
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1024
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 585.2264404296875,
+        "right": 1003.4009704589844,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 585.2264404296875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 768
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 768
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 768
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 328.9245300292969,
+        "right": 747.0990600585938,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 328.9245300292969,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 390
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "introduction",
+      "width": 390
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 390.3396301269531,
+        "top": 752.4339599609375,
+        "width": 390.3396301269531,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "a",
+    "requestedWidth": 375,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 376
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "introduction",
+      "width": 376
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "conversation",
+      "width": 376
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 375.84906005859375,
+        "top": 752.4339599609375,
+        "width": 375.84906005859375,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 321
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "introduction",
+      "width": 321
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "conversation",
+      "width": 321
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 320.6037902832031,
+        "top": 752.4339599609375,
+        "width": 320.6037902832031,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 1440,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1440
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1440
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1440
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 1000.924560546875,
+        "right": 1419.099090576172,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 1000.924560546875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 1024,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1024
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1024
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1024
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 585.2264404296875,
+        "right": 1003.4009704589844,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 585.2264404296875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 768,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 768
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 768
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 768
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 328.9245300292969,
+        "right": 747.0990600585938,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 328.9245300292969,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 390,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 390
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "introduction",
+      "width": 390
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 390.3396301269531,
+        "top": 752.4339599609375,
+        "width": 390.3396301269531,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 375,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 376
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "introduction",
+      "width": 376
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "conversation",
+      "width": 376
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 375.84906005859375,
+        "top": 752.4339599609375,
+        "width": 375.84906005859375,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 320,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 321
+    },
+    "intro": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "introduction",
+      "width": 321
+    },
+    "chat": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "conversation",
+      "width": 321
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 320.6037902832031,
+        "top": 752.4339599609375,
+        "width": 320.6037902832031,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 1440,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1440
+    },
+    "intro": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1440
+    },
+    "chat": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1440
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 1000.924560546875,
+        "right": 1419.099090576172,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 1000.924560546875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 1024,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1024
+    },
+    "intro": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1024
+    },
+    "chat": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1024
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 585.2264404296875,
+        "right": 1003.4009704589844,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 585.2264404296875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 768,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 768
+    },
+    "intro": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 768
+    },
+    "chat": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 768
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 328.9245300292969,
+        "right": 747.0990600585938,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 328.9245300292969,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 390,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 390
+    },
+    "intro": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "introduction",
+      "width": 390
+    },
+    "chat": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 390.3396301269531,
+        "top": 752.4339599609375,
+        "width": 390.3396301269531,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 375,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 376
+    },
+    "intro": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "introduction",
+      "width": 376
+    },
+    "chat": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "conversation",
+      "width": 376
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 375.84906005859375,
+        "top": 752.4339599609375,
+        "width": 375.84906005859375,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 320,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 321
+    },
+    "intro": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "introduction",
+      "width": 321
+    },
+    "chat": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "conversation",
+      "width": 321
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 320.6037902832031,
+        "top": 752.4339599609375,
+        "width": 320.6037902832031,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1440
+    },
+    "intro": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1440
+    },
+    "chat": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1440
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 1000.924560546875,
+        "right": 1419.099090576172,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 1000.924560546875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1024
+    },
+    "intro": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1024
+    },
+    "chat": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1024
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 585.2264404296875,
+        "right": 1003.4009704589844,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 585.2264404296875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 768
+    },
+    "intro": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 768
+    },
+    "chat": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 768
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 328.9245300292969,
+        "right": 747.0990600585938,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 328.9245300292969,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 390
+    },
+    "intro": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "introduction",
+      "width": 390
+    },
+    "chat": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 390.3396301269531,
+        "top": 752.4339599609375,
+        "width": 390.3396301269531,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 375,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 376
+    },
+    "intro": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "introduction",
+      "width": 376
+    },
+    "chat": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "conversation",
+      "width": 376
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 375.84906005859375,
+        "top": 752.4339599609375,
+        "width": 375.84906005859375,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 321
+    },
+    "intro": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "introduction",
+      "width": 321
+    },
+    "chat": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "conversation",
+      "width": 321
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 320.6037902832031,
+        "top": 752.4339599609375,
+        "width": 320.6037902832031,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1440
+    },
+    "intro": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1440
+    },
+    "chat": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1440
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 1000.924560546875,
+        "right": 1419.099090576172,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 1000.924560546875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 1024
+    },
+    "intro": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 1024
+    },
+    "chat": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 1024
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 585.2264404296875,
+        "right": 1003.4009704589844,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 585.2264404296875,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 768
+    },
+    "intro": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "introduction",
+      "width": 768
+    },
+    "chat": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 818,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 418,
+      "stage": "conversation",
+      "width": 768
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 845.4198150634766,
+        "height": 113.88679504394533,
+        "left": 328.9245300292969,
+        "right": 747.0990600585938,
+        "top": 731.5330200195312,
+        "width": 418.1745300292969,
+        "x": 328.9245300292969,
+        "y": 731.5330200195312
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 390
+    },
+    "intro": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "introduction",
+      "width": 390
+    },
+    "chat": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 390.3396301269531,
+        "top": 752.4339599609375,
+        "width": 390.3396301269531,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 375,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 376
+    },
+    "intro": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "introduction",
+      "width": 376
+    },
+    "chat": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 376,
+      "stage": "conversation",
+      "width": 376
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 375.84906005859375,
+        "top": 752.4339599609375,
+        "width": 375.84906005859375,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "launch": {
+      "invitation": true,
+      "launcherInViewport": true,
+      "launcherSize": [
+        55.99528503417969,
+        55.99528503417969
+      ],
+      "width": 321
+    },
+    "intro": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-name",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "introduction",
+      "width": 321
+    },
+    "chat": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 900,
+      "panelHeight": 900,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 321,
+      "stage": "conversation",
+      "width": 321
+    },
+    "response": {
+      "actionCount": 3,
+      "composerRect": {
+        "bottom": 866.3207550048828,
+        "height": 113.88679504394533,
+        "left": 0,
+        "right": 320.6037902832031,
+        "top": 752.4339599609375,
+        "width": 320.6037902832031,
+        "x": 0,
+        "y": 752.4339599609375
+      },
+      "safeReply": true
+    }
+  }
+]

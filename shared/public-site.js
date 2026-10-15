@@ -5,6 +5,7 @@ import {pages,menus,parseRoute} from './routes.js';
 import {company} from './content.js';
 import {renderPage,filterFAQs,renderFAQResults,link} from './pages.js';
 import {addressFields,validateForm,escapeHTML as esc} from './forms.js';
+import {mountAssistant} from './assistant.js';
 
 const redLogo=new URL('../assets/logos/ikonectt_transparent.png',import.meta.url).href;
 const whiteLogo=new URL('../assets/logos/ikonectt_white_transparent.png',import.meta.url).href;
@@ -26,6 +27,7 @@ export function mountSite({root,home,template}) {
   const main=document.createElement('main');main.id='ik-main';main.tabIndex=-1;main.hidden=true;
   const footer=document.createElement('footer');footer.className='ik-footer';footer.innerHTML=footerHTML();
   root.prepend(skip,header);root.append(main,footer);
+  const assistant=mountAssistant({root,template,navigate,getContext:()=>({path:parseRoute(window.location.hash).path,audience:state.audience,plan:state.plan})});
   const nav=header.querySelector('.ik-desktop-nav'),mobile=header.querySelector('.ik-mobile-button');
   function syncAudience(){
     root.dataset.audience=state.audience;
@@ -33,6 +35,7 @@ export function mountSite({root,home,template}) {
       const active=anchor.dataset.audience===state.audience;anchor.dataset.active=String(active);
       if(active)anchor.setAttribute('aria-current','true');else anchor.removeAttribute('aria-current');
     });
+    assistant.updateContext();
   }
   const carousels=[...home.querySelectorAll('[data-home-plan-carousel]')].map(host=>{
     host.innerHTML=carouselHTML(state.audience);
@@ -161,7 +164,7 @@ export function mountSite({root,home,template}) {
     if(window.location.hash===hash)render();else window.location.hash=hash;
   },opts);
   render();
-  return ()=>{abort.abort();carousels.forEach(carousel=>carousel.destroy());clearTimeout(menuTimer);header.remove();footer.remove();main.remove();skip.remove();home.hidden=false;root.classList.remove('ik-site');delete root.dataset.template;delete root.dataset.route;delete root.dataset.audience;};
+  return ()=>{assistant.destroy();abort.abort();carousels.forEach(carousel=>carousel.destroy());clearTimeout(menuTimer);header.remove();footer.remove();main.remove();skip.remove();home.hidden=false;root.classList.remove('ik-site');delete root.dataset.template;delete root.dataset.route;delete root.dataset.audience;};
 }
 function headerHTML(template){
   const dark=['c','e'].includes(template),utility=['a','b','c'].includes(template);

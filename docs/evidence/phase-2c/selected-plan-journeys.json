@@ -1,0 +1,42 @@
+[
+  {
+    "template": "a",
+    "selected": "Selected: iGold · 50 Mbps · ₦25,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.",
+    "panelClosed": true,
+    "path": "/option-a/",
+    "plan": "res-igold",
+    "route": "coverage"
+  },
+  {
+    "template": "b",
+    "selected": "Selected: iGold · 50 Mbps · ₦25,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.",
+    "panelClosed": true,
+    "path": "/option-b/",
+    "plan": "res-igold",
+    "route": "coverage"
+  },
+  {
+    "template": "c",
+    "selected": "Selected: iGold · 50 Mbps · ₦25,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.",
+    "panelClosed": true,
+    "path": "/option-c/",
+    "plan": "res-igold",
+    "route": "coverage"
+  },
+  {
+    "template": "d",
+    "selected": "Selected: iGold · 50 Mbps · ₦25,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.",
+    "panelClosed": true,
+    "path": "/option-d/",
+    "plan": "res-igold",
+    "route": "coverage"
+  },
+  {
+    "template": "e",
+    "selected": "Selected: iGold · 50 Mbps · ₦25,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.",
+    "panelClosed": true,
+    "path": "/option-e/",
+    "plan": "res-igold",
+    "route": "coverage"
+  }
+]

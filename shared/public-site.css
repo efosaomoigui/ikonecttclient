@@ -1,5 +1,6 @@
 @import './fonts.css';
 @import './plans.css';
+@import './assistant.css';
 
 /* Shared structure; template variants retain the existing design vocabulary. */
 .ik-site{--ik-bg:#fff;--ik-surface:#f5f5f7;--ik-text:#1d1d1f;--ik-muted:#62626a;--ik-line:#dedee3;--ik-accent:#ed101a;--ik-on-accent:#fff;--ik-radius:18px;--ik-button-radius:999px;--ik-width:1280px;--ik-space:80px;--ik-weight:600;background:var(--ik-bg);color:var(--ik-text);font-family:var(--font-sans,Inter,system-ui,sans-serif);font-size:17px;line-height:1.6;min-height:100vh;font-synthesis:none;font-kerning:normal;font-optical-sizing:auto}

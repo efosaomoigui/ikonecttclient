@@ -1,0 +1,132 @@
+[
+  {
+    "template": "a",
+    "short": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 501,
+      "panelHeight": 501,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "quote": {
+      "from": "/option-a/",
+      "price": "Ikonectt offers business connectivity options. You can explore the available plans or tell the team about your requirements. Selected plan: 500 Mbps · 500 Mbps · ₦359,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.Ikonectt Support · 06:10 PM",
+      "quote": "#/business/quote?audience=business&plan=biz-500"
+    },
+    "result": {
+      "plan": "biz-500",
+      "route": "business/quote"
+    }
+  },
+  {
+    "template": "b",
+    "short": {
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 501,
+      "panelHeight": 501,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "quote": {
+      "from": "/option-b/",
+      "price": "Ikonectt offers business connectivity options. You can explore the available plans or tell the team about your requirements. Selected plan: 500 Mbps · 500 Mbps · ₦359,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.Ikonectt Support · 06:10 PM",
+      "quote": "#/business/quote?audience=business&plan=biz-500"
+    },
+    "result": {
+      "plan": "biz-500",
+      "route": "business/quote"
+    }
+  },
+  {
+    "template": "c",
+    "short": {
+      "background": "rgb(21, 21, 24)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 501,
+      "panelHeight": 501,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "quote": {
+      "from": "/option-c/",
+      "price": "Ikonectt offers business connectivity options. You can explore the available plans or tell the team about your requirements. Selected plan: 500 Mbps · 500 Mbps · ₦359,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.Ikonectt Support · 06:10 PM",
+      "quote": "#/business/quote?audience=business&plan=biz-500"
+    },
+    "result": {
+      "plan": "biz-500",
+      "route": "business/quote"
+    }
+  },
+  {
+    "template": "d",
+    "short": {
+      "background": "rgb(255, 250, 247)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 501,
+      "panelHeight": 501,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "quote": {
+      "from": "/option-d/",
+      "price": "Ikonectt offers business connectivity options. You can explore the available plans or tell the team about your requirements. Selected plan: 500 Mbps · 500 Mbps · ₦359,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.Ikonectt Support · 06:10 PM",
+      "quote": "#/business/quote?audience=business&plan=biz-500"
+    },
+    "result": {
+      "plan": "biz-500",
+      "route": "business/quote"
+    }
+  },
+  {
+    "template": "e",
+    "short": {
+      "background": "rgb(32, 12, 17)",
+      "bodyOverflow": false,
+      "composerInPanel": true,
+      "documentOverflow": false,
+      "focused": "ik-assistant-message",
+      "height": 501,
+      "panelHeight": 501,
+      "panelHorizontalOverflow": false,
+      "panelOpen": true,
+      "panelWidth": 390,
+      "stage": "conversation",
+      "width": 390
+    },
+    "quote": {
+      "from": "/option-e/",
+      "price": "Ikonectt offers business connectivity options. You can explore the available plans or tell the team about your requirements. Selected plan: 500 Mbps · 500 Mbps · ₦359,000/month. Preview pricing is subject to client confirmation. Availability and final terms require address verification.Ikonectt Support · 06:10 PM",
+      "quote": "#/business/quote?audience=business&plan=biz-500"
+    },
+    "result": {
+      "plan": "biz-500",
+      "route": "business/quote"
+    }
+  }
+]
