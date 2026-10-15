@@ -80,7 +80,7 @@ The provider receives only the typed enquiry plus an allowlisted public context.
 
 Native modal `dialog` with accessible title/description, explicit close/minimise, `aria-haspopup`, expanded launcher state and labelled form controls. Opening focuses the first field or composer; Escape closes and returns focus to the launcher. Native modal isolation plus Tab/Shift+Tab boundary handling keeps focus in the open dialog. Restart focuses the cleared name field. Internal navigation closes first, then the existing page focus behavior applies. Pending replies cannot reappear after reset.
 
-The log uses `role=log`, polite live updates and additions/text announcements. Decorative SVGs and repeated logo signatures are hidden from assistive output. Focus outlines are visible, primary text/buttons use contrasting surfaces, and touch controls have 44px minimum targets. Entrance/hover/message motion is brief and entirely disabled by `prefers-reduced-motion`. No heavy motion dependency was added.
+The log uses `role=log`, polite live updates and additions/text announcements. Decorative SVGs and repeated logo signatures are hidden from assistive output. Focus outlines are visible, primary text/buttons use contrasting surfaces, and primary controls have 44px minimum targets. Entrance/hover/message motion is brief and entirely disabled by `prefers-reduced-motion`. No heavy motion dependency was added.
 
 ## 10. Responsive and browser validation
 
@@ -88,10 +88,10 @@ The log uses `role=log`, polite live updates and additions/text announcements. D
 - Checked invitation visibility, 56px launcher bounds, introduction focus, modal dimensions, document/panel/content horizontal overflow, composer containment, typed troubleshooting responses and available action routes. All checks passed.
 - **Five short viewport checks:** A–E at 390×500. The composer remained inside the panel, no horizontal overflow appeared, and a typed Business price enquiry retained `biz-500` through Request a Quote.
 - **Five Residential browser handoffs:** selected `res-igold` showed iGold / 50 Mbps / ₦25,000 per month from the catalogue and arrived at coverage with the same plan, active template and closed panel.
-- Native browser keyboard Enter opened the launcher; Escape closed it and returned focus. Footer scrolling at narrow E reached the bottom with no launcher/link intersection. Automated tests additionally cover modal Tab/Shift+Tab boundaries across all templates.
+- Native browser keyboard Enter opened the launcher; Escape closed it and returned focus. Ten footer checks (A–E at 1440 and 390px) reached the document bottom with no launcher/link intersection. Automated tests additionally cover modal Tab/Shift+Tab boundaries across all templates.
 - Safe-area CSS and VisualViewport resize/offset handlers are implemented. Short viewport resizing tests reduced available space; **physical mobile devices and actual on-screen keyboards were not tested**. No separate Firefox, Safari, screen-reader audio or hardware touch testing is claimed.
 
-Evidence: [responsive measurements](evidence/phase-2c/responsive-checks.json), [Residential plan handoffs](evidence/phase-2c/selected-plan-journeys.json), [short viewport and Business handoffs](evidence/phase-2c/short-viewport-and-business-journeys.json).
+Evidence: [responsive measurements](evidence/phase-2c/responsive-checks.json), [Residential plan handoffs](evidence/phase-2c/selected-plan-journeys.json), [short viewport and Business handoffs](evidence/phase-2c/short-viewport-and-business-journeys.json), [footer clearance](evidence/phase-2c/footer-clearance.json).
 
 ## 11. Automated tests and production build
 
@@ -127,4 +127,8 @@ Protected source diff checked: catalogue/prices, plan rendering/comparison, caro
 
 ## 15. Deployment status
 
-Production build and local validation complete. Publish through the existing `efosaomoigui/ikonecttclient` main-branch GitHub → Vercel workflow. Commit and live verification will be recorded here after publication.
+Published implementation commit `ab76db2` to `efosaomoigui/ikonecttclient` on `main` through the existing GitHub → Vercel workflow. Live site: [Ikonectt client preview](https://ikonecttclient-kappa.vercel.app/).
+
+Production verification passed for A–E: entry points, referenced scripts and styles returned HTTP 200 and contained the new assistant; all four deployed shared assistant files match the source. Browser validation in every deployed template opened the introduction, started a synthetic conversation, showed the verified iGold selection, removed the phone field after introduction, and navigated to coverage with `res-igold`, the same template and a closed panel. No real customer information was used.
+
+Evidence: [production HTTP/source checks](evidence/phase-2c/production-http-checks.json), [production browser journeys](evidence/phase-2c/production-browser-checks.json), [live A desktop](evidence/phase-2c/production-a-conversation.png), [live E mobile](evidence/phase-2c/production-e-conversation.png). These add two production screenshots to the 40 local QA screenshots. A subsequent documentation/evidence-only commit records these checks; application code is unchanged from the verified implementation commit.

@@ -1,0 +1,68 @@
+{
+  "commit": "ab76db2",
+  "checkedAtUTC": "2026-10-15T17:15:08.379132+00:00",
+  "checks": [
+    {
+      "template": "a",
+      "entryStatus": 200,
+      "jsStatus": 200,
+      "cssStatus": 200,
+      "assistantPresent": true,
+      "assistantStyles": true
+    },
+    {
+      "template": "b",
+      "entryStatus": 200,
+      "jsStatus": 200,
+      "cssStatus": 200,
+      "assistantPresent": true,
+      "assistantStyles": true
+    },
+    {
+      "template": "c",
+      "entryStatus": 200,
+      "jsStatus": 200,
+      "cssStatus": 200,
+      "assistantPresent": true,
+      "assistantStyles": true
+    },
+    {
+      "template": "d",
+      "entryStatus": 200,
+      "jsStatus": 200,
+      "cssStatus": 200,
+      "assistantPresent": true,
+      "assistantStyles": true
+    },
+    {
+      "template": "e",
+      "entryStatus": 200,
+      "jsStatus": 200,
+      "cssStatus": 200,
+      "assistantPresent": true,
+      "assistantStyles": true
+    }
+  ],
+  "sharedModules": [
+    {
+      "path": "shared/assistant.js",
+      "status": 200,
+      "sourceMatches": true
+    },
+    {
+      "path": "shared/assistant-engine.js",
+      "status": 200,
+      "sourceMatches": true
+    },
+    {
+      "path": "shared/assistant-view.js",
+      "status": 200,
+      "sourceMatches": true
+    },
+    {
+      "path": "shared/assistant.css",
+      "status": 200,
+      "sourceMatches": true
+    }
+  ]
+}
