@@ -67,14 +67,14 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       click('[data-launcher]');assert.ok(find('dialog').hasAttribute('open'));assert.equal(document.activeElement,find('[name="name"]'));
       submit('[data-intro-form]');assert.equal(find('[name="name"]').getAttribute('aria-invalid'),'true');assert.equal(find('[data-errors]').hidden,false);
       fill('[name="name"]','Efe Demo');fill('[name="phone"]','letters');submit('[data-intro-form]');assert.equal(find('[name="phone"]').getAttribute('aria-invalid'),'true');
-      find('[data-close]').focus();find('[data-close]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));assert.equal(document.activeElement,find('[data-intro-form] [data-help]'));
-      find('[data-intro-form] [data-help]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(document.activeElement,find('[data-close]'));
+      find('[data-close]').focus();find('[data-close]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));assert.equal(document.activeElement,find('[data-intro-form] [type="submit"]'));
+      find('[data-intro-form] [type="submit"]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(document.activeElement,find('[data-close]'));
       find('dialog').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));assert.ok(!find('dialog').hasAttribute('open'));assert.equal(document.activeElement,find('[data-launcher]'));
       assert.equal(document.documentElement.style.overflow,'');
     });
     await t.test('valid introduction, contextual actions, typed intents, safe fallback and escaping',async()=>{
       start();assert.equal(find('[data-conversation]').hidden,false);assert.equal(find('[data-introduction]').childElementCount,0);
-      assert.match(find('[data-messages]').textContent,/Hello, Efe\./);assert.doesNotMatch(find('[data-messages]').textContent,/803 123|Demo/);
+      assert.match(find('[data-messages]').textContent,/Hi Efe! Welcome to Ikonectt\./);assert.doesNotMatch(find('[data-messages]').textContent,/803 123|Demo/);
       assert.equal(document.activeElement,find('[data-composer] input'));
       for(const [text,expected] of [['I need internet for my home',/residential plans/],['My internet is not working',/cannot diagnose/],['How do I get connected?',/fees and times require confirmation/],['I want to check my bill',/cannot access balances/],['<img src=x onerror=alert(1)>',/no AI model is connected/]]){
         fill('[data-composer] input',text);assert.equal(find('[data-composer] button').disabled,false);submit('[data-composer]');await flush();assert.match(find('[data-messages]').lastElementChild.textContent,expected);

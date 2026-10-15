@@ -1,7 +1,7 @@
 import {getPlan,planName,priceLabel,previewPricingNote} from './catalogue.js';
 import {parseRoute} from './routes.js';
 import {demoProvider,publicContext,contextActions,initialActions,validateIntroduction} from './assistant-engine.js';
-import {shellHTML,introductionHTML,messageHTML,actionHTML,planPickerHTML} from './assistant-view.js';
+import {shellHTML,introductionHTML,messageHTML,actionHTML,planPickerHTML,welcomeActions} from './assistant-view.js';
 
 const redLogo=new URL('../assets/logos/ikonectt_transparent.png',import.meta.url).href;
 const whiteLogo=new URL('../assets/logos/ikonectt_white_transparent.png',import.meta.url).href;
@@ -70,7 +70,7 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
   function guide(response){
     guidance.replaceChildren();
     const latest=document.createElement('div');latest.className='ik-assistant-next';
-    latest.innerHTML='<p class="ik-assistant-label">WHAT WOULD YOU LIKE TO DO?</p>'+actionsHTML(response.actions)+(response.plans?planPickerHTML(response.plans):'');
+    latest.innerHTML=actionsHTML(response.actions)+(response.plans?planPickerHTML(response.plans):'')+(response.contextual?'<details class="ik-assistant-context"><summary>On this page</summary>'+actionsHTML(response.contextual)+'</details>':'');
     guidance.append(latest);
     const menu=document.createElement('details');menu.className='ik-assistant-all-topics';
     menu.innerHTML='<summary>All support topics</summary>'+actionsHTML(initialActions);
@@ -94,20 +94,20 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     if(!summary.hidden){summary.textContent='Please check your name and phone number below.';(errors.name?name:phone).focus();return;}
     const firstName=name.value.trim().split(/\s+/)[0],enquiry=form.elements.namedItem('enquiry').value.trim();
     // Clear the entire form immediately; the phone is never needed by the provider.
-    form.reset();intro.replaceChildren();intro.hidden=true;conversation.hidden=false;started=true;
-    append('assistant',`Hello, ${firstName}. Welcome to Ikonectt Support.\n\nI can help you explore internet plans, check coverage, understand installation, troubleshoot common issues or find the right support team.\n\nWhat would you like to do?`);
+    form.reset();intro.replaceChildren();intro.hidden=true;conversation.hidden=false;started=true;panel.dataset.stage='conversation';
+    append('assistant',`Hi ${firstName}! Welcome to Ikonectt.\n\nHow can I help you today?`);
     updateContext();find('[data-scroll]').scrollTop=0;input.focus();
     if(enquiry){append('visitor',enquiry);void respond(enquiry);}
   }
   function reset(){
     revision++;started=false;localPlan='';messages.replaceChildren();guidance.replaceChildren();composer.reset();composer.querySelector('button').disabled=true;
-    conversation.hidden=true;intro.hidden=false;intro.innerHTML=introductionHTML();
+    conversation.hidden=true;panel.dataset.stage='welcome';intro.hidden=false;intro.innerHTML=introductionHTML();
     if(open)intro.querySelector('input').focus();
   }
   function updateContext(){
     if(!started)return;
     const current=context(),plan=getPlan(current.plan);
-    guide({actions:contextActions(current)});
+    guide({actions:welcomeActions(current),contextual:current.path!=='home'?contextActions(current):null});
     if(plan){
       const label=document.createElement('p');label.className='ik-assistant-selected';
       label.textContent=`Selected: ${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}/month. ${previewPricingNote}`;

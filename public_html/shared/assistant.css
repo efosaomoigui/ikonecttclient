@@ -39,7 +39,7 @@
 .ik-site .ik-assistant-demo{font-size:11px!important;padding:9px 20px!important;background:var(--as-soft);color:var(--as-muted);border-bottom:1px solid var(--as-line);flex-shrink:0}
 .ik-site .ik-assistant-body{padding:24px;overflow:auto;overscroll-behavior:contain;flex:1;min-height:0}
 .ik-site .ik-assistant-eyebrow,.ik-site .ik-assistant-label{font-size:10px;letter-spacing:.12em!important;font-weight:650;color:var(--as-muted)}
-.ik-site .ik-assistant-intro h3{font-size:27px;line-height:1.15;font-weight:650;letter-spacing:-.03em;margin:10px 0 12px}
+.ik-site .ik-assistant-intro h3{font-size:27px;line-height:1.15;font-weight:650;letter-spacing:-.03em;margin:0 0 22px}
 .ik-site[data-template=b] .ik-assistant-intro h3{font-size:30px;font-weight:750}
 .ik-site[data-template=e] .ik-assistant-intro h3{font-weight:400}
 .ik-site .ik-assistant-intro p{color:var(--as-muted);font-size:13px;line-height:1.6;margin-bottom:22px}
@@ -95,3 +95,8 @@
   .ik-site .ik-assistant-scroll{padding:16px}
 }
 @media(prefers-reduced-motion:reduce){.ik-site .ik-assistant *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+@media(min-width:601px){.ik-site .ik-assistant-panel[data-stage=welcome]{height:auto;max-height:min(820px,calc(var(--assistant-viewport-height,100dvh) - 40px))}}
+.ik-site .ik-assistant-bubble .ik-assistant-more{margin:8px 0 0;white-space:normal}
+.ik-site .ik-assistant-more summary{margin-left:16px;padding:8px 0;min-height:36px;color:var(--as-muted)}
+.ik-site .ik-assistant-more p{white-space:pre-wrap;font-size:13px;line-height:1.65;margin-top:4px}

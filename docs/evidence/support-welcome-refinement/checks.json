@@ -1,0 +1,647 @@
+[
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 900,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 1440
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:34 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:34 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 844,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 390
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:34 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:34 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 1440,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 900,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 1440
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:34 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:34 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 390,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 844,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 390
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:34 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:34 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 1440,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 900,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 1440
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:34 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:34 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 390,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 844,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 390
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:34 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:34 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 900,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 1440
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:34 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:34 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 844,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 390
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 900,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 1440
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 844,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 390
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 720,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 321
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "b",
+    "requestedWidth": 320,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 720,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 321
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "c",
+    "requestedWidth": 320,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 720,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 321
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 720,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 321
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "intro": {
+      "aligned": true,
+      "ctaVisible": true,
+      "fieldCount": 3,
+      "headerText": "",
+      "heading": "Welcome to Ikonectt Support",
+      "height": 720,
+      "logoProportioned": true,
+      "needsScroll": false,
+      "overflow": false,
+      "privacy": "Demo only. Your details are not submitted.",
+      "toolbarHidden": true,
+      "width": 321
+    },
+    "chat": {
+      "actions": [
+        "Explore Plans",
+        "Check Coverage",
+        "Report an Issue",
+        "Contact Sales",
+        "Contact Support"
+      ],
+      "greeting": "Hi Demo! Welcome to Ikonectt.\n\nHow can I help you today?Ikonectt Support · 06:35 PM",
+      "overflow": false,
+      "toolbarVisible": true
+    },
+    "reply": {
+      "links": [
+        "#/support/fault?audience=residential",
+        "#/support/service-request",
+        "#/support/contact"
+      ],
+      "text": "Use Report a Fault to describe the problem and your observations. The existing form is a demonstration: no ticket is created or sent. For another kind of help, choose Service Request or Contact Support.Ikonectt Support · 06:35 PM"
+    },
+    "reset": {
+      "name": "",
+      "phone": "",
+      "stage": "welcome"
+    }
+  }
+]
