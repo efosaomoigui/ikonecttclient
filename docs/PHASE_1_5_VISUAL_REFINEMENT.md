@@ -60,3 +60,11 @@ Additional evidence: [desktop footer](evidence/phase-1-5/after-a-footer-1440.png
 The available transparent logo PNGs are only 200×75px. The red file contains pale semi-transparent edge pixels; no higher-resolution transparent official replacement was found. A genuinely improved source asset is needed to remove that residual fringe without redrawing/recolouring the mark. No active white rectangular background was reproduced.
 
 Previously documented commercial/contact/legal content gaps and demonstration-only forms/authentication remain as recorded in Phase 1. Font-face iteration was unavailable through the browser inspection API; production delivery is therefore checked using served WOFF2 bytes, stylesheet references, computed font stacks, font-set readiness and rendered appearance rather than claiming per-face browser instrumentation.
+
+## Production confirmation
+
+Implementation commit `1250d16` was pushed to GitHub `main` and verified against the remote branch. The initial upload timed out; an HTTP/1.1 retry completed successfully.
+
+[Live Vercel site](https://ikonecttclient-kappa.vercel.app/) checked after deployment: all five entrypoints contain the intended local font preloads. All **14 checked WOFF2 responses** (six preload URLs plus eight shared subsets) return valid WOFF2 bytes whose SHA-256 hashes match the source font files. The deployed shared stylesheet and script contain the footer, search and menu corrections.
+
+The live C audience switcher and open desktop menu were inspected; the browser font set reports loaded. The live A footer was inspected at a measured 1440px viewport, with five link groups, no horizontal overflow and both logos fully loaded at their original 200×75 intrinsic size. See the [production footer screenshot](evidence/phase-1-5/production-a-footer-1440.png).
