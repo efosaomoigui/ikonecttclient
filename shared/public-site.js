@@ -11,10 +11,10 @@ export function navigate(route,context={}) {
 export function mountSite({root,home,template}) {
   if(!['a','b','c','d','e'].includes(template)) throw new Error('Unknown template');
   const abort=new AbortController(),opts={signal:abort.signal};
-  const state={address:{},coverage:null,plan:''};
+  const state={address:{},coverage:null,plan:'',audience:'residential'};
   const originalTitle=home.dataset.originalTitle||document.title;
   home.dataset.originalTitle=originalTitle;
-  let previous='',menuTimer;
+  let previous='',menuTimer,hoverOpened=null;
   root.classList.add('ik-site');root.dataset.template=template;
   home.classList.add('ik-home');
   const header=document.createElement('header');header.className='ik-header';
@@ -25,20 +25,20 @@ export function mountSite({root,home,template}) {
   root.prepend(skip,header);root.append(main,footer);
   const nav=header.querySelector('.ik-desktop-nav'),mobile=header.querySelector('.ik-mobile-button');
   function closeMenus(returnFocus=false){
-    const open=header.querySelector('.ik-nav-trigger[aria-expanded=true]');
+    const open=header.querySelector('.ik-nav-trigger[aria-expanded=true]');hoverOpened=null;
     header.querySelectorAll('.ik-nav-trigger').forEach(button=>button.setAttribute('aria-expanded','false'));
     header.querySelectorAll('.ik-mega').forEach(panel=>panel.hidden=true);
     if(returnFocus&&open)open.focus();
   }
-  function openMenu(button){
-    closeMenus();button.setAttribute('aria-expanded','true');
+  function openMenu(button,fromHover=false){
+    closeMenus();hoverOpened=fromHover?button:null;button.setAttribute('aria-expanded','true');
     header.querySelector('#'+button.getAttribute('aria-controls')).hidden=false;
   }
   function closeMobile(){nav.classList.remove('is-open');mobile.setAttribute('aria-expanded','false');}
   for(const group of header.querySelectorAll('.ik-nav-group')){
     const button=group.querySelector('.ik-nav-trigger');
-    button.addEventListener('click',()=>button.getAttribute('aria-expanded')==='true'?closeMenus():openMenu(button),opts);
-    group.addEventListener('pointerenter',()=>{clearTimeout(menuTimer);if(window.matchMedia('(min-width:1024px) and (hover:hover)').matches)openMenu(button);},opts);
+    button.addEventListener('click',()=>button.getAttribute('aria-expanded')==='true'&&hoverOpened!==button?closeMenus():openMenu(button),opts);
+    group.addEventListener('pointerenter',()=>{clearTimeout(menuTimer);if(window.matchMedia('(min-width:1024px) and (hover:hover)').matches&&button.getAttribute('aria-expanded')!=='true')openMenu(button,true);},opts);
     button.addEventListener('keydown',event=>{
       if(event.key==='ArrowDown'){event.preventDefault();openMenu(button);group.querySelector('.ik-mega a')?.focus();}
       if(['ArrowLeft','ArrowRight'].includes(event.key)){
@@ -79,6 +79,14 @@ export function mountSite({root,home,template}) {
     });
     root.querySelectorAll('a[href^="#/"]').forEach(anchor=>{const match=anchor.getAttribute('href')==='#/'+path;if(match)anchor.setAttribute('aria-current','page');else if(anchor.getAttribute('aria-current')==='page')anchor.removeAttribute('aria-current');});
     if(previous){window.scrollTo({top:0,behavior:'instant'});const heading=isHome?home.querySelector('h1'):main.querySelector('h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}}
+    if(path==='business'||path.startsWith('business/'))state.audience='business';
+    else if(path==='residential'||path.startsWith('residential/'))state.audience='residential';
+    root.dataset.audience=state.audience;
+    header.querySelectorAll('[data-audience]').forEach(anchor=>{
+      const active=anchor.dataset.audience===state.audience;
+      anchor.dataset.active=String(active);
+      if(active)anchor.setAttribute('aria-current','true');else anchor.removeAttribute('aria-current');
+    });
     previous=path;
   }
   function initializePage(){
@@ -126,13 +134,13 @@ export function mountSite({root,home,template}) {
     if(window.location.hash===hash)render();else window.location.hash=hash;
   },opts);
   render();
-  return ()=>{abort.abort();clearTimeout(menuTimer);header.remove();footer.remove();main.remove();skip.remove();home.hidden=false;root.classList.remove('ik-site');delete root.dataset.template;delete root.dataset.route;};
+  return ()=>{abort.abort();clearTimeout(menuTimer);header.remove();footer.remove();main.remove();skip.remove();home.hidden=false;root.classList.remove('ik-site');delete root.dataset.template;delete root.dataset.route;delete root.dataset.audience;};
 }
 function headerHTML(template){
   const dark=['c','e'].includes(template),utility=['a','b','c'].includes(template);
-  return `${utility?'<div class="ik-wrap ik-utility"><a href="#/residential">RESIDENTIAL</a><span aria-hidden="true">|</span><a href="#/business">BUSINESS</a></div>':''}<div class="ik-wrap ik-header-row"><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img src="${dark?whiteLogo:redLogo}" alt="Ikonectt" width="132" height="44"></a><nav class="ik-desktop-nav" id="ik-primary-nav" aria-label="Primary">${menus.map(menu=>`<div class="ik-nav-group"><button type="button" class="ik-nav-trigger" data-menu="${menu.id}" aria-expanded="false" aria-controls="ik-menu-${menu.id}">${menu.label}</button><div class="ik-mega" id="ik-menu-${menu.id}" hidden><div class="ik-wrap ik-mega-inner">${menu.groups.map(([title,links])=>`<div class="ik-menu-group"><h2>${title}</h2>${links.map(([label,route])=>`<a href="#/${route}">${label}</a>`).join('')}</div>`).join('')}${menu.promo?`<aside class="ik-promo"><h3>${menu.promo[0]}</h3><p>${menu.promo[1]}</p>${link(menu.promo[3],menu.promo[2])}</aside>`:''}</div></div></div>`).join('')}<a class="ik-button ik-mobile-portal" href="#/my-ikonectt/sign-in">My Ikonectt</a></nav><div class="ik-nav-actions"><a class="ik-button" href="#/my-ikonectt/sign-in">My Ikonectt</a><button class="ik-mobile-button" type="button" aria-controls="ik-primary-nav" aria-expanded="false">Menu</button></div></div>`;
+  return `${utility?'<div class="ik-utility"><nav class="ik-wrap ik-audience" aria-label="Audience"><a data-audience="residential" href="#/residential">RESIDENTIAL</a><a data-audience="business" href="#/business">BUSINESS</a></nav></div>':''}<div class="ik-wrap ik-header-row"><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img class="ik-logo-primary" src="${dark?whiteLogo:redLogo}" alt="Ikonectt" width="132" height="44">${template==='d'?`<img class="ik-logo-inverse" src="${whiteLogo}" alt="" width="132" height="44">`:''}</a><nav class="ik-desktop-nav" id="ik-primary-nav" aria-label="Primary">${menus.map(menu=>`<div class="ik-nav-group"><button type="button" class="ik-nav-trigger" data-menu="${menu.id}" aria-expanded="false" aria-controls="ik-menu-${menu.id}"><span>${menu.label}</span><svg class="ik-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button><div class="ik-mega" id="ik-menu-${menu.id}" hidden><div class="ik-wrap ik-mega-inner" data-groups="${menu.groups.length}" data-promo="${Boolean(menu.promo)}">${menu.groups.map(([title,links])=>`<div class="ik-menu-group"><h2>${title}</h2>${links.map(([label,route])=>`<a href="#/${route}">${label}</a>`).join('')}</div>`).join('')}${menu.promo?`<aside class="ik-promo"><h3>${menu.promo[0]}</h3><p>${menu.promo[1]}</p>${link(menu.promo[3],menu.promo[2])}</aside>`:''}</div></div></div>`).join('')}<a class="ik-button ik-mobile-portal" href="#/my-ikonectt/sign-in">My Ikonectt</a></nav><div class="ik-nav-actions"><a class="ik-button" href="#/my-ikonectt/sign-in">My Ikonectt</a><button class="ik-mobile-button" type="button" aria-controls="ik-primary-nav" aria-expanded="false">Menu</button></div></div>`;
 }
 function footerHTML(){
   const group=(label,items)=>`<nav aria-label="${label}"><h2>${label}</h2>${items.map(([text,route])=>`<a href="#/${route}">${text}</a>`).join('')}</nav>`;
-  return `<div class="ik-wrap"><div class="ik-footer-top"><div><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img src="${whiteLogo}" width="132" height="44" alt="Ikonectt"></a><p>${company.description}</p><p>Verified contact details awaiting confirmation.</p></div>${group('Residential',[['Overview','residential'],['Residential Plans','residential/plans'],['Compare Plans','residential/compare'],['Installation Enquiry','residential/installation']])}${group('Business',[['Overview','business'],['Business Solutions','business/solutions'],['Business Plans','business/plans'],['Request a Quote','business/quote']])}</div><div class="ik-footer-secondary">${group('Coverage',[['Check Coverage','coverage'],['Address Verification','coverage/verification'],['Coverage FAQs','support/faqs?category=coverage']])}${group('Support',[['Help Centre','support'],['FAQs','support/faqs'],['Troubleshooting','support/troubleshooting'],['Report a Fault','support/fault'],['Service Requests','support/service-request'],['Contact Support','support/contact']])}${group('Company',[['About Us','about'],['Contact','contact'],['My Ikonectt','my-ikonectt/sign-in']])}</div><div class="ik-footer-bottom"><span>© 2026 ${company.legalName}.</span><div><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms and Conditions</a></div></div></div>`;
+  return `<div class="ik-wrap"><div class="ik-footer-grid"><div class="ik-footer-brand"><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img src="${whiteLogo}" width="132" height="44" alt="Ikonectt"></a><p>${company.description}</p><p>Verified contact details awaiting confirmation.</p></div><div class="ik-footer-links">${group('Residential',[['Overview','residential'],['Residential Plans','residential/plans'],['Compare Plans','residential/compare'],['Installation Enquiry','residential/installation']])}${group('Business',[['Overview','business'],['Business Solutions','business/solutions'],['Business Plans','business/plans'],['Request a Quote','business/quote']])}${group('Coverage',[['Check Coverage','coverage'],['Address Verification','coverage/verification'],['Coverage FAQs','support/faqs?category=coverage']])}${group('Support',[['Help Centre','support'],['FAQs','support/faqs'],['Troubleshooting','support/troubleshooting'],['Report a Fault','support/fault'],['Service Requests','support/service-request'],['Contact Support','support/contact']])}${group('Company',[['About Us','about'],['Contact','contact'],['My Ikonectt','my-ikonectt/sign-in']])}</div></div><div class="ik-footer-bottom"><span>© 2026 ${company.legalName}.</span><div><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms and Conditions</a></div></div></div>`;
 }

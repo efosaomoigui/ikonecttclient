@@ -1,0 +1,1202 @@
+[
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Connectivity without limits.",
+    "overflow": false,
+    "route": "home",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Internet that keeps your home connected.",
+    "overflow": false,
+    "route": "residential",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Residential Plans",
+    "overflow": false,
+    "route": "residential/plans",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-2",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Compare Plans",
+    "overflow": false,
+    "route": "residential/compare",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Installation Enquiry",
+    "overflow": false,
+    "route": "residential/installation",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Connectivity built for business.",
+    "overflow": false,
+    "route": "business",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Business Solutions",
+    "overflow": false,
+    "route": "business/solutions",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Business Connectivity",
+    "overflow": false,
+    "route": "business/solutions/connectivity",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "SME Connectivity",
+    "overflow": false,
+    "route": "business/solutions/sme",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Enterprise Connectivity",
+    "overflow": false,
+    "route": "business/solutions/enterprise",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Business Plans",
+    "overflow": false,
+    "route": "business/plans",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Request a Quote",
+    "overflow": false,
+    "route": "business/quote",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Check Coverage",
+    "overflow": false,
+    "route": "coverage",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Coverage Results",
+    "overflow": false,
+    "route": "coverage/results",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Address Verification",
+    "overflow": false,
+    "route": "coverage/verification",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "How can we help?",
+    "overflow": false,
+    "route": "support",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Frequently Asked Questions",
+    "overflow": false,
+    "route": "support/faqs",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Troubleshooting",
+    "overflow": false,
+    "route": "support/troubleshooting",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Report a Fault",
+    "overflow": false,
+    "route": "support/fault",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Service Request",
+    "overflow": false,
+    "route": "support/service-request",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Contact Support",
+    "overflow": false,
+    "route": "support/contact",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Connecting people and possibilities.",
+    "overflow": false,
+    "route": "about",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Let’s talk.",
+    "overflow": false,
+    "route": "contact",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Privacy Policy",
+    "overflow": false,
+    "route": "privacy",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Terms and Conditions",
+    "overflow": false,
+    "route": "terms",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Welcome to My Ikonectt.",
+    "overflow": false,
+    "route": "my-ikonectt/sign-in",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "Forgot Password",
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password",
+    "wide": []
+  },
+  {
+    "option": "a",
+    "width": 1280,
+    "heading": "My Ikonectt",
+    "overflow": false,
+    "route": "my-ikonectt/preview",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Connectivity without limits.",
+    "overflow": false,
+    "route": "home",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Internet that keeps your home connected.",
+    "overflow": false,
+    "route": "residential",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Residential Plans",
+    "overflow": false,
+    "route": "residential/plans",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-2",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Compare Plans",
+    "overflow": false,
+    "route": "residential/compare",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Installation Enquiry",
+    "overflow": false,
+    "route": "residential/installation",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Connectivity built for business.",
+    "overflow": false,
+    "route": "business",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Business Solutions",
+    "overflow": false,
+    "route": "business/solutions",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Business Connectivity",
+    "overflow": false,
+    "route": "business/solutions/connectivity",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "SME Connectivity",
+    "overflow": false,
+    "route": "business/solutions/sme",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Enterprise Connectivity",
+    "overflow": false,
+    "route": "business/solutions/enterprise",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Business Plans",
+    "overflow": false,
+    "route": "business/plans",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Request a Quote",
+    "overflow": false,
+    "route": "business/quote",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Check Coverage",
+    "overflow": false,
+    "route": "coverage",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Coverage Results",
+    "overflow": false,
+    "route": "coverage/results",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Address Verification",
+    "overflow": false,
+    "route": "coverage/verification",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "How can we help?",
+    "overflow": false,
+    "route": "support",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Frequently Asked Questions",
+    "overflow": false,
+    "route": "support/faqs",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Troubleshooting",
+    "overflow": false,
+    "route": "support/troubleshooting",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Report a Fault",
+    "overflow": false,
+    "route": "support/fault",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Service Request",
+    "overflow": false,
+    "route": "support/service-request",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Contact Support",
+    "overflow": false,
+    "route": "support/contact",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Connecting people and possibilities.",
+    "overflow": false,
+    "route": "about",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Let’s talk.",
+    "overflow": false,
+    "route": "contact",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Privacy Policy",
+    "overflow": false,
+    "route": "privacy",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Terms and Conditions",
+    "overflow": false,
+    "route": "terms",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Welcome to My Ikonectt.",
+    "overflow": false,
+    "route": "my-ikonectt/sign-in",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "Forgot Password",
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password",
+    "wide": []
+  },
+  {
+    "option": "b",
+    "width": 375,
+    "heading": "My Ikonectt",
+    "overflow": false,
+    "route": "my-ikonectt/preview",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Connectivity without limits.",
+    "overflow": false,
+    "route": "home",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Internet that keeps your home connected.",
+    "overflow": false,
+    "route": "residential",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Residential Plans",
+    "overflow": false,
+    "route": "residential/plans",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-2",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Compare Plans",
+    "overflow": false,
+    "route": "residential/compare",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Installation Enquiry",
+    "overflow": false,
+    "route": "residential/installation",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Connectivity built for business.",
+    "overflow": false,
+    "route": "business",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Business Solutions",
+    "overflow": false,
+    "route": "business/solutions",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Business Connectivity",
+    "overflow": false,
+    "route": "business/solutions/connectivity",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "SME Connectivity",
+    "overflow": false,
+    "route": "business/solutions/sme",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Enterprise Connectivity",
+    "overflow": false,
+    "route": "business/solutions/enterprise",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Business Plans",
+    "overflow": false,
+    "route": "business/plans",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Request a Quote",
+    "overflow": false,
+    "route": "business/quote",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Check Coverage",
+    "overflow": false,
+    "route": "coverage",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Coverage Results",
+    "overflow": false,
+    "route": "coverage/results",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Address Verification",
+    "overflow": false,
+    "route": "coverage/verification",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "How can we help?",
+    "overflow": false,
+    "route": "support",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Frequently Asked Questions",
+    "overflow": false,
+    "route": "support/faqs",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Troubleshooting",
+    "overflow": false,
+    "route": "support/troubleshooting",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Report a Fault",
+    "overflow": false,
+    "route": "support/fault",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Service Request",
+    "overflow": false,
+    "route": "support/service-request",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Contact Support",
+    "overflow": false,
+    "route": "support/contact",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Connecting people and possibilities.",
+    "overflow": false,
+    "route": "about",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Let’s talk.",
+    "overflow": false,
+    "route": "contact",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Privacy Policy",
+    "overflow": false,
+    "route": "privacy",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Terms and Conditions",
+    "overflow": false,
+    "route": "terms",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Welcome to My Ikonectt.",
+    "overflow": false,
+    "route": "my-ikonectt/sign-in",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "Forgot Password",
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password",
+    "wide": []
+  },
+  {
+    "option": "c",
+    "width": 1280,
+    "heading": "My Ikonectt",
+    "overflow": false,
+    "route": "my-ikonectt/preview",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Internet that keeps your home connected.",
+    "overflow": false,
+    "route": "home",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Internet that keeps your home connected.",
+    "overflow": false,
+    "route": "residential",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Residential Plans",
+    "overflow": false,
+    "route": "residential/plans",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-2",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Compare Plans",
+    "overflow": false,
+    "route": "residential/compare",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Installation Enquiry",
+    "overflow": false,
+    "route": "residential/installation",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Connectivity built for business.",
+    "overflow": false,
+    "route": "business",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Business Solutions",
+    "overflow": false,
+    "route": "business/solutions",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Business Connectivity",
+    "overflow": false,
+    "route": "business/solutions/connectivity",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "SME Connectivity",
+    "overflow": false,
+    "route": "business/solutions/sme",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Enterprise Connectivity",
+    "overflow": false,
+    "route": "business/solutions/enterprise",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Business Plans",
+    "overflow": false,
+    "route": "business/plans",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Request a Quote",
+    "overflow": false,
+    "route": "business/quote",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Check Coverage",
+    "overflow": false,
+    "route": "coverage",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Coverage Results",
+    "overflow": false,
+    "route": "coverage/results",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Address Verification",
+    "overflow": false,
+    "route": "coverage/verification",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "How can we help?",
+    "overflow": false,
+    "route": "support",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Frequently Asked Questions",
+    "overflow": false,
+    "route": "support/faqs",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Troubleshooting",
+    "overflow": false,
+    "route": "support/troubleshooting",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Report a Fault",
+    "overflow": false,
+    "route": "support/fault",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Service Request",
+    "overflow": false,
+    "route": "support/service-request",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Contact Support",
+    "overflow": false,
+    "route": "support/contact",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Connecting people and possibilities.",
+    "overflow": false,
+    "route": "about",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Let’s talk.",
+    "overflow": false,
+    "route": "contact",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Privacy Policy",
+    "overflow": false,
+    "route": "privacy",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Terms and Conditions",
+    "overflow": false,
+    "route": "terms",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Welcome to My Ikonectt.",
+    "overflow": false,
+    "route": "my-ikonectt/sign-in",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "Forgot Password",
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password",
+    "wide": []
+  },
+  {
+    "option": "d",
+    "width": 375,
+    "heading": "My Ikonectt",
+    "overflow": false,
+    "route": "my-ikonectt/preview",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Connectivity without limits.",
+    "overflow": false,
+    "route": "home",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Internet that keeps your home connected.",
+    "overflow": false,
+    "route": "residential",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Residential Plans",
+    "overflow": false,
+    "route": "residential/plans",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Residential Plan Details",
+    "overflow": false,
+    "route": "residential/plans/demo-2",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Compare Plans",
+    "overflow": false,
+    "route": "residential/compare",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Installation Enquiry",
+    "overflow": false,
+    "route": "residential/installation",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Connectivity built for business.",
+    "overflow": false,
+    "route": "business",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Business Solutions",
+    "overflow": false,
+    "route": "business/solutions",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Business Connectivity",
+    "overflow": false,
+    "route": "business/solutions/connectivity",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "SME Connectivity",
+    "overflow": false,
+    "route": "business/solutions/sme",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Enterprise Connectivity",
+    "overflow": false,
+    "route": "business/solutions/enterprise",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Business Plans",
+    "overflow": false,
+    "route": "business/plans",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Request a Quote",
+    "overflow": false,
+    "route": "business/quote",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Check Coverage",
+    "overflow": false,
+    "route": "coverage",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Coverage Results",
+    "overflow": false,
+    "route": "coverage/results",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Address Verification",
+    "overflow": false,
+    "route": "coverage/verification",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "How can we help?",
+    "overflow": false,
+    "route": "support",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Frequently Asked Questions",
+    "overflow": false,
+    "route": "support/faqs",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Troubleshooting",
+    "overflow": false,
+    "route": "support/troubleshooting",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Report a Fault",
+    "overflow": false,
+    "route": "support/fault",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Service Request",
+    "overflow": false,
+    "route": "support/service-request",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Contact Support",
+    "overflow": false,
+    "route": "support/contact",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Connecting people and possibilities.",
+    "overflow": false,
+    "route": "about",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Let’s talk.",
+    "overflow": false,
+    "route": "contact",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Privacy Policy",
+    "overflow": false,
+    "route": "privacy",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Terms and Conditions",
+    "overflow": false,
+    "route": "terms",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Welcome to My Ikonectt.",
+    "overflow": false,
+    "route": "my-ikonectt/sign-in",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "Forgot Password",
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password",
+    "wide": []
+  },
+  {
+    "option": "e",
+    "width": 600,
+    "heading": "My Ikonectt",
+    "overflow": false,
+    "route": "my-ikonectt/preview",
+    "wide": []
+  }
+]

@@ -16,7 +16,7 @@ const comments=field('comments','Additional information',{type:'textarea',option
 const account=field('account','Customer account reference',{optional:true,help:'Do not share passwords or one-time codes.'});
 const supportFields=[account,...contactFields,field('address','Service address'),field('category','Fault category',{options:['No internet connection','Slow connection','Wi-Fi','Router','Other']}),field('description','Description',{type:'textarea'}),field('preferred','Preferred contact method',{options:['Email','Phone']})];
 export function supportSearchHTML(query={}) {
-  return `<div class="ik-search" role="search">${fieldHTML(field('search','Search help',{optional:true}),{search:query.search||''},'help')}${fieldHTML(field('category','Help category',{optional:true,noBlank:true,options:[['','All topics'],...categories]}),{category:query.category||''},'help')}</div><p id="ik-search-count" class="ik-muted" role="status" aria-live="polite"></p><div id="ik-search-results">${faqHTML(faqs)}</div>`;
+  return `<div class="ik-help-search" role="search">${fieldHTML(field('search','Search help',{optional:true}),{search:query.search||''},'help')}${fieldHTML(field('category','Help category',{optional:true,noBlank:true,options:[['','All topics'],...categories]}),{category:query.category||''},'help')}</div><p id="ik-search-count" class="ik-muted" role="status" aria-live="polite"></p><div id="ik-search-results">${faqHTML(faqs)}</div>`;
 }
 export function renderPage(path,{state,query}) {
   switch(path) {

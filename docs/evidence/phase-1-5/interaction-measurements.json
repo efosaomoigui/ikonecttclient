@@ -1,0 +1,67 @@
+[
+  {
+    "audience": "business",
+    "chevron": "matrix(-1, 0, 0, -1, 0, 0)",
+    "expanded": "true",
+    "menuWidth": 1185.5377197265625,
+    "overflow": false,
+    "template": "a",
+    "mobile": {
+      "menu": "true",
+      "overflow": false,
+      "support": "true"
+    }
+  },
+  {
+    "audience": "business",
+    "chevron": "matrix(-1, 0, 0, -1, 0, 0)",
+    "expanded": "true",
+    "menuWidth": 1185.5377197265625,
+    "overflow": false,
+    "template": "b",
+    "mobile": {
+      "menu": "true",
+      "overflow": false,
+      "support": "true"
+    }
+  },
+  {
+    "audience": "business",
+    "chevron": "matrix(-1, 0, 0, -1, 0, 0)",
+    "expanded": "true",
+    "menuWidth": 1175.575439453125,
+    "overflow": false,
+    "template": "c",
+    "mobile": {
+      "menu": "true",
+      "overflow": false,
+      "support": "true"
+    }
+  },
+  {
+    "audience": "residential",
+    "chevron": "matrix(-1, 0, 0, -1, 0, 0)",
+    "expanded": "true",
+    "menuWidth": 1110.367919921875,
+    "overflow": false,
+    "template": "d",
+    "mobile": {
+      "menu": "true",
+      "overflow": false,
+      "support": "true"
+    }
+  },
+  {
+    "audience": "residential",
+    "chevron": "matrix(-1, 0, 0, -1, 0, 0)",
+    "expanded": "true",
+    "menuWidth": 1175.575439453125,
+    "overflow": false,
+    "template": "e",
+    "mobile": {
+      "menu": "true",
+      "overflow": false,
+      "support": "true"
+    }
+  }
+]

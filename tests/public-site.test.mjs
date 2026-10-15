@@ -31,7 +31,11 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
   window.scrollTo=()=>{};window.matchMedia=()=>({matches:false});
   const root=document.querySelector('#site'),home=document.querySelector('#original');
   const cleanup=mountSite({root,home,template});
-  const go=async path=>{window.location.hash='#/'+path;await pause();};
+  const change=action=>new Promise((resolve,reject)=>{
+    const timeout=setTimeout(()=>reject(new Error('Navigation event timed out')),1000);
+    window.addEventListener('hashchange',()=>{clearTimeout(timeout);resolve();},{once:true});action();
+  });
+  const go=async path=>{if(window.location.hash!=='#/'+path)await change(()=>{window.location.hash='#/'+path;});};
   const click=async route=>{
     const anchor=[...root.querySelectorAll('a')].find(a=>a.getAttribute('href')==='#/'+route&&!a.closest('[hidden]'));
     assert.ok(anchor,`Missing visible path to ${route}`);
@@ -66,12 +70,37 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       document.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(trigger.getAttribute('aria-expanded'),'false');assert.equal(document.activeElement,trigger);
       trigger.dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true,cancelable:true}));assert.equal(trigger.getAttribute('aria-expanded'),'true');assert.ok(document.activeElement.matches('#ik-menu-residential a'));
       home.click();assert.equal(trigger.getAttribute('aria-expanded'),'false');
-      window.matchMedia=()=>({matches:true});trigger.closest('.ik-nav-group').dispatchEvent(new window.Event('pointerenter'));assert.equal(trigger.getAttribute('aria-expanded'),'true');home.click();window.matchMedia=()=>({matches:false});
+      window.matchMedia=()=>({matches:true});trigger.closest('.ik-nav-group').dispatchEvent(new window.Event('pointerenter'));assert.equal(trigger.getAttribute('aria-expanded'),'true');trigger.click();assert.equal(trigger.getAttribute('aria-expanded'),'true','click retains the hover-open menu');trigger.click();assert.equal(trigger.getAttribute('aria-expanded'),'false','second click closes the pinned menu');home.click();window.matchMedia=()=>({matches:false});
       document.querySelector('.ik-mobile-button').click();assert.ok(document.querySelector('.ik-desktop-nav').classList.contains('is-open'));
       document.querySelector('[data-menu="business"]').click();assert.equal(document.querySelector('[data-menu="business"]').getAttribute('aria-expanded'),'true');
       trigger.click();assert.equal(document.querySelector('[data-menu="business"]').getAttribute('aria-expanded'),'false');
       document.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(document.querySelector('.ik-mobile-button').getAttribute('aria-expanded'),'false');
       assert.deepEqual(menus.map(m=>m.label),['Residential','Business','Coverage','Support','About Us']);
+    });
+    await t.test('audience selection follows routes and persists through shared journeys',async()=>{
+      await go('residential');
+      const audience=document.querySelector('.ik-audience');
+      assert.equal(Boolean(audience),['a','b','c'].includes(template));
+      if(audience){
+        assert.equal(audience.querySelector('[aria-current="true"]').dataset.audience,'residential');
+        await new Promise(resolve=>{window.addEventListener('hashchange',resolve,{once:true});audience.querySelector('[data-audience="business"]').click();});
+        assert.equal(root.dataset.route,'business');
+        assert.equal(audience.querySelector('[aria-current="true"]').dataset.audience,'business');
+        assert.equal(document.querySelector('[data-menu="business"]').dataset.active,'true');
+      }
+      await go('business/quote');await go('coverage');assert.equal(root.dataset.audience,'business');
+      await go('residential/plans');assert.equal(root.dataset.audience,'residential');
+      if(audience)assert.equal(audience.querySelectorAll('[aria-current="true"]').length,1);
+      checkTemplate();
+    });
+    await t.test('footer groups share one layout and chevrons retain accessible menu states',async()=>{
+      assert.deepEqual([...document.querySelectorAll('.ik-footer-links>nav')].map(n=>n.getAttribute('aria-label')),['Residential','Business','Coverage','Support','Company']);
+      assert.equal(document.querySelectorAll('.ik-footer-grid').length,1);
+      for(const trigger of document.querySelectorAll('.ik-nav-trigger')){
+        const svg=trigger.querySelector('svg.ik-chevron');
+        assert.ok(svg);assert.equal(svg.getAttribute('aria-hidden'),'true');assert.equal(svg.getAttribute('width'),'14');
+      }
+      assert.equal(document.querySelectorAll('.ik-header .ik-logo-inverse').length,template==='d'?1:0);
     });
     await t.test('residential journey and honest comparison',async()=>{
       await go('home');document.querySelector('[data-menu="residential"]').click();await click('residential');
@@ -129,10 +158,10 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       assert.equal(root.querySelector('a[href*="register"],a[href*="signup"],a[href*="admin"]'),null);checkTemplate();
     });
     await t.test('navigation event, back and forward preserve template',async()=>{
-      navigate('coverage',{address:'Demo street'});await pause();assert.equal(root.dataset.route,'coverage');
+      await change(()=>navigate('coverage',{address:'Demo street'}));assert.equal(root.dataset.route,'coverage');
       assert.equal(document.querySelector('[name="street"]').value,'Demo street');
-      await go('support');window.history.back();await new Promise(resolve=>setTimeout(resolve,20));assert.equal(root.dataset.route,'coverage');
-      window.history.forward();await new Promise(resolve=>setTimeout(resolve,20));assert.equal(root.dataset.route,'support');checkTemplate();
+      await go('support');await change(()=>window.history.back());assert.equal(root.dataset.route,'coverage');
+      await change(()=>window.history.forward());assert.equal(root.dataset.route,'support');checkTemplate();
     });
   }finally{cleanup();window.close();}
 });
