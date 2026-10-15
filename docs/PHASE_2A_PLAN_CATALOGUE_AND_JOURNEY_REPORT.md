@@ -111,3 +111,7 @@ Curated screenshots and browser metrics are in [evidence/phase-2a](evidence/phas
 ## Publication
 
 Validated source and generated `public_html` are published through the existing `main` → GitHub → Vercel workflow. Live preview: [Ikonectt client design selection](https://ikonecttclient-kappa.vercel.app/). Production verification is recorded after deployment below.
+
+Source commit `8d2f4b7` was pushed successfully. On 15 October 2026 at approximately 16:08–16:11 UTC, all five deployed entrypoints and the six new/updated shared catalogue/UI assets returned HTTP 200. Shared files and B/C/D/E entrypoints match the validated build after line-ending normalization. Option A has different Vercel asset hashes: its JavaScript content matches; its CSS structure matches with only five generated floating-point colour tokens differing by at most 0.0000002. Both referenced deployed assets return 200.
+
+Live browser verification confirmed Option A's five residential slides with iGold active, the correct status, and no document overflow at 1440px. Option E's mobile quotation deep link selects `biz-300`, displaying 300 Mbps and ₦253,000/month. Production screenshots and HTTP comparison details are saved alongside local evidence. The final code remains the build/test-validated implementation; the follow-up commit records deployment evidence only.

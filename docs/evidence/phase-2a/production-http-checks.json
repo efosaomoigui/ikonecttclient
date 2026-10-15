@@ -1,0 +1,79 @@
+{
+  "sourceCommit": "8d2f4b7",
+  "checkedAtUTC": "2026-10-15T16:08:19.511991+00:00",
+  "checks": [
+    {
+      "path": "shared/catalogue.js",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "shared/carousel.js",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "shared/pages.js",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "shared/routes.js",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "shared/plan-ui.js",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "shared/plans.css",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "option-a/",
+      "status": 200,
+      "matchesValidatedBuild": false
+    },
+    {
+      "path": "option-b/",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "option-c/",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "option-d/",
+      "status": 200,
+      "matchesValidatedBuild": true
+    },
+    {
+      "path": "option-e/",
+      "status": 200,
+      "matchesValidatedBuild": true
+    }
+  ],
+  "optionAAssets": [
+    {
+      "asset": "./assets/index-DVuzxr_U.js",
+      "status": 200,
+      "matchesValidatedContentIgnoringLineEndings": true
+    },
+    {
+      "asset": "./assets/index-CvyaTHPx.css",
+      "status": 200,
+      "matchesValidatedContentIgnoringLineEndings": false
+    }
+  ],
+  "optionANote": "Vercel generated different asset hashes. Deployed JavaScript matches the local validated build after line-ending normalization. CSS structural text matches; only floating-point colour rounding differs.",
+  "optionACssComparison": {
+    "structuralMatch": true,
+    "changedNumericTokens": 5,
+    "maxAbsoluteDelta": 1.9999999999881224e-07
+  }
+}
