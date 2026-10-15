@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { PageId } from '../../types';
 import { HOMEPAGE_CONTENT as C } from '../../content';
 import { ArrowRight, ChevronRight, MapPin } from 'lucide-react';
@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight, MapPin } from 'lucide-react';
 interface HomePageProps {
   onNavigate: (page: PageId, options?: { plan?: string; address?: string }) => void;
   onOpenMyIkonectt?: () => void;
+  onViewPlans?: (audience: 'residential' | 'business') => void;
 }
 
 const IMAGES = {
@@ -14,20 +15,15 @@ const IMAGES = {
   business: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1600&q=80',
 };
 
-export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt }) => {
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt, onViewPlans }) => {
   const [address, setAddress] = useState('');
-
-  useEffect(() => {
-    document.title = C.seo.title;
-  }, []);
 
   const submitCoverage = (e: React.FormEvent) => {
     e.preventDefault();
     onNavigate('coverage', address.trim() ? { address: address.trim() } : undefined);
   };
 
-  const scrollToPlans = () =>
-    document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToPlans = () => onViewPlans ? onViewPlans('residential') : document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
     <div className="flex flex-col w-full bg-white">
@@ -139,7 +135,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
                 key={key}
                 id={`home-plans-${key}`}
                 type="button"
-                onClick={() => onNavigate(page)}
+                onClick={() => onViewPlans ? onViewPlans(page === 'business' ? 'business' : 'residential') : onNavigate(page)}
                 className="ik-card bg-[#f5f5f7] text-left flex items-center justify-between gap-6 transition-colors hover:bg-[#ececef] cursor-pointer"
               >
                 <span className="flex flex-col gap-2">
@@ -152,7 +148,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-6 text-center">
-            <button id="home-view-all-plans" type="button" className="ik-link" onClick={() => onNavigate('residential')}>
+            <button id="home-view-all-plans" type="button" className="ik-link" onClick={scrollToPlans}>
               {C.plans.cta}
               <ChevronRight className="w-4 h-4" aria-hidden="true" />
             </button>

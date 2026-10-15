@@ -154,69 +154,12 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
   html{scroll-behavior:auto}
 }
 </style>
+<link rel="stylesheet" href="../shared/public-site.css">
 </head>
-<body>
+<body data-template="e">
 
-<header class="nav">
-  <a class="logo" href="#top" aria-label="Ikonectt home">Ikonect<i>t</i></a>
-  <nav class="links" aria-label="Primary">
-    <button type="button" data-mega="m-residential" aria-expanded="false" aria-controls="m-residential">Residential</button>
-    <button type="button" data-mega="m-business" aria-expanded="false" aria-controls="m-business">Business</button>
-    <button type="button" data-mega="m-coverage" aria-expanded="false" aria-controls="m-coverage">Coverage</button>
-    <button type="button" data-mega="m-support" aria-expanded="false" aria-controls="m-support">Support</button>
-    <button type="button" data-mega="m-about" aria-expanded="false" aria-controls="m-about">About Us</button>
-  </nav>
-  <a class="btn ghost" href="#portal">My Ikonectt</a>
-  <details class="menu">
-    <summary>Menu</summary>
-    <div>
-      <a href="#residential">Residential</a>
-      <a href="#business">Business</a>
-      <a href="#coverage">Coverage</a>
-      <a href="#support">Support</a>
-      <a href="#about">About Us</a>
-      <a href="#portal">My Ikonectt</a>
-    </div>
-  </details>
 
-  <div class="mega" id="m-residential">
-    <div class="mega-links">
-      <div class="grp"><h3>Discover</h3><a href="#residential">Residential Overview</a><a href="#plans">Residential Plans</a><a href="#plans">Compare Plans</a></div>
-      <div class="grp"><h3>Get Connected</h3><a href="#coverage">Check Coverage</a><a href="#support">Installation Enquiry</a></div>
-    </div>
-    <a class="feature" href="#residential">
-      <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gr1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a1a25"/><stop offset="1" stop-color="#12070a"/></linearGradient></defs><rect width="600" height="400" fill="url(#gr1)"/><circle cx="450" cy="120" r="80" fill="#ff5a6e" opacity=".22"/><path d="M330 335V235L430 172L530 235V335Z" fill="#1d0a0f"/><g fill="#ffb4a0"><rect x="360" y="258" width="26" height="30" rx="2"/><rect x="474" y="258" width="26" height="30" rx="2"/><rect x="416" y="288" width="28" height="47" rx="2" opacity=".6"/></g><path d="M0 335Q300 285 600 335V400H0Z" fill="#12070a"/><path d="M0 335Q300 285 600 335" stroke="#ff5a6e" stroke-width="1.5" fill="none" opacity=".7"/></svg>
-      <div class="cap"><h3>Internet for the way you live.</h3><p>Explore home broadband options.</p><span class="btn solid">Explore Residential</span></div>
-    </a>
-  </div>
 
-  <div class="mega" id="m-business">
-    <div class="mega-links">
-      <div class="grp"><h3>Explore</h3><a href="#business">Business Overview</a><a href="#business">Business Solutions</a><a href="#plans">Business Plans</a></div>
-      <div class="grp"><h3>Get Started</h3><a href="#coverage">Check Coverage</a><a href="#support">Request a Quote</a></div>
-    </div>
-    <a class="feature" href="#support">
-      <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gr2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1018"/><stop offset="1" stop-color="#0b0406"/></linearGradient><pattern id="win" width="14" height="18" patternUnits="userSpaceOnUse"><rect x="3" y="4" width="6" height="8" fill="#ffb4a0" opacity=".6"/></pattern></defs><rect width="600" height="400" fill="url(#gr2)"/><circle cx="420" cy="150" r="90" fill="#ff5a6e" opacity=".18"/><g fill="#1a080c"><rect x="300" y="170" width="70" height="230"/><rect x="380" y="110" width="80" height="290"/><rect x="470" y="200" width="60" height="200"/><rect x="540" y="150" width="60" height="250"/></g><g fill="url(#win)"><rect x="300" y="170" width="70" height="230"/><rect x="380" y="110" width="80" height="290"/><rect x="470" y="200" width="60" height="200"/><rect x="540" y="150" width="60" height="250"/></g></svg>
-      <div class="cap"><h3>Built around your business.</h3><p>Talk to our team about your connectivity needs.</p><span class="btn solid">Request a Quote</span></div>
-    </a>
-  </div>
-
-  <div class="mega" id="m-coverage">
-    <div class="mega-links"><div class="grp"><a href="#coverage">Check Coverage</a><a href="#coverage">Availability Results</a><a href="#coverage">Request Verification</a></div></div>
-    <div class="feature"><div class="art generic"></div></div>
-  </div>
-
-  <div class="mega" id="m-support">
-    <div class="mega-links"><div class="grp"><a href="#support">Help Centre</a><a href="#support">FAQs</a><a href="#support">Contact Support</a></div></div>
-    <div class="feature"><div class="art generic"></div></div>
-  </div>
-
-  <div class="mega" id="m-about">
-    <div class="mega-links"><div class="grp"><a href="#about">Our Company</a><a href="#support">Contact Us</a></div></div>
-    <div class="feature"><div class="art generic"></div></div>
-  </div>
-</header>
-<div class="scrim"></div>
 
 <main id="top">
   <section class="hero">
@@ -307,41 +250,9 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
   </section>
 </main>
 
-<footer id="support">
-  <div class="wrap">
-    <div class="foot">
-      <a class="logo" href="#top" aria-label="Ikonectt home">Ikonect<i>t</i></a>
-      <nav aria-label="Residential"><strong>Residential</strong><a href="#residential">Residential Overview</a><a href="#plans">Residential Plans</a><a href="#coverage">Check Coverage</a></nav>
-      <nav aria-label="Business"><strong>Business</strong><a href="#business">Business Overview</a><a href="#business">Business Solutions</a><a href="#business">Request a Quote</a></nav>
-      <nav aria-label="Support"><strong>Support</strong><a href="#support">Help Centre</a><a href="#support">FAQs</a><a href="#support">Contact Support</a></nav>
-    </div>
-    <p class="legal">© 2026 Intelivision Technologies Limited. Privacy Policy · Terms</p>
-  </div>
-</footer>
 
-<script>
-(function(){
-  var input=document.getElementById('addr'),helper=document.getElementById('helper');
-  document.getElementById('check').addEventListener('click',function(){
-    if(!input.value.trim()){helper.textContent='Please complete this field.';input.focus();return;}
-    helper.innerHTML='We need to confirm service availability at this address. <a class="btn ghost" href="#support">Request Verification</a>';
-  });
-  input.addEventListener('keydown',function(e){if(e.key==='Enter'){document.getElementById('check').click();}});
-})();
-(function(){
-  var nav=document.querySelector('.nav'),scrim=document.querySelector('.scrim'),btns=[].slice.call(document.querySelectorAll('[data-mega]')),t;
-  function closeAll(){btns.forEach(function(b){b.setAttribute('aria-expanded','false');document.getElementById(b.dataset.mega).classList.remove('show');});nav.classList.remove('open');scrim.classList.remove('show');}
-  function openOne(b){closeAll();b.setAttribute('aria-expanded','true');document.getElementById(b.dataset.mega).classList.add('show');nav.classList.add('open');scrim.classList.add('show');}
-  btns.forEach(function(b){
-    b.addEventListener('mouseenter',function(){clearTimeout(t);openOne(b);});
-    b.addEventListener('click',function(e){if(b.getAttribute('aria-expanded')==='true'&&e.detail===0){closeAll();}else{openOne(b);}});
-  });
-  nav.addEventListener('mouseenter',function(){clearTimeout(t);});
-  nav.addEventListener('mouseleave',function(){t=setTimeout(closeAll,140);});
-  scrim.addEventListener('click',closeAll);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll();});
-  [].forEach.call(document.querySelectorAll('.mega a'),function(a){a.addEventListener('click',closeAll);});
-})();
-</script>
+
+
+<script type="module" src="../shared/static-adapter.js"></script>
 </body>
 </html>

@@ -2,6 +2,23 @@
 
 This repository (`ikonecttclient`) contains the unified client-facing digital experience proposals for **iKonectt** (flagship broadband brand of **Intelivision Technologies Limited**).
 
+## Phase 1 public website
+
+All five options now use the same public route and customer-journey foundation with template-specific visual variants. Existing option URLs and homepage sections remain available. Use routes such as `/option-d/#/residential/plans`, `/option-e/#/support`, or `/option-c/#/my-ikonectt/sign-in`; the option pathname preserves the selected design through reload and browser history.
+
+The shared implementation is in `shared/`: route/menu definitions, provisional copy, internal-page rendering, accessible navigation, validation, coverage scenarios, FAQ search, and static adapters. A–C mount it from their React apps; D/E import the same ES modules. No customer registration or staff Admin navigation is exposed.
+
+Coverage, enquiry forms, authentication, recovery, and portal data are explicitly demonstrations. No message is sent, no login succeeds, and no availability is inferred from an address. Catalogue attributes, support details, and legal text remain pending verification. Exact `content.md` and the separate architectural blueprint were not supplied; see [content audit](docs/CONTENT_AUDIT.md).
+
+See [architecture audit](docs/PHASE_1_ARCHITECTURE.md), [image slots](IMAGE_SLOTS.md), and [completion report](docs/PHASE_1_COMPLETION.md) for routes, validation, and outstanding production inputs. Phase 2 photography has not begun.
+
+To run the shared interaction suite after installing development dependencies:
+
+```bash
+npm ci
+npm test
+```
+
 It brings together:
 1. **Interactive Comparison Hub (`index.html`)**: Executive portal allowing the client to toggle between Options A–E, test responsive viewports (Desktop, Tablet, Mobile), and review the feature matrix.
 2. **Option A (`option-a/`)**: Editorial photography-first layout, multi-page journey (Home, Residential, Business, Coverage, Support, About), React 19 + TypeScript.

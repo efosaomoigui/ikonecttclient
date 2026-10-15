@@ -88,26 +88,12 @@ footer{background:var(--ink);color:#bfaeb1;padding:3rem 0 calc(env(safe-area-ins
 }
 @media (prefers-reduced-motion:reduce){.btn,.tile{transition:none}html{scroll-behavior:auto}}
 </style>
+<link rel="stylesheet" href="../shared/public-site.css">
 </head>
-<body>
-<header><div class="wrap bar">
-  <a class="logo" href="#/residential" aria-label="Ikonectt home">Ikonectt</a>
-  <nav class="links" id="nav" aria-label="Primary">
-    <a href="#/residential" data-s="residential">Residential</a><a href="#/business" data-s="business">Business</a><a href="#/coverage" data-s="coverage">Coverage</a><a href="#/support" data-s="support">Support</a><a href="#/about" data-s="about">About Us</a>
-  </nav>
-  <a class="btn red" href="#/my-ikonectt/login">My Ikonectt</a>
-  <details class="menu"><summary>Menu</summary><div><a href="#/residential">Residential</a><a href="#/business">Business</a><a href="#/coverage">Coverage</a><a href="#/support">Support</a><a href="#/about">About Us</a><a href="#/my-ikonectt/login">My Ikonectt</a></div></details>
-</div></header>
+<body data-template="d">
+
 <main id="app"></main>
-<footer><div class="wrap">
-  <div class="foot">
-    <div><a class="logo" style="color:#fff" href="#/residential">Ikonectt</a><p style="margin-top:.8rem;max-width:15rem">Fibre broadband for homes and businesses.</p></div>
-    <nav aria-label="Residential"><strong>Residential</strong><a href="#/residential">Residential Overview</a><a href="#/residential/plans">Residential Plans</a><a href="#/residential/compare">Compare Plans</a></nav>
-    <nav aria-label="Business"><strong>Business</strong><a href="#/business">Business Overview</a><a href="#/business/solutions">Business Solutions</a><a href="#/business/quote">Request a Quote</a></nav>
-    <nav aria-label="Support"><strong>Support</strong><a href="#/support">Help Centre</a><a href="#/support/faqs">FAQs</a><a href="#/contact">Contact Us</a></nav>
-  </div>
-  <p class="legal">© 2026 Intelivision Technologies Limited. <a href="#/privacy">Privacy Policy</a> · <a href="#/terms">Terms &amp; Conditions</a></p>
-</div></footer>
+
 
 <script>
 (function(){
@@ -115,7 +101,7 @@ var app=document.getElementById('app');
 var A=function(p,t,c){return '<a class="btn '+(c||'red')+'" href="#/'+p+'">'+t+'</a>';};
 var S=function(h,p,i,c){return '<section class="sec '+(c||'')+'"><div class="wrap"><span class="mark"></span><h2>'+h+'</h2>'+(p?'<p class="sub">'+p+'</p>':'')+(i||'')+'</div></section>';};
 var T=function(a){return '<div class="tiles">'+a.map(function(x){return '<a class="tile" href="#/'+(x[2]||'coverage')+'"><h3>'+x[0]+'</h3>'+(x[1]?'<p>'+x[1]+'</p>':'')+'</a>';}).join('')+'</div>';};
-var D=function(n,to,cta){var c='<article class="card"><i></i><div><h3>Plan name</h3><p>Speed</p><p>Contact us for current pricing.</p><a class="btn red" href="#/'+to+'">'+(cta||'View Plan')+'</a></div></article>';return '<div class="grid">'+new Array(n+1).join(c)+'</div>';};
+var D=function(n,to,cta){if(!cta||cta==='View Plan')to='residential/plans/demo-1';var c='<article class="card"><i></i><div><h3>Plan name</h3><p>Speed</p><p>Contact us for current pricing.</p><a class="btn red" href="#/'+to+'">'+(cta||'View Plan')+'</a></div></article>';return '<div class="grid">'+new Array(n+1).join(c)+'</div>';};
 var F=function(id,fields,cta){
   return '<form class="formbox" data-f="'+id+'" novalidate>'+fields.map(function(f){
     if(typeof f==='string')f=[f];var l=f[0],t=f[1]||'text',o=f[2],opts=f[3],full=(t==='area'||f[4])?' full':'';
@@ -167,7 +153,7 @@ var V={
 'terms':{s:'',t:'Terms &amp; Conditions',l:'',c:[],b:function(){return S('Terms text','','<div class="legal-box">Client-approved complete legal text required. Effective date and last-updated date to be added once confirmed.</div>');}}
 };
 function render(){
-  var r=location.hash.replace(/^#\/?/,'')||'residential',v=V[r]||V.residential;
+  var r='residential',v=V.residential;
   var sub=SUB[v.s]?'<div class="wrap"><nav class="subnav" aria-label="Section">'+SUB[v.s].map(function(x){return '<a href="#/'+x[1]+'"'+(x[1]===r?' class="on" aria-current="page"':'')+'>'+x[0]+'</a>';}).join('')+'</nav></div>':'';
   app.innerHTML='<section class="phero">'+ART+'<div class="wrap"><span class="mark"></span><h1>'+v.t+'</h1>'+(v.l?'<p class="lead">'+v.l+'</p>':'')+(v.c.length?'<div class="row">'+v.c.map(function(x){return A(x[1],x[0],x[2]);}).join('')+'</div>':'')+'</div></section>'+sub+v.b();
   document.title=v.t.replace(/&amp;/g,'&')+' | Ikonectt';
@@ -185,8 +171,9 @@ app.addEventListener('submit',function(e){
   if(miss){st.className='status err';st.textContent='Please complete this field.';return;}
   st.textContent='Demo form: not yet connected to a server, so nothing was sent.';
 });
-window.addEventListener('hashchange',render);render();
+render();
 })();
 </script>
+<script type="module" src="../shared/static-adapter.js"></script>
 </body>
 </html>

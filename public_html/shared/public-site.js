@@ -1,0 +1,138 @@
+import {pages,menus,parseRoute} from './routes.js';
+import {company} from './content.js';
+import {renderPage,filterFAQs,renderFAQResults,link} from './pages.js';
+import {addressFields,validateForm,escapeHTML as esc} from './forms.js';
+
+const redLogo=new URL('../assets/logos/ikonectt_transparent.png',import.meta.url).href;
+const whiteLogo=new URL('../assets/logos/ikonectt_white_transparent.png',import.meta.url).href;
+export function navigate(route,context={}) {
+  window.dispatchEvent(new CustomEvent('ik:navigate',{detail:{route,context}}));
+}
+export function mountSite({root,home,template}) {
+  if(!['a','b','c','d','e'].includes(template)) throw new Error('Unknown template');
+  const abort=new AbortController(),opts={signal:abort.signal};
+  const state={address:{},coverage:null,plan:''};
+  const originalTitle=home.dataset.originalTitle||document.title;
+  home.dataset.originalTitle=originalTitle;
+  let previous='',menuTimer;
+  root.classList.add('ik-site');root.dataset.template=template;
+  home.classList.add('ik-home');
+  const header=document.createElement('header');header.className='ik-header';
+  header.innerHTML=headerHTML(template);
+  const skip=document.createElement('a');skip.href='#ik-main';skip.className='ik-skip';skip.dataset.skip='';skip.textContent='Skip to content';
+  const main=document.createElement('main');main.id='ik-main';main.tabIndex=-1;main.hidden=true;
+  const footer=document.createElement('footer');footer.className='ik-footer';footer.innerHTML=footerHTML();
+  root.prepend(skip,header);root.append(main,footer);
+  const nav=header.querySelector('.ik-desktop-nav'),mobile=header.querySelector('.ik-mobile-button');
+  function closeMenus(returnFocus=false){
+    const open=header.querySelector('.ik-nav-trigger[aria-expanded=true]');
+    header.querySelectorAll('.ik-nav-trigger').forEach(button=>button.setAttribute('aria-expanded','false'));
+    header.querySelectorAll('.ik-mega').forEach(panel=>panel.hidden=true);
+    if(returnFocus&&open)open.focus();
+  }
+  function openMenu(button){
+    closeMenus();button.setAttribute('aria-expanded','true');
+    header.querySelector('#'+button.getAttribute('aria-controls')).hidden=false;
+  }
+  function closeMobile(){nav.classList.remove('is-open');mobile.setAttribute('aria-expanded','false');}
+  for(const group of header.querySelectorAll('.ik-nav-group')){
+    const button=group.querySelector('.ik-nav-trigger');
+    button.addEventListener('click',()=>button.getAttribute('aria-expanded')==='true'?closeMenus():openMenu(button),opts);
+    group.addEventListener('pointerenter',()=>{clearTimeout(menuTimer);if(window.matchMedia('(min-width:1024px) and (hover:hover)').matches)openMenu(button);},opts);
+    button.addEventListener('keydown',event=>{
+      if(event.key==='ArrowDown'){event.preventDefault();openMenu(button);group.querySelector('.ik-mega a')?.focus();}
+      if(['ArrowLeft','ArrowRight'].includes(event.key)){
+        event.preventDefault();const buttons=[...header.querySelectorAll('.ik-nav-trigger')],index=buttons.indexOf(button);
+        buttons[(index+(event.key==='ArrowRight'?1:buttons.length-1))%buttons.length].focus();
+      }
+    },opts);
+  }
+  header.addEventListener('pointerleave',()=>{if(window.matchMedia('(min-width:1024px) and (hover:hover)').matches)menuTimer=setTimeout(()=>closeMenus(),180);},opts);
+  header.addEventListener('pointerenter',()=>clearTimeout(menuTimer),opts);
+  mobile.addEventListener('click',()=>{const open=mobile.getAttribute('aria-expanded')!=='true';mobile.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);if(!open)closeMenus();},opts);
+  document.addEventListener('click',event=>{if(!header.contains(event.target)){closeMenus();closeMobile();}},opts);
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenus(true);if(nav.classList.contains('is-open')){closeMobile();mobile.focus();}}},opts);
+  root.addEventListener('click',event=>{
+    const target=event.target.closest('a,button');if(!target)return;
+    if(target.hasAttribute('data-skip')){event.preventDefault();const content=home.hidden?main:home;content.tabIndex=-1;content.focus();content.scrollIntoView();return;}
+    if(target.dataset.errorFocus){event.preventDefault();document.getElementById(target.dataset.errorFocus)?.focus();return;}
+    if(target.dataset.showPassword){
+      const input=document.getElementById(target.dataset.showPassword),visible=input.type==='password';input.type=visible?'text':'password';target.textContent=visible?'Hide':'Show';target.setAttribute('aria-label',visible?'Hide password':'Show password');target.setAttribute('aria-pressed',String(visible));return;
+    }
+    if(target.matches('a[href^="#/"]')){closeMenus();closeMobile();}
+  },opts);
+  function render(){
+    const {path,query}=parseRoute(window.location.hash),isHome=path==='home';
+    root.dataset.route=path;home.hidden=!isHome;main.hidden=isHome;
+    closeMenus();closeMobile();
+    if(path.startsWith('residential/plans/demo-'))state.plan='Catalogue placeholder '+(path.endsWith('2')?'2':'1');
+    if(isHome){document.title=originalTitle;main.replaceChildren();}
+    else{
+      const title=pages[path]?.[0]||'Page not found',description=pages[path]?.[1]||'Choose a page from the navigation.';
+      const section=path.split('/')[0];const sectionName=menus.find(item=>item.id===section)?.label||'Ikonectt';
+      main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(title)}</span></nav><h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${renderPage(path,{state,query})}`;
+      document.title=title+' | Ikonectt';
+      initializePage();
+    }
+    header.querySelectorAll('.ik-nav-trigger').forEach(button=>{
+      const id=button.dataset.menu;button.dataset.active=String(path===id||path.startsWith(id+'/')||(id==='about'&&['contact','privacy','terms'].includes(path)));
+    });
+    root.querySelectorAll('a[href^="#/"]').forEach(anchor=>{const match=anchor.getAttribute('href')==='#/'+path;if(match)anchor.setAttribute('aria-current','page');else if(anchor.getAttribute('aria-current')==='page')anchor.removeAttribute('aria-current');});
+    if(previous){window.scrollTo({top:0,behavior:'instant'});const heading=isHome?home.querySelector('h1'):main.querySelector('h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}}
+    previous=path;
+  }
+  function initializePage(){
+    for(const form of main.querySelectorAll('form')){
+      const kind=form.dataset.form;
+      if(['coverage','verification'].includes(kind)){
+        const fields=addressFields.map(field=>form.elements.namedItem(field.name));
+        fields.forEach((input,index)=>{
+          if(index)input.disabled=!fields[index-1].value.trim();
+          input.addEventListener('input',()=>{for(let n=index+1;n<fields.length;n++){fields[n].value='';fields[n].disabled=!fields[n-1].value.trim();}},opts);
+        });
+      }
+    }
+    if(main.querySelector('#help-search')){
+      const search=main.querySelector('#help-search'),category=main.querySelector('#help-category');
+      const update=()=>{const matches=filterFAQs(search.value,category.value);main.querySelector('#ik-search-results').innerHTML=renderFAQResults(matches);main.querySelector('#ik-search-count').textContent=`${matches.length} answer${matches.length===1?'':'s'} found`;};
+      search.addEventListener('input',update,opts);category.addEventListener('change',update,opts);update();
+    }
+    if(main.querySelector('#compare-first')){
+      const first=main.querySelector('#compare-first'),second=main.querySelector('#compare-second');
+      const update=()=>{main.querySelector('#ik-compare-first').textContent='Catalogue placeholder '+first.value;main.querySelector('#ik-compare-second').textContent='Catalogue placeholder '+second.value;main.querySelector('#ik-compare-actions').innerHTML=link('residential/plans/demo-'+first.value,'First Plan Details')+link('residential/plans/demo-'+second.value,'Second Plan Details',true);};
+      first.addEventListener('change',update,opts);second.addEventListener('change',update,opts);
+    }
+  }
+  main.addEventListener('submit',event=>{
+    const form=event.target;if(!form.matches('form[data-form]'))return;event.preventDefault();
+    if(validateForm(form).length)return;
+    const data=Object.fromEntries(new FormData(form)),kind=form.dataset.form,status=form.querySelector('[data-status]');
+    if(kind==='coverage'){
+      state.address=Object.fromEntries(addressFields.map(field=>[field.name,String(data[field.name]||'').trim()]));state.coverage=data.scenario||'unknown';navigate('coverage/results');return;
+    }
+    if(['installation','verification'].includes(kind))state.address={...state.address,...Object.fromEntries(addressFields.filter(field=>data[field.name]).map(field=>[field.name,String(data[field.name]).trim()]))};
+    if(kind==='sign-in'){
+      form.elements.namedItem('password').value='';status.innerHTML='Preview only. Sign-in is not connected; you are not authenticated. '+link('my-ikonectt/preview','View Portal Preview');
+    }else if(kind==='recovery')status.textContent='Demonstration only. No recovery link was sent and no account was looked up. Live account recovery is not connected.';
+    else status.innerHTML='Demonstration complete. Nothing was sent or stored. A live request endpoint is required before this form can deliver a message.'+`<div class="ik-actions">${link('support','Help Centre',true)}${link('home','Home',true)}</div>`;
+    status.focus();
+  },opts);
+  window.addEventListener('hashchange',render,opts);
+  window.addEventListener('ik:navigate',event=>{
+    const {route,context={}}=event.detail;
+    if(context.address)state.address.street=String(context.address);
+    if(context.plan)state.plan='Catalogue placeholder 1';
+    const hash='#/'+route;
+    if(window.location.hash===hash)render();else window.location.hash=hash;
+  },opts);
+  render();
+  return ()=>{abort.abort();clearTimeout(menuTimer);header.remove();footer.remove();main.remove();skip.remove();home.hidden=false;root.classList.remove('ik-site');delete root.dataset.template;delete root.dataset.route;};
+}
+function headerHTML(template){
+  const dark=['c','e'].includes(template),utility=['a','b','c'].includes(template);
+  return `${utility?'<div class="ik-wrap ik-utility"><a href="#/residential">RESIDENTIAL</a><span aria-hidden="true">|</span><a href="#/business">BUSINESS</a></div>':''}<div class="ik-wrap ik-header-row"><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img src="${dark?whiteLogo:redLogo}" alt="Ikonectt" width="132" height="44"></a><nav class="ik-desktop-nav" id="ik-primary-nav" aria-label="Primary">${menus.map(menu=>`<div class="ik-nav-group"><button type="button" class="ik-nav-trigger" data-menu="${menu.id}" aria-expanded="false" aria-controls="ik-menu-${menu.id}">${menu.label}</button><div class="ik-mega" id="ik-menu-${menu.id}" hidden><div class="ik-wrap ik-mega-inner">${menu.groups.map(([title,links])=>`<div class="ik-menu-group"><h2>${title}</h2>${links.map(([label,route])=>`<a href="#/${route}">${label}</a>`).join('')}</div>`).join('')}${menu.promo?`<aside class="ik-promo"><h3>${menu.promo[0]}</h3><p>${menu.promo[1]}</p>${link(menu.promo[3],menu.promo[2])}</aside>`:''}</div></div></div>`).join('')}<a class="ik-button ik-mobile-portal" href="#/my-ikonectt/sign-in">My Ikonectt</a></nav><div class="ik-nav-actions"><a class="ik-button" href="#/my-ikonectt/sign-in">My Ikonectt</a><button class="ik-mobile-button" type="button" aria-controls="ik-primary-nav" aria-expanded="false">Menu</button></div></div>`;
+}
+function footerHTML(){
+  const group=(label,items)=>`<nav aria-label="${label}"><h2>${label}</h2>${items.map(([text,route])=>`<a href="#/${route}">${text}</a>`).join('')}</nav>`;
+  return `<div class="ik-wrap"><div class="ik-footer-top"><div><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img src="${whiteLogo}" width="132" height="44" alt="Ikonectt"></a><p>${company.description}</p><p>Verified contact details awaiting confirmation.</p></div>${group('Residential',[['Overview','residential'],['Residential Plans','residential/plans'],['Compare Plans','residential/compare'],['Installation Enquiry','residential/installation']])}${group('Business',[['Overview','business'],['Business Solutions','business/solutions'],['Business Plans','business/plans'],['Request a Quote','business/quote']])}</div><div class="ik-footer-secondary">${group('Coverage',[['Check Coverage','coverage'],['Address Verification','coverage/verification'],['Coverage FAQs','support/faqs?category=coverage']])}${group('Support',[['Help Centre','support'],['FAQs','support/faqs'],['Troubleshooting','support/troubleshooting'],['Report a Fault','support/fault'],['Service Requests','support/service-request'],['Contact Support','support/contact']])}${group('Company',[['About Us','about'],['Contact','contact'],['My Ikonectt','my-ikonectt/sign-in']])}</div><div class="ik-footer-bottom"><span>© 2026 ${company.legalName}.</span><div><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms and Conditions</a></div></div></div>`;
+}

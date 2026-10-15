@@ -46,7 +46,7 @@ export const MyIkonecttSection: React.FC<MyIkonecttSectionProps> = ({
                 </button>
 
                 <span className="text-xs text-white/40 font-mono">
-                  Subscriber Single Sign-On
+                  Sign-in Preview
                 </span>
               </div>
 
@@ -60,25 +60,25 @@ export const MyIkonecttSection: React.FC<MyIkonecttSectionProps> = ({
             <div className="lg:col-span-5 flex flex-col gap-3">
               <div className="p-5 rounded-2xl bg-[#090909]/80 border border-white/10 backdrop-blur-md">
                 <div className="flex items-center justify-between text-xs text-white/60 mb-3 pb-2 border-b border-white/10">
-                  <span className="font-mono text-[#FF616A]">PORTAL CAPABILITY</span>
-                  <span>Direct Customer Access</span>
+                  <span className="font-mono text-[#FF616A]">PORTAL PREVIEW</span>
+                  <span>Not connected</span>
                 </div>
                 <div className="space-y-3 text-xs text-white/80">
                   <div className="flex items-center gap-3">
                     <Activity className="w-4 h-4 text-[#ED101A] shrink-0" />
-                    <span>Real-time line status & ONT health metrics</span>
+                    <span>Service information preview</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CreditCard className="w-4 h-4 text-[#ED101A] shrink-0" />
-                    <span>Automated billing, statements & instant subscription renewal</span>
+                    <span>Billing and renewal integrations pending</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Sliders className="w-4 h-4 text-[#ED101A] shrink-0" />
-                    <span>Self-service bandwidth upgrades & plan adjustment</span>
+                    <span>Account assistance pathways</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Key className="w-4 h-4 text-[#ED101A] shrink-0" />
-                    <span>Encrypted end-to-end subscriber credentials</span>
+                    <span>Production authentication not implemented</span>
                   </div>
                 </div>
               </div>

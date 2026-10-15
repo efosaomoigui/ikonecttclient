@@ -20,7 +20,7 @@ export const CoverageActionSection: React.FC<CoverageActionSectionProps> = ({
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold uppercase tracking-wider text-[#FF616A]">
             <MapPin className="w-3.5 h-3.5 text-[#ED101A]" />
-            <span>Network Footprint</span>
+            <span>Address Verification</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
@@ -31,7 +31,7 @@ export const CoverageActionSection: React.FC<CoverageActionSectionProps> = ({
             {C.coverageAction.supportingLine}
           </p>
 
-          {/* Active Deployment Hub Chips (strictly verified locations from content.md) */}
+          {/* Address hierarchy preview; no location implies availability */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-3xl my-4 text-left">
             {C.coverageAction.verifiedHubs.map((hub, idx) => (
               <div key={idx} className="p-3.5 rounded-2xl bg-[#151517] border border-white/10 flex flex-col gap-1">

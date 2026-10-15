@@ -1,0 +1,2 @@
+# Keep Vite's transformed HTML and standalone entrypoints consistent across Windows/Linux.
+*.html text eol=lf

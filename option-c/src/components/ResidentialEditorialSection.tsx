@@ -40,13 +40,13 @@ export const ResidentialEditorialSection: React.FC<ResidentialEditorialSectionPr
             {/* Restrained Touchpoint Pills */}
             <div className="flex flex-wrap gap-2.5 pt-2">
               <span className="px-3.5 py-1.5 rounded-full bg-white border border-black/10 text-xs font-medium text-[#1D1D1F]">
-                4K UHD Streaming
+                Streaming
               </span>
               <span className="px-3.5 py-1.5 rounded-full bg-white border border-black/10 text-xs font-medium text-[#1D1D1F]">
-                Zero-Lag Teleconferencing
+                Working from home
               </span>
               <span className="px-3.5 py-1.5 rounded-full bg-white border border-black/10 text-xs font-medium text-[#1D1D1F]">
-                Multi-Device Wi-Fi 6
+                Connected devices
               </span>
             </div>
 

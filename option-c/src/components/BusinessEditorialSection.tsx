@@ -31,7 +31,7 @@ export const BusinessEditorialSection: React.FC<BusinessEditorialSectionProps> =
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                   <span className="font-semibold">Enterprise Core Network</span>
                 </div>
-                <span className="text-white/60 font-mono text-[11px]">Redundant Transit</span>
+                <span className="text-white/60 font-mono text-[11px]">Service Enquiries</span>
               </div>
             </div>
           </div>
@@ -63,17 +63,17 @@ export const BusinessEditorialSection: React.FC<BusinessEditorialSectionProps> =
               <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                 <div className="flex items-center gap-2 text-white font-semibold text-sm mb-1">
                   <Server className="w-4 h-4 text-[#ED101A]" />
-                  <span>Dedicated Trunking</span>
+                  <span>Business Requirements</span>
                 </div>
-                <p className="text-xs text-white/60">Contention-free optical link directly to your server room.</p>
+                <p className="text-xs text-white/60">Discuss the needs of your workplace and team.</p>
               </div>
 
               <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                 <div className="flex items-center gap-2 text-white font-semibold text-sm mb-1">
                   <ShieldCheck className="w-4 h-4 text-[#ED101A]" />
-                  <span>Service Guarantees</span>
+                  <span>Service Considerations</span>
                 </div>
-                <p className="text-xs text-white/60">Direct field response teams and proactive line monitoring.</p>
+                <p className="text-xs text-white/60">Availability and commercial terms require confirmation.</p>
               </div>
             </div>
 

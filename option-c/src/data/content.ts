@@ -98,13 +98,13 @@ export const OPTION_03_CONTENT = {
       title: 'At Home',
       line: 'Internet for the way you live.',
       cta: 'Explore Residential',
-      description: 'Stream in 4K, work remotely without latency spikes, and connect every smart device across your home.'
+      description: 'Stay connected at home for work, learning and entertainment.'
     },
     business: {
       title: 'At Work',
       line: 'Connectivity for business.',
       cta: 'Explore Business',
-      description: 'Reliable high-throughput optical networks tailored for corporate offices, commercial hubs, and modern teams.'
+      description: 'Explore broadband options for your team, office or organisation.'
     }
   },
 
@@ -116,12 +116,12 @@ export const OPTION_03_CONTENT = {
         id: 'residential',
         title: 'Residential Plans',
         subtitle: 'At Home',
-        description: 'High-speed optical fibre connectivity for families, remote professionals, and content creators.',
+        description: 'Explore home broadband options and check your address.',
         features: [
-          'Symmetric high-speed upload and download',
-          'Unlimited monthly data with zero throttling',
-          'Modern Wi-Fi 6 optical terminal equipment',
-          '24/7 dedicated customer care support'
+          'Plan specifications awaiting verification',
+          'Data conditions awaiting approved terms',
+          'Equipment details to be confirmed',
+          'Public support and enquiry pathways'
         ],
         cta: 'View Residential Plans'
       },
@@ -129,12 +129,12 @@ export const OPTION_03_CONTENT = {
         id: 'business',
         title: 'Business Plans',
         subtitle: 'At Work',
-        description: 'Enterprise broadband designed to sustain continuous commercial productivity and cloud workflows.',
+        description: 'Discuss your workplace and connectivity requirements.',
         features: [
-          'Guaranteed bandwidth capacity & dedicated throughput',
-          'Service level agreements (SLA) with priority response',
-          'Static IP addressing & multi-office networking options',
-          'Dedicated corporate account manager'
+          'Service requirements discussed individually',
+          'Commercial terms awaiting confirmation',
+          'Technical features awaiting verification',
+          'Request a business quotation'
         ],
         cta: 'View Business Plans'
       }
@@ -146,8 +146,8 @@ export const OPTION_03_CONTENT = {
     heading: 'Made for the moments that matter.',
     supportingLine: 'From workdays to downtime, discover connectivity that fits into everyday life.',
     paragraphs: [
-      'Modern Nigerian households run on constant connectivity. From seamless remote collaboration and cloud backups to high-definition video streaming and competitive online gaming, your broadband must keep pace with everyone under your roof.',
-      'Ikonectt optical fibre delivers true symmetrical performance, meaning uploading client presentations is as lightning-fast as streaming your favorite shows.'
+      'From workdays to downtime, discover connectivity that fits into everyday life.',
+      'Your experience will depend on your plan, Wi-Fi setup and the devices in use.'
     ],
     cta: 'Explore Residential'
   },
@@ -156,8 +156,8 @@ export const OPTION_03_CONTENT = {
     heading: 'Keep your business connected.',
     supportingLine: 'Explore broadband solutions for your business needs.',
     paragraphs: [
-      'In a competitive economy, downtime is costly. Ikonectt provides enterprise optical infrastructure built on redundant routing architectures and proactive line monitoring.',
-      'Whether you operate a burgeoning creative agency, a multi-story headquarters, or distributed branches, our business solutions scale effortlessly with your headcount and bandwidth requirements.'
+      'From households and estates to offices and organisations, Ikonectt supports different connectivity requirements.',
+      'Tell us what your organisation needs. Service options depend on the address and technical requirements.'
     ],
     cta: 'Explore Business'
   },
@@ -167,28 +167,28 @@ export const OPTION_03_CONTENT = {
     supportingLine: 'Check service availability in your area.',
     cta: 'Check Coverage',
     verifiedHubs: [
-      { city: 'Lagos', areas: 'Ikoyi, Victoria Island, Lekki Phase 1, Ikeja GRA, Magodo' },
-      { city: 'Abuja (FCT)', areas: 'Maitama, Asokoro, Wuse 2, Jabi, Gwarinpa' },
-      { city: 'Port Harcourt', areas: 'Old GRA, Peter Odili Corridor, Trans-Amadi' },
-      { city: 'Edo State', areas: 'Benin City Core Commercial & Residential Corridors' }
+      { city: 'Country', areas: 'Nigeria' },
+      { city: 'State', areas: 'Enter your service location' },
+      { city: 'City / LGA', areas: 'District and area details' },
+      { city: 'Street / Address', areas: 'Subject to verification' }
     ]
   },
 
   myIkonectt: {
     heading: 'Your connection. Your control.',
     supportingLine: 'Manage your services, payments and support through My Ikonectt.',
-    description: 'Designed exclusively for registered Ikonectt subscribers, the My Ikonectt self-service portal provides instant access to billing statements, automated renewals, live line health status, and direct technical escalation.',
+    description: 'Explore the My Ikonectt interface. Authentication, billing, renewals and private account data are not connected in this preview.',
     cta: 'Go to My Ikonectt',
-    note: 'Protected subscriber portal. Public registration is not required for general enquiries.'
+    note: 'Customer onboarding is staff-managed. General enquiries do not require login.'
   },
 
   support: {
     heading: 'Here when you need us.',
     supportingLine: 'Find answers, get help and reach the right team.',
     channels: [
-      { title: '24/7 Telephone Care', detail: '+234 (0) 1 888 IKONECTT', sub: 'Instant technical escalation' },
-      { title: 'Dedicated Helpdesk Email', detail: 'support@ikonectt.com', sub: 'Guaranteed ticket response' },
-      { title: 'WhatsApp Live Concierge', detail: '+234 800 000 0000', sub: 'Fast on-demand messaging' }
+      { title: 'Help Centre', detail: 'Browse help topics', sub: 'Public information and guidance' },
+      { title: 'Contact Support', detail: 'Preview a support request', sub: 'Live contact details awaiting confirmation' },
+      { title: 'My Ikonectt', detail: 'Sign-in interface preview', sub: 'No production authentication' }
     ],
     cta: 'Visit Support'
   },

@@ -61,6 +61,8 @@ function copyFolderSync(from, to) {
 
 console.log('Copying assets...');
 copyFolderSync(path.join(rootDir, 'assets'), path.join(outDir, 'assets'));
+// The same public-site modules drive standalone templates and the compiled React adapters.
+copyFolderSync(path.join(rootDir, 'shared'), path.join(outDir, 'shared'));
 
 // Copy Option A build
 console.log('Copying Option A build...');

@@ -5,15 +5,17 @@ import { Plan } from '../../data/telecomData';
 import { ArrowRight, ChevronRight, Check } from 'lucide-react';
 
 interface HomePageProps {
-  onNavigate: (tab: 'home' | 'residential' | 'business' | 'coverage') => void;
+  onNavigate: (tab: 'home' | 'residential' | 'business' | 'coverage' | 'about') => void;
   onSelectPlan: (plan: Plan) => void;
   onOpenMyIkonectt: () => void;
+  onViewPlans?: (audience: 'residential' | 'business') => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
   onNavigate,
   onSelectPlan,
   onOpenMyIkonectt,
+  onViewPlans,
 }) => {
   return (
     <div className="w-full bg-white">
@@ -61,7 +63,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </button>
 
               <button
-                onClick={() => onNavigate('residential')}
+                onClick={() => onViewPlans ? onViewPlans('residential') : onNavigate('residential')}
                 className="ik-btn-on-dark"
               >
                 Explore Plans
@@ -170,7 +172,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <button
-              onClick={() => onNavigate('residential')}
+              onClick={() => onViewPlans ? onViewPlans('residential') : onNavigate('residential')}
               className="p-8 rounded-2xl bg-[#f5f5f7] hover:bg-[#ececef] text-left flex items-center justify-between gap-6 transition-colors border border-[#e0e0e0]"
             >
               <div className="flex flex-col gap-2">
@@ -182,7 +184,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </button>
 
             <button
-              onClick={() => onNavigate('business')}
+              onClick={() => onViewPlans ? onViewPlans('business') : onNavigate('business')}
               className="p-8 rounded-2xl bg-[#f5f5f7] hover:bg-[#ececef] text-left flex items-center justify-between gap-6 transition-colors border border-[#e0e0e0]"
             >
               <div className="flex flex-col gap-2">
@@ -196,7 +198,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="mt-12 flex flex-col items-center gap-4 text-center">
             <button
-              onClick={() => onNavigate('residential')}
+              onClick={() => onViewPlans ? onViewPlans('residential') : onNavigate('residential')}
               className="ik-link text-base font-semibold"
             >
               <span>View All Plans</span>
@@ -220,7 +222,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </p>
           <div className="pt-3">
             <button
-              onClick={() => onNavigate('residential')}
+              onClick={() => onNavigate('about')}
               className="ik-link ik-link-on-dark text-base font-semibold"
             >
               <span>About Ikonectt</span>

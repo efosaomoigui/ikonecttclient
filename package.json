@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "build": "node scripts/build_showcase.js"
+    "build": "node scripts/build_showcase.js",
+    "test": "node --test tests/public-site.test.mjs"
   },
   "keywords": [
     "telecom",
@@ -16,5 +17,8 @@
     "ikonectt"
   ],
   "author": "Intelivision Technologies Limited",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
 }
