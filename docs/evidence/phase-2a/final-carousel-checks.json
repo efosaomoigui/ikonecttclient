@@ -1,0 +1,102 @@
+[
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "a",
+    "overflow": false,
+    "scale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "status": "500 Mbps · 3 of 4",
+    "width": 1440
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "a",
+    "overflow": false,
+    "scale": "none",
+    "status": "500 Mbps · 3 of 4",
+    "width": 376
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "b",
+    "overflow": false,
+    "scale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "status": "500 Mbps · 3 of 4",
+    "width": 1440
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "b",
+    "overflow": false,
+    "scale": "none",
+    "status": "500 Mbps · 3 of 4",
+    "width": 376
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "c",
+    "overflow": false,
+    "scale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "status": "500 Mbps · 3 of 4",
+    "width": 1440
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "c",
+    "overflow": false,
+    "scale": "none",
+    "status": "500 Mbps · 3 of 4",
+    "width": 376
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "d",
+    "overflow": false,
+    "scale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "status": "500 Mbps · 3 of 4",
+    "width": 1440
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "d",
+    "overflow": false,
+    "scale": "none",
+    "status": "500 Mbps · 3 of 4",
+    "width": 376
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "e",
+    "overflow": false,
+    "scale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "status": "500 Mbps · 3 of 4",
+    "width": 1440
+  },
+  {
+    "active": "biz-500",
+    "center": 0,
+    "count": 4,
+    "option": "e",
+    "overflow": false,
+    "scale": "none",
+    "status": "500 Mbps · 3 of 4",
+    "width": 376
+  }
+]

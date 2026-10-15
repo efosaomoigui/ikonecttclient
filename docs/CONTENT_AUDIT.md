@@ -1,5 +1,7 @@
 # Phase 1 content and reference audit
 
+> Historical baseline: the findings below describe Phase 1. The Phase 2A update at the end supersedes the earlier catalogue-pending and missing-blueprint findings.
+
 Reviewed 15 October 2026. This report records repository evidence and prototype guidance; it does not certify commercial, legal or operational facts.
 
 ## Reference availability and precedence
@@ -79,3 +81,30 @@ The supplied trailing-slash URL timed out. The official [Help Centre without the
 Adapt only these patterns: visible search; six scannable Ikonectt categories supplied by the user; popular questions linking to full answers; troubleshooting entry; clear fault/service-request/contact actions; and an escalation path when self-help ends. Maintain selected-template routing throughout. Do not copy ipNX wording, product facts, hardware instructions, contact details, support commitments, consumer policies or public signup flow.
 
 No image generation, image download, code mutation, publication or external messaging was performed as part of this audit. Planned photography positions are documented separately in `IMAGE_SLOTS.md`.
+
+## Phase 2A update — 15 October 2026
+
+The supplied corrected 14-page architectural blueprint is now available. Its public Website/Care/Admin boundaries, anonymous enquiry, staff-managed onboarding, shared audience catalogue and six-level address model (pp. 2–5) were reconciled with the preview. Payment, AI, Admin/CRM, ISP adapters and server security/operations on pp. 6–14 remain separate platform work. This is public frontend alignment, not full-platform blueprint compliance. Exact `content.md` remains absent; the named editorial draft is still available.
+
+The current brief selects published reference values for meaningful client review. It supersedes the Phase 1 catalogue-pending presentation without certifying current commercial offers.
+
+| Audience / source | Adopted values (Mbps / monthly NGN) |
+| --- | --- |
+| Residential — [For Homes](https://provisions.ikonectt.com/for-homes) | iBasic 30 / ₦15,000; iSilver 40 / ₦20,000; iGold 50 / ₦25,000; iPlatinum 100 / ₦50,000; iDiamond 300 / ₦75,000 |
+| Business — [Provisioning site](https://provisions.ikonectt.com/) | 100 / ₦105,000; 300 / ₦253,000; 500 / ₦359,000; 1000 / ₦437,000. No invented names. |
+
+Direct retrieval of the provisioning pages timed out; indexed official content corroborated the values explicitly supplied by the user. The newer [welcome page](https://ikonectt.com/welcome-to-ikonectt/) was accessible and showed these conflicts:
+
+| Speed | Selected preview price | Newer welcome-page price excluded |
+| --- | ---: | ---: |
+| 50 Mbps | ₦25,000 | ₦24,500 |
+| 100 Mbps | ₦50,000 | ₦65,000 |
+| 300 Mbps | ₦75,000 | ₦150,500 |
+
+The catalogues are not combined. All nine preview records carry a source, provisional verification state and address-verification requirement in `shared/catalogue.js`. One dataset powers home cards, full listings, details, comparisons, enquiry selects and coverage follow-ups in A–E. A discreet pricing-confirmation note appears with plan presentations. Only fibre broadband, speed, monthly billing and the selected price are represented as plan facts; installation/equipment/usage terms remain neutral and unknown.
+
+Home structure and imagery are preserved. Plans now have complete exploration paths; FAQs no longer say no catalogue exists. Business Solutions now leads to Business Plans, and coverage results offer audience-appropriate plan exploration. Forms, sign-in and coverage remain explicit local demonstrations with no real service decision, submission, authentication, payment or activation.
+
+Current commercial approval remains required for prices, taxes, usage/FUP, SLAs, equipment, installation and eligibility. Historic contact sets still conflict; no arbitrary phone, email, office or hours were activated. Legal text, company styling, authoritative coverage, delivery/retention/consent and Care/provider integrations remain unapproved inputs. Phase 2B photography has not begun.
+
+Full implementation, journey checks and validation limits: [Phase 2A report](PHASE_2A_PLAN_CATALOGUE_AND_JOURNEY_REPORT.md).

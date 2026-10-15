@@ -1,4 +1,4 @@
-// Provisional copy from Ikonectt_content (1).md. No verified commercial catalogue exists.
+// Editorial draft copy. Selected published preview pricing is centralised in catalogue.js.
 export const company = {
   name: 'Ikonectt', legalName: 'Intelivision Technologies Limited',
   description: 'Ikonectt is the broadband brand of Intelivision Technologies, serving homes and businesses.'
@@ -10,7 +10,7 @@ export const categories = [
 ];
 export const faqs = [
   ['coverage', 'How do I check coverage?', 'Availability depends on your address. Use our coverage checker or request verification from our team. The Phase 1 checker demonstrates the journey; it does not check a live network.'],
-  ['payments', 'How do I select a plan?', 'Explore available plans and choose what suits your needs. Verified plan specifications and prices have not yet been supplied for this preview.'],
+  ['payments', 'How do I select a plan?', 'Explore available plans and choose what suits your needs. Compare the published preview speeds and monthly prices. Pricing and final terms remain subject to client confirmation.'],
   ['coverage', 'How do I request installation?', 'Start by checking coverage and selecting a suitable plan. Our team will confirm eligibility, installation requirements and the next steps.'],
   ['payments', 'Where can I find plan conditions?', 'Service availability and final terms are confirmed for your address. Approved plan terms are required before a subscription can be offered.'],
   ['internet', 'Can I connect several devices?', 'You can connect multiple compatible devices through your home network. Your experience will depend on your plan, Wi-Fi setup and the devices in use.'],

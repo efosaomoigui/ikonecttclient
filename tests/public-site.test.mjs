@@ -4,6 +4,7 @@ import {JSDOM} from 'jsdom';
 import {mountSite,navigate} from '../shared/public-site.js';
 import {pages,menus,parseRoute} from '../shared/routes.js';
 import {coverageStates} from '../shared/content.js';
+import {catalogue,plansFor,getPlan,planName,priceLabel,detailRoute,planRoute} from '../shared/catalogue.js';
 import {filterFAQs} from '../shared/pages.js';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,12 +21,20 @@ test('packaged option entrypoints and local assets exist',()=>{
       assert.ok(fs.existsSync(target),`Missing packaged asset: ${option} -> ${ref}`);
     }
   }
-  for(const file of ['shared/public-site.js','shared/pages.js','shared/forms.js','shared/routes.js','shared/content.js','shared/static-adapter.js','shared/public-site.css','assets/logos/ikonectt_transparent.png','assets/logos/ikonectt_white_transparent.png'])assert.ok(fs.existsSync(path.join(output,file)),file);
+  for(const file of ['shared/public-site.js','shared/pages.js','shared/forms.js','shared/routes.js','shared/content.js','shared/static-adapter.js','shared/public-site.css','shared/catalogue.js','shared/plan-ui.js','shared/carousel.js','shared/plans.css','assets/logos/ikonectt_transparent.png','assets/logos/ikonectt_white_transparent.png'])assert.ok(fs.existsSync(path.join(output,file)),file);
+});
+
+
+test('selected reference catalogue has exact values and no invented business names or offers',()=>{
+  assert.deepEqual(plansFor('residential').map(p=>[p.displayName,p.speedMbps,p.monthlyPriceNGN]),[['iBasic',30,15000],['iSilver',40,20000],['iGold',50,25000],['iPlatinum',100,50000],['iDiamond',300,75000]]);
+  assert.deepEqual(plansFor('business').map(p=>[p.displayName,p.speedMbps,p.monthlyPriceNGN]),[[null,100,105000],[null,300,253000],[null,500,359000],[null,1000,437000]]);
+  assert.equal(new Set(catalogue.map(p=>p.id)).size,9);
+  for(const plan of catalogue){assert.equal(plan.billingPeriod,'month');assert.equal(plan.currency,'NGN');assert.match(plan.verificationStatus,/awaiting-client-confirmation/);assert.equal(plan.availabilityStatus,'address-verification-required');assert.deepEqual(plan.verifiedAttributes.map(x=>x.value),['Fibre broadband']);assert.ok(plan.sourceUrl.startsWith('https://provisions.ikonectt.com/'));}
 });
 
 const pause=()=>new Promise(resolve=>setTimeout(resolve,5));
 for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCase()}: public website`,async t=>{
-  const dom=new JSDOM('<!doctype html><title>Original home</title><div id="site"><main id="original"><h1>Original homepage</h1></main></div>',{url:`https://preview.test/option-${template}/`,pretendToBeVisual:true});
+  const dom=new JSDOM('<!doctype html><title>Original home</title><div id="site"><main id="original"><h1>Original homepage</h1><div data-home-plan-carousel></div></main></div>',{url:`https://preview.test/option-${template}/`,pretendToBeVisual:true});
   const {window}=dom;
   for(const key of ['window','document','CustomEvent','FormData','AbortController'])globalThis[key]=key==='window'?window:window[key];
   window.scrollTo=()=>{};window.matchMedia=()=>({matches:false});
@@ -37,7 +46,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
   });
   const go=async path=>{if(window.location.hash!=='#/'+path)await change(()=>{window.location.hash='#/'+path;});};
   const click=async route=>{
-    const anchor=[...root.querySelectorAll('a')].find(a=>a.getAttribute('href')==='#/'+route&&!a.closest('[hidden]'));
+    const anchor=[...root.querySelectorAll('a')].find(a=>(a.getAttribute('href')==='#/'+route||(!route.includes('?')&&parseRoute(a.getAttribute('href')).path===parseRoute('#/'+route).path))&&!a.closest('[hidden]'));
     assert.ok(anchor,`Missing visible path to ${route}`);
     if(window.location.hash==='#/'+route){anchor.click();await pause();return;}
     await new Promise((resolve,reject)=>{
@@ -55,7 +64,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       for(const [path,[title]] of Object.entries(pages)){
         await go(path);checkTemplate();
         assert.equal(home.hidden,path!=='home');
-        if(path!=='home')assert.equal(document.querySelector('#ik-main h1').textContent,title);
+        if(path!=='home')assert.equal(document.querySelector('#ik-main h1').textContent,path.endsWith('/demo-1')?'iBasic':path.endsWith('/demo-2')?'iSilver':title);
         for(const anchor of root.querySelectorAll('a[href^="#/"]')){
           const target=parseRoute(anchor.getAttribute('href')).path;
           assert.ok(pages[target],`Broken internal link: ${target} on ${path}`);
@@ -102,12 +111,67 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       }
       assert.equal(document.querySelectorAll('.ik-header .ik-logo-inverse').length,template==='d'?1:0);
     });
-    await t.test('residential journey and honest comparison',async()=>{
-      await go('home');document.querySelector('[data-menu="residential"]').click();await click('residential');
-      await click('residential/plans');await click('residential/plans/demo-1');await click('coverage');
-      await click('residential/installation');assert.equal(document.querySelector('[name="plan"]').value,'Catalogue placeholder 1');
-      await go('residential/compare');fill('first','2');assert.equal(document.querySelector('#ik-compare-first').textContent,'Catalogue placeholder 2');
-      assert.ok(document.querySelector('#ik-compare-actions a').getAttribute('href').endsWith('demo-2'));
+    await t.test('residential catalogue, five detail pages, comparison and selected enquiry journey',async()=>{
+      await go('home');document.querySelector('[data-menu="residential"]').click();await click('residential');await click('residential/plans');
+      assert.equal(document.querySelectorAll('#ik-main .ik-plan-card').length,5);
+      for(const plan of plansFor('residential')){
+        await go('residential/plans');const card=document.querySelector(`#ik-main [data-plan-id="${plan.id}"]`);
+        assert.match(card.textContent,new RegExp(plan.speedMbps+''));assert.ok(card.textContent.includes(priceLabel(plan)));
+        await click(detailRoute(plan));assert.equal(document.querySelector('#ik-main h1').textContent,planName(plan));
+        assert.ok(document.querySelector('.ik-plan-detail').textContent.includes(priceLabel(plan)));
+        await click('residential/compare?first='+plan.id);assert.equal(document.querySelector('#compare-first').value,plan.id);
+        assert.ok(document.querySelector('#ik-comparison').textContent.includes(priceLabel(plan)));
+        await click(planRoute('coverage',plan));assert.equal(document.querySelector('[name="plan"]').value,plan.id);
+        await click('residential/installation');assert.equal(document.querySelector('[name="plan"]').value,plan.id);
+        await go(planRoute('residential/installation',plan));assert.equal(document.querySelector('[name="plan"]').value,plan.id);
+      }
+      await go('residential/compare');fill('first','res-idiamond');fill('second','res-isilver');
+      assert.ok(document.querySelector('#ik-comparison thead').textContent.includes('iDiamond'));
+      assert.ok(document.querySelector('#ik-comparison').textContent.includes(priceLabel(getPlan('res-idiamond'))));
+      assert.ok(!document.querySelector('#ik-comparison').textContent.includes('105,000'));
+      await go('residential/plans/details?plan=biz-100');assert.match(document.querySelector('#ik-main').textContent,/Plan not found/);
+      await go('residential/plans/details?plan=__proto__');assert.match(document.querySelector('#ik-main').textContent,/Plan not found/);
+      checkTemplate();
+    });
+    await t.test('business catalogue and tier selection are separate and refreshable',async()=>{
+      await go('business');await click('business/solutions');await click('business/plans');
+      assert.equal(document.querySelectorAll('#ik-main .ik-plan-card').length,4);
+      for(const plan of plansFor('business')){
+        await go('business/plans');const card=document.querySelector(`#ik-main [data-plan-id="${plan.id}"]`);assert.ok(card.textContent.includes(priceLabel(plan)));
+        await click(planRoute('business/quote',plan));assert.equal(document.querySelector('[name="plan"]').value,plan.id);
+        assert.equal(document.querySelectorAll('[name="plan"] option').length,5);
+      }
+      await go('business/quote?plan=res-igold');assert.ok(!document.querySelector('[name="plan"]').value.startsWith('res-'));
+      checkTemplate();
+    });
+    await t.test('homepage carousel arrows, keyboard, audiences and plan links share catalogue',async()=>{
+      await go('home');const carousel=document.querySelector('[data-plan-carousel]'),rail=carousel.querySelector('.ik-carousel-rail');
+      carousel.querySelector('[data-carousel-audience="residential"]').click();
+      assert.equal(rail.querySelectorAll('.ik-plan-card').length,5);
+      rail.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Home',bubbles:true,cancelable:true}));
+      assert.equal(rail.querySelector('[aria-current="true"]').dataset.planId,'res-ibasic');assert.equal(carousel.querySelector('[data-carousel-step="-1"]').disabled,true);
+      carousel.querySelector('[data-carousel-step="1"]').click();assert.equal(rail.querySelector('[aria-current="true"]').dataset.planId,'res-isilver');
+      rail.dispatchEvent(new window.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));assert.equal(rail.querySelector('[aria-current="true"]').dataset.planId,'res-idiamond');
+      assert.equal(carousel.querySelector('[data-carousel-step="1"]').disabled,true);
+      carousel.querySelector('[data-carousel-audience="business"]').click();assert.equal(root.dataset.audience,'business');assert.equal(rail.querySelectorAll('.ik-plan-card').length,4);
+      assert.ok([...rail.querySelectorAll('.ik-plan-card')].every(card=>getPlan(card.dataset.planId).audience==='business'));
+      assert.ok(carousel.querySelector('[data-carousel-links]').textContent.includes('Business'));
+      const movement=[];rail.scrollTo=options=>movement.push(options.behavior);window.matchMedia=()=>({matches:true});carousel.querySelector('[data-carousel-step="-1"]').click();assert.equal(movement.at(-1),'instant');window.matchMedia=()=>({matches:false});
+      await click(planRoute('business/quote',getPlan('biz-300')));assert.equal(document.querySelector('[name="plan"]').value,'biz-300');checkTemplate();
+    });
+    await t.test('business coverage results and verification retain audience and tier',async()=>{
+      for(const scenario of Object.keys(coverageStates)){
+        await go('coverage?audience=business&plan=biz-500');
+        assert.equal(document.querySelector('[name="audience"]').value,'business');
+        for(const name of ['state','city','district','street','building'])fill(name,'Demo '+name);
+        fill('scenario',scenario);await submit();assert.equal(root.dataset.audience,'business');
+        assert.ok([...document.querySelectorAll('.ik-result a')].some(a=>a.getAttribute('href').includes('business/plans')));
+        const next=scenario==='available'?'business/quote':'coverage/verification';await click(next);
+        assert.equal(document.querySelector('[name="plan"]').value,'biz-500');
+        assert.ok([...document.querySelectorAll('[name="plan"] option')].every(o=>!o.value||o.value.startsWith('biz-')));
+      }
+      await go('coverage?audience=residential&plan=res-igold');fill('audience','business');
+      assert.ok([...document.querySelectorAll('[name="plan"] option')].every(o=>!o.value||o.value.startsWith('biz-')));
       checkTemplate();
     });
     await t.test('business and company journeys',async()=>{
@@ -117,7 +181,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
     });
     await t.test('coverage hierarchy, five explicit demo results, next actions and escaping',async()=>{
       for(const [scenario,result] of Object.entries(coverageStates)){
-        await go('coverage');
+        await go('coverage?audience=residential');
         // Changing a parent clears and disables descendants.
         fill('state','Demo state');fill('city','Demo city');fill('district','Demo district');fill('street','Demo street');fill('building','<img src=x onerror=alert(1)>');
         fill('state','Demo state changed');assert.equal(document.querySelector('[name="city"]').value,'');assert.equal(document.querySelector('[name="district"]').disabled,true);

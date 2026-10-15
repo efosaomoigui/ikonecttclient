@@ -118,7 +118,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
         ))}
       </section>
 
-      {/* 4. Featured plans — no fabricated cards until a verified catalogue exists */}
+      {/* 4. Featured plans — shared published preview catalogue */}
       <section id="plans" className="w-full bg-white ik-section">
         <div className="ik-container">
           <div className="max-w-[720px] mx-auto text-center flex flex-col gap-4 mb-12">
@@ -126,34 +126,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
             <p className="font-body text-[#333333]">{C.plans.body}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[960px] mx-auto">
-            {([
-              { key: 'residential', label: C.audiences.residential.label, page: 'residential' as PageId },
-              { key: 'business', label: C.audiences.business.label, page: 'business' as PageId },
-            ]).map(({ key, label, page }) => (
-              <button
-                key={key}
-                id={`home-plans-${key}`}
-                type="button"
-                onClick={() => onViewPlans ? onViewPlans(page === 'business' ? 'business' : 'residential') : onNavigate(page)}
-                className="ik-card bg-[#f5f5f7] text-left flex items-center justify-between gap-6 transition-colors hover:bg-[#ececef] cursor-pointer"
-              >
-                <span className="flex flex-col gap-2">
-                  <span className="font-caption text-[#7a7a7a]">{label}</span>
-                  <span className="font-tagline text-[#1d1d1f]">{C.plans.fallback}</span>
-                </span>
-                <ArrowRight className="w-5 h-5 text-[#ED101A] shrink-0" aria-hidden="true" />
-              </button>
-            ))}
-          </div>
+          <div data-home-plan-carousel />
 
-          <div className="mt-10 flex flex-col items-center gap-6 text-center">
-            <button id="home-view-all-plans" type="button" className="ik-link" onClick={scrollToPlans}>
-              {C.plans.cta}
-              <ChevronRight className="w-4 h-4" aria-hidden="true" />
-            </button>
-            <p className="font-fine-print text-[#7a7a7a] max-w-[560px]">{C.plans.footnote}</p>
-          </div>
         </div>
       </section>
 

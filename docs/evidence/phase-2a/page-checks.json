@@ -1,0 +1,272 @@
+[
+  {
+    "cards": 5,
+    "heading": "Residential Plans",
+    "option": "a",
+    "overflow": false,
+    "route": "residential/plans",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "iGold",
+    "option": "a",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "Compare Plans",
+    "option": "a",
+    "overflow": false,
+    "route": "residential/compare",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 4,
+    "heading": "Business Plans",
+    "option": "a",
+    "overflow": false,
+    "route": "business/plans",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "Request a Quote",
+    "option": "a",
+    "overflow": false,
+    "route": "business/quote",
+    "selected": "biz-300",
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "Check Coverage",
+    "option": "a",
+    "overflow": false,
+    "route": "coverage",
+    "selected": "biz-300",
+    "width": 1440
+  },
+  {
+    "cards": 5,
+    "heading": "Residential Plans",
+    "option": "b",
+    "overflow": false,
+    "route": "residential/plans",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "iGold",
+    "option": "b",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Compare Plans",
+    "option": "b",
+    "overflow": false,
+    "route": "residential/compare",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 4,
+    "heading": "Business Plans",
+    "option": "b",
+    "overflow": false,
+    "route": "business/plans",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Request a Quote",
+    "option": "b",
+    "overflow": false,
+    "route": "business/quote",
+    "selected": "biz-300",
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Check Coverage",
+    "option": "b",
+    "overflow": false,
+    "route": "coverage",
+    "selected": "biz-300",
+    "width": 376
+  },
+  {
+    "cards": 5,
+    "heading": "Residential Plans",
+    "option": "c",
+    "overflow": false,
+    "route": "residential/plans",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "iGold",
+    "option": "c",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "Compare Plans",
+    "option": "c",
+    "overflow": false,
+    "route": "residential/compare",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 4,
+    "heading": "Business Plans",
+    "option": "c",
+    "overflow": false,
+    "route": "business/plans",
+    "selected": null,
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "Request a Quote",
+    "option": "c",
+    "overflow": false,
+    "route": "business/quote",
+    "selected": "biz-300",
+    "width": 1440
+  },
+  {
+    "cards": 0,
+    "heading": "Check Coverage",
+    "option": "c",
+    "overflow": false,
+    "route": "coverage",
+    "selected": "biz-300",
+    "width": 1440
+  },
+  {
+    "cards": 5,
+    "heading": "Residential Plans",
+    "option": "d",
+    "overflow": false,
+    "route": "residential/plans",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "iGold",
+    "option": "d",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Compare Plans",
+    "option": "d",
+    "overflow": false,
+    "route": "residential/compare",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 4,
+    "heading": "Business Plans",
+    "option": "d",
+    "overflow": false,
+    "route": "business/plans",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Request a Quote",
+    "option": "d",
+    "overflow": false,
+    "route": "business/quote",
+    "selected": "biz-300",
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Check Coverage",
+    "option": "d",
+    "overflow": false,
+    "route": "coverage",
+    "selected": "biz-300",
+    "width": 376
+  },
+  {
+    "cards": 5,
+    "heading": "Residential Plans",
+    "option": "e",
+    "overflow": false,
+    "route": "residential/plans",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "iGold",
+    "option": "e",
+    "overflow": false,
+    "route": "residential/plans/demo-1",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Compare Plans",
+    "option": "e",
+    "overflow": false,
+    "route": "residential/compare",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 4,
+    "heading": "Business Plans",
+    "option": "e",
+    "overflow": false,
+    "route": "business/plans",
+    "selected": null,
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Request a Quote",
+    "option": "e",
+    "overflow": false,
+    "route": "business/quote",
+    "selected": "biz-300",
+    "width": 376
+  },
+  {
+    "cards": 0,
+    "heading": "Check Coverage",
+    "option": "e",
+    "overflow": false,
+    "route": "coverage",
+    "selected": "biz-300",
+    "width": 376
+  }
+]

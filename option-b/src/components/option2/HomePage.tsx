@@ -170,44 +170,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <button
-              onClick={() => onViewPlans ? onViewPlans('residential') : onNavigate('residential')}
-              className="p-8 rounded-2xl bg-[#f5f5f7] hover:bg-[#ececef] text-left flex items-center justify-between gap-6 transition-colors border border-[#e0e0e0]"
-            >
-              <div className="flex flex-col gap-2">
-                <span className="text-xs uppercase font-semibold text-[#7a7a7a]">Residential</span>
-                <span className="text-xl font-bold text-[#1d1d1f]">Explore home broadband plans</span>
-                <span className="text-sm text-[#7a7a7a]">Options designed for everyday streaming, remote work and family households.</span>
-              </div>
-              <ArrowRight className="w-5 h-5 text-[#ED101A] shrink-0" />
-            </button>
+          <div data-home-plan-carousel />
 
-            <button
-              onClick={() => onViewPlans ? onViewPlans('business') : onNavigate('business')}
-              className="p-8 rounded-2xl bg-[#f5f5f7] hover:bg-[#ececef] text-left flex items-center justify-between gap-6 transition-colors border border-[#e0e0e0]"
-            >
-              <div className="flex flex-col gap-2">
-                <span className="text-xs uppercase font-semibold text-[#7a7a7a]">Business</span>
-                <span className="text-xl font-bold text-[#1d1d1f]">Explore business connectivity</span>
-                <span className="text-sm text-[#7a7a7a]">Reliable broadband solutions for commercial teams, offices and enterprise operations.</span>
-              </div>
-              <ArrowRight className="w-5 h-5 text-[#ED101A] shrink-0" />
-            </button>
-          </div>
-
-          <div className="mt-12 flex flex-col items-center gap-4 text-center">
-            <button
-              onClick={() => onViewPlans ? onViewPlans('residential') : onNavigate('residential')}
-              className="ik-link text-base font-semibold"
-            >
-              <span>View All Plans</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-            <p className="text-xs text-[#7a7a7a] max-w-md">
-              Plan availability and installation are subject to location verification and applicable terms.
-            </p>
-          </div>
         </div>
       </section>
 

@@ -2,9 +2,9 @@ export const pages = {
   home: ['Home',''],
   residential: ['Internet that keeps your home connected.','Find broadband options for the way you live, work and enjoy your home.'],
   'residential/plans': ['Residential Plans','Explore broadband options for your home.'],
-  'residential/plans/demo-1': ['Residential Plan Details','Demonstration layout. This is not an available product.'],
-  'residential/plans/demo-2': ['Residential Plan Details','Demonstration layout. This is not an available product.'],
-  'residential/compare': ['Compare Plans','Review plan attributes when the verified catalogue is available.'],
+  'residential/plans/demo-1': ['Residential Plan Details','Explore the published speed and monthly price.'],
+  'residential/plans/demo-2': ['Residential Plan Details','Explore the published speed and monthly price.'],
+  'residential/compare': ['Compare Plans','Compare published speeds and monthly prices for your home.'],
   'residential/installation': ['Installation Enquiry','Share your location and requirements.'],
   business: ['Connectivity built for business.','Explore broadband solutions for your workplace, team and business operations.'],
   'business/solutions': ['Business Solutions','Tell us what your organisation needs.'],
@@ -30,7 +30,7 @@ export const pages = {
   'my-ikonectt/forgot-password': ['Forgot Password','Recover access to your account.'],
   'my-ikonectt/preview': ['My Ikonectt','Customer portal preview. No authenticated account is connected.']
 };
-export const aliases = {'residential/enquire':'residential/installation','coverage/verify':'coverage/verification','my-ikonectt/login':'my-ikonectt/sign-in',plans:'residential/plans',portal:'my-ikonectt/sign-in',top:'home'};
+export const aliases = {'residential/plans/details':'residential/plans/demo-1','residential/enquire':'residential/installation','coverage/verify':'coverage/verification','my-ikonectt/login':'my-ikonectt/sign-in',plans:'residential/plans',portal:'my-ikonectt/sign-in',top:'home'};
 export const menus = [
   {id:'residential',label:'Residential',groups:[['Explore',[['Residential Overview','residential'],['Residential Plans','residential/plans'],['Compare Plans','residential/compare']]],['Get Connected',[['Check Coverage','coverage'],['Installation Enquiry','residential/installation'],['Installation FAQs','support/faqs?category=coverage']]]],promo:['Find internet for your home.','Explore plans and check service availability at your address.','Check Coverage','coverage']},
   {id:'business',label:'Business',groups:[['Solutions',[['Business Overview','business'],['Business Solutions','business/solutions'],['SME Connectivity','business/solutions/sme'],['Enterprise Connectivity','business/solutions/enterprise']]],['Get Started',[['Business Plans','business/plans'],['Request a Quote','business/quote'],['Check Coverage','coverage']]]],promo:['Connectivity for your business.','Tell us what your organisation needs.','Request a Quote','business/quote']},
