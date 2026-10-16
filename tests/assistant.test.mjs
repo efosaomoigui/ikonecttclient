@@ -67,8 +67,8 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       click('[data-launcher]');assert.ok(find('dialog').hasAttribute('open'));assert.equal(document.activeElement,find('[name="name"]'));
       submit('[data-intro-form]');assert.equal(find('[name="name"]').getAttribute('aria-invalid'),'true');assert.equal(find('[data-errors]').hidden,false);
       fill('[name="name"]','Efe Demo');fill('[name="phone"]','letters');submit('[data-intro-form]');assert.equal(find('[name="phone"]').getAttribute('aria-invalid'),'true');
-      find('[data-close]').focus();find('[data-close]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));assert.equal(document.activeElement,find('[data-intro-form] [type="submit"]'));
-      find('[data-intro-form] [type="submit"]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(document.activeElement,find('[data-close]'));
+      find('[data-close]').focus();find('[data-close]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));assert.equal(document.activeElement,find(template==='a'?'[data-intro-form] [data-help]':'[data-intro-form] [type="submit"]'));
+      find(template==='a'?'[data-intro-form] [data-help]':'[data-intro-form] [type="submit"]').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(document.activeElement,find('[data-close]'));
       find('dialog').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));assert.ok(!find('dialog').hasAttribute('open'));assert.equal(document.activeElement,find('[data-launcher]'));
       assert.equal(document.documentElement.style.overflow,'');
     });

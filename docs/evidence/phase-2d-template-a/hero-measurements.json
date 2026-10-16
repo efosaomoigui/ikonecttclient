@@ -1,0 +1,374 @@
+[
+  {
+    "hero": [
+      {
+        "rect": {
+          "bottom": 844.8962249755859,
+          "height": 720,
+          "left": 0,
+          "right": 1018.867919921875,
+          "top": 124.89622497558594,
+          "width": 1018.867919921875,
+          "x": 0,
+          "y": 124.89622497558594
+        },
+        "tag": "SECTION",
+        "text": "Fibre internet for a brighter NigeriaConnectivity without limits.Fibre broadband for homes, businesses and everything you do online.Check CoverageExplore Plans"
+      },
+      {
+        "rect": {
+          "bottom": 422.0943336486816,
+          "height": 18.04245376586914,
+          "left": 48,
+          "right": 667.9953002929688,
+          "top": 404.0518798828125,
+          "width": 619.9953002929688,
+          "x": 48,
+          "y": 404.0518798828125
+        },
+        "tag": "P",
+        "text": "Fibre internet for a brighter Nigeria"
+      },
+      {
+        "rect": {
+          "bottom": 564.4528503417969,
+          "height": 118.35848999023438,
+          "left": 48,
+          "right": 667.9953002929688,
+          "top": 446.0943603515625,
+          "width": 619.9953002929688,
+          "x": 48,
+          "y": 446.0943603515625
+        },
+        "tag": "H1",
+        "text": "Connectivity without limits."
+      },
+      {
+        "rect": {
+          "bottom": 649.9245185852051,
+          "height": 61.47169876098633,
+          "left": 48,
+          "right": 567.9906005859375,
+          "top": 588.4528198242188,
+          "width": 519.9906005859375,
+          "x": 48,
+          "y": 588.4528198242188
+        },
+        "tag": "P",
+        "text": "Fibre broadband for homes, businesses and everything you do online."
+      },
+      {
+        "rect": {
+          "bottom": 732.0000305175781,
+          "height": 49.174530029296875,
+          "left": 48,
+          "right": 220.6415100097656,
+          "top": 682.8255004882812,
+          "width": 172.64151000976562,
+          "x": 48,
+          "y": 682.8255004882812
+        },
+        "tag": "BUTTON",
+        "text": "Check Coverage"
+      },
+      {
+        "rect": {
+          "bottom": 732.9056510925293,
+          "height": 50.9858512878418,
+          "left": 236.632080078125,
+          "right": 386.1367950439453,
+          "top": 681.9197998046875,
+          "width": 149.5047149658203,
+          "x": 236.632080078125,
+          "y": 681.9197998046875
+        },
+        "tag": "BUTTON",
+        "text": "Explore Plans"
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      1024,
+      900
+    ]
+  },
+  {
+    "hero": [
+      {
+        "rect": {
+          "bottom": 720.9056625366211,
+          "height": 600,
+          "left": 0,
+          "right": 762.5660400390625,
+          "top": 120.9056625366211,
+          "width": 762.5660400390625,
+          "x": 0,
+          "y": 120.9056625366211
+        },
+        "tag": "SECTION",
+        "text": "Fibre internet for a brighter NigeriaConnectivity without limits.Fibre broadband for homes, businesses and everything you do online.Check CoverageExplore Plans"
+      },
+      {
+        "rect": {
+          "bottom": 408.55188369750977,
+          "height": 18.04245376586914,
+          "left": 24,
+          "right": 643.9953002929688,
+          "top": 390.5094299316406,
+          "width": 619.9953002929688,
+          "x": 24,
+          "y": 390.5094299316406
+        },
+        "tag": "P",
+        "text": "Fibre internet for a brighter Nigeria"
+      },
+      {
+        "rect": {
+          "bottom": 476.92923736572266,
+          "height": 44.37735748291016,
+          "left": 24,
+          "right": 643.9953002929688,
+          "top": 432.5518798828125,
+          "width": 619.9953002929688,
+          "x": 24,
+          "y": 432.5518798828125
+        },
+        "tag": "H1",
+        "text": "Connectivity without limits."
+      },
+      {
+        "rect": {
+          "bottom": 557.9292602539062,
+          "height": 57,
+          "left": 24,
+          "right": 543.9906005859375,
+          "top": 500.92926025390625,
+          "width": 519.9906005859375,
+          "x": 24,
+          "y": 500.92926025390625
+        },
+        "tag": "P",
+        "text": "Fibre broadband for homes, businesses and everything you do online."
+      },
+      {
+        "rect": {
+          "bottom": 640.0047302246094,
+          "height": 49.174530029296875,
+          "left": 24,
+          "right": 196.6415100097656,
+          "top": 590.8302001953125,
+          "width": 172.64151000976562,
+          "x": 24,
+          "y": 590.8302001953125
+        },
+        "tag": "BUTTON",
+        "text": "Check Coverage"
+      },
+      {
+        "rect": {
+          "bottom": 640.9104118347168,
+          "height": 50.9858512878418,
+          "left": 212.632080078125,
+          "right": 362.1367950439453,
+          "top": 589.924560546875,
+          "width": 149.5047149658203,
+          "x": 212.632080078125,
+          "y": 589.924560546875
+        },
+        "tag": "BUTTON",
+        "text": "Explore Plans"
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "hero": [
+      {
+        "rect": {
+          "bottom": 720.9056625366211,
+          "height": 600,
+          "left": 0,
+          "right": 384.9056701660156,
+          "top": 120.9056625366211,
+          "width": 384.9056701660156,
+          "x": 0,
+          "y": 120.9056625366211
+        },
+        "tag": "SECTION",
+        "text": "Fibre internet for a brighter NigeriaConnectivity without limits.Fibre broadband for homes, businesses and everything you do online.Check CoverageExplore Plans"
+      },
+      {
+        "rect": {
+          "bottom": 273.67924880981445,
+          "height": 18.04245376586914,
+          "left": 24,
+          "right": 360.9056701660156,
+          "top": 255.6367950439453,
+          "width": 336.9056701660156,
+          "x": 24,
+          "y": 255.6367950439453
+        },
+        "tag": "P",
+        "text": "Fibre internet for a brighter Nigeria"
+      },
+      {
+        "rect": {
+          "bottom": 383.2641677856446,
+          "height": 85.58490753173828,
+          "left": 24,
+          "right": 360.9056701660156,
+          "top": 297.67926025390625,
+          "width": 336.9056701660156,
+          "x": 24,
+          "y": 297.67926025390625
+        },
+        "tag": "H1",
+        "text": "Connectivity without limits."
+      },
+      {
+        "rect": {
+          "bottom": 492.76416015625,
+          "height": 85.5,
+          "left": 24,
+          "right": 360.9056701660156,
+          "top": 407.26416015625,
+          "width": 336.9056701660156,
+          "x": 24,
+          "y": 407.26416015625
+        },
+        "tag": "P",
+        "text": "Fibre broadband for homes, businesses and everything you do online."
+      },
+      {
+        "rect": {
+          "bottom": 573.9339904785156,
+          "height": 49.174530029296875,
+          "left": 24,
+          "right": 196.6415100097656,
+          "top": 524.7594604492188,
+          "width": 172.64151000976562,
+          "x": 24,
+          "y": 524.7594604492188
+        },
+        "tag": "BUTTON",
+        "text": "Check Coverage"
+      },
+      {
+        "rect": {
+          "bottom": 640.9104118347168,
+          "height": 50.9858512878418,
+          "left": 24,
+          "right": 173.5047149658203,
+          "top": 589.924560546875,
+          "width": 149.5047149658203,
+          "x": 24,
+          "y": 589.924560546875
+        },
+        "tag": "BUTTON",
+        "text": "Explore Plans"
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "hero": [
+      {
+        "rect": {
+          "bottom": 752.9575881958008,
+          "height": 636.056640625,
+          "left": 0,
+          "right": 315.1698303222656,
+          "top": 116.90094757080078,
+          "width": 315.1698303222656,
+          "x": 0,
+          "y": 116.90094757080078
+        },
+        "tag": "SECTION",
+        "text": "Fibre internet for a brighter NigeriaConnectivity without limits.Fibre broadband for homes, businesses and everything you do online.Check CoverageExplore Plans"
+      },
+      {
+        "rect": {
+          "bottom": 262.9386787414551,
+          "height": 18.04245376586914,
+          "left": 24,
+          "right": 291.1698303222656,
+          "top": 244.8962249755859,
+          "width": 267.1698303222656,
+          "x": 24,
+          "y": 244.8962249755859
+        },
+        "tag": "P",
+        "text": "Fibre internet for a brighter Nigeria"
+      },
+      {
+        "rect": {
+          "bottom": 415.3160552978515,
+          "height": 128.3773651123047,
+          "left": 24,
+          "right": 291.1698303222656,
+          "top": 286.9386901855469,
+          "width": 267.1698303222656,
+          "x": 24,
+          "y": 286.9386901855469
+        },
+        "tag": "H1",
+        "text": "Connectivity without limits."
+      },
+      {
+        "rect": {
+          "bottom": 524.8160400390625,
+          "height": 85.5,
+          "left": 24,
+          "right": 291.1698303222656,
+          "top": 439.3160400390625,
+          "width": 267.1698303222656,
+          "x": 24,
+          "y": 439.3160400390625
+        },
+        "tag": "P",
+        "text": "Fibre broadband for homes, businesses and everything you do online."
+      },
+      {
+        "rect": {
+          "bottom": 605.9858703613281,
+          "height": 49.174530029296875,
+          "left": 24,
+          "right": 196.6415100097656,
+          "top": 556.8113403320312,
+          "width": 172.64151000976562,
+          "x": 24,
+          "y": 556.8113403320312
+        },
+        "tag": "BUTTON",
+        "text": "Check Coverage"
+      },
+      {
+        "rect": {
+          "bottom": 672.9622917175293,
+          "height": 50.9858512878418,
+          "left": 24,
+          "right": 173.5047149658203,
+          "top": 621.9764404296875,
+          "width": 149.5047149658203,
+          "x": 24,
+          "y": 621.9764404296875
+        },
+        "tag": "BUTTON",
+        "text": "Explore Plans"
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      321,
+      741
+    ]
+  }
+]

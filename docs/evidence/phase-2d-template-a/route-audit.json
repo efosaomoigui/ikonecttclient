@@ -1,0 +1,404 @@
+[
+  {
+    "heading": "Internet that keeps your home connected.",
+    "headings": [
+      "Made for everyday moments.",
+      "Internet for the way you live.",
+      "Available residential plans",
+      "Getting connected.",
+      "Installation questions",
+      "Ready to get connected?"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [
+      {
+        "id": "residential",
+        "rect": {
+          "bottom": 999.764129638672,
+          "height": 398.2924499511719,
+          "left": 775.8113403320312,
+          "right": 1306.882080078125,
+          "top": 601.4716796875,
+          "width": 531.0707397460938,
+          "x": 775.8113403320312,
+          "y": 601.4716796875
+        }
+      }
+    ],
+    "url": "#/residential"
+  },
+  {
+    "heading": "Residential Plans",
+    "headings": [
+      "Find your connection.",
+      "Plan questions"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/residential/plans"
+  },
+  {
+    "heading": "iBasic",
+    "headings": [
+      "iBasic",
+      "Relevant questions"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/residential/plans/demo-1"
+  },
+  {
+    "heading": "iSilver",
+    "headings": [
+      "iSilver",
+      "Relevant questions"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/residential/plans/demo-2"
+  },
+  {
+    "heading": "Compare Plans",
+    "headings": [
+      "Compare your options",
+      "Explore every option."
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/residential/compare"
+  },
+  {
+    "heading": "Installation Enquiry",
+    "headings": [
+      "Your installation enquiry",
+      "Need help first?"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/residential/installation"
+  },
+  {
+    "heading": "Connectivity built for business.",
+    "headings": [
+      "Keep business moving.",
+      "Built around different needs.",
+      "Explore business connectivity.",
+      "Find the right business connection.",
+      "Let’s talk about your business."
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [
+      {
+        "id": "business",
+        "rect": {
+          "bottom": 836.7311096191406,
+          "height": 298.7264099121094,
+          "left": 775.8113403320312,
+          "right": 1306.882080078125,
+          "top": 538.0046997070312,
+          "width": 531.0707397460938,
+          "x": 775.8113403320312,
+          "y": 538.0046997070312
+        }
+      }
+    ],
+    "url": "#/business"
+  },
+  {
+    "heading": "Business Solutions",
+    "headings": [
+      "Explore business requirements",
+      "Discuss your requirements."
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/business/solutions"
+  },
+  {
+    "heading": "Business Connectivity",
+    "headings": [
+      "A connection around your requirements.",
+      "Service considerations",
+      "Talk to the team."
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [
+      {
+        "id": "solution",
+        "rect": {
+          "bottom": 862.0613403320312,
+          "height": 354.0424499511719,
+          "left": 775.8113403320312,
+          "right": 1306.882080078125,
+          "top": 508.0188903808594,
+          "width": 531.0707397460938,
+          "x": 775.8113403320312,
+          "y": 508.0188903808594
+        }
+      }
+    ],
+    "url": "#/business/solutions/connectivity"
+  },
+  {
+    "heading": "SME Connectivity",
+    "headings": [
+      "A connection around your requirements.",
+      "Service considerations",
+      "Talk to the team."
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [
+      {
+        "id": "solution",
+        "rect": {
+          "bottom": 862.0613403320312,
+          "height": 354.0424499511719,
+          "left": 775.8113403320312,
+          "right": 1306.882080078125,
+          "top": 508.0188903808594,
+          "width": 531.0707397460938,
+          "x": 775.8113403320312,
+          "y": 508.0188903808594
+        }
+      }
+    ],
+    "url": "#/business/solutions/sme"
+  },
+  {
+    "heading": "Enterprise Connectivity",
+    "headings": [
+      "A connection around your requirements.",
+      "Service considerations",
+      "Talk to the team."
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [
+      {
+        "id": "solution",
+        "rect": {
+          "bottom": 862.0613403320312,
+          "height": 354.0424499511719,
+          "left": 775.8113403320312,
+          "right": 1306.882080078125,
+          "top": 508.0188903808594,
+          "width": 531.0707397460938,
+          "x": 775.8113403320312,
+          "y": 508.0188903808594
+        }
+      }
+    ],
+    "url": "#/business/solutions/enterprise"
+  },
+  {
+    "heading": "Business Plans",
+    "headings": [
+      "Business connectivity"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/business/plans"
+  },
+  {
+    "heading": "Request a Quote",
+    "headings": [
+      "Your business requirements"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/business/quote"
+  },
+  {
+    "heading": "Check Coverage",
+    "headings": [
+      "Your address"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/coverage"
+  },
+  {
+    "heading": "Coverage Results",
+    "headings": [
+      "No address check to review"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/coverage/results"
+  },
+  {
+    "heading": "Address Verification",
+    "headings": [
+      "Request an address review"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/coverage/verification"
+  },
+  {
+    "heading": "How can we help?",
+    "headings": [
+      "Search for an answer",
+      "Browse help topics",
+      "More ways to get help",
+      "Need to speak to the team?"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/support"
+  },
+  {
+    "heading": "Frequently Asked Questions",
+    "headings": [
+      "Browse answers",
+      "Still need help?"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/support/faqs"
+  },
+  {
+    "heading": "Troubleshooting",
+    "headings": [
+      "Choose a topic"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/support/troubleshooting"
+  },
+  {
+    "heading": "Report a Fault",
+    "headings": [
+      "Your fault report"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/support/fault"
+  },
+  {
+    "heading": "Service Request",
+    "headings": [
+      "How can we help?"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/support/service-request"
+  },
+  {
+    "heading": "Contact Support",
+    "headings": [
+      "Contact options"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/support/contact"
+  },
+  {
+    "heading": "Connecting people and possibilities.",
+    "headings": [
+      "About Ikonectt.",
+      "Built around different needs.",
+      "Find the right connection."
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [
+      {
+        "id": "about",
+        "rect": {
+          "bottom": 925.528289794922,
+          "height": 354.0424499511719,
+          "left": 775.8113403320312,
+          "right": 1306.882080078125,
+          "top": 571.48583984375,
+          "width": 531.0707397460938,
+          "x": 775.8113403320312,
+          "y": 571.48583984375
+        }
+      }
+    ],
+    "url": "#/about"
+  },
+  {
+    "heading": "Let’s talk.",
+    "headings": [
+      "Choose a pathway",
+      "Get in touch"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/contact"
+  },
+  {
+    "heading": "Privacy Policy",
+    "headings": [
+      "Publication pending"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/privacy"
+  },
+  {
+    "heading": "Terms and Conditions",
+    "headings": [
+      "Publication pending"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/terms"
+  },
+  {
+    "heading": "Welcome to My Ikonectt.",
+    "headings": [
+      "Sign in"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/my-ikonectt/sign-in"
+  },
+  {
+    "heading": "Forgot Password",
+    "headings": [
+      "Recover access"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/my-ikonectt/forgot-password"
+  },
+  {
+    "heading": "My Ikonectt",
+    "headings": [
+      "Portal preview"
+    ],
+    "overflow": false,
+    "photos": [],
+    "slots": [],
+    "url": "#/my-ikonectt/preview"
+  }
+]

@@ -101,7 +101,7 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
   }
   function reset(){
     revision++;started=false;localPlan='';messages.replaceChildren();guidance.replaceChildren();composer.reset();composer.querySelector('button').disabled=true;
-    conversation.hidden=true;panel.dataset.stage='welcome';intro.hidden=false;intro.innerHTML=introductionHTML();
+    conversation.hidden=true;panel.dataset.stage='welcome';intro.hidden=false;intro.innerHTML=introductionHTML(template);
     if(open)intro.querySelector('input').focus();
   }
   function updateContext(){
