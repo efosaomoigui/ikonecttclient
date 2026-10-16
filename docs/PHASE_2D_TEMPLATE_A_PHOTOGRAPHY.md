@@ -202,6 +202,8 @@ Current validation: A production build passed; **112 existing tests passed, 0 fa
 
 Evidence includes [desktop welcome](evidence/phase-2d-template-a/assistant-desktop.png), [mobile welcome](evidence/phase-2d-template-a/assistant-mobile.png), [mobile hero before](evidence/phase-2d-template-a/homepage-mobile-before.png), [SME desktop](evidence/phase-2d-template-a/business-solutions-sme-desktop-before.png) and [Residential mobile](evidence/phase-2d-template-a/residential-mobile-before.png). Additional desktop snapshots record all six editorial reservation pages. These are screenshots of the current site, not new photographic production assets.
 
+Publication verification: commits `2700fd6` and `331440c` were pushed to `main`. The live A preview displayed the revised heading and Browse Help Topics link; on mobile, that link reached the Help Centre and closed the dialog without document overflow. See [live desktop](evidence/phase-2d-template-a/assistant-production-desktop.png), [live mobile](evidence/phase-2d-template-a/assistant-production-mobile.png) and [route check](evidence/phase-2d-template-a/production-check.json). A homepage sources/content, B–E source and packaged entrypoints, shared page rendering, styling and catalogue have no diff from the preceding `7ace695` baseline. Only A's assistant presentation and its build delivery changed alongside this documentation.
+
 ## 10. Approval checklist
 
 ### Brief decisions — pending
