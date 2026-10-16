@@ -1,0 +1,28 @@
+{
+  "consolidationCommit": "5215383",
+  "url": "https://ikonecttclient-kappa.vercel.app/",
+  "activeIDs": [
+    "a",
+    "d",
+    "e"
+  ],
+  "unchangedLiveFiles": {
+    "option-d/index.html": "e656accfed8280b6705061d6a37d57d3ef5951e0d42f401bb2e65194b62eb661",
+    "option-e/index.html": "c7d0ec710b3817ab80a2757fe016da1b88c4a9b52973369bea66ded1679d7497",
+    "shared/public-site.js": "72ec2cd5de2af99b050d083b3f7468036651fd45e8004d6a56758d866213db84",
+    "shared/public-site.css": "e9a25c06830c18054e191d8f6366b13c42dea610839eaea46539ff8285d9aba7",
+    "shared/catalogue.js": "87c055227c520309d43599650dd3bd2a11c9b418d3d88caedd26afe807d7e66c",
+    "shared/assistant.js": "71e1a4d1b153ce01af89660c1601cd20ecf9eea0046e724806c36fbf8997f2e7",
+    "shared/assistant.css": "23815f7adb52a1df36b685d87ea9f0ae40fbf5941cece4963a67a5e99e278b8c"
+  },
+  "archivedURLs": {
+    "b": {
+      "status": 200,
+      "url": "https://ikonecttclient-kappa.vercel.app/option-b/"
+    },
+    "c": {
+      "status": 200,
+      "url": "https://ikonecttclient-kappa.vercel.app/option-c/"
+    }
+  }
+}

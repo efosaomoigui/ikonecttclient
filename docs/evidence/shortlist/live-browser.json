@@ -1,0 +1,38 @@
+{
+  "switching": [
+    {
+      "active": "Preview: Template D",
+      "cards": [
+        "a",
+        "d",
+        "e"
+      ],
+      "frame": "./option-d/#/residential/compare?first=res-isilver&second=res-igold",
+      "overflow": false,
+      "url": "https://ikonecttclient-kappa.vercel.app/?design=d&route=%23%2Fresidential%2Fcompare%3Ffirst%3Dres-isilver%26second%3Dres-igold"
+    },
+    {
+      "active": "Preview: Template E",
+      "cards": [
+        "a",
+        "d",
+        "e"
+      ],
+      "frame": "./option-e/#/residential/compare?first=res-isilver&second=res-igold",
+      "overflow": false,
+      "url": "https://ikonecttclient-kappa.vercel.app/?design=e&route=%23%2Fresidential%2Fcompare%3Ffirst%3Dres-isilver%26second%3Dres-igold"
+    },
+    {
+      "active": "Preview: A+C Hybrid",
+      "cards": [
+        "a",
+        "d",
+        "e"
+      ],
+      "frame": "./option-a/#/residential/compare?first=res-isilver&second=res-igold",
+      "overflow": false,
+      "url": "https://ikonecttclient-kappa.vercel.app/?design=a&route=%23%2Fresidential%2Fcompare%3Ffirst%3Dres-isilver%26second%3Dres-igold"
+    }
+  ],
+  "refreshPreserved": true
+}

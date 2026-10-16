@@ -52,6 +52,12 @@ Client campaign assets are pending and must be reviewed before future selection.
 
 Local presentation: [desktop selector](evidence/shortlist/selector-desktop.png), [mobile selector](evidence/shortlist/selector-mobile.png), [hybrid inner page](evidence/shortlist/after-hybrid-residential.png), [original A](evidence/shortlist/before-a-residential.png), [C reference](evidence/shortlist/reference-c-residential.png). Browser checks are desktop emulation, not physical-device certification.
 
-Publication target: https://ikonecttclient-kappa.vercel.app/ . Live publication/verification is pending at this pre-deployment checkpoint and will be recorded after checking the deployed result.
+Published through the existing GitHub/Vercel workflow at **https://ikonecttclient-kappa.vercel.app/**. Consolidation commit: `52153837b7b64f739d757bee513bece487357a3d`. The preservation branch was pushed and verified at the original `21b060e` commit.
+
+Live verification confirmed exactly three card IDs (`a`, `d`, `e`) and working A+C → D → E → A+C switching with the selected comparison query preserved, including after refresh. [Live browser evidence](evidence/shortlist/live-browser.json). A's deployed homepage was compared against the checkpoint again: **88 matching style/layout records, zero differences**. [Live homepage preservation](evidence/shortlist/live-homepage-preservation.json).
+
+D/E production HTML and the checked pre-existing shared engine/style/assistant/catalogue files retained their pre-deployment SHA-256 fingerprints. Original B/C deep-link entrypoints return HTTP 200 at their original URLs without redirects. [Live HTTP evidence](evidence/shortlist/live-http.json). [Live selector capture](evidence/shortlist/live-selector.png).
+
+No new imagery, public-portal integration or broader redesign is included. All three selected designs remain independently browsable; archived originals remain recoverable.
 
 Remaining decisions: individual inner-page review of the restrained A+C treatment; any larger C-derived visual changes; campaign-asset selection and later imagery refinements. No further design direction is implemented automatically.
