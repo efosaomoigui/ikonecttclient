@@ -1,0 +1,23 @@
+{
+  "switching": [
+    {
+      "active": "Preview: Template D",
+      "external": "./option-d/#/residential/plans/details?audience=residential&plan=res-ibasic",
+      "frame": "./option-d/#/residential/plans/details?audience=residential&plan=res-ibasic",
+      "url": "http://127.0.0.1:3021/public_html/?design=d&route=%23%2Fresidential%2Fplans%2Fdetails%3Faudience%3Dresidential%26plan%3Dres-ibasic"
+    },
+    {
+      "active": "Preview: Template E",
+      "external": "./option-e/#/residential/plans/details?audience=residential&plan=res-ibasic",
+      "frame": "./option-e/#/residential/plans/details?audience=residential&plan=res-ibasic",
+      "url": "http://127.0.0.1:3021/public_html/?design=e&route=%23%2Fresidential%2Fplans%2Fdetails%3Faudience%3Dresidential%26plan%3Dres-ibasic"
+    },
+    {
+      "active": "Preview: A+C Hybrid",
+      "external": "./option-a/#/residential/plans/details?audience=residential&plan=res-ibasic",
+      "frame": "./option-a/#/residential/plans/details?audience=residential&plan=res-ibasic",
+      "url": "http://127.0.0.1:3021/public_html/?design=a&route=%23%2Fresidential%2Fplans%2Fdetails%3Faudience%3Dresidential%26plan%3Dres-ibasic"
+    }
+  ],
+  "refreshPreserved": true
+}

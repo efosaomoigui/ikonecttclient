@@ -1,6 +1,16 @@
-# iKonectt — Client Presentation & Five-Option Design Showcase
+# iKonectt — Client Design Shortlist
 
 This repository (`ikonecttclient`) contains the unified client-facing digital experience proposals for **iKonectt** (flagship broadband brand of **Intelivision Technologies Limited**).
+
+## Current shortlist
+
+The client-facing hub exposes exactly **A+C Hybrid**, **Template D** and **Template E**. The hybrid keeps A’s approved landing page and slideshow unchanged; compatible C-derived hierarchy and spacing apply only to A’s shared inner pages. D/E remain independent.
+
+Stable active URLs: `/option-a/`, `/option-d/`, `/option-e/`. Switching in the packaged/live hub retains supported page/query context. A bookmarked hub URL can use `?design=d&route=%23%2Fresidential%2Fplans`.
+
+Original B/C sites remain accessible at their existing URLs for compatibility, but are absent from the active selector. All five originals are preserved at `21b060e` on `codex/preserve-five-templates-2026-10-16`. See [consolidation record](docs/CLIENT_DESIGN_SHORTLIST_CONSOLIDATION.md) and [presentation manifest](shared/design-shortlist.js).
+
+The sections below preserve the original five-template implementation/development history. Build packaging still includes archived B/C so existing links remain valid.
 
 ## Phase 1 public website
 

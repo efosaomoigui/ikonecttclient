@@ -1,6 +1,7 @@
 import React, {useLayoutEffect, useRef} from 'react';
 import {mountSite, navigate} from '../../shared/public-site.js';
 import '../../shared/public-site.css';
+import './inner-pages-hybrid.css';
 import {HomePage} from './components/pages/HomePage';
 export default function App() {
   const root = useRef<HTMLDivElement>(null), home = useRef<HTMLElement>(null);

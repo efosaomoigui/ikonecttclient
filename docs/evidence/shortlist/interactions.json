@@ -1,0 +1,26 @@
+[
+  {
+    "assistantOpen": true,
+    "formFields": 3,
+    "menuClosed": true,
+    "route": "residential/plans",
+    "template": "a",
+    "assistantHeading": "Welcome to Ikonectt Virtual Assistance"
+  },
+  {
+    "assistantOpen": true,
+    "formFields": 3,
+    "menuClosed": true,
+    "route": "residential/plans",
+    "template": "d",
+    "assistantHeading": "Welcome to Ikonectt Support"
+  },
+  {
+    "assistantOpen": true,
+    "formFields": 3,
+    "menuClosed": true,
+    "route": "residential/plans",
+    "template": "e",
+    "assistantHeading": "Welcome to Ikonectt Support"
+  }
+]
