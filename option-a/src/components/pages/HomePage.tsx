@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { PageId } from '../../types';
 import { HOMEPAGE_CONTENT as C } from '../../content';
-import { ArrowRight, ChevronRight, MapPin } from 'lucide-react';
+import { ChevronRight, MapPin } from 'lucide-react';
+import {HeroSlideshow} from '../ui/HeroSlideshow';
 
 interface HomePageProps {
   onNavigate: (page: PageId, options?: { plan?: string; address?: string }) => void;
@@ -10,7 +11,6 @@ interface HomePageProps {
 }
 
 const IMAGES = {
-  hero: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2400&q=85',
   residential: 'https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=1600&q=80',
   business: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1600&q=80',
 };
@@ -27,19 +27,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
 
   return (
     <div className="flex flex-col w-full bg-white">
-      {/* 1. Hero — one continuous full-bleed panoramic image */}
-      <section
-        id="home-hero"
-        className="relative w-full min-h-[600px] lg:min-h-[720px] flex items-end bg-black text-white overflow-hidden"
-      >
-        <img
-          src={IMAGES.hero}
-          alt="A woman working online at home with Ikonectt fibre broadband"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        {/* Functional legibility scrim */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent" />
-
+      {/* Approved responsive photography; stable copy and CTA destinations. */}
+      <HeroSlideshow>
         <div className="relative ik-container pb-20 lg:pb-28 pt-32">
           <div className="max-w-[620px] flex flex-col gap-6">
             <p className="ik-eyebrow ik-eyebrow-on-dark">{C.hero.eyebrow}</p>
@@ -55,7 +44,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
             </div>
           </div>
         </div>
-      </section>
+      </HeroSlideshow>
 
       {/* 2. Coverage launcher */}
       <section id="home-coverage" className="w-full bg-[#f5f5f7] ik-section">
@@ -94,6 +83,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
           >
             <img
               src={image}
+              loading="lazy" decoding="async"
               alt={`${data.label} customers connected with Ikonectt`}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />

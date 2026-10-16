@@ -1,0 +1,164 @@
+[
+  {
+    "assetId": "A-H 01",
+    "profile": "desktop",
+    "source": "a-h01-residential-woman-desktop-v1.png",
+    "file": "option-a/public/images/template-a/a-h01-residential-woman-desktop-v1-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 131266
+  },
+  {
+    "assetId": "A-H 01",
+    "profile": "desktop",
+    "source": "a-h01-residential-woman-desktop-v1.png",
+    "file": "option-a/public/images/template-a/a-h01-residential-woman-desktop-v1-1024.webp",
+    "width": 1024,
+    "height": 576,
+    "bytes": 62516
+  },
+  {
+    "assetId": "A-H 01",
+    "profile": "medium",
+    "source": "a-h01-residential-woman-medium-v3.png",
+    "file": "option-a/public/images/template-a/a-h01-residential-woman-medium-v3-1448.webp",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 143612
+  },
+  {
+    "assetId": "A-H 01",
+    "profile": "medium",
+    "source": "a-h01-residential-woman-medium-v3.png",
+    "file": "option-a/public/images/template-a/a-h01-residential-woman-medium-v3-960.webp",
+    "width": 960,
+    "height": 720,
+    "bytes": 78294
+  },
+  {
+    "assetId": "A-H 01",
+    "profile": "mobile",
+    "source": "a-h01-residential-woman-mobile-v2.png",
+    "file": "option-a/public/images/template-a/a-h01-residential-woman-mobile-v2-941.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 143112
+  },
+  {
+    "assetId": "A-H 01",
+    "profile": "mobile",
+    "source": "a-h01-residential-woman-mobile-v2.png",
+    "file": "option-a/public/images/template-a/a-h01-residential-woman-mobile-v2-640.webp",
+    "width": 640,
+    "height": 1137,
+    "bytes": 82778
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "desktop",
+    "source": "a-h02-connected-family-desktop-v3.png",
+    "file": "option-a/public/images/template-a/a-h02-connected-family-desktop-v3-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 145276
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "desktop",
+    "source": "a-h02-connected-family-desktop-v3.png",
+    "file": "option-a/public/images/template-a/a-h02-connected-family-desktop-v3-1024.webp",
+    "width": 1024,
+    "height": 576,
+    "bytes": 75878
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "medium",
+    "source": "a-h02-connected-family-medium-v1.png",
+    "file": "option-a/public/images/template-a/a-h02-connected-family-medium-v1-1448.webp",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 220038
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "medium",
+    "source": "a-h02-connected-family-medium-v1.png",
+    "file": "option-a/public/images/template-a/a-h02-connected-family-medium-v1-960.webp",
+    "width": 960,
+    "height": 720,
+    "bytes": 118296
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "mobile",
+    "source": "a-h02-connected-family-mobile-v1.png",
+    "file": "option-a/public/images/template-a/a-h02-connected-family-mobile-v1-941.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 127762
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "mobile",
+    "source": "a-h02-connected-family-mobile-v1.png",
+    "file": "option-a/public/images/template-a/a-h02-connected-family-mobile-v1-640.webp",
+    "width": 640,
+    "height": 1137,
+    "bytes": 74678
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "desktop",
+    "source": "a-h03-business-collaboration-desktop-v3.png",
+    "file": "option-a/public/images/template-a/a-h03-business-collaboration-desktop-v3-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 91134
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "desktop",
+    "source": "a-h03-business-collaboration-desktop-v3.png",
+    "file": "option-a/public/images/template-a/a-h03-business-collaboration-desktop-v3-1024.webp",
+    "width": 1024,
+    "height": 576,
+    "bytes": 50824
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "medium",
+    "source": "a-h03-business-collaboration-medium-v2.png",
+    "file": "option-a/public/images/template-a/a-h03-business-collaboration-medium-v2-1448.webp",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 129974
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "medium",
+    "source": "a-h03-business-collaboration-medium-v2.png",
+    "file": "option-a/public/images/template-a/a-h03-business-collaboration-medium-v2-960.webp",
+    "width": 960,
+    "height": 720,
+    "bytes": 78512
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "mobile",
+    "source": "a-h03-business-collaboration-mobile-v2.png",
+    "file": "option-a/public/images/template-a/a-h03-business-collaboration-mobile-v2-941.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 136130
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "mobile",
+    "source": "a-h03-business-collaboration-mobile-v2.png",
+    "file": "option-a/public/images/template-a/a-h03-business-collaboration-mobile-v2-640.webp",
+    "width": 640,
+    "height": 1137,
+    "bytes": 81338
+  }
+]

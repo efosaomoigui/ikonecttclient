@@ -46,10 +46,11 @@ for (const file of staticFiles) {
 }
 
 // Copy assets
-function copyFolderSync(from, to) {
+function copyFolderSync(from, to, excluded = []) {
   if (!fs.existsSync(from)) return;
   fs.mkdirSync(to, { recursive: true });
   fs.readdirSync(from).forEach(element => {
+    if (excluded.includes(element)) return;
     const stat = fs.lstatSync(path.join(from, element));
     if (stat.isFile()) {
       fs.copyFileSync(path.join(from, element), path.join(to, element));
@@ -60,7 +61,7 @@ function copyFolderSync(from, to) {
 }
 
 console.log('Copying assets...');
-copyFolderSync(path.join(rootDir, 'assets'), path.join(outDir, 'assets'));
+copyFolderSync(path.join(rootDir, 'assets'), path.join(outDir, 'assets'), ['review']);
 // The same public-site modules drive standalone templates and the compiled React adapters.
 copyFolderSync(path.join(rootDir, 'shared'), path.join(outDir, 'shared'));
 

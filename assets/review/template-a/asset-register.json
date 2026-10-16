@@ -1,0 +1,200 @@
+[
+  {
+    "assetId": "A-H 01",
+    "profile": "desktop",
+    "file": "a-h01-residential-woman-desktop-v1.png",
+    "nativeDimensions": [
+      1672,
+      941
+    ],
+    "preferredSourceTarget": [
+      3840,
+      2160
+    ],
+    "targetMet": false,
+    "bytes": 2032567,
+    "sha256": "48185aa9f53e6cc5f9ceb6c862a47f4dcd773d38b7ff30852e0f2fb5ea485bcb",
+    "generatedOriginal": "exec-e8d9ed43-419e-4d31-b33d-b80425268b34.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User reply: this approved, with desktop/mobile approval screenshot codex-clipboard-a72d10eb-db62-473f-ac73-9f5ccb662981.png"
+  },
+  {
+    "assetId": "A-H 01",
+    "profile": "medium",
+    "file": "a-h01-residential-woman-medium-v3.png",
+    "nativeDimensions": [
+      1448,
+      1086
+    ],
+    "preferredSourceTarget": [
+      2400,
+      1800
+    ],
+    "targetMet": false,
+    "bytes": 1990698,
+    "sha256": "e34f1ddf9391f15b14f43a04ff832efb89f100e7442f9f51318212cfeabf9da7",
+    "generatedOriginal": "exec-677f39fd-dad4-46f8-8100-554befe027f5.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User reply: this approved, with desktop/mobile approval screenshot codex-clipboard-a72d10eb-db62-473f-ac73-9f5ccb662981.png"
+  },
+  {
+    "assetId": "A-H 01",
+    "profile": "mobile",
+    "file": "a-h01-residential-woman-mobile-v2.png",
+    "nativeDimensions": [
+      941,
+      1672
+    ],
+    "preferredSourceTarget": [
+      1440,
+      2560
+    ],
+    "targetMet": false,
+    "bytes": 2026882,
+    "sha256": "ab27aaf8b742be6cc9d59798befd8939067a63ad0d1f37a61f057ec86d9d1a39",
+    "generatedOriginal": "exec-718fde54-6ae2-4fde-abbf-787aa1c16374.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User reply: this approved, with desktop/mobile approval screenshot codex-clipboard-a72d10eb-db62-473f-ac73-9f5ccb662981.png"
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "desktop",
+    "file": "a-h02-connected-family-desktop-v3.png",
+    "nativeDimensions": [
+      1672,
+      941
+    ],
+    "preferredSourceTarget": [
+      3840,
+      2160
+    ],
+    "targetMet": false,
+    "bytes": 1991506,
+    "sha256": "cbb0b5719f64044ed1fb68f84d58307c7de28a8a6dd5e93c8254cacb94cae571",
+    "generatedOriginal": "exec-adeefda5-1fa8-4604-abb5-52766d210185.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical selected generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User confirmed yes, please after being asked whether A-H 02 is approved and work should proceed to A-H 03."
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "medium",
+    "file": "a-h02-connected-family-medium-v1.png",
+    "nativeDimensions": [
+      1448,
+      1086
+    ],
+    "preferredSourceTarget": [
+      2400,
+      1800
+    ],
+    "targetMet": false,
+    "bytes": 2394277,
+    "sha256": "05139993efd67c4feedba1be2ff5abf5fc87624a5df394a78b973de1409c65dd",
+    "generatedOriginal": "exec-b91d484e-ae1d-469d-8dbe-a0902472c756.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical selected generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User confirmed yes, please after being asked whether A-H 02 is approved and work should proceed to A-H 03."
+  },
+  {
+    "assetId": "A-H 02",
+    "profile": "mobile",
+    "file": "a-h02-connected-family-mobile-v1.png",
+    "nativeDimensions": [
+      941,
+      1672
+    ],
+    "preferredSourceTarget": [
+      1440,
+      2560
+    ],
+    "targetMet": false,
+    "bytes": 2003216,
+    "sha256": "13e718a2e7bc256da158a64073aa62463f10fe36acea93d4113b6e61b2a1cc01",
+    "generatedOriginal": "exec-4d73f94d-bb23-4395-b0a9-118f52bc4ff4.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical selected generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User confirmed yes, please after being asked whether A-H 02 is approved and work should proceed to A-H 03."
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "desktop",
+    "file": "a-h03-business-collaboration-desktop-v3.png",
+    "nativeDimensions": [
+      1672,
+      941
+    ],
+    "preferredSourceTarget": [
+      3840,
+      2160
+    ],
+    "targetMet": false,
+    "bytes": 1696789,
+    "sha256": "e60fa839e80373bfbf1585ccb47ec8795a54d4bafe9e36a665cab8a7385ac486",
+    "generatedOriginal": "exec-c3f0e15d-c1b2-4616-9e60-8db946ba4c0b.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User reply: approved, after reviewing the A-H 03 smartphone/shared-display responsive package."
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "medium",
+    "file": "a-h03-business-collaboration-medium-v2.png",
+    "nativeDimensions": [
+      1448,
+      1086
+    ],
+    "preferredSourceTarget": [
+      2400,
+      1800
+    ],
+    "targetMet": false,
+    "bytes": 1943275,
+    "sha256": "2e2488f060297d95e969594d9aea31cb54c184e10a6de038a27cc513f9c6c804",
+    "generatedOriginal": "exec-7fe3db5e-936b-455d-9ad9-445e3fa07ecb.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User reply: approved, after reviewing the A-H 03 smartphone/shared-display responsive package."
+  },
+  {
+    "assetId": "A-H 03",
+    "profile": "mobile",
+    "file": "a-h03-business-collaboration-mobile-v2.png",
+    "nativeDimensions": [
+      941,
+      1672
+    ],
+    "preferredSourceTarget": [
+      1440,
+      2560
+    ],
+    "targetMet": false,
+    "bytes": 1970443,
+    "sha256": "60a95ba689019e743e281b01f569adddc9b49012ad8c9ef3ae0091a1f8dd8aa8",
+    "generatedOriginal": "exec-94686a8c-8bb6-4800-a89c-34a3dc4e1fe0.png",
+    "productionMethod": "built-in image_gen",
+    "pixelEditing": "none; byte-identical generated output",
+    "approvalStatus": "visual-package-approved; production-resolution-pending",
+    "approvalDate": "2026-10-16",
+    "approvalEvidence": "User reply: approved, after reviewing the A-H 03 smartphone/shared-display responsive package."
+  }
+]

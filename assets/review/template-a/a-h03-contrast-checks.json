@@ -1,0 +1,234 @@
+[
+  {
+    "mode": "current",
+    "requestedWidth": 1440,
+    "screenshotSize": [
+      1434,
+      950
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 5.15,
+        "threshold": 4.5,
+        "pass": true
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 14.07,
+        "threshold": 3,
+        "pass": true
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 12.21,
+        "threshold": 4.5,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  {
+    "mode": "current",
+    "requestedWidth": 1280,
+    "screenshotSize": [
+      1275,
+      950
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 5.72,
+        "threshold": 4.5,
+        "pass": true
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 15.08,
+        "threshold": 3,
+        "pass": true
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 12.06,
+        "threshold": 4.5,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  {
+    "mode": "current",
+    "requestedWidth": 1024,
+    "screenshotSize": [
+      1018,
+      950
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 4.95,
+        "threshold": 4.5,
+        "pass": true
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 14.35,
+        "threshold": 3,
+        "pass": true
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 12.43,
+        "threshold": 4.5,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  {
+    "mode": "current",
+    "requestedWidth": 768,
+    "screenshotSize": [
+      762,
+      950
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 5.68,
+        "threshold": 4.5,
+        "pass": true
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 4.01,
+        "threshold": 3,
+        "pass": true
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 13.79,
+        "threshold": 4.5,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  {
+    "mode": "current",
+    "requestedWidth": 390,
+    "screenshotSize": [
+      384,
+      1100
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 1.0,
+        "threshold": 4.5,
+        "pass": false
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 1.18,
+        "threshold": 3,
+        "pass": false
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 1.89,
+        "threshold": 4.5,
+        "pass": false
+      }
+    ],
+    "pass": false
+  },
+  {
+    "mode": "current",
+    "requestedWidth": 320,
+    "screenshotSize": [
+      315,
+      1100
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 1.0,
+        "threshold": 4.5,
+        "pass": false
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 1.15,
+        "threshold": 3,
+        "pass": false
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 2.13,
+        "threshold": 4.5,
+        "pass": false
+      }
+    ],
+    "pass": false
+  },
+  {
+    "mode": "proposal",
+    "requestedWidth": 390,
+    "screenshotSize": [
+      384,
+      1100
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 5.75,
+        "threshold": 4.5,
+        "pass": true
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 16.83,
+        "threshold": 3,
+        "pass": true
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 13.79,
+        "threshold": 4.5,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  {
+    "mode": "proposal",
+    "requestedWidth": 320,
+    "screenshotSize": [
+      315,
+      1100
+    ],
+    "photographicTextChecks": [
+      {
+        "text": "Fibre internet for a brighter Nigeria",
+        "minimumAcrossTextRectangles": 5.75,
+        "threshold": 4.5,
+        "pass": true
+      },
+      {
+        "text": "Connectivity without limits.",
+        "minimumAcrossTextRectangles": 16.83,
+        "threshold": 3,
+        "pass": true
+      },
+      {
+        "text": "Fibre broadband for homes, businesses and everything you do online.",
+        "minimumAcrossTextRectangles": 13.79,
+        "threshold": 4.5,
+        "pass": true
+      }
+    ],
+    "pass": true
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "assetId": "A-H 01",
+    "date": "2026-10-16",
+    "decision": "visual package approved",
+    "userReply": "this approved",
+    "reference": "codex-clipboard-a72d10eb-db62-473f-ac73-9f5ccb662981.png",
+    "scope": "Photographic direction and presented composition package, including image-above-copy mobile arrangement. Source-resolution targets remain outstanding; no live installation or slideshow authorised.",
+    "nextStep": "Produce A-H 02 and stop for its approval under the existing production sequence."
+  },
+  {
+    "assetId": "A-H 02",
+    "date": "2026-10-16",
+    "decision": "visual package approved",
+    "userReply": "yes, please",
+    "reference": "codex-clipboard-e8318d1e-2566-4e8a-8a8c-6817192a26b6.png",
+    "scope": "Visual approval; no installation or slideshow. Source-resolution gate remains open.",
+    "nextStep": "Produce A-H 03 and stop for approval.",
+    "additionalDirection": "Make the next scene distinct; do not repeat the A-H 01/A-H 02 background."
+  },
+  {
+    "assetId": "A-H 03",
+    "date": "2026-10-16",
+    "decision": "art direction revision; visual approval pending",
+    "userReply": "be weary of not always using laptops, we have differnet interfaces for internet theses days",
+    "scope": "Vary devices and scenes. A-H03 now uses a smartphone and shared office display, in a distinct commercial glass-and-steel setting. Earlier laptop candidates superseded. No installation or slideshow.",
+    "nextStep": "Present A-H03 responsive package and stop for approval."
+  },
+  {
+    "assetId": "A-H 03",
+    "date": "2026-10-16",
+    "decision": "visual package approved",
+    "userReply": "approved",
+    "reference": "a-h03-review.html; smartphone and shared office display, desktop v3 / medium v2 / mobile v2",
+    "scope": "Photographic scene and presented responsive composition package approved. All three hero scenes now visually approved. Source-resolution targets and production exports remain outstanding; no installation or slideshow authorised.",
+    "nextStep": "Complete source-resolution/delivery preparation before a separately authorised installation stage. Supporting photography remains deferred."
+  }
+]
