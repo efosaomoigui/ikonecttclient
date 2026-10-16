@@ -67,8 +67,10 @@ The original identifiers remain **A-H 01**, **A-H 02**, **A-H 03**. Filenames ma
 
 All three frames share the current visible HTML, without extra slide slogans:
 
-> Fibre internet for a brighter Nigeria  
-> **Connectivity without limits.**  
+> Fibre internet for a brighter Nigeria
+>
+> **Connectivity without limits.**
+>
 > Fibre broadband for homes, businesses and everything you do online.
 
 “Check Coverage” retains `#/coverage`; “Explore Plans” retains `#/residential/plans`. Keep one semantic heading and one set of controls outside the fading image layers. Do not add plan, SLA, coverage, speed or customer claims to the photography.
