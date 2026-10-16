@@ -1,0 +1,54 @@
+[
+  {
+    "cards": [
+      174,
+      174,
+      174
+    ],
+    "overflow": false,
+    "previewTop": 545,
+    "titleFits": true,
+    "titleLines": 1,
+    "titleSize": "48px",
+    "width": 1440
+  },
+  {
+    "cards": [
+      194,
+      194,
+      194
+    ],
+    "overflow": false,
+    "previewTop": 597,
+    "titleFits": true,
+    "titleLines": 1,
+    "titleSize": "30.72px",
+    "width": 768
+  },
+  {
+    "cards": [
+      174,
+      174,
+      155
+    ],
+    "overflow": false,
+    "previewTop": 975,
+    "titleFits": true,
+    "titleLines": 1,
+    "titleSize": "17px",
+    "width": 390
+  },
+  {
+    "cards": [
+      174,
+      174,
+      174
+    ],
+    "overflow": false,
+    "previewTop": 1094,
+    "titleFits": true,
+    "titleLines": 1,
+    "titleSize": "17px",
+    "width": 321
+  }
+]
