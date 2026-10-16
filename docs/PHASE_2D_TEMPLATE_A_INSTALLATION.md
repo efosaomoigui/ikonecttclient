@@ -26,6 +26,14 @@ Source sizes remain 1672×941, 1448×1086 and 941×1672. They are below the pref
 
 Production `npm run build`, Template A TypeScript check and `npm test` passed: **118 tests, 0 failures**. Six new slideshow tests cover timing/blending, manual controls, persistent pause, visibility/navigation suspension, reduced motion, keyboard focus and failed assets. Existing tests cover public journeys and assistant privacy/functionality across A–E. Existing Vite `__dirname` future-loader warnings are non-blocking.
 
-Deployment target: [live Template A](https://ikonecttclient-kappa.vercel.app/option-a/). Publication and live verification are pending at this pre-deployment record; the final verification entry will be appended after checking the production experience.
+Deployment target: [live Template A](https://ikonecttclient-kappa.vercel.app/option-a/). Implementation commit **a73ba34** was pushed to `main` and published through the established Vercel Git workflow. Production HTML serves the new responsive preloads and slideshow bundle. All 18 production WebP responses were fetched and matched the local export bytes exactly. See [live delivery checks](evidence/phase-2d-installation/live-delivery.json).
 
 Visual follow-up: assess source sharpness on the owner's displays, review the mobile controls over the lower photographic band, and review existing supporting sections top to bottom before producing replacement imagery. No extra photography or Template B work is included.
+
+### Live verification
+
+Production browser inspection observed automatic progression from the first story to the business story with the progress clock running. Manual next/wrap and persistent pause were exercised across desktop and mobile compositions; coverage and plan CTAs reached `#/coverage` and `#/residential/plans`. Hidden homepage navigation suspended the slideshow. No document horizontal overflow was observed. The first desktop inspection immediately after viewport switching caught an image still loading; the [follow-up desktop check](evidence/phase-2d-installation/live-desktop-resolved.json) confirms the correct desktop source loaded successfully. [Live browser observations](evidence/phase-2d-installation/live-browser.json) retain that transient result rather than hiding it.
+
+B–E production HTML, the B/C application bundles and checked shared navigation/style/assistant/catalogue files matched their pre-deployment SHA-256 fingerprints. B–E/shared source files are unchanged. Local regenerated B/C artifacts were not committed; Vercel's established full build reproduces their existing deployed output.
+
+The live browser screenshot API returned “Unable to capture screenshot”, including after making the browser visible. Therefore the visual proof images in this folder are explicitly from the local production build; live verification uses rendered DOM/image readiness, interaction checks and fetched delivery bytes. No live screenshot or formal field performance measurement is claimed. Source sharpness on large/high-density screens remains the principal later image-quality review item.

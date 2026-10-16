@@ -1,0 +1,263 @@
+{
+  "playback": {
+    "layers": 1,
+    "progress": "0.15714285714285714",
+    "slide": "2",
+    "state": "playing"
+  },
+  "responsive": [
+    {
+      "heading": {
+        "bottom": -779.4968872070312,
+        "height": 119.8427734375,
+        "left": 245.48744201660156,
+        "right": 865.4717559814453,
+        "top": -899.3396606445312,
+        "width": 619.9843139648438,
+        "x": 245.48744201660156,
+        "y": -899.3396606445312
+      },
+      "loaded": false,
+      "overflow": false,
+      "photo": {
+        "bottom": -488.36480712890625,
+        "height": 719.9843139648438,
+        "left": 0,
+        "right": 1594.9686279296875,
+        "top": -1208.34912109375,
+        "width": 1594.9686279296875,
+        "x": 0,
+        "y": -1208.34912109375
+      },
+      "slide": "2",
+      "src": "",
+      "width": 1600,
+      "requestedWidth": 1440
+    },
+    {
+      "heading": {
+        "bottom": 283.14466857910156,
+        "height": 119.8427734375,
+        "left": 245.48744201660156,
+        "right": 865.4717559814453,
+        "top": 163.30189514160156,
+        "width": 619.9843139648438,
+        "x": 245.48744201660156,
+        "y": 163.30189514160156
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 574.2767639160156,
+        "height": 719.9843139648438,
+        "left": 0,
+        "right": 1594.9686279296875,
+        "top": -145.70755004882812,
+        "width": 1594.9686279296875,
+        "x": 0,
+        "y": -145.70755004882812
+      },
+      "slide": "0",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h01-residential-woman-desktop-v1-1672.webp",
+      "width": 1600,
+      "requestedWidth": 1440
+    },
+    {
+      "heading": {
+        "bottom": 283.14466857910156,
+        "height": 119.8427734375,
+        "left": 245.48744201660156,
+        "right": 865.4717559814453,
+        "top": 163.30189514160156,
+        "width": 619.9843139648438,
+        "x": 245.48744201660156,
+        "y": 163.30189514160156
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 574.2767639160156,
+        "height": 719.9843139648438,
+        "left": 0,
+        "right": 1594.9686279296875,
+        "top": -145.70755004882812,
+        "width": 1594.9686279296875,
+        "x": 0,
+        "y": -145.70755004882812
+      },
+      "slide": "1",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h02-connected-family-desktop-v3-1672.webp",
+      "width": 1600,
+      "requestedWidth": 1440
+    },
+    {
+      "heading": {
+        "bottom": 341.9182586669922,
+        "height": 85.59748840332031,
+        "left": 23.993711471557617,
+        "right": 404.68554496765137,
+        "top": 256.3207702636719,
+        "width": 380.69183349609375,
+        "x": 23.993711471557617,
+        "y": 256.3207702636719
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 190.28302001953125,
+        "height": 339.9842834472656,
+        "left": 0,
+        "right": 428.67926025390625,
+        "top": -149.70126342773438,
+        "width": 428.67926025390625,
+        "x": 0,
+        "y": -149.70126342773438
+      },
+      "slide": "2",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h03-business-collaboration-mobile-v2-640.webp",
+      "width": 433,
+      "requestedWidth": 390
+    },
+    {
+      "heading": {
+        "bottom": 612.6101226806641,
+        "height": 85.59748840332031,
+        "left": 23.993711471557617,
+        "right": 404.68554496765137,
+        "top": 527.0126342773438,
+        "width": 380.69183349609375,
+        "x": 23.993711471557617,
+        "y": 527.0126342773438
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 460.974853515625,
+        "height": 339.9842834472656,
+        "left": 0,
+        "right": 428.67926025390625,
+        "top": 120.99057006835938,
+        "width": 428.67926025390625,
+        "x": 0,
+        "y": 120.99057006835938
+      },
+      "slide": "0",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h01-residential-woman-mobile-v2-640.webp",
+      "width": 433,
+      "requestedWidth": 390
+    },
+    {
+      "heading": {
+        "bottom": 612.6101226806641,
+        "height": 85.59748840332031,
+        "left": 23.993711471557617,
+        "right": 404.68554496765137,
+        "top": 527.0126342773438,
+        "width": 380.69183349609375,
+        "x": 23.993711471557617,
+        "y": 527.0126342773438
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 460.974853515625,
+        "height": 339.9842834472656,
+        "left": 0,
+        "right": 428.67926025390625,
+        "top": 120.99057006835938,
+        "width": 428.67926025390625,
+        "x": 0,
+        "y": 120.99057006835938
+      },
+      "slide": "1",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h02-connected-family-mobile-v1-640.webp",
+      "width": 433,
+      "requestedWidth": 390
+    },
+    {
+      "heading": {
+        "bottom": 608.6006622314453,
+        "height": 85.59748840332031,
+        "left": 23.993711471557617,
+        "right": 327.20126152038574,
+        "top": 523.003173828125,
+        "width": 303.2075500488281,
+        "x": 23.993711471557617,
+        "y": 523.003173828125
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 456.9654235839844,
+        "height": 339.9842834472656,
+        "left": 0,
+        "right": 351.1949768066406,
+        "top": 116.98114013671876,
+        "width": 351.1949768066406,
+        "x": 0,
+        "y": 116.98114013671876
+      },
+      "slide": "2",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h03-business-collaboration-mobile-v2-640.webp",
+      "width": 356,
+      "requestedWidth": 320
+    },
+    {
+      "heading": {
+        "bottom": 608.6006622314453,
+        "height": 85.59748840332031,
+        "left": 23.993711471557617,
+        "right": 327.20126152038574,
+        "top": 523.003173828125,
+        "width": 303.2075500488281,
+        "x": 23.993711471557617,
+        "y": 523.003173828125
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 456.9654235839844,
+        "height": 339.9842834472656,
+        "left": 0,
+        "right": 351.1949768066406,
+        "top": 116.98114013671876,
+        "width": 351.1949768066406,
+        "x": 0,
+        "y": 116.98114013671876
+      },
+      "slide": "0",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h01-residential-woman-mobile-v2-640.webp",
+      "width": 356,
+      "requestedWidth": 320
+    },
+    {
+      "heading": {
+        "bottom": 608.6006622314453,
+        "height": 85.59748840332031,
+        "left": 23.993711471557617,
+        "right": 327.20126152038574,
+        "top": 523.003173828125,
+        "width": 303.2075500488281,
+        "x": 23.993711471557617,
+        "y": 523.003173828125
+      },
+      "loaded": true,
+      "overflow": false,
+      "photo": {
+        "bottom": 456.9654235839844,
+        "height": 339.9842834472656,
+        "left": 0,
+        "right": 351.1949768066406,
+        "top": 116.98114013671876,
+        "width": 351.1949768066406,
+        "x": 0,
+        "y": 116.98114013671876
+      },
+      "slide": "1",
+      "src": "https://ikonecttclient-kappa.vercel.app/option-a/images/template-a/a-h02-connected-family-mobile-v1-640.webp",
+      "width": 356,
+      "requestedWidth": 320
+    }
+  ],
+  "screenshotLimitation": "Remote page screenshot API returned Unable to capture screenshot; local production-build captures retained."
+}

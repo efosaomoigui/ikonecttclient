@@ -1,0 +1,109 @@
+{
+  "implementationCommit": "a73ba34",
+  "url": "https://ikonecttclient-kappa.vercel.app/option-a/",
+  "unchangedLiveFiles": {
+    "option-b/index.html": "3c4c22e42bbae2bd2467b6702c49305db11b6c550e17918631070326748e8a02",
+    "option-c/index.html": "eceab8f85ca41102e332f44f66d12525cbb1bdf984f75fc564e10cc29f6335fa",
+    "option-d/index.html": "e656accfed8280b6705061d6a37d57d3ef5951e0d42f401bb2e65194b62eb661",
+    "option-e/index.html": "c7d0ec710b3817ab80a2757fe016da1b88c4a9b52973369bea66ded1679d7497",
+    "option-b/assets/index-iwNThoj3.js": "260c5f24a26e96a85bdfe81abd266eb8ffb3652d4c4daa0b69a2d47e22a130a7",
+    "option-c/assets/index-d6SLWVnd.js": "ce27ab8105972b8781dc7afaccace04c2b6f3fb6f88c96064259379b5a352c73",
+    "shared/public-site.js": "72ec2cd5de2af99b050d083b3f7468036651fd45e8004d6a56758d866213db84",
+    "shared/public-site.css": "e9a25c06830c18054e191d8f6366b13c42dea610839eaea46539ff8285d9aba7",
+    "shared/assistant.js": "71e1a4d1b153ce01af89660c1601cd20ecf9eea0046e724806c36fbf8997f2e7",
+    "shared/assistant.css": "23815f7adb52a1df36b685d87ea9f0ae40fbf5941cece4963a67a5e99e278b8c",
+    "shared/catalogue.js": "87c055227c520309d43599650dd3bd2a11c9b418d3d88caedd26afe807d7e66c"
+  },
+  "images": [
+    {
+      "path": "option-a/images/template-a/a-h01-residential-woman-desktop-v1-1672.webp",
+      "bytes": 131266,
+      "sha256": "8e7eefc2e0456a2c9e851d455d994e0ae03ec219756d89ba738fe8fb525bc485"
+    },
+    {
+      "path": "option-a/images/template-a/a-h01-residential-woman-desktop-v1-1024.webp",
+      "bytes": 62516,
+      "sha256": "4729f76f4e9a2374a9d7772152505835bb0a05a463fc12ad389cb92b5c407eec"
+    },
+    {
+      "path": "option-a/images/template-a/a-h01-residential-woman-medium-v3-1448.webp",
+      "bytes": 143612,
+      "sha256": "a22f73b8384462a69368b645493b65958fdc104e35558449fc38a79eefe0b9d5"
+    },
+    {
+      "path": "option-a/images/template-a/a-h01-residential-woman-medium-v3-960.webp",
+      "bytes": 78294,
+      "sha256": "983e151ec5cf695090e501e476ee94097cd68cd5a0754bc6f1e99493d9b0680b"
+    },
+    {
+      "path": "option-a/images/template-a/a-h01-residential-woman-mobile-v2-941.webp",
+      "bytes": 143112,
+      "sha256": "758dd191579d6a6d256b27fd7fd53102f5d74a3f65f89ed46425aebfbb8182f6"
+    },
+    {
+      "path": "option-a/images/template-a/a-h01-residential-woman-mobile-v2-640.webp",
+      "bytes": 82778,
+      "sha256": "dbf69208f672ac16704a25dc3dd0d9066c3338149d508737f979ffd4e85dba5b"
+    },
+    {
+      "path": "option-a/images/template-a/a-h02-connected-family-desktop-v3-1672.webp",
+      "bytes": 145276,
+      "sha256": "e6ccbf909da5bb182ff6b82a9c8a9dfb9557232d7bbb29a51600ae383b71757f"
+    },
+    {
+      "path": "option-a/images/template-a/a-h02-connected-family-desktop-v3-1024.webp",
+      "bytes": 75878,
+      "sha256": "07d26431b20f5d1839c032ff75b55f5db34cbad6491d21b69b06c7eece296e3e"
+    },
+    {
+      "path": "option-a/images/template-a/a-h02-connected-family-medium-v1-1448.webp",
+      "bytes": 220038,
+      "sha256": "97c1603321990cf1510b6dddb1285273732d2b78ab475343ddf6405f8d1275a2"
+    },
+    {
+      "path": "option-a/images/template-a/a-h02-connected-family-medium-v1-960.webp",
+      "bytes": 118296,
+      "sha256": "9da0717e2f08d0a290bed32824932090ee54b32b4a072a2b3825e46dab816afa"
+    },
+    {
+      "path": "option-a/images/template-a/a-h02-connected-family-mobile-v1-941.webp",
+      "bytes": 127762,
+      "sha256": "31479e403ac211e47ae5c9b59898a023656a9bfb5c953700e1c8bac8cb48beea"
+    },
+    {
+      "path": "option-a/images/template-a/a-h02-connected-family-mobile-v1-640.webp",
+      "bytes": 74678,
+      "sha256": "a9fc52c9787cbd0fd8fe88ea9d97372ebf2a8b419729c518ef26407feb4a8b84"
+    },
+    {
+      "path": "option-a/images/template-a/a-h03-business-collaboration-desktop-v3-1672.webp",
+      "bytes": 91134,
+      "sha256": "16715e27a9a7217b27c2b498216aa4c1f59b05795a032f6501cd44697cdea926"
+    },
+    {
+      "path": "option-a/images/template-a/a-h03-business-collaboration-desktop-v3-1024.webp",
+      "bytes": 50824,
+      "sha256": "f788279884dac716e23f8527446d511673280441d6b07f4b3e49dbd38bf621e4"
+    },
+    {
+      "path": "option-a/images/template-a/a-h03-business-collaboration-medium-v2-1448.webp",
+      "bytes": 129974,
+      "sha256": "f1d76cee6ceba96ef6f05f2cdb5f3b715c2b99d1c34fba752a2fa78b8176bde5"
+    },
+    {
+      "path": "option-a/images/template-a/a-h03-business-collaboration-medium-v2-960.webp",
+      "bytes": 78512,
+      "sha256": "dc4d3f2263e05263aac6463dd6ad923cbc7a4e72488ad699672126565b89c7c4"
+    },
+    {
+      "path": "option-a/images/template-a/a-h03-business-collaboration-mobile-v2-941.webp",
+      "bytes": 136130,
+      "sha256": "cf8b3effb219a005bbc6561f9282b8fe64213b508748e4b3a3dc9a30a9fc7228"
+    },
+    {
+      "path": "option-a/images/template-a/a-h03-business-collaboration-mobile-v2-640.webp",
+      "bytes": 81338,
+      "sha256": "976227359ba5b1a0b498c3b39a2c9a0d55311e88ae2f36d10bf970002736d496"
+    }
+  ]
+}
