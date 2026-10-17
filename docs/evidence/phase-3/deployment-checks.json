@@ -1,19 +1,23 @@
 {
-  "verifiedAtUTC": "2026-10-17T18:25:35.662539+00:00",
-  "implementationCommit": "c908b867c4d0bac573618dff51c5f16554f317a5",
+  "verifiedAtUTC": "2026-10-17T18:32:23.883034+00:00",
+  "implementationCommit": "93554f3869bf441da6a25b69dfb3e629643bdcd5",
   "previewURL": "https://ikonecttclient-kappa.vercel.app/",
+  "textComparison": "CRLF normalised; rasters compared byte for byte",
   "responses": [
     {
       "path": "option-a/",
       "status": 200,
       "bytes": 2119,
-      "sha256": "b851245a30506113e92597c370390e5b7ab78402d447bdc5c5a7cca07026a5d1",
+      "sha256": "9462b118874208cd518e8fc89bd96d5282fa1d5de715aefdc0461c77a4138c05",
       "matchesLocal": false,
       "bundles": [
-        "assets/index-CdP9D7AK.js",
+        "assets/index-79b6RO8V.js",
         "assets/index-BgM8-jTc.css"
       ],
-      "phase3Bundle": true
+      "markupMatchesExceptBuildNames": true,
+      "phase3Bundle": true,
+      "finalCoverSizing": true,
+      "comparisonNote": "Vercel rebuilds A; emitted bundle hashes differ from local builds."
     },
     {
       "path": "option-d/",
@@ -39,15 +43,15 @@
     {
       "path": "shared/visual-assets.js",
       "status": 200,
-      "bytes": 3784,
-      "sha256": "e6d8619a93d1f5a2090749c42e600238627eaaa500544fca3ab324490c336740",
+      "bytes": 3821,
+      "sha256": "965364b1c9c367baa6159afe82808ffee76bb05b88b02457e31e3fe8873e721f",
       "matchesLocal": true
     },
     {
       "path": "shared/visuals.js",
       "status": 200,
-      "bytes": 1803,
-      "sha256": "4d95e91d72e5f208671f7570740a5cea981600a9bcb6f2304bb784c721279f8f",
+      "bytes": 2018,
+      "sha256": "aca87de7ab9ebfd4cf93cde550cb06e5b2a5375111729912d73b140249f8e7c6",
       "matchesLocal": true
     },
     {
@@ -76,35 +80,35 @@
       "status": 200,
       "bytes": 947,
       "sha256": "c7aa1f32bbb7f304471c15c00bd560481ae285c8fa51478c078d83193710667e",
-      "matchesLocal": false
+      "matchesLocal": true
     },
     {
       "path": "assets/visual-library/abstract/connected-spaces.svg",
       "status": 200,
       "bytes": 527,
       "sha256": "fa9eddf41edf63c2adf14bc0df35dac0665cf5525521606819b57df32927ebec",
-      "matchesLocal": false
+      "matchesLocal": true
     },
     {
       "path": "assets/visual-library/abstract/fibre-flow.svg",
       "status": 200,
       "bytes": 1525,
       "sha256": "8770f8089513e30d5684408911e30426ceb9bd3593206da91df264458c406a92",
-      "matchesLocal": false
+      "matchesLocal": true
     },
     {
       "path": "assets/visual-library/abstract/network-grid.svg",
       "status": 200,
       "bytes": 1485,
       "sha256": "1ea1d8bfeec3c776d92b2d2a7d001695aa0688e58e729155ff6537bc1d24881d",
-      "matchesLocal": false
+      "matchesLocal": true
     },
     {
       "path": "assets/visual-library/abstract/signal-arcs.svg",
       "status": 200,
       "bytes": 921,
       "sha256": "f07d831a11ae1b8b31d848a602f84c46b3d37953d16ccdf4610835c67624f831",
-      "matchesLocal": false
+      "matchesLocal": true
     },
     {
       "path": "assets/visual-library/business/contemporary-workplace-1280.webp",
@@ -163,6 +167,20 @@
       "matchesLocal": true
     },
     {
+      "path": "assets/visual-library/city/lagos-skyline-2400.webp",
+      "status": 200,
+      "bytes": 170876,
+      "sha256": "93455ea9015719b12e587d3ecddb4800b17d28dd4c9ff9ca382bec6f001b3282",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/lagos-skyline-3726.webp",
+      "status": 200,
+      "bytes": 338784,
+      "sha256": "ba268d6295f89a83ff439b83e31e64a71c15075248a04dba448968497d52402a",
+      "matchesLocal": true
+    },
+    {
       "path": "assets/visual-library/city/lagos-skyline-480.webp",
       "status": 200,
       "bytes": 15210,
@@ -218,5 +236,6 @@
       "sha256": "5d5779e16f441ea13680e7b4151c15cf0ea73c777337849f259c2e6dd24ddd80",
       "matchesLocal": true
     }
-  ]
+  ],
+  "failures": []
 }

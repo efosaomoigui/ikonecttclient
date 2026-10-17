@@ -35,7 +35,14 @@ The browser matrix covers home, Residential, Business, three solution details, A
 
 Evidence: `docs/evidence/phase-3/responsive-checks.json`, screenshot PNGs in that folder and `baseline.json` for protected source/hero assets. Intrinsic image sizes and existing reserved aspect ratios prevent new image-driven reflow; no synthetic Lighthouse/CLS/network timing score is claimed. New responsive photos total about 1,433 KiB across all 18 variants; individual pages select a variant and lazy-load lower imagery. Review masters are excluded from the production output.
 
-Implementation commit `c908b86` was pushed and Vercel reported successful deployment on 17 October 2026. The live A/D/E pages and photographs were verified at https://ikonecttclient-kappa.vercel.app/. A final responsive sizing correction accounts for the source width needed by tall mobile cover crops; its deployment verification will be recorded below.
+Implementation commit `c908b86` and the final cover-sizing correction `93554f3` were pushed to `main` and deployed through the existing GitHub/Vercel workflow. The final release was verified on **17 October 2026 at 19:32 WAT** at [the live preview](https://ikonecttclient-kappa.vercel.app/).
+
+- **32 live HTTP checks passed**: three entrypoints, unchanged selector, shared visual/runtime modules, all 18 WebP variants and all five SVGs. Raster files matched local bytes; textual files matched after line-ending normalisation. Vercel rebuilds A, so its bundle filenames differ from local output; its HTML matches after those names are normalised, and the published JavaScript contains the final photography and cover-sizing implementation.
+- **36 deployed browser smoke checks passed** across A/D/E at 1440px and 390px, covering home, Residential, Business, About, Coverage and Sign In. No horizontal overflow, missing editorial reservation or image inside a form was found. Below-fold photographs remain lazy-loaded; representative photos were brought into view and confirmed loaded.
+- **12 additional cover-sizing checks passed** for A/E across all six requested widths. The final live 390px E hero was confirmed to request and load the 2400px skyline variant for its tall cover crop rather than stretching the narrow 480px source. No new photograph is exported beyond its native dimensions.
+- The final build and TypeScript checks passed, and all **128 automated tests passed again** after the sizing correction.
+
+Live release evidence is in `deployment-checks.json`, `live-browser-checks.json`, `live-visual-checks.json`, `live-final-cover.json`, `cover-sizing-checks.json` and the `live-*.png` screenshots under `docs/evidence/phase-3/`.
 
 ## Remaining client replacements
 

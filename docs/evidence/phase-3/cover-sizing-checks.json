@@ -1,0 +1,218 @@
+[
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-1280.webp"
+      }
+    ],
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "max(100vw, 190vh)",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-2400.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg"
+      }
+    ],
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-1280.webp"
+      }
+    ],
+    "overflow": false,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "max(100vw, 190vh)",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-2400.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg"
+      }
+    ],
+    "overflow": false,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-1280.webp"
+      }
+    ],
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "max(100vw, 190vh)",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-2400.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg"
+      }
+    ],
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-1280.webp"
+      }
+    ],
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "max(100vw, 190vh)",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-2400.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg"
+      }
+    ],
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-1280.webp"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "max(100vw, 190vh)",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-2400.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-1280.webp"
+      }
+    ],
+    "overflow": false,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "images": [
+      {
+        "loaded": true,
+        "sizes": "max(100vw, 190vh)",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-2400.webp"
+      },
+      {
+        "loaded": true,
+        "sizes": "",
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg"
+      }
+    ],
+    "overflow": false,
+    "width": 321
+  }
+]
