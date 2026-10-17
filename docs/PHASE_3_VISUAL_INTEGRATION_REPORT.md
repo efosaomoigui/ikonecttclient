@@ -33,9 +33,9 @@ About sections deliberately use abstract art. No generated scene is presented as
 
 The browser matrix covers home, Residential, Business, three solution details, About, Residential Plans, Coverage, Business Quote, Support and My Ikonectt Sign In. The new route tests additionally check every route for all three designs; the original five-template regression suite checks navigation, plan selection, forms, coverage scenarios, assistant journeys, keyboard behaviour and reduced-motion slideshow handling.
 
-Evidence: `docs/evidence/phase-3/responsive-checks.json`, screenshot PNGs in that folder and `baseline.json` for protected source/hero assets. Intrinsic image sizes and existing reserved aspect ratios prevent new image-driven reflow; no synthetic Lighthouse/CLS/network timing score is claimed. New responsive photos total about 936 KiB across all 16 variants; individual pages select a variant and lazy-load lower imagery. Review masters are excluded from the production output.
+Evidence: `docs/evidence/phase-3/responsive-checks.json`, screenshot PNGs in that folder and `baseline.json` for protected source/hero assets. Intrinsic image sizes and existing reserved aspect ratios prevent new image-driven reflow; no synthetic Lighthouse/CLS/network timing score is claimed. New responsive photos total about 1,433 KiB across all 18 variants; individual pages select a variant and lazy-load lower imagery. Review masters are excluded from the production output.
 
-Deployment verification is pending the implementation push. The actual preview URL and observed release assets will be recorded after Vercel serves this version.
+Implementation commit `c908b86` was pushed and Vercel reported successful deployment on 17 October 2026. The live A/D/E pages and photographs were verified at https://ikonecttclient-kappa.vercel.app/. A final responsive sizing correction accounts for the source width needed by tall mobile cover crops; its deployment verification will be recorded below.
 
 ## Remaining client replacements
 

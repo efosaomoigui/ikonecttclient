@@ -118,6 +118,18 @@
         "width": 1600,
         "height": 846,
         "bytes": 104314
+      },
+      {
+        "path": "assets/visual-library/city/lagos-skyline-2400.webp",
+        "width": 2400,
+        "height": 1269,
+        "bytes": 170876
+      },
+      {
+        "path": "assets/visual-library/city/lagos-skyline-3726.webp",
+        "width": 3726,
+        "height": 1970,
+        "bytes": 338784
       }
     ]
   },

@@ -1,0 +1,222 @@
+{
+  "verifiedAtUTC": "2026-10-17T18:25:35.662539+00:00",
+  "implementationCommit": "c908b867c4d0bac573618dff51c5f16554f317a5",
+  "previewURL": "https://ikonecttclient-kappa.vercel.app/",
+  "responses": [
+    {
+      "path": "option-a/",
+      "status": 200,
+      "bytes": 2119,
+      "sha256": "b851245a30506113e92597c370390e5b7ab78402d447bdc5c5a7cca07026a5d1",
+      "matchesLocal": false,
+      "bundles": [
+        "assets/index-CdP9D7AK.js",
+        "assets/index-BgM8-jTc.css"
+      ],
+      "phase3Bundle": true
+    },
+    {
+      "path": "option-d/",
+      "status": 200,
+      "bytes": 24072,
+      "sha256": "3f26ebc5c159d62ad391ab1dd79ec4670d04d4026b1ece5010c182e27886a76d",
+      "matchesLocal": true
+    },
+    {
+      "path": "option-e/",
+      "status": 200,
+      "bytes": 12802,
+      "sha256": "6340d51de5f51e420e072efee3b7f5486fa62e7e70de096c6f16e45f65e0d2a4",
+      "matchesLocal": true
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 13220,
+      "sha256": "1c0394771ae9d8be32606b208c7c6d5e4167c80717e830c8420dbd373fb7aed5",
+      "matchesLocal": true
+    },
+    {
+      "path": "shared/visual-assets.js",
+      "status": 200,
+      "bytes": 3784,
+      "sha256": "e6d8619a93d1f5a2090749c42e600238627eaaa500544fca3ab324490c336740",
+      "matchesLocal": true
+    },
+    {
+      "path": "shared/visuals.js",
+      "status": 200,
+      "bytes": 1803,
+      "sha256": "4d95e91d72e5f208671f7570740a5cea981600a9bcb6f2304bb784c721279f8f",
+      "matchesLocal": true
+    },
+    {
+      "path": "shared/visual-entry.js",
+      "status": 200,
+      "bytes": 159,
+      "sha256": "3d4eb63e0babe0f46c8bc35ec82a5197723caab1ac7802b5dc186ecb6e3e510f",
+      "matchesLocal": true
+    },
+    {
+      "path": "shared/visuals.css",
+      "status": 200,
+      "bytes": 5476,
+      "sha256": "a1ae54d041fef94765d88bdfaaaa20c5c70efdad268191f09f4f1394d796da5d",
+      "matchesLocal": true
+    },
+    {
+      "path": "shared/public-site.js",
+      "status": 200,
+      "bytes": 17404,
+      "sha256": "72ec2cd5de2af99b050d083b3f7468036651fd45e8004d6a56758d866213db84",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/abstract/city-grid.svg",
+      "status": 200,
+      "bytes": 947,
+      "sha256": "c7aa1f32bbb7f304471c15c00bd560481ae285c8fa51478c078d83193710667e",
+      "matchesLocal": false
+    },
+    {
+      "path": "assets/visual-library/abstract/connected-spaces.svg",
+      "status": 200,
+      "bytes": 527,
+      "sha256": "fa9eddf41edf63c2adf14bc0df35dac0665cf5525521606819b57df32927ebec",
+      "matchesLocal": false
+    },
+    {
+      "path": "assets/visual-library/abstract/fibre-flow.svg",
+      "status": 200,
+      "bytes": 1525,
+      "sha256": "8770f8089513e30d5684408911e30426ceb9bd3593206da91df264458c406a92",
+      "matchesLocal": false
+    },
+    {
+      "path": "assets/visual-library/abstract/network-grid.svg",
+      "status": 200,
+      "bytes": 1485,
+      "sha256": "1ea1d8bfeec3c776d92b2d2a7d001695aa0688e58e729155ff6537bc1d24881d",
+      "matchesLocal": false
+    },
+    {
+      "path": "assets/visual-library/abstract/signal-arcs.svg",
+      "status": 200,
+      "bytes": 921,
+      "sha256": "f07d831a11ae1b8b31d848a602f84c46b3d37953d16ccdf4610835c67624f831",
+      "matchesLocal": false
+    },
+    {
+      "path": "assets/visual-library/business/contemporary-workplace-1280.webp",
+      "status": 200,
+      "bytes": 133588,
+      "sha256": "760feed52d2442b627123953498334009a03a693bdd9752406630e15b2b0b908",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/business/contemporary-workplace-480.webp",
+      "status": 200,
+      "bytes": 25906,
+      "sha256": "d12dbc61062dd51c0e0e77668f6247c420b6974fc424f437715e519cdbb82f77",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/business/contemporary-workplace-800.webp",
+      "status": 200,
+      "bytes": 61644,
+      "sha256": "df868d1b5b32a6fe35231d3bff31d264661fb9083a6ecaad92bf0ebbed862c5f",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+      "status": 200,
+      "bytes": 31796,
+      "sha256": "4e8e599015454e79247cb4e84b0b2f87cefdfcaefa675c25b54a721b082ea04b",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/eko-atlantic-dusk-480.webp",
+      "status": 200,
+      "bytes": 7750,
+      "sha256": "e522ee126b4667c2df377a171814adc67c7d4b38891f18531ba9d9e38bcd6917",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/eko-atlantic-dusk-800.webp",
+      "status": 200,
+      "bytes": 16370,
+      "sha256": "72097a871e9c9571febc93f134350dfaed52b02d9ce54675a767cb24f6f0061f",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/lagos-skyline-1280.webp",
+      "status": 200,
+      "bytes": 73184,
+      "sha256": "80372dc1bf06f79a15bc44352773c6f7a5c0b25beba5fe36ba54598e45bbdf04",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/lagos-skyline-1600.webp",
+      "status": 200,
+      "bytes": 104314,
+      "sha256": "a187071b72a08b3f7a486eeb714c91a11aad7d396a8870acb1197490b2d789bf",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/lagos-skyline-480.webp",
+      "status": 200,
+      "bytes": 15210,
+      "sha256": "2c42d4c88ce1d9eb01a130bda8138b139908c52dfc62ebab776a951c08cb08ae",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/city/lagos-skyline-800.webp",
+      "status": 200,
+      "bytes": 35208,
+      "sha256": "4c60093b4fdb887949a3e0364b6dc4766c162a9f9f46887fb874a55d65f2b7d4",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/infrastructure/network-patch-panel-1280.webp",
+      "status": 200,
+      "bytes": 94432,
+      "sha256": "1852834a8b8cb52c0bc7422eecd5e25f212a6d1e064830d0b083148201fb2951",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/infrastructure/network-patch-panel-480.webp",
+      "status": 200,
+      "bytes": 27732,
+      "sha256": "ad9f9192b55f86321ed8e379fc7fb3e5841a983b149ebd1ec4192f2d4f916557",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/infrastructure/network-patch-panel-800.webp",
+      "status": 200,
+      "bytes": 51852,
+      "sha256": "7b218ec0705a40da2ef5740b53b366fa2fea2fc8c8f984003fa8ae65b7c38614",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/residential/connected-home-1280.webp",
+      "status": 200,
+      "bytes": 164840,
+      "sha256": "0ca9f07cff99f256bc82b31492e8e00b740c58e0bf2ad53ff3938682dad7e7e6",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/residential/connected-home-480.webp",
+      "status": 200,
+      "bytes": 34304,
+      "sha256": "33a76963a565e81518a79b3fac7f2e1b7642804e532a0128e431dcb83b8f2ad9",
+      "matchesLocal": true
+    },
+    {
+      "path": "assets/visual-library/residential/connected-home-800.webp",
+      "status": 200,
+      "bytes": 79806,
+      "sha256": "5d5779e16f441ea13680e7b4151c15cf0ea73c777337849f259c2e6dd24ddd80",
+      "matchesLocal": true
+    }
+  ]
+}

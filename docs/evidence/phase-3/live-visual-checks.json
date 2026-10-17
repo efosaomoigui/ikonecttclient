@@ -1,0 +1,43 @@
+[
+  {
+    "images": [
+      {
+        "loaded": true,
+        "src": "https://ikonecttclient-kappa.vercel.app/assets/visual-library/residential/connected-home-800.webp"
+      },
+      {
+        "loaded": true,
+        "src": "https://ikonecttclient-kappa.vercel.app/assets/visual-library/business/contemporary-workplace-800.webp"
+      }
+    ],
+    "overflow": false,
+    "url": "https://ikonecttclient-kappa.vercel.app/option-a/#/home",
+    "width": 1440
+  },
+  {
+    "images": [
+      {
+        "loaded": true,
+        "src": "https://ikonecttclient-kappa.vercel.app/assets/visual-library/city/lagos-skyline-800.webp"
+      }
+    ],
+    "overflow": false,
+    "url": "https://ikonecttclient-kappa.vercel.app/option-d/#/business",
+    "width": 1440
+  },
+  {
+    "images": [
+      {
+        "loaded": true,
+        "src": "https://ikonecttclient-kappa.vercel.app/assets/visual-library/city/lagos-skyline-480.webp"
+      },
+      {
+        "loaded": true,
+        "src": "https://ikonecttclient-kappa.vercel.app/assets/visual-library/abstract/fibre-flow.svg"
+      }
+    ],
+    "overflow": false,
+    "url": "https://ikonecttclient-kappa.vercel.app/option-e/#/home",
+    "width": 390
+  }
+]

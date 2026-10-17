@@ -84,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
           >
             <picture className="ik-visual-picture" data-visual-asset={image}>
             <img
-              src={visualURL(image)} srcSet={visualSrcSet(image)} sizes="(min-width: 1024px) 50vw, 100vw"
+              src={visualURL(image)} srcSet={visualSrcSet(image)} sizes="(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px"
               width={visualAssets[image].width} height={visualAssets[image].height}
               loading="lazy" decoding="async"
               alt={visualAssets[image].alt}

@@ -18,7 +18,9 @@ export function mountVisuals({root,home,template}){
   function background(host,key,{priority=false,network=false}={}){
     if(!host)return;
     host.classList.add('ik-visual-backdrop');
-    host.insertAdjacentHTML('afterbegin',visualPictureHTML(key,{priority,decorative:true,sizes:'100vw'})+(network?visualPictureHTML(template==='d'?'network':'flow',{decorative:true,sizes:'100vw'}):''));
+    // Cover crops can be much wider than a narrow viewport: account for hero height.
+    const sizes=template==='e'?(host.matches('.hero')?'max(100vw, 190vh)':'(min-width:768px) max(50vw,1250px),900px'):'max(65vw,950px)';
+    host.insertAdjacentHTML('afterbegin',visualPictureHTML(key,{priority,decorative:true,sizes})+(network?visualPictureHTML(template==='d'?'network':'flow',{decorative:true,sizes:'100vw'}):''));
     host.insertAdjacentHTML('beforeend',visualCreditHTML(key));
   }
   if(template==='d')background(home.querySelector('.phero'),'lagos',{priority:true,network:true});

@@ -5,7 +5,7 @@ export const visualAssets={
   home:raster('residential','connected-home','Illustrative contemporary living room with a television, smartphone and Wi-Fi router.',1536,1024),
   workplace:raster('business','contemporary-workplace','Illustrative meeting room with a tablet and video-conference display.',1536,1024),
   infrastructure:raster('infrastructure','network-patch-panel','Illustrative close-up of organised network patch leads and connectors.',1536,1024),
-  lagos:raster('city','lagos-skyline','Lagos buildings and a city roadway at evening.',3726,1970,{credit:{author:'Clara Sanchiz',title:'Lagos skyline',source:'https://commons.wikimedia.org/wiki/File:Lagos_skyline.jpg',license:'CC BY-SA 2.0',licenseURL:'https://creativecommons.org/licenses/by-sa/2.0/'}}),
+  lagos:raster('city','lagos-skyline','Lagos buildings and a city roadway at evening.',3726,1970,{widths:[480,800,1280,1600,2400,3726],credit:{author:'Clara Sanchiz',title:'Lagos skyline',source:'https://commons.wikimedia.org/wiki/File:Lagos_skyline.jpg',license:'CC BY-SA 2.0',licenseURL:'https://creativecommons.org/licenses/by-sa/2.0/'}}),
   dusk:raster('city','eko-atlantic-dusk','Sunset over the Eko Atlantic waterfront in Lagos.',1280,720,{credit:{author:'Mrnyben1313',title:'Sunset at Eko Atlantic Victoria Island Lagos',source:'https://commons.wikimedia.org/wiki/File:Sunset_at_Eko_Atlantic_Victoria_Island_Lagos.jpg',license:'CC BY-SA 4.0',licenseURL:'https://creativecommons.org/licenses/by-sa/4.0/'}}),
   network:vector('network-grid','Abstract network lines and connected nodes; not a coverage map.'),
   flow:vector('fibre-flow','Abstract flowing fibre paths; not a diagram of company infrastructure.'),
