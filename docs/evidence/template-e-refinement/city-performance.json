@@ -1,0 +1,13 @@
+{
+  "desktop": {
+    "cityMetrics": "{\"frames\":175,\"readyMs\":1725,\"drawCalls\":6,\"triangles\":3074,\"meanRenderMs\":1.03,\"sampledFPS\":14.8,\"slowFrames\":1,\"mode\":\"desktop\",\"buildings\":64,\"pixelRatio\":0.75,\"bufferWidth\":825,\"bufferHeight\":323,\"simplified\":true}",
+    "cityPaused": "false",
+    "cityReason": "frame-rate-budget",
+    "cityState": "fallback"
+  },
+  "mobile": {
+    "cityMetrics": "{\"frames\":750,\"readyMs\":1817,\"drawCalls\":6,\"triangles\":1202,\"meanRenderMs\":0.74,\"sampledFPS\":26.3,\"slowFrames\":1,\"mode\":\"mobile\",\"buildings\":25,\"pixelRatio\":1,\"bufferWidth\":510,\"bufferHeight\":447}",
+    "cityPaused": "false",
+    "cityState": "ready"
+  }
+}

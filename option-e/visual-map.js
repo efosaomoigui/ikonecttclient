@@ -1,0 +1,24 @@
+import {visualPictureHTML} from '../shared/visual-assets.js';
+
+// Option E overrides only. Keep future campaign replacements in this map.
+export const heroAssets={
+  residential:'home', 'residential/installation':'infrastructure',
+  business:'tower','business/solutions':'tower','business/solutions/connectivity':'tower',
+  'business/solutions/sme':'tower','business/solutions/enterprise':'tower',about:'infrastructure',
+};
+export const editorialAssets={residential:'flow',business:'workplace',about:'architecture',
+  'business/solutions/connectivity':'infrastructure','business/solutions/sme':'workplace','business/solutions/enterprise':'lagos'};
+export function heroAsset(path){
+  return heroAssets[path]||(path.startsWith('coverage')?'network':path.startsWith('support')?'signal':path.startsWith('business')?'architecture':path.startsWith('residential')?'flow':'spaces');
+}
+export function imageHTML(key,{decorative=false,priority=false,sizes='(max-width:767px) 100vw,60vw'}={}){
+  if(key==='tower'){
+    const path=new URL('./images/civic-tower-lagos-',import.meta.url).href;
+    return `<picture class="ik-visual-picture" data-visual-asset="tower"><img src="${path}1200.webp" srcset="${[480,800,1200,1600].map(w=>`${path}${w}.webp ${w}w`).join(',')}" sizes="${sizes}" width="3024" height="4032" alt="${decorative?'':'Civic Center Tower in Lagos, shown as general business architecture.'}" loading="${priority?'eager':'lazy'}" decoding="async"${priority?' fetchpriority="high"':''}></picture>`;
+  }
+  if(key==='portrait'){
+    const path=new URL('./images/my-ikonectt-woman-',import.meta.url).href;
+    return `<picture class="ik-visual-picture" data-visual-asset="portrait"><img src="${path}1024.webp" srcset="${path}1024.webp 1024w,${path}1672.webp 1672w" sizes="(max-width:767px) 100vw,55vw" width="1672" height="941" alt="Smiling Nigerian woman in an approved illustrative lifestyle photograph." loading="lazy" decoding="async"></picture>`;
+  }
+  return visualPictureHTML(key,{decorative,priority,sizes});
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Civic center Tower- Lagos",
+  "author": "Ikeme Uchechukwu Sixtus",
+  "source": "https://commons.wikimedia.org/wiki/File:Civic_center_Tower-_Lagos.jpg",
+  "license": "CC BY-SA 4.0",
+  "licenseURL": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sourceDimensions": [
+    3024,
+    4032
+  ],
+  "sourceSHA256": "390d5e15d0db521822baf2791e8dd2e0d3c1c197f3b0450997beffe81121d138",
+  "changes": "Resized and converted to WebP; CSS crop and colour overlays only",
+  "exports": [
+    {
+      "file": "option-e/images/civic-tower-lagos-480.webp",
+      "width": 480,
+      "height": 640,
+      "bytes": 24572
+    },
+    {
+      "file": "option-e/images/civic-tower-lagos-800.webp",
+      "width": 800,
+      "height": 1067,
+      "bytes": 67954
+    },
+    {
+      "file": "option-e/images/civic-tower-lagos-1200.webp",
+      "width": 1200,
+      "height": 1600,
+      "bytes": 145198
+    },
+    {
+      "file": "option-e/images/civic-tower-lagos-1600.webp",
+      "width": 1600,
+      "height": 2133,
+      "bytes": 246456
+    }
+  ]
+}

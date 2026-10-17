@@ -38,7 +38,7 @@ test('Phase 3 preserves selection, hero, navigation, journeys, logos and archive
     const text=/\.(?:html|js|jsx|ts|tsx|css|json|md)$/.test(file);
     if(text)bytes=Buffer.from(bytes.toString().replace(/\r\n/g,'\n'));
     if(file==='option-d/index.html'||file==='option-e/index.html'){
-      bytes=Buffer.from(bytes.toString().replace('<link rel="stylesheet" href="../shared/visuals.css">\n','').replace('<script type="module" src="../shared/visual-entry.js"></script>\n',''));
+      bytes=Buffer.from(bytes.toString().replace('<link rel="stylesheet" href="../shared/visuals.css">\n','').replace('<script type="module" src="../shared/visual-entry.js"></script>\n','').replace('<link rel="stylesheet" href="./refinement.css">\n','').replace('<script type="module" src="./refinement.js"></script>\n',''));
     }
     assert.equal(hash(bytes),expected,file);
   }

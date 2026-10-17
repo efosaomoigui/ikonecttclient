@@ -1,0 +1,1742 @@
+[
+  {
+    "width": 1440,
+    "expected": "residential",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential"
+  },
+  {
+    "width": 1440,
+    "expected": "residential/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans"
+  },
+  {
+    "width": 1440,
+    "expected": "residential/plans/demo-1",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-1"
+  },
+  {
+    "width": 1440,
+    "expected": "residential/plans/demo-2",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-2"
+  },
+  {
+    "width": 1440,
+    "expected": "residential/compare",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/compare"
+  },
+  {
+    "width": 1440,
+    "expected": "residential/installation",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/installation"
+  },
+  {
+    "width": 1440,
+    "expected": "business",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business"
+  },
+  {
+    "width": 1440,
+    "expected": "business/solutions",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions"
+  },
+  {
+    "width": 1440,
+    "expected": "business/solutions/connectivity",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/connectivity"
+  },
+  {
+    "width": 1440,
+    "expected": "business/solutions/sme",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/sme"
+  },
+  {
+    "width": 1440,
+    "expected": "business/solutions/enterprise",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/enterprise"
+  },
+  {
+    "width": 1440,
+    "expected": "business/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/plans"
+  },
+  {
+    "width": 1440,
+    "expected": "business/quote",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/quote"
+  },
+  {
+    "width": 1440,
+    "expected": "coverage",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage"
+  },
+  {
+    "width": 1440,
+    "expected": "coverage/results",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/results"
+  },
+  {
+    "width": 1440,
+    "expected": "coverage/verification",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/verification"
+  },
+  {
+    "width": 1440,
+    "expected": "support",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support"
+  },
+  {
+    "width": 1440,
+    "expected": "support/faqs",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/faqs"
+  },
+  {
+    "width": 1440,
+    "expected": "support/troubleshooting",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/troubleshooting"
+  },
+  {
+    "width": 1440,
+    "expected": "support/fault",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/fault"
+  },
+  {
+    "width": 1440,
+    "expected": "support/service-request",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/service-request"
+  },
+  {
+    "width": 1440,
+    "expected": "support/contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/contact"
+  },
+  {
+    "width": 1440,
+    "expected": "about",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "about"
+  },
+  {
+    "width": 1440,
+    "expected": "contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "contact"
+  },
+  {
+    "width": 1440,
+    "expected": "privacy",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "privacy"
+  },
+  {
+    "width": 1440,
+    "expected": "terms",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "terms"
+  },
+  {
+    "width": 1440,
+    "expected": "my-ikonectt/sign-in",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/sign-in"
+  },
+  {
+    "width": 1440,
+    "expected": "my-ikonectt/forgot-password",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password"
+  },
+  {
+    "width": 1440,
+    "expected": "my-ikonectt/preview",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/preview"
+  },
+  {
+    "width": 1280,
+    "expected": "residential",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential"
+  },
+  {
+    "width": 1280,
+    "expected": "residential/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans"
+  },
+  {
+    "width": 1280,
+    "expected": "residential/plans/demo-1",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-1"
+  },
+  {
+    "width": 1280,
+    "expected": "residential/plans/demo-2",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-2"
+  },
+  {
+    "width": 1280,
+    "expected": "residential/compare",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/compare"
+  },
+  {
+    "width": 1280,
+    "expected": "residential/installation",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/installation"
+  },
+  {
+    "width": 1280,
+    "expected": "business",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business"
+  },
+  {
+    "width": 1280,
+    "expected": "business/solutions",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions"
+  },
+  {
+    "width": 1280,
+    "expected": "business/solutions/connectivity",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/connectivity"
+  },
+  {
+    "width": 1280,
+    "expected": "business/solutions/sme",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/sme"
+  },
+  {
+    "width": 1280,
+    "expected": "business/solutions/enterprise",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/enterprise"
+  },
+  {
+    "width": 1280,
+    "expected": "business/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/plans"
+  },
+  {
+    "width": 1280,
+    "expected": "business/quote",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/quote"
+  },
+  {
+    "width": 1280,
+    "expected": "coverage",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage"
+  },
+  {
+    "width": 1280,
+    "expected": "coverage/results",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/results"
+  },
+  {
+    "width": 1280,
+    "expected": "coverage/verification",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/verification"
+  },
+  {
+    "width": 1280,
+    "expected": "support",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support"
+  },
+  {
+    "width": 1280,
+    "expected": "support/faqs",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/faqs"
+  },
+  {
+    "width": 1280,
+    "expected": "support/troubleshooting",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/troubleshooting"
+  },
+  {
+    "width": 1280,
+    "expected": "support/fault",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/fault"
+  },
+  {
+    "width": 1280,
+    "expected": "support/service-request",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/service-request"
+  },
+  {
+    "width": 1280,
+    "expected": "support/contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/contact"
+  },
+  {
+    "width": 1280,
+    "expected": "about",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "about"
+  },
+  {
+    "width": 1280,
+    "expected": "contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "contact"
+  },
+  {
+    "width": 1280,
+    "expected": "privacy",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "privacy"
+  },
+  {
+    "width": 1280,
+    "expected": "terms",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "terms"
+  },
+  {
+    "width": 1280,
+    "expected": "my-ikonectt/sign-in",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/sign-in"
+  },
+  {
+    "width": 1280,
+    "expected": "my-ikonectt/forgot-password",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password"
+  },
+  {
+    "width": 1280,
+    "expected": "my-ikonectt/preview",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/preview"
+  },
+  {
+    "width": 1024,
+    "expected": "residential",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential"
+  },
+  {
+    "width": 1024,
+    "expected": "residential/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans"
+  },
+  {
+    "width": 1024,
+    "expected": "residential/plans/demo-1",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-1"
+  },
+  {
+    "width": 1024,
+    "expected": "residential/plans/demo-2",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-2"
+  },
+  {
+    "width": 1024,
+    "expected": "residential/compare",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/compare"
+  },
+  {
+    "width": 1024,
+    "expected": "residential/installation",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/installation"
+  },
+  {
+    "width": 1024,
+    "expected": "business",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business"
+  },
+  {
+    "width": 1024,
+    "expected": "business/solutions",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions"
+  },
+  {
+    "width": 1024,
+    "expected": "business/solutions/connectivity",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/connectivity"
+  },
+  {
+    "width": 1024,
+    "expected": "business/solutions/sme",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/sme"
+  },
+  {
+    "width": 1024,
+    "expected": "business/solutions/enterprise",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/enterprise"
+  },
+  {
+    "width": 1024,
+    "expected": "business/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/plans"
+  },
+  {
+    "width": 1024,
+    "expected": "business/quote",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/quote"
+  },
+  {
+    "width": 1024,
+    "expected": "coverage",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage"
+  },
+  {
+    "width": 1024,
+    "expected": "coverage/results",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/results"
+  },
+  {
+    "width": 1024,
+    "expected": "coverage/verification",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/verification"
+  },
+  {
+    "width": 1024,
+    "expected": "support",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support"
+  },
+  {
+    "width": 1024,
+    "expected": "support/faqs",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/faqs"
+  },
+  {
+    "width": 1024,
+    "expected": "support/troubleshooting",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/troubleshooting"
+  },
+  {
+    "width": 1024,
+    "expected": "support/fault",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/fault"
+  },
+  {
+    "width": 1024,
+    "expected": "support/service-request",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/service-request"
+  },
+  {
+    "width": 1024,
+    "expected": "support/contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/contact"
+  },
+  {
+    "width": 1024,
+    "expected": "about",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "about"
+  },
+  {
+    "width": 1024,
+    "expected": "contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "contact"
+  },
+  {
+    "width": 1024,
+    "expected": "privacy",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "privacy"
+  },
+  {
+    "width": 1024,
+    "expected": "terms",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "terms"
+  },
+  {
+    "width": 1024,
+    "expected": "my-ikonectt/sign-in",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/sign-in"
+  },
+  {
+    "width": 1024,
+    "expected": "my-ikonectt/forgot-password",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password"
+  },
+  {
+    "width": 1024,
+    "expected": "my-ikonectt/preview",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/preview"
+  },
+  {
+    "width": 768,
+    "expected": "residential",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential"
+  },
+  {
+    "width": 768,
+    "expected": "residential/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans"
+  },
+  {
+    "width": 768,
+    "expected": "residential/plans/demo-1",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-1"
+  },
+  {
+    "width": 768,
+    "expected": "residential/plans/demo-2",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-2"
+  },
+  {
+    "width": 768,
+    "expected": "residential/compare",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/compare"
+  },
+  {
+    "width": 768,
+    "expected": "residential/installation",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/installation"
+  },
+  {
+    "width": 768,
+    "expected": "business",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business"
+  },
+  {
+    "width": 768,
+    "expected": "business/solutions",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions"
+  },
+  {
+    "width": 768,
+    "expected": "business/solutions/connectivity",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/connectivity"
+  },
+  {
+    "width": 768,
+    "expected": "business/solutions/sme",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/sme"
+  },
+  {
+    "width": 768,
+    "expected": "business/solutions/enterprise",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/enterprise"
+  },
+  {
+    "width": 768,
+    "expected": "business/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/plans"
+  },
+  {
+    "width": 768,
+    "expected": "business/quote",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/quote"
+  },
+  {
+    "width": 768,
+    "expected": "coverage",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage"
+  },
+  {
+    "width": 768,
+    "expected": "coverage/results",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/results"
+  },
+  {
+    "width": 768,
+    "expected": "coverage/verification",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/verification"
+  },
+  {
+    "width": 768,
+    "expected": "support",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support"
+  },
+  {
+    "width": 768,
+    "expected": "support/faqs",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/faqs"
+  },
+  {
+    "width": 768,
+    "expected": "support/troubleshooting",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/troubleshooting"
+  },
+  {
+    "width": 768,
+    "expected": "support/fault",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/fault"
+  },
+  {
+    "width": 768,
+    "expected": "support/service-request",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/service-request"
+  },
+  {
+    "width": 768,
+    "expected": "support/contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/contact"
+  },
+  {
+    "width": 768,
+    "expected": "about",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "about"
+  },
+  {
+    "width": 768,
+    "expected": "contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "contact"
+  },
+  {
+    "width": 768,
+    "expected": "privacy",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "privacy"
+  },
+  {
+    "width": 768,
+    "expected": "terms",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "terms"
+  },
+  {
+    "width": 768,
+    "expected": "my-ikonectt/sign-in",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/sign-in"
+  },
+  {
+    "width": 768,
+    "expected": "my-ikonectt/forgot-password",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password"
+  },
+  {
+    "width": 768,
+    "expected": "my-ikonectt/preview",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/preview"
+  },
+  {
+    "width": 390,
+    "expected": "residential",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential"
+  },
+  {
+    "width": 390,
+    "expected": "residential/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans"
+  },
+  {
+    "width": 390,
+    "expected": "residential/plans/demo-1",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-1"
+  },
+  {
+    "width": 390,
+    "expected": "residential/plans/demo-2",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-2"
+  },
+  {
+    "width": 390,
+    "expected": "residential/compare",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/compare"
+  },
+  {
+    "width": 390,
+    "expected": "residential/installation",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/installation"
+  },
+  {
+    "width": 390,
+    "expected": "business",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business"
+  },
+  {
+    "width": 390,
+    "expected": "business/solutions",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions"
+  },
+  {
+    "width": 390,
+    "expected": "business/solutions/connectivity",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/connectivity"
+  },
+  {
+    "width": 390,
+    "expected": "business/solutions/sme",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/sme"
+  },
+  {
+    "width": 390,
+    "expected": "business/solutions/enterprise",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/enterprise"
+  },
+  {
+    "width": 390,
+    "expected": "business/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/plans"
+  },
+  {
+    "width": 390,
+    "expected": "business/quote",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/quote"
+  },
+  {
+    "width": 390,
+    "expected": "coverage",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage"
+  },
+  {
+    "width": 390,
+    "expected": "coverage/results",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/results"
+  },
+  {
+    "width": 390,
+    "expected": "coverage/verification",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/verification"
+  },
+  {
+    "width": 390,
+    "expected": "support",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support"
+  },
+  {
+    "width": 390,
+    "expected": "support/faqs",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/faqs"
+  },
+  {
+    "width": 390,
+    "expected": "support/troubleshooting",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/troubleshooting"
+  },
+  {
+    "width": 390,
+    "expected": "support/fault",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/fault"
+  },
+  {
+    "width": 390,
+    "expected": "support/service-request",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/service-request"
+  },
+  {
+    "width": 390,
+    "expected": "support/contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/contact"
+  },
+  {
+    "width": 390,
+    "expected": "about",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "about"
+  },
+  {
+    "width": 390,
+    "expected": "contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "contact"
+  },
+  {
+    "width": 390,
+    "expected": "privacy",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "privacy"
+  },
+  {
+    "width": 390,
+    "expected": "terms",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "terms"
+  },
+  {
+    "width": 390,
+    "expected": "my-ikonectt/sign-in",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/sign-in"
+  },
+  {
+    "width": 390,
+    "expected": "my-ikonectt/forgot-password",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password"
+  },
+  {
+    "width": 390,
+    "expected": "my-ikonectt/preview",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/preview"
+  },
+  {
+    "width": 320,
+    "expected": "residential",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential"
+  },
+  {
+    "width": 320,
+    "expected": "residential/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans"
+  },
+  {
+    "width": 320,
+    "expected": "residential/plans/demo-1",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-1"
+  },
+  {
+    "width": 320,
+    "expected": "residential/plans/demo-2",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/plans/demo-2"
+  },
+  {
+    "width": 320,
+    "expected": "residential/compare",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/compare"
+  },
+  {
+    "width": 320,
+    "expected": "residential/installation",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "residential/installation"
+  },
+  {
+    "width": 320,
+    "expected": "business",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business"
+  },
+  {
+    "width": 320,
+    "expected": "business/solutions",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions"
+  },
+  {
+    "width": 320,
+    "expected": "business/solutions/connectivity",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/connectivity"
+  },
+  {
+    "width": 320,
+    "expected": "business/solutions/sme",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/sme"
+  },
+  {
+    "width": 320,
+    "expected": "business/solutions/enterprise",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/solutions/enterprise"
+  },
+  {
+    "width": 320,
+    "expected": "business/plans",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/plans"
+  },
+  {
+    "width": 320,
+    "expected": "business/quote",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "business/quote"
+  },
+  {
+    "width": 320,
+    "expected": "coverage",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage"
+  },
+  {
+    "width": 320,
+    "expected": "coverage/results",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/results"
+  },
+  {
+    "width": 320,
+    "expected": "coverage/verification",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "coverage/verification"
+  },
+  {
+    "width": 320,
+    "expected": "support",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support"
+  },
+  {
+    "width": 320,
+    "expected": "support/faqs",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/faqs"
+  },
+  {
+    "width": 320,
+    "expected": "support/troubleshooting",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/troubleshooting"
+  },
+  {
+    "width": 320,
+    "expected": "support/fault",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/fault"
+  },
+  {
+    "width": 320,
+    "expected": "support/service-request",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/service-request"
+  },
+  {
+    "width": 320,
+    "expected": "support/contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "support/contact"
+  },
+  {
+    "width": 320,
+    "expected": "about",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "about"
+  },
+  {
+    "width": 320,
+    "expected": "contact",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "contact"
+  },
+  {
+    "width": 320,
+    "expected": "privacy",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "privacy"
+  },
+  {
+    "width": 320,
+    "expected": "terms",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "terms"
+  },
+  {
+    "width": 320,
+    "expected": "my-ikonectt/sign-in",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/sign-in"
+  },
+  {
+    "width": 320,
+    "expected": "my-ikonectt/forgot-password",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/forgot-password"
+  },
+  {
+    "width": 320,
+    "expected": "my-ikonectt/preview",
+    "broken": [],
+    "credits": 0,
+    "headingFits": true,
+    "hero": true,
+    "overflow": false,
+    "route": "my-ikonectt/preview"
+  }
+]
