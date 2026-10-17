@@ -1,0 +1,49 @@
+/* Phase 3 visual content. All treatments are scoped to the three active designs. */
+.ik-site:is([data-template=a],[data-template=d],[data-template=e]) .ik-visual-picture{display:block;overflow:hidden;pointer-events:none}
+.ik-site:is([data-template=a],[data-template=d],[data-template=e]) .ik-visual-picture img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.ik-site:is([data-template=a],[data-template=d],[data-template=e]) .ik-visual-slot{position:relative;display:block;padding:0;overflow:hidden;border:0;background:transparent;min-height:0}
+.ik-visual-slot>.ik-visual-picture{position:absolute;inset:0}
+.ik-visual-credit{display:block;position:absolute;bottom:12px;left:12px;right:12px;width:fit-content;max-width:calc(100% - 24px);padding:5px 8px;background:rgba(18,7,10,.9);color:#fff;font:10px/1.5 system-ui,sans-serif;border-radius:3px;z-index:3}
+.ik-visual-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.ik-visual-credit a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.ik-site[data-template=a] #home-audiences article>.ik-visual-picture{position:absolute;inset:0}
+.ik-site[data-template=a] .ik-visual-slot{border-radius:12px}
+.ik-site[data-template=a] [data-visual-installed=spaces]{background:#f5f5f7}
+/* D: edge masks blend with both existing theme surfaces; no floating stock cards. */
+.ik-site[data-template=d] .ik-visual-slot{border-radius:0;mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 90%,transparent);mask-composite:intersect}
+.ik-site[data-template=d] .ik-visual-slot img{filter:saturate(.75) brightness(.9)}
+.ik-site[data-template=d] .ik-visual-slot[data-visual-installed=lagos] img{filter:saturate(.45) brightness(.68)}
+.ik-site[data-template=d] .ik-visual-slot[data-visual-installed=lagos]::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(20,8,11,.32),rgba(20,8,11,.1));z-index:1}
+.ik-site[data-template=d] .ik-visual-slot .ik-visual-credit{left:8%;bottom:10%;right:8%;max-width:84%}
+.ik-site[data-template=d] .phero.ik-visual-backdrop>.ik-visual-picture:first-child{opacity:.36;left:38%;mask-image:linear-gradient(to right,transparent,#000 30%);filter:saturate(.35)}
+.ik-site[data-template=d] .phero.ik-visual-backdrop>.ik-visual-picture:nth-child(2){opacity:.7;left:35%}
+.ik-site[data-template=d] .phero.ik-visual-backdrop>svg{display:none}
+.ik-site[data-template=d] .phero.ik-visual-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#14080b 5%,rgba(20,8,11,.85) 40%,rgba(20,8,11,.1)),linear-gradient(0deg,#14080b,transparent 40%);z-index:-1}
+.ik-site[data-template=d] .phero.ik-visual-backdrop>.wrap{position:relative;z-index:1}
+.ik-visual-backdrop>.ik-visual-picture{position:absolute;inset:0;z-index:-2}
+.ik-site[data-template=d] .phero.ik-visual-backdrop{padding-bottom:4.5rem}
+.ik-site[data-template=d] .phero>.ik-visual-credit{left:auto;right:24px;bottom:16px}
+/* E: full-bleed city, warm charcoal scrims and quiet unanimated flowing paths. */
+.ik-site[data-template=e] .hero.ik-visual-backdrop{isolation:isolate;background:#12070a}
+.ik-site[data-template=e] .hero.ik-visual-backdrop>.ik-visual-picture:first-child{opacity:.68}
+.ik-site[data-template=e] .hero.ik-visual-backdrop>.ik-visual-picture:first-child img{object-position:58% 55%}
+.ik-site[data-template=e] .hero.ik-visual-backdrop>.ik-visual-picture:nth-child(2){opacity:.4;z-index:-1}
+.ik-site[data-template=e] .hero.ik-visual-backdrop::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,7,10,.74),rgba(18,7,10,.66) 48%,#12070a 100%)}
+.ik-site[data-template=e] .hero.ik-visual-backdrop .horizon{opacity:.3;z-index:-1}
+.ik-site[data-template=e] .hero.ik-visual-backdrop .eyebrow,.ik-site[data-template=e] .hero.ik-visual-backdrop .lead{color:#e0d5d8}
+.ik-site[data-template=e] .pane.ik-visual-backdrop::before{z-index:-1;background:linear-gradient(0deg,#12070a 1%,rgba(18,7,10,.86) 35%,rgba(18,7,10,.14) 100%);transition:none;transform:none}
+.ik-site[data-template=e] .pane.ik-visual-backdrop>.ik-visual-picture img{object-position:60% 42%}
+.ik-site[data-template=e] .pane.ik-visual-backdrop{padding-bottom:5rem}
+.ik-site[data-template=e] .pane.ik-visual-backdrop .sub{color:#e0d5d8}
+.ik-site[data-template=e] .ik-visual-slot{border-radius:0;mask-image:linear-gradient(0deg,transparent,#000 14%,#000 88%,transparent)}
+.ik-site[data-template=e] .ik-visual-slot>.ik-visual-picture{opacity:.85}
+.ik-site[data-template=e] .ik-visual-slot::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(160deg,rgba(32,12,17,.08),rgba(32,12,17,.3))}
+.ik-site[data-template=e] .ik-visual-slot .ik-visual-credit{bottom:16%}
+@media(max-width:767px){
+ .ik-site[data-template=d] .phero.ik-visual-backdrop>.ik-visual-picture:first-child{left:0;opacity:.3;mask-image:none}
+ .ik-site[data-template=d] .phero.ik-visual-backdrop>.ik-visual-picture:nth-child(2){left:10%;opacity:.45}
+ .ik-site[data-template=d] .phero>.ik-visual-credit{left:16px;right:16px}
+ .ik-site[data-template=e] .hero.ik-visual-backdrop>.ik-visual-picture:first-child img{object-position:52% 50%}
+ .ik-site[data-template=e] .pane.ik-visual-backdrop>.ik-visual-picture img{object-position:62% 40%}
+ .ik-site:is([data-template=a],[data-template=d],[data-template=e]) .ik-visual-slot{aspect-ratio:4/3}
+}

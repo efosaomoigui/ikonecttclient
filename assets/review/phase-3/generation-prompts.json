@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-17",
+  "prompts": [
+    {
+      "id": "home",
+      "prompt": "Use case: photorealistic-natural. Asset type: website supporting editorial photograph, wide 3:2 landscape. A refined contemporary Lagos apartment living room in natural afternoon light, warm pale stone and walnut, understated woven Nigerian textile accent, comfortable sofa, large television showing a quiet abstract landscape, a smartphone resting naturally on the coffee table and a discreet modern Wi-Fi router on a side shelf. No people, no laptop, no logos or readable text. Architectural interior photography, natural believable materials, restrained premium residential feeling, balanced composition with key objects within central 65 percent so both 4:3 and mobile crops work. This is a generic illustrative environment, not a real company's property. No sci-fi, no neon, no watermark."
+    },
+    {
+      "id": "workplace",
+      "prompt": "Use case: photorealistic-natural. Asset type: website supporting editorial photograph, wide 3:2 landscape. Contemporary Nigerian business environment, a thoughtfully designed small meeting room with glass partition, oak meeting table, sculptural office chairs, a wall mounted video conference display switched off, a tablet and notebook on the table. Daylight through windows with softly indistinct city buildings, no recognizable invented landmark. Architectural magazine photography, warm neutral materials, slight burgundy accent chair, natural tactile detail. No people, no laptops, no logos, no readable text. Balanced central composition usable as 4:3 or mobile crop. Generic illustrative workplace, not Ikonectt's office. Avoid excessive futuristic effects, exaggerated luxury or watermark."
+    },
+    {
+      "id": "fibre",
+      "prompt": "Use case: photorealistic-natural. Asset type: generic editorial telecommunications detail for website, wide 3:2 landscape. Close architectural macro photograph of neatly managed fibre-optic patch leads and connector ends in a generic unbranded patch panel. Several thin cream and restrained red cable loops curve across charcoal metal, small unlit connectors with realistic engineering detail. Soft directional studio light, no neon light emanating from cables, no readable labels, no map, no people, no branding. Shallow but useful depth of field, professional orderly composition, central cable loop visible when cropped 4:3. Generic illustrative equipment, not documentary evidence of a company's network or facility. No watermark."
+    }
+  ],
+  "note": "The equipment result depicts generic network patch leads, so it is named and described as a network panel rather than verified fibre hardware."
+}

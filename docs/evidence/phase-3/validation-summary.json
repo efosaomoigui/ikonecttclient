@@ -1,0 +1,18 @@
+{
+  "checks": 216,
+  "perTemplate": {
+    "a": 72,
+    "d": 72,
+    "e": 72
+  },
+  "widths": [
+    1440,
+    1280,
+    1024,
+    768,
+    390,
+    320
+  ],
+  "failures": 0,
+  "imageInstances": 156
+}

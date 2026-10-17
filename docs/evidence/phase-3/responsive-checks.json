@@ -1,0 +1,3596 @@
+[
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 600,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 717.2830200195312
+      },
+      {
+        "broken": false,
+        "height": 600,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 717.2830200195312
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 398.2924499511719,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 298.7264099121094,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 354.0424499511719,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 354.0424499511719,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 354.0424499511719,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 354.0424499511719,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/connected-spaces.svg",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1440,
+    "client": 1435,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1435,
+    "width": 1440
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 600,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 637.5848999023438
+      },
+      {
+        "broken": false,
+        "height": 600,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 637.5848999023438
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 400.5424499511719,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 534.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 300.4103698730469,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 534.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 356.0377502441406,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 534.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 356.0377502441406,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 534.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 356.0377502441406,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-800.webp",
+        "width": 534.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 356.0377502441406,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/connected-spaces.svg",
+        "width": 534.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1280,
+    "client": 1275,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1275,
+    "width": 1281
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 600,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 509.4339599609375
+      },
+      {
+        "broken": false,
+        "height": 600,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 509.4339599609375
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 319.98114013671875,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 426.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 239.98585510253903,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 426.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 284.4339599609375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 426.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 284.4339599609375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 426.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 284.4339599609375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-800.webp",
+        "width": 426.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 284.4339599609375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/connected-spaces.svg",
+        "width": 426.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 1024,
+    "client": 1019,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1019,
+    "width": 1024
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 519.9906005859375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 762.5660400390625
+      },
+      {
+        "broken": false,
+        "height": 519.9906005859375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 762.5660400390625
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 239.4339599609375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 319.2594299316406
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 179.57546997070312,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 319.2594299316406
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.83018493652344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-480.webp",
+        "width": 319.2594299316406
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.83018493652344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 319.2594299316406
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.83018493652344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-480.webp",
+        "width": 319.2594299316406
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.83018493652344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/connected-spaces.svg",
+        "width": 319.2594299316406
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 768,
+    "client": 763,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 763,
+    "width": 768
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 519.9906005859375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 384.9056701660156
+      },
+      {
+        "broken": false,
+        "height": 519.9906005859375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 384.9056701660156
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 258.67926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 344.91510009765625
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 258.67926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 344.91510009765625
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 258.67926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-480.webp",
+        "width": 344.91510009765625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 258.67926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 344.91510009765625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 258.67926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-480.webp",
+        "width": 344.91510009765625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 258.67926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/connected-spaces.svg",
+        "width": 344.91510009765625
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 390,
+    "client": 385,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 385,
+    "width": 390
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 519.9906005859375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-480.webp",
+        "width": 315.1698303222656
+      },
+      {
+        "broken": false,
+        "height": 519.9906005859375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 315.1698303222656
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.3915100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-480.webp",
+        "width": 283.1886901855469
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.3915100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 283.1886901855469
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.3915100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-480.webp",
+        "width": 283.1886901855469
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.3915100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 283.1886901855469
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.3915100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-480.webp",
+        "width": 283.1886901855469
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 212.3915100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/connected-spaces.svg",
+        "width": 283.1886901855469
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "a",
+    "requestedWidth": 320,
+    "client": 315,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 315,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 398.8018798828125,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 883.2594604492188
+      },
+      {
+        "broken": false,
+        "height": 398.8018798828125,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 925.9953002929688
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 369.7217102050781,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 492.9764099121094
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 277.2877502441406,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 492.9764099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 328.6415100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 492.9764099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 328.6415100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/signal-arcs.svg",
+        "width": 492.9764099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 328.6415100097656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 492.9764099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 369.7217102050781,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/city-grid.svg",
+        "width": 492.9764099121094
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 398.8018798828125,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 784.4292602539062
+      },
+      {
+        "broken": false,
+        "height": 398.8018798828125,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 822.396240234375
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 373.7122802734375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 498.2830200195313
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 280.2735900878906,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 498.2830200195313
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 332.17926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 498.2830200195313
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 332.17926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/signal-arcs.svg",
+        "width": 498.2830200195313
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 332.17926025390625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 498.2830200195313
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 373.7122802734375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/city-grid.svg",
+        "width": 498.2830200195313
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 388.0471801757813,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 625.5283203125
+      },
+      {
+        "broken": false,
+        "height": 388.0471801757813,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 655.7971801757812
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 311.8584899902344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 233.90093994140625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 277.21697998046875,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 277.21697998046875,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/signal-arcs.svg",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 277.21697998046875,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 311.8584899902344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/city-grid.svg",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 364.7830200195313,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 466.62738037109375
+      },
+      {
+        "broken": false,
+        "height": 364.7830200195313,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 489.1981201171875
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 236.73114013671875,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 177.55189514160156,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 210.42453002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 210.42453002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/signal-arcs.svg",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 210.42453002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 236.73114013671875,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/city-grid.svg",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 360.76416015625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 374.9433898925781
+      },
+      {
+        "broken": false,
+        "height": 360.76416015625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 337.4575500488281
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/signal-arcs.svg",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/city-grid.svg",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 475.3584899902344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 305.2075500488281
+      },
+      {
+        "broken": false,
+        "height": 475.3584899902344,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 274.6981201171875
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/signal-arcs.svg",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/network-grid.svg",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/city-grid.svg",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "d",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 1424.603759765625
+      },
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 1424.603759765625
+      },
+      {
+        "broken": false,
+        "height": 703.9953002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 712.3018798828125
+      },
+      {
+        "broken": false,
+        "height": 703.9953002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 712.3018798828125
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 298.7264099121094,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 227.58963012695312,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 298.7264099121094,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 298.7264099121094,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 298.7264099121094,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 298.7264099121094,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 531.0707397460938
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1440,
+    "client": 1425,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 1265.20751953125
+      },
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 1265.20751953125
+      },
+      {
+        "broken": false,
+        "height": 703.9953002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 632.603759765625
+      },
+      {
+        "broken": false,
+        "height": 703.9953002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 632.603759765625
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 297.73583984375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 529.3302001953125
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 226.8537750244141,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 529.3302001953125
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 297.73583984375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 529.3302001953125
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 297.73583984375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 529.3302001953125
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 297.73583984375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 529.3302001953125
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 297.73583984375,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 529.3302001953125
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1280,
+    "client": 1265,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1265,
+    "width": 1281
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 1008.9057006835938
+      },
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 1008.9057006835938
+      },
+      {
+        "broken": false,
+        "height": 703.9953002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 504.4528503417969
+      },
+      {
+        "broken": false,
+        "height": 703.9953002929688,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 504.4528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 233.90093994140625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 178.2028350830078,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 233.90093994140625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 233.90093994140625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 233.90093994140625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 233.90093994140625,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 415.8254699707031
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 1024,
+    "client": 1009,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 1009,
+    "width": 1024
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 752.603759765625
+      },
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 752.603759765625
+      },
+      {
+        "broken": false,
+        "height": 480,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 752.603759765625
+      },
+      {
+        "broken": false,
+        "height": 480,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 752.603759765625
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 177.55189514160156,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 135.2688751220703,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 177.55189514160156,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 177.55189514160156,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 177.55189514160156,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 177.55189514160156,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 315.65093994140625
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 768,
+    "client": 753,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 374.9433898925781
+      },
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 374.9433898925781
+      },
+      {
+        "broken": false,
+        "height": 480,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 374.9433898925781
+      },
+      {
+        "broken": false,
+        "height": 480,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 374.9433898925781
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 251.20755004882812,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 334.9528503417969
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 390,
+    "client": 375,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 305.2075500488281
+      },
+      {
+        "broken": false,
+        "height": 1000.7547607421876,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 305.2075500488281
+      },
+      {
+        "broken": false,
+        "height": 480,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 305.2075500488281
+      },
+      {
+        "broken": false,
+        "height": 480,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 305.2075500488281
+      }
+    ],
+    "reserved": false,
+    "route": "home",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-1280.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "residential",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/connectivity",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/sme",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "business/solutions/enterprise",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [
+      {
+        "broken": false,
+        "height": 204.91981506347656,
+        "loaded": true,
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "width": 273.2264099121094
+      }
+    ],
+    "reserved": false,
+    "route": "about",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "residential/plans",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "coverage",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "business/quote",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "support",
+    "scroll": 305,
+    "width": 321
+  },
+  {
+    "template": "e",
+    "requestedWidth": 320,
+    "client": 305,
+    "formImages": 0,
+    "images": [],
+    "reserved": false,
+    "route": "my-ikonectt/sign-in",
+    "scroll": 305,
+    "width": 321
+  }
+]

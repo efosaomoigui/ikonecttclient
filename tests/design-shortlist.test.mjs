@@ -39,9 +39,11 @@ test('old selector IDs and unsupported page contexts fall back without redirecti
   const dom=new JSDOM(source,{url:'https://preview.test/?option=c'});mountDesignPreview(dom.window.document,dom.window);
   assert.match(dom.window.document.querySelector('#preview-frame').src,/option-a\/#\/home$/);dom.window.close();
 });
-test('A landing page, imagery, D/E and shared journeys match the preservation checkpoint',()=>{
+test('original designs and shared journeys retain the shortlist checkpoint outside authorised Phase 3 visual entrypoints',()=>{
   const baseline=JSON.parse(fs.readFileSync(new URL('../docs/evidence/shortlist/preservation.json',import.meta.url)));
-  const allowed=new Set(['option-a/src/App.tsx']);
+  // Phase 3 explicitly authorises supporting photography and D/E visual entrypoints.
+  // Their narrower invariants are covered by visual-integration.test.mjs.
+  const allowed=new Set(['option-a/src/App.tsx','option-a/src/components/pages/HomePage.tsx','option-d/index.html','option-e/index.html']);
   for(const [file,hash] of Object.entries(baseline.files)){
     if(allowed.has(file))continue;
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL('../'+file,import.meta.url))).digest('hex'),hash,file);

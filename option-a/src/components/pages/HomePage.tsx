@@ -3,6 +3,7 @@ import { PageId } from '../../types';
 import { HOMEPAGE_CONTENT as C } from '../../content';
 import { ChevronRight, MapPin } from 'lucide-react';
 import {HeroSlideshow} from '../ui/HeroSlideshow';
+import {visualAssets, visualURL, visualSrcSet} from '../../../../shared/visual-assets.js';
 
 interface HomePageProps {
   onNavigate: (page: PageId, options?: { plan?: string; address?: string }) => void;
@@ -11,9 +12,9 @@ interface HomePageProps {
 }
 
 const IMAGES = {
-  residential: 'https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=1600&q=80',
-  business: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1600&q=80',
-};
+  residential: 'home',
+  business: 'workplace',
+} as const;
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt, onViewPlans }) => {
   const [address, setAddress] = useState('');
@@ -81,12 +82,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
             key={key}
             className="relative min-h-[520px] lg:min-h-[600px] flex items-end text-white overflow-hidden group"
           >
+            <picture className="ik-visual-picture" data-visual-asset={image}>
             <img
-              src={image}
+              src={visualURL(image)} srcSet={visualSrcSet(image)} sizes="(min-width: 1024px) 50vw, 100vw"
+              width={visualAssets[image].width} height={visualAssets[image].height}
               loading="lazy" decoding="async"
-              alt={`${data.label} customers connected with Ikonectt`}
+              alt={visualAssets[image].alt}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
             <div className="relative w-full p-8 sm:p-12 lg:p-16 flex flex-col gap-4 max-w-[560px]">
               <p className="ik-eyebrow ik-eyebrow-on-dark">{data.label}</p>

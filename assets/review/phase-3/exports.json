@@ -1,0 +1,153 @@
+[
+  {
+    "id": "connected-home",
+    "sourceFile": "assets/review/phase-3/connected-home.png",
+    "nativeDimensions": [
+      1536,
+      1024
+    ],
+    "sourceSHA256": "9d00a763b4762fb2ac11e7d32b9e221c8c475d55933c497c18d32d2e7f8adc76",
+    "exports": [
+      {
+        "path": "assets/visual-library/residential/connected-home-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 34304
+      },
+      {
+        "path": "assets/visual-library/residential/connected-home-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 79806
+      },
+      {
+        "path": "assets/visual-library/residential/connected-home-1280.webp",
+        "width": 1280,
+        "height": 853,
+        "bytes": 164840
+      }
+    ]
+  },
+  {
+    "id": "contemporary-workplace",
+    "sourceFile": "assets/review/phase-3/contemporary-workplace.png",
+    "nativeDimensions": [
+      1536,
+      1024
+    ],
+    "sourceSHA256": "739b1b7034e1309265e2a9ebd11d458c40e32d2da8798ad3058e9edbebc1e926",
+    "exports": [
+      {
+        "path": "assets/visual-library/business/contemporary-workplace-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 25906
+      },
+      {
+        "path": "assets/visual-library/business/contemporary-workplace-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 61644
+      },
+      {
+        "path": "assets/visual-library/business/contemporary-workplace-1280.webp",
+        "width": 1280,
+        "height": 853,
+        "bytes": 133588
+      }
+    ]
+  },
+  {
+    "id": "network-patch-panel",
+    "sourceFile": "assets/review/phase-3/network-patch-panel.png",
+    "nativeDimensions": [
+      1536,
+      1024
+    ],
+    "sourceSHA256": "7af3f1930febdc54e6c88f1a93431513179f9d96341cfe8515f43e68cd982507",
+    "exports": [
+      {
+        "path": "assets/visual-library/infrastructure/network-patch-panel-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 27732
+      },
+      {
+        "path": "assets/visual-library/infrastructure/network-patch-panel-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 51852
+      },
+      {
+        "path": "assets/visual-library/infrastructure/network-patch-panel-1280.webp",
+        "width": 1280,
+        "height": 853,
+        "bytes": 94432
+      }
+    ]
+  },
+  {
+    "id": "lagos-skyline",
+    "sourceFile": "assets/review/phase-3/lagos-skyline.jpg",
+    "nativeDimensions": [
+      3726,
+      1970
+    ],
+    "sourceSHA256": "cf5bcdc67c916f9de09b08e33bb5bbfca6904325b1a6e505b13e8223aef441c0",
+    "exports": [
+      {
+        "path": "assets/visual-library/city/lagos-skyline-480.webp",
+        "width": 480,
+        "height": 254,
+        "bytes": 15210
+      },
+      {
+        "path": "assets/visual-library/city/lagos-skyline-800.webp",
+        "width": 800,
+        "height": 423,
+        "bytes": 35208
+      },
+      {
+        "path": "assets/visual-library/city/lagos-skyline-1280.webp",
+        "width": 1280,
+        "height": 677,
+        "bytes": 73184
+      },
+      {
+        "path": "assets/visual-library/city/lagos-skyline-1600.webp",
+        "width": 1600,
+        "height": 846,
+        "bytes": 104314
+      }
+    ]
+  },
+  {
+    "id": "eko-atlantic-dusk",
+    "sourceFile": "assets/review/phase-3/eko-atlantic-dusk.jpg",
+    "nativeDimensions": [
+      1280,
+      720
+    ],
+    "sourceSHA256": "3ed9243e91b67caa96a00c060b5b72f9276d32643f9049449aef320fca51f67f",
+    "exports": [
+      {
+        "path": "assets/visual-library/city/eko-atlantic-dusk-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 7750
+      },
+      {
+        "path": "assets/visual-library/city/eko-atlantic-dusk-800.webp",
+        "width": 800,
+        "height": 450,
+        "bytes": 16370
+      },
+      {
+        "path": "assets/visual-library/city/eko-atlantic-dusk-1280.webp",
+        "width": 1280,
+        "height": 720,
+        "bytes": 31796
+      }
+    ]
+  }
+]
