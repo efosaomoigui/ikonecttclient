@@ -5,6 +5,13 @@ import {visualSlots,visualPictureHTML,visualCreditHTML} from './visual-assets.js
 export function mountVisuals({root,home,template}){
   if(!visualSlots[template])return ()=>{};
   const main=root.querySelector('#ik-main');
+  const credit=key=>template==='e'?'':visualCreditHTML(key);
+  let creditsLink;
+  if(template==='e'){
+    creditsLink=root.ownerDocument.createElement('a');
+    creditsLink.href='./photo-credits.html';creditsLink.textContent='Photo credits';
+    root.querySelector('.ik-footer-bottom > div')?.append(creditsLink);
+  }
   function installSlots(){
     const path=root.dataset.route;
     if(!visualSlots[template][path])return;
@@ -12,7 +19,7 @@ export function mountVisuals({root,home,template}){
       const key=visualSlots[template][path];
       host.dataset.visualInstalled=key;host.classList.add('ik-visual-slot');
       host.removeAttribute('role');host.removeAttribute('aria-label');
-      host.innerHTML=visualPictureHTML(key)+visualCreditHTML(key);
+      host.innerHTML=visualPictureHTML(key)+credit(key);
     }
   }
   function background(host,key,{priority=false,network=false}={}){
@@ -21,7 +28,7 @@ export function mountVisuals({root,home,template}){
     // Cover crops can be much wider than a narrow viewport: account for hero height.
     const sizes=template==='e'?(host.matches('.hero')?'max(100vw, 190vh)':'(min-width:768px) max(50vw,1250px),900px'):'max(65vw,950px)';
     host.insertAdjacentHTML('afterbegin',visualPictureHTML(key,{priority,decorative:true,sizes})+(network?visualPictureHTML(template==='d'?'network':'flow',{decorative:true,sizes:'100vw'}):''));
-    host.insertAdjacentHTML('beforeend',visualCreditHTML(key));
+    host.insertAdjacentHTML('beforeend',credit(key));
   }
   if(template==='d')background(home.querySelector('.phero'),'lagos',{priority:true,network:true});
   if(template==='e'){
@@ -33,5 +40,5 @@ export function mountVisuals({root,home,template}){
   const Observer=root.ownerDocument.defaultView.MutationObserver;
   const observer=new Observer(installSlots);
   if(main)observer.observe(main,{childList:true});
-  return ()=>observer.disconnect();
+  return ()=>{observer.disconnect();creditsLink?.remove();};
 }

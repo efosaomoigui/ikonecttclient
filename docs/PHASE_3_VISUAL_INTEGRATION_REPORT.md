@@ -51,3 +51,7 @@ Live release evidence is in `deployment-checks.json`, `live-browser-checks.json`
 - The licensed 1280×720 sunset is used as a supporting atmospheric field rather than a high-resolution hero; a larger campaign original can replace it through the central manifest.
 
 There are no empty required editorial photo reservations in the three active templates. Transactional areas intentionally remain free of decorative imagery.
+
+## Option E image-credit refinement
+
+Following client review, the credit labels on Option E photographs have been removed from the hero, business pane and internal Enterprise image. Attribution, original-source links, licences and adaptation notes are retained on a dedicated Photo credits page, linked discreetly from Option E's footer. A/D credits, image assets and photography treatments are unchanged.

@@ -53,6 +53,12 @@ for(const template of ['a','d','e'])test(`Template ${template}: imagery follows 
   window.scrollTo=()=>{};window.matchMedia=()=>({matches:false});
   const root=document.querySelector('#root'),home=document.querySelector('#home');
   const site=mountSite({root,home,template}),visuals=mountVisuals({root,home,template});
+  if(template==='e'){
+    const credits=[...root.querySelectorAll('.ik-footer a')].find(a=>a.textContent==='Photo credits');
+    assert.equal(credits?.getAttribute('href'),'./photo-credits.html');
+    const page=read('option-e/photo-credits.html').toString();
+    for(const text of ['Clara Sanchiz','Mrnyben1313','https://creativecommons.org/licenses/by-sa/2.0/','https://creativecommons.org/licenses/by-sa/4.0/'])assert.ok(page.includes(text),text);
+  }
   for(const path of Object.keys(pages)){
     if(path==='home')continue;
     window.location.hash='#/'+path;
@@ -61,6 +67,7 @@ for(const template of ['a','d','e'])test(`Template ${template}: imagery follows 
     const pictures=[...root.querySelectorAll('#ik-main [data-visual-asset]')];
     assert.equal(pictures.length,visualSlots[template][path]?1:0,path);
     if(pictures.length)assert.equal(pictures[0].dataset.visualAsset,visualSlots[template][path]);
+    if(template==='e')assert.equal(root.querySelectorAll('.ik-visual-credit').length,0,path);
     assert.equal(root.querySelectorAll('form [data-visual-asset],.ik-plan-card [data-visual-asset],.ik-faq [data-visual-asset]').length,0,path);
   }
   visuals();site();dom.window.close();
