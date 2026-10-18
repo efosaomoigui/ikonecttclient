@@ -1,5 +1,5 @@
 import {heroAssets,heroAsset,editorialAssets,imageHTML} from './visual-map.js';
-import {mountCityExperience} from './city-experience.js?v=4';
+import {mountCityExperience} from './city-experience.js?v=9';
 
 export function mountTemplateE({root,home}){
   if(root.dataset.template!=='e')return ()=>{};

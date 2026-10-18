@@ -1,0 +1,68 @@
+[
+  {
+    "buttons": true,
+    "mode": "desktop",
+    "overflow": false,
+    "width": 1440,
+    "borderless": true,
+    "contentFits": true,
+    "selectedScale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "verticalClearance": true,
+    "wholeCards": 3
+  },
+  {
+    "buttons": true,
+    "mode": "desktop",
+    "overflow": false,
+    "width": 1281,
+    "borderless": true,
+    "contentFits": true,
+    "selectedScale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "verticalClearance": true,
+    "wholeCards": 3
+  },
+  {
+    "buttons": true,
+    "mode": "desktop",
+    "overflow": false,
+    "width": 1024,
+    "borderless": true,
+    "contentFits": true,
+    "selectedScale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "verticalClearance": true,
+    "wholeCards": 3
+  },
+  {
+    "buttons": true,
+    "mode": "mobile",
+    "overflow": false,
+    "width": 768,
+    "borderless": true,
+    "contentFits": true,
+    "selectedScale": "matrix(1.06, 0, 0, 1.06, 0, 0)",
+    "verticalClearance": true,
+    "wholeCards": 1
+  },
+  {
+    "buttons": true,
+    "mode": "mobile",
+    "overflow": false,
+    "width": 390,
+    "borderless": true,
+    "contentFits": true,
+    "selectedScale": "none",
+    "verticalClearance": true,
+    "wholeCards": 1
+  },
+  {
+    "buttons": true,
+    "mode": "mobile",
+    "overflow": false,
+    "width": 321,
+    "borderless": true,
+    "contentFits": true,
+    "selectedScale": "none",
+    "verticalClearance": true,
+    "wholeCards": 1
+  }
+]

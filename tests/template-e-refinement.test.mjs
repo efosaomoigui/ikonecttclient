@@ -79,7 +79,7 @@ test('normal opening keeps the flat fallback reserved for failure and reduced mo
 test('headline dwell follows elapsed render time without accumulating scheduler remainder',async()=>{
   const f=cityFixture();await tick();f.step(450);
   assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Connectivity without limits.');
-  f.step(60);assert.equal(f.hero.querySelector('[data-active=true]').textContent,'A city powered by connection.');f.close();
+  f.step(60);assert.equal(f.hero.querySelector('[data-active=true]').textContent,'A city powered by connection.');assert.equal(f.imports,1,'headline change must not reload the scene');f.close();
 });
 test('reduced motion and data-saving devices avoid loading Three.js',async()=>{
   for(const config of [{reduced:true},{saveData:true}]){const f=cityFixture(config);await tick();assert.equal(f.imports,0);assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.queue.size,0);f.close();}

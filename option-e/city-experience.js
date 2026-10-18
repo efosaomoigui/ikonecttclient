@@ -1,10 +1,10 @@
 export const cityMessages=['Connectivity without limits.','A city powered by connection.','Your world. Always connected.'];
 export const canAnimate=state=>state.visible&&state.onscreen&&!state.reduced&&!state.paused&&!state.failed;
 
-export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=4'),delay=700}){
+export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=8'),delay=700}){
   if(!hero)return {destroy(){}};
   const win=root.ownerDocument.defaultView,doc=root.ownerDocument,abort=new win.AbortController(),opts={signal:abort.signal};
-  const reduced=win.matchMedia('(prefers-reduced-motion:reduce)'),mobile=win.matchMedia('(max-width:767px)').matches;
+  const reduced=win.matchMedia('(prefers-reduced-motion:reduce)'),mobile=win.matchMedia('(max-width:1023px)').matches;
   const constrained=Boolean(win.navigator.connection?.saveData)||(win.navigator.deviceMemory&&win.navigator.deviceMemory<=2)||(win.navigator.hardwareConcurrency&&win.navigator.hardwareConcurrency<=2);
   const forcedOff=new URL(win.location.href).searchParams.get('e-city')==='off';
   const state={visible:!doc.hidden,onscreen:root.dataset.route==='home',reduced:reduced.matches,paused:false,failed:false};
@@ -16,8 +16,12 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
   const pause=doc.createElement('button');pause.className='e-city-pause';pause.type='button';pause.textContent='Pause city & text';pause.title='Pauses the city animation, red arc and changing headline.';pause.setAttribute('aria-pressed','false');pause.hidden=reduced.matches;hero.append(pause);
   let engine,loading=false,stopped=false,readyToLoad=false,raf=0,last=0,lastRender=0,elapsed=0,lastMessage=0,message=0,frameCount=0,renderTotal=0,sampleStart=0,sampleFrames=0,lastStats=0,simplified=false,lowFPSWindows=0;
   const started=win.performance.now();
-  const metrics={frames:0,readyMs:null,drawCalls:0,triangles:0,meanRenderMs:0,sampledFPS:null,slowFrames:0,mode:mobile?'mobile':'desktop'};
-  function publish(){hero.dataset.cityMetrics=JSON.stringify(metrics);}
+  const metrics={frames:0,readyMs:null,drawCalls:0,triangles:0,meanRenderMs:0,sampledFPS:null,slowFrames:0,mode:mobile?'mobile':'desktop',longTasks:null,maxLongTaskMs:null,jsHeapMB:null};
+  function publish(){const memory=win.performance.memory;if(memory)metrics.jsHeapMB=Math.round(memory.usedJSHeapSize/104857.6)/10;hero.dataset.cityMetrics=JSON.stringify(metrics);}
+  let taskObserver;
+  if(win.PerformanceObserver?.supportedEntryTypes?.includes('longtask')){
+    metrics.longTasks=0;metrics.maxLongTaskMs=0;taskObserver=new win.PerformanceObserver(list=>{for(const entry of list.getEntries()){metrics.longTasks++;metrics.maxLongTaskMs=Math.max(metrics.maxLongTaskMs,Math.round(entry.duration));}publish();});taskObserver.observe({type:'longtask',buffered:true});
+  }
   function fail(reason){state.failed=true;hero.dataset.cityState='fallback';hero.dataset.cityReason=reason;cancel();engine?.destroy();engine=null;publish();}
   function cancel(){if(raf){win.cancelAnimationFrame(raf);raf=0;}last=0;lastRender=0;sampleFrames=0;}
   function current(){state.visible=!doc.hidden;state.onscreen=root.dataset.route==='home'&&intersecting;return canAnimate(state);}
@@ -69,5 +73,5 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
   const intersection=win.IntersectionObserver?new win.IntersectionObserver(entries=>{intersecting=entries[0].isIntersecting;update();},{threshold:.05}):null;intersection?.observe(hero);
   const timer=win.setTimeout(()=>{readyToLoad=true;update();},delay);
   if(forcedOff||constrained)hero.dataset.cityReason=forcedOff?'disabled-for-review':'device-budget';publish();update();
-  return {destroy(){stopped=true;win.clearTimeout(timer);cancel();abort.abort();routeObserver.disconnect();intersection?.disconnect();reduced.removeEventListener?.('change',onReduced);engine?.destroy();field.remove();pause.remove();if(heading){heading.textContent=original;heading.classList.remove('e-headline');heading.removeAttribute('aria-label');}},state};
+  return {destroy(){stopped=true;win.clearTimeout(timer);cancel();abort.abort();routeObserver.disconnect();intersection?.disconnect();taskObserver?.disconnect();reduced.removeEventListener?.('change',onReduced);engine?.destroy();field.remove();pause.remove();if(heading){heading.textContent=original;heading.classList.remove('e-headline');heading.removeAttribute('aria-label');}},state};
 }

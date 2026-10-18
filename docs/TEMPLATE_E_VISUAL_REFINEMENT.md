@@ -1,5 +1,7 @@
 # Template E visual refinement
 
+The real-time fibre-network upgrade supersedes the original city-renderer figures below. See [the current implementation and validation report](TEMPLATE_E_REALTIME_FIBRE_NETWORK.md) for the transparent scene, causal routes, carousel corrections and measured performance.
+
 The initial refinement was pushed in commit `052fd0e` on 17 October 2026. The hero performance and visibility tuning of 18 October is **local only**, awaiting review before another push.
 
 Preview: http://127.0.0.1:3021/public_html/option-e/
