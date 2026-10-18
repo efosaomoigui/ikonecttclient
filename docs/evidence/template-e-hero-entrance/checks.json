@@ -1,0 +1,32 @@
+{
+  "samples": [
+    {
+      "fallbackOpacity": "0",
+      "state": "opening"
+    },
+    {
+      "opacity": "0",
+      "state": "ready",
+      "transform": "matrix(1, 0, 0, 1, 0, 18)"
+    },
+    {
+      "duration": "2.2s",
+      "fallbackOpacity": "0",
+      "opacity": "1",
+      "state": "ready",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    }
+  ],
+  "pause": {
+    "animation": "paused",
+    "arc": "paused",
+    "label": "Resume city & text",
+    "metrics": "{\"frames\":245,\"readyMs\":915,\"drawCalls\":6,\"triangles\":770,\"meanRenderMs\":0.76,\"sampledFPS\":30.1,\"slowFrames\":1,\"mode\":\"mobile\",\"buildings\":16,\"pixelRatio\":1,\"bufferWidth\":600,\"bufferHeight\":362}"
+  },
+  "pauseHeld": true,
+  "fallback": {
+    "state": "fallback",
+    "opacity": "1",
+    "canvases": 0
+  }
+}

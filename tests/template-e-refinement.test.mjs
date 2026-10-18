@@ -69,6 +69,13 @@ test('city render loop targets 30 FPS and pauses for user, visibility, route and
 test('WebGL failure keeps the arc, readable HTML and navigation with a static fallback',async()=>{
   const f=cityFixture({reject:true});await tick();assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.hero.dataset.cityReason,'webgl-unavailable');assert.ok(f.hero.querySelector('.horizon'));assert.ok(f.hero.querySelector('a[href="#coverage"]'));assert.equal(f.queue.size,0);f.close();
 });
+test('normal opening keeps the flat fallback reserved for failure and reduced motion',async()=>{
+  const f=cityFixture();assert.equal(f.hero.dataset.cityState,'opening');
+  assert.equal(f.hero.querySelector('button').textContent,'Pause city & text');await tick();f.step(10);
+  assert.equal(f.hero.dataset.cityState,'ready');f.reduce(true);assert.equal(f.hero.dataset.cityState,'fallback');
+  f.reduce(false);f.step(10);assert.equal(f.hero.dataset.cityState,'ready');
+  f.hero.querySelector('button').click();assert.equal(f.hero.querySelector('button').textContent,'Resume city & text');f.close();
+});
 test('headline dwell follows elapsed render time without accumulating scheduler remainder',async()=>{
   const f=cityFixture();await tick();f.step(450);
   assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Connectivity without limits.');
