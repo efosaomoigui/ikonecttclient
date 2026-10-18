@@ -34,20 +34,22 @@
 .ik-site[data-template=e] .e-portal-portrait img{object-position:85% 26%}
 .ik-site[data-template=e] .e-portal-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#200c11,transparent 75%),linear-gradient(0deg,rgba(32,12,17,.6),transparent 50%)}
 /* Keep the original horizon element. Its opening and ambient pulse are independent of WebGL. */
-.ik-site[data-template=e] .hero.ik-visual-backdrop .horizon{animation:rise 2s cubic-bezier(.2,.7,.2,1) both,e-arc-breathe 12s 2s ease-in-out infinite;opacity:.65!important;z-index:0}
+.ik-site[data-template=e] .hero.ik-visual-backdrop .horizon{animation:e-arc-open 1.4s cubic-bezier(.2,.7,.2,1) both,e-arc-breathe 10s 1.4s ease-in-out infinite;opacity:.7;z-index:0;box-shadow:0 -4px 56px 4px rgba(214,33,58,.28),inset 0 30px 70px rgba(214,33,58,.16)}
 .ik-site[data-template=e] .hero.ik-visual-backdrop>.ik-visual-picture:first-child{opacity:.28}
-@keyframes e-arc-breathe{0%,100%{box-shadow:0 -4px 60px 4px rgba(214,33,58,.25),inset 0 30px 80px rgba(214,33,58,.14)}50%{box-shadow:0 -6px 86px 8px rgba(214,33,58,.4),inset 0 30px 90px rgba(214,33,58,.22)}}
-.ik-site[data-template=e] .e-city-field{position:absolute;inset:38% 0 0;z-index:0;overflow:hidden;pointer-events:none;mask-image:linear-gradient(0deg,transparent,#000 15%,#000 80%,transparent)}
-.ik-site[data-template=e] .e-city-field::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#12070a,transparent 45%),radial-gradient(ellipse at 50% 0%,rgba(18,7,10,.9),transparent 70%);pointer-events:none}
-.ik-site[data-template=e] .e-city-fallback,.ik-site[data-template=e] .e-city-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity 2s ease}
+/* Opacity can be composited; animating the enormous blurred shadow repainted the hero. */
+@keyframes e-arc-open{from{transform:translate(-50%,14vh);opacity:.45}to{transform:translate(-50%,0);opacity:.7}}
+@keyframes e-arc-breathe{0%,100%{opacity:.7}50%{opacity:.86}}
+.ik-site[data-template=e] .e-city-field{position:absolute;inset:38% 0 0;z-index:0;overflow:hidden;contain:paint;pointer-events:none;mask-image:linear-gradient(0deg,transparent,#000 10%,#000 88%,transparent)}
+.ik-site[data-template=e] .e-city-field::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#12070a,transparent 30%),radial-gradient(ellipse at 50% 0%,rgba(18,7,10,.45),transparent 62%);pointer-events:none}
+.ik-site[data-template=e] .e-city-fallback,.ik-site[data-template=e] .e-city-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .8s ease}
 .ik-site[data-template=e] .e-city-canvas{opacity:0}
-.ik-site[data-template=e] .hero[data-city-state=ready] .e-city-canvas{opacity:.92}
+.ik-site[data-template=e] .hero[data-city-state=ready] .e-city-canvas{opacity:1}
 .ik-site[data-template=e] .hero[data-city-state=ready] .e-city-fallback{opacity:0}
 .ik-site[data-template=e] .hero[data-city-state=ready]>.ik-visual-picture:first-child{opacity:.15}
 .ik-site[data-template=e] .hero-inner{z-index:3}
 .ik-site[data-template=e] .e-headline{display:grid;isolation:isolate;min-height:2.1em}
-.ik-site[data-template=e] .e-headline>span{grid-area:1/1;opacity:0;transform:translateY(8px);transition:opacity .9s ease,transform .9s ease;align-self:center}
-.ik-site[data-template=e] .e-headline>span[data-active=true]{opacity:1;transform:none}
+.ik-site[data-template=e] .e-headline>span{grid-area:1/1;opacity:0;transform:translateY(8px);transition:opacity .18s ease,transform .3s ease;align-self:center}
+.ik-site[data-template=e] .e-headline>span[data-active=true]{opacity:1;transform:none;transition-delay:.18s}
 .ik-site[data-template=e] .e-city-pause{position:absolute;left:24px;bottom:24px;z-index:4;background:rgba(18,7,10,.75);border:1px solid #50323a;color:#f6f1f1;min-height:44px;padding:10px 14px;font:400 12px var(--font);cursor:pointer}
 .ik-site[data-template=e] .hero[data-city-paused=true] .horizon{animation-play-state:paused}
 @media(max-width:767px){

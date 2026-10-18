@@ -1,0 +1,56 @@
+{
+  "before": {
+    "cityMetrics": "{\"frames\":1598,\"readyMs\":1800,\"drawCalls\":6,\"triangles\":3074,\"meanRenderMs\":0.7,\"sampledFPS\":30.1,\"slowFrames\":1,\"mode\":\"desktop\",\"buildings\":64,\"pixelRatio\":0.8999999378368528,\"bufferWidth\":989,\"bufferHeight\":387}",
+    "cityPaused": "false",
+    "cityState": "ready"
+  },
+  "desktop": {
+    "cityMetrics": "{\"frames\":1594,\"readyMs\":845,\"drawCalls\":6,\"triangles\":1730,\"meanRenderMs\":0.56,\"sampledFPS\":29.8,\"slowFrames\":2,\"mode\":\"desktop\",\"buildings\":36,\"pixelRatio\":1,\"bufferWidth\":860,\"bufferHeight\":337}",
+    "cityPaused": "false",
+    "cityState": "ready"
+  },
+  "mobile": {
+    "cityMetrics": "{\"frames\":2086,\"readyMs\":881,\"drawCalls\":6,\"triangles\":770,\"meanRenderMs\":0.7,\"sampledFPS\":30.1,\"slowFrames\":1,\"mode\":\"mobile\",\"buildings\":16,\"pixelRatio\":1,\"bufferWidth\":453,\"bufferHeight\":400}",
+    "cityPaused": "false",
+    "cityState": "ready"
+  },
+  "manualPause": true,
+  "viewports": [
+    {
+      "buttonsFit": true,
+      "headingFits": true,
+      "overflow": false,
+      "width": 1440
+    },
+    {
+      "buttonsFit": true,
+      "headingFits": true,
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "buttonsFit": true,
+      "headingFits": true,
+      "overflow": false,
+      "width": 1025
+    },
+    {
+      "buttonsFit": true,
+      "headingFits": true,
+      "overflow": false,
+      "width": 767
+    },
+    {
+      "buttonsFit": true,
+      "headingFits": true,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "buttonsFit": true,
+      "headingFits": true,
+      "overflow": false,
+      "width": 320
+    }
+  ]
+}

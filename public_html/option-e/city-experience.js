@@ -1,7 +1,7 @@
 export const cityMessages=['Connectivity without limits.','A city powered by connection.','Your world. Always connected.'];
 export const canAnimate=state=>state.visible&&state.onscreen&&!state.reduced&&!state.paused&&!state.failed;
 
-export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js'),delay=1600}){
+export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=3'),delay=700}){
   if(!hero)return {destroy(){}};
   const win=root.ownerDocument.defaultView,doc=root.ownerDocument,abort=new win.AbortController(),opts={signal:abort.signal};
   const reduced=win.matchMedia('(prefers-reduced-motion:reduce)'),mobile=win.matchMedia('(max-width:767px)').matches;
@@ -13,13 +13,13 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
   const heading=hero.querySelector('h1'),original=heading?.textContent||cityMessages[0];
   if(heading){heading.classList.add('e-headline');heading.setAttribute('aria-label',original);heading.replaceChildren(...cityMessages.map((text,i)=>{const span=doc.createElement('span');span.textContent=text;span.setAttribute('aria-hidden','true');span.dataset.active=String(i===0);return span;}));}
   const pause=doc.createElement('button');pause.className='e-city-pause';pause.type='button';pause.textContent='Pause animation';pause.setAttribute('aria-pressed','false');pause.hidden=reduced.matches;hero.append(pause);
-  let engine,loading=false,stopped=false,readyToLoad=false,raf=0,last=0,elapsed=0,lastMessage=0,message=0,frameCount=0,renderTotal=0,sampleStart=0,sampleFrames=0,lastStats=0,simplified=false,lowFPSWindows=0;
+  let engine,loading=false,stopped=false,readyToLoad=false,raf=0,last=0,lastRender=0,elapsed=0,lastMessage=0,message=0,frameCount=0,renderTotal=0,sampleStart=0,sampleFrames=0,lastStats=0,simplified=false,lowFPSWindows=0;
   const started=win.performance.now();
   const metrics={frames:0,readyMs:null,drawCalls:0,triangles:0,meanRenderMs:0,sampledFPS:null,slowFrames:0,mode:mobile?'mobile':'desktop'};
   const forcedOff=new URL(win.location.href).searchParams.get('e-city')==='off';
   function publish(){hero.dataset.cityMetrics=JSON.stringify(metrics);}
   function fail(reason){state.failed=true;hero.dataset.cityState='fallback';hero.dataset.cityReason=reason;cancel();engine?.destroy();engine=null;publish();}
-  function cancel(){if(raf){win.cancelAnimationFrame(raf);raf=0;}last=0;sampleFrames=0;}
+  function cancel(){if(raf){win.cancelAnimationFrame(raf);raf=0;}last=0;lastRender=0;sampleFrames=0;}
   function current(){state.visible=!doc.hidden;state.onscreen=root.dataset.route==='home'&&intersecting;return canAnimate(state);}
   let intersecting=true;
   async function load(){
@@ -34,13 +34,13 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
   }
   function frame(now){
     raf=0;if(!current()||stopped||!engine)return;
-    if(!last){last=now;sampleStart=now;}
+    if(!last){last=now;lastRender=now;sampleStart=now;}
     const delta=now-last,interval=1000/30;
-    if(delta>=interval){
-      last=now-(delta%interval);elapsed+=Math.min(delta,100)/1000;
+    if(delta>=interval-.4){
+      last=now-(delta>=interval?delta%interval:0);elapsed+=Math.min(now-lastRender,100)/1000;lastRender=now;
       const before=win.performance.now(),info=engine.render(elapsed),cost=win.performance.now()-before;
       Object.assign(metrics,info);frameCount++;sampleFrames++;renderTotal+=cost;metrics.frames=frameCount;metrics.meanRenderMs=Math.round(renderTotal/frameCount*100)/100;if(cost>16)metrics.slowFrames++;
-      hero.dataset.cityState='ready';
+      if(hero.dataset.cityState!=='ready')hero.dataset.cityState='ready';
       if(elapsed-lastMessage>=8){lastMessage=elapsed;message=(message+1)%cityMessages.length;heading?.querySelectorAll('span').forEach((span,i)=>span.dataset.active=String(i===message));}
       if(now-sampleStart>=3000){
         metrics.sampledFPS=Math.round(sampleFrames*10000/(now-sampleStart))/10;sampleFrames=0;sampleStart=now;

@@ -69,6 +69,11 @@ test('city render loop targets 30 FPS and pauses for user, visibility, route and
 test('WebGL failure keeps the arc, readable HTML and navigation with a static fallback',async()=>{
   const f=cityFixture({reject:true});await tick();assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.hero.dataset.cityReason,'webgl-unavailable');assert.ok(f.hero.querySelector('.horizon'));assert.ok(f.hero.querySelector('a[href="#coverage"]'));assert.equal(f.queue.size,0);f.close();
 });
+test('headline dwell follows elapsed render time without accumulating scheduler remainder',async()=>{
+  const f=cityFixture();await tick();f.step(450);
+  assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Connectivity without limits.');
+  f.step(60);assert.equal(f.hero.querySelector('[data-active=true]').textContent,'A city powered by connection.');f.close();
+});
 test('reduced motion and data-saving devices avoid loading Three.js',async()=>{
   for(const config of [{reduced:true},{saveData:true}]){const f=cityFixture(config);await tick();assert.equal(f.imports,0);assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.queue.size,0);f.close();}
 });
