@@ -6,16 +6,18 @@ Preview: http://127.0.0.1:3021/public_html/option-e/#/home
 
 ## Working result
 
-The approved Lagos photograph, original fibre-flow graphic, burgundy atmosphere, expanding arc, foreground city composition and accessible HTML content remain. One transparent Three.js scene now shows three exposed strands feeding a main fibre route, one distribution junction and four building endpoints on desktop. Below 1024px, it uses sixteen buildings and three endpoints rather than thirty-six buildings and four endpoints. The compact cable source is placed inside the narrow foreground so it stays identifiable on phones.
+The approved Lagos photograph, original fibre-flow graphic, burgundy atmosphere, expanding arc, foreground city composition and accessible HTML content remain. One transparent Three.js scene shows three exposed strands feeding a main fibre route, one distribution junction and six building endpoints on desktop, including two back-row buildings. Below 1024px, it uses sixteen buildings and four endpoints, including one back-row destination, rather than thirty-six buildings and six endpoints. The compact cable source stays inside the narrow foreground.
 
-The project contained an abstract fibre graphic rather than an exposed-cable photograph. The owner approved keeping that graphic and adding a lightweight procedural cable end. Its sheath and cut core use two small cylinder meshes; no new photograph or imported city model was installed.
+Following the owner's review, pulse trains now overlap for continuous brisk traffic after the initial connection sequence. The cable rises diagonally from a low ground collar, with its phone base positioned clear of the pause control. Selected towers use warm stone, deep burgundy and charcoal slate alongside the existing palette. Shapes, density and camera composition remain unchanged.
+
+The project contained an abstract fibre graphic rather than an exposed-cable photograph. The owner approved keeping that graphic and adding a lightweight procedural cable end. Its sheath, cut core and ground collar reuse two small cylinder geometries; no new photograph or imported city model was installed.
 
 This is an infrastructure visualisation: the routes align to the retained foreground building geometry, not to individual structures in the contextual Lagos photograph. It is not a map of Ikonectt coverage or installed infrastructure.
 
 ## Rendering and route behaviour
 
 - `option-e/network-model.js` owns scene coordinates, rounded street paths, curved exposed strands and the causal schedule. Routes share exact junction coordinates. Samples are interpolated by distance along each path.
-- Every strand arrives before the main route starts. The main route arrives before the staggered distribution branches start. Buildings receive a brief warm lighting response only after their signal arrives. Each cycle ends with about 2.8 seconds of quiet time.
+- For each packet train, every strand arrives before the main route starts. The main route arrives before the staggered distribution branches start. Buildings receive a brief warm lighting response only after their signal arrives. Successive trains overlap across different routes, while each pulse completes its own route before repeating. Short gaps at individual nodes preserve readable branching; the established network keeps moving without the former global quiet interval.
 - Routes follow street gaps, then an exterior facade riser to each endpoint. Tests sample every route against all building interiors. There are no airborne fibre links or random independent particles.
 - `option-e/city-three.js` draws instanced buildings and bands, line-segment routes and fading trails, and concentrated sprite pulse heads/node halos. One generated 64px radial sprite is shared. There are no real-time shadows, bloom passes, external models or large particle systems.
 - `option-e/city-experience.js` remains the single 30 FPS controller. It lazy-loads the renderer after 700ms, pauses offscreen or when hidden, releases resources on unmount and handles WebGL failure. Headline changes do not import or rebuild the scene. Its existing eight-second message dwell remains.
@@ -38,7 +40,7 @@ Both residential and business carousels were checked at requested widths 1440, 1
 
 Live browser checks confirmed a single scene canvas, a stable frame count while manually paused, a paused arc, offscreen pause, successful route remount and the forced compatibility fallback with usable CTAs and no canvas. Automated tests additionally exercise hidden-tab, reduced-motion, WebGL-failure, cleanup and low-performance paths, and verify that changing headlines does not reload the renderer. Reduced motion and hidden-tab behaviour were tested through those lifecycle fixtures rather than a physical mobile device or operating-system setting.
 
-`npm test`: **141 passed, 0 failed** (43.88s). This includes desktop/compact path connectivity, causal branching, all destination activations, quiet rests, route/building collision checks and existing customer journeys.
+`npm test`: **141 passed, 0 failed** (53.99s). This includes desktop/compact path connectivity, causal branching, repeated rear destination activations, continuous established traffic, route/building collision checks and existing customer journeys. The final ground-entry/rear endpoint placement refinements also passed the 13 focused network and lifecycle tests. Rear endpoints are checked for visibility through the camera sweep so the destination glow is not hidden behind another tower.
 
 `npm run build`: **passed**. E's source modules, SVG, vendor licence/provenance and assets are included in `public_html/option-e/`.
 
@@ -48,27 +50,27 @@ Measurements below are from the local desktop browser. The compact result uses a
 
 | Observation | Desktop | Compact viewport |
 |---|---:|---:|
-| Renderer ready | 1,015ms | 867ms |
-| Idle sampled frame rate | 30.1 FPS | 30.1 FPS |
-| Mean render submission | 0.71ms | 0.79ms |
-| Draw calls | 11 | 11 |
-| Triangles | 1,856 | 896 |
+| Renderer ready | 882ms | 852ms |
+| Idle sampled frame rate | 30.0 FPS | 30.1 FPS |
+| Mean render submission | 1.13ms | 1.24ms |
+| Draw calls | 12 | 12 |
+| Triangles | 1,920 | 960 |
 | Geometry / texture counts | 9 / 1 | 9 / 1 |
-| Sampled JS heap | 9.9MB | 11.5MB |
-| Observed long tasks / longest | 2 / 191ms | 2 / 102ms |
+| Sampled JS heap | 10.9MB | 10.3MB |
+| Observed long tasks / longest | 4 / 111ms | 2 / 83ms |
 
 Geometry and texture counts stayed stable over repeated cycles. No sustained freeze was observed while scrolling or changing plans. The recorded initial long tasks mean this is not a claim of zero main-thread blocking, guaranteed device performance or a complete memory-leak audit. Actual lower-powered phone hardware still needs device testing.
 
 ## Review evidence
 
-- [Desktop hero](evidence/template-e-network/hero-desktop.png)
-- [Mobile hero](evidence/template-e-network/hero-mobile.png)
-- [Working animation capture, 19.63 seconds](evidence/template-e-network/network-demo.mp4)
+- [Updated desktop hero](evidence/template-e-network/hero-grounded-desktop.png)
+- [Updated mobile hero](evidence/template-e-network/hero-grounded-mobile.png)
+- [Continuous rear-network animation capture](evidence/template-e-network/continuous-flow.mp4)
 - [Residential carousel, desktop](evidence/template-e-network/carousel-1440.png) and [mobile](evidence/template-e-network/carousel-390.png)
 - [Business carousel, desktop](evidence/template-e-network/carousel-business-1440.png) and [mobile](evidence/template-e-network/carousel-business-390.png)
 - [Footer silhouette](evidence/template-e-network/footer-desktop.png)
-- Raw [performance](evidence/template-e-network/performance.json), [live transmission samples](evidence/template-e-network/live-signals.json), [residential responsive checks](evidence/template-e-network/responsive-checks.json), and [business responsive checks](evidence/template-e-network/business-responsive-checks.json).
+- Current raw [performance](evidence/template-e-network/continuous-flow-performance.json) and [live continuous-flow samples](evidence/template-e-network/continuous-flow-samples.json); retained [residential responsive checks](evidence/template-e-network/responsive-checks.json), and [business responsive checks](evidence/template-e-network/business-responsive-checks.json).
 
-The review MP4 encodes timestamped screenshots of the working browser at approximately three captured samples per second. It demonstrates the actual sequence but cannot represent the native renderer's measured 30 FPS smoothness. Capture overhead lowered render samples to roughly 23–27 FPS during recording. The MP4 is review evidence only; the website does not load a video, GIF or image slideshow.
+The updated review MP4 encodes timestamped screenshots of the working browser at approximately 2.5 captured samples per second. It demonstrates the actual continuous sequence but cannot represent the native renderer's measured 30 FPS smoothness. Capture overhead lowered render samples to roughly 19–27 FPS during recording. The MP4 is review evidence only; the website does not load a video, GIF or image slideshow. The initial prototype screenshots, metrics and `network-demo.mp4` remain as historical evidence before this follow-up.
 
 Review the local preview before requesting a push. No further expansion of the city network is needed to assess this working vertical slice.

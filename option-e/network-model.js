@@ -38,28 +38,31 @@ export function createNetworkModel({mobile=false}={}){
   const front=grid/2*2.25,side=(grid/2-1)*2.25;
   // Bring the compact source into the visible foreground rather than clipping it
   // beyond the narrow viewport. Both source and port remain outside the blocks.
-  const source=mobile?[1.2,.42,5.5]:[-8,.42,8.2];
+  const source=mobile?[1.2,1.15,5.5]:[-8,1.15,8.2];
+  const cableBase=mobile?[1.6,.025,4.9]:[-8.7,.025,8.4];
   const port=[mobile?-.75:-side,.13,front],hub=[0,.13,front],nodes=[],routes=[];
   const addNode=(id,position,kind,building=-1)=>{nodes.push({id,position,kind,building});return nodes.length-1;};
   const portIndex=addNode('fibre-port',port,'port'),hubIndex=addNode('distribution',hub,'junction');
   for(let i=0;i<3;i++){
     const spread=(i-1)*.13,origin=[source[0]+spread*.18,source[1]+(i===1?.06:-.045),source[2]+spread];
     const from=addNode('strand-'+i,origin,'origin');
-    routes.push({id:'strand-'+i,kind:'strand',from,to:portIndex,parent:null,start:i*.32,duration:1.35,
+    routes.push({id:'strand-'+i,kind:'strand',from,to:portIndex,parent:null,start:i*.22,duration:1.1,
       ...path([origin,[origin[0]+(mobile?-.6:1.2),origin[1]+.32,origin[2]-.2],[port[0]+(mobile?.5:-.8),.35,port[2]+(mobile?.2:0)+spread],port],true)});
   }
   const inputEnd=Math.max(...routes.map(r=>r.start+r.duration));
-  const main={id:'main-fibre',kind:'trunk',from:portIndex,to:hubIndex,parent:'strand-2',start:inputEnd+.15,duration:1.5,...path([port,hub])};routes.push(main);
-  const selected=mobile?[[0,grid-1,-side],[2,grid-1,side],[grid-1,1,front]]:[[0,grid-1,-side],[2,grid-1,0],[4,grid-1,side],[grid-1,2,front]];
+  const main={id:'main-fibre',kind:'trunk',from:portIndex,to:hubIndex,parent:'strand-2',start:inputEnd+.12,duration:1.25,...path([port,hub])};routes.push(main);
+  const selected=mobile?[[0,grid-1,-side],[2,grid-1,side],[grid-1,1,front],[grid-1,0,front]]:[[0,grid-1,-side],[2,grid-1,0],[4,grid-1,side],[grid-1,2,front],[grid-1,0,front],[3,0,2.25]];
   selected.forEach(([column,row,roadX],i)=>{
     const index=column*grid+row,b=buildings[index];
     const faceX=b.x+(roadX>b.x?1:-1)*(b.w/2+.10),endpoint=[faceX,b.h+.14,b.z];
     const to=addNode('building-'+index,endpoint,'endpoint',index);
     const geometry=path([hub,[roadX,.13,front],[roadX,.13,b.z],[faceX,.13,b.z],endpoint]);
-    routes.push({id:'drop-'+i,kind:'drop',from:hubIndex,to,parent:main.id,start:main.start+main.duration+.15+i*.3,duration:1.85+geometry.length*.065,...geometry});
+    routes.push({id:'drop-'+i,kind:'drop',from:hubIndex,to,parent:main.id,start:main.start+main.duration+.12+i*.18,duration:1.35+geometry.length*.055,...geometry});
   });
-  const activeEnd=Math.max(...routes.map(r=>r.start+r.duration)),cycle=activeEnd+2.8;
-  return {grid,buildings,source,port,hub,nodes,routes,firstTransmission:3,cycle,activeEnd};
+  // Repeat packet trains before the previous train has finished downstream.
+  // Each individual route still completes before its next pulse begins.
+  const activeEnd=Math.max(...routes.map(r=>r.start+r.duration)),cycle=Math.max(...routes.map(r=>r.duration))+.4;
+  return {grid,buildings,source,cableBase,port,hub,nodes,routes,firstTransmission:3,cycle,activeEnd};
 }
 
 export function createNetworkTimeline(model){
@@ -68,10 +71,9 @@ export function createNetworkTimeline(model){
   const state={paths,nodes,buildings,cycleTime:-1,stage:'opening',sourceLevel:0,activeSignals:0};
   return {state,update(time){
     state.sourceLevel=easeSignal((time-1.3)/1.4);state.stage=time<1.3?'city-reveal':time<model.firstTransmission?'fibre-activation':'network-transmission';
-    const clock=time<model.firstTransmission?-1:(time-model.firstTransmission)%model.cycle;state.cycleTime=clock;state.activeSignals=0;nodes.fill(0);buildings.fill(0);
-    if(clock>=model.activeEnd)state.stage='ambient-rest';
+    const clock=time<model.firstTransmission?-1:time-model.firstTransmission;state.cycleTime=clock<0?-1:clock%model.cycle;state.activeSignals=0;nodes.fill(0);buildings.fill(0);
     for(let i=0;i<paths.length;i++){
-      const p=paths[i],r=p.route,age=clock-r.start,after=age-r.duration;
+      const p=paths[i],r=p.route,sinceStart=clock-r.start,age=sinceStart<0?sinceStart:sinceStart%model.cycle,after=age-r.duration;
       p.active=clock>=0&&age>=0&&after<=0;p.progress=easeSignal(age/r.duration);r.sample(p.progress,p.head);
       p.level=p.active?.75+.18*Math.sin(p.progress*Math.PI):after>=0&&after<1.4?Math.exp(-after*3)*.45:0;
       if(p.active)state.activeSignals++;

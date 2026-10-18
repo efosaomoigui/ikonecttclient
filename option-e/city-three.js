@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three-lite.js?v=5';
-import {createNetworkModel,createNetworkTimeline} from './network-model.js?v=7';
+import {createNetworkModel,createNetworkTimeline} from './network-model.js?v=10';
 
 // One E-only WebGL scene, driven by the existing visibility-aware 30 FPS controller.
 export async function createCityRenderer(host,{mobile=false}={}){
@@ -14,7 +14,13 @@ export async function createCityRenderer(host,{mobile=false}={}){
   const box=new THREE.BoxGeometry(1,1,1),dummy=new THREE.Object3D();
   const bodies=new THREE.InstancedMesh(box,new THREE.MeshLambertMaterial({color:0xffffff}),buildings.length);
   const bands=new THREE.InstancedMesh(box,new THREE.MeshBasicMaterial({color:0xb46f82}),buildings.length*3);
-  const baseColors=buildings.map(b=>new THREE.Color().setHSL(.95,.18,b.lightness));
+  const baseColors=buildings.map((b,i)=>{
+    const family=i%7;
+    if(family===1)return new THREE.Color().setHSL(.075,.12,b.lightness+.04); // warm stone
+    if(family===3)return new THREE.Color().setHSL(.96,.32,b.lightness*.70); // deep burgundy
+    if(family===5)return new THREE.Color().setHSL(.62,.10,b.lightness*.74); // charcoal slate
+    return new THREE.Color().setHSL(.95,.18,b.lightness);
+  });
   buildings.forEach((b,i)=>{
     dummy.position.set(b.x,b.h/2,b.z);dummy.scale.set(b.w,b.h,b.d);dummy.updateMatrix();bodies.setMatrixAt(i,dummy.matrix);bodies.setColorAt(i,baseColors[i]);
     for(let n=0;n<3;n++){dummy.position.set(b.x,b.h*(.3+n*.2),b.z);dummy.scale.set(b.w*1.007,.025,b.d*1.007);dummy.updateMatrix();bands.setMatrixAt(i*3+n,dummy.matrix);}
@@ -23,13 +29,15 @@ export async function createCityRenderer(host,{mobile=false}={}){
   for(let n=0;n<=grid;n++){const v=(n-grid/2)*2.25;roads.push(v,.01,-extent,v,.01,extent,-extent,.01,v,extent,.01,v);}
   const roadGeo=new THREE.BufferGeometry();roadGeo.setAttribute('position',new THREE.Float32BufferAttribute(roads,3));
   scene.add(new THREE.LineSegments(roadGeo,new THREE.LineBasicMaterial({color:0x61303e,transparent:true,opacity:.45})));
-  const cableGeo=new THREE.CylinderGeometry(.34,.36,1.85,16),coreGeo=new THREE.CylinderGeometry(.285,.285,.035,16);
+  const cableGeo=new THREE.CylinderGeometry(.34,.36,1,16),coreGeo=new THREE.CylinderGeometry(.285,.285,.035,16);
   const cableMat=new THREE.MeshLambertMaterial({color:0x67505b,transparent:true,opacity:0});
   const coreMat=new THREE.MeshBasicMaterial({color:0x0b0609,transparent:true,opacity:0});
-  const direction=(mobile?new THREE.Vector3(model.port[0]-model.source[0],0,model.port[2]-model.source[2]):new THREE.Vector3(1,0,-.18)).normalize(),tip=new THREE.Vector3(...model.source);
+  const base=new THREE.Vector3(...model.cableBase),tip=new THREE.Vector3(...model.source),direction=tip.clone().sub(base),cableLength=direction.length();direction.normalize();
   const cable=new THREE.Mesh(cableGeo,cableMat),core=new THREE.Mesh(coreGeo,coreMat);
   for(const object of [cable,core])object.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),direction);
-  cable.position.copy(tip).addScaledVector(direction,-.925);core.position.copy(tip).addScaledVector(direction,.018);scene.add(cable,core);
+  cable.scale.y=cableLength;cable.position.copy(base).addScaledVector(direction,cableLength/2);core.position.copy(tip).addScaledVector(direction,.018);
+  // A low ground collar anchors the emerging cable without adding a ground plane.
+  const collar=new THREE.Mesh(coreGeo,cableMat);collar.scale.set(1.85,1.5,1.85);collar.position.copy(base);scene.add(cable,core,collar);
   const routePositions=[],routeRanges=[];
   for(const route of model.routes){const start=routePositions.length/3;for(let n=1;n<route.samples.length;n++)routePositions.push(...route.samples[n-1],...route.samples[n]);routeRanges.push({start,count:routePositions.length/3-start});}
   const routeGeo=new THREE.BufferGeometry(),routeColors=new Float32Array(routePositions.length);
@@ -53,7 +61,7 @@ export async function createCityRenderer(host,{mobile=false}={}){
   const a=new Float32Array(3),b=new Float32Array(3),color=new THREE.Color(),activationColor=new THREE.Color(0xffcfb7);
   const signalColor=new THREE.Color(0xffd8c7),routeColor=new THREE.Color(0xa93b56);
   const updatedGeometries=[routeGeo,heads.geometry,halos.geometry,cores.geometry,tailGeo];
-  const info={drawCalls:0,triangles:0,buildings:buildings.length,pixelRatio:1,bufferWidth:0,bufferHeight:0,networkStage:'opening',activeSignals:0,litBuildings:0,networkCycle:0,routes:model.routes.length,endpoints:mobile?3:4,geometries:0,textures:0};
+  const info={drawCalls:0,triangles:0,buildings:buildings.length,pixelRatio:1,bufferWidth:0,bufferHeight:0,networkStage:'opening',activeSignals:0,litBuildings:0,networkCycle:0,routes:model.routes.length,endpoints:model.nodes.filter(n=>n.kind==='endpoint').length,geometries:0,textures:0};
   let ratio=1,disposed=false;
   function resize(){
     const rect=host.getBoundingClientRect(),scale=Math.min(1,(mobile?600:860)/Math.max(1,rect.width),400/Math.max(1,rect.height));

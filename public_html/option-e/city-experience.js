@@ -1,7 +1,7 @@
 export const cityMessages=['Connectivity without limits.','A city powered by connection.','Your world. Always connected.'];
 export const canAnimate=state=>state.visible&&state.onscreen&&!state.reduced&&!state.paused&&!state.failed;
 
-export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=8'),delay=700}){
+export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=11'),delay=700}){
   if(!hero)return {destroy(){}};
   const win=root.ownerDocument.defaultView,doc=root.ownerDocument,abort=new win.AbortController(),opts={signal:abort.signal};
   const reduced=win.matchMedia('(prefers-reduced-motion:reduce)'),mobile=win.matchMedia('(max-width:1023px)').matches;
