@@ -1,7 +1,11 @@
 // Run through Agent 1's tsx when the shared TypeScript contract is available.
 import { pathToFileURL } from "node:url";
 import { rawFixture } from "../fixtures.js";
-const C = await import(pathToFileURL(process.argv[2]).href);
+const C = await import(
+  process.argv[2]
+    ? pathToFileURL(process.argv[2]).href
+    : new URL("../vendor/index.ts", import.meta.url).href
+);
 for (const [key, schema] of [
   ["customer", C.Customer],
   ["plans", C.Plan],

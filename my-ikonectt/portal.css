@@ -1613,3 +1613,35 @@ th {
 html {
   scroll-behavior: auto;
 }
+
+/* Stage 2: keep API-provided order names and statuses within the approved panels. */
+.order-row > div {
+  min-width: 0;
+}
+.order-row > div:first-child {
+  flex: 1;
+}
+.order-row > div:last-child {
+  flex: 0 1 45%;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.order-row h3,
+.order-row small {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 640px) {
+  .orders-panel .compact {
+    flex-wrap: wrap;
+  }
+  .order-row {
+    align-items: flex-start;
+  }
+  .breadcrumb {
+    overflow-wrap: anywhere;
+  }
+  .demo-banner span {
+    text-align: right;
+  }
+}

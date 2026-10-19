@@ -1,49 +1,82 @@
-# My Ikonectt customer portal
+# My Ikonectt — Stage 2
 
-Standalone customer frontend in `my-ikonectt/`. No public website, Admin/CRM, backend or shared contract files are changed. Built with browser ES modules, local CSS, local fonts and existing approved brand assets. No runtime dependency installation is required. Use Node 22+.
+The approved customer portal is integrated with Shared API v1.0.1. The public website and Admin/CRM are unchanged. Development stays on port **4175**; the separate backend is **4000**.
+
+## Run
+
+Use Node 22.9 or later. From `my-ikonectt/`:
 
 ```powershell
-cd my-ikonectt
+npm ci
+Copy-Item .env.example .env
 npm run dev
 ```
 
-Open http://127.0.0.1:4175/. Routes use hashes so the same files can be mounted at any static subdirectory without server rewrite rules.
+Open http://127.0.0.1:4175/. Keep the process running. The API must also be running. Agent 1’s development procedures are in its `backend/DEVELOPMENT.md`.
+
+`.env` is ignored. Its public configuration fields are:
+
+```text
+IKONECTT_MODE=live
+IKONECTT_API_BASE=http://127.0.0.1:4000/api/v1
+PORT=4175
+```
+
+Only `mode` and `apiBase` are emitted into browser runtime configuration. No account credentials, setup codes, database URL or provider secrets belong in this configuration. CORS must allow the actual frontend origin. The development server serves only on loopback and blocks private directories.
+
+Live mode uses staff-issued development credentials. Read those locally from the ignored account document supplied by Agent 1; no passwords or setup codes are published in source or this report. A dedicated isolated account created by the opt-in test is also available in ignored `.local/e2e-browser.json`. Do not use these accounts outside the development environment.
+
+For the approved isolated mock experience, set `IKONECTT_MODE=mock` in `.env` and restart. The Stage 1 account `10000001` / `IkonecttDemo!2026` works **only in explicit mock mode**. All mock activity is visibly labeled and resets on reload. Live failures never switch providers.
+
+## Build and checks
 
 ```powershell
+npm run typecheck
 npm test
 npm run build
 ```
 
-The build emits `my-ikonectt/dist/`. Deploy that directory to the customer portal host or a `/my-ikonectt/` static mount. The existing public website showcase build is intentionally unchanged and does not package this independently owned application.
+The static bundle is in `dist/`. Build reads the same environment configuration as development. Browser JavaScript has no external CDN dependency. No production deployment has been performed. The existing public showcase build intentionally does not package this separately owned product.
 
-## Preview account
+`client.ts` uses the canonical `createApiClient` and Zod schemas for typed input/output validation. `compile-contracts.mjs` bundles this shared runtime for the browser. `live.js` maps canonical records into presentation models. `api.js` selects an explicit independent mock adapter. HTTP is confined to the service layer. TypeScript view models derive their wire types from the authoritative snapshot, rather than declaring a competing API.
 
-- Account number: `10000001`
-- Password: `IkonecttDemo!2026`
-- Development setup/recovery code: `DEMO-RESET-TOKEN`
-
-All fixtures and actions are simulated, visibly labeled, and contain no production data. The demo session marker uses sessionStorage; it is never consulted by the live adapter. Demo ticket/password changes are memory-only and reset on page reload. Demo access is hidden automatically in live mode. There is no self-registration.
-
-## Live configuration
-
-Edit `config.js`: set `mode: 'live'` and the backend `apiBase`, including `/api/v1`. Rebuild. The frontend's actual origin must be allowed by backend CORS. Use HTTPS for deployment. A running API and staff-issued customer credentials are required.
-
-`live.js` consumes Agent 1's `contracts/index.ts` and `contracts/README.md` v1.0.0 routes. It maps canonical wire records to the view interfaces in `types.d.ts`. `fixtures.js` supplies the same wire shapes to the same mapping functions. Shared contracts remain authoritative; they are not duplicated or modified here.
-
-Live bearer tokens remain in memory, never URLs or browser storage. Reloading a live portal requires sign-in again because v1 has no refresh endpoint. Server sessions are checked on authenticated navigation. Logout calls the revocation endpoint and always clears local credentials. Password changes revoke sessions and return to sign-in. Mandatory password setup routes directly to Account Security before protected data is fetched.
-
-Recovery requests return a generic acknowledgement. The separate setup/recovery form accepts the code sent through the approved verified channel. Codes are not read from URLs or retained by the frontend. Development recovery does not send email or SMS.
-
-Billing money converts integer minor units exactly once in the service layer. Only confirmed payments expose receipts. There is no invoice endpoint in v1, so bills show an explicit empty state. Usage, service addresses and unavailable plan details are not fabricated. Notification UI shows supported delivery metadata, without inventing message content.
-
-`config.chat` is a future integration boundary. When supplied, its button dispatches `ikonectt:customer-care-open` on `window`; the approved customer-care integration can subscribe. No chatbot, third-party SDK, credential or autonomous action is included.
-
-## Contract validation
-
-After the backend branch is available, wire fixtures can be checked against its canonical Zod schemas:
+The read-only snapshot in `vendor/` was extracted from committed backend contract `4f90e10fbdb9e04fb606109ac5ff3d81145ba18e`. `vendor/provenance.json` identifies its origin. It includes the exact canonical index, OpenAPI document, README and fixtures. Updating it requires a published stable Agent 1 commit:
 
 ```powershell
-node --experimental-strip-types tests/verify-contracts.mjs ../contracts/index.ts
+node sync-contracts.mjs <approved-commit>
+node compile-contracts.mjs
 ```
 
-The path argument may point to the backend agent's separate checkout. This check only reads those files. See `DELIVERY.md` for the tested state and limitations.
+This reads Git objects and writes only the portal’s vendor directory. It never edits canonical contracts or copies uncommitted backend files.
+
+## Connected customer actions
+
+Account setup/recovery, login/session/logout/password change, dashboard, phone update, subscriptions, published plans, service orders and order details, payment reporting, confirmed receipts, tickets and replies, recorded building coverage checks, notification delivery metadata, capabilities and read-only guidance are connected.
+
+Orders appear within My Services. Payment reporting appears within Billing & Payments. Plans and coverage are reachable from My Services; guidance is reachable from Support. The approved navigation and visual language are preserved. Customer accounts cannot self-register.
+
+Live bearer tokens stay in memory and have a timer based on the server expiry. Reloading requires sign-in because v1 has no refresh tokens. Authenticated navigation checks the session; a server 401 clears customer state. Mandatory password changes gate the dashboard. Logout calls the revocation endpoint and clears local state even if the network is unavailable. Recovery/setup codes are entered privately, never taken from URLs or logged.
+
+Money enters/leaves the API as integer minor units; decimal input is converted without floating-point multiplication. Display supports kobo. Lists are paginated. Mutation network errors do not claim failure or success when the result is uncertain; the customer is asked to check history before resubmitting.
+
+Payment reports remain unverified until authorized staff review them. Only confirmed payments expose receipts; a direct unconfirmed receipt route handles 409. Payment confirmation does not activate service. Coverage UNKNOWN requires verification. Invoice records, usage, service address labels and customer provisioning-event detail are not supplied by v1 and are never fabricated. Customer guidance has no model or write tools.
+
+## Opt-in real API acceptance tests
+
+These tests are restricted to a loopback development API. They read Agent 1’s ignored development account document in memory, staff-create isolated labeled test customers and retain the test records. They never overwrite shared fixture passwords. Do not run against production.
+
+```powershell
+$env:IKONECTT_TEST_ACCOUNTS = '<absolute path to Agent 1 development account document>'
+npm run test:live
+```
+
+For a fresh isolated imported account that requires a first password change:
+
+```powershell
+$env:IKONECTT_PASSWORD_GATE_ACCOUNT = '<absolute path supplied by Agent 1>'
+node tests/e2e-password-gate.mjs
+```
+
+That test consumes the isolated temporary credential; it is intentionally not repeatable with the original password. The changed isolated credentials remain only in ignored `.local/password-gate-completed.json`. Test output and evidence exclude passwords, bearer tokens and setup codes.
+
+See `STAGE2_INTEGRATION_REPORT.md` and `evidence/stage2/` for results. Stage 1’s `DELIVERY.md` is retained as historical context.

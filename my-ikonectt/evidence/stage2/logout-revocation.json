@@ -1,0 +1,9 @@
+{
+  "runAt": "2026-10-19T18:39:52.442Z",
+  "passed": true,
+  "checks": [
+    "customer login succeeds",
+    "logout endpoint succeeds",
+    "reusing the revoked bearer token against auth/session returns 401"
+  ]
+}

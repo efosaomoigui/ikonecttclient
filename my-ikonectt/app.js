@@ -1,11 +1,21 @@
 import { api } from "./api.js";
 import { config } from "./config.js";
 import { demoCredentials } from "./fixtures.js";
+import {
+  loadJourney,
+  journeyScreen,
+  serviceOrders,
+  phoneForm,
+  replyForm,
+  parseAmountMinor,
+} from "./journeys.js";
 const root = document.querySelector("#app");
 let customer = null,
   data = null,
   notice = "",
-  version = 0;
+  version = 0,
+  aux = {},
+  result = {};
 const esc = (v) =>
   String(v ?? "").replace(
     /[&<>"']/g,
@@ -18,8 +28,10 @@ const money = (n, c = "NGN") =>
   new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: c,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
   }).format(n);
+const moneyMinor = (minor, currency = "NGN") => money(minor / 100, currency);
 const date = (v) =>
   v
     ? new Intl.DateTimeFormat("en-NG", { dateStyle: "medium" }).format(
@@ -52,6 +64,13 @@ const names = {
   profile: "My Profile",
   security: "Account Security",
   notifications: "Notifications",
+};
+const routeNames = {
+  orders: "My Services / Orders",
+  plans: "My Services / Plans",
+  coverage: "Coverage",
+  "payment-report": "Billing & Payments / Report payment",
+  guidance: "Support / Guidance",
 };
 const pill = (s) =>
   `<span class="pill ${["Active", "Paid", "Verified", "Resolved"].includes(s) ? "green" : ""}">${esc(s)}</span>`;
@@ -108,7 +127,7 @@ function password(name, label, autocomplete = "current-password") {
 }
 function authPage(recovery = false) {
   return publicShell(
-    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to welcome", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2><p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Have a setup or recovery code?", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
+    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to welcome", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Have a setup or recovery code?", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
   );
 }
 function tickets(items) {
@@ -123,7 +142,9 @@ function serviceCard(s) {
   return `<article class="service-card"><div class="row"><span class="eyebrow">${esc(s.name)}</span>${pill(s.status)}</div><h2>${esc(s.plan)}</h2><p><strong class="speed">${s.speedMbps === null ? "—" : esc(s.speedMbps)}</strong> ${s.speedMbps === null ? "Speed unavailable" : "Mbps"}</p><p>Unlimited possibilities. A connection for your everyday.</p><div class="service-footer"><span>${esc(s.address || "Service address not supplied")}</span>${link(`services/${encodeURIComponent(s.id)}`, `View service ${arrow}`, "button light small")}</div></article>`;
 }
 function overview() {
-  const s = data.services[0],
+  const s =
+      data.services.find((s) => s.status.toUpperCase() === "ACTIVE") ||
+      data.services[0],
     p = data.profile;
   return `<div class="page-heading"><p class="eyebrow">YOUR CONNECTION, AT A GLANCE</p><h1>Hello, ${esc(p.name.split(" ")[0])}<span class="greeting-dot">.</span></h1><p>Welcome to your little corner of Ikonectt.</p></div><div class="overview-grid"><div>${s ? serviceCard(s) : empty("No services linked", "Contact support if you expect to see a service here.")}</div><article class="panel payment-summary"><span class="eyebrow">BILLING SNAPSHOT</span><h3>All in one place.</h3><div class="amount">${data.receipts.length ? money(data.receipts[0].amount, data.receipts[0].currency) : "—"}</div><p>${data.receipts.length ? "Most recent verified payment" : "No verified payment records available yet."}</p>${link("billing", `View billing & receipts ${arrow}`, "text-link")}</article></div><div class="quick-actions">${[
     ["services", "Explore my services", "Your plan, in detail"],
@@ -141,6 +162,20 @@ function details(entries) {
   return `<dl class="details">${entries.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v ?? "Not available")}</dd></div>`).join("")}</dl>`;
 }
 function content(route, id) {
+  const extra = journeyScreen(route, id, {
+    data,
+    aux,
+    result,
+    link,
+    esc,
+    heading,
+    details,
+    pill,
+    date,
+    moneyMinor,
+    input,
+  });
+  if (extra !== null) return extra;
   if (route === "overview") return overview();
   if (route === "services") {
     if (id) {
@@ -178,12 +213,20 @@ function content(route, id) {
         : empty(
             "No services linked",
             "Our team can help you check your account.",
-          ))
+          )) +
+      serviceOrders(data, { link, esc, pill, moneyMinor, date })
     );
   }
   if (route === "billing") {
     if (id) {
-      const r = data.receipts.find((r) => r.id === id);
+      if (aux.receiptConflict)
+        return (
+          heading(
+            "Receipt not available",
+            "Payment must be confirmed by authorized staff before a receipt can be issued.",
+          ) + link("billing", "Back to payment records", "button outline")
+        );
+      const r = aux.receipt;
       return r
         ? `${link("billing", "← Billing & Payments", "back")}<div class="row"><h1>Payment receipt</h1><button class="button outline small" data-print>Print receipt</button></div><article class="panel receipt"><img class="receipt-logo" src="assets/logo.svg" alt="Ikonectt">${pill(r.status)}<h2>${money(r.amount, r.currency)}</h2><p>${esc(r.description)}</p>${details(
             [
@@ -199,7 +242,7 @@ function content(route, id) {
     }
     return (
       heading("Billing & Payments", "A clear view of your account records.") +
-      `<article class="panel"><h2>Available bills</h2>${data.bills.length ? `<div class="table-scroll"><table><thead><tr><th>Invoice</th><th>Description</th><th>Due date</th><th>Amount</th><th>Status</th></tr></thead><tbody>${data.bills.map((b) => `<tr><td>${esc(b.reference)}</td><td>${esc(b.description)}</td><td>${date(b.dueDate)}</td><td>${money(b.amount, b.currency)}</td><td>${pill(b.status)}</td></tr>`).join("")}</tbody></table></div>` : empty("No bills available", "Bills will appear here when supplied by Ikonectt.")}</article><article class="panel"><h2>Payments & receipts</h2>${
+      `<article class="panel"><h2>Available bills</h2>${data.bills.length ? `<div class="table-scroll"><table><thead><tr><th>Invoice</th><th>Description</th><th>Due date</th><th>Amount</th><th>Status</th></tr></thead><tbody>${data.bills.map((b) => `<tr><td>${esc(b.reference)}</td><td>${esc(b.description)}</td><td>${date(b.dueDate)}</td><td>${money(b.amount, b.currency)}</td><td>${pill(b.status)}</td></tr>`).join("")}</tbody></table></div>` : empty("No bills available", "Bills will appear here when supplied by Ikonectt.")}</article><article class="panel"><div class="section-heading compact"><h2>Payments & receipts</h2>${link("payment-report", "Report a payment", "button outline small")}</div>${
         data.payments?.length
           ? data.payments
               .filter((p) => !p.receiptAvailable)
@@ -224,12 +267,12 @@ function content(route, id) {
     if (id === "new")
       return `${link("support", "← Support", "back")}${heading("How can we help?", "Tell us what’s happening. Our team will take it from here.")}<form data-form="ticket" class="panel form-panel">${input("subject", "Subject", "text", 'maxlength="120" minlength="5"')}<label>Details<textarea name="description" required minlength="15" maxlength="4000" rows="6" placeholder="Include what happened and when it started. Please don’t share passwords or card details."></textarea></label><p class="form-error" role="alert"></p><button class="button" type="submit">Submit support request ${arrow}</button></form>`;
     if (id) {
-      const t = data.tickets.find((t) => t.id === id);
+      const t = aux.ticket;
       return t
-        ? `${link("support", "← Support history", "back")}${heading(esc(t.subject), esc(t.reference) + " · " + date(t.createdAt))}<article class="panel">${pill(t.status)}${details([["Submitted", date(t.createdAt)]])}<h3>Your request</h3><p class="preserve">${esc(t.description)}</p><h3>Request updates</h3><ol class="timeline">${t.updates.map((u) => `<li><small>${date(u.at)}</small><p>${esc(u.message)}</p></li>`).join("")}</ol></article>`
+        ? `${link("support", "← Support history", "back")}${heading(esc(t.subject), esc(t.reference) + " · " + date(t.createdAt))}<article class="panel">${pill(t.status)}${details([["Submitted", date(t.createdAt)]])}<h3>Your request</h3><p class="preserve">${esc(t.description)}</p><h3>Request updates</h3><ol class="timeline">${t.updates.map((u) => `<li><small>${date(u.at)}</small><p>${esc(u.message)}</p></li>`).join("")}</ol></article>${replyForm(t, { esc })}`
         : missing();
     }
-    return `<div class="row">${heading("A helping hand.", "Your requests, and the people helping you stay connected.")}${link("support/new", `New support request ${arrow}`, "button")}</div><article class="panel"><h2>Request history</h2>${tickets(data.tickets)}</article><div class="support-boundary"><h3>Let’s keep the conversation connected.</h3><p>Customer chat will appear here when it becomes available. For now, submit a support request and track it here.</p>${config.chat ? '<button class="button outline" data-chat>Open customer care</button>' : link("support/new", "Contact the support team", "text-link")}</div>`;
+    return `<div class="row">${heading("A helping hand.", "Your requests, and the people helping you stay connected.")}${link("support/new", `New support request ${arrow}`, "button")}</div><article class="panel"><h2>Request history</h2>${tickets(data.tickets)}</article><div class="support-boundary"><h3>Let’s keep the conversation connected.</h3><p>Customer chat will appear here when it becomes available. For now, submit a support request and track it here.</p>${link("guidance", "Read-only account guidance", "text-link")}<br>${config.chat ? '<button class="button outline" data-chat>Open customer care</button>' : link("support/new", "Contact the support team", "text-link")}</div>`;
   }
   if (route === "profile")
     return (
@@ -242,10 +285,11 @@ function content(route, id) {
       )}</div><h2>${esc(data.profile.name)}</h2>${details([
         ["Account number", data.profile.accountNumber],
         ["Account type", data.profile.customerType],
+        ["Account status", data.profile.status],
         ["Email", data.profile.email],
         ["Phone", data.profile.phone],
         ["Service address", data.profile.address],
-      ])}<p class="subtle-note">Need to correct your details? Our team will verify and update your account.</p>${link("support/new", "Request a profile correction", "button outline")} ${link("security", "Manage account security →", "text-link")}</article>`
+      ])}<p class="subtle-note">Need to correct your details? Our team will verify and update your account.</p>${link("support/new", "Request a profile correction", "button outline")} ${link("security", "Manage account security →", "text-link")}</article>${phoneForm(data.profile, { esc })}`
     );
   if (route === "security")
     return (
@@ -295,6 +339,7 @@ function missing() {
   );
 }
 function shell(body, route) {
+  const navigationRoute={orders:"services",plans:"services",coverage:"services","payment-report":"billing",guidance:"support"}[route]||route;
   return `<div class="app-shell"><aside class="sidebar">${logo()}<div class="sidebar-label">YOUR ACCOUNT</div><nav aria-label="Account navigation">${Object.entries(
     names,
   )
@@ -303,12 +348,12 @@ function shell(body, route) {
       link(
         k,
         `<span class="nav-icon" aria-hidden="true">${icons[k]}</span>${v}`,
-        route === k ? "active" : "",
+        navigationRoute === k ? "active" : "",
       ),
     )
     .join(
       "",
-    )}</nav><div class="sidebar-bottom"><div class="care-card"><strong>A real team.<br>Right here for you.</strong>${link("support/new", "Let’s talk " + arrow)}</div><button data-logout class="logout">↪ <span>Sign out securely</span></button></div></aside><div class="app-body"><header class="app-header"><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button><span class="breadcrumb">My Ikonectt <span>/</span> ${names[route] || "Account"}</span><div class="account-chip"><span class="account-number">Account ${esc(customer.accountNumber)}</span>${link(
+    )}</nav><div class="sidebar-bottom"><div class="care-card"><strong>A real team.<br>Right here for you.</strong>${link("support/new", "Let’s talk " + arrow)}</div><button data-logout class="logout">↪ <span>Sign out securely</span></button></div></aside><div class="app-body"><header class="app-header"><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button><span class="breadcrumb">My Ikonectt <span>/</span> ${names[route] || routeNames[route] || "Account"}</span><div class="account-chip"><span class="account-number">Account ${esc(customer.accountNumber)}</span>${link(
     "profile",
     esc(
       customer.name
@@ -317,7 +362,7 @@ function shell(body, route) {
         .join(""),
     ),
     "avatar",
-  )}</div></header><main id="main" class="dashboard" tabindex="-1">${config.mode === "mock" || data.simulated ? '<div class="demo-banner">Development preview <span>Sample account · simulated actions</span></div>' : ""}${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}${body}<div class="dashboard-footer"><span>Connected with Ikonectt.</span><span>Your account number: ${esc(customer.accountNumber)}</span></div></main></div></div>`;
+  )}</div></header><main id="main" class="dashboard" tabindex="-1">${config.mode === "mock" ? '<div class="demo-banner">Development preview <span>Sample account · simulated actions</span></div>' : data.simulated ? '<div class="demo-banner">Connected to development API <span>SIMULATED fixture records · real API requests</span></div>' : ""}${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}${body}<div class="dashboard-footer"><span>Connected with Ikonectt.</span><span>Your account number: ${esc(customer.accountNumber)}</span></div></main></div></div>`;
 }
 async function render() {
   const tick = ++version;
@@ -328,14 +373,14 @@ async function render() {
   } catch {
     id = null;
   }
-  document.title = `${names[route] || { "": "Welcome", login: "Sign in", recover: "Account recovery", help: "Account help" }[route] || "My account"} | My Ikonectt`;
+  document.title = `${names[route] || routeNames[route] || { "": "Welcome", login: "Sign in", recover: "Account recovery", help: "Account help" }[route] || "My account"} | My Ikonectt`;
   if (["", "login", "recover", "reset", "help"].includes(route)) {
     root.innerHTML =
       route === ""
         ? welcome()
         : route === "reset"
           ? publicShell(
-              `<section class="reset-page section">${link("login", "← Back to sign in", "back")}<p class="eyebrow">SECURE ACCOUNT ACCESS</p><h1>A fresh start.</h1><p>Enter the setup or recovery code supplied to your verified contact, then choose a password.</p><form data-form="reset" class="panel form-panel">${input("token", "Setup or recovery code", "text", 'autocomplete="off" maxlength="200"')}${password("next", "New password", "new-password")}${password("confirm", "Confirm new password", "new-password")}<p class="form-error" role="alert"></p><button type="submit" class="button">Set password ${arrow}</button></form>${config.mode === "mock" ? '<p class="subtle-note">Development code: DEMO-RESET-TOKEN. This action is simulated.</p>' : ""}</section>`,
+              `<section class="reset-page section">${link("login", "← Back to sign in", "back")}<p class="eyebrow">SECURE ACCOUNT ACCESS</p><h1>A fresh start.</h1><p>Enter the setup or recovery code supplied to your verified contact, then choose a password.</p><form data-form="reset" class="panel form-panel">${input("token", "Setup or recovery code", "password", 'autocomplete="off" maxlength="200"')}${password("next", "New password", "new-password")}${password("confirm", "Confirm new password", "new-password")}<p class="form-error" role="alert"></p><button type="submit" class="button">Set password ${arrow}</button></form>${config.mode === "mock" ? '<p class="subtle-note">Development code: DEMO-RESET-TOKEN. This action is simulated.</p>' : ""}</section>`,
             )
           : route === "help"
             ? publicShell(
@@ -343,6 +388,7 @@ async function render() {
               )
             : authPage(route === "recover");
     bind();
+    notice = "";
     return;
   }
   root.innerHTML =
@@ -357,6 +403,9 @@ async function render() {
       }
       data = { profile: customer };
     } else if (!data) data = await api.summary();
+    aux = customer.mustChangePassword
+      ? {}
+      : await loadJourney(route, id, api, data);
     if (tick !== version) return;
     root.innerHTML = shell(content(route, id), route);
     notice = "";
@@ -368,6 +417,7 @@ async function render() {
     if (e.status === 401) {
       customer = null;
       data = null;
+      notice = "Please sign in to access your account.";
       location.hash = "/login";
     } else {
       root.innerHTML = publicShell(
@@ -398,15 +448,13 @@ function bind() {
   root
     .querySelector("[data-print]")
     ?.addEventListener("click", () => window.print());
-  root
-    .querySelector("[data-chat]")
-    ?.addEventListener("click", () =>
-      window.dispatchEvent(
-        new CustomEvent("ikonectt:customer-care-open", {
-          detail: { source: "customer-portal" },
-        }),
-      ),
-    );
+  root.querySelector("[data-chat]")?.addEventListener("click", () =>
+    window.dispatchEvent(
+      new CustomEvent("ikonectt:customer-care-open", {
+        detail: { source: "customer-portal" },
+      }),
+    ),
+  );
   root.querySelector(".menu-toggle")?.addEventListener("click", (e) => {
     const open = root.querySelector(".app-shell").classList.toggle("nav-open");
     e.currentTarget.setAttribute("aria-expanded", String(open));
@@ -420,6 +468,7 @@ function bind() {
     } finally {
       customer = null;
       data = null;
+      notice = "Please sign in to access your account.";
       location.hash = "/login";
     }
   });
@@ -457,6 +506,62 @@ async function submit(e) {
         f.innerHTML = `<div class="notice" role="status">${esc(result.message)}</div>${link("reset", "Use your recovery code →", "text-link")}`;
         break;
       }
+      case "phone":
+        customer = await api.updateProfile(values.phone.trim());
+        data = null;
+        notice = "Your phone number has been updated.";
+        await render();
+        break;
+      case "order": {
+        const payload = {
+          planId: values.planId,
+          buildingId: values.buildingId,
+          type: values.type,
+          ...(values.subscriptionId
+            ? { subscriptionId: values.subscriptionId }
+            : {}),
+        };
+        const order = await api.createOrder(payload);
+        data = null;
+        notice =
+          "Order received. Payment verification and provisioning are separate steps.";
+        location.hash = "/orders/" + order.id;
+        break;
+      }
+      case "payment":
+        await api.reportPayment({
+          orderId: values.orderId,
+          amountMinor: parseAmountMinor(values.amount),
+          currency: "NGN",
+          reference: values.reference.trim(),
+          method: values.method,
+          evidence: values.evidence.trim(),
+        });
+        data = null;
+        notice =
+          "Payment reported for staff review. It is not yet confirmed and does not activate service.";
+        location.hash = "/billing";
+        break;
+      case "reply":
+        await api.reply(f.dataset.id, values.message.trim());
+        data = null;
+        notice =
+          "Your response has been sent. The current request status is shown below.";
+        await render();
+        break;
+      case "coverage":
+        result = {
+          coverage: await api.checkCoverage({
+            buildingId: values.buildingId,
+            ...(values.planId ? { planId: values.planId } : {}),
+          }),
+        };
+        await render();
+        break;
+      case "guidance":
+        result = { guidance: await api.guidance(values.message.trim()) };
+        await render();
+        break;
       case "ticket":
         if (
           values.subject.trim().length < 5 ||
@@ -505,6 +610,7 @@ async function submit(e) {
     if (err.status === 401 && f.dataset.form !== "login") {
       customer = null;
       data = null;
+      notice = "Please sign in to access your account.";
       location.hash = "/login";
     }
   } finally {
@@ -519,7 +625,16 @@ window.addEventListener("keydown", (e) => {
     root.querySelector(".menu-toggle")?.setAttribute("aria-expanded", "false");
   }
 });
+window.addEventListener("ikonectt:session-expired", () => {
+  customer = null;
+  data = null;
+  result = {};
+  notice = "Your session has ended. Please sign in again.";
+  if (location.hash !== "#/login") location.hash = "/login";
+  else render();
+});
 window.addEventListener("hashchange", () => {
+  result = {};
   render();
   window.scrollTo(0, 0);
 });
