@@ -1,0 +1,228 @@
+import { z } from 'zod';
+import * as C from '../vendor/contracts';
+import { ROLE_PERMISSIONS, type StaffRole } from '../vendor/permissions';
+import { modules, type RecordData } from './modules';
+import { fixtures, uuid } from './fixtures';
+export type Session = z.infer<typeof C.Session>;
+export class ApiError extends Error {
+    constructor(message: string, public status = 400) { super(message); }
+}
+export class WorkspaceApi {
+    session: Session | null = null;
+    mode: 'live' | 'mock' = 'live';
+    data = fixtures();
+    permissions: string[] = [];
+    onExpired = () => { };
+    async request(path: string, method = 'GET', body?: unknown): Promise<any> {
+        const sessionAtStart = this.session;
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 15000);
+        try {
+            const r = await fetch(`/api/v1${path}`, { method, signal: controller.signal, cache: 'no-store', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', ...(this.session ? { Authorization: `Bearer ${this.session.accessToken}` } : {}) }, ...(body !== undefined ? { body: JSON.stringify(body) } : {}) });
+            const payload = await r.json().catch(() => null);
+            if (sessionAtStart && sessionAtStart !== this.session)
+                throw new ApiError('This session has ended.', 401);
+            if (!r.ok) {
+                if (r.status === 401 && this.session) {
+                    this.clear();
+                    this.onExpired();
+                }
+                throw new ApiError(payload?.message || `Request failed (${r.status})`, r.status);
+            }
+            if (payload === null)
+                throw new ApiError('The service returned an invalid response.', 502);
+            return payload;
+        }
+        catch (e) {
+            if (e instanceof ApiError)
+                throw e;
+            throw new ApiError(e instanceof Error && e.name === 'AbortError' ? 'The service timed out. Please retry.' : 'Cannot reach the shared backend. Check the service connection.', 503);
+        }
+        finally {
+            clearTimeout(timer);
+        }
+    }
+    clear() { this.session = null; this.permissions = []; this.data = fixtures(); }
+    setSession(session: Session) { if (session.principal.kind !== 'STAFF')
+        throw new ApiError('Staff access is required.', 403); this.session = session; this.permissions = [...new Set(session.principal.roles.flatMap(role => ROLE_PERMISSIONS[role]))]; }
+    assert(permission: string) { if (!this.session || Date.parse(this.session.expiresAt) <= Date.now()) {
+        this.clear();
+        this.onExpired();
+        throw new ApiError('Your session has expired. Sign in again.', 401);
+    } if (!this.permissions.includes(permission))
+        throw new ApiError('You do not have permission for this action.', 403); }
+    async login(email: string, password: string) { this.mode = 'live'; const input = C.StaffLoginRequest.parse({ email, password }); try {
+        this.setSession(C.Session.parse(await this.request('/auth/staff/login', 'POST', input)));
+        if (!this.session!.principal.mustChangePassword)
+            await this.refreshPermissions();
+    }
+    catch (e) {
+        this.clear();
+        throw e;
+    } }
+    async refreshPermissions() { if (this.mode === 'mock')
+        return; const result = z.object({ roles: z.array(C.Role), permissions: z.array(z.string()) }).parse(await this.request('/admin/permissions')); this.permissions = result.permissions; if (this.session)
+        this.session.principal.roles = result.roles; }
+    preview(role: StaffRole) { this.mode = 'mock'; this.data = fixtures(); this.setSession({ accessToken: 'SIMULATED', tokenType: 'Bearer', expiresAt: new Date(Date.now() + 3600000).toISOString(), principal: { id: uuid(80), kind: 'STAFF', customerId: null, roles: [role], mustChangePassword: false } }); }
+    async logout() { try {
+        if (this.mode === 'live' && this.session)
+            await this.request('/auth/logout', 'POST');
+    }
+    finally {
+        this.clear();
+    } }
+    async list(key: string): Promise<RecordData[]> {
+        const m = modules[key];
+        this.assert(m.permission);
+        if (this.mode === 'mock')
+            return this.data[key].map(item => m.schema.parse(structuredClone(item)));
+        let all: RecordData[] = [];
+        let offset = 0;
+        while (true) {
+            const page = C.page(m.schema).parse(await this.request(`${m.path}?offset=${offset}&limit=100`));
+            all.push(...page.items);
+            offset += page.items.length;
+            if (offset >= page.total)
+                break;
+            if (!page.items.length)
+                throw new ApiError('The service returned an incomplete page.', 502);
+        }
+        return all;
+    }
+    audit(action: string, entityType: string, entityId: string) { this.data.audit.unshift({ id: crypto.randomUUID(), actorId: this.session!.principal.id, action, entityType, entityId, metadata: { simulated: true }, createdAt: new Date().toISOString() }); }
+    async save(key: string, input: RecordData, id?: string) {
+        const m = modules[key];
+        this.assert(m.write || '__denied');
+        const schema = id ? m.update : m.input;
+        if (!schema)
+            throw new ApiError('This operation is not supported by the contract.');
+        const body = schema.parse(input);
+        if (this.mode === 'live')
+            return this.request(`${m.path}${id ? `/${encodeURIComponent(id)}${key === 'provisioning' ? '/result' : ''}` : ''}`, id && key !== 'provisioning' ? 'PATCH' : 'POST', body);
+        if (key === 'coverage' && !id) {
+            const levels = C.CoverageLevel.options;
+            const pos = levels.indexOf(body.level);
+            const parent = this.data.coverage.find(x => x.id === body.parentId);
+            if (pos === 0 ? !!body.parentId : (!parent || parent.level !== levels[pos - 1]))
+                throw new ApiError('Choose a parent at the preceding hierarchy level.');
+        }
+        if (id) {
+            const item = this.data[key].find(x => x.id === id);
+            if (!item)
+                throw new ApiError('Record not found.', 404);
+            if (key === 'staff' && item.roles.includes('ADMIN') && (body.enabled === false || (body.roles && !body.roles.includes('ADMIN'))) && !this.data.staff.some(x => x.id !== id && x.enabled && x.roles.includes('ADMIN')))
+                throw new ApiError('At least one enabled administrator is required.');
+            if (key === 'provisioning') {
+                if (item.mode.toLowerCase() !== 'manual')
+                    throw new ApiError('Only manual requests accept staff-confirmed outcomes.');
+                if (item.status === 'ACTIVE')
+                    throw new ApiError('This request has already been completed.', 409);
+                const sub = this.data.subscriptions.find(x => x.id === item.subscriptionId);
+                const order = this.data.orders.find(x => x.id === item.orderId);
+                if (order?.status !== 'FULFILLING')
+                    throw new ApiError('Order is not awaiting fulfillment.');
+                if (body.status === 'ACTIVE' && !this.data.payments.some(p => p.orderId === item.orderId && p.status === 'CONFIRMED'))
+                    throw new ApiError('Confirmed payment is required.');
+                if (sub) {
+                    sub.status = body.status;
+                    if (body.status === 'ACTIVE') {
+                        sub.startsAt = new Date().toISOString();
+                        sub.endsAt = new Date(Date.now() + order.billingDays * 86400000).toISOString();
+                        sub.externalServiceId = body.reference;
+                        order.status = 'COMPLETED';
+                    }
+                }
+            }
+            Object.assign(item, body);
+            this.audit('UPDATE', key, id);
+            return structuredClone(item);
+        }
+        const item = { id: crypto.randomUUID(), ...body, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+        if (key === 'customers')
+            Object.assign(item, { accountNumber: `SIM-${String(this.data.customers.length + 10000001)}`, accountNumberSimulated: true, status: 'ACTIVE', buildingId: body.buildingId || null });
+        if (key === 'plans')
+            Object.assign(item, { simulated: true });
+        if (key === 'coverage')
+            Object.assign(item, { parentId: body.parentId || null, evidence: body.evidence || null, simulated: true, verifiedAt: null });
+        if (key === 'staff') {
+            delete item.password;
+            Object.assign(item, { enabled: true });
+        }
+        if (key === 'tickets') {
+            if (!this.data.customers.some(c => c.id === body.customerId))
+                throw new ApiError('Customer not found.');
+            Object.assign(item, { status: 'OPEN', assignedToId: null, subscriptionId: body.subscriptionId || null });
+            delete item.message;
+            this.data.messages.push({ id: crypto.randomUUID(), ticketId: item.id, authorId: this.session!.principal.id, message: body.message, createdAt: item.createdAt });
+        }
+        if (key === 'payments') {
+            const order = this.data.orders.find(x => x.id === body.orderId);
+            if (!order)
+                throw new ApiError('Order not found.');
+            if (order.status !== 'PENDING_PAYMENT' || order.amountMinor !== body.amountMinor || order.currency !== body.currency)
+                throw new ApiError('Report must match an order awaiting payment.');
+            if (this.data.payments.some(x => x.reference === body.reference))
+                throw new ApiError('Payment reference already exists.', 409);
+            Object.assign(item, { customerId: order.customerId, status: 'REPORTED', verificationEvidence: null, verifiedById: null, verifiedAt: null });
+        }
+        if (key === 'provisioning') {
+            const order = this.data.orders.find(x => x.id === body.orderId);
+            if (!order || order.status !== 'PAID' || !this.data.payments.some(p => p.orderId === order.id && p.status === 'CONFIRMED'))
+                throw new ApiError('Confirmed payment is required before fulfillment.');
+            if (this.data.provisioning.some(p => p.orderId === body.orderId))
+                throw new ApiError('A provisioning request already exists for this order.', 409);
+            const building = this.data.coverage.find(x => x.id === order.buildingId);
+            if (building?.eligibility !== 'AVAILABLE' || !building.planIds.includes(order.planId))
+                throw new ApiError('Verified address eligibility is required.');
+            const sub = { id: crypto.randomUUID(), customerId: order.customerId, planId: order.planId, buildingId: order.buildingId, status: 'PENDING', startsAt: null, endsAt: null, externalServiceId: null, simulated: true };
+            this.data.subscriptions.push(sub);
+            Object.assign(item, { subscriptionId: sub.id, status: 'PENDING', mode: 'manual', reference: null, simulated: true });
+            order.status = 'FULFILLING';
+        }
+        if (key === 'orders') {
+            const plan = this.data.plans.find(p => p.id === body.planId);
+            const customer = this.data.customers.find(c => c.id === body.customerId);
+            const building = this.data.coverage.find(c => c.id === body.buildingId);
+            if (!plan || !customer || building?.level !== 'BUILDING_ADDRESS')
+                throw new ApiError('Select an existing customer, plan and building.');
+            if (customer.status !== 'ACTIVE')
+                throw new ApiError('Customer account is not active.');
+            if (!plan.published || plan.kind !== customer.kind)
+                throw new ApiError('A published plan for this customer type is required.');
+            if (body.type !== 'NEW_CONNECTION') {
+                const sub = this.data.subscriptions.find(x => x.id === body.subscriptionId && x.customerId === customer.id);
+                if (!sub || !['ACTIVE', 'SUSPENDED'].includes(sub.status) || sub.buildingId !== body.buildingId)
+                    throw new ApiError('An eligible customer subscription is required.');
+                if (body.type === 'RENEWAL' && sub.planId !== body.planId)
+                    throw new ApiError('Renewal must keep the subscription plan.');
+            }
+            if (building.eligibility !== 'AVAILABLE' || !building.planIds.includes(plan.id))
+                throw new ApiError('The selected plan is not eligible at this address.');
+            Object.assign(item, { status: 'PENDING_PAYMENT', subscriptionId: body.subscriptionId || null, amountMinor: plan.priceMinor, currency: 'NGN', planName: plan.name, billingDays: plan.billingDays });
+        }
+        this.data[key].unshift(item);
+        this.audit('CREATE', key, item.id);
+        return structuredClone(item);
+    }
+    async verify(id: string, input: unknown) { this.assert('payments.verify'); const body = C.VerifyPaymentRequest.parse(input); if (this.mode === 'live')
+        return this.request(`/admin/payments/${id}/verify`, 'POST', body); const p = this.data.payments.find(x => x.id === id); if (!p)
+        throw new ApiError('Payment not found.', 404); if (p.status === body.decision)
+        return structuredClone(p); if (p.status !== 'REPORTED')
+        throw new ApiError('This payment has already been reviewed.', 409); const order = this.data.orders.find(x => x.id === p.orderId); if (body.decision === 'CONFIRMED' && (order?.status !== 'PENDING_PAYMENT' || order.amountMinor !== p.amountMinor))
+        throw new ApiError('Order is no longer awaiting this payment.'); p.status = body.decision; p.verificationEvidence = body.evidence; p.verifiedById = this.session!.principal.id; p.verifiedAt = new Date().toISOString(); if (body.decision === 'CONFIRMED' && order)
+        order.status = 'PAID'; this.audit(`PAYMENT_${body.decision}`, 'payments', id); return structuredClone(p); }
+    async messages(id: string) { this.assert('support.read'); return this.mode === 'mock' ? this.data.messages.filter(x => x.ticketId === id) : C.TicketDetail.parse(await this.request(`/admin/tickets/${id}`)).messages; }
+    async reply(id: string, message: string) { this.assert('support.write'); const body = C.TicketMessageRequest.parse({ message }); if (this.mode === 'live')
+        return this.request(`/admin/tickets/${id}/messages`, 'POST', body); this.data.messages.push({ id: crypto.randomUUID(), ticketId: id, authorId: this.session!.principal.id, message, createdAt: new Date().toISOString() }); this.audit('SUPPORT_MESSAGE', 'tickets', id); }
+    async receipt(id: string) { this.assert('payments.read'); if (this.mode === 'live')
+        return C.Receipt.parse(await this.request(`/admin/payments/${id}/receipt`)); const p = this.data.payments.find(x => x.id === id); if (p?.status !== 'CONFIRMED')
+        throw new ApiError('A receipt is available after confirmation.'); return { receiptNumber: `SAMPLE-${id.slice(-4)}`, payment: p, issuedAt: p.verifiedAt }; }
+    async report() { this.assert('reports.read'); if (this.mode === 'live')
+        return C.Report.parse(await this.request('/admin/reports/summary')); return C.Report.parse({ customers: this.data.customers.length, leads: this.data.leads.length, orders: this.data.orders.length, openTickets: this.data.tickets.filter(t => ['OPEN', 'IN_PROGRESS'].includes(t.status)).length, confirmedPaymentsMinor: this.data.payments.filter(p => p.status === 'CONFIRMED').reduce((n, p) => n + p.amountMinor, 0), currency: 'NGN', subscriptionsByStatus: C.SubscriptionStatus.options.map(status => ({ status, count: this.data.subscriptions.filter(s => s.status === status).length })), includesSimulatedData: true }); }
+    async integrations() { this.assert('integrations.read'); if (this.mode === 'live')
+        return this.request('/admin/integrations'); return [{ name: 'Legacy CRM', mode: 'disabled' }, { name: 'Coverage adapter', mode: 'simulated' }, { name: 'Payment provider', mode: 'manual' }, { name: 'Provisioning adapter', mode: 'manual' }, { name: 'Notifications', mode: 'disabled' }]; }
+    async references(id: string) { this.assert('integrations.read'); return this.mode === 'mock' ? this.data.references.filter(x => x.customerId === id) : z.array(C.ExternalReference).parse(await this.request(`/admin/integrations/customers/${id}/references`)); }
+    async linkReference(id: string, input: unknown) { this.assert('integrations.write'); const body = C.ExternalReferenceRequest.parse(input); if (this.mode === 'live')
+        return this.request(`/admin/integrations/customers/${id}/references`, 'POST', body); if (this.data.references.some(x => (x.customerId === id && x.system === body.system) || (x.system === body.system && x.externalId === body.externalId)))
+        throw new ApiError('This reference is already linked.', 409); const r = { id: crypto.randomUUID(), customerId: id, ...body, createdAt: new Date().toISOString() }; this.data.references.push(r); this.audit('REFERENCE_LINKED', 'customers', id); return r; }
+}

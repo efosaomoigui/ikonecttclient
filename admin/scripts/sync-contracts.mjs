@@ -1,0 +1,13 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { createHash } from 'node:crypto';
+const root=process.argv[2];
+if(!root) throw Error('Pass the Agent 1 checkout path, or the merged repository root.');
+const contract=readFileSync(resolve(root,'contracts/index.ts'),'utf8');
+const access=readFileSync(resolve(root,'backend/src/identity/access.ts'),'utf8');
+const match=access.match(/export const ROLE_PERMISSIONS[^=]*= (\{[\s\S]*?\n\});/);
+if(!match) throw Error('Shared permission export changed; inspect before synchronizing.');
+writeFileSync(new URL('../vendor/contracts.ts',import.meta.url),contract);
+writeFileSync(new URL('../vendor/permissions.ts',import.meta.url),`// Generated from Agent 1 backend/src/identity/access.ts. Do not edit.\nexport const ROLE_PERMISSIONS = ${match[1]} as const;\nexport type StaffRole = keyof typeof ROLE_PERMISSIONS;\nexport type Permission = typeof ROLE_PERMISSIONS[StaffRole][number];\n`);
+writeFileSync(new URL('../vendor/provenance.json',import.meta.url),JSON.stringify({source:'Agent 1 contracts/index.ts and backend/src/identity/access.ts',contractSha256:createHash('sha256').update(contract).digest('hex'),accessSha256:createHash('sha256').update(access).digest('hex')},null,2)+'\n');
+console.log('Synchronized shared schemas and permissions.');
