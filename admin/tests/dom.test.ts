@@ -114,3 +114,27 @@ test('DOM: recovery and reset controls acknowledge errors without storing tokens
 test('DOM: parent coverage forms lock final eligibility and hide unsupported edits',async()=>{
  const dom=boot();try{await preview(dom);await go(dom,'coverage');const doc=dom.window.document;click(dom,'[data-action=create]');await waitFor(()=>!!doc.querySelector('#record-form'));assert.equal(doc.querySelector<HTMLSelectElement>('[name=eligibility]')!.disabled,true);const level=doc.querySelector<HTMLSelectElement>('[name=level]')!;level.value='BUILDING_ADDRESS';level.dispatchEvent(new dom.window.Event('change',{bubbles:true}));assert.equal(doc.querySelector<HTMLSelectElement>('[name=eligibility]')!.disabled,false);assert.equal(doc.querySelector<HTMLSelectElement>('[name=parentId]')!.options.length,2);click(dom,'[data-action=close]');click(dom,'[data-detail]');await waitFor(()=>!!doc.querySelector('.modal'));assert.equal(doc.querySelector('[data-edit]'),null)}finally{dom.window.close()}
 });
+
+test('DOM: ticket detail renders nested API messages only in the conversation', async () => {
+ const dom=boot(); try {
+  await preview(dom); await go(dom,'tickets'); const doc=dom.window.document;
+  click(dom,'[data-detail]'); await waitFor(()=>!!doc.querySelector('.message'));
+  assert.match(doc.querySelector('.message')!.textContent!,/Sample customer message/);
+  assert.doesNotMatch(doc.querySelector('.detail-grid')!.textContent!,/Messages|\[object Object\]/);
+ } finally { dom.window.close(); }
+});
+
+test('DOM: order selectors distinguish repeated plans using reference and status', async () => {
+ const dom=boot(); try {
+  await preview(dom); await go(dom,'payments'); const doc=dom.window.document;
+  click(dom,'[data-action=create]'); await waitFor(()=>!!doc.querySelector('[name=orderId]'));
+  const options=[...doc.querySelector<HTMLSelectElement>('[name=orderId]')!.options].filter(o=>o.value);
+  assert.ok(options.length>1);
+  for(const option of options) {
+   assert.ok(option.textContent!.includes(option.value.slice(0,8)));
+   assert.ok(option.textContent!.includes(option.value.slice(-6)));
+   assert.match(option.textContent!,/Pending Payment|Paid|Completed|Fulfilling/);
+  }
+  assert.equal(new Set(options.map(o=>o.textContent)).size,options.length);
+ } finally { dom.window.close(); }
+});

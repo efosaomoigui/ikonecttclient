@@ -1,4 +1,5 @@
 import './style.css';
+import './acceptance.css';
 import { integrationState } from './integrations';
 import { createIcons, ArrowDown, ArrowRight, ArrowUpRight, Building2, CalendarDays, ChartNoAxesColumn, ChartNoAxesCombined, ChevronDown, ChevronLeft, ChevronRight, Contact, CreditCard, Eye, EyeOff, FlaskConical, Headphones, Layers, LayoutDashboard, LoaderCircle, LockKeyhole, LogOut, MapPin, Menu, Network, Pencil, Plug, Plus, RadioTower, ReceiptText, RefreshCw, ScrollText, Search, SearchX, Settings2, ShieldAlert, ShieldCheck, ShoppingBag, UserPlus, Users, X } from 'lucide';
 const icons = { ArrowDown, ArrowRight, ArrowUpRight, Building2, CalendarDays, ChartNoAxesColumn, ChartNoAxesCombined, ChevronDown, ChevronLeft, ChevronRight, Contact, CreditCard, Eye, EyeOff, FlaskConical, Headphones, Layers, LayoutDashboard, LoaderCircle, LockKeyhole, LogOut, MapPin, Menu, Network, Pencil, Plug, Plus, RadioTower, ReceiptText, RefreshCw, ScrollText, Search, SearchX, Settings2, ShieldAlert, ShieldCheck, ShoppingBag, UserPlus, Users, X };
@@ -60,7 +61,7 @@ function summaryCards(summary:C.Input<typeof C.Report>){
         ['subscriptions','Active subscriptions','radio-tower',summary.subscriptionsByStatus.find(s=>s.status==='ACTIVE')?.count||0],
         ['payments','Verified payment total','credit-card',summary.confirmedPaymentsMinor,true]
     ];
-    return items.map(([key,label,i,n,isMoney])=>`<a href="#/${can(api.permissions,modules[key].permission)?key:'reports'}" class="metric"><div><span>${label}</span>${icon(i)}</div><strong>${isMoney?money(n):n.toLocaleString()}</strong><small>${summary.includesSimulatedData?'Includes simulated data':'Backend summary'} ${icon('arrow-up-right')}</small></a>`).join('');
+    return items.map(([key,label,i,n,isMoney])=>`<a href="#/${can(api.permissions,modules[key].permission)?key:'reports'}" class="metric"><div><span>${label}</span>${icon(i)}</div><strong${isMoney?' class="metric-amount"':''}>${isMoney?money(n):n.toLocaleString()}</strong><small>${summary.includesSimulatedData?'Includes simulated data':'Backend summary'} ${icon('arrow-up-right')}</small></a>`).join('');
 }
 function authDialog(kind:'recovery'|'reset'){
     const isReset=kind==='reset';
@@ -199,7 +200,7 @@ function fieldHtml(f: Field, r: RecordData) {
     else {
         const refKey = { customerId: 'customers', planId: 'plans', buildingId: 'coverage', parentId: 'coverage', assignedToId: 'staff', orderId: 'orders', subscriptionId: 'subscriptions' }[f.key];
         const options = refKey ? cache[refKey] : undefined;
-        control = options ? `<select id="${id}" name="${f.key}" ${req}><option value="">Select ${esc(f.label.toLowerCase())}</option>${options.filter(x => f.key !== 'buildingId' || x.level === 'BUILDING_ADDRESS').map(x => `<option value="${esc(x.id)}" ${x.id === v ? 'selected' : ''}>${esc(x.name || x.subject || x.planName || x.reference || x.id)}${x.level ? ` · ${pretty(x.level)}` : ''}</option>`).join('')}</select>` : `<input id="${id}" name="${f.key}" type="${f.type || 'text'}" ${f.min !== undefined ? `min="${f.min}"` : ''} ${f.type === 'number' ? 'step="1"' : ''} ${f.type === 'password' ? 'autocomplete="new-password"' : 'autocomplete="off"'} value="${f.type === 'password' ? '' : esc(v)}" ${req}>`;
+        control = options ? `<select id="${id}" name="${f.key}" ${req}><option value="">Select ${esc(f.label.toLowerCase())}</option>${options.filter(x => f.key !== 'buildingId' || x.level === 'BUILDING_ADDRESS').map(x => `<option value="${esc(x.id)}" ${x.id === v ? 'selected' : ''}>${esc(x.name || x.subject || x.planName || x.reference || x.id)}${f.key === 'orderId' ? ` · ${esc(x.id.slice(0, 8))}…${esc(x.id.slice(-6))} · ${esc(pretty(x.status))}` : ''}${x.level ? ` · ${pretty(x.level)}` : ''}</option>`).join('')}</select>` : `<input id="${id}" name="${f.key}" type="${f.type || 'text'}" ${f.min !== undefined ? `min="${f.min}"` : ''} ${f.type === 'number' ? 'step="1"' : ''} ${f.type === 'password' ? 'autocomplete="new-password"' : 'autocomplete="off"'} value="${f.type === 'password' ? '' : esc(v)}" ${req}>`;
     }
     return `<div class="field ${f.type === 'textarea' || f.type === 'roles' ? 'span-2' : ''}"><label ${f.type === 'roles' ? '' : `for="${id}"`}>${esc(f.label)}${f.required ? '<span class="required"> *</span>' : ''}</label>${control}${f.hint ? `<small>${esc(f.hint)}</small>` : ''}</div>`;
 }
@@ -299,7 +300,7 @@ async function details(key: string, id: string) {
         }
         if (viewVersion !== version || api.session !== session)
             return;
-        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).map(([k, v]) => `<div><dt>${labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) && (key!=='coverage'||r.level==='BUILDING_ADDRESS') && (key!=='provisioning'||(r.mode.toLowerCase()==='manual'&&r.status!=='ACTIVE')) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
+        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).filter(([k]) => key !== 'tickets' || k !== 'messages').map(([k, v]) => `<div><dt>${labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) && (key!=='coverage'||r.level==='BUILDING_ADDRESS') && (key!=='provisioning'||(r.mode.toLowerCase()==='manual'&&r.status!=='ACTIVE')) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
         const form = document.querySelector<HTMLFormElement>('#reply-form');
         if (form)
             form.onsubmit = async (e) => { e.preventDefault(); const submit = form.querySelector('button')!; submit.disabled = true; try {
