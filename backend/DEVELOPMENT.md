@@ -57,6 +57,11 @@ the local credential file with working development passwords. The user-supplied 
 separate from these SIMULATED role accounts and is not changed by fixture validation.
 
 Keep shared role/customer passwords and baseline scenario records intact for other frontend developers.
+For an isolated imported/temporary-credential customer requiring password change, run
+`node -r ts-node/register/transpile-only scripts/create-password-gate-account.ts`. This guarded development
+scenario creates a new labeled account and writes a unique ignored credential file. It does not change
+ordinary reset-token onboarding or shared account passwords. The portal owner may consume that isolated
+account's password-change flow without affecting others.
 Create separate labeled records for mutation tests. To add another customer, use staff onboarding and
 the single-use setup token. For an unused expired fixture token, rerun `dev:fixtures`; it reissues setup
 only while the fixture user has no password. Password-bearing accounts are never silently reset.
