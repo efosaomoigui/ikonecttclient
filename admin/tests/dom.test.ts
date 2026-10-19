@@ -29,7 +29,7 @@ finally {
 } });
 test('DOM: every permitted admin screen mounts without rendering a page error', async () => { const dom = boot(); try {
     await preview(dom);
-    for (const path of ['leads', 'customers', 'plans', 'coverage', 'orders', 'subscriptions', 'payments', 'provisioning', 'tickets', 'reports', 'staff', 'integrations', 'audit', 'settings']) {
+    for (const path of ['leads', 'customers', 'plans', 'coverage', 'orders', 'subscriptions', 'payments', 'provisioning', 'tickets', 'reports', 'staff', 'integrations', 'notifications', 'audit', 'settings']) {
         await go(dom, path);
         assert.equal(dom.window.document.querySelector('.error-state'), null, path);
         assert.ok(dom.window.document.querySelector('h1')!.textContent, path);
@@ -107,3 +107,10 @@ finally {
     dom.window.close();
 } });
 test('CSS includes mobile navigation, dialog containment and reduced-motion handling', () => { const css = readFileSync(new URL('../src/style.css', import.meta.url), 'utf8'); assert.match(css, /@media\(max-width:700px\)/); assert.match(css, /\.sidebar\.open/); assert.match(css, /prefers-reduced-motion/); assert.match(css, /100dvh/); assert.match(css, /overflow-x:auto/); });
+
+test('DOM: recovery and reset controls acknowledge errors without storing tokens', async()=>{
+ const dom=boot();try{const doc=dom.window.document;click(dom,'[data-action=recovery]');assert.ok(doc.querySelector('#auth-help-form input[name=email]'));click(dom,'[data-action=reset-password]');const form=doc.querySelector('#auth-help-form');assert.ok(form);(form.querySelector('[name=token]') as HTMLInputElement).value='sample-token-'.repeat(4);(form.querySelector('[name=password]') as HTMLInputElement).value='Example Password 123!';(form.querySelector('[name=confirmPassword]') as HTMLInputElement).value='Different Password 123!';form.dispatchEvent(new dom.window.Event('submit',{bubbles:true,cancelable:true}));await waitFor(()=>!!form.querySelector('.form-error')?.textContent);assert.match(form.querySelector('.form-error')!.textContent!,/do not match/);assert.equal(dom.window.localStorage.length,0);assert.equal(dom.window.sessionStorage.length,0);click(dom,'[data-action=close]');assert.equal(doc.querySelector('[name=token]'),null)}finally{dom.window.close()}
+});
+test('DOM: parent coverage forms lock final eligibility and hide unsupported edits',async()=>{
+ const dom=boot();try{await preview(dom);await go(dom,'coverage');const doc=dom.window.document;click(dom,'[data-action=create]');await waitFor(()=>!!doc.querySelector('#record-form'));assert.equal(doc.querySelector<HTMLSelectElement>('[name=eligibility]')!.disabled,true);const level=doc.querySelector<HTMLSelectElement>('[name=level]')!;level.value='BUILDING_ADDRESS';level.dispatchEvent(new dom.window.Event('change',{bubbles:true}));assert.equal(doc.querySelector<HTMLSelectElement>('[name=eligibility]')!.disabled,false);assert.equal(doc.querySelector<HTMLSelectElement>('[name=parentId]')!.options.length,2);click(dom,'[data-action=close]');click(dom,'[data-detail]');await waitFor(()=>!!doc.querySelector('.modal'));assert.equal(doc.querySelector('[data-edit]'),null)}finally{dom.window.close()}
+});

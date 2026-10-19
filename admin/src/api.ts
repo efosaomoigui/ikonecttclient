@@ -3,9 +3,10 @@ import * as C from '../vendor/contracts';
 import { ROLE_PERMISSIONS, type StaffRole } from '../vendor/permissions';
 import { modules, type RecordData } from './modules';
 import { fixtures, uuid } from './fixtures';
+import {CreatedCustomer,PermissionSnapshot,SetupCredentials,parseResponse,type ListOptions} from './contracts';
 export type Session = z.infer<typeof C.Session>;
 export class ApiError extends Error {
-    constructor(message: string, public status = 400) { super(message); }
+    constructor(message: string, public status = 400, public code?:string, public requestId?:string, public details?:unknown, public retryAfter?:number) { super(message); }
 }
 export class WorkspaceApi {
     session: Session | null = null;
@@ -13,12 +14,13 @@ export class WorkspaceApi {
     data = fixtures();
     permissions: string[] = [];
     onExpired = () => { };
+    constructor(private readonly baseUrl='',private readonly fetcher:typeof fetch=(...args)=>fetch(...args)){}
     async request(path: string, method = 'GET', body?: unknown): Promise<any> {
         const sessionAtStart = this.session;
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 15000);
         try {
-            const r = await fetch(`/api/v1${path}`, { method, signal: controller.signal, cache: 'no-store', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', ...(this.session ? { Authorization: `Bearer ${this.session.accessToken}` } : {}) }, ...(body !== undefined ? { body: JSON.stringify(body) } : {}) });
+            const r = await this.fetcher(`${this.baseUrl.replace(/\/$/,'')}${C.API_PREFIX}${path}`, { method, signal: controller.signal, cache: 'no-store', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', ...(this.session ? { Authorization: `Bearer ${this.session.accessToken}` } : {}) }, ...(body !== undefined ? { body: JSON.stringify(body) } : {}) });
             const payload = await r.json().catch(() => null);
             if (sessionAtStart && sessionAtStart !== this.session)
                 throw new ApiError('This session has ended.', 401);
@@ -27,7 +29,7 @@ export class WorkspaceApi {
                     this.clear();
                     this.onExpired();
                 }
-                throw new ApiError(payload?.message || `Request failed (${r.status})`, r.status);
+                throw new ApiError(payload?.message || `Request failed (${r.status})`, r.status,payload?.code,payload?.requestId,payload?.details,Number(r.headers.get('retry-after'))||undefined);
             }
             if (payload === null)
                 throw new ApiError('The service returned an invalid response.', 502);
@@ -43,8 +45,11 @@ export class WorkspaceApi {
         }
     }
     clear() { this.session = null; this.permissions = []; this.data = fixtures(); }
-    setSession(session: Session) { if (session.principal.kind !== 'STAFF')
-        throw new ApiError('Staff access is required.', 403); this.session = session; this.permissions = [...new Set(session.principal.roles.flatMap(role => ROLE_PERMISSIONS[role]))]; }
+    setSession(session: Session) {
+        if(session.principal.kind!=='STAFF')throw new ApiError('Staff access is required.',403);
+        this.session=session;
+        this.permissions=this.mode==='mock'?Array.from(new Set(session.principal.roles.flatMap(role=>ROLE_PERMISSIONS[role]))):[];
+    }
     assert(permission: string) { if (!this.session || Date.parse(this.session.expiresAt) <= Date.now()) {
         this.clear();
         this.onExpired();
@@ -61,8 +66,21 @@ export class WorkspaceApi {
         throw e;
     } }
     async refreshPermissions() { if (this.mode === 'mock')
-        return; const result = z.object({ roles: z.array(C.Role), permissions: z.array(z.string()) }).parse(await this.request('/admin/permissions')); this.permissions = result.permissions; if (this.session)
+        return; const result = parseResponse(PermissionSnapshot,await this.request('/admin/permissions')); this.permissions = result.permissions; if (this.session)
         this.session.principal.roles = result.roles; }
+    async validateSession(){
+        if(!this.session)throw new ApiError('Sign in to continue.',401);
+        if(this.mode==='mock')return this.session.principal;
+        const principal=parseResponse(C.Session.shape.principal,await this.request('/auth/session'));
+        if(principal.kind!=='STAFF'){this.clear();throw new ApiError('Staff access is required.',403)}
+        this.session!.principal=principal;
+        if(principal.mustChangePassword)this.permissions=[];else await this.refreshPermissions();
+        return principal;
+    }
+    async recover(email:string){this.mode='live';return parseResponse(C.Ok,await this.request('/auth/staff/recovery','POST',C.StaffRecoveryRequest.parse({email})))}
+    async resetPassword(token:string,password:string){this.mode='live';return parseResponse(C.Ok,await this.request('/auth/reset-password','POST',C.ResetPasswordRequest.parse({token,password})))}
+    async changePassword(currentPassword:string,password:string){if(this.mode!=='live')throw new ApiError('Password changes require the shared backend.');const result=parseResponse(C.Ok,await this.request('/auth/change-password','POST',C.ChangePasswordRequest.parse({currentPassword,password})));this.clear();return result}
+    async credentials(id:string){this.assert('customers.write');if(this.mode!=='live')throw new ApiError('Credential setup requires the shared backend.');return parseResponse(SetupCredentials,await this.request(`/admin/customers/${C.Id.parse(id)}/credentials`,'POST'))}
     preview(role: StaffRole) { this.mode = 'mock'; this.data = fixtures(); this.setSession({ accessToken: 'SIMULATED', tokenType: 'Bearer', expiresAt: new Date(Date.now() + 3600000).toISOString(), principal: { id: uuid(80), kind: 'STAFF', customerId: null, roles: [role], mustChangePassword: false } }); }
     async logout() { try {
         if (this.mode === 'live' && this.session)
@@ -79,7 +97,7 @@ export class WorkspaceApi {
         let all: RecordData[] = [];
         let offset = 0;
         while (true) {
-            const page = C.page(m.schema).parse(await this.request(`${m.path}?offset=${offset}&limit=100`));
+            const page = await this.listPage(key,{offset,limit:100});
             all.push(...page.items);
             offset += page.items.length;
             if (offset >= page.total)
@@ -87,6 +105,27 @@ export class WorkspaceApi {
             if (!page.items.length)
                 throw new ApiError('The service returned an incomplete page.', 502);
         }
+        return all;
+    }
+    async listPage(key:string,options:ListOptions={}){
+        const m=modules[key];this.assert(m.permission);
+        const query=(key==='coverage'?C.CoverageQuery.strict():C.ListQuery).parse(options);
+        if(this.mode==='mock'){
+            const coverage=query as z.infer<typeof C.CoverageQuery>;
+            const data=this.data[key].filter(x=>(!coverage.level||x.level===coverage.level)&&(!coverage.parentId||x.parentId===coverage.parentId));
+            return {items:data.slice(query.offset,query.offset+query.limit).map(x=>m.schema.parse(structuredClone(x))),total:data.length,offset:query.offset,limit:query.limit};
+        }
+        return parseResponse(C.page(m.schema),await this.request(`${m.path}?${new URLSearchParams(Object.entries(query).map(([k,v])=>[k,String(v)]))}`));
+    }
+    async detail(key:string,id:string):Promise<RecordData>{
+        const m=modules[key];this.assert(m.permission);C.Id.parse(id);
+        if(this.mode==='live'&&['customers','leads','orders','payments','subscriptions','tickets'].includes(key))return parseResponse(key==='tickets'?C.TicketDetail:m.schema,await this.request(`${m.path}/${id}`));
+        const record=(await this.list(key)).find(x=>x.id===id);if(!record)throw new ApiError('Record not found.',404);return record;
+    }
+    async publicOptions(key:'plans'|'coverage'){
+        if(this.mode==='mock')return this.data[key].map(x=>modules[key].schema.parse(x));
+        const path=key==='plans'?'/plans':'/coverage/locations';let offset=0;const all:RecordData[]=[];
+        while(true){const p=parseResponse(C.page(modules[key].schema),await this.request(`${path}?offset=${offset}&limit=100`));all.push(...p.items);offset+=p.items.length;if(offset>=p.total)break;if(!p.items.length)throw new ApiError('The service returned an incomplete page.',502)}
         return all;
     }
     audit(action: string, entityType: string, entityId: string) { this.data.audit.unshift({ id: crypto.randomUUID(), actorId: this.session!.principal.id, action, entityType, entityId, metadata: { simulated: true }, createdAt: new Date().toISOString() }); }
@@ -97,8 +136,10 @@ export class WorkspaceApi {
         if (!schema)
             throw new ApiError('This operation is not supported by the contract.');
         const body = schema.parse(input);
-        if (this.mode === 'live')
-            return this.request(`${m.path}${id ? `/${encodeURIComponent(id)}${key === 'provisioning' ? '/result' : ''}` : ''}`, id && key !== 'provisioning' ? 'PATCH' : 'POST', body);
+        if (this.mode === 'live'){
+            const schema=key==='customers'&&!id?CreatedCustomer:key==='tickets'&&!id?C.TicketDetail:m.schema;
+            return parseResponse(schema,await this.request(`${m.path}${id ? `/${C.Id.parse(id)}${key === 'provisioning' ? '/result' : ''}` : ''}`, id && key !== 'provisioning' ? 'PATCH' : 'POST', body));
+        }
         if (key === 'coverage' && !id) {
             const levels = C.CoverageLevel.options;
             const pos = levels.indexOf(body.level);
@@ -205,7 +246,7 @@ export class WorkspaceApi {
         return structuredClone(item);
     }
     async verify(id: string, input: unknown) { this.assert('payments.verify'); const body = C.VerifyPaymentRequest.parse(input); if (this.mode === 'live')
-        return this.request(`/admin/payments/${id}/verify`, 'POST', body); const p = this.data.payments.find(x => x.id === id); if (!p)
+        return parseResponse(C.AdminPayment,await this.request(`/admin/payments/${C.Id.parse(id)}/verify`, 'POST', body)); const p = this.data.payments.find(x => x.id === id); if (!p)
         throw new ApiError('Payment not found.', 404); if (p.status === body.decision)
         return structuredClone(p); if (p.status !== 'REPORTED')
         throw new ApiError('This payment has already been reviewed.', 409); const order = this.data.orders.find(x => x.id === p.orderId); if (body.decision === 'CONFIRMED' && (order?.status !== 'PENDING_PAYMENT' || order.amountMinor !== p.amountMinor))
@@ -213,16 +254,16 @@ export class WorkspaceApi {
         order.status = 'PAID'; this.audit(`PAYMENT_${body.decision}`, 'payments', id); return structuredClone(p); }
     async messages(id: string) { this.assert('support.read'); return this.mode === 'mock' ? this.data.messages.filter(x => x.ticketId === id) : C.TicketDetail.parse(await this.request(`/admin/tickets/${id}`)).messages; }
     async reply(id: string, message: string) { this.assert('support.write'); const body = C.TicketMessageRequest.parse({ message }); if (this.mode === 'live')
-        return this.request(`/admin/tickets/${id}/messages`, 'POST', body); this.data.messages.push({ id: crypto.randomUUID(), ticketId: id, authorId: this.session!.principal.id, message, createdAt: new Date().toISOString() }); this.audit('SUPPORT_MESSAGE', 'tickets', id); }
+        return parseResponse(C.TicketMessage,await this.request(`/admin/tickets/${C.Id.parse(id)}/messages`, 'POST', body)); this.data.messages.push({ id: crypto.randomUUID(), ticketId: id, authorId: this.session!.principal.id, message, createdAt: new Date().toISOString() }); this.audit('SUPPORT_MESSAGE', 'tickets', id); }
     async receipt(id: string) { this.assert('payments.read'); if (this.mode === 'live')
         return C.Receipt.parse(await this.request(`/admin/payments/${id}/receipt`)); const p = this.data.payments.find(x => x.id === id); if (p?.status !== 'CONFIRMED')
         throw new ApiError('A receipt is available after confirmation.'); return { receiptNumber: `SAMPLE-${id.slice(-4)}`, payment: p, issuedAt: p.verifiedAt }; }
     async report() { this.assert('reports.read'); if (this.mode === 'live')
         return C.Report.parse(await this.request('/admin/reports/summary')); return C.Report.parse({ customers: this.data.customers.length, leads: this.data.leads.length, orders: this.data.orders.length, openTickets: this.data.tickets.filter(t => ['OPEN', 'IN_PROGRESS'].includes(t.status)).length, confirmedPaymentsMinor: this.data.payments.filter(p => p.status === 'CONFIRMED').reduce((n, p) => n + p.amountMinor, 0), currency: 'NGN', subscriptionsByStatus: C.SubscriptionStatus.options.map(status => ({ status, count: this.data.subscriptions.filter(s => s.status === status).length })), includesSimulatedData: true }); }
     async integrations() { this.assert('integrations.read'); if (this.mode === 'live')
-        return this.request('/admin/integrations'); return [{ name: 'Legacy CRM', mode: 'disabled' }, { name: 'Coverage adapter', mode: 'simulated' }, { name: 'Payment provider', mode: 'manual' }, { name: 'Provisioning adapter', mode: 'manual' }, { name: 'Notifications', mode: 'disabled' }]; }
+        return parseResponse(z.record(z.string()),await this.request('/admin/integrations')); return [{ name: 'Legacy CRM', mode: 'disabled' }, { name: 'Coverage adapter', mode: 'simulated' }, { name: 'Payment provider', mode: 'manual' }, { name: 'Provisioning adapter', mode: 'manual' }, { name: 'Notifications', mode: 'disabled' }]; }
     async references(id: string) { this.assert('integrations.read'); return this.mode === 'mock' ? this.data.references.filter(x => x.customerId === id) : z.array(C.ExternalReference).parse(await this.request(`/admin/integrations/customers/${id}/references`)); }
     async linkReference(id: string, input: unknown) { this.assert('integrations.write'); const body = C.ExternalReferenceRequest.parse(input); if (this.mode === 'live')
-        return this.request(`/admin/integrations/customers/${id}/references`, 'POST', body); if (this.data.references.some(x => (x.customerId === id && x.system === body.system) || (x.system === body.system && x.externalId === body.externalId)))
+        return parseResponse(C.ExternalReference,await this.request(`/admin/integrations/customers/${C.Id.parse(id)}/references`, 'POST', body)); if (this.data.references.some(x => (x.customerId === id && x.system === body.system) || (x.system === body.system && x.externalId === body.externalId)))
         throw new ApiError('This reference is already linked.', 409); const r = { id: crypto.randomUUID(), customerId: id, ...body, createdAt: new Date().toISOString() }; this.data.references.push(r); this.audit('REFERENCE_LINKED', 'customers', id); return r; }
 }

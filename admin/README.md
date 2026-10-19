@@ -2,6 +2,8 @@
 
 Staff frontend, isolated from the public website and My Ikonectt. Branch: `codex/ikonectt-admin-crm`.
 
+Stage 2 is integrated with the persistent development API. Use the ordinary staff sign-in form and the backend-owned local role accounts for real HTTP/database workflows. The optional simulated workspace remains separate. See [Stage 2 integration report](STAGE2_INTEGRATION_REPORT.md) and [redacted live acceptance results](docs/stage2-live-acceptance.json). No production deployment was performed.
+
 ## Run and test
 
 From the repository root:
@@ -42,10 +44,10 @@ For a different backend origin, set `IKONECTT_API_ORIGIN` before starting Vite. 
 
 Staff login calls `/api/v1/auth/staff/login`; permissions come from `/admin/permissions`. Bearer tokens stay in memory. Logout calls the revocation endpoint. Forced password change uses `/auth/change-password` and returns to sign-in. There is no refresh-token endpoint or browser token persistence.
 
-`vendor/contracts.ts` is a snapshot of Agent 1's `contracts/index.ts`. `vendor/permissions.ts` is generated from Agent 1's backend access definitions. `vendor/provenance.json` records SHA-256 hashes. To update after Agent 1 publishes a change:
+`vendor/contracts.ts` is a snapshot of Agent 1's `contracts/index.ts`. `vendor/permissions.ts` is generated from Agent 1's backend access definitions. `vendor/provenance.json` records the pinned release commit and SHA-256 hashes; `vendor/operations.json` records the supported OpenAPI operations. To update after Agent 1 publishes a change:
 
 ```powershell
-npm run sync-contracts --prefix admin -- 'ABSOLUTE_PATH_TO_AGENT_1_OR_MERGED_CHECKOUT'
+npm run sync-contracts --prefix admin -- 'ABSOLUTE_PATH_TO_AGENT_1_OR_MERGED_CHECKOUT' 4f90e10fbdb9e04fb606109ac5ff3d81145ba18e
 npm test --prefix admin
 npm run build --prefix admin
 ```
@@ -59,3 +61,13 @@ The current API supports customer creation and a one-time setup token, current p
 It does not support lead assignment/notes/follow-up scheduling/source metadata, ticket categories/priorities/private notes, editable operational settings, custom permission definitions, or provider credential configuration. These features are identified as unavailable in the interface. No competing domain model, price-versioning system, page builder, gateway or autonomous support agent is introduced.
 
 Lists exhaust the API's offset/limit pages and apply search/filter/pagination locally because the current list contracts do not expose server search. Large datasets will need a backend search/filter contract before this approach should be scaled.
+
+## Stage 2 live acceptance
+
+The existing Vite proxy and the backend must be running. The explicit live test command reads local credentials in memory, preserves shared role passwords/fixture records, and creates isolated SIMULATED acceptance records in the helper-owned development database:
+
+```powershell
+npm run test:live --prefix admin -- --accounts 'ABSOLUTE_PATH_TO_BACKEND/.local/development/accounts-ikonectt_development.json'
+```
+
+Do not use production or unrelated account manifests. Runtime results are written to ignored `admin/test-results/`; no passwords or setup/session tokens are written to the report. Recovery/reset controls and notification metadata views now use the shared backend. New setup tokens may be issued from an authorized customer's detail dialog after explicit confirmation. The dashboard uses `/admin/reports/summary` for roles with report access and permitted backend lists for other roles.

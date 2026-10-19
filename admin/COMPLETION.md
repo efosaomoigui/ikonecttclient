@@ -1,5 +1,6 @@
 # Admin delivery and verification
 
+Current status: superseded by [Stage 2 integration report](STAGE2_INTEGRATION_REPORT.md). Real development staff login and 15 live acceptance groups have now passed; historical readiness observations below are retained for context.
 19 October 2026. Local frontend delivery on `codex/ikonectt-admin-crm`.
 
 Stage 2 update: the published API baseline is Agent 1 commit `61aa3ba`. Its public capabilities endpoint is now reachable; authenticated role/account integration remains pending. See STAGE2_HANDOFF.md for current origins, gaps and acceptance steps. The offline-backend observations below describe the original delivery check.

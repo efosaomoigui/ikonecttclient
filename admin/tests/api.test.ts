@@ -9,6 +9,24 @@ import { integrationState } from '../src/integrations';
 const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; });
 const preview = (role: StaffRole = 'ADMIN') => { const api = new WorkspaceApi(); api.preview(role); return api; };
+test('live sessions have no inferred permissions until the backend supplies them',async()=>{
+    const api=preview();const session=structuredClone(api.session!);api.mode='live';api.setSession(session);assert.deepEqual(api.permissions,[]);
+    const calls:string[]=[];globalThis.fetch=async(url)=>{calls.push(String(url));return Response.json(String(url).endsWith('/auth/session')?session.principal:{roles:['ADMIN'],permissions:['reports.read']})};
+    await api.validateSession();assert.deepEqual(api.permissions,['reports.read']);assert.deepEqual(calls,['/api/v1/auth/session','/api/v1/admin/permissions']);
+});
+test('staff recovery and reset use documented endpoints and keep secrets out of URLs',async()=>{
+    const api=new WorkspaceApi();const calls:{url:string;body:any}[]=[];globalThis.fetch=async(url,options)=>{calls.push({url:String(url),body:JSON.parse(String(options?.body))});return Response.json({ok:true})};
+    await api.recover('sample@example.test');const token='one-use-token-'.repeat(4);await api.resetPassword(token,'Example Password 123!');
+    assert.equal(calls[0].url,'/api/v1/auth/staff/recovery');assert.deepEqual(calls[0].body,{email:'sample@example.test'});assert.equal(calls[1].url,'/api/v1/auth/reset-password');assert.equal(calls[1].body.token,token);assert.ok(!calls.some(c=>c.url.includes(token)));
+});
+test('list query handling accepts coverage filters and rejects unsupported search parameters',async()=>{
+    const api=preview();api.mode='live';const paths:string[]=[];globalThis.fetch=async(url)=>{paths.push(String(url));return Response.json({items:[],total:0,offset:10,limit:20})};
+    await api.listPage('coverage',{offset:10,limit:20,level:'BUILDING_ADDRESS',parentId:uuid(24)});assert.match(paths[0],/level=BUILDING_ADDRESS/);assert.match(paths[0],/offset=10/);
+    await assert.rejects(api.listPage('customers',{offset:0,limit:10,search:'unsupported'} as any));
+});
+test('typed write response rejects a customer creation response missing its secure setup result',async()=>{
+    const api=preview();api.mode='live';globalThis.fetch=async()=>Response.json(api.data.customers[0]);await assert.rejects(api.save('customers',{name:'Example',kind:'RESIDENTIAL',email:'example@example.test',phone:'+2348000000000'}),/does not match API/);
+});
 test('published API v1 native coverage mode is recognized', () => {
     assert.equal(integrationState({mode:'native'}).status, 'CONNECTED');
 });
@@ -21,7 +39,7 @@ test('failed activation validation leaves subscription and order unchanged', asy
     assert.deepEqual(api.data.subscriptions, before);
     assert.equal(request.status, 'PENDING');
 });
-test('integration states never represent manual or simulated providers as connected', () => { assert.equal(integrationState({ mode: 'simulated' }).status, 'SIMULATED'); assert.equal(integrationState({ mode: 'manual' }).status, 'NOT_CONFIGURED'); assert.equal(integrationState({ mode: 'disabled' }).status, 'NOT_CONFIGURED'); assert.equal(integrationState({ mode: 'native-address-registry' }).status, 'CONNECTED'); assert.equal(integrationState({ status: 'ERROR' }).status, 'ERROR'); });
+test('integration states never represent manual or simulated providers as connected', () => { assert.equal(integrationState({ mode: 'simulated' }).status, 'SIMULATED'); assert.equal(integrationState({ mode: 'manual' }).status, 'MANUAL'); assert.equal(integrationState({ mode: 'disabled' }).status, 'DISABLED'); assert.equal(integrationState({ mode: 'native-address-registry' }).status, 'CONNECTED'); assert.equal(integrationState({ status: 'ERROR' }).status, 'ERROR'); });
 test('all simulated list records conform to Agent 1 response schemas', async () => { const api = preview(); for (const key of Object.keys(modules)) {
     const rows = await api.list(key);
     assert.ok(rows.length, key);

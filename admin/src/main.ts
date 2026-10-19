@@ -22,11 +22,12 @@ const badge = (v: unknown) => `<span class="badge ${['ACTIVE', 'AVAILABLE', 'CON
 const refreshIcons = () => createIcons({ icons, attrs: { 'stroke-width': 1.65 } });
 const toast = (message: string, error = false) => { document.querySelector('#toast')?.remove(); const el = document.createElement('div'); el.id = 'toast'; el.className = error ? 'toast error' : 'toast'; el.role = error ? 'alert' : 'status'; el.textContent = message; document.body.append(el); setTimeout(() => el.remove(), 6500); };
 const errorText = (e: unknown) => e instanceof Error ? e.message : 'The operation could not be completed.';
-function friendly(e: any) { return e?.issues ? e.issues.map((x: any) => `${x.path.join('.')}: ${x.message}`).join(' · ') : errorText(e); }
+function friendly(e: any) { if(e?.details&&Array.isArray(e.details))return e.details.map((x:any)=>`${x.path||'Request'}: ${x.message||'Invalid value'}`).join(' � '); return e?.issues ? e.issues.map((x: any) => `${x.path.join('.')}: ${x.message}`).join(' · ') : errorText(e); }
 api.onExpired = () => { cache = {}; closeModal(); login('Your session has expired. Please sign in again.'); };
 function login(message = '') {
+    rows=[];cache={};
     viewVersion++;
-    app.innerHTML = `<main class="login"><section class="login-story"><img src="/admin/logo-white.png" alt="Ikonectt"><div><span class="eyebrow">THE STAFF WORKSPACE</span><h1>Connections begin<br>with people.</h1><p>One place to care for customers, move work forward and keep Ikonectt connected.</p><div class="signal"><span></span><span></span><span></span><b>${icon('network')}</b></div></div><footer>IKONECTT ADMIN <span>Authorized personnel only</span></footer></section><section class="login-panel"><div class="login-box"><img class="mobile-logo" src="/admin/logo-red.png" alt="Ikonectt"><span class="eyebrow red">WELCOME TO YOUR WORKSPACE</span><h2>Good to have you here.</h2><p>Sign in with your staff account to get started.</p><form id="login-form"><label>Staff email<input name="email" type="email" autocomplete="username" required placeholder="you@ikonectt.com"></label><label>Password<div class="password"><input name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button type="button" aria-label="Show password" data-action="password">${icon('eye')}</button></div></label><div id="login-error" role="alert" class="form-error">${esc(message)}</div><button class="btn primary full" type="submit">Sign in to workspace ${icon('arrow-right')}</button></form><p class="secure">${icon('lock-keyhole')} Your access is managed by your administrator.</p>${__IKONECTT_PREVIEW__?`<div class="preview-box"><strong>Review the application</strong><p>Explore a temporary workspace with labeled sample records. No production data is connected.</p><label class="sr-only" for="preview-role">Preview staff role</label><select id="preview-role">${Object.keys(ROLE_PERMISSIONS).map(r => `<option value="${r}">${pretty(r)}</option>`).join('')}</select>${button('Open simulated workspace', 'preview', 'full', 'arrow-up-right')}</div>`:""}<small>Ikonectt · Staff operations & customer care</small></div></section></main>`;
+    app.innerHTML = `<main class="login"><section class="login-story"><img src="/admin/logo-white.png" alt="Ikonectt"><div><span class="eyebrow">THE STAFF WORKSPACE</span><h1>Connections begin<br>with people.</h1><p>One place to care for customers, move work forward and keep Ikonectt connected.</p><div class="signal"><span></span><span></span><span></span><b>${icon('network')}</b></div></div><footer>IKONECTT ADMIN <span>Authorized personnel only</span></footer></section><section class="login-panel"><div class="login-box"><img class="mobile-logo" src="/admin/logo-red.png" alt="Ikonectt"><span class="eyebrow red">WELCOME TO YOUR WORKSPACE</span><h2>Good to have you here.</h2><p>Sign in with your staff account to get started.</p><form id="login-form"><label>Staff email<input name="email" type="email" autocomplete="username" required placeholder="you@ikonectt.com"></label><label>Password<div class="password"><input name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button type="button" aria-label="Show password" data-action="password">${icon('eye')}</button></div></label><div id="login-error" role="alert" class="form-error">${esc(message)}</div><button class="btn primary full" type="submit">Sign in to workspace ${icon('arrow-right')}</button></form><div class="login-help">${button('Forgot password?','recovery')}${button('Use setup / reset token','reset-password')}</div><p class="secure">${icon('lock-keyhole')} Your access is managed by your administrator.</p>${__IKONECTT_PREVIEW__?`<div class="preview-box"><strong>Review the application</strong><p>Explore a temporary workspace with labeled sample records. No production data is connected.</p><label class="sr-only" for="preview-role">Preview staff role</label><select id="preview-role">${Object.keys(ROLE_PERMISSIONS).map(r => `<option value="${r}">${pretty(r)}</option>`).join('')}</select>${button('Open simulated workspace', 'preview', 'full', 'arrow-up-right')}</div>`:""}<small>Ikonectt · Staff operations & customer care</small></div></section></main>`;
     refreshIcons();
     document.querySelector<HTMLFormElement>('#login-form')!.onsubmit = async (e) => { e.preventDefault(); const form = e.currentTarget as HTMLFormElement; const b = form.querySelector('button[type=submit]') as HTMLButtonElement; b.disabled = true; b.textContent = 'Signing in…'; try {
         const data = new FormData(form);
@@ -52,9 +53,35 @@ function nav() {
 function shell() { const title = modules[route]?.label || pretty(route); app.innerHTML = `<div class="workspace"><aside class="sidebar" id="sidebar"><a class="brand" href="#/dashboard"><img src="/admin/logo-red.png" alt="Ikonectt"><span>STAFF WORKSPACE</span></a><nav aria-label="Main navigation">${nav()}</nav><div class="sidebar-bottom"><div class="workspace-label">${icon('building-2')} Ikonectt Operations</div><small>Connected people. Better service.</small></div></aside><div class="main-shell"><header class="topbar"><button class="icon-btn mobile-menu" aria-label="Toggle navigation" aria-expanded="false" data-action="menu">${icon('menu')}</button><div class="breadcrumb">Workspace ${icon('chevron-right')} <strong>${title}</strong></div><div class="top-right"><span class="environment">${icon(api.mode === 'mock' ? 'flask-conical' : 'lock-keyhole')}${api.mode === 'mock' ? 'SIMULATED WORKSPACE' : 'SHARED BACKEND'}</span><button class="profile" data-action="account" aria-label="Account and sign out"><span>${api.session!.principal.roles[0].slice(0, 2)}</span><div><b>${pretty(api.session!.principal.roles.join(' · '))}</b><small>Staff account</small></div>${icon('chevron-down')}</button></div></header>${api.mode === 'mock' ? '<div class="demo-banner"><strong>Simulation mode</strong><span>All records and actions are sample data held in memory. Changes reset when you sign out or reload.</span></div>' : ''}<main id="content" tabindex="-1"><div class="loading">${icon('loader-circle')} Loading workspace…</div></main><footer class="app-footer"><span>© ${new Date().getFullYear()} Ikonectt</span><span>Staff operations platform <span class="dot">·</span> All times WAT</span></footer></div></div>`; refreshIcons(); }
 const content = () => document.querySelector<HTMLElement>('#content')!;
 const heading = (title: string, description: string, action = '') => `<div class="page-heading"><div><div class="eyebrow">IKONECTT / ${route === 'dashboard' ? 'OVERVIEW' : esc(modules[route]?.group || 'WORKSPACE').toUpperCase()}</div><h1>${title}</h1><p>${description}</p></div>${action}</div>`;
+function summaryCards(summary:C.Input<typeof C.Report>){
+    const items:[string,string,string,number,boolean?][]=[
+        ['customers','Total customers','users',summary.customers],['leads','Leads','contact',summary.leads],
+        ['orders','Orders','shopping-bag',summary.orders],['tickets','Open support tickets','headphones',summary.openTickets],
+        ['subscriptions','Active subscriptions','radio-tower',summary.subscriptionsByStatus.find(s=>s.status==='ACTIVE')?.count||0],
+        ['payments','Verified payment total','credit-card',summary.confirmedPaymentsMinor,true]
+    ];
+    return items.map(([key,label,i,n,isMoney])=>`<a href="#/${can(api.permissions,modules[key].permission)?key:'reports'}" class="metric"><div><span>${label}</span>${icon(i)}</div><strong>${isMoney?money(n):n.toLocaleString()}</strong><small>${summary.includesSimulatedData?'Includes simulated data':'Backend summary'} ${icon('arrow-up-right')}</small></a>`).join('');
+}
+function authDialog(kind:'recovery'|'reset'){
+    const isReset=kind==='reset';
+    openModal(modalHeader(isReset?'Set your password':'Recover staff access','Shared identity service')+`<form id="auth-help-form"><div class="modal-body">${isReset?'<p>Enter the single-use token supplied through your approved setup or recovery channel. Tokens are never saved in this browser.</p><label>Setup / recovery token<input name="token" required minlength="32" maxlength="200" autocomplete="off" type="password"></label><label>New password<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="new-password"></label><label>Confirm new password<input name="confirmPassword" type="password" required minlength="12" maxlength="128" autocomplete="new-password"></label>':'<p>Enter your staff email. The response does not reveal whether an account exists or confirm message delivery.</p><label>Staff email<input name="email" type="email" required autocomplete="username"></label>'}<div class="form-error" role="alert"></div></div><footer class="modal-footer">${button('Cancel','close')}${!isReset?button('Use a recovery token','reset-password'):''}<button class="btn primary" type="submit">${isReset?'Set password':'Request recovery'}</button></footer></form>`);
+    document.querySelector<HTMLFormElement>('#auth-help-form')!.onsubmit=async e=>{
+        e.preventDefault();const form=e.currentTarget as HTMLFormElement;const data=new FormData(form);const submit=form.querySelector<HTMLButtonElement>('button[type=submit]')!;submit.disabled=true;
+        try{
+            if(isReset){if(data.get('password')!==data.get('confirmPassword'))throw new Error('The new passwords do not match.');await api.resetPassword(String(data.get('token')),String(data.get('password')))}
+            else await api.recover(String(data.get('email')));
+            form.reset();closeModal();login(isReset?'Password set. Sign in with your new password.':'Recovery request acknowledged. Follow your approved recovery channel; contact your administrator if instructions do not arrive.');
+        }catch(error){form.querySelector('.form-error')!.textContent=friendly(error)}finally{submit.disabled=false}
+    };
+}
+async function issueCredentials(id:string){
+    openModal(modalHeader('Issue a new setup token','Customer account security')+`<form id="credentials-form"><div class="modal-body"><p>This generates a new single-use setup token. Verify the customer’s identity and deliver it through an approved secure channel.</p><label class="check-label"><input type="checkbox" required>I have verified the customer and authorize this credential setup.</label><div class="form-error" role="alert"></div></div><footer class="modal-footer">${button('Cancel','close')}<button class="btn primary" type="submit">Issue token</button></footer></form>`);
+    document.querySelector<HTMLFormElement>('#credentials-form')!.onsubmit=async e=>{e.preventDefault();const form=e.currentTarget as HTMLFormElement;const submit=form.querySelector<HTMLButtonElement>('button[type=submit]')!;submit.disabled=true;try{const result=await api.credentials(id);form.reset();openModal(modalHeader('Customer setup token','Shown once')+`<div class="modal-body"><p>Expires in ${result.setupExpiresInMinutes} minutes. Deliver through your approved secure channel. Closing this dialog removes the token from this page.</p><code class="secret">${esc(result.setupToken)}</code></div><footer class="modal-footer">${button('Done','close','primary')}</footer>`)}catch(error){form.querySelector('.form-error')!.textContent=friendly(error)}finally{submit.disabled=false}};
+}
 async function navigate() {
     if (!api.session) {
         login();
+        if(location.hash==='#/reset-password')authDialog('reset');
         return;
     }
     const hash = location.hash.replace(/^#\//, '');
@@ -68,7 +95,8 @@ async function navigate() {
     const version = ++viewVersion;
     shell();
     try {
-        if (api.session.principal.mustChangePassword) {
+        if(api.mode==='live'){await api.validateSession();if(version!==viewVersion)return;shell()}
+        if (api.session!.principal.mustChangePassword) {
             passwordSetup();
             return;
         }
@@ -104,15 +132,13 @@ async function navigate() {
         }
     }
 }
-async function loadRelated(key: string) { if (cache[key])
-    return cache[key]; if (!can(api.permissions, modules[key].permission))
-    return []; return cache[key] = await api.list(key); }
+async function loadRelated(key: string) {if(!can(api.permissions,modules[key].permission))return [];if(cache[key])return cache[key];return cache[key]=await api.list(key)}
 function value(key: string, v: any) { if (v === null || v === undefined || v === '')
     return '<span class="muted">—</span>'; if (['priceMinor', 'amountMinor', 'confirmedPaymentsMinor'].includes(key))
     return `<strong class="money">${money(v)}</strong>`; if (key.endsWith('At'))
     return esc(date(v)); if (['status', 'eligibility', 'enabled'].includes(key))
     return badge(v); if (key === 'published')
-    return badge(v ? 'PUBLISHED' : 'DRAFT'); if (key === 'simulated')
+    return badge(v ? 'PUBLISHED' : 'DRAFT'); if (key === 'accountNumberSimulated')return badge(v?'SIMULATED':'OFFICIAL'); if (key === 'simulated')
     return badge(v ? 'SIMULATED' : 'NATIVE'); if (key === 'speedMbps')
     return `${v} <span class="muted">Mbps</span>`; if (key === 'billingDays')
     return `${v} days`; if (key === 'roles')
@@ -122,16 +148,17 @@ function value(key: string, v: any) { if (v === null || v === undefined || v ===
     return esc(ref?.name || ref?.subject || `${v.slice(0, 8)}…${v.slice(-4)}`);
 } return esc(Array.isArray(v) ? v.join(', ') : typeof v === 'object' ? JSON.stringify(v) : v); }
 async function dashboard(version: number) {
-    const keys = Object.keys(modules).filter(k => !['audit', 'staff', 'provisioning'].includes(k) && can(api.permissions, modules[k].permission));
+    const keys = Object.keys(modules).filter(k => !['audit', 'staff', 'provisioning','notifications'].includes(k) && can(api.permissions, modules[k].permission));
     const results = await Promise.allSettled(keys.map(k => loadRelated(k)));
     if (version !== viewVersion)
         return;
     const failures = results.flatMap((r, i) => r.status === 'rejected' ? [modules[keys[i]].label] : []);
     const defs = [['customers', 'Total customers', 'users', undefined], ['leads', 'New leads', 'contact', 'NEW'], ['orders', 'Pending orders', 'shopping-bag', 'PENDING_PAYMENT'], ['tickets', 'Open support tickets', 'headphones', 'OPEN'], ['subscriptions', 'Active subscriptions', 'radio-tower', 'ACTIVE'], ['payments', 'Payments to review', 'credit-card', 'REPORTED']] as const;
-    const cards = defs.filter(([k]) => cache[k]).map(([k, label, i, status]) => { const count = status ? cache[k].filter(x => x.status === status).length : cache[k].length; return `<a href="#/${k}" class="metric"><div><span>${label}</span>${icon(i)}</div><strong>${count.toLocaleString()}</strong><small>${api.mode === 'mock' ? 'Sample records' : 'Current records'} ${icon('arrow-up-right')}</small></a>`; }).join('');
+    let cards = defs.filter(([k]) => cache[k]&&can(api.permissions,modules[k].permission)).map(([k, label, i, status]) => { const count = status ? cache[k].filter(x => x.status === status).length : cache[k].length; return `<a href="#/${k}" class="metric"><div><span>${label}</span>${icon(i)}</div><strong>${count.toLocaleString()}</strong><small>${api.mode === 'mock' ? 'Sample records' : 'Backend records'} ${icon('arrow-up-right')}</small></a>`; }).join('');
+    if(can(api.permissions,'reports.read')){try{const summary=await api.report();if(version!==viewVersion)return;cards=summaryCards(summary);if(summary.includesSimulatedData)cards='<div class="notice">The backend summary includes SIMULATED development records.</div><section class="metrics">'+cards+'</section>';}catch(e){failures.push('Operational summary')}}
     const tasks = [['payments', 'payments.verify', 'Review reported payments', 'Verify transfer evidence before confirmation.', 'credit-card'], ['leads', 'leads.write', 'Follow up with new leads', 'Keep the next customer connection moving.', 'contact'], ['tickets', 'support.write', 'Work the support queue', 'Review open requests and assignments.', 'headphones'], ['coverage', 'coverage.write', 'Review location eligibility', 'Resolve unknown or unverified addresses.', 'map-pin']].filter(([, p]) => can(api.permissions, p));
-    const leads = cache.leads?.slice(0, 4);
-    content().innerHTML = heading('Your operational overview.', `A clear view of the work that keeps customers connected.`, button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<div class="overview-date">${icon('calendar-days')}${new Intl.DateTimeFormat('en-NG', { dateStyle: 'full', timeZone: 'Africa/Lagos' }).format(new Date())}<span>•</span>${api.mode === 'mock' ? 'Sample workspace' : 'Current operational records'}</div>${failures.length ? `<div class="notice" role="alert">Could not load: ${esc(failures.join(', '))}. ${button('Retry', 'refresh')}</div>` : ''}${cards ? `<section class="metrics">${cards}</section>` : '<div class="notice">Your role has access to reporting. Open Reports for operational summaries.</div>'}<section class="dashboard-grid"><div class="panel queue-panel"><div class="panel-title"><div><span class="eyebrow">YOUR NEXT STEPS</span><h2>Keep things moving</h2></div>${icon('arrow-up-right')}</div>${tasks.length ? tasks.map(([key, , title, desc, i], n) => `<a class="task" href="#/${key}"><span class="task-icon">${icon(i)}</span><div><strong>${title}</strong><p>${desc}</p></div><span class="task-number">0${n + 1}</span>${icon('chevron-right')}</a>`).join('') : '<p class="panel-pad">Operational actions are limited by your assigned role.</p>'}</div><div class="panel health-panel"><span class="eyebrow">SERVICE WORKFLOW</span><h2>Every step, verified.</h2><p>Keep financial verification and service activation separate.</p><ol class="workflow"><li><span>1</span><div><strong>Customer request</strong><small>Review plan and address eligibility</small></div></li><li><span>2</span><div><strong>Payment verification</strong><small>Authorized staff check the evidence</small></div></li><li><span>3</span><div><strong>Service fulfillment</strong><small>Confirmed through provisioning</small></div></li></ol><div class="quiet-note">${icon('shield-check')} Each sensitive action is permission controlled.</div></div></section>${leads ? `<section class="panel"><div class="panel-title"><div><span class="eyebrow">CUSTOMERS & SALES</span><h2>Recent leads</h2></div><a class="text-link" href="#/leads">View all leads ${icon('arrow-right')}</a></div>${table('leads', leads)}</section>` : ''}<section class="workspace-note">${icon('network')}<div><strong>One connected operational foundation.</strong><p>Customer identity, catalogue, coverage and service history use the shared Ikonectt application services.</p></div></section>`;
+    const leads = can(api.permissions,'leads.read')?cache.leads?.slice(0, 4):undefined;
+    content().innerHTML = heading('Your operational overview.', `A clear view of the work that keeps customers connected.`, button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<div class="overview-date">${icon('calendar-days')}${new Intl.DateTimeFormat('en-NG', { dateStyle: 'full', timeZone: 'Africa/Lagos' }).format(new Date())}<span>•</span>${api.mode === 'mock' ? 'Sample workspace' : 'Current backend records; inspect simulation flags'}</div>${failures.length ? `<div class="notice" role="alert">Could not load: ${esc(failures.join(', '))}. ${button('Retry', 'refresh')}</div>` : ''}${cards ? (cards.startsWith('<div class="notice">')?cards:`<section class="metrics">${cards}</section>`) : '<div class="notice">Your role has access to reporting. Open Reports for operational summaries.</div>'}<section class="dashboard-grid"><div class="panel queue-panel"><div class="panel-title"><div><span class="eyebrow">YOUR NEXT STEPS</span><h2>Keep things moving</h2></div>${icon('arrow-up-right')}</div>${tasks.length ? tasks.map(([key, , title, desc, i], n) => `<a class="task" href="#/${key}"><span class="task-icon">${icon(i)}</span><div><strong>${title}</strong><p>${desc}</p></div><span class="task-number">0${n + 1}</span>${icon('chevron-right')}</a>`).join('') : '<p class="panel-pad">Operational actions are limited by your assigned role.</p>'}</div><div class="panel health-panel"><span class="eyebrow">SERVICE WORKFLOW</span><h2>Every step, verified.</h2><p>Keep financial verification and service activation separate.</p><ol class="workflow"><li><span>1</span><div><strong>Customer request</strong><small>Review plan and address eligibility</small></div></li><li><span>2</span><div><strong>Payment verification</strong><small>Authorized staff check the evidence</small></div></li><li><span>3</span><div><strong>Service fulfillment</strong><small>Confirmed through provisioning</small></div></li></ol><div class="quiet-note">${icon('shield-check')} Each sensitive action is permission controlled.</div></div></section>${leads ? `<section class="panel"><div class="panel-title"><div><span class="eyebrow">CUSTOMERS & SALES</span><h2>Recent leads</h2></div><a class="text-link" href="#/leads">View all leads ${icon('arrow-right')}</a></div>${table('leads', leads)}</section>` : ''}<section class="workspace-note">${icon('network')}<div><strong>One connected operational foundation.</strong><p>Customer identity, catalogue, coverage and service history use the shared Ikonectt application services.</p></div></section>`;
 }
 function filtered() { return rows.filter(r => (!query || Object.values(r).some(v => String(v ?? '').toLowerCase().includes(query.toLowerCase()))) && (!filter || String(r[modules[route].status!]) === filter)); }
 function table(key: string, data: RecordData[]) { const m = modules[key]; return `<div class="table-scroll"><table><thead><tr>${m.columns.map(k => `<th scope="col">${labels[k] || pretty(k)}</th>`).join('')}<th scope="col"><span class="sr-only">Open details</span></th></tr></thead><tbody>${data.map(r => `<tr>${m.columns.map((k, i) => `<td>${i === 0 ? `<button class="record-link" data-detail="${esc(r.id)}" data-module="${key}">${value(k, r[k])}</button>` : value(k, r[k])}</td>`).join('')}<td><button class="icon-btn" data-detail="${esc(r.id)}" data-module="${key}" aria-label="Open ${esc(r.name || r.subject || m.singular)}">${icon('arrow-up-right')}</button></td></tr>`).join('')}</tbody></table></div>`; }
@@ -172,7 +199,7 @@ function fieldHtml(f: Field, r: RecordData) {
     else {
         const refKey = { customerId: 'customers', planId: 'plans', buildingId: 'coverage', parentId: 'coverage', assignedToId: 'staff', orderId: 'orders', subscriptionId: 'subscriptions' }[f.key];
         const options = refKey ? cache[refKey] : undefined;
-        control = options ? `<select id="${id}" name="${f.key}" ${req}><option value="">Select ${esc(f.label.toLowerCase())}</option>${options.filter(x => f.key !== 'buildingId' || x.level === 'BUILDING_ADDRESS').map(x => `<option value="${esc(x.id)}" ${x.id === v ? 'selected' : ''}>${esc(x.name || x.subject || x.id)}${x.level ? ` · ${pretty(x.level)}` : ''}</option>`).join('')}</select>` : `<input id="${id}" name="${f.key}" type="${f.type || 'text'}" ${f.min !== undefined ? `min="${f.min}"` : ''} ${f.type === 'number' ? 'step="1"' : ''} ${f.type === 'password' ? 'autocomplete="new-password"' : 'autocomplete="off"'} value="${f.type === 'password' ? '' : esc(v)}" ${req}>`;
+        control = options ? `<select id="${id}" name="${f.key}" ${req}><option value="">Select ${esc(f.label.toLowerCase())}</option>${options.filter(x => f.key !== 'buildingId' || x.level === 'BUILDING_ADDRESS').map(x => `<option value="${esc(x.id)}" ${x.id === v ? 'selected' : ''}>${esc(x.name || x.subject || x.planName || x.reference || x.id)}${x.level ? ` · ${pretty(x.level)}` : ''}</option>`).join('')}</select>` : `<input id="${id}" name="${f.key}" type="${f.type || 'text'}" ${f.min !== undefined ? `min="${f.min}"` : ''} ${f.type === 'number' ? 'step="1"' : ''} ${f.type === 'password' ? 'autocomplete="new-password"' : 'autocomplete="off"'} value="${f.type === 'password' ? '' : esc(v)}" ${req}>`;
     }
     return `<div class="field ${f.type === 'textarea' || f.type === 'roles' ? 'span-2' : ''}"><label ${f.type === 'roles' ? '' : `for="${id}"`}>${esc(f.label)}${f.required ? '<span class="required"> *</span>' : ''}</label>${control}${f.hint ? `<small>${esc(f.hint)}</small>` : ''}</div>`;
 }
@@ -181,15 +208,19 @@ async function edit(key: string, id?: string) {
     try {
         api.assert(m.write || 'denied');
         await Promise.all(['customers', 'plans', 'coverage', 'staff', 'orders', 'subscriptions'].filter(k => can(api.permissions, modules[k].permission)).map(k => loadRelated(k)));
-        const r = id ? (cache[key] || await api.list(key)).find(r => r.id === id) : { kind: 'RESIDENTIAL', billingDays: 30, eligibility: 'UNKNOWN' };
+        if(['orders','coverage'].includes(key)){for(const k of ['plans','coverage'] as const){if(!cache[k])cache[k]=await api.publicOptions(k)}}
+        if(key==='customers'&&!cache.coverage)cache.coverage=await api.publicOptions('coverage');
+        const r = id ? await api.detail(key,id) : { kind: 'RESIDENTIAL', billingDays: 30, eligibility: 'UNKNOWN' };
         if (!r)
             throw new Error('Record not found.');
+        if(key==='coverage'&&id&&r.level!=='BUILDING_ADDRESS')throw new Error('Final eligibility is managed at building/address level.');
+        if(key==='provisioning'&&id&&(r.mode.toLowerCase()!=='manual'||r.status==='ACTIVE'))throw new Error('Only unfinished manual requests accept staff-recorded results.');
         const fields = id ? (m.editFields || m.fields) : m.fields;
         openModal(modalHeader(`${id ? 'Edit' : 'Create'} ${m.singular.toLowerCase()}`, m.label) + `<form id="record-form"><div class="form-grid">${fields.map(f => fieldHtml(f, r)).join('')}</div>${key === 'customers' && !id ? '<div class="notice">The backend creates the permanent customer ID and account number. Customer password setup follows the approved secure onboarding workflow.</div>' : ''}${key === 'provisioning' || key === 'staff' ? '<label class="check-label form-confirm"><input type="checkbox" required>I have reviewed this operational change and authorize it.</label>' : ''}<div class="form-error" id="form-error" role="alert"></div><footer class="modal-footer">${button('Cancel', 'close')}<button type="submit" class="btn primary">${id ? 'Save changes' : 'Create record'}</button></footer></form>`, true);
         if (key === 'coverage' && !id) {
             const level = document.querySelector<HTMLSelectElement>('[name=level]')!;
             const parent = document.querySelector<HTMLSelectElement>('[name=parentId]')!;
-            const syncParent = () => { const levels = C.CoverageLevel.options; const preceding = levels[levels.indexOf(level.value as any) - 1]; parent.innerHTML = '<option value="">Select parent location</option>' + ((cache.coverage || []).filter(x => x.level === preceding).map(x => `<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('')); parent.required = !!preceding; parent.disabled = !preceding; parent.closest('.field')!.toggleAttribute('hidden', !preceding); };
+            const syncParent = () => { const atBuilding=level.value==='BUILDING_ADDRESS';const eligibility=document.querySelector<HTMLSelectElement>('[name=eligibility]')!;const planIds=document.querySelector<HTMLTextAreaElement>('[name=planIds]')!;eligibility.disabled=!atBuilding;planIds.disabled=!atBuilding;if(!atBuilding){eligibility.value='UNKNOWN';planIds.value='';} const levels = C.CoverageLevel.options; const preceding = levels[levels.indexOf(level.value as any) - 1]; parent.innerHTML = '<option value="">Select parent location</option>' + ((cache.coverage || []).filter(x => x.level === preceding).map(x => `<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('')); parent.required = !!preceding; parent.disabled = !preceding; parent.closest('.field')!.toggleAttribute('hidden', !preceding); };
             level.onchange = syncParent;
             syncParent();
         }
@@ -200,6 +231,7 @@ async function edit(key: string, id?: string) {
             const input: RecordData = {};
             for (const f of fields) {
                 const v = fd.get(f.key);
+                if(key==='coverage'&&((form.elements.namedItem('level') as HTMLSelectElement)?.value||r.level)!=='BUILDING_ADDRESS'&&['eligibility','planIds'].includes(f.key)){input[f.key]=f.key==='eligibility'?'UNKNOWN':[];continue}
                 if (f.type === 'checkbox')
                     input[f.key] = fd.has(f.key);
                 else if (f.type === 'roles')
@@ -220,7 +252,7 @@ async function edit(key: string, id?: string) {
                 cache = {};
                 toast(api.mode === 'mock' ? 'Sample record saved.' : 'Record saved.');
                 await navigate();
-                if (key === 'customers' && !id && result.setupToken)
+                if (key === 'customers' && !id && result.setupToken && api.session)
                     openModal(modalHeader('Customer account created', 'Secure onboarding') + `<div class="modal-body"><p>Deliver this one-time setup token through an approved, verified channel. It is displayed once and expires after ${esc(result.setupExpiresInMinutes)} minutes.</p><code class="secret">${esc(result.setupToken)}</code><p>Account number: <strong>${esc(result.customer?.accountNumber || result.accountNumber)}</strong></p></div><footer class="modal-footer">${button('Done', 'close', 'primary')}</footer>`);
             }
             catch (err) {
@@ -244,7 +276,7 @@ async function details(key: string, id: string) {
     const session = api.session;
     try {
         api.assert(modules[key].permission);
-        const r = (cache[key] || await api.list(key)).find(x => x.id === id);
+        const r = await api.detail(key,id);
         if (!r)
             throw new Error('Record not found.');
         const m = modules[key];
@@ -253,21 +285,21 @@ async function details(key: string, id: string) {
             const related = await Promise.all(['orders', 'subscriptions', 'tickets'].map(async (k) => { if (!can(api.permissions, modules[k].permission))
                 return ''; const list = (await loadRelated(k)).filter(x => x.customerId === id); return `<div class="related-block"><h3>${modules[k].label} <span>${list.length}</span></h3>${list.length ? list.map(x => `<button class="related-row" data-detail="${esc(x.id)}" data-module="${k}"><span>${esc(x.subject || x.planName || x.id)}</span>${badge(x.status)}${icon('arrow-up-right')}</button>`).join('') : '<p class="muted">No related records.</p>'}</div>`; }));
             const refs = can(api.permissions, 'integrations.read') ? await api.references(id) : 'Your role does not include integration references.';
-            extra = related.join('') + `<div class="related-block"><h3>External CRM references</h3><pre>${esc(JSON.stringify(refs, null, 2))}</pre>${can(api.permissions, 'integrations.write') ? button('Link external reference', `reference:${id}`, '', 'plug') : ''}</div>`;
+            extra = (can(api.permissions,'customers.write')?button('Issue new setup token',`credentials:${id}`,'','lock-keyhole'):'')+related.join('') + `<div class="related-block"><h3>External CRM references</h3><pre>${esc(JSON.stringify(refs, null, 2))}</pre>${can(api.permissions, 'integrations.write') ? button('Link external reference', `reference:${id}`, '', 'plug') : ''}</div>`;
         }
         if (key === 'leads')
             extra = `<div class="notice">${r.buildingId ? 'Address-linked enquiry' : 'Address verification required'} · Source, assignment, notes and follow-ups await backend support.</div>${!r.customerId && can(api.permissions, 'customers.write') ? button('Create customer from lead', `convert:${id}`, 'primary', 'user-plus') : ''}`;
         if (key === 'orders')
-            extra = `<div class="notice">Order: ${esc(pretty(r.status))}. Payment confirmation does not activate service. Provisioning is an independent authorized workflow.</div>${can(api.permissions, 'provisioning.write') ? '<a class="btn" href="#/provisioning">Open provisioning workflow</a>' : ''}`;
+            extra = `<div class="notice">Order: ${esc(pretty(r.status))}. Payment confirmation does not activate service. Provisioning is an independent authorized workflow.</div>${r.status==='PENDING_PAYMENT'&&can(api.permissions,'orders.write')?button('Report payment',`payment-report:${id}`,'','credit-card'):''}${can(api.permissions, 'provisioning.write') ? '<a class="btn" href="#/provisioning">Open provisioning workflow</a>' : ''}`;
         if (key === 'payments')
             extra = `<div class="notice">Verification records the staff identity, timestamp and evidence. Confirmation never activates a subscription.</div>${r.status === 'REPORTED' && can(api.permissions, 'payments.verify') ? button('Review payment', `verify:${id}`, 'primary', 'shield-check') : ''}${r.status === 'CONFIRMED' ? button('View receipt', `receipt:${id}`, '', 'receipt-text') : ''}`;
         if (key === 'tickets') {
-            const messages = await api.messages(id);
+            const messages = r.messages||await api.messages(id);
             extra = `<div class="related-block"><h3>Customer conversation</h3><p class="footnote">Messages here are visible to the customer. Private staff notes are unavailable.</p>${messages.map((msg: RecordData) => `<div class="message"><small>${esc(date(msg.createdAt))} · ${esc(msg.authorId)}</small><p>${esc(msg.message)}</p></div>`).join('') || '<p class="muted">No messages.</p>'}${can(api.permissions, 'support.write') ? `<form id="reply-form"><label>Reply to customer<textarea name="message" required maxlength="4000" rows="3"></textarea></label><button class="btn primary" type="submit">Send reply</button><div class="form-error" role="alert"></div></form>` : ''}</div>`;
         }
         if (viewVersion !== version || api.session !== session)
             return;
-        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).map(([k, v]) => `<div><dt>${labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
+        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).map(([k, v]) => `<div><dt>${labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) && (key!=='coverage'||r.level==='BUILDING_ADDRESS') && (key!=='provisioning'||(r.mode.toLowerCase()==='manual'&&r.status!=='ACTIVE')) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
         const form = document.querySelector<HTMLFormElement>('#reply-form');
         if (form)
             form.onsubmit = async (e) => { e.preventDefault(); const submit = form.querySelector('button')!; submit.disabled = true; try {
@@ -305,11 +337,11 @@ async function verify(id: string) {
 async function reports(version: number) { const r = await api.report(); if (version !== viewVersion)
     return; content().innerHTML = heading('Operational reports', 'Current application records. Provider revenue, usage and network performance are unavailable.', button('Refresh report', 'refresh', '', 'refresh-cw')) + `${r.includesSimulatedData ? '<div class="notice">This report includes simulated data.</div>' : ''}<section class="metrics">${[['Customers', r.customers], ['Leads', r.leads], ['Orders', r.orders], ['Open tickets', r.openTickets]].map(([name, n]) => `<div class="metric"><div><span>${name}</span>${icon('chart-no-axes-column')}</div><strong>${n}</strong><small>Current records</small></div>`).join('')}</section><section class="dashboard-grid"><div class="panel panel-pad"><span class="eyebrow">SERVICE DISTRIBUTION</span><h2>Subscriptions by status</h2><div class="bar-chart">${r.subscriptionsByStatus.map((x: any) => `<div><span>${pretty(x.status)}</span><meter min="0" max="${Math.max(1, ...r.subscriptionsByStatus.map((s: any) => s.count))}" value="${x.count}">${x.count}</meter><strong>${x.count}</strong></div>`).join('')}</div></div><div class="panel panel-pad"><span class="eyebrow">FINANCIAL VERIFICATION</span><h2>Confirmed payment records</h2><div class="report-money">${money(r.confirmedPaymentsMinor)}</div><p class="muted">Sum of confirmed payments in the application. Settlement, revenue recognition and external billing are outside this report.</p></div></section>`; }
 async function integrations(version: number) { const response = await api.integrations(); if (version !== viewVersion)
-    return; const list = Array.isArray(response) ? response : response.items || Object.entries(response).map(([name, v]) => ({ name, ...(typeof v === 'object' ? v as object : { mode: v }) })); content().innerHTML = heading('Integrations', 'Provider connections and application capabilities, as reported by the shared service.', button('Refresh status', 'refresh', '', 'refresh-cw')) + `<div class="integration-grid">${list.map((x: RecordData) => { const { status, message } = integrationState(x); return `<section class="panel integration-card"><div class="integration-icon">${icon('plug')}</div>${badge(status)}<h2>${esc(pretty(x.name || x.provider || x.key))}</h2><p>${esc(message)}</p><dl><dt>Mode</dt><dd>${esc(x.mode || status)}</dd></dl></section>`; }).join('')}</div><p class="footnote">Credentials and infrastructure configuration stay on the server. A simulated provider is never a live production connection.</p>`; }
+    return; const list:RecordData[] = Array.isArray(response) ? response : Object.entries(response).map(([name, v]) => ({ name, ...(typeof v === 'object' ? v as object : { mode: v }) })); content().innerHTML = heading('Integrations', 'Provider connections and application capabilities, as reported by the shared service.', button('Refresh status', 'refresh', '', 'refresh-cw')) + `<div class="integration-grid">${list.map((x: RecordData) => { const { status, message } = integrationState(x); return `<section class="panel integration-card"><div class="integration-icon">${icon('plug')}</div>${badge(status)}<h2>${esc(pretty(x.name || x.provider || x.key))}</h2><p>${esc(message)}</p><dl><dt>Mode</dt><dd>${esc(x.mode || status)}</dd></dl></section>`; }).join('')}</div><p class="footnote">Credentials and infrastructure configuration stay on the server. A simulated provider is never a live production connection.</p>`; }
 function settings() { content().innerHTML = heading('Workspace settings', 'Application configuration and the access model for this workspace.') + `<section class="panel panel-pad"><span class="eyebrow">ACCESS CONTROL</span><h2>Shared role permissions</h2><p>Permissions below are synchronized from Agent 1’s backend. Live access uses the server’s permissions endpoint. Role changes are available under Staff & Roles.</p><div class="permission-grid">${Object.entries(ROLE_PERMISSIONS).map(([role, permissions]) => `<div><h3>${pretty(role)}</h3><ul>${permissions.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('')}</div></section><section class="panel panel-pad settings-note"><h2>Operational configuration</h2><p>The approved API currently provides integration status and role assignment. It does not expose editable operational settings, custom role definitions or provider credentials. These settings require Agent 1’s contract before they can be edited.</p></section>`; }
 function passwordSetup() { content().innerHTML = heading('Update your staff password', 'Your account requires a password change before accessing operational data.') + `<form class="panel panel-pad compact-form" id="change-password"><label>Current password<input type="password" name="currentPassword" required autocomplete="current-password"></label><label>New password<input type="password" name="password" required minlength="12" maxlength="128" autocomplete="new-password"></label><div class="form-error" role="alert"></div><button class="btn primary">Update password</button></form>`; document.querySelector<HTMLFormElement>('#change-password')!.onsubmit = async (e) => { e.preventDefault(); const f = e.currentTarget as HTMLFormElement; try {
     const data = C.ChangePasswordRequest.parse(Object.fromEntries(new FormData(f)));
-    await api.request('/auth/change-password', 'POST', data);
+    await api.changePassword(data.currentPassword,data.password);
     api.clear();
     cache = {};
     login('Password updated. Sign in with your new password.');
@@ -338,6 +370,10 @@ document.addEventListener('click', async (e) => {
         location.hash = '#/dashboard';
         await navigate();
     }
+    else if (action === 'recovery')authDialog('recovery');
+    else if (action === 'reset-password')authDialog('reset');
+    else if (action.startsWith('payment-report:')){const order=await api.detail('orders',action.slice(15));await edit('payments');const form=document.querySelector<HTMLFormElement>('#record-form');if(form){for(const key of ['orderId','amountMinor','currency']){const input=form.elements.namedItem(key) as HTMLInputElement;input.value=String(key==='orderId'?order.id:order[key]);}}}
+    else if (action.startsWith('credentials:'))await issueCredentials(action.slice(12));
     else if (action === 'password') {
         const input = document.querySelector<HTMLInputElement>('input[name=password]')!;
         input.type = input.type === 'password' ? 'text' : 'password';
@@ -349,8 +385,7 @@ document.addEventListener('click', async (e) => {
         const open = document.querySelector('#sidebar')!.classList.toggle('open');
         target.setAttribute('aria-expanded', String(open));
     }
-    else if (action === 'refresh')
-        await navigate();
+    else if (action === 'refresh'){cache={};await navigate();}
     else if (action === 'clear') {
         query = '';
         filter = '';
@@ -416,9 +451,9 @@ document.addEventListener('click', async (e) => {
         await edit('customers');
         const form = document.querySelector<HTMLFormElement>('#record-form');
         if (form) {
-            for (const key of ['name', 'email', 'phone', 'kind']) {
+            for (const key of ['name', 'email', 'phone', 'kind','buildingId']) {
                 const input = form.elements.namedItem(key) as HTMLInputElement;
-                if (input)
+                if (input&&lead[key])
                     input.value = lead[key];
             }
             const note = document.createElement('p');
@@ -443,6 +478,7 @@ document.addEventListener('keydown', e => { const modal = document.querySelector
     }
 } });
 window.addEventListener('hashchange', () => { closeModal(); void navigate(); });
+window.addEventListener('focus',()=>{if(api.session&&api.mode==='live')void api.validateSession().catch(error=>{if(api.session)toast(friendly(error),true)})});
 setInterval(() => { if (api.session && Date.parse(api.session.expiresAt) <= Date.now()) {
     api.clear();
     api.onExpired();

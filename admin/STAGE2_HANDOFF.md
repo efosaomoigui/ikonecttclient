@@ -1,5 +1,6 @@
 # Stage 2 Admin integration readiness
 
+Current status: superseded by [Stage 2 integration report](STAGE2_INTEGRATION_REPORT.md). Real development staff login and 15 live acceptance groups have now passed; historical readiness observations below are retained for context.
 Contract baseline: Agent 1 commit `61aa3ba`, API v1. Admin branch: `codex/ikonectt-admin-crm`. This audit modifies only `admin/`; it does not modify backend services or canonical contracts.
 
 ## Local origin and transport

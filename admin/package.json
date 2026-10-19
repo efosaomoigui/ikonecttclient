@@ -8,7 +8,8 @@
     "build": "tsc --noEmit && vite build",
     "test": "npm run build:review && tsx --test tests/*.test.ts",
     "sync-contracts": "node scripts/sync-contracts.mjs",
-    "build:review": "tsc --noEmit && vite build --mode review"
+    "build:review": "tsc --noEmit && vite build --mode review",
+    "test:live": "tsx scripts/live-integration.ts"
   },
   "dependencies": {
     "zod": "^3.25.76",
