@@ -1,5 +1,14 @@
 # API changes
 
+## 1.0.1 - 2026-10-19
+
+Stage 2 compatibility release: unchanged 59 paths, 75 operations, request/response names and v1 behavior.
+OpenAPI now represents the existing strictly-positive price/payment rules and shared error payloads,
+including the existing 413 body-size limit. Route/guard parity and the generated endpoint/permission map
+are checked automatically. Added one canonical extended SIMULATED dataset for persistent development,
+shared by database initialization and frontend fixtures. Added committed-contract consumption and
+Agent 2/3 handoff guidance. Contract package version matches API_VERSION. No new live provider or role.
+
 ## 1.0.0 - 2026-10-19
 
 Initial contracts for public website, customer portal and staff CRM.

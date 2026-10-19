@@ -11,7 +11,7 @@ import { decrypt, digest, hashPassword } from '../src/core/crypto';
 import { NotificationsService } from '../src/notifications/notifications.service';
 import { Simulator, SimulatedLegacyProvider, SimulatedPaymentProvider, SimulatedProvisioningProvider } from '../src/integrations/adapters';
 
-loadEnvironment({ path: '.env.test.local', quiet: true } as any);
+loadEnvironment({ path: '.env.test.local', override: !process.env.TEST_DATABASE_URL, quiet: true } as any);
 if (!process.env.TEST_DATABASE_URL || !new URL(process.env.TEST_DATABASE_URL).pathname.endsWith('_test')) throw new Error('Set TEST_DATABASE_URL to a dedicated database ending in _test');
 process.env.NODE_ENV = 'test';
 process.env.DATABASE_URL = process.env.TEST_DATABASE_URL;
@@ -179,6 +179,12 @@ test('provisioning remains pending until a separate authorized outcome; retries 
   const pending = await db.subscription.findUniqueOrThrow({ where: { id: provision.subscriptionId } }); assert.equal(pending.status, 'PENDING');
   assert.equal((await api('post', '/admin/provisioning', provisioner, { orderId: order.id }).expect(200)).body.id, provision.id);
   await api('post', `/admin/provisioning/${provision.id}/result`, finance, { status: 'ACTIVE', reference: `SIMULATED-SERVICE-${run}`, evidence: 'Test-only activation evidence' }).expect(403);
+});
+test('failed manual provisioning remains unactivated and can move into review', async () => {
+  await api('post', `/admin/provisioning/${provision.id}/result`, provisioner, { status: 'FAILED', reference: `SIMULATED-FAILED-${run}`, evidence: 'Test-only failed authoritative result' }).expect(200);
+  assert.equal((await db.subscription.findUniqueOrThrow({ where: { id: provision.subscriptionId } })).status, 'FAILED');
+  assert.equal((await db.order.findUniqueOrThrow({ where: { id: order.id } })).status, 'FULFILLING');
+  await api('post', `/admin/provisioning/${provision.id}/result`, provisioner, { status: 'REQUIRES_REVIEW', reference: `SIMULATED-REVIEW-${run}`, evidence: 'Test-only reconciliation required' }).expect(200);
 });
 test('confirmed manual provisioning activates once and records service reference', async () => {
   const input = { status: 'ACTIVE', reference: `SIMULATED-SERVICE-${run}`, evidence: 'Test-only authoritative network check' };

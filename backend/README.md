@@ -3,6 +3,11 @@
 Independent TypeScript/NestJS API for the Public Website, My Ikonectt and Admin/CRM.
 Uses PostgreSQL 16+ and Prisma. Frontend files and the existing showcase server are unchanged.
 
+Stage 2 shared integration setup: see `DEVELOPMENT.md` for the persistent development database,
+repeatable SIMULATED data, guarded backup/reset, local accounts and real API workflow validation.
+Future approved provider connection steps are in `PROVIDER_READINESS.md`; frontend handoff is in
+`../contracts/FRONTEND_HANDOFF.md`. Stage 1 test infrastructure below remains separate.
+
 ## Run locally
 
 Use Node 22.19+ (or a compatible current release) and npm. This implementation was verified with Node 25.9 and PostgreSQL 16.13 on Windows.

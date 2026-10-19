@@ -10,7 +10,10 @@ async function main() {
   const db = new PrismaClient();
   try {
     const existing = await db.user.findUnique({ where: { email: input.email.toLowerCase() } });
-    if (existing) { console.log('Administrator already exists; credentials were not overwritten'); return; }
+    if (existing) {
+      if (existing.kind !== 'STAFF' || !existing.enabled || !existing.roles.includes('ADMIN')) throw new Error('Configured bootstrap email belongs to a non-administrator or disabled account; review it without overwriting credentials');
+      console.log('Administrator already exists; credentials were not overwritten'); return;
+    }
     await db.$transaction(async tx => {
       const user = await tx.user.create({ data: { kind: 'STAFF', name: input.name, email: input.email.toLowerCase(), roles: ['ADMIN'], passwordHash: await hashPassword(input.password), mustChangePassword: true } });
       await tx.auditLog.create({ data: { actorId: user.id, action: 'staff.bootstrap', entityType: 'User', entityId: user.id } });

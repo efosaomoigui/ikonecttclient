@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const API_VERSION = '1.0.0';
+export const API_VERSION = '1.0.1';
 export const API_PREFIX = '/api/v1';
 export const Id = z.string().uuid();
 const Text = z.string().trim().min(1).max(250);
@@ -28,7 +28,7 @@ export const UpdateCustomerRequest = CreateCustomerRequest.omit({ accountNumber:
 export const UpdateProfileRequest = z.object({ phone: z.string().trim().min(7).max(30) }).strict();
 export const CreateStaffRequest = z.object({ name: Text, email: z.string().email().max(254), password: Password, roles: z.array(Role).min(1).max(6) }).strict();
 export const UpdateStaffRequest = z.object({ roles: z.array(Role).min(1).max(6).optional(), enabled: z.boolean().optional() }).strict();
-export const PlanInput = z.object({ code: z.string().min(2).max(50).regex(/^[a-z0-9-]+$/), name: Text, kind: CustomerKind, priceMinor: Money.refine(n => n > 0), currency: z.literal('NGN').default('NGN'), speedMbps: z.number().int().positive().max(100000), billingDays: z.number().int().min(1).max(366).default(30), features: z.array(Text).max(30).default([]), published: z.boolean().default(false) }).strict();
+export const PlanInput = z.object({ code: z.string().min(2).max(50).regex(/^[a-z0-9-]+$/), name: Text, kind: CustomerKind, priceMinor: Money.positive(), currency: z.literal('NGN').default('NGN'), speedMbps: z.number().int().positive().max(100000), billingDays: z.number().int().min(1).max(366).default(30), features: z.array(Text).max(30).default([]), published: z.boolean().default(false) }).strict();
 export const PlanUpdate = PlanInput.partial().strict();
 export const CoverageInput = z.object({ name: Text, level: CoverageLevel, parentId: Id.optional(), eligibility: Eligibility.default('UNKNOWN'), planIds: z.array(Id).max(100).default([]), evidence: z.string().max(1000).optional() }).strict();
 export const CoverageUpdate = z.object({ eligibility: Eligibility, planIds: z.array(Id).max(100), evidence: z.string().trim().min(3).max(1000) }).strict();
@@ -38,7 +38,7 @@ export const CreateLeadRequest = z.object({ name: Text, email: z.string().email(
 export const UpdateLeadRequest = z.object({ status: LeadStatus, customerId: Id.optional() }).strict();
 export const CreateOrderRequest = z.object({ planId: Id, buildingId: Id, type: z.enum(['NEW_CONNECTION', 'RENEWAL', 'PLAN_CHANGE']).default('NEW_CONNECTION'), subscriptionId: Id.optional() }).strict();
 export const StaffOrderRequest = CreateOrderRequest.extend({ customerId: Id }).strict();
-export const ReportPaymentRequest = z.object({ orderId: Id, amountMinor: Money.refine(n => n > 0), currency: z.literal('NGN'), reference: z.string().trim().min(3).max(150), method: z.enum(['BANK_TRANSFER', 'OTHER']), evidence: z.string().trim().min(3).max(2000) }).strict();
+export const ReportPaymentRequest = z.object({ orderId: Id, amountMinor: Money.positive(), currency: z.literal('NGN'), reference: z.string().trim().min(3).max(150), method: z.enum(['BANK_TRANSFER', 'OTHER']), evidence: z.string().trim().min(3).max(2000) }).strict();
 export const VerifyPaymentRequest = z.object({ decision: z.enum(['CONFIRMED', 'REJECTED']), evidence: z.string().trim().min(3).max(2000) }).strict();
 export const ProvisionRequest = z.object({ orderId: Id }).strict();
 export const ProvisionResultRequest = z.object({ status: z.enum(['ACTIVE', 'FAILED', 'REQUIRES_REVIEW']), reference: z.string().trim().min(3).max(150), evidence: z.string().trim().min(3).max(2000) }).strict();
