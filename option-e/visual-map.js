@@ -8,14 +8,14 @@ export const heroAssets={
   'business/solutions/sme':'tower','business/solutions/enterprise':'tower',about:'infrastructure',
   'business/plans':'workplace','business/quote':'workplace',
   'support/troubleshooting':'infrastructure','support/fault':'infrastructure',
-  contact:'support-photo',
+  contact:'support-photo',terms:'infrastructure',
 };
 export const editorialAssets={residential:'flow',business:'workplace',about:'architecture',
   'business/solutions/connectivity':'infrastructure','business/solutions/sme':'workplace','business/solutions/enterprise':'lagos'};
 export function heroAsset(path){
-  return heroAssets[path]||(path.startsWith('coverage')?'coverage-photo':path.startsWith('support')?'support-photo':path.startsWith('business')?'workplace':path.startsWith('residential')?'home-plans-photo':'account-photo');
+  return heroAssets[path]||(path.startsWith('coverage')?'lagos':path.startsWith('support')?'support-photo':path.startsWith('business')?'workplace':path.startsWith('residential')?'home-plans-photo':'account-photo');
 }
-export const isHeroPhoto=key=>Boolean(internalPhotos[key])||['home','tower','infrastructure','workplace'].includes(key);
+export const isHeroPhoto=key=>Boolean(internalPhotos[key])||['home','tower','infrastructure','workplace','lagos'].includes(key);
 export function imageHTML(key,{decorative=false,priority=false,sizes='(max-width:767px) 100vw,60vw'}={}){
   if(internalPhotos[key]){
     const asset=internalPhotos[key],base=new URL(`./images/internal/${asset.stem}-`,import.meta.url).href;

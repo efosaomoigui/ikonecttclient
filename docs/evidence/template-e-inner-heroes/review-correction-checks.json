@@ -1,0 +1,30 @@
+[
+  {
+    "asset": "lagos",
+    "loaded": true,
+    "overflow": false,
+    "route": "coverage",
+    "width": 1440
+  },
+  {
+    "asset": "infrastructure",
+    "loaded": true,
+    "overflow": false,
+    "route": "terms",
+    "width": 1440
+  },
+  {
+    "asset": "lagos",
+    "loaded": true,
+    "overflow": false,
+    "route": "coverage",
+    "width": 390
+  },
+  {
+    "asset": "infrastructure",
+    "loaded": true,
+    "overflow": false,
+    "route": "terms",
+    "width": 390
+  }
+]
