@@ -1,0 +1,41 @@
+{
+  "name": "@ikonectt/backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/backend/src/main.js",
+    "dev": "ts-node --transpile-only src/main.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "ts-node --transpile-only scripts/seed.ts",
+    "contracts": "ts-node --transpile-only scripts/openapi.ts",
+    "notifications:work": "ts-node --transpile-only scripts/notifications.ts",
+    "test:smoke": "node scripts/smoke.cjs",
+    "test": "node --require ts-node/register/transpile-only --test --test-concurrency=1 test/*.test.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.0",
+    "@nestjs/core": "^11.1.0",
+    "@nestjs/platform-express": "^11.1.0",
+    "@nestjs/swagger": "^11.2.0",
+    "@nestjs/throttler": "^6.4.0",
+    "@prisma/client": "6.19.0",
+    "helmet": "^8.1.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^3.25.76",
+    "zod-to-json-schema": "^3.25.0",
+    "dotenv": "^16.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/supertest": "^6.0.0",
+    "prisma": "6.19.0",
+    "supertest": "^7.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.0"
+  },
+  "overrides": { "effect": "^3.20.0", "deepmerge-ts": "^8.0.0", "js-yaml": "^5.4.1" }
+}
