@@ -1,4 +1,4 @@
-import {heroAsset,isHeroPhoto,editorialAssets,imageHTML} from './visual-map.js?v=3';
+import {heroAsset,isHeroPhoto,editorialAssets,imageHTML} from './visual-map.js?v=4';
 import {mountCityExperience} from './city-experience.js?v=12';
 
 export function mountTemplateE({root,home}){

@@ -1,0 +1,36 @@
+{
+  "mode": "built-in image_gen",
+  "date": "2026-10-19",
+  "prompt": "Use case: photorealistic-natural. Asset type: understated Terms and Conditions webpage hero photograph. A single realistic editorial still-life photograph of a small neat stack of ivory paper documents in a plain burgundy document folder, with one elegant unbranded black pen laid diagonally across the papers on a dark warm walnut desk. No people, no hands, no faces, no electronics, no network cables, no laptop, no phone, no gavel, no scales of justice. The pages should be blank or their few faint grey lines completely illegible; no readable text or invented legal wording, no signature, no company logo, no lettering, no watermark. Natural soft window lighting, restrained real paper grain and subtle desk wear, realistic small imperfections, not a glossy 3D render. Wide 16:9 landscape composition, documents and pen grouped on the RIGHT half, subjects fully within the frame with generous margins and safe from top/bottom cropping. LEFT half is a quiet out-of-focus dark desk, suitable for the existing website's burgundy fade behind HTML headings. Premium but quiet and editorial, context of reading service terms. Generate only the photograph, no website UI and no graphic icons.",
+  "source": "assets/review/template-e-internal-heroes/legal-documents-v1.png",
+  "nativeDimensions": [
+    1672,
+    940
+  ],
+  "exports": [
+    {
+      "path": "option-e/images/internal/legal-documents-v1-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 13390
+    },
+    {
+      "path": "option-e/images/internal/legal-documents-v1-800.webp",
+      "width": 800,
+      "height": 450,
+      "bytes": 30526
+    },
+    {
+      "path": "option-e/images/internal/legal-documents-v1-1280.webp",
+      "width": 1280,
+      "height": 720,
+      "bytes": 64600
+    },
+    {
+      "path": "option-e/images/internal/legal-documents-v1-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "bytes": 89864
+    }
+  ]
+}

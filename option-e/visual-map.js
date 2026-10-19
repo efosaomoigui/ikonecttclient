@@ -1,5 +1,5 @@
 import {visualPictureHTML} from '../shared/visual-assets.js';
-import {internalPhotos} from './hero-photos.js';
+import {internalPhotos} from './hero-photos.js?v=2';
 
 // Option E overrides only. Keep future campaign replacements in this map.
 export const heroAssets={
@@ -8,7 +8,7 @@ export const heroAssets={
   'business/solutions/sme':'tower','business/solutions/enterprise':'tower',about:'infrastructure',
   'business/plans':'workplace','business/quote':'workplace',
   'support/troubleshooting':'infrastructure','support/fault':'infrastructure',
-  contact:'support-photo',terms:'infrastructure',
+  contact:'support-photo',terms:'terms-photo',
 };
 export const editorialAssets={residential:'flow',business:'workplace',about:'architecture',
   'business/solutions/connectivity':'infrastructure','business/solutions/sme':'workplace','business/solutions/enterprise':'lagos'};
