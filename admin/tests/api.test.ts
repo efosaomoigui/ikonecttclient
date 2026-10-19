@@ -9,6 +9,9 @@ import { integrationState } from '../src/integrations';
 const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; });
 const preview = (role: StaffRole = 'ADMIN') => { const api = new WorkspaceApi(); api.preview(role); return api; };
+test('published API v1 native coverage mode is recognized', () => {
+    assert.equal(integrationState({mode:'native'}).status, 'CONNECTED');
+});
 test('failed activation validation leaves subscription and order unchanged', async () => {
     const api = preview();
     const request = api.data.provisioning[0];

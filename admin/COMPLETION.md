@@ -2,6 +2,8 @@
 
 19 October 2026. Local frontend delivery on `codex/ikonectt-admin-crm`.
 
+Stage 2 update: the published API baseline is Agent 1 commit `61aa3ba`. Its public capabilities endpoint is now reachable; authenticated role/account integration remains pending. See STAGE2_HANDOFF.md for current origins, gaps and acceptance steps. The offline-backend observations below describe the original delivery check.
+
 ## 1. Admin screens
 
 Branded staff login; dashboard; leads/enquiries; customers; plans; six-level coverage; orders; subscriptions; payments and receipt detail; provisioning; support tickets and conversations; operational reports. Reusable list/detail/form components provide search, status filtering, pagination, empty/loading/error feedback and responsive navigation. Official transparent PNG logo assets and the bundled Inter font are copied into this package.

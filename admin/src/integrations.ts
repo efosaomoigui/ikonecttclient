@@ -8,7 +8,7 @@ export function integrationState(item: RecordData): {
     const mode = String(item.mode || '').toLowerCase();
     if (mode === 'simulated')
         return { status: 'SIMULATED', message: 'Test provider only. No live production service is connected.' };
-    if (mode === 'native-address-registry')
+    if (mode === 'native' || mode === 'native-address-registry')
         return { status: 'CONNECTED', message: 'Native address registry. Location eligibility is managed by authorized staff.' };
     if (mode === 'manual')
         return { status: 'NOT_CONFIGURED', message: 'Manual staff workflow is available. An external automated provider is not configured.' };
