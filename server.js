@@ -28,7 +28,12 @@ const server = http.createServer((req, res) => {
     reqPath = '/index.html';
   }
 
-  const filePath = path.join(ROOT, reqPath);
+  // React templates need their Vite builds; their source index.html cannot run
+  // in this static server. Keep the shortlist's existing /option-a/ URL working.
+  const fileRoot = /^\/option-[abc](?:\/|$)/.test(reqPath)
+    ? path.join(ROOT, 'public_html')
+    : ROOT;
+  const filePath = path.join(fileRoot, reqPath);
 
   // Security check: ensure path is within ROOT
   if (!filePath.startsWith(ROOT)) {
@@ -39,6 +44,12 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (!err && stats.isDirectory()) {
+      if (!reqPath.endsWith('/')) {
+        const [pathname, query] = req.url.split('?');
+        res.writeHead(301, { Location: pathname + '/' + (query ? '?' + query : '') });
+        res.end();
+        return;
+      }
       const indexPath = path.join(filePath, 'index.html');
       if (fs.existsSync(indexPath)) {
         serveFile(indexPath, res);
@@ -98,9 +109,10 @@ function serveFile(filePath, res) {
 }
 
 server.listen(PORT, () => {
+  const listeningPort = server.address().port;
   console.log(`\n======================================================`);
   console.log(`  🚀 iKonectt Dev Server running!`);
-  console.log(`  🔗 Local:   http://localhost:${PORT}`);
+  console.log(`  🔗 Local:   http://localhost:${listeningPort}`);
   console.log(`  📄 Pages:`);
   console.log(`     - http://localhost:${PORT}/ (Home)`);
   console.log(`     - http://localhost:${PORT}/residential.html`);
