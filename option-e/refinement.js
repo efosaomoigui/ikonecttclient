@@ -1,4 +1,4 @@
-import {heroAssets,heroAsset,editorialAssets,imageHTML} from './visual-map.js';
+import {heroAsset,isHeroPhoto,editorialAssets,imageHTML} from './visual-map.js?v=2';
 import {mountCityExperience} from './city-experience.js?v=12';
 
 export function mountTemplateE({root,home}){
@@ -7,7 +7,7 @@ export function mountTemplateE({root,home}){
   function decorate(){
     const path=root.dataset.route,hero=main?.querySelector('.ik-page-hero');
     if(hero&&!hero.dataset.eRefined){
-      const key=heroAsset(path),photo=Boolean(heroAssets[path]);
+      const key=heroAsset(path),photo=isHeroPhoto(key);
       hero.dataset.eRefined=key;hero.classList.add('e-internal-hero',photo?'e-hero-photo':'e-hero-quiet');
       const visual=root.ownerDocument.createElement('div');visual.className='e-hero-visual';visual.setAttribute('aria-hidden','true');
       visual.innerHTML=imageHTML(key,{decorative:true,priority:photo,sizes:'(max-width:767px) 100vw,60vw'});hero.append(visual);

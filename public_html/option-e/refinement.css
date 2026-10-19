@@ -5,7 +5,7 @@
 .ik-site[data-template=e] .e-internal-hero .ik-breadcrumbs{margin-bottom:24px}
 .ik-site[data-template=e] .e-hero-visual{position:absolute;inset:0 0 0 40%;z-index:-1;overflow:hidden;pointer-events:none}
 .ik-site[data-template=e] .e-hero-visual>.ik-visual-picture{position:absolute;inset:0;mask-image:linear-gradient(90deg,transparent,#000 40%)}
-.ik-site[data-template=e] .e-hero-visual img{object-position:62% 44%;filter:saturate(.82)}
+.ik-site[data-template=e] .e-hero-visual img{object-position:var(--e-photo-position,62% 44%);filter:saturate(.82)}
 .ik-site[data-template=e] .e-hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#12070a,rgba(18,7,10,.1) 70%),linear-gradient(0deg,#12070a,transparent 38%,rgba(18,7,10,.13));pointer-events:none}
 .ik-site[data-template=e] .e-hero-quiet>.ik-wrap{padding-right:30%}
 .ik-site[data-template=e] .e-hero-quiet .e-hero-visual{left:60%;opacity:.3}

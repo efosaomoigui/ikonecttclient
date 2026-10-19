@@ -8,7 +8,8 @@ import {mountVisuals} from '../shared/visuals.js';
 import {pages} from '../shared/routes.js';
 import {mountTemplateE} from '../option-e/refinement.js';
 import {canAnimate,mountCityExperience} from '../option-e/city-experience.js';
-import {heroAsset} from '../option-e/visual-map.js';
+import {heroAsset,imageHTML} from '../option-e/visual-map.js';
+import {internalPhotos} from '../option-e/hero-photos.js';
 
 const tick=()=>new Promise(resolve=>setTimeout(resolve,8));
 const read=path=>fs.readFileSync(new URL('../'+path,import.meta.url));
@@ -31,11 +32,20 @@ test('all E internal heroes receive contextual, non-geographic visuals without c
     if(path==='home')continue;
     window.location.hash='#/'+path;await new Promise(resolve=>window.addEventListener('hashchange',resolve,{once:true}));await tick();
     const hero=root.querySelector('.ik-page-hero');assert.equal(hero.dataset.eRefined,heroAsset(path),path);
+    assert.ok(hero.classList.contains('e-hero-photo'),path+' should use the Residential photo treatment');
     if(!path.includes('/plans/demo-')){assert.equal(hero.querySelector('h1').textContent,heading);assert.equal(hero.querySelector('p').textContent,description);}
     assert.equal(root.querySelectorAll('form .e-hero-visual,.ik-plan-card .e-hero-visual,.ik-faq .e-hero-visual,.ik-visual-credit').length,0,path);
     assert.equal(root.querySelectorAll('.e-hero-visual').length,1,path);
   }
   refinement();visuals();site();dom.window.close();
+});
+
+test('E inner-page photographs resolve every local responsive export and stay decorative in heroes',()=>{
+  for(const [key,asset] of Object.entries(internalPhotos)){
+    for(const width of asset.widths){assert.ok(width<=asset.width);assert.ok(read(`option-e/images/internal/${asset.stem}-${width}.webp`).length>0);}
+    const dom=new JSDOM(imageHTML(key,{decorative:true,priority:true})),image=dom.window.document.querySelector('img');
+    assert.equal(image.alt,'');assert.equal(image.loading||image.getAttribute('loading'),'eager');assert.equal(image.getAttribute('fetchpriority'),'high');assert.equal(image.getAttribute('srcset').split(',').length,asset.widths.length);dom.window.close();
+  }
 });
 
 function cityFixture({reject=false,reduced=false,saveData=false}={}){

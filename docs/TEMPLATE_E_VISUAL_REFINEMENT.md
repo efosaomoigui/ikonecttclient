@@ -14,13 +14,15 @@ The existing shared visual adapter still runs first. E's own module decorates it
 
 ## Internal heroes and image fields
 
-All 29 internal routes receive one contextual visual. Residential, Installation, Business overview and solution pages, and About have photographic heroes. Coverage, support, legal, account and other functional pages use restrained original illustrations in their headers. These illustrations are decorative, not geographic coverage representations.
+All 29 internal routes now receive contextual photographic heroes. The 19 October follow-up replaces the remaining abstract headers with four original generated campaign images and reuses suitable existing photography. See [the internal hero photography report](TEMPLATE_E_INTERNAL_HERO_PHOTOGRAPHY.md) for the current image map, prompts and responsive checks. These are illustrative scenes rather than coverage or company-premises claims.
 
-Desktop photos extend to the section's right boundary, with a burgundy-to-transparent horizontal blend and bottom scrim. Editorial slots now occupy the full section height; the former four-sided feathered image-card treatment is removed. Text stays aligned with the existing content column. Mobile photographic heroes and editorial fields stack below their text with top/bottom blends. Functional headers remain compact.
+Desktop photos extend to the section's right boundary, with a burgundy-to-transparent horizontal blend and bottom scrim. Editorial slots occupy the full section height; the former four-sided feathered image-card treatment is removed. Text stays aligned with the existing content column. Mobile photographic heroes and editorial fields stack below their text with top/bottom blends. Functional pages now share the Residential header's photographic treatment.
 
-## Replaceable image map
+## Initial replaceable image map
 
 E-only assignments are in `option-e/visual-map.js`. Existing shared assets are referenced without changing their source files or mappings for other templates.
+
+The Coverage, Support, plan and account header assignments below were superseded on 19 October by the current map in the linked internal hero report. The original assets remain available in the library.
 
 | Location | Current asset and source | Purpose / status | Replacement priority |
 |---|---|---|---|
