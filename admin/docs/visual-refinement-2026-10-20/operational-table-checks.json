@@ -1,0 +1,122 @@
+[
+  {
+    "page": "Customers",
+    "contrast": {
+      "checked": 96,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Customers",
+      "page": 1425,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  },
+  {
+    "page": "Leads",
+    "contrast": {
+      "checked": 71,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Leads",
+      "page": 1440,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  },
+  {
+    "page": "Plans",
+    "contrast": {
+      "checked": 95,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Plans",
+      "page": 1425,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  },
+  {
+    "page": "Coverage",
+    "contrast": {
+      "checked": 96,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Coverage",
+      "page": 1425,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  },
+  {
+    "page": "Orders",
+    "contrast": {
+      "checked": 107,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Orders",
+      "page": 1425,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  },
+  {
+    "page": "Payments",
+    "contrast": {
+      "checked": 106,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Payments",
+      "page": 1425,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  },
+  {
+    "page": "Provisioning",
+    "contrast": {
+      "checked": 107,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Provisioning",
+      "page": 1425,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  },
+  {
+    "page": "Support Tickets",
+    "contrast": {
+      "checked": 90,
+      "failures": [],
+      "minimum": 4.87
+    },
+    "table": {
+      "headerFont": "12px",
+      "heading": "Support Tickets",
+      "page": 1425,
+      "rowFont": "13px",
+      "width": 1440
+    }
+  }
+]

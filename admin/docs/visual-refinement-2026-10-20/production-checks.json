@@ -1,0 +1,24 @@
+{
+  "login": {
+    "height": 768,
+    "pageHeight": 768,
+    "pageWidth": 1440,
+    "preview": false,
+    "width": 1440
+  },
+  "recovery": {
+    "height": 344,
+    "pageHeight": 768,
+    "scrollHeight": 344
+  },
+  "liveLogin": true,
+  "cards": 6,
+  "dateSeparated": true,
+  "signOut": true,
+  "mobileLogin": {
+    "height": 741,
+    "pageHeight": 741,
+    "pageWidth": 321,
+    "width": 321
+  }
+}

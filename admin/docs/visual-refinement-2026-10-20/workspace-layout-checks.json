@@ -1,0 +1,108 @@
+[
+  {
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "dashboard": {
+      "amountClient": 323,
+      "amountScroll": 323,
+      "cards": 6,
+      "height": 900,
+      "page": 1425,
+      "width": 1440
+    },
+    "orders": {
+      "numericAligned": true,
+      "page": 1425,
+      "tableClient": 1125,
+      "tableScroll": 1139,
+      "width": 1440
+    }
+  },
+  {
+    "viewport": {
+      "w": 1024,
+      "h": 768
+    },
+    "dashboard": {
+      "amountClient": 199,
+      "amountScroll": 199,
+      "cards": 6,
+      "height": 768,
+      "page": 1009,
+      "width": 1024
+    },
+    "orders": {
+      "numericAligned": true,
+      "page": 1009,
+      "tableClient": 752,
+      "tableScroll": 1139,
+      "width": 1024
+    }
+  },
+  {
+    "viewport": {
+      "w": 768,
+      "h": 1024
+    },
+    "dashboard": {
+      "amountClient": 129,
+      "amountScroll": 129,
+      "cards": 6,
+      "height": 1024,
+      "page": 753,
+      "width": 768,
+      "font": "20.72px"
+    },
+    "orders": {
+      "numericAligned": true,
+      "page": 753,
+      "tableClient": 511,
+      "tableScroll": 1139,
+      "width": 768
+    }
+  },
+  {
+    "viewport": {
+      "w": 390,
+      "h": 844
+    },
+    "dashboard": {
+      "amountClient": 132,
+      "amountScroll": 132,
+      "cards": 6,
+      "height": 844,
+      "page": 375,
+      "width": 390
+    },
+    "orders": {
+      "numericAligned": true,
+      "page": 375,
+      "tableClient": 337,
+      "tableScroll": 1111,
+      "width": 390
+    }
+  },
+  {
+    "viewport": {
+      "w": 320,
+      "h": 740
+    },
+    "dashboard": {
+      "amountClient": 97,
+      "amountScroll": 97,
+      "cards": 6,
+      "height": 741,
+      "page": 304,
+      "width": 320
+    },
+    "orders": {
+      "numericAligned": true,
+      "page": 304,
+      "tableClient": 266,
+      "tableScroll": 1111,
+      "width": 320
+    }
+  }
+]
