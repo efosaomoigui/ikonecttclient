@@ -1,5 +1,6 @@
 import './style.css';
 import './acceptance.css';
+import './readability.css';
 import { integrationState } from './integrations';
 import { createIcons, ArrowDown, ArrowRight, ArrowUpRight, Building2, CalendarDays, ChartNoAxesColumn, ChartNoAxesCombined, ChevronDown, ChevronLeft, ChevronRight, Contact, CreditCard, Eye, EyeOff, FlaskConical, Headphones, Layers, LayoutDashboard, LoaderCircle, LockKeyhole, LogOut, MapPin, Menu, Network, Pencil, Plug, Plus, RadioTower, ReceiptText, RefreshCw, ScrollText, Search, SearchX, Settings2, ShieldAlert, ShieldCheck, ShoppingBag, UserPlus, Users, X } from 'lucide';
 const icons = { ArrowDown, ArrowRight, ArrowUpRight, Building2, CalendarDays, ChartNoAxesColumn, ChartNoAxesCombined, ChevronDown, ChevronLeft, ChevronRight, Contact, CreditCard, Eye, EyeOff, FlaskConical, Headphones, Layers, LayoutDashboard, LoaderCircle, LockKeyhole, LogOut, MapPin, Menu, Network, Pencil, Plug, Plus, RadioTower, ReceiptText, RefreshCw, ScrollText, Search, SearchX, Settings2, ShieldAlert, ShieldCheck, ShoppingBag, UserPlus, Users, X };
@@ -192,7 +193,7 @@ function fieldHtml(f: Field, r: RecordData) {
     if (f.type === 'roles')
         control = `<div class="role-options">${Object.keys(ROLE_PERMISSIONS).map(role => `<label><input type="checkbox" name="roles" value="${role}" ${v?.includes(role) ? 'checked' : ''}>${pretty(role)}</label>`).join('')}</div>`;
     else if (f.options)
-        control = `<select id="${id}" name="${f.key}" ${req}>${f.options.map(o => `<option value="${o}" ${o === v ? 'selected' : ''}>${pretty(o)}</option>`).join('')}</select>`;
+        control = `<select id="${id}" name="${f.key}" ${req}>${f.options.map(o => `<option value="${o}" ${o === v ? 'selected' : ''}>${o === 'NGN' ? 'NGN' : pretty(o)}</option>`).join('')}</select>`;
     else if (f.type === 'checkbox')
         control = `<input id="${id}" name="${f.key}" type="checkbox" ${v ? 'checked' : ''}>`;
     else if (f.type === 'textarea')
@@ -300,7 +301,7 @@ async function details(key: string, id: string) {
         }
         if (viewVersion !== version || api.session !== session)
             return;
-        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).filter(([k]) => key !== 'tickets' || k !== 'messages').map(([k, v]) => `<div><dt>${labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) && (key!=='coverage'||r.level==='BUILDING_ADDRESS') && (key!=='provisioning'||(r.mode.toLowerCase()==='manual'&&r.status!=='ACTIVE')) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
+        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).filter(([k]) => key !== 'tickets' || k !== 'messages').map(([k, v]) => `<div><dt>${key === 'provisioning' && k === 'reference' ? 'Provider reference' : labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) && (key!=='coverage'||r.level==='BUILDING_ADDRESS') && (key!=='provisioning'||(r.mode.toLowerCase()==='manual'&&r.status!=='ACTIVE')) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
         const form = document.querySelector<HTMLFormElement>('#reply-form');
         if (form)
             form.onsubmit = async (e) => { e.preventDefault(); const submit = form.querySelector('button')!; submit.disabled = true; try {

@@ -1,0 +1,9 @@
+/* Stage 3A: restrained contrast and dense-table readability refinements. */
+.page-heading p, .metric > div, .metric small, .breadcrumb,
+.detail-grid dt, .footnote, .overview-date { color: #667180; }
+th { color: #667180; font-size: 11px; }
+td { color: #5f6b7a; }
+tbody tr:nth-child(even) { background: #fafbfc; }
+tbody tr:hover { background: #f5f7fa; }
+.detail-grid dd { color: #4e5c6c; }
+.message small, .integration-card p, .field > small { color: #687586; }
