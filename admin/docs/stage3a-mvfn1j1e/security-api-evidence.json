@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-20",
+  "method": "API supplement; not browser workflow evidence",
+  "results": [
+    {
+      "check": "Support payment verification denied",
+      "status": 403
+    },
+    {
+      "check": "SUPPORT revoked session",
+      "status": 401
+    },
+    {
+      "check": "Finance provisioning denied",
+      "status": 403
+    },
+    {
+      "check": "FINANCE revoked session",
+      "status": 401
+    },
+    {
+      "check": "Backend health",
+      "status": "ok",
+      "database": "connected"
+    }
+  ]
+}

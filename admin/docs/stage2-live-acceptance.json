@@ -1,0 +1,35 @@
+{
+  "title": "IKONECTT — ADMIN/CRM STAGE 2 INTEGRATION REPORT",
+  "status": "PASS",
+  "at": "2026-10-19T18:22:13.873Z",
+  "database": "ikonectt_development",
+  "transportOrigin": "http://127.0.0.1:3013",
+  "checks": [
+    "Development API and database are reachable through the Admin same-origin proxy",
+    "All six real role accounts authenticate, validate their sessions and consume server permissions",
+    "Isolated staff account enforces first-password change and revokes the old session",
+    "Staff recovery returns a generic acknowledgement; invalid reset token is rejected",
+    "B: created/published plan is visible through the public catalogue API",
+    "C: six-level hierarchy, UNKNOWN and building-level plan eligibility agree with coverage API",
+    "A: staff onboarding, single-use credential setup and customer authentication/dashboard use the same database",
+    "Lead status/customer linkage and authorized external CRM references persist",
+    "Direct plan-price edit does not rewrite a historical order amount",
+    "F: real server rejects unauthorized verification, provisioning, staff management and coverage mutation",
+    "D: finance confirmation sets PAID without activation; separate backend provisioning returns a labeled SIMULATED result without duplication",
+    "Payment rejection preserves unpaid order state; simulated provisioning cannot accept a manual result override",
+    "E: customer ticket, staff assignment/reply/resolution and customer conversation agree",
+    "Summary reporting, audit events, notification metadata and provider modes read actual backend data",
+    "Disabled isolated staff and explicit logout revoke real server sessions"
+  ],
+  "scope": "Real HTTP/database development acceptance; provider provisioning result is SIMULATED. No production deployment, browser visual assertion or credential disclosure.",
+  "records": {
+    "customerId": "b87d8574-b8e1-48b1-9cc2-d09d7c68c755",
+    "planId": "0cd5c5b6-ffd0-4766-a948-7c3887bcc18a",
+    "buildingId": "c88d761c-52ed-4606-ae11-b3e04d226eb7",
+    "orderId": "04dab5b8-6fb7-4d69-9359-a68a5e468f55",
+    "paymentId": "863a12b4-c45d-49af-aa9c-50ccc90557da",
+    "ticketId": "1b5566ee-b6b5-4d4d-a5aa-32e81c1b8c67"
+  },
+  "contractCommit": "4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
+  "contractVersion": "1.0.1"
+}
