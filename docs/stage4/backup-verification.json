@@ -1,0 +1,31 @@
+{
+  "verifiedAt": "2026-10-20T06:58:03.619Z",
+  "status": "PASS",
+  "archive": "ikonectt_development-1792478726388.dump",
+  "restoredDatabase": "ikonectt_development_1792478727498",
+  "activeDatabaseChanged": false,
+  "fixtureAuditMarker": "PASS (owner helper)",
+  "stage4RecordReadback": "PASS",
+  "snapshot": {
+    "order": {
+      "id": "f537c119-e7d1-417d-a2fc-7a54bcd6cb1a",
+      "status": "COMPLETED",
+      "amountMinor": "1950000",
+      "customerId": "23c9531f-e13f-4a30-9726-3af83feb24b9",
+      "subscriptionId": "f46df766-a40a-4948-a7f7-0c48848edad1"
+    },
+    "ticket": {
+      "id": "69c2e9d3-91b8-4748-ba6d-21fc3cfb1293",
+      "status": "RESOLVED",
+      "customerId": "23c9531f-e13f-4a30-9726-3af83feb24b9"
+    },
+    "subscriptions": [
+      {
+        "id": "f46df766-a40a-4948-a7f7-0c48848edad1",
+        "status": "ACTIVE",
+        "simulated": true
+      }
+    ]
+  },
+  "scope": "Local development custom-format backup/restore, retained verification database; not a production disaster recovery sign-off"
+}

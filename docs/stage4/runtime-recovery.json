@@ -1,0 +1,52 @@
+{
+  "verifiedAt": "2026-10-20T07:05:12.630Z",
+  "sourceCommit": "6a7ff9602b0d9da168e3b0c7ac4c2671dd5b3031",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "Occupied application port refusal preserves active supervisor/processes",
+      "status": "PASS"
+    },
+    {
+      "name": "Shutdown stops owned apps and retains pre-existing adopted PostgreSQL",
+      "status": "PASS"
+    },
+    {
+      "name": "Existing data fingerprints remain readable with apps stopped",
+      "status": "PASS"
+    },
+    {
+      "name": "Cold-start existing PostgreSQL data and integrated API/Admin/portal",
+      "status": "PASS"
+    },
+    {
+      "name": "Owned shutdown stops PostgreSQL and apps and removes runtime state",
+      "status": "PASS"
+    },
+    {
+      "name": "Second cold start returns all services healthy without migration/seed/reset",
+      "status": "PASS"
+    },
+    {
+      "name": "Customer/order/payment/subscription/two-message-ticket fingerprint preserved",
+      "status": "PASS"
+    }
+  ],
+  "fingerprint": "abcd30bfe45cc45867f5a06629d8f60089b951ddad6dec7a203492cd1cbecd04",
+  "records": {
+    "customerId": "c8c6a143-4319-44a3-84ab-0b21672a6e10",
+    "accountNumber": "81117181",
+    "orderId": "800fce40-5220-4a40-a575-9bbf55752ffc",
+    "paymentId": "e816902e-9e22-4c36-b96a-56e54a5260f1",
+    "subscriptionId": "5f0b3a79-9019-425e-893c-5abb7352f5c7",
+    "ticketId": "f599f85b-c0ea-4600-b685-6a202938394c"
+  },
+  "finalState": {
+    "api": "healthy",
+    "admin": "healthy",
+    "portal": "healthy",
+    "database": "connected",
+    "databaseStartedBySupervisor": true
+  },
+  "scope": "Local development recovery; no production process manager or failover claim"
+}

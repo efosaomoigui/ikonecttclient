@@ -14,13 +14,15 @@
       "name": "admin",
       "tests": 36,
       "passed": 36,
-      "failed": 0
+      "failed": 0,
+      "retestedOnFinalIntegratedSource": true
     },
     {
       "name": "portal",
       "tests": 14,
       "passed": 14,
-      "failed": 0
+      "failed": 0,
+      "retestedOnFinalIntegratedSource": true
     },
     {
       "name": "website",
@@ -49,5 +51,14 @@
     "Explicit Prisma client generation required after clean install; installer now performs it",
     "Windows LF/CRLF conversion affected endpoint text and mixed-EOL website preservation hashes; checkout attributes and content-preserving regression comparison corrected"
   ],
-  "dependencyAudits": "npm ci reported0 vulnerabilities for root,contracts,backend,admin,portal and isolated websiteoptiona/b/c locks"
+  "dependencyAudits": "npm ci reported 0 vulnerabilities for root, contracts, backend, Admin, portal and isolated website option A/B/C lockfiles at verification time",
+  "finalIntegratedSource": "6a7ff9602b0d9da168e3b0c7ac4c2671dd5b3031",
+  "frontendFollowupRetestedAt": "2026-10-20T07:04:26.413Z",
+  "componentSourceRevisions": {
+    "backend": "948dfa10aaba44930feb1bf9433cb1d0b8c01cf0",
+    "contracts": "4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
+    "admin": "36c483929b3bf5956bd18144dde361a8457d3a3f",
+    "portal": "733166df42485b0fc38916dafa4d08405f0ae9bd",
+    "website": "6418909f2ef900788f8fd832281dc2ebdd99e765"
+  }
 }

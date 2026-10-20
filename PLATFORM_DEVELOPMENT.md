@@ -31,9 +31,11 @@ npm run platform:dev
 
 `configure` is a one-time operation. This machine is already configured; skip it on subsequent starts. It refuses to overwrite an existing configuration. Review `.platform/config.json` manually when intentionally changing its owner directory. `--pg-bin 'C:\Program Files\PostgreSQL\16\bin'` is available if the default differs.
 
-The installer runs locked installs sequentially in root, contracts, backend, Admin and portal and explicitly generates Prisma Client. It does not install website option dependencies unless `--website` is supplied. Do not run simultaneous installs in the same package directory.
+The installer runs locked installs sequentially in root, contracts, backend, Admin and portal and explicitly generates Prisma Client. It does not install website option dependencies unless `--website` is supplied. For later reinstalls, run `platform:stop` first so Windows releases the Prisma native library. Do not run simultaneous installs in the same package directory.
 
 The database and secrets remain in the original backend owner directory. Configuration stores a path reference, not copied secrets. The supervisor verifies the helper-owned development database state and probes its name before starting applications. It starts PostgreSQL from that existing data directory if needed. It never initializes, migrates, resets or seeds a database on startup.
+
+On a new machine without this existing owner directory, first follow `backend/DEVELOPMENT.md` to deliberately initialize its own development cluster, configure local bootstrap credentials, apply migrations and create fixtures. Then configure the supervisor with that backend directory. A Git checkout alone does not contain or recreate this machine's secrets/database.
 
 Keep the supervisor terminal open. Endpoints:
 

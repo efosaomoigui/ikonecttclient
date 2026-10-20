@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-20T07:12:44.031Z",
+  "sourceCommit": "6a7ff9602b0d9da168e3b0c7ac4c2671dd5b3031",
+  "status": "PASS",
+  "observations": [
+    {
+      "owner": "Agent3 Admin",
+      "surface": "Compiled production assets :3014/admin/",
+      "afterColdRecovery": true,
+      "checks": [
+        "Existing SIMULATED ADMIN login",
+        "Final subscription labels Starts and External service ID",
+        "Same ACTIVE/Simulated subscription5f0b3a79-9019-425e-893c-5abb7352f5c7",
+        "Same COMPLETED order800fce40-5220-4a40-a575-9bbf55752ffc/NGN19500",
+        "Same RESOLVED ticketf599f85b-c0ea-4600-b685-6a202938394c/exactly2messages",
+        "Sign-out and temporary tab closed"
+      ],
+      "businessMutations": 0
+    },
+    {
+      "owner": "Agent2 Portal",
+      "surface": "Development :4175 and compiled production assets :4176",
+      "afterColdRecovery": true,
+      "checks": [
+        "Existing customer login and account81117181 identity",
+        "Same Active SIMULATED subscription5f0b3a79-9019-425e-893c-5abb7352f5c7",
+        "Same COMPLETED order800fce40-5220-4a40-a575-9bbf55752ffc/NGN19500",
+        "Same Resolved ticketf599f85b-c0ea-4600-b685-6a202938394c/initialcustomer+staff2messages",
+        "Desktop rendered1281 and mobile390: no horizontaloverflow",
+        "Both sessions signed out; viewport reset; compiledtabclosed"
+      ],
+      "businessMutations": 0
+    }
+  ],
+  "evidence": [
+    "final-admin-after-recovery.jpg",
+    "final-portal-support-mobile.png",
+    "final-portal-compiled-services.png"
+  ],
+  "limits": [
+    "Original onboarding password setup was tested via API, not browser creation",
+    "The one-word ticket submission notice correction was source-reviewed/tested/built; no extra ticket created to re-exercise it",
+    "No real financial transfer, external notification delivery or ISP provisioning"
+  ]
+}
