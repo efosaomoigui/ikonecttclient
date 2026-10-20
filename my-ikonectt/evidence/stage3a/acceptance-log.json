@@ -1,0 +1,76 @@
+{
+  "stage": "3A",
+  "contract": "4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
+  "baseline": "c3e5aa9",
+  "portal": "http://127.0.0.1:4175/",
+  "api": "http://127.0.0.1:4000/api/v1",
+  "database": "ikonectt_development",
+  "customer": {
+    "accountNumber": "83655382",
+    "id": "8ba319fe-dc0d-45a0-8eef-dd8b4c00aa20"
+  },
+  "planId": "3df15596-ab4d-4cea-8599-144149ae979f",
+  "buildingId": "927378d7-0d6d-4b4c-aabd-f5e30406a4bb",
+  "results": [
+    {
+      "check": "Baseline automated tests",
+      "status": "passed",
+      "count": 11
+    },
+    {
+      "check": "Baseline build",
+      "status": "passed"
+    },
+    {
+      "check": "Portal secure setup tab",
+      "status": "prepared; awaiting human credential entry"
+    },
+    {
+      "check": "Setup validation correction",
+      "status": "corrected in source; live human browser verification pending",
+      "details": "Clears obsolete password-form warnings on edit, adds native 12–128-character bounds and a field-specific error. Existing handoff fields were not read, changed, submitted or reloaded."
+    },
+    {
+      "check": "Setup-code diagnostic",
+      "status": "source-confirmed local validation before network request",
+      "message": "Please check token.",
+      "canonicalBounds": {
+        "min": 32,
+        "max": 200
+      },
+      "correction": "Canonical-derived missing/incomplete/oversized code guidance, native bounds and account-number distinction. Human page not reloaded or submitted by agent.",
+      "humanOutcome": "pending"
+    },
+    {
+      "check": "Focused post-correction validation",
+      "status": "passed",
+      "tests": 13,
+      "typecheck": "passed",
+      "build": "passed",
+      "liveResetSubmittedByAgent": false
+    },
+    {
+      "check": "Shared API outage",
+      "status": "blocked; backend owner notified",
+      "portalBehavior": "Login stays unauthenticated and shows explicit connection error; no mock success",
+      "backendProcessStartedByPortalAgent": false
+    },
+    {
+      "check": "API recovery and authenticated identity guard",
+      "status": "API recovered; correct-account sign-in pending",
+      "details": "Existing populated form authenticated account98928971. No order created. Signed out, reloaded current portal source, prepared account83655382 with empty password for human sign-in."
+    },
+    {
+      "check": "Stage 4 portal integration review",
+      "status": "passed; joint acceptance remains incomplete",
+      "tests": 14,
+      "failures": 0,
+      "typecheck": "passed",
+      "liveBuild": "passed",
+      "mockBuild": "passed",
+      "contractSnapshot": "Four vendored files byte-match 4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
+      "additionalCorrection": "Mock demo setup code retains adapter validation; live canonical bounds unchanged",
+      "evidenceReview": "Historical login image excluded from committed evidence because masked password control is visible"
+    }
+  ]
+}

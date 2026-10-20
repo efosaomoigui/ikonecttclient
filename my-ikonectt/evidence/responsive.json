@@ -1,0 +1,254 @@
+[
+  {
+    "width": 320,
+    "route": "overview",
+    "content": 305,
+    "heading": "Hello, Amara.",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "services",
+    "content": 321,
+    "heading": "My Services",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "billing",
+    "content": 305,
+    "heading": "Billing & Payments",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "support",
+    "content": 321,
+    "heading": "A helping hand.",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "support/new",
+    "content": 321,
+    "heading": "How can we help?",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "profile",
+    "content": 305,
+    "heading": "My Profile",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "security",
+    "content": 321,
+    "heading": "Account Security",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "notifications",
+    "content": 321,
+    "heading": "Notifications",
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "",
+    "content": 305,
+    "heading": "Your connectivity.Your account.One place.",
+    "viewport": 321
+  },
+  {
+    "width": 390,
+    "route": "overview",
+    "content": 375,
+    "heading": "Hello, Amara.",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "services",
+    "content": 390,
+    "heading": "My Services",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "billing",
+    "content": 375,
+    "heading": "Billing & Payments",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "support",
+    "content": 390,
+    "heading": "A helping hand.",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "support/new",
+    "content": 390,
+    "heading": "How can we help?",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "profile",
+    "content": 375,
+    "heading": "My Profile",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "security",
+    "content": 390,
+    "heading": "Account Security",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "notifications",
+    "content": 390,
+    "heading": "Notifications",
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "",
+    "content": 375,
+    "heading": "Your connectivity.Your account.One place.",
+    "viewport": 390
+  },
+  {
+    "width": 768,
+    "route": "overview",
+    "content": 753,
+    "heading": "Hello, Amara.",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "services",
+    "content": 768,
+    "heading": "My Services",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "billing",
+    "content": 753,
+    "heading": "Billing & Payments",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "support",
+    "content": 768,
+    "heading": "A helping hand.",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "support/new",
+    "content": 768,
+    "heading": "How can we help?",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "profile",
+    "content": 753,
+    "heading": "My Profile",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "security",
+    "content": 768,
+    "heading": "Account Security",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "notifications",
+    "content": 768,
+    "heading": "Notifications",
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "",
+    "content": 753,
+    "heading": "Your connectivity.Your account.One place.",
+    "viewport": 768
+  },
+  {
+    "width": 1280,
+    "route": "overview",
+    "content": 1265,
+    "heading": "Hello, Amara.",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "services",
+    "content": 1281,
+    "heading": "My Services",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "billing",
+    "content": 1265,
+    "heading": "Billing & Payments",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "support",
+    "content": 1281,
+    "heading": "A helping hand.",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "support/new",
+    "content": 1281,
+    "heading": "How can we help?",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "profile",
+    "content": 1265,
+    "heading": "My Profile",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "security",
+    "content": 1281,
+    "heading": "Account Security",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "notifications",
+    "content": 1281,
+    "heading": "Notifications",
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "",
+    "content": 1265,
+    "heading": "Your connectivity.Your account.One place.",
+    "viewport": 1281
+  }
+]

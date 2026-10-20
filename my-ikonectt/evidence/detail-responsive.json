@@ -1,0 +1,74 @@
+[
+  {
+    "width": 320,
+    "route": "services/77777777-7777-4777-8777-777777777777",
+    "content": 305,
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "billing/55555555-5555-4555-8555-555555555555",
+    "content": 305,
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "support/66666666-6666-4666-8666-666666666666",
+    "content": 305,
+    "viewport": 321
+  },
+  {
+    "width": 390,
+    "route": "services/77777777-7777-4777-8777-777777777777",
+    "content": 375,
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "billing/55555555-5555-4555-8555-555555555555",
+    "content": 375,
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "support/66666666-6666-4666-8666-666666666666",
+    "content": 375,
+    "viewport": 390
+  },
+  {
+    "width": 768,
+    "route": "services/77777777-7777-4777-8777-777777777777",
+    "content": 753,
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "billing/55555555-5555-4555-8555-555555555555",
+    "content": 753,
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "support/66666666-6666-4666-8666-666666666666",
+    "content": 768,
+    "viewport": 768
+  },
+  {
+    "width": 1280,
+    "route": "services/77777777-7777-4777-8777-777777777777",
+    "content": 1265,
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "billing/55555555-5555-4555-8555-555555555555",
+    "content": 1265,
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "support/66666666-6666-4666-8666-666666666666",
+    "content": 1281,
+    "viewport": 1281
+  }
+]

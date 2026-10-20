@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-10-19T18:38:52.843Z",
+  "api": "http://127.0.0.1:4000/api/v1",
+  "mode": "real HTTP and database, SIMULATED isolated records",
+  "contract": "4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
+  "results": [
+    {
+      "name": "Staff-created isolated accounts complete setup; setup code cannot be reused",
+      "status": "passed"
+    },
+    {
+      "name": "Account-number login and session identity",
+      "status": "passed"
+    },
+    {
+      "name": "Customer-specific dashboard, empty subscriptions and phone-only profile update",
+      "status": "passed"
+    },
+    {
+      "name": "Available and UNKNOWN coverage use actual recorded results",
+      "status": "passed"
+    },
+    {
+      "name": "Order creation/detail and cross-customer order isolation",
+      "status": "passed"
+    },
+    {
+      "name": "Payment report remains REPORTED; unconfirmed receipt returns 409; cross-customer receipt returns 404",
+      "status": "passed"
+    },
+    {
+      "name": "Confirmed receipt and minor-unit amount; payment verification does not activate service",
+      "status": "passed"
+    },
+    {
+      "name": "Ticket creation/history/detail/reply and cross-customer ticket isolation",
+      "status": "passed"
+    },
+    {
+      "name": "Capabilities, notification metadata and read-only guidance",
+      "status": "passed"
+    },
+    {
+      "name": "Password change revokes all sessions; new password signs in",
+      "status": "passed"
+    },
+    {
+      "name": "Existing SIMULATED subscriptions, orders, payments and confirmed receipts load through the live adapter",
+      "status": "passed"
+    },
+    {
+      "name": "Recovery acknowledgement is generic for known and unknown accounts; no recovery code is exposed",
+      "status": "passed"
+    },
+    {
+      "name": "Customer logout clears access and requests server revocation",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "width": 320,
+    "route": "login",
+    "content": 305,
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "recover",
+    "content": 305,
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "reset",
+    "content": 305,
+    "viewport": 321
+  },
+  {
+    "width": 320,
+    "route": "help",
+    "content": 305,
+    "viewport": 321
+  },
+  {
+    "width": 390,
+    "route": "login",
+    "content": 375,
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "recover",
+    "content": 390,
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "reset",
+    "content": 375,
+    "viewport": 390
+  },
+  {
+    "width": 390,
+    "route": "help",
+    "content": 375,
+    "viewport": 390
+  },
+  {
+    "width": 768,
+    "route": "login",
+    "content": 753,
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "recover",
+    "content": 753,
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "reset",
+    "content": 753,
+    "viewport": 768
+  },
+  {
+    "width": 768,
+    "route": "help",
+    "content": 753,
+    "viewport": 768
+  },
+  {
+    "width": 1280,
+    "route": "login",
+    "content": 1265,
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "recover",
+    "content": 1265,
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "reset",
+    "content": 1265,
+    "viewport": 1281
+  },
+  {
+    "width": 1280,
+    "route": "help",
+    "content": 1265,
+    "viewport": 1281
+  }
+]
