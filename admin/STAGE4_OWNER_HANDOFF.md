@@ -49,3 +49,7 @@ Do not recover the discarded token, reuse passwords disclosed during troubleshoo
 Agent 3 can exercise the integrated Admin build once Agent 1 provides its checkout/commit and running URL. Verify live mode and summary; source/simulation flags; customer/plan/building readback; the same customer-created order/payment IDs; Finance confirmation without activation; separate Provisioner result; Support reply/status; denied actions; failed request feedback; desktop/mobile containment. Agent 2 retains all portal actions and source ownership.
 
 The Stage 3A report remains partial. Source readiness permits controlled integration under the Stage 4 brief; it does not permit a claim that unfinished joint workflows passed, a merge to main or production deployment.
+
+## Integrated browser follow-up
+
+Assigned Stage4 Admin browser checks subsequently completed on the integrated local runtime: identity/plan/building, desktop/mobile, staff restrictions, compiled production preview-disabled entry, shared customer order/payment readback, Finance confirmation with no activation, separate simulated Provisioner action and Support reply/resolution. See STAGE4_BROWSER_ACCEPTANCE.md and docs/stage4-d4e66e52/. The follow-up source correction is limited to subscription labels Starts and External service ID and passed36tests/production build. Agent1 receives its exact commit for review/integration. Portal and cold-recovery evidence remain separately owned; this does not retroactively complete Stage3A.
