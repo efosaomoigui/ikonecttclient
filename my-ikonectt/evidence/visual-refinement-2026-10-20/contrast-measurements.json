@@ -1,0 +1,1704 @@
+{
+  "summary": {
+    "samples": 207,
+    "minimumContrast": 5.18,
+    "failures": [],
+    "comparisons": [
+      {
+        "selector": ".sidebar-label",
+        "beforeFont": "8px",
+        "afterFont": "9px",
+        "beforeContrast": 2.54,
+        "afterContrast": 5.8
+      },
+      {
+        "selector": ".sidebar nav>a",
+        "beforeFont": "12px",
+        "afterFont": "13px",
+        "beforeContrast": 5.92,
+        "afterContrast": 6.72
+      },
+      {
+        "selector": ".breadcrumb",
+        "beforeFont": "11px",
+        "afterFont": "12px",
+        "beforeContrast": 4.8,
+        "afterContrast": 5.8
+      },
+      {
+        "selector": ".account-number",
+        "beforeFont": "10px",
+        "afterFont": "11px",
+        "beforeContrast": 4.48,
+        "afterContrast": 5.8
+      },
+      {
+        "selector": ".dashboard-footer",
+        "beforeFont": "9px",
+        "afterFont": "10px",
+        "beforeContrast": 2.61,
+        "afterContrast": 5.39
+      }
+    ],
+    "responsiveChecks": 72,
+    "responsiveFailures": 0
+  },
+  "samples": [
+    {
+      "screen": "auth",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 14.86
+    },
+    {
+      "screen": "auth",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 14.86
+    },
+    {
+      "screen": "auth",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".subtle-note",
+      "contrast": 5.61
+    },
+    {
+      "screen": "auth",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".setup-link",
+      "contrast": 5.61
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(240, 243, 237)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".list-row small",
+      "contrast": 5.18
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "billing",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "12px",
+      "selector": ".subtle-note",
+      "contrast": 5.5
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".timeline small",
+      "contrast": 5.8
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".timeline small",
+      "contrast": 5.8
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "conversation",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "order-form",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".subtle-note",
+      "contrast": 5.85
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "order",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "order",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".subtle-note",
+      "contrast": 5.92
+    },
+    {
+      "screen": "order",
+      "background": "rgb(255, 242, 219)",
+      "color": "rgb(120, 80, 25)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 6.41
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".page-heading>p",
+      "contrast": 5.39
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "12px",
+      "selector": ".service-card p",
+      "contrast": 5.92
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "12px",
+      "selector": ".service-card p",
+      "contrast": 5.92
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "11px",
+      "selector": ".payment-summary>p",
+      "contrast": 5.92
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".quick p",
+      "contrast": 5.73
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".quick p",
+      "contrast": 5.73
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".quick p",
+      "contrast": 5.73
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".list-row small",
+      "contrast": 5.8
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    },
+    {
+      "screen": "overview",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "profile",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".subtle-note",
+      "contrast": 5.92
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "13px",
+      "selector": ".details dt",
+      "contrast": 5.8
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".subtle-note",
+      "contrast": 5.92
+    },
+    {
+      "screen": "receipt",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    },
+    {
+      "screen": "recovery",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 14.86
+    },
+    {
+      "screen": "recovery",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".subtle-note",
+      "contrast": 5.61
+    },
+    {
+      "screen": "recovery",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".setup-link",
+      "contrast": 5.61
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "services",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "services",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "12px",
+      "selector": ".service-card p",
+      "contrast": 5.92
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "12px",
+      "selector": ".service-card p",
+      "contrast": 5.92
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".list-row small",
+      "contrast": 5.8
+    },
+    {
+      "screen": "services",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "services",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".subtle-note",
+      "contrast": 5.92
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".subtle-note",
+      "contrast": 5.92
+    },
+    {
+      "screen": "services",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    },
+    {
+      "screen": "services",
+      "background": "rgb(255, 242, 219)",
+      "color": "rgb(120, 80, 25)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 6.41
+    },
+    {
+      "screen": "setup",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "setup",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "setup",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "support-form",
+      "background": "rgb(253, 254, 251)",
+      "color": "rgb(35, 37, 39)",
+      "fontSize": "13px",
+      "selector": "label",
+      "contrast": 15.19
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "9px",
+      "selector": ".sidebar-label",
+      "contrast": 5.8
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support",
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(165, 29, 43)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.72
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "13px",
+      "selector": ".sidebar nav>a",
+      "contrast": 6.79
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".breadcrumb",
+      "contrast": 5.8
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "11px",
+      "selector": ".account-number",
+      "contrast": 5.8
+    },
+    {
+      "screen": "support",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.5
+    },
+    {
+      "screen": "support",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "12px",
+      "selector": ".list-row small",
+      "contrast": 5.8
+    },
+    {
+      "screen": "support",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(96, 103, 99)",
+      "fontSize": "10px",
+      "selector": ".dashboard-footer",
+      "contrast": 5.39
+    },
+    {
+      "screen": "support",
+      "background": "rgb(246, 247, 243)",
+      "color": "rgb(101, 94, 84)",
+      "fontSize": "11px",
+      "selector": ".demo-banner>span",
+      "contrast": 5.95
+    },
+    {
+      "screen": "support",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(252, 251, 248)",
+      "color": "rgb(94, 102, 97)",
+      "fontSize": "13px",
+      "selector": ".page-heading>p",
+      "contrast": 5.72
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(242, 244, 238)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "11px",
+      "selector": "th",
+      "contrast": 6.13
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(242, 244, 238)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "11px",
+      "selector": "th",
+      "contrast": 6.13
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(242, 244, 238)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "11px",
+      "selector": "th",
+      "contrast": 6.13
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(242, 244, 238)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "11px",
+      "selector": "th",
+      "contrast": 6.13
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(242, 244, 238)",
+      "color": "rgb(85, 93, 88)",
+      "fontSize": "11px",
+      "selector": "th",
+      "contrast": 6.13
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(255, 242, 219)",
+      "color": "rgb(120, 80, 25)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 6.41
+    },
+    {
+      "screen": "table-layout-fixture",
+      "background": "rgb(228, 242, 231)",
+      "color": "rgb(44, 106, 64)",
+      "fontSize": "11px",
+      "selector": ".pill",
+      "contrast": 5.6
+    }
+  ]
+}

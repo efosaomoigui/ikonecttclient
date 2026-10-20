@@ -1,0 +1,56 @@
+[
+  {
+    "background": "rgb(252, 251, 248)",
+    "color": "rgb(94, 102, 97)",
+    "fontSize": "13px",
+    "selector": ".page-heading>p"
+  },
+  {
+    "background": "rgb(242, 244, 238)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "11px",
+    "selector": "th"
+  },
+  {
+    "background": "rgb(242, 244, 238)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "11px",
+    "selector": "th"
+  },
+  {
+    "background": "rgb(242, 244, 238)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "11px",
+    "selector": "th"
+  },
+  {
+    "background": "rgb(242, 244, 238)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "11px",
+    "selector": "th"
+  },
+  {
+    "background": "rgb(242, 244, 238)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "11px",
+    "selector": "th"
+  },
+  {
+    "background": "rgb(228, 242, 231)",
+    "color": "rgb(44, 106, 64)",
+    "fontSize": "11px",
+    "selector": ".pill"
+  },
+  {
+    "background": "rgb(255, 242, 219)",
+    "color": "rgb(120, 80, 25)",
+    "fontSize": "11px",
+    "selector": ".pill"
+  },
+  {
+    "background": "rgb(228, 242, 231)",
+    "color": "rgb(44, 106, 64)",
+    "fontSize": "11px",
+    "selector": ".pill"
+  }
+]

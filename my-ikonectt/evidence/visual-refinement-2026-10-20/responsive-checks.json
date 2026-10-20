@@ -1,0 +1,1318 @@
+[
+  {
+    "screen": "auth",
+    "requestedWidth": 320,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/login",
+    "width": 321
+  },
+  {
+    "screen": "auth",
+    "requestedWidth": 390,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/login",
+    "width": 390
+  },
+  {
+    "screen": "auth",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/login",
+    "width": 768
+  },
+  {
+    "screen": "auth",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/login",
+    "width": 1024
+  },
+  {
+    "screen": "auth",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/login",
+    "width": 1281
+  },
+  {
+    "screen": "overview",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/overview",
+    "width": 321
+  },
+  {
+    "screen": "overview",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/overview",
+    "width": 390
+  },
+  {
+    "screen": "overview",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/overview",
+    "width": 768
+  },
+  {
+    "screen": "overview",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/overview",
+    "width": 1024
+  },
+  {
+    "screen": "overview",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/overview",
+    "width": 1281
+  },
+  {
+    "screen": "services",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/services",
+    "width": 321
+  },
+  {
+    "screen": "services",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/services",
+    "width": 390
+  },
+  {
+    "screen": "services",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/services",
+    "width": 768
+  },
+  {
+    "screen": "services",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/services",
+    "width": 1024
+  },
+  {
+    "screen": "services",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/services",
+    "width": 1281
+  },
+  {
+    "screen": "order",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/800fce40-5220-4a40-a575-9bbf55752ffc",
+    "width": 321
+  },
+  {
+    "screen": "order",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/800fce40-5220-4a40-a575-9bbf55752ffc",
+    "width": 390
+  },
+  {
+    "screen": "order",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/800fce40-5220-4a40-a575-9bbf55752ffc",
+    "width": 768
+  },
+  {
+    "screen": "order",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/800fce40-5220-4a40-a575-9bbf55752ffc",
+    "width": 1024
+  },
+  {
+    "screen": "order",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/800fce40-5220-4a40-a575-9bbf55752ffc",
+    "width": 1281
+  },
+  {
+    "screen": "billing",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing",
+    "width": 321
+  },
+  {
+    "screen": "billing",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing",
+    "width": 390
+  },
+  {
+    "screen": "billing",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing",
+    "width": 768
+  },
+  {
+    "screen": "billing",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing",
+    "width": 1024
+  },
+  {
+    "screen": "billing",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing",
+    "width": 1281
+  },
+  {
+    "screen": "receipt",
+    "requestedWidth": 320,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 48.7358512878418,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 129.99057006835938
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing/e816902e-9e22-4c36-b96a-56e54a5260f1",
+    "width": 321
+  },
+  {
+    "screen": "receipt",
+    "requestedWidth": 390,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 48.7358512878418,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 129.99057006835938
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing/e816902e-9e22-4c36-b96a-56e54a5260f1",
+    "width": 390
+  },
+  {
+    "screen": "receipt",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 48.7358512878418,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 129.99057006835938
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing/e816902e-9e22-4c36-b96a-56e54a5260f1",
+    "width": 768
+  },
+  {
+    "screen": "receipt",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 48.7358512878418,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 129.99057006835938
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing/e816902e-9e22-4c36-b96a-56e54a5260f1",
+    "width": 1024
+  },
+  {
+    "screen": "receipt",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 48.7358512878418,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 129.99057006835938
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/billing/e816902e-9e22-4c36-b96a-56e54a5260f1",
+    "width": 1281
+  },
+  {
+    "screen": "support",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support",
+    "width": 321
+  },
+  {
+    "screen": "support",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support",
+    "width": 390
+  },
+  {
+    "screen": "support",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support",
+    "width": 768
+  },
+  {
+    "screen": "support",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support",
+    "width": 1024
+  },
+  {
+    "screen": "support",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support",
+    "width": 1281
+  },
+  {
+    "screen": "conversation",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/f599f85b-c0ea-4600-b685-6a202938394c",
+    "width": 321
+  },
+  {
+    "screen": "conversation",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/f599f85b-c0ea-4600-b685-6a202938394c",
+    "width": 390
+  },
+  {
+    "screen": "conversation",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/f599f85b-c0ea-4600-b685-6a202938394c",
+    "width": 768
+  },
+  {
+    "screen": "conversation",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/f599f85b-c0ea-4600-b685-6a202938394c",
+    "width": 1024
+  },
+  {
+    "screen": "conversation",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/f599f85b-c0ea-4600-b685-6a202938394c",
+    "width": 1281
+  },
+  {
+    "screen": "profile",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/profile",
+    "width": 321
+  },
+  {
+    "screen": "profile",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/profile",
+    "width": 390
+  },
+  {
+    "screen": "profile",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/profile",
+    "width": 768
+  },
+  {
+    "screen": "profile",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/profile",
+    "width": 1024
+  },
+  {
+    "screen": "profile",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/profile",
+    "width": 1281
+  },
+  {
+    "screen": "support-form",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/new",
+    "width": 321
+  },
+  {
+    "screen": "support-form",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/new",
+    "width": 390
+  },
+  {
+    "screen": "support-form",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/new",
+    "width": 768
+  },
+  {
+    "screen": "support-form",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/new",
+    "width": 1024
+  },
+  {
+    "screen": "support-form",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/support/new",
+    "width": 1281
+  },
+  {
+    "screen": "order-form",
+    "requestedWidth": 320,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/new",
+    "width": 321
+  },
+  {
+    "screen": "order-form",
+    "requestedWidth": 390,
+    "logos": [],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/new",
+    "width": 390
+  },
+  {
+    "screen": "order-form",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/new",
+    "width": 768
+  },
+  {
+    "screen": "order-form",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/new",
+    "width": 1024
+  },
+  {
+    "screen": "order-form",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 46.867923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 124.99528503417967
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/orders/new",
+    "width": 1281
+  },
+  {
+    "screen": "mobile-navigation",
+    "requestedWidth": 320,
+    "insideParent": true,
+    "logoHeight": 46.867923736572266,
+    "logoWidth": 124.99528503417967,
+    "naturalHeight": 75,
+    "naturalWidth": 200,
+    "overflow": false,
+    "visible": true,
+    "width": 321
+  },
+  {
+    "screen": "mobile-navigation",
+    "requestedWidth": 390,
+    "insideParent": true,
+    "logoHeight": 46.867923736572266,
+    "logoWidth": 124.99528503417967,
+    "naturalHeight": 75,
+    "naturalWidth": 200,
+    "overflow": false,
+    "visible": true,
+    "width": 390
+  },
+  {
+    "screen": "recovery",
+    "requestedWidth": 320,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/recover",
+    "width": 321
+  },
+  {
+    "screen": "recovery",
+    "requestedWidth": 390,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/recover",
+    "width": 390
+  },
+  {
+    "screen": "recovery",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/recover",
+    "width": 768
+  },
+  {
+    "screen": "recovery",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/recover",
+    "width": 1024
+  },
+  {
+    "screen": "recovery",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/recover",
+    "width": 1281
+  },
+  {
+    "screen": "setup",
+    "requestedWidth": 320,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/reset",
+    "width": 321
+  },
+  {
+    "screen": "setup",
+    "requestedWidth": 390,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/reset",
+    "width": 390
+  },
+  {
+    "screen": "setup",
+    "requestedWidth": 768,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/reset",
+    "width": 768
+  },
+  {
+    "screen": "setup",
+    "requestedWidth": 1024,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/reset",
+    "width": 1024
+  },
+  {
+    "screen": "setup",
+    "requestedWidth": 1280,
+    "logos": [
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 43.117923736572266,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 114.99057006835938
+      },
+      {
+        "asset": "assets/logo-red.png",
+        "fit": "contain",
+        "height": 33.75,
+        "insideParent": true,
+        "naturalHeight": 75,
+        "naturalWidth": 200,
+        "width": 90
+      }
+    ],
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "#/reset",
+    "width": 1281
+  },
+  {
+    "screen": "table-layout-fixture",
+    "requestedWidth": 320,
+    "amountAlign": "right",
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "/visual-table-test.html",
+    "rowBackgrounds": [
+      "rgba(0, 0, 0, 0)",
+      "rgb(247, 248, 244)",
+      "rgba(0, 0, 0, 0)"
+    ],
+    "tableScrolls": true,
+    "width": 321
+  },
+  {
+    "screen": "table-layout-fixture",
+    "requestedWidth": 390,
+    "amountAlign": "right",
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "/visual-table-test.html",
+    "rowBackgrounds": [
+      "rgba(0, 0, 0, 0)",
+      "rgb(247, 248, 244)",
+      "rgba(0, 0, 0, 0)"
+    ],
+    "tableScrolls": true,
+    "width": 390
+  },
+  {
+    "screen": "table-layout-fixture",
+    "requestedWidth": 768,
+    "amountAlign": "right",
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "/visual-table-test.html",
+    "rowBackgrounds": [
+      "rgba(0, 0, 0, 0)",
+      "rgb(247, 248, 244)",
+      "rgba(0, 0, 0, 0)"
+    ],
+    "tableScrolls": false,
+    "width": 768
+  },
+  {
+    "screen": "table-layout-fixture",
+    "requestedWidth": 1024,
+    "amountAlign": "right",
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "/visual-table-test.html",
+    "rowBackgrounds": [
+      "rgba(0, 0, 0, 0)",
+      "rgb(247, 248, 244)",
+      "rgba(0, 0, 0, 0)"
+    ],
+    "tableScrolls": false,
+    "width": 1024
+  },
+  {
+    "screen": "table-layout-fixture",
+    "requestedWidth": 1280,
+    "amountAlign": "right",
+    "overflow": false,
+    "overflowingCards": [],
+    "route": "/visual-table-test.html",
+    "rowBackgrounds": [
+      "rgba(0, 0, 0, 0)",
+      "rgb(247, 248, 244)",
+      "rgba(0, 0, 0, 0)"
+    ],
+    "tableScrolls": false,
+    "width": 1281
+  }
+]
