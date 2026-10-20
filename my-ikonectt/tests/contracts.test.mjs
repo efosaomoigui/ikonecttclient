@@ -1,3 +1,4 @@
+import {setupCodeError,setupCodeLimits} from "../form-validation.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 import * as C from "../generated/contracts.js";
@@ -48,4 +49,17 @@ test("explicit mock provider supports Stage 2 workflows without turning reports 
     "UNKNOWN",
   );
   assert.equal((await api.guidance("Help with my plan")).simulated, true);
+});
+
+test("reset validation accepts a 13-character password and enforces canonical boundaries",()=>{for(const length of [12,13,128]){const form=new FormData();form.set('next','x'.repeat(length));form.set('confirm','x'.repeat(length));const values=Object.fromEntries(form);assert.equal(values.next,values.confirm);assert.equal(C.ResetPasswordRequest.safeParse({token:'x'.repeat(43),password:values.next}).success,true);}for(const length of [11,129])assert.equal(C.Password.safeParse('x'.repeat(length)).success,false);});
+
+test("setup-code feedback distinguishes empty, incomplete and oversized codes without inspecting secrets",()=>{assert.deepEqual(setupCodeLimits,{min:32,max:200});assert.match(setupCodeError(''),/Enter the one-time/);assert.match(setupCodeError('12345678'),/incomplete.*not your account number/);assert.match(setupCodeError('x'.repeat(201)),/too long/);for(const size of [32,43,200])assert.equal(setupCodeError('x'.repeat(size)),'');assert.equal(setupCodeError(' '+ 'x'.repeat(43)+' '),'');});
+
+test("explicit mock setup keeps the demo code usable without relaxing live validation", async () => {
+  assert.equal(setupCodeError("DEMO-RESET-TOKEN", "mock"), "");
+  assert.match(setupCodeError("DEMO-RESET-TOKEN", "live"), /incomplete/);
+  const api = createMockAdapter(null);
+  await assert.rejects(api.resetPassword("WRONG-DEMO-CODE", "x".repeat(13)));
+  await api.resetPassword("DEMO-RESET-TOKEN", "x".repeat(13));
+  await assert.rejects(api.resetPassword("DEMO-RESET-TOKEN", "x".repeat(13)));
 });

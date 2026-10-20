@@ -1,0 +1,26 @@
+[
+  {
+    "area": "secondary account text",
+    "before": "939590",
+    "after": "626862",
+    "surface": "ffffff",
+    "beforeContrast": 3.02,
+    "afterContrast": 5.71
+  },
+  {
+    "area": "development record label",
+    "before": "999084",
+    "after": "6d665b",
+    "surface": "f7f7f4",
+    "beforeContrast": 2.93,
+    "afterContrast": 5.29
+  },
+  {
+    "area": "service footer",
+    "before": "b8bfbc",
+    "after": "c4cbc7",
+    "surface": "292e30",
+    "beforeContrast": 7.34,
+    "afterContrast": 8.32
+  }
+]

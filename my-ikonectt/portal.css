@@ -1645,3 +1645,16 @@ html {
     text-align: right;
   }
 }
+
+/* Stage 3A: restrained readability refinements; layouts and type families stay intact. */
+.sidebar nav>a{font-size:12px}
+.dashboard .list-row small,.dashboard .quick p{font-size:11px;color:#626862}
+.dashboard .list-row h3{font-size:14px}
+.dashboard .service-footer>span{font-size:11px;color:#c4cbc7}
+.dashboard .pill{font-size:10px}
+.dashboard .demo-banner{font-size:10px;color:#77573a}
+.dashboard .demo-banner>span{color:#6d665b}
+.dashboard .details dt{color:#626862}
+.dashboard table{font-size:12px}
+.dashboard th{font-size:10px;color:#626862}
+.dashboard tbody tr:nth-child(even){background:#f8f9f6}

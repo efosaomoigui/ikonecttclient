@@ -15,6 +15,7 @@ for (const file of [
   "live.js",
   "fixtures.js",
   "journeys.js",
+  "form-validation.js",
 ]) {
   await copyFile(new URL(file, root), new URL(file, dest));
 }

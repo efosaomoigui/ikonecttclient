@@ -1,3 +1,4 @@
+import {setupCodeError,setupCodeLimits} from "./form-validation.js";
 import { api } from "./api.js";
 import { config } from "./config.js";
 import { demoCredentials } from "./fixtures.js";
@@ -123,11 +124,12 @@ function input(name, label, type = "text", extra = "") {
   return `<label>${label}<input name="${name}" type="${type}" required ${extra}></label>`;
 }
 function password(name, label, autocomplete = "current-password") {
-  return `<label>${label}<span class="password"><input name="${name}" id="${name}" type="password" required autocomplete="${autocomplete}"><button type="button" class="reveal" data-reveal="${name}" aria-label="Show ${label.toLowerCase()}" aria-pressed="false">Show</button></span></label>`;
+  const limits=autocomplete==="new-password"?'minlength="12" maxlength="128"':'maxlength="128"';
+  return `<label>${label}<span class="password"><input name="${name}" id="${name}" type="password" required ${limits} autocomplete="${autocomplete}"><button type="button" class="reveal" data-reveal="${name}" aria-label="Show ${label.toLowerCase()}" aria-pressed="false">Show</button></span></label>`;
 }
 function authPage(recovery = false) {
   return publicShell(
-    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to welcome", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Have a setup or recovery code?", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
+    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to welcome", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Set up or recover your account", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
   );
 }
 function tickets(items) {
@@ -139,17 +141,17 @@ function tickets(items) {
       );
 }
 function serviceCard(s) {
-  return `<article class="service-card"><div class="row"><span class="eyebrow">${esc(s.name)}</span>${pill(s.status)}</div><h2>${esc(s.plan)}</h2><p><strong class="speed">${s.speedMbps === null ? "—" : esc(s.speedMbps)}</strong> ${s.speedMbps === null ? "Speed unavailable" : "Mbps"}</p><p>Unlimited possibilities. A connection for your everyday.</p><div class="service-footer"><span>${esc(s.address || "Service address not supplied")}</span>${link(`services/${encodeURIComponent(s.id)}`, `View service ${arrow}`, "button light small")}</div></article>`;
+  return `<article class="service-card"><div class="row"><span class="eyebrow">${esc(s.name)}</span>${pill(s.status)}</div><h2>${esc(s.plan)}</h2><p><strong class="speed">${s.speedMbps === null ? "—" : esc(s.speedMbps)}</strong> ${s.speedMbps === null ? "Speed unavailable" : "Mbps"}</p><p>Your plan and current service status.</p><div class="service-footer"><span>${esc(s.address || "Address details unavailable")}</span>${link(`services/${encodeURIComponent(s.id)}`, `View service ${arrow}`, "button light small")}</div></article>`;
 }
 function overview() {
   const s =
       data.services.find((s) => s.status.toUpperCase() === "ACTIVE") ||
       data.services[0],
     p = data.profile;
-  return `<div class="page-heading"><p class="eyebrow">YOUR CONNECTION, AT A GLANCE</p><h1>Hello, ${esc(p.name.split(" ")[0])}<span class="greeting-dot">.</span></h1><p>Welcome to your little corner of Ikonectt.</p></div><div class="overview-grid"><div>${s ? serviceCard(s) : empty("No services linked", "Contact support if you expect to see a service here.")}</div><article class="panel payment-summary"><span class="eyebrow">BILLING SNAPSHOT</span><h3>All in one place.</h3><div class="amount">${data.receipts.length ? money(data.receipts[0].amount, data.receipts[0].currency) : "—"}</div><p>${data.receipts.length ? "Most recent verified payment" : "No verified payment records available yet."}</p>${link("billing", `View billing & receipts ${arrow}`, "text-link")}</article></div><div class="quick-actions">${[
+  return `<div class="page-heading"><p class="eyebrow">YOUR CONNECTION, AT A GLANCE</p><h1>Hello, ${esc(p.name.split(" ")[0])}<span class="greeting-dot">.</span></h1><p>Manage your services and support.</p></div><div class="overview-grid"><div>${s ? serviceCard(s) : empty("No services linked", "Contact support if you expect to see a service here.")}</div><article class="panel payment-summary"><span class="eyebrow">BILLING SNAPSHOT</span><h3>Latest payment</h3><div class="amount">${data.receipts.length ? money(data.receipts[0].amount, data.receipts[0].currency) : "—"}</div><p>${data.receipts.length ? "Most recent verified payment" : "No verified payment records available yet."}</p>${link("billing", `View billing & receipts ${arrow}`, "text-link")}</article></div><div class="quick-actions">${[
     ["services", "Explore my services", "Your plan, in detail"],
     ["support/new", "Ask for support", "A helping hand, when needed"],
-    ["profile", "View my profile", "The details that make you, you"],
+    ["profile", "View my profile", "Your contact information"],
   ]
     .map(([r, h, p]) =>
       link(r, `<div><h3>${h}</h3><p>${p}</p></div>${arrow}`, "quick"),
@@ -272,7 +274,7 @@ function content(route, id) {
         ? `${link("support", "← Support history", "back")}${heading(esc(t.subject), esc(t.reference) + " · " + date(t.createdAt))}<article class="panel">${pill(t.status)}${details([["Submitted", date(t.createdAt)]])}<h3>Your request</h3><p class="preserve">${esc(t.description)}</p><h3>Request updates</h3><ol class="timeline">${t.updates.map((u) => `<li><small>${date(u.at)}</small><p>${esc(u.message)}</p></li>`).join("")}</ol></article>${replyForm(t, { esc })}`
         : missing();
     }
-    return `<div class="row">${heading("A helping hand.", "Your requests, and the people helping you stay connected.")}${link("support/new", `New support request ${arrow}`, "button")}</div><article class="panel"><h2>Request history</h2>${tickets(data.tickets)}</article><div class="support-boundary"><h3>Let’s keep the conversation connected.</h3><p>Customer chat will appear here when it becomes available. For now, submit a support request and track it here.</p>${link("guidance", "Read-only account guidance", "text-link")}<br>${config.chat ? '<button class="button outline" data-chat>Open customer care</button>' : link("support/new", "Contact the support team", "text-link")}</div>`;
+    return `<div class="row">${heading("A helping hand.", "Track your requests and conversations with Ikonectt.")}${link("support/new", `New support request ${arrow}`, "button")}</div><article class="panel"><h2>Request history</h2>${tickets(data.tickets)}</article><div class="support-boundary"><h3>Need more help?</h3><p>Submit a support request or browse account guidance.</p>${link("guidance", "Read-only account guidance", "text-link")}<br>${config.chat ? '<button class="button outline" data-chat>Open customer care</button>' : link("support/new", "Contact the support team", "text-link")}</div>`;
   }
   if (route === "profile")
     return (
@@ -380,7 +382,7 @@ async function render() {
         ? welcome()
         : route === "reset"
           ? publicShell(
-              `<section class="reset-page section">${link("login", "← Back to sign in", "back")}<p class="eyebrow">SECURE ACCOUNT ACCESS</p><h1>A fresh start.</h1><p>Enter the setup or recovery code supplied to your verified contact, then choose a password.</p><form data-form="reset" class="panel form-panel">${input("token", "Setup or recovery code", "password", 'autocomplete="off" maxlength="200"')}${password("next", "New password", "new-password")}${password("confirm", "Confirm new password", "new-password")}<p class="form-error" role="alert"></p><button type="submit" class="button">Set password ${arrow}</button></form>${config.mode === "mock" ? '<p class="subtle-note">Development code: DEMO-RESET-TOKEN. This action is simulated.</p>' : ""}</section>`,
+              `<section class="reset-page section">${link("login", "← Back to sign in", "back")}<p class="eyebrow">SECURE ACCOUNT ACCESS</p><h1>A fresh start.</h1><p>Paste the full one-time setup or recovery code issued by Ikonectt. This is different from your account number. Then choose a password.</p><form data-form="reset" class="panel form-panel">${input("token", "Setup or recovery code", "password", `autocomplete="off" minlength="${config.mode === "mock" ? 1 : setupCodeLimits.min}" maxlength="${setupCodeLimits.max}"`)}${password("next", "New password", "new-password")}${password("confirm", "Confirm new password", "new-password")}<p class="form-error" role="alert"></p><button type="submit" class="button">Set password ${arrow}</button></form>${config.mode === "mock" ? '<p class="subtle-note">Development code: DEMO-RESET-TOKEN. This action is simulated.</p>' : ""}</section>`,
             )
           : route === "help"
             ? publicShell(
@@ -402,7 +404,7 @@ async function render() {
         return;
       }
       data = { profile: customer };
-    } else if (!data) data = await api.summary();
+    } else if (!data || config.mode === "live") data = await api.summary();
     aux = customer.mustChangePassword
       ? {}
       : await loadJourney(route, id, api, data);
@@ -428,6 +430,7 @@ async function render() {
   }
 }
 function bind() {
+  root.querySelectorAll('.sidebar nav a').forEach(link=>link.addEventListener('click',event=>{if(link.hash===location.hash){event.preventDefault();data=null;render();}}));
   root
     .querySelector(".sidebar nav a.active")
     ?.setAttribute("aria-current", "page");
@@ -478,7 +481,10 @@ function bind() {
   };
   root
     .querySelectorAll("form")
-    .forEach((f) => f.addEventListener("submit", submit));
+    .forEach((f) => {
+      f.addEventListener("submit",submit);
+      if(["reset","password"].includes(f.dataset.form)) f.addEventListener("input",()=>{const error=f.querySelector(".form-error");if(error)error.textContent="";});
+    });
 }
 async function submit(e) {
   e.preventDefault();
@@ -581,8 +587,9 @@ async function submit(e) {
           break;
         }
       case "reset":
-        if (values.next.length < 12)
-          throw new Error("Use at least 12 characters.");
+        if(setupCodeError(values.token, config.mode))throw new Error(setupCodeError(values.token, config.mode));
+        if (values.next.length < 12 || values.next.length > 128)
+          throw new Error("New password must contain 12–128 characters.");
         if (values.next !== values.confirm)
           throw new Error("The new passwords don’t match.");
         await api.resetPassword(values.token.trim(), values.next);

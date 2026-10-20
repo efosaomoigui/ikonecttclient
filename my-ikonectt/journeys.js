@@ -29,7 +29,7 @@ export async function loadJourney(route, id, api) {
   return {};
 }
 export function phoneForm(profile, { esc }) {
-  return `<form data-form="phone" class="panel form-panel"><h2>Update your phone number</h2><p>Your name, email and other account details remain managed by Ikonectt.</p><label>Phone number<input name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" value="${esc(profile.phone)}" required></label><p class="form-error" role="alert"></p><button class="button" type="submit">Save phone number ↗</button></form>`;
+  return `<form data-form="phone" class="panel form-panel"><h2>Update your phone number</h2><p>For changes to your name or email, contact support.</p><label>Phone number<input name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" value="${esc(profile.phone)}" required></label><p class="form-error" role="alert"></p><button class="button" type="submit">Save phone number ↗</button></form>`;
 }
 export function replyForm(ticket, { esc }) {
   return ticket.status.toUpperCase() === "CLOSED"
@@ -140,7 +140,7 @@ export function journeyScreen(route, id, ctx) {
         )
         .join(
           "",
-        )}</select></label>${input("amount", "Amount paid (NGN)", "text", 'inputmode="decimal" placeholder="e.g. 15000.00"')}${input("reference", "Transfer/payment reference", "text", 'minlength="3" maxlength="150"')}<label>Payment method<select name="method"><option value="BANK_TRANSFER">Bank transfer</option><option value="OTHER">Other</option></select></label><label>Payment details/evidence<textarea name="evidence" minlength="3" maxlength="2000" rows="4" required placeholder="Include the transfer date and relevant reference. Do not share passwords or card details."></textarea></label><p class="subtle-note">This reports an existing payment for staff review. It does not charge you, confirm payment or activate a service.</p><p class="form-error" role="alert"></p><button type="submit" class="button">Submit payment report ↗</button></form>`
+        )}</select></label>${input("amount", "Amount paid (NGN)", "text", 'inputmode="decimal" placeholder="e.g. 15000.00"')}${input("reference", "Transfer/payment reference", "text", 'minlength="3" maxlength="150"')}<label>Payment method<select name="method"><option value="BANK_TRANSFER">Bank transfer</option><option value="OTHER">Other</option></select></label><label>Payment details/evidence<textarea name="evidence" minlength="3" maxlength="2000" rows="4" required placeholder="Include the transfer date and relevant reference. Do not share passwords or card details."></textarea></label><p class="subtle-note">Staff will review your payment report. Submitting it does not charge you or activate service.</p><p class="form-error" role="alert"></p><button type="submit" class="button">Submit payment report ↗</button></form>`
     );
   }
   if (route === "plans")
@@ -176,7 +176,7 @@ export function journeyScreen(route, id, ctx) {
       ) +
       `<form data-form="coverage" class="panel form-panel">${buildingSelect}<label>Plan (optional)<select name="planId"><option value="">All available plans</option>${options(aux.plans, (p) => p.name)}</select></label><p class="subtle-note">Can’t find your building? Contact support to verify its coverage. An UNKNOWN result means verification is needed.</p><p class="form-error" role="alert"></p><button type="submit" class="button">Check coverage ↗</button></form>${
         result?.coverage
-          ? `<article class="panel" role="status"><h2>${esc(result.coverage.eligibility.replaceAll("_", " "))}</h2><p>${result.coverage.eligibility === "AVAILABLE" ? "The recorded result is available. Order eligibility is checked again by the server." : result.coverage.eligibility === "UNKNOWN" ? "Your building needs staff verification. Unknown does not mean unavailable." : "Please contact support to discuss this coverage result."}</p>${details(
+          ? `<article class="panel" role="status"><h2>${esc(result.coverage.eligibility.replaceAll("_", " "))}</h2><p>${result.coverage.eligibility === "AVAILABLE" ? "Coverage is available at this building. Choose an eligible plan when requesting service." : result.coverage.eligibility === "UNKNOWN" ? "Your building needs staff verification. Unknown does not mean unavailable." : "Please contact support to discuss this coverage result."}</p>${details(
               [
                 [
                   "Source",
