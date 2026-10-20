@@ -1,0 +1,33 @@
+{
+  "run": "d4e66e52",
+  "accountNumber": "81117181",
+  "customerIdFromManifest": "c8c6a143-4319-44a3-84ab-0b21672a6e10",
+  "identityEvidence": "Authenticated profile name/account footer match manifest; UUID is not rendered in portal profile",
+  "orderId": "800fce40-5220-4a40-a575-9bbf55752ffc",
+  "planId": "51201d97-a053-4c70-b8f7-2adb242a4be5",
+  "buildingId": "7ff56965-b620-4a9e-b863-29a45b3c4802",
+  "amountMinor": 1950000,
+  "checks": {
+    "login": "pass",
+    "publishedPlan": "pass: ₦19,500",
+    "coverage": "pass: AVAILABLE; simulated development",
+    "order": "pass: PENDING PAYMENT; no activation",
+    "paymentReport": "pass: Reported; no receipts; explicitly simulated, no actual transfer",
+    "responsive": {
+      "desktopWidth": 1281,
+      "mobileWidth": 390,
+      "horizontalOverflow": false
+    },
+    "compiledPreview": "pass: 4176 login/overview/services same customer and single order",
+    "financeReadback": "pass: PAID, Confirmed, verified ₦19,500 receipt, no activation before provisioning",
+    "provisioningReadback": "pass: separate staff simulated provisioning then Active subscription and COMPLETED order",
+    "supportReadback": "pass: same ticket Resolved with initial customer message and one staff reply"
+  },
+  "pending": [
+    "Final integrated-code smoke after one-line duplicate-word correction is merged"
+  ],
+  "paymentId": "e816902e-9e22-4c36-b96a-56e54a5260f1",
+  "subscriptionId": "5f0b3a79-9019-425e-893c-5abb7352f5c7",
+  "ticketId": "f599f85b-c0ea-4600-b685-6a202938394c",
+  "setup": "Customer/password setup performed through API by integration lead; this agent only authenticated existing credentials in browser"
+}
