@@ -46,7 +46,14 @@ test('original designs and shared journeys retain the shortlist checkpoint outsi
   const allowed=new Set(['option-a/src/App.tsx','option-a/src/components/pages/HomePage.tsx','option-d/index.html','option-e/index.html']);
   for(const [file,hash] of Object.entries(baseline.files)){
     if(allowed.has(file))continue;
-    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL('../'+file,import.meta.url))).digest('hex'),hash,file);
+    const bytes=fs.readFileSync(new URL('../'+file,import.meta.url));
+    // The checkpoint contains both LF and CRLF text hashes. Git's Windows checkout
+    // conversion must not masquerade as a design change; retain exact content checks.
+    const text=bytes.toString('utf8');
+    const variants=bytes.equals(Buffer.from(text))&&!bytes.includes(0)
+      ? [bytes,Buffer.from(text.replaceAll('\r\n','\n')),Buffer.from(text.replaceAll('\r\n','\n').replaceAll('\n','\r\n'))]
+      : [bytes];
+    assert.ok(variants.some(value=>crypto.createHash('sha256').update(value).digest('hex')===hash),file);
   }
   const css=fs.readFileSync(new URL('../option-a/src/inner-pages-hybrid.css',import.meta.url),'utf8');
   const selectors=css.replace(/\/\*[\s\S]*?\*\//g,'').match(/[^{}]+(?=\{)/g).filter(x=>!x.trim().startsWith('@'));

@@ -1,0 +1,22 @@
+{
+  "migrations": [
+    {
+      "migration_name": "202610190001_initial",
+      "complete": true,
+      "rolled_back": false
+    }
+  ],
+  "tables": [
+    {
+      "count": 17
+    }
+  ],
+  "notifications": [
+    {
+      "_count": 42,
+      "status": "QUEUED",
+      "simulated": false
+    }
+  ],
+  "auditCount": 280
+}

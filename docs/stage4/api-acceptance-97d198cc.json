@@ -1,0 +1,66 @@
+{
+  "run": "97d198cc",
+  "startedAt": "2026-10-20T06:54:51.666Z",
+  "environment": "local development",
+  "contractVersion": "1.0.1",
+  "simulation": true,
+  "checks": [
+    {
+      "name": "Live Admin proxy and role sessions",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin creation, single-use setup and intended customer login",
+      "status": "PASS",
+      "customerId": "b234c6b0-07d3-4de5-a0e5-80317e732379",
+      "accountNumber": "15355738"
+    },
+    {
+      "name": "Admin plan and building updates reach portal; UNKNOWN preserved",
+      "status": "PASS",
+      "planId": "61af1a49-d396-4b58-9b49-7015d0b47715",
+      "buildingId": "f167b59f-8e88-4b2d-b490-fdb275630f0e",
+      "priceMinor": 1950000
+    },
+    {
+      "name": "Customer order, Finance confirmation, NGN formatting and PAID without activation",
+      "status": "PASS",
+      "orderId": "05025a7c-a375-4088-a180-aa9bf1ae8bf4",
+      "paymentId": "91ed8dfa-1af8-49c5-b7f7-5905866d4981",
+      "amountMinor": 1950000,
+      "portalAmount": 19500
+    },
+    {
+      "name": "Separate authorized simulated provisioning reaches portal subscription",
+      "status": "PASS",
+      "provisioningId": "40483ac9-b714-4299-b250-8f8584dc72be",
+      "subscriptionId": "bed76f84-0c76-41bf-b466-5e8041bf732b"
+    },
+    {
+      "name": "Customer support ticket, staff reply and status synchronize",
+      "status": "PASS",
+      "ticketId": "17598dda-0db5-4d14-841c-31493c84553f",
+      "messages": 2
+    },
+    {
+      "name": "Cross-customer order, receipt, ticket and reply isolation",
+      "status": "PASS"
+    },
+    {
+      "name": "Pagination, structured errors, staff/customer boundary and revoked sessions",
+      "status": "PASS"
+    }
+  ],
+  "providerCapabilities": {
+    "payments": "disabled",
+    "provisioning": "simulated",
+    "legacy": "simulated",
+    "email": "simulated",
+    "sms": "simulated",
+    "coverage": "native",
+    "ai": "guidance-only-no-model",
+    "usage": "not-connected"
+  },
+  "status": "PASS",
+  "finishedAt": "2026-10-20T06:54:56.785Z"
+}

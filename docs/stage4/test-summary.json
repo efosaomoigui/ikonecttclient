@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-20T06:53:36.711Z",
+  "sourceMerge": "196a309bcdb774185d0c810fa0dd6b24244ffd53",
+  "node": "v25.9.0",
+  "npm": "11.12.1",
+  "suites": [
+    {
+      "name": "backend",
+      "tests": 39,
+      "passed": 39,
+      "failed": 0
+    },
+    {
+      "name": "admin",
+      "tests": 36,
+      "passed": 36,
+      "failed": 0
+    },
+    {
+      "name": "portal",
+      "tests": 14,
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "name": "website",
+      "tests": 143,
+      "passed": 143,
+      "failed": 0
+    }
+  ],
+  "totalTests": 232,
+  "failures": 0,
+  "builds": {
+    "backend": "PASS (TypeScript + compiled process database health)",
+    "admin": "PASS (TypeScript/Vite production)",
+    "portal": "PASS (typecheck, live and explicit mock builds)",
+    "website": "PASS (accepted6418909 exported under .platform/website-build; all five options packaged)"
+  },
+  "contracts": {
+    "version": "1.0.1",
+    "paths": 59,
+    "operations": 75,
+    "canonicalCommit": "4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
+    "routeAndSecurityParity": "PASS",
+    "frontendSchemaAndPermissionParity": "PASS"
+  },
+  "resolvedInitialFailures": [
+    "Explicit Prisma client generation required after clean install; installer now performs it",
+    "Windows LF/CRLF conversion affected endpoint text and mixed-EOL website preservation hashes; checkout attributes and content-preserving regression comparison corrected"
+  ],
+  "dependencyAudits": "npm ci reported0 vulnerabilities for root,contracts,backend,admin,portal and isolated websiteoptiona/b/c locks"
+}

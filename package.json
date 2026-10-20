@@ -7,7 +7,13 @@
     "start": "node server.js",
     "dev": "node server.js",
     "build": "node scripts/build_showcase.js",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "platform:install": "node scripts/platform.mjs install",
+    "platform:configure": "node scripts/platform.mjs configure",
+    "platform:dev": "node scripts/platform.mjs start",
+    "platform:status": "node scripts/platform.mjs status",
+    "platform:stop": "node scripts/platform.mjs stop",
+    "platform:check": "node scripts/platform-contracts.mjs"
   },
   "keywords": [
     "telecom",

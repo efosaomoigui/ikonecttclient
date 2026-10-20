@@ -1,0 +1,72 @@
+{
+  "run": "d4e66e52",
+  "startedAt": "2026-10-20T06:43:28.203Z",
+  "environment": "local development",
+  "contractVersion": "1.0.1",
+  "simulation": true,
+  "checks": [
+    {
+      "name": "Live Admin proxy and role sessions",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin creation, single-use setup and intended customer login",
+      "status": "PASS",
+      "customerId": "23c9531f-e13f-4a30-9726-3af83feb24b9",
+      "accountNumber": "18198814"
+    },
+    {
+      "name": "Admin plan and building updates reach portal; UNKNOWN preserved",
+      "status": "PASS",
+      "planId": "51201d97-a053-4c70-b8f7-2adb242a4be5",
+      "buildingId": "7ff56965-b620-4a9e-b863-29a45b3c4802",
+      "priceMinor": 1950000
+    },
+    {
+      "name": "Customer order, Finance confirmation, NGN formatting and PAID without activation",
+      "status": "PASS",
+      "orderId": "f537c119-e7d1-417d-a2fc-7a54bcd6cb1a",
+      "paymentId": "5f9ab7cd-4bec-44ca-9a43-014e15f184a7",
+      "amountMinor": 1950000,
+      "portalAmount": 19500
+    },
+    {
+      "name": "Separate authorized simulated provisioning reaches portal subscription",
+      "status": "PASS",
+      "provisioningId": "24a09995-6868-4290-9044-c388a5339067",
+      "subscriptionId": "f46df766-a40a-4948-a7f7-0c48848edad1"
+    },
+    {
+      "name": "Customer support ticket, staff reply and status synchronize",
+      "status": "PASS",
+      "ticketId": "69c2e9d3-91b8-4748-ba6d-21fc3cfb1293",
+      "messages": 2
+    },
+    {
+      "name": "Cross-customer order, receipt, ticket and reply isolation",
+      "status": "PASS"
+    },
+    {
+      "name": "Pagination, structured errors, staff/customer boundary and revoked sessions",
+      "status": "PASS"
+    }
+  ],
+  "providerCapabilities": {
+    "payments": "disabled",
+    "provisioning": "simulated",
+    "legacy": "simulated",
+    "email": "simulated",
+    "sms": "simulated",
+    "coverage": "native",
+    "ai": "guidance-only-no-model",
+    "usage": "not-connected"
+  },
+  "browser": {
+    "customerId": "c8c6a143-4319-44a3-84ab-0b21672a6e10",
+    "accountNumber": "81117181",
+    "planId": "51201d97-a053-4c70-b8f7-2adb242a4be5",
+    "buildingId": "7ff56965-b620-4a9e-b863-29a45b3c4802"
+  },
+  "status": "PASS",
+  "finishedAt": "2026-10-20T06:43:33.219Z"
+}
