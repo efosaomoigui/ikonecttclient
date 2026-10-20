@@ -1,0 +1,356 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+enum UserKind {
+  STAFF
+  CUSTOMER
+}
+enum StaffRole {
+  ADMIN
+  SUPPORT
+  SALES
+  FINANCE
+  PROVISIONER
+  EXECUTIVE
+}
+enum CustomerKind {
+  RESIDENTIAL
+  BUSINESS
+}
+enum CustomerStatus {
+  ACTIVE
+  SUSPENDED
+  CLOSED
+}
+enum CoverageLevel {
+  COUNTRY
+  STATE
+  CITY_LGA
+  DISTRICT_AREA
+  STREET_ESTATE
+  BUILDING_ADDRESS
+}
+enum Eligibility {
+  AVAILABLE
+  UNAVAILABLE
+  PLANNED
+  REQUIRES_REVIEW
+  UNKNOWN
+}
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CLOSED
+}
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  FULFILLING
+  COMPLETED
+  CANCELLED
+}
+enum OrderType {
+  NEW_CONNECTION
+  RENEWAL
+  PLAN_CHANGE
+}
+enum PaymentStatus {
+  REPORTED
+  CONFIRMED
+  REJECTED
+}
+enum PaymentMethod {
+  BANK_TRANSFER
+  OTHER
+}
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  FAILED
+  REQUIRES_REVIEW
+}
+enum ProvisioningStatus {
+  PENDING
+  ACTIVE
+  FAILED
+  REQUIRES_REVIEW
+}
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+enum NotificationChannel {
+  EMAIL
+  SMS
+}
+enum NotificationStatus {
+  QUEUED
+  SENT
+  FAILED
+  SIMULATED
+}
+
+model User {
+  id String @id @default(uuid()) @db.Uuid
+  kind UserKind
+  name String
+  email String? @unique
+  passwordHash String?
+  roles StaffRole[] @default([])
+  enabled Boolean @default(true)
+  mustChangePassword Boolean @default(false)
+  customerId String? @unique @db.Uuid
+  customer Customer? @relation(fields: [customerId], references: [id])
+  sessions Session[]
+  passwordResets PasswordReset[]
+  assignedTickets Ticket[]
+  messages TicketMessage[]
+  audits AuditLog[]
+  verifiedPayments Payment[]
+  verifiedProvisioning ProvisioningRequest[]
+  createdAt DateTime @default(now())
+}
+model Session {
+  id String @id @default(uuid()) @db.Uuid
+  tokenHash String @unique
+  userId String @db.Uuid
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([userId, expiresAt])
+}
+model PasswordReset {
+  id String @id @default(uuid()) @db.Uuid
+  tokenHash String @unique
+  userId String @db.Uuid
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt DateTime?
+  createdAt DateTime @default(now())
+}
+model Customer {
+  id String @id @default(uuid()) @db.Uuid
+  accountNumber String @unique
+  accountNumberSimulated Boolean @default(true)
+  kind CustomerKind
+  name String
+  email String
+  phone String
+  status CustomerStatus @default(ACTIVE)
+  buildingId String? @db.Uuid
+  building CoverageLocation? @relation(fields: [buildingId], references: [id])
+  user User?
+  leads Lead[]
+  orders Order[]
+  payments Payment[]
+  subscriptions Subscription[]
+  tickets Ticket[]
+  externalReferences ExternalReference[]
+  notifications Notification[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model ExternalReference {
+  id String @id @default(uuid()) @db.Uuid
+  customerId String @db.Uuid
+  customer Customer @relation(fields: [customerId], references: [id])
+  system String
+  externalId String
+  createdAt DateTime @default(now())
+  @@unique([system, externalId])
+  @@unique([customerId, system])
+}
+model Plan {
+  id String @id @default(uuid()) @db.Uuid
+  code String @unique
+  name String
+  kind CustomerKind
+  priceMinor BigInt
+  currency String @default("NGN")
+  speedMbps Int
+  billingDays Int @default(30)
+  features String[] @default([])
+  published Boolean @default(false)
+  simulated Boolean @default(false)
+  locations CoveragePlan[]
+  leads Lead[]
+  orders Order[]
+  subscriptions Subscription[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model CoverageLocation {
+  id String @id @default(uuid()) @db.Uuid
+  name String
+  level CoverageLevel
+  parentId String? @db.Uuid
+  parent CoverageLocation? @relation("LocationTree", fields: [parentId], references: [id])
+  children CoverageLocation[] @relation("LocationTree")
+  eligibility Eligibility @default(UNKNOWN)
+  evidence String?
+  verifiedAt DateTime?
+  simulated Boolean @default(false)
+  plans CoveragePlan[]
+  customers Customer[]
+  orders Order[]
+  leads Lead[]
+  subscriptions Subscription[]
+  @@index([parentId, level])
+}
+model CoveragePlan {
+  locationId String @db.Uuid
+  planId String @db.Uuid
+  location CoverageLocation @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  plan Plan @relation(fields: [planId], references: [id])
+  @@id([locationId, planId])
+}
+model Lead {
+  id String @id @default(uuid()) @db.Uuid
+  name String
+  email String
+  phone String
+  kind CustomerKind
+  message String
+  consent Boolean
+  status LeadStatus @default(NEW)
+  customerId String? @db.Uuid
+  customer Customer? @relation(fields: [customerId], references: [id])
+  planId String? @db.Uuid
+  plan Plan? @relation(fields: [planId], references: [id])
+  buildingId String? @db.Uuid
+  building CoverageLocation? @relation(fields: [buildingId], references: [id])
+  createdAt DateTime @default(now())
+}
+model Order {
+  id String @id @default(uuid()) @db.Uuid
+  customerId String @db.Uuid
+  customer Customer @relation(fields: [customerId], references: [id])
+  planId String @db.Uuid
+  plan Plan @relation(fields: [planId], references: [id])
+  buildingId String @db.Uuid
+  building CoverageLocation @relation(fields: [buildingId], references: [id])
+  type OrderType @default(NEW_CONNECTION)
+  subscriptionId String? @db.Uuid
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+  status OrderStatus @default(PENDING_PAYMENT)
+  amountMinor BigInt
+  currency String
+  planName String
+  billingDays Int
+  payments Payment[]
+  provisioning ProvisioningRequest?
+  createdAt DateTime @default(now())
+  @@index([customerId, createdAt])
+}
+model Payment {
+  id String @id @default(uuid()) @db.Uuid
+  orderId String @db.Uuid
+  order Order @relation(fields: [orderId], references: [id])
+  customerId String @db.Uuid
+  customer Customer @relation(fields: [customerId], references: [id])
+  amountMinor BigInt
+  currency String
+  method PaymentMethod
+  reference String @unique
+  evidence String
+  verificationEvidence String?
+  status PaymentStatus @default(REPORTED)
+  verifiedById String? @db.Uuid
+  verifiedBy User? @relation(fields: [verifiedById], references: [id])
+  verifiedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([customerId, createdAt])
+}
+model Subscription {
+  id String @id @default(uuid()) @db.Uuid
+  customerId String @db.Uuid
+  customer Customer @relation(fields: [customerId], references: [id])
+  planId String @db.Uuid
+  plan Plan @relation(fields: [planId], references: [id])
+  buildingId String @db.Uuid
+  building CoverageLocation @relation(fields: [buildingId], references: [id])
+  status SubscriptionStatus @default(PENDING)
+  startsAt DateTime?
+  endsAt DateTime?
+  externalServiceId String?
+  simulated Boolean @default(false)
+  orders Order[]
+  provisioning ProvisioningRequest[]
+  tickets Ticket[]
+  @@index([customerId])
+}
+model ProvisioningRequest {
+  id String @id @default(uuid()) @db.Uuid
+  orderId String @unique @db.Uuid
+  order Order @relation(fields: [orderId], references: [id])
+  subscriptionId String @db.Uuid
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+  status ProvisioningStatus @default(PENDING)
+  mode String
+  reference String?
+  evidence String?
+  verifiedById String? @db.Uuid
+  verifiedBy User? @relation(fields: [verifiedById], references: [id])
+  verifiedAt DateTime?
+  simulated Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+model Ticket {
+  id String @id @default(uuid()) @db.Uuid
+  customerId String @db.Uuid
+  customer Customer @relation(fields: [customerId], references: [id])
+  subscriptionId String? @db.Uuid
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+  subject String
+  status TicketStatus @default(OPEN)
+  assignedToId String? @db.Uuid
+  assignedTo User? @relation(fields: [assignedToId], references: [id])
+  messages TicketMessage[]
+  createdAt DateTime @default(now())
+  @@index([customerId, createdAt])
+}
+model TicketMessage {
+  id String @id @default(uuid()) @db.Uuid
+  ticketId String @db.Uuid
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+  authorId String @db.Uuid
+  author User @relation(fields: [authorId], references: [id])
+  message String
+  createdAt DateTime @default(now())
+}
+model Notification {
+  id String @id @default(uuid()) @db.Uuid
+  customerId String? @db.Uuid
+  customer Customer? @relation(fields: [customerId], references: [id])
+  channel NotificationChannel
+  destination String
+  template String
+  encryptedPayload String
+  status NotificationStatus @default(QUEUED)
+  attempts Int @default(0)
+  simulated Boolean @default(false)
+  availableAt DateTime @default(now())
+  leaseUntil DateTime?
+  createdAt DateTime @default(now())
+  @@index([status, availableAt])
+}
+model AuditLog {
+  id String @id @default(uuid()) @db.Uuid
+  actorId String? @db.Uuid
+  actor User? @relation(fields: [actorId], references: [id])
+  action String
+  entityType String
+  entityId String
+  metadata Json @default("{}")
+  createdAt DateTime @default(now())
+  @@index([entityType, entityId, createdAt])
+}
