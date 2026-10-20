@@ -582,7 +582,7 @@ async function submit(e) {
             description: values.description.trim(),
           });
           data = null;
-          notice = `Request ${t.reference} received. You can follow its progress here.`;
+          notice = `${t.reference} received. You can follow its progress here.`;
           location.hash = "/support/" + encodeURIComponent(t.id);
           break;
         }
