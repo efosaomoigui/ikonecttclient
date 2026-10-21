@@ -45,6 +45,7 @@ export class PaymentsService {
       if (!order) throw new NotFoundException('Order not found');
       await activeCustomer(tx, order.customerId);
       if (order.status !== 'PENDING_PAYMENT') throw new ConflictException('Order is not awaiting payment');
+      if (order.fundingSource !== 'ORDER_PAYMENT') throw new ConflictException('Wallet-funded orders cannot accept order payments');
       if (order.amountMinor !== BigInt(input.amountMinor) || order.currency !== input.currency) throw new BadRequestException('Reported payment must match the order amount and currency');
       const payment = await tx.payment.create({ data: { ...input, customerId: order.customerId, amountMinor: BigInt(input.amountMinor) } });
       await audit(tx, actor.id, 'payment.reported', 'Payment', payment.id);

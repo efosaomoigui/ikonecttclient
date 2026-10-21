@@ -1806,6 +1806,9 @@
                           },
                           "simulated": {
                             "type": "boolean"
+                          },
+                          "renewalEnabled": {
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -4157,6 +4160,13 @@
                             "type": "boolean",
                             "default": false
                           },
+                          "renewalPriceMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true,
+                            "nullable": true
+                          },
                           "id": {
                             "type": "string",
                             "format": "uuid"
@@ -4374,6 +4384,13 @@
                       "type": "boolean",
                       "default": false
                     },
+                    "renewalPriceMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true,
+                      "nullable": true
+                    },
                     "id": {
                       "type": "string",
                       "format": "uuid"
@@ -4589,6 +4606,13 @@
                             "type": "boolean",
                             "default": false
                           },
+                          "renewalPriceMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true,
+                            "nullable": true
+                          },
                           "id": {
                             "type": "string",
                             "format": "uuid"
@@ -4796,6 +4820,13 @@
                   "published": {
                     "type": "boolean",
                     "default": false
+                  },
+                  "renewalPriceMinor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000000000,
+                    "exclusiveMinimum": true,
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -4874,6 +4905,13 @@
                     "published": {
                       "type": "boolean",
                       "default": false
+                    },
+                    "renewalPriceMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true,
+                      "nullable": true
                     },
                     "id": {
                       "type": "string",
@@ -5075,6 +5113,13 @@
                   "published": {
                     "type": "boolean",
                     "default": false
+                  },
+                  "renewalPriceMinor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000000000,
+                    "exclusiveMinimum": true,
+                    "nullable": true
                   }
                 },
                 "additionalProperties": false
@@ -5146,6 +5191,13 @@
                     "published": {
                       "type": "boolean",
                       "default": false
+                    },
+                    "renewalPriceMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true,
+                      "nullable": true
                     },
                     "id": {
                       "type": "string",
@@ -6141,6 +6193,13 @@
                               "PLAN_CHANGE"
                             ]
                           },
+                          "fundingSource": {
+                            "type": "string",
+                            "enum": [
+                              "ORDER_PAYMENT",
+                              "WALLET"
+                            ]
+                          },
                           "subscriptionId": {
                             "type": "string",
                             "format": "uuid",
@@ -6376,6 +6435,13 @@
                         "PLAN_CHANGE"
                       ]
                     },
+                    "fundingSource": {
+                      "type": "string",
+                      "enum": [
+                        "ORDER_PAYMENT",
+                        "WALLET"
+                      ]
+                    },
                     "subscriptionId": {
                       "type": "string",
                       "format": "uuid",
@@ -6564,6 +6630,13 @@
                         "NEW_CONNECTION",
                         "RENEWAL",
                         "PLAN_CHANGE"
+                      ]
+                    },
+                    "fundingSource": {
+                      "type": "string",
+                      "enum": [
+                        "ORDER_PAYMENT",
+                        "WALLET"
                       ]
                     },
                     "subscriptionId": {
@@ -6771,6 +6844,13 @@
                               "NEW_CONNECTION",
                               "RENEWAL",
                               "PLAN_CHANGE"
+                            ]
+                          },
+                          "fundingSource": {
+                            "type": "string",
+                            "enum": [
+                              "ORDER_PAYMENT",
+                              "WALLET"
                             ]
                           },
                           "subscriptionId": {
@@ -7013,6 +7093,13 @@
                         "PLAN_CHANGE"
                       ]
                     },
+                    "fundingSource": {
+                      "type": "string",
+                      "enum": [
+                        "ORDER_PAYMENT",
+                        "WALLET"
+                      ]
+                    },
                     "subscriptionId": {
                       "type": "string",
                       "format": "uuid",
@@ -7201,6 +7288,13 @@
                         "NEW_CONNECTION",
                         "RENEWAL",
                         "PLAN_CHANGE"
+                      ]
+                    },
+                    "fundingSource": {
+                      "type": "string",
+                      "enum": [
+                        "ORDER_PAYMENT",
+                        "WALLET"
                       ]
                     },
                     "subscriptionId": {
@@ -9101,6 +9195,9 @@
                           },
                           "simulated": {
                             "type": "boolean"
+                          },
+                          "renewalEnabled": {
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -9293,6 +9390,9 @@
                     },
                     "simulated": {
                       "type": "boolean"
+                    },
+                    "renewalEnabled": {
+                      "type": "boolean"
                     }
                   },
                   "required": [
@@ -9482,6 +9582,9 @@
                             "nullable": true
                           },
                           "simulated": {
+                            "type": "boolean"
+                          },
+                          "renewalEnabled": {
                             "type": "boolean"
                           }
                         },
@@ -9674,6 +9777,9 @@
                       "nullable": true
                     },
                     "simulated": {
+                      "type": "boolean"
+                    },
+                    "renewalEnabled": {
                       "type": "boolean"
                     }
                   },
@@ -14435,12 +14541,4850 @@
         ],
         "security": []
       }
+    },
+    "/api/v1/me/wallet": {
+      "get": {
+        "operationId": "CustomerWalletController_summary",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "postedMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "reservedMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "availableMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "pendingTopUpsMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "pendingTopUpsCount": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "topUpInstructions": {
+                      "type": "object",
+                      "properties": {
+                        "mode": {
+                          "type": "string",
+                          "enum": [
+                            "MANUAL_REPORT"
+                          ]
+                        },
+                        "bankDetails": {
+                          "enum": [
+                            "null"
+                          ],
+                          "nullable": true
+                        },
+                        "notice": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "mode",
+                        "bankDetails",
+                        "notice"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "customerId",
+                    "currency",
+                    "postedMinor",
+                    "reservedMinor",
+                    "availableMinor",
+                    "pendingTopUpsMinor",
+                    "pendingTopUpsCount",
+                    "simulated",
+                    "topUpInstructions"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet"
+        ]
+      }
+    },
+    "/api/v1/me/wallet/transactions": {
+      "get": {
+        "operationId": "CustomerWalletController_entries",
+        "parameters": [
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "walletId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "customerId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "TOPUP_CREDIT",
+                              "RESERVE",
+                              "CAPTURE",
+                              "RELEASE",
+                              "ADJUSTMENT_CREDIT",
+                              "REVERSAL"
+                            ]
+                          },
+                          "amountMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true
+                          },
+                          "postedDeltaMinor": {
+                            "type": "integer",
+                            "minimum": -1000000000000,
+                            "maximum": 1000000000000
+                          },
+                          "reservedDeltaMinor": {
+                            "type": "integer",
+                            "minimum": -1000000000000,
+                            "maximum": 1000000000000
+                          },
+                          "postedAfterMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000
+                          },
+                          "reservedAfterMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000
+                          },
+                          "reference": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "actorId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "topUpId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "renewalId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "reversalOfId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "simulated": {
+                            "type": "boolean"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "walletId",
+                          "customerId",
+                          "kind",
+                          "amountMinor",
+                          "postedDeltaMinor",
+                          "reservedDeltaMinor",
+                          "postedAfterMinor",
+                          "reservedAfterMinor",
+                          "reference",
+                          "description",
+                          "actorId",
+                          "topUpId",
+                          "renewalId",
+                          "reversalOfId",
+                          "simulated",
+                          "createdAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total",
+                    "offset",
+                    "limit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet"
+        ]
+      }
+    },
+    "/api/v1/me/wallet/top-ups": {
+      "get": {
+        "operationId": "CustomerWalletController_topUps",
+        "parameters": [
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "customerId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "allocation": {
+                            "type": "string",
+                            "enum": [
+                              "WALLET"
+                            ]
+                          },
+                          "amountMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true
+                          },
+                          "currency": {
+                            "type": "string",
+                            "enum": [
+                              "NGN"
+                            ]
+                          },
+                          "reference": {
+                            "type": "string"
+                          },
+                          "method": {
+                            "type": "string",
+                            "enum": [
+                              "BANK_TRANSFER",
+                              "OTHER"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "REPORTED",
+                              "CONFIRMED",
+                              "REJECTED"
+                            ]
+                          },
+                          "verifiedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "nullable": true
+                          },
+                          "simulated": {
+                            "type": "boolean"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "customerId",
+                          "allocation",
+                          "amountMinor",
+                          "currency",
+                          "reference",
+                          "method",
+                          "status",
+                          "verifiedAt",
+                          "simulated",
+                          "createdAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total",
+                    "offset",
+                    "limit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet"
+        ]
+      },
+      "post": {
+        "operationId": "CustomerWalletController_report",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amountMinor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000000000,
+                    "exclusiveMinimum": true
+                  },
+                  "currency": {
+                    "type": "string",
+                    "enum": [
+                      "NGN"
+                    ]
+                  },
+                  "reference": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 150
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "BANK_TRANSFER",
+                      "OTHER"
+                    ]
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 2000
+                  },
+                  "idempotencyKey": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "amountMinor",
+                  "currency",
+                  "reference",
+                  "method",
+                  "evidence",
+                  "idempotencyKey"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "allocation": {
+                      "type": "string",
+                      "enum": [
+                        "WALLET"
+                      ]
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "reference": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string",
+                      "enum": [
+                        "BANK_TRANSFER",
+                        "OTHER"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "REPORTED",
+                        "CONFIRMED",
+                        "REJECTED"
+                      ]
+                    },
+                    "verifiedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "allocation",
+                    "amountMinor",
+                    "currency",
+                    "reference",
+                    "method",
+                    "status",
+                    "verifiedAt",
+                    "simulated",
+                    "createdAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet"
+        ]
+      }
+    },
+    "/api/v1/me/wallet/renewals": {
+      "get": {
+        "operationId": "CustomerWalletController_renewals",
+        "parameters": [
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "customerId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "subscriptionId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "orderId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "planId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "planName": {
+                            "type": "string"
+                          },
+                          "amountMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true
+                          },
+                          "currency": {
+                            "type": "string",
+                            "enum": [
+                              "NGN"
+                            ]
+                          },
+                          "billingDays": {
+                            "type": "integer",
+                            "exclusiveMinimum": true,
+                            "minimum": 0
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "RESERVED",
+                              "PROCESSING",
+                              "REQUIRES_REVIEW",
+                              "SUCCEEDED",
+                              "FAILED"
+                            ]
+                          },
+                          "previousEndsAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "expectedEndsAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "confirmedEndsAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "nullable": true
+                          },
+                          "providerMode": {
+                            "type": "string",
+                            "enum": [
+                              "manual",
+                              "simulated",
+                              "disabled"
+                            ]
+                          },
+                          "providerReference": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "simulated": {
+                            "type": "boolean"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "customerId",
+                          "subscriptionId",
+                          "orderId",
+                          "planId",
+                          "planName",
+                          "amountMinor",
+                          "currency",
+                          "billingDays",
+                          "status",
+                          "previousEndsAt",
+                          "expectedEndsAt",
+                          "confirmedEndsAt",
+                          "providerMode",
+                          "providerReference",
+                          "simulated",
+                          "createdAt",
+                          "updatedAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total",
+                    "offset",
+                    "limit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet"
+        ]
+      }
+    },
+    "/api/v1/me/wallet/renewals/{id}": {
+      "get": {
+        "operationId": "CustomerWalletController_renewal",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "subscriptionId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planName": {
+                      "type": "string"
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "billingDays": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "minimum": 0
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "RESERVED",
+                        "PROCESSING",
+                        "REQUIRES_REVIEW",
+                        "SUCCEEDED",
+                        "FAILED"
+                      ]
+                    },
+                    "previousEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "expectedEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "confirmedEndsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "providerMode": {
+                      "type": "string",
+                      "enum": [
+                        "manual",
+                        "simulated",
+                        "disabled"
+                      ]
+                    },
+                    "providerReference": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "subscriptionId",
+                    "orderId",
+                    "planId",
+                    "planName",
+                    "amountMinor",
+                    "currency",
+                    "billingDays",
+                    "status",
+                    "previousEndsAt",
+                    "expectedEndsAt",
+                    "confirmedEndsAt",
+                    "providerMode",
+                    "providerReference",
+                    "simulated",
+                    "createdAt",
+                    "updatedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet"
+        ]
+      }
+    },
+    "/api/v1/me/subscriptions/{id}/renewal-eligibility": {
+      "get": {
+        "operationId": "CustomerWalletRenewalController_eligibility",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "subscriptionId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "eligible": {
+                      "type": "boolean"
+                    },
+                    "reasonCodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "ACCOUNT_INACTIVE",
+                          "SERVICE_NOT_ENABLED",
+                          "SERVICE_STATE",
+                          "MISSING_SERVICE_DATES",
+                          "PRICE_UNAVAILABLE",
+                          "PLAN_UNAVAILABLE",
+                          "COVERAGE_REVIEW",
+                          "PROVIDER_UNAVAILABLE",
+                          "RENEWAL_IN_PROGRESS",
+                          "INSUFFICIENT_FUNDS"
+                        ]
+                      }
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "nullable": true
+                    },
+                    "priceVersion": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "billingDays": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "minimum": 0,
+                      "nullable": true
+                    },
+                    "currentEndsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "expectedEndsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "planName": {
+                      "type": "string"
+                    },
+                    "speedMbps": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "minimum": 0,
+                      "nullable": true
+                    },
+                    "wallet": {
+                      "type": "object",
+                      "properties": {
+                        "customerId": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "enum": [
+                            "NGN"
+                          ]
+                        },
+                        "postedMinor": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000000000000
+                        },
+                        "reservedMinor": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000000000000
+                        },
+                        "availableMinor": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000000000000
+                        },
+                        "pendingTopUpsMinor": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000000000000
+                        },
+                        "pendingTopUpsCount": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "simulated": {
+                          "type": "boolean"
+                        },
+                        "topUpInstructions": {
+                          "type": "object",
+                          "properties": {
+                            "mode": {
+                              "type": "string",
+                              "enum": [
+                                "MANUAL_REPORT"
+                              ]
+                            },
+                            "bankDetails": {
+                              "enum": [
+                                "null"
+                              ],
+                              "nullable": true
+                            },
+                            "notice": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "mode",
+                            "bankDetails",
+                            "notice"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "customerId",
+                        "currency",
+                        "postedMinor",
+                        "reservedMinor",
+                        "availableMinor",
+                        "pendingTopUpsMinor",
+                        "pendingTopUpsCount",
+                        "simulated",
+                        "topUpInstructions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "subscriptionId",
+                    "eligible",
+                    "reasonCodes",
+                    "amountMinor",
+                    "priceVersion",
+                    "billingDays",
+                    "currentEndsAt",
+                    "expectedEndsAt",
+                    "planName",
+                    "speedMbps",
+                    "wallet",
+                    "simulated"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet renewals"
+        ]
+      }
+    },
+    "/api/v1/me/subscriptions/{id}/wallet-renewals": {
+      "post": {
+        "operationId": "CustomerWalletRenewalController_renew",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priceVersion": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "idempotencyKey": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "priceVersion",
+                  "idempotencyKey"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "subscriptionId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planName": {
+                      "type": "string"
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "billingDays": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "minimum": 0
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "RESERVED",
+                        "PROCESSING",
+                        "REQUIRES_REVIEW",
+                        "SUCCEEDED",
+                        "FAILED"
+                      ]
+                    },
+                    "previousEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "expectedEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "confirmedEndsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "providerMode": {
+                      "type": "string",
+                      "enum": [
+                        "manual",
+                        "simulated",
+                        "disabled"
+                      ]
+                    },
+                    "providerReference": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "subscriptionId",
+                    "orderId",
+                    "planId",
+                    "planName",
+                    "amountMinor",
+                    "currency",
+                    "billingDays",
+                    "status",
+                    "previousEndsAt",
+                    "expectedEndsAt",
+                    "confirmedEndsAt",
+                    "providerMode",
+                    "providerReference",
+                    "simulated",
+                    "createdAt",
+                    "updatedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Customer wallet renewals"
+        ]
+      }
+    },
+    "/api/v1/admin/customers/{id}/wallet": {
+      "get": {
+        "operationId": "AdminWalletController_summary",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "postedMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "reservedMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "availableMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "pendingTopUpsMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "pendingTopUpsCount": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "topUpInstructions": {
+                      "type": "object",
+                      "properties": {
+                        "mode": {
+                          "type": "string",
+                          "enum": [
+                            "MANUAL_REPORT"
+                          ]
+                        },
+                        "bankDetails": {
+                          "enum": [
+                            "null"
+                          ],
+                          "nullable": true
+                        },
+                        "notice": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "mode",
+                        "bankDetails",
+                        "notice"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "customerId",
+                    "currency",
+                    "postedMinor",
+                    "reservedMinor",
+                    "availableMinor",
+                    "pendingTopUpsMinor",
+                    "pendingTopUpsCount",
+                    "simulated",
+                    "topUpInstructions"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Admin customer wallets"
+        ]
+      }
+    },
+    "/api/v1/admin/customers/{id}/wallet/transactions": {
+      "get": {
+        "operationId": "AdminWalletController_entries",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "walletId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "customerId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "TOPUP_CREDIT",
+                              "RESERVE",
+                              "CAPTURE",
+                              "RELEASE",
+                              "ADJUSTMENT_CREDIT",
+                              "REVERSAL"
+                            ]
+                          },
+                          "amountMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true
+                          },
+                          "postedDeltaMinor": {
+                            "type": "integer",
+                            "minimum": -1000000000000,
+                            "maximum": 1000000000000
+                          },
+                          "reservedDeltaMinor": {
+                            "type": "integer",
+                            "minimum": -1000000000000,
+                            "maximum": 1000000000000
+                          },
+                          "postedAfterMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000
+                          },
+                          "reservedAfterMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000
+                          },
+                          "reference": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "actorId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "topUpId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "renewalId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "reversalOfId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "simulated": {
+                            "type": "boolean"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "walletId",
+                          "customerId",
+                          "kind",
+                          "amountMinor",
+                          "postedDeltaMinor",
+                          "reservedDeltaMinor",
+                          "postedAfterMinor",
+                          "reservedAfterMinor",
+                          "reference",
+                          "description",
+                          "actorId",
+                          "topUpId",
+                          "renewalId",
+                          "reversalOfId",
+                          "simulated",
+                          "createdAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total",
+                    "offset",
+                    "limit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Admin customer wallets"
+        ]
+      }
+    },
+    "/api/v1/admin/customers/{id}/wallet/adjustments": {
+      "post": {
+        "operationId": "AdminWalletController_adjust",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amountMinor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000000000,
+                    "exclusiveMinimum": true
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 1000
+                  },
+                  "idempotencyKey": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "amountMinor",
+                  "reason",
+                  "idempotencyKey"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "walletId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "TOPUP_CREDIT",
+                        "RESERVE",
+                        "CAPTURE",
+                        "RELEASE",
+                        "ADJUSTMENT_CREDIT",
+                        "REVERSAL"
+                      ]
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "postedDeltaMinor": {
+                      "type": "integer",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "reservedDeltaMinor": {
+                      "type": "integer",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "postedAfterMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "reservedAfterMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "reference": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "actorId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "topUpId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "renewalId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "reversalOfId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "walletId",
+                    "customerId",
+                    "kind",
+                    "amountMinor",
+                    "postedDeltaMinor",
+                    "reservedDeltaMinor",
+                    "postedAfterMinor",
+                    "reservedAfterMinor",
+                    "reference",
+                    "description",
+                    "actorId",
+                    "topUpId",
+                    "renewalId",
+                    "reversalOfId",
+                    "simulated",
+                    "createdAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Admin customer wallets"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-top-ups": {
+      "get": {
+        "operationId": "AdminTopUpController_list",
+        "parameters": [
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            }
+          },
+          {
+            "name": "customerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "not": {}
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "not": {}
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "REPORTED",
+                    "CONFIRMED",
+                    "REJECTED"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "customerId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "allocation": {
+                            "type": "string",
+                            "enum": [
+                              "WALLET"
+                            ]
+                          },
+                          "amountMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true
+                          },
+                          "currency": {
+                            "type": "string",
+                            "enum": [
+                              "NGN"
+                            ]
+                          },
+                          "reference": {
+                            "type": "string"
+                          },
+                          "method": {
+                            "type": "string",
+                            "enum": [
+                              "BANK_TRANSFER",
+                              "OTHER"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "REPORTED",
+                              "CONFIRMED",
+                              "REJECTED"
+                            ]
+                          },
+                          "verifiedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "nullable": true
+                          },
+                          "simulated": {
+                            "type": "boolean"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "evidence": {
+                            "type": "string"
+                          },
+                          "verificationEvidence": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "verifiedById": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "customerId",
+                          "allocation",
+                          "amountMinor",
+                          "currency",
+                          "reference",
+                          "method",
+                          "status",
+                          "verifiedAt",
+                          "simulated",
+                          "createdAt",
+                          "evidence",
+                          "verificationEvidence",
+                          "verifiedById"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total",
+                    "offset",
+                    "limit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Finance wallet top-ups"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-top-ups/{id}": {
+      "get": {
+        "operationId": "AdminTopUpController_get",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "allocation": {
+                      "type": "string",
+                      "enum": [
+                        "WALLET"
+                      ]
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "reference": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string",
+                      "enum": [
+                        "BANK_TRANSFER",
+                        "OTHER"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "REPORTED",
+                        "CONFIRMED",
+                        "REJECTED"
+                      ]
+                    },
+                    "verifiedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "evidence": {
+                      "type": "string"
+                    },
+                    "verificationEvidence": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "verifiedById": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "allocation",
+                    "amountMinor",
+                    "currency",
+                    "reference",
+                    "method",
+                    "status",
+                    "verifiedAt",
+                    "simulated",
+                    "createdAt",
+                    "evidence",
+                    "verificationEvidence",
+                    "verifiedById"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Finance wallet top-ups"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-top-ups/{id}/verify": {
+      "post": {
+        "operationId": "AdminTopUpController_verify",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "CONFIRMED",
+                      "REJECTED"
+                    ]
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 2000
+                  }
+                },
+                "required": [
+                  "decision",
+                  "evidence"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "allocation": {
+                      "type": "string",
+                      "enum": [
+                        "WALLET"
+                      ]
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "reference": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string",
+                      "enum": [
+                        "BANK_TRANSFER",
+                        "OTHER"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "REPORTED",
+                        "CONFIRMED",
+                        "REJECTED"
+                      ]
+                    },
+                    "verifiedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "evidence": {
+                      "type": "string"
+                    },
+                    "verificationEvidence": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "verifiedById": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "allocation",
+                    "amountMinor",
+                    "currency",
+                    "reference",
+                    "method",
+                    "status",
+                    "verifiedAt",
+                    "simulated",
+                    "createdAt",
+                    "evidence",
+                    "verificationEvidence",
+                    "verifiedById"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Finance wallet top-ups"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-transactions/{id}/reverse": {
+      "post": {
+        "operationId": "WalletCorrectionController_reverse",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 1000
+                  },
+                  "idempotencyKey": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "reason",
+                  "idempotencyKey"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "walletId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "TOPUP_CREDIT",
+                        "RESERVE",
+                        "CAPTURE",
+                        "RELEASE",
+                        "ADJUSTMENT_CREDIT",
+                        "REVERSAL"
+                      ]
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "postedDeltaMinor": {
+                      "type": "integer",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "reservedDeltaMinor": {
+                      "type": "integer",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "postedAfterMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "reservedAfterMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000
+                    },
+                    "reference": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "actorId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "topUpId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "renewalId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "reversalOfId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "walletId",
+                    "customerId",
+                    "kind",
+                    "amountMinor",
+                    "postedDeltaMinor",
+                    "reservedDeltaMinor",
+                    "postedAfterMinor",
+                    "reservedAfterMinor",
+                    "reference",
+                    "description",
+                    "actorId",
+                    "topUpId",
+                    "renewalId",
+                    "reversalOfId",
+                    "simulated",
+                    "createdAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Finance wallet corrections"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-renewals": {
+      "get": {
+        "operationId": "AdminRenewalController_list",
+        "parameters": [
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            }
+          },
+          {
+            "name": "customerId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "not": {}
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "not": {}
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "RESERVED",
+                    "PROCESSING",
+                    "REQUIRES_REVIEW",
+                    "SUCCEEDED",
+                    "FAILED"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "customerId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "subscriptionId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "orderId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "planId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "planName": {
+                            "type": "string"
+                          },
+                          "amountMinor": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000000000,
+                            "exclusiveMinimum": true
+                          },
+                          "currency": {
+                            "type": "string",
+                            "enum": [
+                              "NGN"
+                            ]
+                          },
+                          "billingDays": {
+                            "type": "integer",
+                            "exclusiveMinimum": true,
+                            "minimum": 0
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "RESERVED",
+                              "PROCESSING",
+                              "REQUIRES_REVIEW",
+                              "SUCCEEDED",
+                              "FAILED"
+                            ]
+                          },
+                          "previousEndsAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "expectedEndsAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "confirmedEndsAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "nullable": true
+                          },
+                          "providerMode": {
+                            "type": "string",
+                            "enum": [
+                              "manual",
+                              "simulated",
+                              "disabled"
+                            ]
+                          },
+                          "providerReference": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "simulated": {
+                            "type": "boolean"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "resolutionEvidence": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "resolvedById": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "customerId",
+                          "subscriptionId",
+                          "orderId",
+                          "planId",
+                          "planName",
+                          "amountMinor",
+                          "currency",
+                          "billingDays",
+                          "status",
+                          "previousEndsAt",
+                          "expectedEndsAt",
+                          "confirmedEndsAt",
+                          "providerMode",
+                          "providerReference",
+                          "simulated",
+                          "createdAt",
+                          "updatedAt",
+                          "resolutionEvidence",
+                          "resolvedById"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total",
+                    "offset",
+                    "limit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Admin wallet renewal operations"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-renewals/{id}": {
+      "get": {
+        "operationId": "AdminRenewalController_get",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "subscriptionId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planName": {
+                      "type": "string"
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "billingDays": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "minimum": 0
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "RESERVED",
+                        "PROCESSING",
+                        "REQUIRES_REVIEW",
+                        "SUCCEEDED",
+                        "FAILED"
+                      ]
+                    },
+                    "previousEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "expectedEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "confirmedEndsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "providerMode": {
+                      "type": "string",
+                      "enum": [
+                        "manual",
+                        "simulated",
+                        "disabled"
+                      ]
+                    },
+                    "providerReference": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "resolutionEvidence": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "resolvedById": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "subscriptionId",
+                    "orderId",
+                    "planId",
+                    "planName",
+                    "amountMinor",
+                    "currency",
+                    "billingDays",
+                    "status",
+                    "previousEndsAt",
+                    "expectedEndsAt",
+                    "confirmedEndsAt",
+                    "providerMode",
+                    "providerReference",
+                    "simulated",
+                    "createdAt",
+                    "updatedAt",
+                    "resolutionEvidence",
+                    "resolvedById"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Admin wallet renewal operations"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-renewals/{id}/process": {
+      "post": {
+        "operationId": "AdminRenewalController_process",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "subscriptionId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planName": {
+                      "type": "string"
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "billingDays": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "minimum": 0
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "RESERVED",
+                        "PROCESSING",
+                        "REQUIRES_REVIEW",
+                        "SUCCEEDED",
+                        "FAILED"
+                      ]
+                    },
+                    "previousEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "expectedEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "confirmedEndsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "providerMode": {
+                      "type": "string",
+                      "enum": [
+                        "manual",
+                        "simulated",
+                        "disabled"
+                      ]
+                    },
+                    "providerReference": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "resolutionEvidence": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "resolvedById": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "subscriptionId",
+                    "orderId",
+                    "planId",
+                    "planName",
+                    "amountMinor",
+                    "currency",
+                    "billingDays",
+                    "status",
+                    "previousEndsAt",
+                    "expectedEndsAt",
+                    "confirmedEndsAt",
+                    "providerMode",
+                    "providerReference",
+                    "simulated",
+                    "createdAt",
+                    "updatedAt",
+                    "resolutionEvidence",
+                    "resolvedById"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Admin wallet renewal operations"
+        ]
+      }
+    },
+    "/api/v1/admin/wallet-renewals/{id}/resolve": {
+      "post": {
+        "operationId": "AdminRenewalController_resolve",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "SUCCEEDED",
+                      "FAILED"
+                    ]
+                  },
+                  "reference": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 150
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 2000
+                  },
+                  "authoritative": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  },
+                  "confirmedEndsAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "decision",
+                  "reference",
+                  "evidence",
+                  "authoritative"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "subscriptionId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planName": {
+                      "type": "string"
+                    },
+                    "amountMinor": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000000000,
+                      "exclusiveMinimum": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "NGN"
+                      ]
+                    },
+                    "billingDays": {
+                      "type": "integer",
+                      "exclusiveMinimum": true,
+                      "minimum": 0
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "RESERVED",
+                        "PROCESSING",
+                        "REQUIRES_REVIEW",
+                        "SUCCEEDED",
+                        "FAILED"
+                      ]
+                    },
+                    "previousEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "expectedEndsAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "confirmedEndsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "providerMode": {
+                      "type": "string",
+                      "enum": [
+                        "manual",
+                        "simulated",
+                        "disabled"
+                      ]
+                    },
+                    "providerReference": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "resolutionEvidence": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "resolvedById": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "subscriptionId",
+                    "orderId",
+                    "planId",
+                    "planName",
+                    "amountMinor",
+                    "currency",
+                    "billingDays",
+                    "status",
+                    "previousEndsAt",
+                    "expectedEndsAt",
+                    "confirmedEndsAt",
+                    "providerMode",
+                    "providerReference",
+                    "simulated",
+                    "createdAt",
+                    "updatedAt",
+                    "resolutionEvidence",
+                    "resolvedById"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Admin wallet renewal operations"
+        ]
+      }
+    },
+    "/api/v1/admin/subscriptions/{id}/renewal-policy": {
+      "patch": {
+        "operationId": "RenewalPolicyController_policy",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 1000
+                  }
+                },
+                "required": [
+                  "enabled",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "customerId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "planId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "buildingId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "PENDING",
+                        "ACTIVE",
+                        "SUSPENDED",
+                        "FAILED",
+                        "REQUIRES_REVIEW"
+                      ]
+                    },
+                    "startsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "endsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "externalServiceId": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "simulated": {
+                      "type": "boolean"
+                    },
+                    "renewalEnabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "customerId",
+                    "planId",
+                    "buildingId",
+                    "status",
+                    "startsAt",
+                    "endsAt",
+                    "externalServiceId",
+                    "simulated"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Subscription renewal policy"
+        ]
+      }
     }
   },
   "info": {
     "title": "Ikonectt Core API",
     "description": "Public Website, My Ikonectt and Admin/CRM. No public registration. Money in NGN minor units. All writes return HTTP 200.",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "contact": {}
   },
   "tags": [],

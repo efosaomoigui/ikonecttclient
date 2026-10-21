@@ -154,6 +154,7 @@ model Customer {
   payments Payment[]
   subscriptions Subscription[]
   tickets Ticket[]
+  wallet Wallet?
   externalReferences ExternalReference[]
   notifications Notification[]
   createdAt DateTime @default(now())
@@ -174,6 +175,7 @@ model Plan {
   code String @unique
   name String
   kind CustomerKind
+  renewalPriceMinor BigInt?
   priceMinor BigInt
   currency String @default("NGN")
   speedMbps Int
@@ -238,6 +240,8 @@ model Order {
   plan Plan @relation(fields: [planId], references: [id])
   buildingId String @db.Uuid
   building CoverageLocation @relation(fields: [buildingId], references: [id])
+  fundingSource String @default("ORDER_PAYMENT")
+  walletRenewal WalletRenewal?
   type OrderType @default(NEW_CONNECTION)
   subscriptionId String? @db.Uuid
   subscription Subscription? @relation(fields: [subscriptionId], references: [id])
@@ -279,6 +283,8 @@ model Subscription {
   buildingId String @db.Uuid
   building CoverageLocation @relation(fields: [buildingId], references: [id])
   status SubscriptionStatus @default(PENDING)
+  renewalEnabled Boolean @default(false)
+  walletRenewals WalletRenewal[]
   startsAt DateTime?
   endsAt DateTime?
   externalServiceId String?
@@ -353,4 +359,107 @@ model AuditLog {
   metadata Json @default("{}")
   createdAt DateTime @default(now())
   @@index([entityType, entityId, createdAt])
+}
+
+// Internal account credits only: no transfers, withdrawals or historical payment conversion.
+model Wallet {
+  id String @id @default(uuid()) @db.Uuid
+  customerId String @unique @db.Uuid
+  customer Customer @relation(fields:[customerId],references:[id])
+  postedMinor BigInt @default(0)
+  reservedMinor BigInt @default(0)
+  entries WalletEntry[]
+  topUps WalletTopUp[]
+  renewals WalletRenewal[]
+  createdAt DateTime @default(now())
+  @@unique([id,customerId])
+}
+model PaymentReference {
+  reference String @id
+  allocation String
+  createdAt DateTime @default(now())
+}
+model WalletTopUp {
+  id String @id @default(uuid()) @db.Uuid
+  walletId String @db.Uuid
+  customerId String @db.Uuid
+  wallet Wallet @relation(fields:[walletId,customerId],references:[id,customerId])
+  allocation String @default("WALLET")
+  amountMinor BigInt
+  currency String @default("NGN")
+  reference String @unique
+  method PaymentMethod
+  evidence String
+  status PaymentStatus @default(REPORTED)
+  verificationEvidence String?
+  verifiedById String? @db.Uuid
+  verifiedAt DateTime?
+  idempotencyKey String @db.Uuid
+  requestFingerprint String
+  simulated Boolean @default(false)
+  entry WalletEntry?
+  createdAt DateTime @default(now())
+  @@unique([customerId,idempotencyKey])
+  @@index([customerId,createdAt])
+}
+model WalletRenewal {
+  id String @id @default(uuid()) @db.Uuid
+  walletId String @db.Uuid
+  customerId String @db.Uuid
+  wallet Wallet @relation(fields:[walletId,customerId],references:[id,customerId])
+  subscriptionId String @db.Uuid
+  subscription Subscription @relation(fields:[subscriptionId],references:[id])
+  orderId String @unique @db.Uuid
+  order Order @relation(fields:[orderId],references:[id])
+  planId String @db.Uuid
+  planName String
+  amountMinor BigInt
+  currency String @default("NGN")
+  billingDays Int
+  priceVersion DateTime
+  previousEndsAt DateTime
+  expectedEndsAt DateTime
+  confirmedEndsAt DateTime?
+  status String @default("RESERVED")
+  providerMode String
+  providerReference String?
+  simulated Boolean @default(false)
+  resolutionEvidence String?
+  resolvedById String? @db.Uuid
+  idempotencyKey String @db.Uuid
+  requestFingerprint String
+  entries WalletEntry[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([customerId,idempotencyKey])
+  @@index([subscriptionId,status])
+  @@index([customerId,createdAt])
+}
+model WalletEntry {
+  id String @id @default(uuid()) @db.Uuid
+  walletId String @db.Uuid
+  customerId String @db.Uuid
+  wallet Wallet @relation(fields:[walletId,customerId],references:[id,customerId])
+  kind String
+  amountMinor BigInt
+  postedDeltaMinor BigInt
+  reservedDeltaMinor BigInt
+  postedAfterMinor BigInt @default(0)
+  reservedAfterMinor BigInt @default(0)
+  reference String @unique
+  operationKey String @unique
+  requestFingerprint String
+  description String
+  actorId String? @db.Uuid
+  topUpId String? @unique @db.Uuid
+  topUp WalletTopUp? @relation(fields:[topUpId],references:[id])
+  renewalId String? @db.Uuid
+  renewal WalletRenewal? @relation(fields:[renewalId],references:[id])
+  reversalOfId String? @unique @db.Uuid
+  reversalOf WalletEntry? @relation("Compensation",fields:[reversalOfId],references:[id])
+  reversedBy WalletEntry? @relation("Compensation")
+  simulated Boolean @default(false)
+  createdAt DateTime @default(now())
+  @@unique([renewalId,kind])
+  @@index([customerId,createdAt])
 }

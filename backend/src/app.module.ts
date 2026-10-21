@@ -16,6 +16,7 @@ import { SupportModule } from './support/support.controller';
 import { AdminModule, AuditModule, LegacyModule, NotificationApiModule, ReportingModule } from './admin/admin.controller';
 import { AssistantModule } from './assistant/assistant.controller';
 import { Contract } from './core/http';
+import { WalletModule } from './wallet/wallet.controller';
 import { z } from 'zod';
 
 @ApiTags('Health') @Controller('health')
@@ -29,7 +30,7 @@ class HealthController {
     ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 120 }]),
     IdentityModule, CustomersModule, PlansModule, CoverageModule, LeadsModule,
     OrdersModule, PaymentsModule, SubscriptionsModule, ProvisioningModule, SupportModule,
-    AdminModule, ReportingModule, AuditModule, LegacyModule, NotificationApiModule, AssistantModule],
+    AdminModule, ReportingModule, AuditModule, LegacyModule, NotificationApiModule, AssistantModule, WalletModule],
   controllers: [HealthController],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }, { provide: APP_GUARD, useClass: AccessGuard }],
 })

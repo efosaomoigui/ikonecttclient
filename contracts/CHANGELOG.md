@@ -1,5 +1,10 @@
 # API changes
 
+## 1.1.0 - 2026-10-21
+
+Additive Stage5A internal wallet/top-up/renewal extension: 78paths/95operations. Separate allocation, authoritative ledger/holds, explicit renewal price and policy, credit corrections/compensating reversals, existing-role permissions. Historical order payments never become opening wallet credit. See WALLET_HANDOFF.md. No live provider connected.
+
+
 ## 1.0.1 - 2026-10-19
 
 Stage 2 compatibility release: unchanged 59 paths, 75 operations, request/response names and v1 behavior.

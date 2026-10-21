@@ -44,7 +44,7 @@ async function main() {
     }
     const documented = new Set(Object.entries(live.paths).flatMap(([path, operations]) => Object.keys(operations).filter(method => ['get','post','patch'].includes(method)).map(method => `${method.toUpperCase()} ${path}`)));
     assert.deepEqual(actual, documented, 'OpenAPI and actual route inventory differ');
-    assert.equal(actual.size, 75); assert.equal(Object.keys(live.paths).length, 59);
+    assert.equal(actual.size, 95); assert.equal(Object.keys(live.paths).length, 78);
     for (const path of ['/api/v1/admin/plans','/api/v1/me/payments']) {
       const field = path.endsWith('plans') ? 'priceMinor' : 'amountMinor';
       assert.equal((live.paths as any)[path].post.requestBody.content['application/json'].schema.properties[field].exclusiveMinimum, true);
@@ -54,7 +54,7 @@ async function main() {
     const mappingPath=resolve('../contracts/ENDPOINTS.md');
     if(process.argv.includes('--write-endpoints')) await writeFile(mappingPath,mapping);
     else assert.equal(await readFile(mappingPath,'utf8'),mapping,'Endpoint mapping is stale; run npm run contracts');
-    console.log(JSON.stringify({ contract: live.info.version, paths: 59, operations: 75, routeParity: 'PASS', securityParity: 'PASS', errorSchemas: 'PASS', simulatedFixtures: 'PASS' }));
+    console.log(JSON.stringify({ contract: live.info.version, paths: 78, operations: 95, routeParity: 'PASS', securityParity: 'PASS', errorSchemas: 'PASS', simulatedFixtures: 'PASS' }));
   } finally { await app.close(); }
 }
 main().catch(error => { console.error(error instanceof Error ? error.message : 'Contract verification failed'); process.exitCode = 1; });
