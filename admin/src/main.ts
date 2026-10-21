@@ -14,6 +14,7 @@ const app = document.querySelector<HTMLDivElement>('#app')!;
 let route = 'dashboard', rows: RecordData[] = [], query = '', filter = '', page = 0, viewVersion = 0;
 let cache: Record<string, RecordData[]> = {};
 let lastFocus: HTMLElement | null = null;
+const collapsedNavGroups = new Set<string>();
 const esc = (v: unknown) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const pretty = (v: unknown) => String(v ?? '').toLowerCase().replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 const icon = (name: string) => `<i data-lucide="${name}" aria-hidden="true"></i>`;
@@ -27,6 +28,7 @@ const errorText = (e: unknown) => e instanceof Error ? e.message : 'The operatio
 function friendly(e: any) { if(e?.details&&Array.isArray(e.details))return e.details.map((x:any)=>`${x.path||'Request'}: ${x.message||'Invalid value'}`).join(' / '); return e?.issues ? e.issues.map((x: any) => `${x.path.join('.')}: ${x.message}`).join(' · ') : errorText(e); }
 api.onExpired = () => { cache = {}; closeModal(); login('Your session has expired. Please sign in again.'); };
 function login(message = '') {
+    collapsedNavGroups.clear();
     rows=[];cache={};
     viewVersion++;
     app.innerHTML = `<main class="login"><section class="login-story"><img src="/admin/logo-white.png" alt="Ikonectt"><div><span class="eyebrow">THE STAFF WORKSPACE</span><h1>Connections begin<br>with people.</h1><p>One place to care for customers, move work forward and keep Ikonectt connected.</p><div class="signal"><span></span><span></span><span></span><b>${icon('network')}</b></div></div><footer>IKONECTT ADMIN <span>Authorized personnel only</span></footer></section><section class="login-panel"><div class="login-box"><img class="mobile-logo" src="/admin/logo-red.png" alt="Ikonectt"><span class="eyebrow red">STAFF ACCESS</span><h2>Staff sign-in</h2><p>Use your authorized staff account.</p><form id="login-form"><label>Staff email<input name="email" type="email" autocomplete="username" required placeholder="you@ikonectt.com"></label><label>Password<div class="password"><input name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button type="button" aria-label="Show password" data-action="password">${icon('eye')}</button></div></label><div id="login-error" role="alert" class="form-error">${esc(message)}</div><button class="btn primary full" type="submit">Sign in to workspace ${icon('arrow-right')}</button></form><div class="login-help">${button('Forgot password?','recovery')}${button('Set password','reset-password')}</div><p class="secure">${icon('lock-keyhole')} Your access is managed by your administrator.</p>${__IKONECTT_PREVIEW__?`<div class="preview-box"><strong>Review the application</strong><p>Explore a temporary workspace with labeled sample records. No production data is connected.</p><label class="sr-only" for="preview-role">Preview staff role</label><select id="preview-role">${Object.keys(ROLE_PERMISSIONS).map(r => `<option value="${r}">${pretty(r)}</option>`).join('')}</select>${button('Open simulated workspace', 'preview', 'full', 'arrow-up-right')}</div>`:""}<small>© ${new Date().getFullYear()} Ikonectt</small></div></section></main>`;
@@ -50,7 +52,11 @@ function login(message = '') {
 function nav() {
     const entries = [{ key: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard', group: 'Overview', permission: null }, ...Object.entries(modules).map(([key, m]) => ({ key, ...m })), { key: 'reports', label: 'Reports', icon: 'chart-no-axes-combined', group: 'Intelligence', permission: 'reports.read' }, { key: 'integrations', label: 'Integrations', icon: 'plug', group: 'Administration', permission: 'integrations.read' }, { key: 'settings', label: 'Settings', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' }];
     const groups = ['Overview', 'Customers & sales', 'Services & operations', 'Customer support', 'Intelligence', 'Administration'];
-    return groups.map(g => { const items = entries.filter(e => e.group === g && (!e.permission || can(api.permissions, e.permission))); return items.length ? `<div class="nav-group"><span>${g}</span>${items.map(e => `<a href="#/${e.key}" class="nav-link ${route === e.key ? 'active' : ''}" ${route === e.key ? 'aria-current="page"' : ''}>${icon(e.icon)}${e.label}${e.key === 'dashboard' ? '<b></b>' : ''}</a>`).join('')}</div>` : ''; }).join('');
+    return groups.map((g, index) => {
+        const items = entries.filter(e => e.group === g && (!e.permission || can(api.permissions, e.permission)));
+        const expanded = !collapsedNavGroups.has(g);
+        return items.length ? `<div class="nav-group"><button type="button" class="nav-group-toggle" data-action="nav-group" data-group="${esc(g)}" aria-expanded="${expanded}" aria-controls="nav-group-${index}"><span>${g}</span>${icon('chevron-down')}</button><div id="nav-group-${index}"${expanded ? '' : ' hidden'}>${items.map(e => `<a href="#/${e.key}" class="nav-link ${route === e.key ? 'active' : ''}" ${route === e.key ? 'aria-current="page"' : ''}>${icon(e.icon)}${e.label}${e.key === 'dashboard' ? '<b></b>' : ''}</a>`).join('')}</div></div>` : '';
+    }).join('');
 }
 function shell() { const title = modules[route]?.label || pretty(route); app.innerHTML = `<div class="workspace"><aside class="sidebar" id="sidebar"><a class="brand" href="#/dashboard"><img src="/admin/logo-red.png" alt="Ikonectt"><span>STAFF WORKSPACE</span></a><nav aria-label="Main navigation">${nav()}</nav><div class="sidebar-bottom"><div class="workspace-label">${icon('building-2')} Ikonectt Operations</div><small>Connected people. Better service.</small></div></aside><div class="main-shell"><header class="topbar"><button class="icon-btn mobile-menu" aria-label="Toggle navigation" aria-expanded="false" data-action="menu">${icon('menu')}</button><div class="breadcrumb">Workspace ${icon('chevron-right')} <strong>${title}</strong></div><div class="top-right"><span class="environment">${icon(api.mode === 'mock' ? 'flask-conical' : 'lock-keyhole')}${api.mode === 'mock' ? 'SIMULATED WORKSPACE' : 'SHARED BACKEND'}</span><button class="profile" data-action="account" aria-label="Account and sign out"><span>${api.session!.principal.roles[0].slice(0, 2)}</span><div><b>${pretty(api.session!.principal.roles.join(' · '))}</b><small>Staff account</small></div>${icon('chevron-down')}</button></div></header>${api.mode === 'mock' ? '<div class="demo-banner"><strong>Simulation mode</strong><span>All records and actions are sample data held in memory. Changes reset when you sign out or reload.</span></div>' : ''}<main id="content" tabindex="-1"><div class="loading">${icon('loader-circle')} Loading workspace…</div></main><footer class="app-footer"><span>© ${new Date().getFullYear()} Ikonectt</span><span>All times WAT</span></footer></div></div>`; refreshIcons(); }
 const content = () => document.querySelector<HTMLElement>('#content')!;
@@ -382,6 +388,14 @@ document.addEventListener('click', async (e) => {
         target.setAttribute('aria-label', input.type === 'password' ? 'Show password' : 'Hide password');
         target.innerHTML = icon(input.type === 'password' ? 'eye' : 'eye-off');
         refreshIcons();
+    }
+    else if (action === 'nav-group') {
+        const group = target.dataset.group!;
+        const expanded = target.getAttribute('aria-expanded') !== 'true';
+        if (expanded) collapsedNavGroups.delete(group);
+        else collapsedNavGroups.add(group);
+        target.setAttribute('aria-expanded', String(expanded));
+        document.getElementById(target.getAttribute('aria-controls')!)!.hidden = !expanded;
     }
     else if (action === 'menu') {
         const open = document.querySelector('#sidebar')!.classList.toggle('open');

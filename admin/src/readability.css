@@ -29,6 +29,29 @@ body { color: var(--text-primary); background: var(--surface-app); }
 .permission-grid ul, .field > small { color: var(--text-supporting); }
 .nav-link { font-size: 13px; }
 .nav-group > span { font-size: 10px; }
+.nav-group-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 9px 10px;
+  margin-bottom: 6px;
+  background: #f0f2f5;
+  color: var(--text-secondary);
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .65px;
+  line-height: 1.5;
+}
+.nav-group-toggle:hover { background: #e8ecf0; }
+.nav-group-toggle svg { width: 13px; height: 13px; }
+.nav-group-toggle[aria-expanded="false"] svg { transform: rotate(-90deg); }
+.brand > span { font-size: 10px; line-height: 1.6; letter-spacing: 1.2px; margin-top: 10px; }
 .sidebar-bottom small { font-size: 9px; }
 .page-heading p, .metric > div, .task strong, .workflow strong,
 .health-panel > p, .detail-grid dd { font-size: 13px; }
