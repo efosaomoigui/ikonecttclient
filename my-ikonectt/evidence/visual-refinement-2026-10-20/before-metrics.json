@@ -1,0 +1,162 @@
+{
+  "widths": [
+    {
+      "heading": "Hello, SIMULATED.",
+      "logoVisible": false,
+      "overflow": false,
+      "width": 321
+    },
+    {
+      "heading": "Hello, SIMULATED.",
+      "logoVisible": false,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "heading": "Hello, SIMULATED.",
+      "logoVisible": true,
+      "overflow": false,
+      "width": 768
+    },
+    {
+      "heading": "Hello, SIMULATED.",
+      "logoVisible": true,
+      "overflow": false,
+      "width": 1024
+    },
+    {
+      "heading": "Hello, SIMULATED.",
+      "logoVisible": true,
+      "overflow": false,
+      "width": 1281
+    }
+  ],
+  "text": [
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(162, 163, 159)",
+      "fontSize": "8px",
+      "selector": ".sidebar-label"
+    },
+    {
+      "background": "rgb(252, 240, 241)",
+      "color": "rgb(182, 28, 43)",
+      "fontSize": "12px",
+      "selector": ".sidebar nav>a"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(116, 118, 116)",
+      "fontSize": "12px",
+      "selector": ".sidebar nav>a"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(116, 118, 116)",
+      "fontSize": "12px",
+      "selector": ".sidebar nav>a"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(116, 118, 116)",
+      "fontSize": "12px",
+      "selector": ".sidebar nav>a"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(116, 118, 116)",
+      "fontSize": "12px",
+      "selector": ".sidebar nav>a"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(116, 118, 116)",
+      "fontSize": "12px",
+      "selector": ".sidebar nav>a"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(116, 118, 116)",
+      "fontSize": "12px",
+      "selector": ".sidebar nav>a"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(112, 115, 112)",
+      "fontSize": "11px",
+      "selector": ".breadcrumb"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(119, 119, 119)",
+      "fontSize": "10px",
+      "selector": ".account-number"
+    },
+    {
+      "background": "rgb(247, 247, 244)",
+      "color": "rgb(169, 38, 50)",
+      "fontSize": "8px",
+      "selector": ".page-heading>p"
+    },
+    {
+      "background": "rgb(247, 247, 244)",
+      "color": "rgb(105, 109, 112)",
+      "fontSize": "12px",
+      "selector": ".page-heading>p"
+    },
+    {
+      "background": "rgb(41, 46, 48)",
+      "color": "rgb(189, 193, 192)",
+      "fontSize": "11px",
+      "selector": ".service-card p"
+    },
+    {
+      "background": "rgb(41, 46, 48)",
+      "color": "rgb(189, 193, 192)",
+      "fontSize": "11px",
+      "selector": ".service-card p"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(105, 109, 112)",
+      "fontSize": "10px",
+      "selector": ".payment-summary>p"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(98, 104, 98)",
+      "fontSize": "11px",
+      "selector": ".quick p"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(98, 104, 98)",
+      "fontSize": "11px",
+      "selector": ".quick p"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(98, 104, 98)",
+      "fontSize": "11px",
+      "selector": ".quick p"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(98, 104, 98)",
+      "fontSize": "11px",
+      "selector": ".list-row small"
+    },
+    {
+      "background": "rgb(247, 247, 244)",
+      "color": "rgb(153, 155, 150)",
+      "fontSize": "9px",
+      "selector": ".dashboard-footer"
+    },
+    {
+      "background": "rgb(247, 247, 244)",
+      "color": "rgb(109, 102, 91)",
+      "fontSize": "10px",
+      "selector": ".demo-banner>span"
+    }
+  ]
+}

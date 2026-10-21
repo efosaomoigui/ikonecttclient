@@ -4,6 +4,14 @@ import assert from "node:assert/strict";
 import * as C from "../generated/contracts.js";
 import { rawFixture, demoCredentials } from "../fixtures.js";
 import { createMockAdapter } from "../api.js";
+import { customerGreeting } from "../live.js";
+test("customer greeting uses actual names and never treats fixture metadata as a personal name", () => {
+  assert.equal(customerGreeting("  Efe   Okoro "), "Hello, Efe");
+  assert.equal(customerGreeting("Adaeze Nwosu"), "Hello, Adaeze");
+  for (const name of ["SIMULATED Stage4 browser d4e66e52", "DEVELOPMENT Customer", "Demo account", "", null])
+    assert.equal(customerGreeting(name), "Welcome back");
+  assert.equal(customerGreeting("Testament Okoro"), "Hello, Testament");
+});
 test("isolated UI wire fixtures satisfy the pinned canonical v1 schemas", () => {
   for (const [key, schema] of [
     ["customer", C.Customer],

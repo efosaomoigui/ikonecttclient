@@ -1,0 +1,140 @@
+[
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "9px",
+    "selector": ".sidebar-label"
+  },
+  {
+    "background": "rgb(252, 240, 241)",
+    "color": "rgb(165, 29, 43)",
+    "fontSize": "13px",
+    "selector": ".sidebar nav>a"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "13px",
+    "selector": ".sidebar nav>a"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "13px",
+    "selector": ".sidebar nav>a"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "13px",
+    "selector": ".sidebar nav>a"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "13px",
+    "selector": ".sidebar nav>a"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "13px",
+    "selector": ".sidebar nav>a"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(85, 93, 88)",
+    "fontSize": "13px",
+    "selector": ".sidebar nav>a"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "12px",
+    "selector": ".breadcrumb"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "11px",
+    "selector": ".account-number"
+  },
+  {
+    "background": "rgb(246, 247, 243)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "9px",
+    "selector": ".page-heading>p"
+  },
+  {
+    "background": "rgb(246, 247, 243)",
+    "color": "rgb(94, 102, 97)",
+    "fontSize": "13px",
+    "selector": ".page-heading>p"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(94, 102, 97)",
+    "fontSize": "12px",
+    "selector": ".service-card p"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(94, 102, 97)",
+    "fontSize": "12px",
+    "selector": ".service-card p"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(94, 102, 97)",
+    "fontSize": "11px",
+    "selector": ".payment-summary>p"
+  },
+  {
+    "background": "rgb(253, 254, 251)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "12px",
+    "selector": ".quick p"
+  },
+  {
+    "background": "rgb(253, 254, 251)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "12px",
+    "selector": ".quick p"
+  },
+  {
+    "background": "rgb(253, 254, 251)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "12px",
+    "selector": ".quick p"
+  },
+  {
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "12px",
+    "selector": ".list-row small"
+  },
+  {
+    "background": "rgb(246, 247, 243)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "10px",
+    "selector": ".dashboard-footer"
+  },
+  {
+    "background": "rgb(246, 247, 243)",
+    "color": "rgb(101, 94, 84)",
+    "fontSize": "11px",
+    "selector": ".demo-banner>span"
+  },
+  {
+    "background": "rgb(228, 242, 231)",
+    "color": "rgb(44, 106, 64)",
+    "fontSize": "11px",
+    "selector": ".pill"
+  },
+  {
+    "background": "rgb(228, 242, 231)",
+    "color": "rgb(44, 106, 64)",
+    "fontSize": "11px",
+    "selector": ".pill"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "background": "rgb(252, 251, 248)",
+    "color": "rgb(35, 37, 39)",
+    "fontSize": "13px",
+    "selector": "label"
+  },
+  {
+    "background": "rgb(252, 251, 248)",
+    "color": "rgb(35, 37, 39)",
+    "fontSize": "13px",
+    "selector": "label"
+  },
+  {
+    "background": "rgb(252, 251, 248)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "12px",
+    "selector": ".subtle-note"
+  },
+  {
+    "background": "rgb(252, 251, 248)",
+    "color": "rgb(96, 103, 99)",
+    "fontSize": "12px",
+    "selector": ".setup-link"
+  }
+]

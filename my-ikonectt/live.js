@@ -10,6 +10,12 @@ const title = (value) =>
 export function profileView(c) {
   return { ...c, customerType: title(c.kind), address: null };
 }
+export function customerGreeting(name) {
+  const value = String(name ?? "").trim();
+  if (!value || /\b(simulated|development|demo|fixture|test|stage\s*\d+)\b/i.test(value))
+    return "Welcome back";
+  return `Hello, ${value.split(/\s+/)[0]}`;
+}
 export function ticketView(t) {
   const messages = t.messages || [];
   return {

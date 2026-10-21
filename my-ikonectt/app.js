@@ -1,5 +1,6 @@
 import {setupCodeError,setupCodeLimits} from "./form-validation.js";
 import { api } from "./api.js";
+import { customerGreeting } from "./live.js";
 import { config } from "./config.js";
 import { demoCredentials } from "./fixtures.js";
 import {
@@ -41,10 +42,10 @@ const date = (v) =>
     : "Not available";
 const link = (path, text, cls = "") =>
   `<a class="${cls}" href="#/${path}">${text}</a>`;
-const logo = () =>
+const logo = (withLabel = true) =>
   link(
     "",
-    '<img src="assets/logo.svg" alt="Ikonectt"><span>MY IKONECTT</span>',
+    '<img src="assets/logo-red.png" alt="Ikonectt">' + (withLabel ? '<span>MY IKONECTT</span>' : ''),
     "brand",
   );
 const arrow = '<span aria-hidden="true">↗</span>';
@@ -78,7 +79,7 @@ const pill = (s) =>
 const empty = (heading, body) =>
   `<div class="empty"><span aria-hidden="true">◎</span><h3>${heading}</h3><p>${body}</p></div>`;
 function publicShell(body) {
-  return `<header class="public-header">${logo()}<nav aria-label="Main navigation">${link("", "Welcome")}${link("help", "Need help?")}${link("login", `Sign in ${arrow}`, "button small")}</nav></header><main id="main" tabindex="-1">${body}</main><footer><div>${logo()}<p>A little closer to everything that matters.</p></div><div>${link("help", "Account help")}<span>© ${new Date().getFullYear()} Ikonectt</span></div></footer>`;
+  return `<header class="public-header">${logo(false)}<nav aria-label="Main navigation">${link("", "Home")}${link("help", "Need help?")}${link("login", `Sign in ${arrow}`, "button small")}</nav></header><main id="main" class="public-main ${body.includes('class="auth-layout"') ? 'auth-main' : ''}" tabindex="-1">${body}</main><footer><div>${logo(false)}<p>A little closer to everything that matters.</p></div><div>${link("help", "Account help")}<span>© ${new Date().getFullYear()} Ikonectt</span></div></footer>`;
 }
 function welcome() {
   return publicShell(
@@ -129,7 +130,7 @@ function password(name, label, autocomplete = "current-password") {
 }
 function authPage(recovery = false) {
   return publicShell(
-    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to welcome", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Set up or recover your account", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
+    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to home", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Set up or recover your account", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
   );
 }
 function tickets(items) {
@@ -148,17 +149,17 @@ function overview() {
       data.services.find((s) => s.status.toUpperCase() === "ACTIVE") ||
       data.services[0],
     p = data.profile;
-  return `<div class="page-heading"><p class="eyebrow">YOUR CONNECTION, AT A GLANCE</p><h1>Hello, ${esc(p.name.split(" ")[0])}<span class="greeting-dot">.</span></h1><p>Manage your services and support.</p></div><div class="overview-grid"><div>${s ? serviceCard(s) : empty("No services linked", "Contact support if you expect to see a service here.")}</div><article class="panel payment-summary"><span class="eyebrow">BILLING SNAPSHOT</span><h3>Latest payment</h3><div class="amount">${data.receipts.length ? money(data.receipts[0].amount, data.receipts[0].currency) : "—"}</div><p>${data.receipts.length ? "Most recent verified payment" : "No verified payment records available yet."}</p>${link("billing", `View billing & receipts ${arrow}`, "text-link")}</article></div><div class="quick-actions">${[
-    ["services", "Explore my services", "Your plan, in detail"],
-    ["support/new", "Ask for support", "A helping hand, when needed"],
-    ["profile", "View my profile", "Your contact information"],
+  return `<div class="page-heading"><p class="eyebrow">YOUR CONNECTION, AT A GLANCE</p><h1>${esc(customerGreeting(p.name))}<span class="greeting-dot">.</span></h1><p>Manage your services and support.</p></div><div class="overview-grid"><div>${s ? serviceCard(s) : empty("No services linked", "Contact support if you expect to see a service here.")}</div><article class="panel payment-summary"><span class="eyebrow">BILLING SNAPSHOT</span><h3>Latest payment</h3><div class="amount">${data.receipts.length ? money(data.receipts[0].amount, data.receipts[0].currency) : "—"}</div><p>${data.receipts.length ? "Most recent verified payment" : "No verified payment records available yet."}</p>${link("billing", `View billing & receipts ${arrow}`, "text-link")}</article></div><div class="quick-actions">${[
+    ["services", "My Services", "Plans and service status"],
+    ["support/new", "Contact Support", "Submit and track requests"],
+    ["profile", "View Profile", "Your contact information"],
   ]
     .map(([r, h, p]) =>
       link(r, `<div><h3>${h}</h3><p>${p}</p></div>${arrow}`, "quick"),
     )
     .join(
       "",
-    )}</div><article class="panel"><div class="section-heading compact"><div><p class="eyebrow">HERE TO HELP</p><h2>Recent support activity</h2></div>${link("support", `View all ${arrow}`, "text-link")}</div>${tickets(data.tickets.slice(0, 3))}</article>`;
+    )}</div><article class="panel"><div class="section-heading compact"><div><p class="eyebrow">HERE TO HELP</p><h2>Recent Support Activity</h2></div>${link("support", `View all ${arrow}`, "text-link")}</div>${tickets(data.tickets.slice(0, 3))}</article>`;
 }
 function details(entries) {
   return `<dl class="details">${entries.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v ?? "Not available")}</dd></div>`).join("")}</dl>`;
@@ -230,7 +231,7 @@ function content(route, id) {
         );
       const r = aux.receipt;
       return r
-        ? `${link("billing", "← Billing & Payments", "back")}<div class="row"><h1>Payment receipt</h1><button class="button outline small" data-print>Print receipt</button></div><article class="panel receipt"><img class="receipt-logo" src="assets/logo.svg" alt="Ikonectt">${pill(r.status)}<h2>${money(r.amount, r.currency)}</h2><p>${esc(r.description)}</p>${details(
+        ? `${link("billing", "← Billing & Payments", "back")}<div class="row"><h1>Payment receipt</h1><button class="button outline small" data-print>Print receipt</button></div><article class="panel receipt"><img class="receipt-logo" src="assets/logo-red.png" alt="Ikonectt">${pill(r.status)}<h2>${money(r.amount, r.currency)}</h2><p>${esc(r.description)}</p>${details(
             [
               ["Receipt number", r.reference],
               ["Account number", data.profile.accountNumber],
@@ -244,7 +245,7 @@ function content(route, id) {
     }
     return (
       heading("Billing & Payments", "A clear view of your account records.") +
-      `<article class="panel"><h2>Available bills</h2>${data.bills.length ? `<div class="table-scroll"><table><thead><tr><th>Invoice</th><th>Description</th><th>Due date</th><th>Amount</th><th>Status</th></tr></thead><tbody>${data.bills.map((b) => `<tr><td>${esc(b.reference)}</td><td>${esc(b.description)}</td><td>${date(b.dueDate)}</td><td>${money(b.amount, b.currency)}</td><td>${pill(b.status)}</td></tr>`).join("")}</tbody></table></div>` : empty("No bills available", "Bills will appear here when supplied by Ikonectt.")}</article><article class="panel"><div class="section-heading compact"><h2>Payments & receipts</h2>${link("payment-report", "Report a payment", "button outline small")}</div>${
+      `<article class="panel"><h2>Available bills</h2>${data.bills.length ? `<div class="table-scroll" tabindex="0" role="region" aria-label="Billing records"><table><thead><tr><th>Invoice</th><th>Description</th><th>Due date</th><th>Amount</th><th>Status</th></tr></thead><tbody>${data.bills.map((b) => `<tr><td>${esc(b.reference)}</td><td>${esc(b.description)}</td><td>${date(b.dueDate)}</td><td>${money(b.amount, b.currency)}</td><td>${pill(b.status)}</td></tr>`).join("")}</tbody></table></div>` : empty("No bills available", "Bills will appear here when supplied by Ikonectt.")}</article><article class="panel"><div class="section-heading compact"><h2>Payments & receipts</h2>${link("payment-report", "Report a payment", "button outline small")}</div>${
         data.payments?.length
           ? data.payments
               .filter((p) => !p.receiptAvailable)
@@ -274,7 +275,7 @@ function content(route, id) {
         ? `${link("support", "← Support history", "back")}${heading(esc(t.subject), esc(t.reference) + " · " + date(t.createdAt))}<article class="panel">${pill(t.status)}${details([["Submitted", date(t.createdAt)]])}<h3>Your request</h3><p class="preserve">${esc(t.description)}</p><h3>Request updates</h3><ol class="timeline">${t.updates.map((u) => `<li><small>${date(u.at)}</small><p>${esc(u.message)}</p></li>`).join("")}</ol></article>${replyForm(t, { esc })}`
         : missing();
     }
-    return `<div class="row">${heading("A helping hand.", "Track your requests and conversations with Ikonectt.")}${link("support/new", `New support request ${arrow}`, "button")}</div><article class="panel"><h2>Request history</h2>${tickets(data.tickets)}</article><div class="support-boundary"><h3>Need more help?</h3><p>Submit a support request or browse account guidance.</p>${link("guidance", "Read-only account guidance", "text-link")}<br>${config.chat ? '<button class="button outline" data-chat>Open customer care</button>' : link("support/new", "Contact the support team", "text-link")}</div>`;
+    return `<div class="row">${heading("Support", "Track your requests and conversations with Ikonectt.")}${link("support/new", `New support request ${arrow}`, "button")}</div><article class="panel"><h2>Request history</h2>${tickets(data.tickets)}</article><div class="support-boundary"><h3>Need more help?</h3><p>Submit a support request or browse account guidance.</p>${link("guidance", "Read-only account guidance", "text-link")}<br>${config.chat ? '<button class="button outline" data-chat>Open customer care</button>' : link("support/new", "Contact the support team", "text-link")}</div>`;
   }
   if (route === "profile")
     return (
@@ -355,7 +356,7 @@ function shell(body, route) {
     )
     .join(
       "",
-    )}</nav><div class="sidebar-bottom"><div class="care-card"><strong>A real team.<br>Right here for you.</strong>${link("support/new", "Let’s talk " + arrow)}</div><button data-logout class="logout">↪ <span>Sign out securely</span></button></div></aside><div class="app-body"><header class="app-header"><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button><span class="breadcrumb">My Ikonectt <span>/</span> ${names[route] || routeNames[route] || "Account"}</span><div class="account-chip"><span class="account-number">Account ${esc(customer.accountNumber)}</span>${link(
+    )}</nav><div class="sidebar-bottom"><div class="care-card"><strong>Account support</strong>${link("support/new", "Contact Support " + arrow)}</div><button data-logout class="logout">↪ <span>Sign out securely</span></button></div></aside><div class="app-body"><header class="app-header"><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button><span class="breadcrumb">My Ikonectt <span>/</span> ${names[route] || routeNames[route] || "Account"}</span><div class="account-chip"><span class="account-number">Account ${esc(customer.accountNumber)}</span>${link(
     "profile",
     esc(
       customer.name
