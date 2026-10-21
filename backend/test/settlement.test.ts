@@ -90,6 +90,21 @@ test('event ID reuse with different content conflicts and out-of-order failures 
  adapter.remote.get(payment.providerPaymentId)!.status='FAILED';await service.ingest(adapter.envelope(payment,randomUUID()));
  assert.equal((await summary(f.token)).availableMinor,2500000);assert.equal((await db.settlementPayment.findUniqueOrThrow({where:{id:payment.id}})).status,'CREDITED');
 });
+test('equivalent provider timestamp precision does not reject a duplicate settlement',async()=>{
+ const f=await fixture(),{payment}=await registration(f),proof=adapter.remote.get(payment.providerPaymentId)!;
+ proof.settledAt='2026-10-20T12:00:00Z';await service.ingest(adapter.envelope(payment,randomUUID()));
+ proof.settledAt='2026-10-20T12:00:00.000Z';const result=await service.ingest(adapter.envelope(payment,randomUUID()));
+ assert.equal(result.event.outcome,'DUPLICATE');assert.equal((await summary(f.token)).availableMinor,2500000);
+});
+test('a posting failure rolls back receipt/payment/credit together and safe redelivery can succeed',async()=>{
+ const f=await fixture(),{payment}=await registration(f);
+ const correction=(await api('post',`/admin/customers/${f.customer.id}/wallet/adjustments`,staff.FINANCE.token,{amountMinor:1_000_000_000_000,reason:'SIMULATED capacity rollback test',idempotencyKey:randomUUID()}).expect(200)).body;
+ const envelope=adapter.envelope(payment,randomUUID());await assert.rejects(()=>service.ingest(envelope));
+ assert.equal(await db.settlementEvent.count({where:{paymentId:payment.id}}),0);assert.equal((await db.settlementPayment.findUniqueOrThrow({where:{id:payment.id}})).status,'PENDING');assert.equal(await db.walletEntry.count({where:{settlementPaymentId:payment.id}}),0);
+ await api('post',`/admin/wallet-transactions/${correction.id}/reverse`,staff.FINANCE.token,{reason:'SIMULATED restore capacity using full compensation',idempotencyKey:randomUUID()}).expect(200);
+ await service.ingest(envelope);await service.ingest(envelope);assert.equal((await summary(f.token)).availableMinor,2500000);
+ assert.equal((await service.reconcile(f.customer.id)).settlementsMatchLedger,true);
+});
 test('wallet zero/positive and service active/inactive are four independent valid states; no auto-renew',async()=>{
  for(const status of ['ACTIVE','SUSPENDED'] as const)for(const funded of [false,true]){
   const f=await fixture(status),before=await db.subscription.findUnique({where:{id:f.sub.id}});
@@ -128,4 +143,13 @@ test('database rejects orphan settlement credits, incomplete settlement and fina
  await assert.rejects(()=>db.walletEntry.delete({where:{id:result.entry!.id}}));
  await api('post',`/admin/wallet-transactions/${result.entry!.id}/reverse`,staff.FINANCE.token,{reason:'SIMULATED unsupported provider chargeback',idempotencyKey:randomUUID()}).expect(409);
  assert.equal((await service.reconcile(f.customer.id)).settlementsMatchLedger,true);
+});
+test('database rejects missing settlement proof even with otherwise matching event and ledger allocation',async()=>{
+ const f=await fixture(),{payment}=await registration(f);
+ await assert.rejects(()=>db.$transaction(async tx=>{
+  await tx.settlementPayment.update({where:{id:payment.id},data:{status:'CREDITED',settledAt:new Date(),settlementReference:null}});
+  await tx.walletEntry.create({data:{walletId:payment.walletId,customerId:f.customer.id,kind:'SETTLEMENT_CREDIT',amountMinor:payment.amountMinor,postedDeltaMinor:payment.amountMinor,reservedDeltaMinor:0n,reference:randomUUID(),operationKey:randomUUID(),requestFingerprint:'test',description:'SIMULATED invalid missing settlement reference',settlementPaymentId:payment.id,simulated:true}});
+  await tx.settlementEvent.create({data:{paymentId:payment.id,provider:payment.provider,providerAccount:payment.providerAccount,eventId:randomUUID(),payloadDigest:'a'.repeat(64),providerStatus:'SETTLED',outcome:'CREDITED'}});
+ }));
+ assert.equal((await summary(f.token)).availableMinor,0);assert.equal(await db.settlementEvent.count({where:{paymentId:payment.id}}),0);
 });

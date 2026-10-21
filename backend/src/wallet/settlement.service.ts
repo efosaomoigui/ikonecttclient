@@ -55,7 +55,7 @@ export class SettlementService{
    let outcome='IGNORED',entry=await tx.walletEntry.findUnique({where:{settlementPaymentId:payment.id}}),updated=payment;
    if(event.status==='SETTLED'){
     if(payment.status==='CREDITED'){
-     if(payment.settledAt?.toISOString()!==event.settledAt||payment.settlementReference!==event.settlementReference)throw new ConflictException('Previously credited settlement terms differ; reconcile with provider');
+     if(payment.settledAt?.getTime()!==new Date(event.settledAt!).getTime()||payment.settlementReference!==event.settlementReference)throw new ConflictException('Previously credited settlement terms differ; reconcile with provider');
      outcome='DUPLICATE';
     }else{
      if(wallet.postedMinor+payment.amountMinor>1_000_000_000_000n)throw new ConflictException('Wallet limit exceeded; settlement requires reconciliation');
