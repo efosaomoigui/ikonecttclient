@@ -1,0 +1,19 @@
+{
+  "url": "http://127.0.0.1:3014/admin/",
+  "previewControls": 0,
+  "readOnly": true,
+  "finance": {
+    "summary": "Available credit\n₦5,500.00\nReserved funds\n₦0.00\nUnverified top-ups\n₦0.00",
+    "ledgerEntries": 5,
+    "ledger": "21/10/2026, 08:08:08 WAT\n50000000-0000-4000-8000-000000000004\t\nReversal\nSimulated\n\nSIMULATED Stage5A compensating reversal of the NGN100 test correction in full; retain original history. No real funds.\n\nWTX-3954b8e7-a3bb-40e6-b7c5-d87f429e8c07\t₦100.00\t-₦100.00\t₦0.00\tReversal of 15904ab0-2dc9-4bb9-a789-6445c06c2394\t—\n21/10/2026, 08:07:49 WAT\n50000000-0000-4000-8000-000000000004\t\nAdjustment Credit\nSimulated\n\nSIMULATED Stage5A authorized browser correction test: NGN100 credit, immediately reverse in full. No real funds.\n\nWTX-405fb339-4493-435c-8ce8-a629bb5a2a0d\t₦100.00\t₦100.00\t₦0.00\t\tReversed\n21/10/2026, 08:05:18 WAT\n50000000-0000-4000-8000-000000000005\t\nCapture\nSimulated\n\nConfirmed renewal SIMULATED Stage5A d6ec3f94\n\nWTX-a26ee34e-b469-4401-a630-c676a3ae7d6c\t₦19,500.00\t-₦19,500.00\t-₦19,500.00\tRenewal details\t—\n21/10/2026, 03:27:57 WAT\n7571d455-3077-4938-867f-bf153b9a847e\t\nReserve\nSimulated\n\nFunds held for renewal SIMULATED Stage5A d6ec3f94\n\nWTX-d3425ada-7f25-4912-9af0-dbfe644cd028\t₦19,500.00\t₦0.00\t₦19,500.00\tRenewal details\t—\n21/10/2026, 03:27:06 WAT\n50000000-0000-4000-8000-000000000004\t\nTopup Credit\nSimulated\n\nVerified wallet top-up SIMULATED-S5A-BROWSER-d6ec3f94\n\nWTX-956616c3-fba9-406f-a8c7-0100fdcc4af7\t₦25,000.00\t₦25,000.00\t₦0.00\tTop-up details\tReverse credit"
+  },
+  "support": {
+    "summary": "Available credit\n₦5,500.00\nReserved funds\n₦0.00\nUnverified top-ups\n₦0.00",
+    "ledgerEntries": 5,
+    "creditActions": 0,
+    "reverseActions": 0,
+    "topupEvidenceActions": 0,
+    "topupNavigation": 0
+  },
+  "signedOut": true
+}
