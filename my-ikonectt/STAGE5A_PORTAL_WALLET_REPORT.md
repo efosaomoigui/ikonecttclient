@@ -2,6 +2,14 @@
 
 The portal adds internal wallet credit, manual top-up reporting, paginated ledger and report history, backend-approved renewal quotes, and renewal outcome tracking within the approved layout. The persistent SPA shell and navigation correction from `36e7f49` remain in place.
 
+## Funding and subscription independence clarification
+
+The human's subsequent clarification supersedes any assumption that every funding source requires manual Finance verification. A verified approved-provider **settlement** automatically posts the in-house ledger and wallet credit. It must never activate or renew service. Manual payment reports remain a separate unverified intake flow until staff verify them.
+
+Wallet balance and subscription status are independent: zero/positive wallet balances with active/inactive subscriptions are all valid. Customers explicitly choose and confirm each renewal; there is no recurring renewal or funding-triggered service action. Reservation and separately confirmed service outcome remain the renewal process.
+
+Portal audit found no wallet-based service activation or automatic renewal. Subscription status and dates are mapped directly from the subscription response; wallet pages load independently of service status; renewal actions use canonical backend eligibility and an initially unchecked required consent control. Two targeted regressions exercise the four balance/status combinations and explicit-consent/eligibility boundary. **28 tests pass** after this audit. The provider settlement adapter and its exact contract are owned by Agent 1; the portal will sync only its published canonical handoff. This audit introduces no settlement provider, inferred funding success, wallet mutation or schema change.
+
 ## Scope and contract
 
 - Portal-only implementation on `codex/my-ikonectt-wallet-stage5a`, based on approved UI consolidation `78a5570` plus SPA correction `36e7f49`.
@@ -53,4 +61,4 @@ Adding the Wallet item exposed a short-desktop sidebar issue: its bottom sign-ou
 
 ## Limits
 
-Finance verification and service processing remain separate staff responsibilities. No live provider integration, main-branch merge or deployment is included. Backend/API concurrency, role authorization, historical-payment fingerprints and timeout-provider execution tests are owned by Agent 1; Admin Finance/Provisioner/Support browser evidence is owned by Agent 3. This report claims only the portal tests and browser observations above.
+Manual-report Finance verification and service processing remain separate staff responsibilities. Approved-provider settlement verification belongs to the backend settlement boundary and does not perform a service action. No live provider integration, main-branch merge or deployment is included. Backend/API concurrency, role authorization, historical-payment fingerprints and timeout-provider execution tests are owned by Agent 1; Admin Finance/Provisioner/Support browser evidence is owned by Agent 3. This report claims only the portal tests and browser observations above.
