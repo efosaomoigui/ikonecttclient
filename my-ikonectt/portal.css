@@ -1657,6 +1657,9 @@ html {
 .order-row > div:first-child {
   flex: 1;
 }
+.orders-panel {
+  margin-top: 24px;
+}
 .order-row > div:last-child {
   flex: 0 1 45%;
   flex-wrap: wrap;
