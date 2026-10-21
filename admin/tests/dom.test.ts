@@ -108,6 +108,28 @@ test('DOM: Provisioner reconciliation requires evidence and expiry while Finance
     assert.ok(doc.querySelector('[name=confirmedEndsAt]'));
     assert.match(doc.querySelector('#wallet-operation')!.textContent!, /authoritative expiry/);
 } finally { dom.window.close(); } });
+test('DOM: catalogue renewal price is explicit and blank removes it rather than using connection price', async () => { const dom = boot(); try {
+    await preview(dom); const doc = dom.window.document;
+    await go(dom, 'plans'); click(dom, '[data-detail]');
+    await waitFor(() => !!doc.querySelector('[data-edit]'));
+    click(dom, '[data-edit]'); await waitFor(() => !!doc.querySelector('#record-form'));
+    const price = doc.querySelector<HTMLInputElement>('[name=renewalPriceMinor]')!;
+    assert.equal(price.required, false); assert.equal(price.min, '1');
+    price.value = '1950000';
+    doc.querySelector<HTMLFormElement>('#record-form')!.dispatchEvent(new dom.window.Event('submit', { bubbles: true, cancelable: true }));
+    await waitFor(() => !doc.querySelector('.modal'));
+    await waitFor(() => !doc.querySelector('.loading'));
+    click(dom, '[data-detail]'); await waitFor(() => !!doc.querySelector('.detail-grid'));
+    assert.match(doc.querySelector('.detail-grid')!.textContent!, /Approved renewal price.*19,500/s);
+    click(dom, '[data-edit]'); await waitFor(() => !!doc.querySelector('#record-form'));
+    doc.querySelector<HTMLInputElement>('[name=renewalPriceMinor]')!.value = '';
+    doc.querySelector<HTMLFormElement>('#record-form')!.dispatchEvent(new dom.window.Event('submit', { bubbles: true, cancelable: true }));
+    await waitFor(() => !doc.querySelector('.modal'));
+    await waitFor(() => !doc.querySelector('.loading'));
+    click(dom, '[data-detail]'); await waitFor(() => !!doc.querySelector('.detail-grid'));
+    const renewal = [...doc.querySelectorAll('.detail-grid > div')].find(x => x.querySelector('dt')!.textContent === 'Approved renewal price')!;
+    assert.equal(renewal.querySelector('dd')!.textContent, '—');
+} finally { dom.window.close(); } });
 test('DOM: customer search, detail, create form and saved record', async () => { const dom = boot(); try {
     await preview(dom);
     await go(dom, 'customers');
