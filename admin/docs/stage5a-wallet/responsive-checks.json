@@ -1,0 +1,47 @@
+[
+  {
+    "requestedWidth": 1440,
+    "dialogLeft": 169.9952850341797,
+    "dialogRight": 1269.9905242919922,
+    "pageWidth": 1440,
+    "tableClient": 1033,
+    "tableScroll": 1151,
+    "width": 1440
+  },
+  {
+    "requestedWidth": 1024,
+    "dialogLeft": 24,
+    "dialogRight": 1000.3018798828124,
+    "pageWidth": 1024,
+    "tableClient": 909,
+    "tableScroll": 1151,
+    "width": 1024
+  },
+  {
+    "requestedWidth": 768,
+    "dialogLeft": 24,
+    "dialogRight": 744,
+    "pageWidth": 768,
+    "tableClient": 653,
+    "tableScroll": 1151,
+    "width": 768
+  },
+  {
+    "requestedWidth": 390,
+    "dialogLeft": 12,
+    "dialogRight": 378.3396301269531,
+    "pageWidth": 390,
+    "tableClient": 309,
+    "tableScroll": 1127,
+    "width": 390
+  },
+  {
+    "requestedWidth": 320,
+    "dialogLeft": 12,
+    "dialogRight": 307.6981201171875,
+    "pageWidth": 320,
+    "tableClient": 239,
+    "tableScroll": 1127,
+    "width": 320
+  }
+]
