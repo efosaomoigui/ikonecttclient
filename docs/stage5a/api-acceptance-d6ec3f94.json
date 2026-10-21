@@ -1,0 +1,59 @@
+{
+  "run": "d6ec3f94",
+  "startedAt": "2026-10-21T02:20:39.155Z",
+  "contractVersion": "1.1.0",
+  "environment": "local development",
+  "simulation": true,
+  "checks": [
+    {
+      "name": "F historical/order allocation protection and zero wallet after order payment",
+      "status": "PASS",
+      "customerId": "cb9fdd2b-5e49-497c-a200-a568cf1b530f",
+      "paymentId": "3363e43b-9605-4969-8890-963557e146ff"
+    },
+    {
+      "name": "A reported funds pending; Finance confirmation creates2500000 exactly once",
+      "status": "PASS",
+      "topUpId": "edd50809-c1bb-402f-8d16-b5955a64a1b5",
+      "availableMinor": 2500000
+    },
+    {
+      "name": "B separate Provisioner confirms SIMULATED renewal; final available550000",
+      "status": "PASS",
+      "renewalId": "f32146bf-e8c9-4615-b2d5-0f67af4c7f79",
+      "orderId": "ab4d2870-7269-4e67-9aca-26ac7fdff645",
+      "subscriptionId": "eb3bf819-e478-41ce-a17f-275e867d3b1a"
+    },
+    {
+      "name": "C insufficient funds reject without another debit",
+      "status": "PASS"
+    },
+    {
+      "name": "E shared customer/Support balances and history; Support cannot credit",
+      "status": "PASS"
+    },
+    {
+      "name": "D timeout retains1950000 hold and review; repeated live process never retries blindly",
+      "status": "PASS",
+      "renewalId": "c232441f-1784-44d9-908a-f58cf302ed12",
+      "customerId": "8ed394ec-8fb9-4830-8910-7933e53e74c7",
+      "fixtureMethod": "same backend service with test-only in-process timeout adapter; subsequent read/retry via real HTTP"
+    }
+  ],
+  "browser": {
+    "customerId": "83028c05-b524-4c91-8288-c3c8373c970f",
+    "accountNumber": "84375004",
+    "subscriptionId": "7dddabe9-5e29-4aa1-bd6c-27dfbba1aecb",
+    "planId": "e49bf975-2b78-4734-9072-1295649da98f",
+    "buildingId": "b5599572-b516-4c7a-bc68-3ecf638e7819",
+    "openingAvailableMinor": 0
+  },
+  "timeout": {
+    "customerId": "8ed394ec-8fb9-4830-8910-7933e53e74c7",
+    "accountNumber": "19544104",
+    "subscriptionId": "5d20e0dc-881a-4187-99a3-b7ba883bb74f",
+    "renewalId": "c232441f-1784-44d9-908a-f58cf302ed12"
+  },
+  "status": "PASS",
+  "finishedAt": "2026-10-21T02:20:46.627Z"
+}

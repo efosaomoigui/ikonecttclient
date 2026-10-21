@@ -116,6 +116,9 @@ model User {
   audits AuditLog[]
   verifiedPayments Payment[]
   verifiedProvisioning ProvisioningRequest[]
+  walletEntries WalletEntry[] @relation("WalletEntryActor")
+  verifiedWalletTopUps WalletTopUp[] @relation("WalletTopUpVerifier")
+  resolvedWalletRenewals WalletRenewal[] @relation("WalletRenewalResolver")
   createdAt DateTime @default(now())
 }
 model Session {
@@ -393,6 +396,7 @@ model WalletTopUp {
   status PaymentStatus @default(REPORTED)
   verificationEvidence String?
   verifiedById String? @db.Uuid
+  verifiedBy User? @relation("WalletTopUpVerifier",fields:[verifiedById],references:[id],onDelete:Restrict,onUpdate:NoAction,map:"WalletTopUp_verifier_fkey")
   verifiedAt DateTime?
   idempotencyKey String @db.Uuid
   requestFingerprint String
@@ -426,6 +430,7 @@ model WalletRenewal {
   simulated Boolean @default(false)
   resolutionEvidence String?
   resolvedById String? @db.Uuid
+  resolvedBy User? @relation("WalletRenewalResolver",fields:[resolvedById],references:[id],onDelete:Restrict,onUpdate:NoAction,map:"WalletRenewal_resolver_fkey")
   idempotencyKey String @db.Uuid
   requestFingerprint String
   entries WalletEntry[]
@@ -451,6 +456,7 @@ model WalletEntry {
   requestFingerprint String
   description String
   actorId String? @db.Uuid
+  actor User? @relation("WalletEntryActor",fields:[actorId],references:[id],onDelete:Restrict,onUpdate:NoAction,map:"WalletEntry_actor_fkey")
   topUpId String? @unique @db.Uuid
   topUp WalletTopUp? @relation(fields:[topUpId],references:[id])
   renewalId String? @db.Uuid

@@ -1,0 +1,19 @@
+{
+  "verifiedAt": "2026-10-21T02:13:12.954Z",
+  "status": "PASS",
+  "migration": "202610210001_wallet",
+  "checksum": "afcc85d83092618e07a3ee61db2e144f010a037f55ad090a6180c27dc46d12c5",
+  "backup": "ikonectt_development-1792548683389.dump",
+  "restoreVerificationDatabase": "ikonectt_development_1792548684429",
+  "historicalPaymentsUnchanged": {
+    "count": 20,
+    "hash": "60e73982e2873b0802f5ec9758a8d7ad83e7240d37c4fd0170c26bcef4b5ea32"
+  },
+  "customers": 17,
+  "wallets": 17,
+  "openingWalletEntries": 0,
+  "openingTopUps": 0,
+  "openingRenewals": 0,
+  "allBalancesZero": true,
+  "scope": "Existing local development DB only; no production migration, no historical payment credits, no credentials/evidence recorded"
+}
