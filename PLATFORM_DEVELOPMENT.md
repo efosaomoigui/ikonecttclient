@@ -7,7 +7,7 @@ This integration branch contains the existing public website, the NestJS API, Ad
 | Folder | Responsibility |
 | --- | --- |
 | `backend/` | NestJS controllers/services, identity, permissions, Prisma schema/migrations, provider adapters, outbox, database helpers and backend tests |
-| `contracts/` | Canonical API v1.1.0 schemas, clients, OpenAPI, endpoint/permission map and wallet handoff |
+| `contracts/` | Canonical API v1.2.0 schemas, clients, OpenAPI, endpoint/permission map and wallet/settlement handoff |
 | `admin/` | Staff Admin/CRM frontend, its own dependencies/build/tests, pinned generated contract/permission copies |
 | `my-ikonectt/` | Customer frontend, its own dependencies/build/tests, pinned canonical client sources |
 | `shared/`, `option-a/` through `option-e/`, root HTML, `assets/`, `public_html/` | Existing public website/design showcase; no platform frontend is mixed into these presentation folders |
@@ -48,7 +48,7 @@ Keep the supervisor terminal open. Endpoints:
 | My Ikonectt | http://127.0.0.1:4175/ |
 | PostgreSQL | 127.0.0.1:55440, `ikonectt_development` |
 
-The portal starts in live mode. Simulated records/provider results remain labeled; a failed live request does not become a successful mock response. The API payment gateway is disabled; payment reporting and authorized manual Finance verification remain available for simulated development transactions.
+The portal starts in live mode. Simulated records/provider results remain labeled; a failed live request does not become a successful mock response. The API payment gateway and approved settlement adapter are not connected; payment reporting and authorized manual Finance verification remain available for simulated development transactions. Future approved provider settlement credits the wallet automatically through the separate authenticated event boundary and never activates service. Read `contracts/SETTLEMENT_HANDOFF.md`. No public settlement webhook/checkout is exposed until its provider is approved and implemented.
 
 ## Shutdown, health and recovery
 

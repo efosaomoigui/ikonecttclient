@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-21",
+  "scope": "Superseding Stage5A settlement architecture; local development and isolated PostgreSQL tests",
+  "contract": {
+    "version": "1.2.0",
+    "paths": 78,
+    "operations": 95,
+    "sourceCommit": "d0a300a2b5a17d63c637e71c71b523b88046a78f",
+    "parity": "PASS"
+  },
+  "backend": {
+    "passed": 73,
+    "failed": 0,
+    "originalRegressionTests": 60,
+    "newSettlementTests": 13,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "settlementScenarios": [
+      "settlement integration stays disabled and has no public callback or checkout route",
+      "registered initiation, pending and failed provider outcomes never credit or change a service",
+      "unverified, tampered, stale and lookup-failed events cannot post financial records",
+      "authoritative payment, provider/account, amount, currency and customer bindings are validated",
+      "settlement and ledger credit commit once under replay, duplicate events and concurrent delivery",
+      "event ID reuse with different content conflicts and out-of-order failures cannot undo settled funds",
+      "equivalent provider timestamp precision does not reject a duplicate settlement",
+      "a posting failure rolls back receipt/payment/credit together and safe redelivery can succeed",
+      "wallet zero/positive and service active/inactive are four independent valid states; no auto-renew",
+      "settled wallet funds renew an expired suspended service only after explicit customer and staff actions",
+      "registration is idempotent and rejects legacy consumed payment references without changing history",
+      "database rejects orphan settlement credits, incomplete settlement and financial-history changes",
+      "database rejects missing settlement proof even with otherwise matching event and ledger allocation"
+    ]
+  },
+  "admin": {
+    "passed": 53,
+    "failed": 0,
+    "typecheckAndProductionBuild": "PASS",
+    "sourceCommit": "f19fde55d584c8e6e1796417545471f3a39b0948"
+  },
+  "portal": {
+    "passed": 29,
+    "failed": 0,
+    "typecheck": "PASS",
+    "mockAndLiveBuild": "PASS",
+    "sourceCommit": "341e5a76b3cd3e17fcb7d8e4721e7f4c5f1b1c82"
+  },
+  "legacyProtection": {
+    "orderPaymentsUnchanged": 23,
+    "mainAndTimeoutFinancialFingerprints": "PASS",
+    "newSharedProviderPayments": 0,
+    "newSharedSettlementEvents": 0
+  },
+  "provider": {
+    "approvedLiveProviderConnected": false,
+    "publicWebhookExposed": false,
+    "testProtocol": "Test-only SIMULATED authenticated envelope plus independent authoritative lookup fixture; never wired to production application"
+  },
+  "mainMerged": false,
+  "productionDeployed": false
+}

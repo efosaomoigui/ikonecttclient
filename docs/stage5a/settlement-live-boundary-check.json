@@ -1,0 +1,7 @@
+{
+  "checkedAt": "2026-10-21T08:09:15.641Z",
+  "scope": "Running local development API; read-only/unmapped-route checks, no provider settlement submitted",
+  "paymentSettlement": "not-connected",
+  "unauthenticatedUnconfiguredCallbackStatus": 404,
+  "financialMutations": 0
+}

@@ -1,5 +1,7 @@
 # Connecting a future approved provider
 
+For payments, the current superseding funding boundary is `src/wallet/settlement.adapter.ts` / `settlement.service.ts`, documented in `contracts/SETTLEMENT_HANDOFF.md` (API1.2.0). The old order-oriented `PaymentProvider` interface is not settlement proof and must not be wired directly to wallet credit or activation. Approved, authenticated and independently verified SETTLED events fund the wallet automatically; explicit customer authorization starts a separate renewal. The default settlement adapter is disabled and no public webhook/checkout route is exposed. Future order-related provider checkout must use wallet-first settlement and a separately approved wallet-funded purchase operation; existing consumed order payments remain unchanged.
+
 No external production provider is connected. Stage 2 retains manual/native/disabled/simulated boundaries.
 The current durable PostgreSQL notification outbox is sufficient for the bounded workload; Redis/BullMQ
 and multiple API replicas are not introduced.

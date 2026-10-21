@@ -2,6 +2,8 @@
 
 21 October 2026 · Local development · API 1.1.0
 
+**Superseding architecture clarification:** the current API is **1.2.0**. Approved provider settlement automatically funds the in-house ledger-backed wallet and never activates or renews service. The Finance workflow recorded below is the separate manual-report fallback and historical acceptance evidence. See [settlement clarification report](SETTLEMENT_ARCHITECTURE_CLARIFICATION.md) and [current handoff](../../contracts/SETTLEMENT_HANDOFF.md) for the implementation, allocation rules and final validation.
+
 ## Delivery scope
 
 Stage 5A adds an internal customer credit wallet, manually reported and Finance-verified top-ups, and wallet-funded renewal of explicitly eligible existing services. The backend, My Ikonectt and Admin/CRM share one canonical HTTP contract and database. This is a development integration; payment and provider acceptance records are explicitly SIMULATED. No real bank transfer or connected payment gateway is claimed.

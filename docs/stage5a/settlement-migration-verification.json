@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "verifiedAt": "2026-10-21T08:06:57.917Z",
+  "migration": "202610210002_settlement_boundary",
+  "checksum": "158b4d661a7495999128c2f367e07d0162a59f9205437a7b3b540dab770e3707",
+  "backup": "ikonectt_development-1792568984592.dump",
+  "restoreVerificationDatabase": "ikonectt_development_1792568985793",
+  "historicalOrderPayments": {
+    "count": 23,
+    "fingerprint": "fde43e22a7ed111afc5a5d9faa3a5786ca84a308f850fdca8c5f68fc9f6d7bc0"
+  },
+  "registeredProviderPayments": 0,
+  "settlementEvents": 0,
+  "oldAcceptanceWalletsAndServicesUnchanged": true,
+  "liveProviderConnected": false,
+  "proofGuardMigration": {
+    "name": "202610210003_settlement_proof_guard",
+    "checksum": "63bef4674318ca50270fdc5ea9352341aa9aa9ba13f060a9d806530e0f7e8a86",
+    "status": "APPLIED and verified"
+  }
+}
