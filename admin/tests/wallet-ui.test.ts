@@ -61,3 +61,22 @@ test('wallet UI keeps a known reversed credit in history without offering a seco
         assert.ok(rows.some(row => row.textContent!.includes('SIMULATED-CREDIT-REVERSAL')));
     } finally { Object.assign(globalThis, { document: previousDocument }); dom.window.close(); }
 });
+test('Admin wallet display is independent of zero/positive credit and active/inactive service', async () => {
+    for (const availableMinor of [0, 550000]) for (const serviceStatus of ['ACTIVE', 'SUSPENDED']) {
+        const calls: { url: string; method: string; body: unknown }[] = [];
+        const api: WorkspaceApi = new WorkspaceApi('', async (url, init): Promise<Response> => {
+            calls.push({ url: String(url), method: init?.method || 'GET', body: init?.body });
+            return Response.json({ ...api.data.walletSummaries[0], availableMinor, postedMinor: availableMinor, reservedMinor: 0, pendingTopUpsMinor: 0, pendingTopUpsCount: 0 });
+        });
+        api.preview('SUPPORT'); api.mode = 'live';
+        api.data.subscriptions = [{ ...api.data.subscriptions[0], customerId: uuid(1), status: serviceStatus }];
+        const ui = new WalletUi({ api, walletApi: new WalletApi(api), openModal: () => { throw Error('Unexpected service or financial dialog'); }, closeModal: () => {}, modalHeader: t => t, button: (label, action) => `<button data-action="${action}">${label}</button>`, esc: v => String(v ?? ''), money: n => `${n} minor`, badge: v => String(v), date: v => v, toast: () => {}, friendly: e => String(e), refresh: async () => {}, details: async () => {} });
+        const html = await ui.customerSummary(uuid(1));
+        assert.match(html, new RegExp(`<dd>${availableMinor} minor</dd>`), `${availableMinor}/${serviceStatus}`);
+        assert.match(html, /Available credit/);
+        assert.equal(calls.length, 1);
+        assert.equal(calls[0].url, `/api/v1/admin/customers/${uuid(1)}/wallet`);
+        assert.equal(calls[0].method, 'GET'); assert.equal(calls[0].body, undefined);
+        assert.ok(!html.includes('wallet:process:') && !html.includes('wallet:resolve:'));
+    }
+});
