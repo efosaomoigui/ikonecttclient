@@ -1,4 +1,4 @@
-import {activeDesigns, activeDesign} from './design-shortlist.js';
+import {activeDesigns, activeDesign} from './design-shortlist.js?v=2';
 import {pages,parseRoute} from './routes.js';
 
 export function supportedHash(hash) {
@@ -35,7 +35,7 @@ export function mountDesignPreview(doc = document, win = window) {
   }
   function switchLivePreview(id, preserve=true) {
     const entry = activeDesigns.find(item=>item.id===id);
-    if (!entry) return; // Archived B/C are never active selector choices.
+    if (!entry) return; // Archived B/C/D are never active selector choices.
     if (preserve) readContext();
     selected = entry;
     frame.src = urlFor(entry);

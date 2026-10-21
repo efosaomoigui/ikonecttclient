@@ -4,13 +4,13 @@ This repository (`ikonecttclient`) contains the unified client-facing digital ex
 
 ## Current shortlist
 
-The client-facing hub exposes exactly **A+C Hybrid**, **Template D** and **Template E**. The hybrid keeps A’s approved landing page and slideshow unchanged; compatible C-derived hierarchy and spacing apply only to A’s shared inner pages. D/E remain independent.
+The client-facing hub now exposes exactly two choices: **Option 1 — Template A** and **Option 2 — Template E**. Template A is the previously approved A+C hybrid, renamed A; its homepage, slideshow and inner pages are unchanged. Template E retains its approved independent design.
 
-Stable active URLs: `/option-a/`, `/option-d/`, `/option-e/`. Switching in the packaged/live hub retains supported page/query context. A bookmarked hub URL can use `?design=d&route=%23%2Fresidential%2Fplans`.
+Stable active URLs: `/option-a/` and `/option-e/`. Switching in the packaged/live hub retains supported page/query context. A bookmarked hub URL can use `?design=e&route=%23%2Fresidential%2Fplans`.
 
-Original B/C sites remain accessible at their existing URLs for compatibility, but are absent from the active selector. All five originals are preserved at `21b060e` on `codex/preserve-five-templates-2026-10-16`. See [consolidation record](docs/CLIENT_DESIGN_SHORTLIST_CONSOLIDATION.md) and [presentation manifest](shared/design-shortlist.js).
+Templates B/C/D remain accessible at their existing URLs for compatibility, but are absent from the active selector. Future implementation work is scoped to A and E unless the client requests otherwise. All five originals are preserved at `21b060e` on `codex/preserve-five-templates-2026-10-16`. See [consolidation record](docs/CLIENT_DESIGN_SHORTLIST_CONSOLIDATION.md) and [presentation manifest](shared/design-shortlist.js).
 
-The sections below preserve the original five-template implementation/development history. Build packaging still includes archived B/C so existing links remain valid.
+The sections below preserve the original five-template implementation/development history. Build packaging still includes archived B/C/D so existing links remain valid.
 
 ## Phase 1 public website
 

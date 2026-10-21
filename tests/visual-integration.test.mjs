@@ -31,9 +31,12 @@ test('visual delivery resolves every responsive asset locally, with credits and 
   fixture.window.close();
 });
 
-test('Phase 3 preserves selection, hero, navigation, journeys, logos and archived templates',()=>{
+test('Phase 3 preserves template heroes, navigation, journeys, logos and archived templates',()=>{
   const baseline=JSON.parse(read('docs/evidence/phase-3/baseline.json'));
   for(const [file,expected] of Object.entries(baseline.files)){
+    // 21 October: the client explicitly reduced/relabelled the selector. Its
+    // semantics are covered by design-shortlist.test.mjs; template protection remains.
+    if(['index.html','shared/design-shortlist.js','shared/design-preview.js'].includes(file))continue;
     let bytes=read(file);
     const text=/\.(?:html|js|jsx|ts|tsx|css|json|md)$/.test(file);
     if(text)bytes=Buffer.from(bytes.toString().replace(/\r\n/g,'\n'));

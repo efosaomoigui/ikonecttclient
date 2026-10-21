@@ -88,4 +88,4 @@ for (const option of ['option-d', 'option-e']) {
 }
 
 console.log('[5/5] Showcase distribution ready in public_html/');
-console.log('Three active shortlist options ready: A+C Hybrid, D, E. Original B/C links remain packaged for compatibility.');
+console.log('Two active shortlist options ready: Template A and Template E. B/C/D links remain packaged for compatibility.');

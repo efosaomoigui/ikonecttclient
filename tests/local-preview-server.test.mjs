@@ -16,7 +16,8 @@ test('local shortlist serves compiled React templates and retains standalone D/E
   });
   const base=`http://127.0.0.1:${port}`;
   const selector=await (await fetch(base+'/')).text();
-  for(const id of ['a','d','e'])assert.ok(selector.includes(`data-option-link="${id}"`));
+  for(const id of ['a','e'])assert.ok(selector.includes(`data-option-link="${id}"`));
+  assert.ok(!selector.includes('data-option-link="d"'));
   for(const id of ['a','b','c']){
     const response=await fetch(`${base}/option-${id}/`);assert.equal(response.status,200);
     const html=await response.text();assert.doesNotMatch(html,/src\/main\.tsx/);

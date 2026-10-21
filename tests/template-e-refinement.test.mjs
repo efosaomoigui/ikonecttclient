@@ -13,9 +13,10 @@ import {internalPhotos} from '../option-e/hero-photos.js';
 
 const tick=()=>new Promise(resolve=>setTimeout(resolve,8));
 const read=path=>fs.readFileSync(new URL('../'+path,import.meta.url));
-test('E refinement leaves A, D, the selector and shared application sources unchanged',()=>{
+test('E refinement preserves template designs and shared application sources',()=>{
   const baseline=JSON.parse(read('docs/evidence/template-e-refinement/preservation.json'));
   for(const [path,expected] of Object.entries(baseline.files)){
+    if(path==='index.html')continue; // 21 October: two-template selector explicitly authorised; shortlist tests cover it.
     const buffer=read(path),value=/\.(js|css|html|tsx|ts|md|json)$/.test(path)?Buffer.from(buffer.toString().replace(/\r\n/g,'\n')):buffer;
     assert.equal(crypto.createHash('sha256').update(value).digest('hex'),expected,path);
   }
