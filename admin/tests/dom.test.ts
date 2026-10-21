@@ -11,10 +11,13 @@ async function waitFor(fn: () => boolean) { for (let i = 0; i < 150; i++) {
 } assert.fail('DOM state did not arrive'); }
 function boot() { const dom = new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>', { url: 'http://localhost/admin/', runScripts: 'outside-only', pretendToBeVisual: true }); Object.assign(dom.window, { structuredClone: globalThis.structuredClone, fetch: async () => { throw Error('No live backend in DOM test'); } }); dom.window.eval(bundle); return dom; }
 function click(dom: JSDOM, selector: string) { const el = dom.window.document.querySelector<HTMLElement>(selector); assert.ok(el, selector); el.click(); }
-async function preview(dom: JSDOM, role = 'ADMIN') { (dom.window.document.querySelector('#preview-role') as HTMLSelectElement).value = role; click(dom, '[data-action=preview]'); await waitFor(() => !!dom.window.document.querySelector('.metrics,.workspace-note')); }
+async function preview(dom: JSDOM, role = 'ADMIN') { click(dom, '.preview-box summary'); (dom.window.document.querySelector('#preview-role') as HTMLSelectElement).value = role; click(dom, '[data-action=preview]'); await waitFor(() => !!dom.window.document.querySelector('.metrics,.workspace-note')); }
 async function go(dom: JSDOM, path: string) { dom.window.location.hash = `#/${path}`; await waitFor(() => !!dom.window.document.querySelector(`a[aria-current=page][href="#/${path}"]`)); await waitFor(() => !dom.window.document.querySelector('.loading')); }
 test('DOM: login validation, password toggle and labeled simulation', async () => { const dom = boot(); try {
     const doc = dom.window.document;
+    assert.equal(doc.querySelector<HTMLDetailsElement>('.preview-box')!.open, false);
+    assert.equal(doc.querySelectorAll('.login-help a').length, 2);
+    assert.equal(doc.querySelectorAll('.login-help button').length, 0);
     assert.equal(doc.querySelector<HTMLInputElement>('input[name=email]')!.type, 'email');
     assert.ok(doc.querySelector<HTMLInputElement>('input[name=password]')!.required);
     click(dom, '[data-action=password]');
