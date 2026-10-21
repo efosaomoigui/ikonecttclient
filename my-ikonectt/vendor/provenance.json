@@ -1,6 +1,6 @@
 {
-  "commit": "4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
+  "commit": "cb05bb65c96c0b5bfff9c0a8a53b275d23659625",
   "source": "contracts/",
-  "branch": "codex/ikonectt-core-backend",
+  "branch": "codex/ikonectt-wallet-stage5a",
   "note": "Read-only snapshot from a committed Git object. Update only after Agent 1 publishes a stable commit."
 }

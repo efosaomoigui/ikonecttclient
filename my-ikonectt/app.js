@@ -1,7 +1,9 @@
 import {setupCodeError,setupCodeLimits} from "./form-validation.js";
 import { api } from "./api.js";
 import { customerGreeting } from "./live.js";
+import { updateAccountPage, setAccountPagePending } from "./navigation.js";
 import { config } from "./config.js";
+import { walletRoutes, createWalletIntents, loadWalletJourney, walletScreen, walletSummaryCard, serviceRenewalActions, validateTopUpDraft, renewalReady, renewalOutcome, topUpNotice, settleWalletFailure } from "./wallet.js";
 import { demoCredentials } from "./fixtures.js";
 import {
   loadJourney,
@@ -12,6 +14,7 @@ import {
   parseAmountMinor,
 } from "./journeys.js";
 const root = document.querySelector("#app");
+const walletIntents = createWalletIntents();
 let customer = null,
   data = null,
   notice = "",
@@ -53,6 +56,7 @@ const icons = {
   overview: "◫",
   services: "◎",
   billing: "▤",
+  wallet: "◈",
   support: "◌",
   profile: "♙",
   security: "◇",
@@ -62,6 +66,7 @@ const names = {
   overview: "Overview",
   services: "My Services",
   billing: "Billing & Payments",
+  wallet: "Wallet",
   support: "Support",
   profile: "My Profile",
   security: "Account Security",
@@ -73,6 +78,11 @@ const routeNames = {
   coverage: "Coverage",
   "payment-report": "Billing & Payments / Report payment",
   guidance: "Support / Guidance",
+  "top-up": "Wallet / Top Up",
+  "top-ups": "Wallet / Top-ups",
+  transactions: "Wallet / Transactions",
+  renew: "My Services / Renew Plan",
+  renewals: "Wallet / Renewals",
 };
 const pill = (s) =>
   `<span class="pill ${["Active", "Paid", "Verified", "Resolved"].includes(s) ? "green" : ""}">${esc(s)}</span>`;
@@ -142,14 +152,14 @@ function tickets(items) {
       );
 }
 function serviceCard(s) {
-  return `<article class="service-card"><div class="row"><span class="eyebrow">${esc(s.name)}</span>${pill(s.status)}</div><h2>${esc(s.plan)}</h2><p><strong class="speed">${s.speedMbps === null ? "—" : esc(s.speedMbps)}</strong> ${s.speedMbps === null ? "Speed unavailable" : "Mbps"}</p><p>Your plan and current service status.</p><div class="service-footer"><span>${esc(s.address || "Address details unavailable")}</span>${link(`services/${encodeURIComponent(s.id)}`, `View service ${arrow}`, "button light small")}</div></article>`;
+  return `<article class="service-card"><div class="row"><span class="eyebrow">${esc(s.name)}</span>${pill(s.status)}</div><h2>${esc(s.plan)}</h2><p><strong class="speed">${s.speedMbps === null ? "—" : esc(s.speedMbps)}</strong> ${s.speedMbps === null ? "Speed unavailable" : "Mbps"}</p><p>Your plan and current service status.</p><div class="service-footer"><span>${esc(s.address || "Address details unavailable")}</span>${link(`services/${encodeURIComponent(s.id)}`, `View service ${arrow}`, "button light small")}</div>${aux.eligibility || aux.eligibilityErrors ? serviceRenewalActions(s, aux, { esc, link, moneyMinor }) : ""}</article>`;
 }
 function overview() {
   const s =
       data.services.find((s) => s.status.toUpperCase() === "ACTIVE") ||
       data.services[0],
     p = data.profile;
-  return `<div class="page-heading"><p class="eyebrow">YOUR CONNECTION, AT A GLANCE</p><h1>${esc(customerGreeting(p.name))}<span class="greeting-dot">.</span></h1><p>Manage your services and support.</p></div><div class="overview-grid"><div>${s ? serviceCard(s) : empty("No services linked", "Contact support if you expect to see a service here.")}</div><article class="panel payment-summary"><span class="eyebrow">BILLING SNAPSHOT</span><h3>Latest payment</h3><div class="amount">${data.receipts.length ? money(data.receipts[0].amount, data.receipts[0].currency) : "—"}</div><p>${data.receipts.length ? "Most recent verified payment" : "No verified payment records available yet."}</p>${link("billing", `View billing & receipts ${arrow}`, "text-link")}</article></div><div class="quick-actions">${[
+  return `<div class="page-heading"><p class="eyebrow">YOUR CONNECTION, AT A GLANCE</p><h1>${esc(customerGreeting(p.name))}<span class="greeting-dot">.</span></h1><p>Manage your services and support.</p></div><div class="overview-grid"><div>${s ? serviceCard(s) : empty("No services linked", "Contact support if you expect to see a service here.")}</div><article class="panel payment-summary"><span class="eyebrow">BILLING SNAPSHOT</span><h3>Latest payment</h3><div class="amount">${data.receipts.length ? money(data.receipts[0].amount, data.receipts[0].currency) : "—"}</div><p>${data.receipts.length ? "Most recent verified payment" : "No verified payment records available yet."}</p>${link("billing", `View billing & receipts ${arrow}`, "text-link")}</article></div>${walletSummaryCard(aux.wallet, aux.walletError, { esc, link, moneyMinor })}<div class="quick-actions">${[
     ["services", "My Services", "Plans and service status"],
     ["support/new", "Contact Support", "Submit and track requests"],
     ["profile", "View Profile", "Your contact information"],
@@ -165,6 +175,8 @@ function details(entries) {
   return `<dl class="details">${entries.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v ?? "Not available")}</dd></div>`).join("")}</dl>`;
 }
 function content(route, id) {
+  const walletPage = walletScreen(route, id, { aux, result, intents: walletIntents, esc, link, heading, details, moneyMinor, date, input });
+  if (walletPage !== null) return walletPage;
   const extra = journeyScreen(route, id, {
     data,
     aux,
@@ -206,7 +218,7 @@ function content(route, id) {
                   : s.usage,
               ],
             ],
-          )}<p class="subtle-note">Service status reflects the available account record. For plan changes or renewal assistance, contact support.</p>${link("support/new", "Ask about this service", "button")}</article>`
+          )}<p class="subtle-note">Service status reflects the available account record. For plan changes or renewal assistance, contact support.</p>${link("support/new", "Ask about this service", "button")}${serviceRenewalActions(s, aux, { esc, link, moneyMinor })}</article>`
         : missing();
     }
     return (
@@ -342,7 +354,7 @@ function missing() {
   );
 }
 function shell(body, route) {
-  const navigationRoute={orders:"services",plans:"services",coverage:"services","payment-report":"billing",guidance:"support"}[route]||route;
+  const navigationRoute={orders:"services",plans:"services",coverage:"services","payment-report":"billing",guidance:"support","top-up":"wallet","top-ups":"wallet",transactions:"wallet",renew:"services",renewals:"wallet"}[route]||route;
   return `<div class="app-shell"><aside class="sidebar">${logo()}<div class="sidebar-label">YOUR ACCOUNT</div><nav aria-label="Account navigation">${Object.entries(
     names,
   )
@@ -394,25 +406,34 @@ async function render() {
     notice = "";
     return;
   }
-  root.innerHTML =
-    '<main id="main" class="loading" role="status">Getting your account ready…</main>';
+  if (!setAccountPagePending(root, true, names[route] || routeNames[route] || "Account"))
+    root.innerHTML = '<main id="main" class="loading" role="status">Getting your account ready…</main>';
   try {
+    let nextCustomer = customer;
     if (!customer || (config.mode === "live" && !customer.mustChangePassword))
-      customer = await api.resume();
-    if (customer.mustChangePassword) {
+      nextCustomer = await api.resume();
+    if (tick !== version) return;
+    if (nextCustomer.mustChangePassword) {
       if (route !== "security") {
         location.hash = "/security";
         return;
       }
-      data = { profile: customer };
-    } else if (!data || config.mode === "live") data = await api.summary();
-    aux = customer.mustChangePassword
-      ? {}
-      : await loadJourney(route, id, api, data);
+    }
+    const nextData = nextCustomer.mustChangePassword
+      ? { profile: nextCustomer }
+      : (!data || config.mode === "live") ? await api.summary(route, nextCustomer) : data;
     if (tick !== version) return;
-    root.innerHTML = shell(content(route, id), route);
+    const nextAux = nextCustomer.mustChangePassword
+      ? {}
+      : { ...await loadJourney(route, id, api, nextData), ...await loadWalletJourney(route, id, api, nextData) };
+    if (tick !== version) return;
+    customer = nextCustomer;
+    data = nextData;
+    aux = nextAux;
+    const mounted = updateAccountPage(root, shell(content(route, id), route));
     notice = "";
-    bind();
+    if (mounted) bindShell();
+    bind(root.querySelector("#main"));
     document.querySelector("#main")?.focus({ preventScroll: true });
     window.scrollTo(0, 0);
   } catch (e) {
@@ -420,22 +441,25 @@ async function render() {
     if (e.status === 401) {
       customer = null;
       data = null;
+      walletIntents.clear();
       notice = "Please sign in to access your account.";
       location.hash = "/login";
     } else {
-      root.innerHTML = publicShell(
-        `<section class="section"><h1>We couldn’t load your account.</h1><p role="alert">${esc(e.message)}</p><button class="button" data-retry>Try again</button> ${link("login", "Back to sign in")}</section>`,
-      );
-      bind();
+      const message = `<section class="section"><h1>We couldn’t load this page.</h1><p role="alert">${esc(e.message)}</p><button class="button" data-retry>Try again</button> ${link("login", "Back to sign in")}</section>`;
+      const main = root.querySelector(".app-shell #main");
+      if (main) {
+        main.innerHTML = message;
+        setAccountPagePending(root, false);
+        bind(main);
+      } else {
+        root.innerHTML = publicShell(message);
+        bind();
+      }
     }
   }
 }
-function bind() {
-  root.querySelectorAll('.sidebar nav a').forEach(link=>link.addEventListener('click',event=>{if(link.hash===location.hash){event.preventDefault();data=null;render();}}));
-  root
-    .querySelector(".sidebar nav a.active")
-    ?.setAttribute("aria-current", "page");
-  root.querySelectorAll("[data-reveal]").forEach(
+function bind(scope = root) {
+  scope.querySelectorAll("[data-reveal]").forEach(
     (b) =>
       (b.onclick = () => {
         const i = document.getElementById(b.dataset.reveal);
@@ -448,17 +472,48 @@ function bind() {
         );
       }),
   );
-  root.querySelector("[data-retry]")?.addEventListener("click", render);
-  root
+  scope.querySelector("[data-retry]")?.addEventListener("click", render);
+  scope.querySelector("[data-wallet-edit]")?.addEventListener("click", () => {
+    result.walletDraft = null;
+    render();
+  });
+  scope.querySelectorAll("[data-wallet-scenario]").forEach(button => button.addEventListener("click", async () => {
+    if (config.mode !== "mock" || !api.previewWalletScenario) return;
+    button.disabled = true;
+    try {
+      walletIntents.clear();
+      result = {};
+      await api.previewWalletScenario(button.dataset.walletScenario);
+      data = null;
+      await render();
+    } catch (error) { notice = error.message; await render(); }
+  }));
+  scope
     .querySelector("[data-print]")
     ?.addEventListener("click", () => window.print());
-  root.querySelector("[data-chat]")?.addEventListener("click", () =>
+  scope.querySelector("[data-chat]")?.addEventListener("click", () =>
     window.dispatchEvent(
       new CustomEvent("ikonectt:customer-care-open", {
         detail: { source: "customer-portal" },
       }),
     ),
   );
+  document.querySelector(".skip").onclick = (e) => {
+    e.preventDefault();
+    document.querySelector("#main")?.focus();
+  };
+  scope.querySelectorAll("form").forEach((f) => {
+    f.addEventListener("submit", submit);
+    if (["reset", "password"].includes(f.dataset.form))
+      f.addEventListener("input", () => {
+        const error = f.querySelector(".form-error");
+        if (error) error.textContent = "";
+      });
+  });
+}
+function bindShell() {
+  root.querySelectorAll('.sidebar nav a').forEach(link=>link.addEventListener('click',event=>{if(link.hash===location.hash){event.preventDefault();render();}}));
+  root.querySelector(".sidebar nav a.active")?.setAttribute("aria-current", "page");
   root.querySelector(".menu-toggle")?.addEventListener("click", (e) => {
     const open = root.querySelector(".app-shell").classList.toggle("nav-open");
     e.currentTarget.setAttribute("aria-expanded", String(open));
@@ -472,20 +527,11 @@ function bind() {
     } finally {
       customer = null;
       data = null;
+      walletIntents.clear();
       notice = "Please sign in to access your account.";
       location.hash = "/login";
     }
   });
-  document.querySelector(".skip").onclick = (e) => {
-    e.preventDefault();
-    document.querySelector("#main")?.focus();
-  };
-  root
-    .querySelectorAll("form")
-    .forEach((f) => {
-      f.addEventListener("submit",submit);
-      if(["reset","password"].includes(f.dataset.form)) f.addEventListener("input",()=>{const error=f.querySelector(".form-error");if(error)error.textContent="";});
-    });
 }
 async function submit(e) {
   e.preventDefault();
@@ -505,9 +551,57 @@ async function submit(e) {
           values.accountNumber.trim(),
           values.password,
         );
+        walletIntents.clear();
         data = null;
         location.hash = customer.mustChangePassword ? "/security" : "/overview";
         break;
+      case "wallet-top-up-review":
+        result.walletDraft = validateTopUpDraft({
+          amountMinor: parseAmountMinor(values.amount), currency: "NGN",
+          reference: values.reference.trim(), method: values.method, evidence: values.evidence.trim(),
+        });
+        await render();
+        break;
+      case "wallet-top-up-confirm": {
+        const draft = result.walletDraft || walletIntents.peek("top-up")?.payload;
+        if (!draft) throw new Error("Review your top-up details before confirming.");
+        const request = walletIntents.prepare("top-up", draft);
+        let topUp;
+        try { topUp = await api.reportWalletTopUp(request); }
+        catch (error) { settleWalletFailure(walletIntents, "top-up", error); throw error; }
+        walletIntents.complete("top-up");
+        result = {};
+        notice = topUpNotice(topUp);
+        location.hash = "/top-ups";
+        break;
+      }
+      case "wallet-renew":
+      case "wallet-renew-retry": {
+        const quote = aux.quote, operation = `renew:${f.dataset.id}`;
+        const prior = walletIntents.peek(operation);
+        const retry = f.dataset.form === "wallet-renew-retry";
+        if (retry && !prior) throw new Error("There is no unconfirmed request to check. Review the current quote.");
+        if (!retry && (!renewalReady(quote) || quote.subscriptionId !== f.dataset.id))
+          throw new Error("Review the current renewal eligibility before confirming.");
+        const request = retry ? { ...prior.payload, idempotencyKey: prior.idempotencyKey }
+          : walletIntents.prepare(operation, { priceVersion: quote.priceVersion });
+        let renewal;
+        try { renewal = await api.requestWalletRenewal(f.dataset.id, request); }
+        catch (error) {
+          settleWalletFailure(walletIntents, operation, error);
+          if (error.status >= 400 && error.status < 500 && error.code !== "LOCAL_PENDING_INTENT" && error.status !== 401) {
+            notice = `${error.message} Review the current quote before confirming again.`;
+            await render();
+            break;
+          }
+          throw error;
+        }
+        walletIntents.complete(operation);
+        result = {};
+        notice = renewalOutcome(renewal)[0] + ". Current status is shown below.";
+        location.hash = "/renewals/" + renewal.id;
+        break;
+      }
       case "recover": {
         const result = await api.recover(values.accountNumber.trim());
         f.innerHTML = `<div class="notice" role="status">${esc(result.message)}</div>${link("reset", "Use your recovery code →", "text-link")}`;
@@ -618,6 +712,7 @@ async function submit(e) {
     if (err.status === 401 && f.dataset.form !== "login") {
       customer = null;
       data = null;
+      walletIntents.clear();
       notice = "Please sign in to access your account.";
       location.hash = "/login";
     }
@@ -634,6 +729,7 @@ window.addEventListener("keydown", (e) => {
   }
 });
 window.addEventListener("ikonectt:session-expired", () => {
+  walletIntents.clear();
   customer = null;
   data = null;
   result = {};

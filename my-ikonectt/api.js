@@ -2,6 +2,7 @@ import { config } from "./config.js";
 import { fixture, rawFixture, demoCredentials } from "./fixtures.js";
 import { createLiveAdapter, receiptView } from "./live.js";
 import * as C from "./generated/contracts.js";
+import { createMockWallet } from "./wallet-fixtures.js";
 /** @typedef {import('./types').PortalAdapter} PortalAdapter */
 export class ApiError extends Error {
   constructor(message, status = 400) {
@@ -22,7 +23,9 @@ export function createMockAdapter(storage = globalThis.sessionStorage) {
     if (!authenticated)
       throw new ApiError("Your session has ended. Please sign in again.", 401);
   };
+  const wallet = createMockWallet(guard);
   return {
+    ...wallet,
     async session() {
       guard();
       return structuredClone(profile);
@@ -63,6 +66,7 @@ export function createMockAdapter(storage = globalThis.sessionStorage) {
       guard();
       return structuredClone({
         ...fixture,
+        services: fixture.services.map(s => ({ ...s, renewalDate: wallet.walletFixtureEndsAt || s.renewalDate })),
         profile,
         tickets,
         orders,
