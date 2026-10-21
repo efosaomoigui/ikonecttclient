@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const API_VERSION = '1.0.1';
+export const API_VERSION = '1.1.0';
 export const API_PREFIX = '/api/v1';
 export const Id = z.string().uuid();
 const Text = z.string().trim().min(1).max(250);
@@ -28,7 +28,7 @@ export const UpdateCustomerRequest = CreateCustomerRequest.omit({ accountNumber:
 export const UpdateProfileRequest = z.object({ phone: z.string().trim().min(7).max(30) }).strict();
 export const CreateStaffRequest = z.object({ name: Text, email: z.string().email().max(254), password: Password, roles: z.array(Role).min(1).max(6) }).strict();
 export const UpdateStaffRequest = z.object({ roles: z.array(Role).min(1).max(6).optional(), enabled: z.boolean().optional() }).strict();
-export const PlanInput = z.object({ code: z.string().min(2).max(50).regex(/^[a-z0-9-]+$/), name: Text, kind: CustomerKind, priceMinor: Money.positive(), currency: z.literal('NGN').default('NGN'), speedMbps: z.number().int().positive().max(100000), billingDays: z.number().int().min(1).max(366).default(30), features: z.array(Text).max(30).default([]), published: z.boolean().default(false) }).strict();
+export const PlanInput = z.object({ code: z.string().min(2).max(50).regex(/^[a-z0-9-]+$/), name: Text, kind: CustomerKind, priceMinor: Money.positive(), currency: z.literal('NGN').default('NGN'), speedMbps: z.number().int().positive().max(100000), billingDays: z.number().int().min(1).max(366).default(30), features: z.array(Text).max(30).default([]), published: z.boolean().default(false), renewalPriceMinor: Money.positive().nullable().optional() }).strict();
 export const PlanUpdate = PlanInput.partial().strict();
 export const CoverageInput = z.object({ name: Text, level: CoverageLevel, parentId: Id.optional(), eligibility: Eligibility.default('UNKNOWN'), planIds: z.array(Id).max(100).default([]), evidence: z.string().max(1000).optional() }).strict();
 export const CoverageUpdate = z.object({ eligibility: Eligibility, planIds: z.array(Id).max(100), evidence: z.string().trim().min(3).max(1000) }).strict();
@@ -53,11 +53,11 @@ export const Customer = z.object({ id: Id, accountNumber: z.string(), accountNum
 export const Plan = PlanInput.extend({ id: Id, simulated: z.boolean(), createdAt: z.string().datetime(), updatedAt: z.string().datetime() });
 export const CoverageLocation = CoverageInput.extend({ id: Id, parentId: Id.nullable(), evidence: z.string().nullable(), simulated: z.boolean(), verifiedAt: z.string().datetime().nullable() });
 export const CoverageResult = z.object({ buildingId: Id, eligibility: Eligibility, planIds: z.array(Id), simulated: z.boolean(), source: z.enum(['NATIVE', 'SIMULATED']), checkedAt: z.string().datetime() });
-export const Order = z.object({ id: Id, customerId: Id, planId: Id, buildingId: Id, type: z.enum(['NEW_CONNECTION', 'RENEWAL', 'PLAN_CHANGE']), subscriptionId: Id.nullable(), status: OrderStatus, amountMinor: Money, currency: z.string(), planName: z.string(), billingDays: z.number().int(), createdAt: z.string().datetime() });
+export const Order = z.object({ id: Id, customerId: Id, planId: Id, buildingId: Id, type: z.enum(['NEW_CONNECTION', 'RENEWAL', 'PLAN_CHANGE']), fundingSource: z.enum(['ORDER_PAYMENT','WALLET']).optional(), subscriptionId: Id.nullable(), status: OrderStatus, amountMinor: Money, currency: z.string(), planName: z.string(), billingDays: z.number().int(), createdAt: z.string().datetime() });
 export const Payment = z.object({ id: Id, orderId: Id, customerId: Id, amountMinor: Money, currency: z.string(), method: z.string(), reference: z.string(), status: PaymentStatus, verifiedAt: z.string().datetime().nullable(), createdAt: z.string().datetime() });
 export const AdminPayment = Payment.extend({ evidence: z.string(), verificationEvidence: z.string().nullable(), verifiedById: Id.nullable() });
 export const Receipt = z.object({ receiptNumber: z.string(), payment: Payment, issuedAt: z.string().datetime() });
-export const Subscription = z.object({ id: Id, customerId: Id, planId: Id, buildingId: Id, status: SubscriptionStatus, startsAt: z.string().datetime().nullable(), endsAt: z.string().datetime().nullable(), externalServiceId: z.string().nullable(), simulated: z.boolean() });
+export const Subscription = z.object({ id: Id, customerId: Id, planId: Id, buildingId: Id, status: SubscriptionStatus, startsAt: z.string().datetime().nullable(), endsAt: z.string().datetime().nullable(), externalServiceId: z.string().nullable(), simulated: z.boolean(), renewalEnabled: z.boolean().optional() });
 export const Ticket = z.object({ id: Id, customerId: Id, subscriptionId: Id.nullable(), subject: z.string(), status: TicketStatus, assignedToId: Id.nullable(), createdAt: z.string().datetime() });
 export const TicketMessage = z.object({ id: Id, ticketId: Id, authorId: Id, message: z.string(), createdAt: z.string().datetime() });
 export const TicketDetail = Ticket.extend({ messages: z.array(TicketMessage) });
@@ -99,3 +99,27 @@ export function createApiClient(baseUrl: string, getToken: () => string | undefi
     return payload as T;
   };
 }
+
+// Stage 5A internal account-credit extension. Historical order payments remain order allocated.
+const Reason=z.string().trim().min(3).max(1000);
+const Key=z.string().uuid();
+const DateTime=z.string().datetime();
+const SignedMoney=z.number().int().min(-1_000_000_000_000).max(1_000_000_000_000);
+export const WalletEntryKind=z.enum(['TOPUP_CREDIT','RESERVE','CAPTURE','RELEASE','ADJUSTMENT_CREDIT','REVERSAL']);
+export const WalletRenewalStatus=z.enum(['RESERVED','PROCESSING','REQUIRES_REVIEW','SUCCEEDED','FAILED']);
+export const RenewalReason=z.enum(['ACCOUNT_INACTIVE','SERVICE_NOT_ENABLED','SERVICE_STATE','MISSING_SERVICE_DATES','PRICE_UNAVAILABLE','PLAN_UNAVAILABLE','COVERAGE_REVIEW','PROVIDER_UNAVAILABLE','RENEWAL_IN_PROGRESS','INSUFFICIENT_FUNDS']);
+export const WalletSummary=z.object({customerId:Id,currency:z.literal('NGN'),postedMinor:Money,reservedMinor:Money,availableMinor:Money,pendingTopUpsMinor:Money,pendingTopUpsCount:z.number().int().nonnegative(),simulated:z.boolean(),topUpInstructions:z.object({mode:z.literal('MANUAL_REPORT'),bankDetails:z.null(),notice:z.string()})});
+export const WalletEntry=z.object({id:Id,walletId:Id,customerId:Id,kind:WalletEntryKind,amountMinor:Money.positive(),postedDeltaMinor:SignedMoney,reservedDeltaMinor:SignedMoney,postedAfterMinor:Money,reservedAfterMinor:Money,reference:z.string(),description:z.string(),actorId:Id.nullable(),topUpId:Id.nullable(),renewalId:Id.nullable(),reversalOfId:Id.nullable(),simulated:z.boolean(),createdAt:DateTime});
+export const ReportWalletTopUpRequest=z.object({amountMinor:Money.positive(),currency:z.literal('NGN'),reference:z.string().trim().min(3).max(150),method:z.enum(['BANK_TRANSFER','OTHER']),evidence:z.string().trim().min(3).max(2000),idempotencyKey:Key}).strict();
+export const WalletTopUp=z.object({id:Id,customerId:Id,allocation:z.literal('WALLET'),amountMinor:Money.positive(),currency:z.literal('NGN'),reference:z.string(),method:z.enum(['BANK_TRANSFER','OTHER']),status:PaymentStatus,verifiedAt:DateTime.nullable(),simulated:z.boolean(),createdAt:DateTime});
+export const AdminWalletTopUp=WalletTopUp.extend({evidence:z.string(),verificationEvidence:z.string().nullable(),verifiedById:Id.nullable()});
+export const WalletAdjustmentRequest=z.object({amountMinor:Money.positive(),reason:Reason,idempotencyKey:Key}).strict();
+export const WalletReversalRequest=z.object({reason:Reason,idempotencyKey:Key}).strict();
+export const WalletRenewalRequest=z.object({priceVersion:DateTime,idempotencyKey:Key}).strict();
+export const RenewalPolicyRequest=z.object({enabled:z.boolean(),reason:Reason}).strict();
+export const RenewalResolutionRequest=z.object({decision:z.enum(['SUCCEEDED','FAILED']),reference:z.string().trim().min(3).max(150),evidence:z.string().trim().min(3).max(2000),authoritative:z.literal(true),confirmedEndsAt:DateTime.optional()}).strict();
+export const WalletRenewal=z.object({id:Id,customerId:Id,subscriptionId:Id,orderId:Id,planId:Id,planName:z.string(),amountMinor:Money.positive(),currency:z.literal('NGN'),billingDays:z.number().int().positive(),status:WalletRenewalStatus,previousEndsAt:DateTime,expectedEndsAt:DateTime,confirmedEndsAt:DateTime.nullable(),providerMode:z.enum(['manual','simulated','disabled']),providerReference:z.string().nullable(),simulated:z.boolean(),createdAt:DateTime,updatedAt:DateTime});
+export const AdminWalletRenewal=WalletRenewal.extend({resolutionEvidence:z.string().nullable(),resolvedById:Id.nullable()});
+export const RenewalEligibility=z.object({subscriptionId:Id,eligible:z.boolean(),reasonCodes:z.array(RenewalReason),amountMinor:Money.nullable(),priceVersion:DateTime.nullable(),billingDays:z.number().int().positive().nullable(),currentEndsAt:DateTime.nullable(),expectedEndsAt:DateTime.nullable(),planName:z.string(),speedMbps:z.number().int().positive().nullable(),wallet:WalletSummary,simulated:z.boolean()});
+export const WalletTopUpQuery=ListQuery.extend({customerId:Id.optional(),status:PaymentStatus.optional()}).strict();
+export const WalletRenewalQuery=ListQuery.extend({customerId:Id.optional(),status:WalletRenewalStatus.optional()}).strict();

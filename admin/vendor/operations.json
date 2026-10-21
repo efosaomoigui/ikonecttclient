@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "4f90e10fbdb9e04fb606109ac5ff3d81145ba18e",
-  "version": "1.0.1",
+  "sourceCommit": "cb05bb65c96c0b5bfff9c0a8a53b275d23659625",
+  "version": "1.1.0",
   "operations": [
     "GET /api/v1/health",
     "POST /api/v1/auth/login",
@@ -76,6 +76,26 @@
     "GET /api/v1/admin/notifications",
     "GET /api/v1/me/notifications",
     "GET /api/v1/capabilities",
-    "POST /api/v1/assistant/guidance"
+    "POST /api/v1/assistant/guidance",
+    "GET /api/v1/me/wallet",
+    "GET /api/v1/me/wallet/transactions",
+    "GET /api/v1/me/wallet/top-ups",
+    "POST /api/v1/me/wallet/top-ups",
+    "GET /api/v1/me/wallet/renewals",
+    "GET /api/v1/me/wallet/renewals/{id}",
+    "GET /api/v1/me/subscriptions/{id}/renewal-eligibility",
+    "POST /api/v1/me/subscriptions/{id}/wallet-renewals",
+    "GET /api/v1/admin/customers/{id}/wallet",
+    "GET /api/v1/admin/customers/{id}/wallet/transactions",
+    "POST /api/v1/admin/customers/{id}/wallet/adjustments",
+    "GET /api/v1/admin/wallet-top-ups",
+    "GET /api/v1/admin/wallet-top-ups/{id}",
+    "POST /api/v1/admin/wallet-top-ups/{id}/verify",
+    "POST /api/v1/admin/wallet-transactions/{id}/reverse",
+    "GET /api/v1/admin/wallet-renewals",
+    "GET /api/v1/admin/wallet-renewals/{id}",
+    "POST /api/v1/admin/wallet-renewals/{id}/process",
+    "POST /api/v1/admin/wallet-renewals/{id}/resolve",
+    "PATCH /api/v1/admin/subscriptions/{id}/renewal-policy"
   ]
 }

@@ -59,6 +59,55 @@ test('DOM: navigation groups collapse independently and retain their state acros
 finally {
     dom.window.close();
 } });
+test('DOM: Support wallet is read-only, ledger is labeled and top-up evidence is inaccessible', async () => { const dom = boot(); try {
+    await preview(dom, 'SUPPORT');
+    const doc = dom.window.document;
+    assert.equal(doc.querySelector('a[href="#/walletTopUps"]'), null);
+    await go(dom, 'customers'); click(dom, '[data-detail]');
+    await waitFor(() => !!doc.querySelector('[data-action^="wallet:view:"]'));
+    assert.match(doc.querySelector('.modal')!.textContent!, /Available credit/);
+    click(dom, '[data-action^="wallet:view:"]');
+    await waitFor(() => !!doc.querySelector('[aria-label="Wallet transactions"]'));
+    assert.match(doc.querySelector('#wallet-view')!.textContent!, /SIMULATED read-only/);
+    assert.match(doc.querySelector('#wallet-view')!.textContent!, /confirmed service debit/i);
+    assert.equal(doc.querySelector('[data-action^="wallet:credit:"]'), null);
+    assert.equal(doc.querySelector('[data-action^="wallet:reverse:"]'), null);
+    assert.equal(doc.querySelector('[data-action^="wallet:topup-detail:"]'), null);
+    click(dom, '[data-action=close]');
+    await go(dom, 'walletRenewals'); click(dom, '[data-detail]');
+    await waitFor(() => !!doc.querySelector('.modal'));
+    assert.equal(doc.querySelector('[data-action^="wallet:process:"]'), null);
+    assert.equal(doc.querySelector('[data-action^="wallet:resolve:"]'), null);
+} finally { dom.window.close(); } });
+test('DOM: Finance sees controlled corrections and uncertain renewal funds but cannot reconcile providers', async () => { const dom = boot(); try {
+    await preview(dom, 'FINANCE'); const doc = dom.window.document;
+    await go(dom, 'customers'); click(dom, '[data-detail]');
+    await waitFor(() => !!doc.querySelector('[data-action^="wallet:view:"]'));
+    click(dom, '[data-action^="wallet:view:"]');
+    await waitFor(() => !!doc.querySelector('[data-action^="wallet:credit:"]'));
+    click(dom, '[data-action^="wallet:credit:"]');
+    assert.ok(doc.querySelector('[name=amountMinor]')); assert.equal(doc.querySelector('[name=balance]'), null);
+    assert.ok(doc.querySelector('textarea[name=reason]'));
+    assert.match(doc.querySelector('#wallet-operation')!.textContent!, /positive credit correction/);
+    click(dom, '[data-action=close]');
+    await go(dom, 'walletRenewals');
+    const rows = [...doc.querySelectorAll('tbody tr')]; rows.find(r => /Requires Review/i.test(r.textContent!))!.querySelector<HTMLButtonElement>('[data-detail]')!.click();
+    await waitFor(() => !!doc.querySelector('.modal'));
+    assert.match(doc.querySelector('.modal')!.textContent!, /Funds remain reserved/);
+    assert.equal(doc.querySelector('[data-action^="wallet:resolve:"]'), null);
+} finally { dom.window.close(); } });
+test('DOM: Provisioner reconciliation requires evidence and expiry while Finance reviews separate wallet allocation', async () => { const dom = boot(); try {
+    await preview(dom, 'PROVISIONER'); const doc = dom.window.document;
+    assert.equal(doc.querySelector('a[href="#/walletTopUps"]'), null);
+    await go(dom, 'walletRenewals');
+    [...doc.querySelectorAll('tbody tr')].find(r => /Requires Review/i.test(r.textContent!))!.querySelector<HTMLButtonElement>('[data-detail]')!.click();
+    await waitFor(() => !!doc.querySelector('[data-action^="wallet:resolve:"]'));
+    click(dom, '[data-action^="wallet:resolve:"]');
+    await waitFor(() => !!doc.querySelector('#wallet-operation'));
+    assert.ok(doc.querySelector('[name=authoritative][required]'));
+    assert.ok(doc.querySelector('[name=confirmedEndsAt]'));
+    assert.match(doc.querySelector('#wallet-operation')!.textContent!, /authoritative expiry/);
+} finally { dom.window.close(); } });
 test('DOM: customer search, detail, create form and saved record', async () => { const dom = boot(); try {
     await preview(dom);
     await go(dom, 'customers');
