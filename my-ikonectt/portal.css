@@ -1647,6 +1647,29 @@ html {
 }
 
 /* Screenshot-guided refinement: preserve composition and type families. */
+#app:has(> .public-header) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+.public-main { flex: 1; }
+.public-header { width: 100%; padding-block: 18px; }
+footer { padding-block: 14px; gap: 16px; }
+footer p { margin-top: 4px; }
+.auth-main { display: grid; align-items: center; }
+.auth-layout { width: 100%; padding-block: 20px 24px; }
+.auth-story { min-height: 540px; padding: 32px; }
+.auth-panel { padding-block: 0; }
+.auth-panel .back { margin-bottom: 14px; }
+.auth-panel > .eyebrow { margin-block: 12px 10px; }
+.auth-panel h2 { margin-bottom: 12px; }
+.auth-panel form { margin-block: 18px 12px; }
+.auth-panel label { margin-block: 12px; }
+.auth-panel input { padding-block: 11px; }
+.auth-panel form .button { padding-block: 13px; }
+.auth-panel .notice { padding: 12px; margin-bottom: 14px; }
+.auth-panel .setup-link { margin-top: 10px; }
+.auth-panel .subtle-note { margin-block: 14px 0; }
 .brand img,
 .sidebar .brand img,
 .receipt-logo {

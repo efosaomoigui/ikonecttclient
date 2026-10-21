@@ -42,10 +42,10 @@ const date = (v) =>
     : "Not available";
 const link = (path, text, cls = "") =>
   `<a class="${cls}" href="#/${path}">${text}</a>`;
-const logo = () =>
+const logo = (withLabel = true) =>
   link(
     "",
-    '<img src="assets/logo-red.png" alt="Ikonectt"><span>MY IKONECTT</span>',
+    '<img src="assets/logo-red.png" alt="Ikonectt">' + (withLabel ? '<span>MY IKONECTT</span>' : ''),
     "brand",
   );
 const arrow = '<span aria-hidden="true">↗</span>';
@@ -79,7 +79,7 @@ const pill = (s) =>
 const empty = (heading, body) =>
   `<div class="empty"><span aria-hidden="true">◎</span><h3>${heading}</h3><p>${body}</p></div>`;
 function publicShell(body) {
-  return `<header class="public-header">${logo()}<nav aria-label="Main navigation">${link("", "Welcome")}${link("help", "Need help?")}${link("login", `Sign in ${arrow}`, "button small")}</nav></header><main id="main" tabindex="-1">${body}</main><footer><div>${logo()}<p>A little closer to everything that matters.</p></div><div>${link("help", "Account help")}<span>© ${new Date().getFullYear()} Ikonectt</span></div></footer>`;
+  return `<header class="public-header">${logo(false)}<nav aria-label="Main navigation">${link("", "Home")}${link("help", "Need help?")}${link("login", `Sign in ${arrow}`, "button small")}</nav></header><main id="main" class="public-main ${body.includes('class="auth-layout"') ? 'auth-main' : ''}" tabindex="-1">${body}</main><footer><div>${logo(false)}<p>A little closer to everything that matters.</p></div><div>${link("help", "Account help")}<span>© ${new Date().getFullYear()} Ikonectt</span></div></footer>`;
 }
 function welcome() {
   return publicShell(
@@ -130,7 +130,7 @@ function password(name, label, autocomplete = "current-password") {
 }
 function authPage(recovery = false) {
   return publicShell(
-    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to welcome", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Set up or recover your account", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
+    `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to home", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Set up or recover your account", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
   );
 }
 function tickets(items) {
