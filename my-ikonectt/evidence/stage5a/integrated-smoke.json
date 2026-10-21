@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-21",
+  "preview": "http://127.0.0.1:4176/",
+  "mode": "live API with SIMULATED records",
+  "financialMutations": 0,
+  "account": "84375004",
+  "wallet": {
+    "availableMinor": 550000,
+    "reservedMinor": 0,
+    "pendingTopUpsMinor": 0
+  },
+  "ledgerEntries": 5,
+  "service": {
+    "status": "Active",
+    "expiryDisplay": "20 Dec 2026"
+  },
+  "quote": {
+    "amountMinor": 1950000,
+    "insufficientFunds": true,
+    "confirmationControls": 0
+  },
+  "mobile": {
+    "horizontalOverflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  }
+}
