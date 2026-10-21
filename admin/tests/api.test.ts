@@ -27,6 +27,16 @@ test('list query handling accepts coverage filters and rejects unsupported searc
 test('typed write response rejects a customer creation response missing its secure setup result',async()=>{
     const api=preview();api.mode='live';globalThis.fetch=async()=>Response.json(api.data.customers[0]);await assert.rejects(api.save('customers',{name:'Example',kind:'RESIDENTIAL',email:'example@example.test',phone:'+2348000000000'}),/does not match API/);
 });
+test('unconnected settlement capability remains visibly unavailable without a provider action', async () => {
+    const calls: string[] = [];
+    const api = new WorkspaceApi('', async (url) => { calls.push(String(url)); return Response.json({ paymentSettlement: 'not-connected' }); });
+    api.preview('ADMIN'); api.mode = 'live';
+    const response = await api.integrations();
+    assert.equal(Array.isArray(response), false);
+    const capability = response as Record<string, string>;
+    assert.equal(integrationState({ mode: capability.paymentSettlement }).status, 'NOT_CONFIGURED');
+    assert.deepEqual(calls, ['/api/v1/admin/integrations']);
+});
 test('published API v1 native coverage mode is recognized', () => {
     assert.equal(integrationState({mode:'native'}).status, 'CONNECTED');
 });
