@@ -6,6 +6,8 @@ import {Contract,present,ZodPipe} from '../core/http';
 import {Actor,CurrentActor,CustomerOnly,Require} from '../identity/access';
 import {WalletService} from './wallet.service';
 import {RenewalProvider} from './renewal.provider';
+import {SettlementAdapter,DisabledSettlementAdapter} from './settlement.adapter';
+import {SettlementService} from './settlement.service';
 
 async function page(model:any,query:{offset:number;limit:number},where:any={}){
  const [items,total]=await Promise.all([model.findMany({where,skip:query.offset,take:query.limit,orderBy:[{createdAt:'desc'},{id:'desc'}]}),model.count({where})]);return {items,total,offset:query.offset,limit:query.limit};
@@ -78,5 +80,5 @@ export class RenewalPolicyController{
  @Require('provisioning.write') @Patch(':id/renewal-policy') @Contract(C.Subscription,C.RenewalPolicyRequest)
  async policy(@CurrentActor() a:Actor,@Param('id',new ZodPipe(C.Id)) id:string,@Body(new ZodPipe(C.RenewalPolicyRequest)) b:C.Input<typeof C.RenewalPolicyRequest>){return present(C.Subscription,await this.wallets.policy(a,id,b))}
 }
-@Module({controllers:[CustomerWalletController,CustomerWalletRenewalController,AdminWalletController,AdminTopUpController,WalletCorrectionController,AdminRenewalController,RenewalPolicyController],providers:[WalletService,RenewalProvider]})
+@Module({controllers:[CustomerWalletController,CustomerWalletRenewalController,AdminWalletController,AdminTopUpController,WalletCorrectionController,AdminRenewalController,RenewalPolicyController],providers:[WalletService,RenewalProvider,SettlementService,{provide:SettlementAdapter,useClass:DisabledSettlementAdapter}],exports:[SettlementService]})
 export class WalletModule{}

@@ -1,6 +1,6 @@
 # Stage 5A internal wallet and renewal accounting
 
-API1.1.0 is additive to Stage4. This is internal, non-transferable customer account credit. There is no withdrawal, bank account, cash-out, inter-customer transfer, gateway or external wallet payment capability.
+API1.2.0 includes the superseding settlement clarification. This is internal, non-transferable customer account credit. There is no withdrawal, bank account, cash-out, inter-customer transfer, connected gateway or external wallet payment capability. See `contracts/SETTLEMENT_HANDOFF.md`.
 
 ## Persistence and allocation
 
@@ -11,6 +11,7 @@ One `Wallet` per `Customer` is opened automatically by a database trigger, inclu
 | Entry | Posted delta | Reserved delta | Result |
 | --- | --- | --- | --- |
 | TOPUP_CREDIT | +amount | 0 | Only a verified wallet-allocated top-up |
+| SETTLEMENT_CREDIT | +amount | 0 | Validated approved-provider settlement, system actor, unique registered payment/event |
 | ADJUSTMENT_CREDIT | +amount | 0 | Authorized correction with reason |
 | RESERVE | 0 | +amount | Spendable funds become held |
 | CAPTURE | −amount | −amount | Confirmed service outcome spends the hold |
@@ -22,6 +23,8 @@ All storage uses PostgreSQL BIGINT NGN minor units; API bounds are1000000000000m
 Services use serializable transactions, wallet/subscription row locks, unique operation keys, unique per-customer idempotency keys and a partial unique pending-renewal index. PostgreSQL serialization/deadlock failures are retried for Prisma P2034 and raw lock-query P2010/40001/40P01, then yield an explicit conflict. Provider calls occur outside the DB transaction after one persisted PROCESSING claim. No network retry is performed merely because an HTTP request is repeated.
 
 ## Renewal contract
+
+Wallet funding and service activation are independent. Zero/positive funds and active/inactive services are all valid combinations. A settled payment never creates an order/renewal/provisioning job or changes subscription state. No recurring renewal exists. The customer explicitly confirms the quote; only then can reservation and separate authorized service processing begin.
 
 ```mermaid
 stateDiagram-v2

@@ -374,6 +374,7 @@ model Wallet {
   entries WalletEntry[]
   topUps WalletTopUp[]
   renewals WalletRenewal[]
+  settlementPayments SettlementPayment[]
   createdAt DateTime @default(now())
   @@unique([id,customerId])
 }
@@ -462,10 +463,54 @@ model WalletEntry {
   renewalId String? @db.Uuid
   renewal WalletRenewal? @relation(fields:[renewalId],references:[id])
   reversalOfId String? @unique @db.Uuid
+  settlementPaymentId String? @unique @db.Uuid
+  settlementPayment SettlementPayment? @relation(fields:[settlementPaymentId],references:[id],onDelete:Restrict,onUpdate:NoAction)
   reversalOf WalletEntry? @relation("Compensation",fields:[reversalOfId],references:[id])
   reversedBy WalletEntry? @relation("Compensation")
   simulated Boolean @default(false)
   createdAt DateTime @default(now())
   @@unique([renewalId,kind])
   @@index([customerId,createdAt])
+}
+
+// Registered by trusted checkout code, never by an unauthenticated callback.
+// A provider settlement funds WALLET only and never changes an order/service.
+model SettlementPayment {
+  id String @id @default(uuid()) @db.Uuid
+  walletId String @db.Uuid
+  customerId String @db.Uuid
+  wallet Wallet @relation(fields:[walletId,customerId],references:[id,customerId],onDelete:Restrict,onUpdate:NoAction)
+  provider String
+  providerAccount String
+  providerPaymentId String
+  merchantReference String @unique
+  amountMinor BigInt
+  currency String @default("NGN")
+  status String @default("PENDING")
+  settledAt DateTime?
+  settlementReference String?
+  idempotencyKey String @db.Uuid
+  requestFingerprint String
+  simulated Boolean @default(false)
+  entry WalletEntry?
+  events SettlementEvent[]
+  createdAt DateTime @default(now())
+  @@unique([customerId,idempotencyKey])
+  @@unique([provider,providerAccount,providerPaymentId])
+  @@index([customerId,createdAt])
+}
+model SettlementEvent {
+  id String @id @default(uuid()) @db.Uuid
+  paymentId String @db.Uuid
+  payment SettlementPayment @relation(fields:[paymentId],references:[id],onDelete:Restrict,onUpdate:NoAction)
+  provider String
+  providerAccount String
+  eventId String
+  payloadDigest String
+  providerStatus String
+  outcome String
+  verifiedAt DateTime @default(now())
+  createdAt DateTime @default(now())
+  @@unique([provider,providerAccount,eventId])
+  @@index([paymentId])
 }

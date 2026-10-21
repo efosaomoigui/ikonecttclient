@@ -1,5 +1,9 @@
 # API changes
 
+## 1.2.0 - 2026-10-21
+
+Clarified settlement-first funding: verified approved-provider settlement automatically credits the ledger-backed wallet, independently of service state. Adds SETTLEMENT_CREDIT and optional nullable settlementPaymentId to ledger responses; preserves 78 paths/95 operations and roles. Consumers must synchronize their strict enum snapshots. Capability paymentSettlement is explicitly not-connected. No public callback/checkout route is exposed while the approved provider is unconfigured. Existing manual reports remain Finance-verified; historical order payments remain consumed/order allocated. See SETTLEMENT_HANDOFF.md for the internal verified-event boundary, allocation rules and renewal independence.
+
 ## 1.1.0 - 2026-10-21
 
 Additive Stage5A internal wallet/top-up/renewal extension: 78paths/95operations. Separate allocation, authoritative ledger/holds, explicit renewal price and policy, credit corrections/compensating reversals, existing-role permissions. Historical order payments never become opening wallet credit. See WALLET_HANDOFF.md. No live provider connected.

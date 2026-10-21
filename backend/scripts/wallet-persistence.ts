@@ -17,7 +17,11 @@ async function main(){
  const records=[];
  for(const customerId of customers){
   const wallet=await db.wallet.findUniqueOrThrow({where:{customerId}});
-  const entries=await db.walletEntry.findMany({where:{walletId:wallet.id},orderBy:{id:'asc'}});
+  // These two legacy acceptance fixtures predate provider settlement. Select their original
+  // scalar ledger fields explicitly so additive nullable metadata leaves the hash stable,
+  // and the pre-migration check works with a newly generated client. Settlement source
+  // reconciliation itself is checked by SettlementService.reconcile and its integration tests.
+  const entries=await db.walletEntry.findMany({where:{walletId:wallet.id},orderBy:{id:'asc'},select:{id:true,walletId:true,customerId:true,kind:true,amountMinor:true,postedDeltaMinor:true,reservedDeltaMinor:true,postedAfterMinor:true,reservedAfterMinor:true,reference:true,operationKey:true,requestFingerprint:true,description:true,actorId:true,topUpId:true,renewalId:true,reversalOfId:true,simulated:true,createdAt:true}});
   const topUps=await db.walletTopUp.findMany({where:{customerId},orderBy:{id:'asc'}});
   const renewals=await db.walletRenewal.findMany({where:{customerId},orderBy:{id:'asc'}});
   const subscriptions=await db.subscription.findMany({where:{customerId},orderBy:{id:'asc'}});

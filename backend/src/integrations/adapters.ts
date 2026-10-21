@@ -67,7 +67,7 @@ export class Adapters {
     this.sms = config.values.SMS_ADAPTER === 'simulated' ? new SimulatedMessagingProvider(simulator) : { send: () => disabled.unavailable() };
   }
   capabilities() {
-    return { payments: this.config.values.PAYMENT_ADAPTER, provisioning: this.config.values.PROVISIONING_ADAPTER, legacy: this.config.values.LEGACY_ADAPTER, email: this.config.values.EMAIL_ADAPTER, sms: this.config.values.SMS_ADAPTER, coverage: this.config.values.COVERAGE_ADAPTER, ai: 'guidance-only-no-model', usage: 'not-connected' };
+    return { payments: this.config.values.PAYMENT_ADAPTER, paymentSettlement: 'not-connected', provisioning: this.config.values.PROVISIONING_ADAPTER, legacy: this.config.values.LEGACY_ADAPTER, email: this.config.values.EMAIL_ADAPTER, sms: this.config.values.SMS_ADAPTER, coverage: this.config.values.COVERAGE_ADAPTER, ai: 'guidance-only-no-model', usage: 'not-connected' };
   }
 }
 @Global()

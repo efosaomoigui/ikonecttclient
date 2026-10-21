@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const API_VERSION = '1.1.0';
+export const API_VERSION = '1.2.0';
 export const API_PREFIX = '/api/v1';
 export const Id = z.string().uuid();
 const Text = z.string().trim().min(1).max(250);
@@ -105,11 +105,11 @@ const Reason=z.string().trim().min(3).max(1000);
 const Key=z.string().uuid();
 const DateTime=z.string().datetime();
 const SignedMoney=z.number().int().min(-1_000_000_000_000).max(1_000_000_000_000);
-export const WalletEntryKind=z.enum(['TOPUP_CREDIT','RESERVE','CAPTURE','RELEASE','ADJUSTMENT_CREDIT','REVERSAL']);
+export const WalletEntryKind=z.enum(['TOPUP_CREDIT','SETTLEMENT_CREDIT','RESERVE','CAPTURE','RELEASE','ADJUSTMENT_CREDIT','REVERSAL']);
 export const WalletRenewalStatus=z.enum(['RESERVED','PROCESSING','REQUIRES_REVIEW','SUCCEEDED','FAILED']);
 export const RenewalReason=z.enum(['ACCOUNT_INACTIVE','SERVICE_NOT_ENABLED','SERVICE_STATE','MISSING_SERVICE_DATES','PRICE_UNAVAILABLE','PLAN_UNAVAILABLE','COVERAGE_REVIEW','PROVIDER_UNAVAILABLE','RENEWAL_IN_PROGRESS','INSUFFICIENT_FUNDS']);
 export const WalletSummary=z.object({customerId:Id,currency:z.literal('NGN'),postedMinor:Money,reservedMinor:Money,availableMinor:Money,pendingTopUpsMinor:Money,pendingTopUpsCount:z.number().int().nonnegative(),simulated:z.boolean(),topUpInstructions:z.object({mode:z.literal('MANUAL_REPORT'),bankDetails:z.null(),notice:z.string()})});
-export const WalletEntry=z.object({id:Id,walletId:Id,customerId:Id,kind:WalletEntryKind,amountMinor:Money.positive(),postedDeltaMinor:SignedMoney,reservedDeltaMinor:SignedMoney,postedAfterMinor:Money,reservedAfterMinor:Money,reference:z.string(),description:z.string(),actorId:Id.nullable(),topUpId:Id.nullable(),renewalId:Id.nullable(),reversalOfId:Id.nullable(),simulated:z.boolean(),createdAt:DateTime});
+export const WalletEntry=z.object({id:Id,walletId:Id,customerId:Id,kind:WalletEntryKind,amountMinor:Money.positive(),postedDeltaMinor:SignedMoney,reservedDeltaMinor:SignedMoney,postedAfterMinor:Money,reservedAfterMinor:Money,reference:z.string(),description:z.string(),actorId:Id.nullable(),topUpId:Id.nullable(),settlementPaymentId:Id.nullable().optional(),renewalId:Id.nullable(),reversalOfId:Id.nullable(),simulated:z.boolean(),createdAt:DateTime});
 export const ReportWalletTopUpRequest=z.object({amountMinor:Money.positive(),currency:z.literal('NGN'),reference:z.string().trim().min(3).max(150),method:z.enum(['BANK_TRANSFER','OTHER']),evidence:z.string().trim().min(3).max(2000),idempotencyKey:Key}).strict();
 export const WalletTopUp=z.object({id:Id,customerId:Id,allocation:z.literal('WALLET'),amountMinor:Money.positive(),currency:z.literal('NGN'),reference:z.string(),method:z.enum(['BANK_TRANSFER','OTHER']),status:PaymentStatus,verifiedAt:DateTime.nullable(),simulated:z.boolean(),createdAt:DateTime});
 export const AdminWalletTopUp=WalletTopUp.extend({evidence:z.string(),verificationEvidence:z.string().nullable(),verifiedById:Id.nullable()});

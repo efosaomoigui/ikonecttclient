@@ -1,4 +1,4 @@
-# Canonical API v1.1.0 endpoint and permission map
+# Canonical API v1.2.0 endpoint and permission map
 
 Generated from the actual NestJS route and guard metadata. All successful writes return HTTP 200.
 Customer data ownership is checked inside the application in addition to route permissions.
