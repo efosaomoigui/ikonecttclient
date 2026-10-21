@@ -39,6 +39,12 @@ The separate timeout customer account `19544104` was inspected read-only. Renewa
 
 After the backend owner's controlled restart, a fresh login and read-only browser navigation verified the main wallet still has available ₦5,500 / reserved ₦0 / pending ₦0. The ledger contains exactly **five** records: original top-up credit, reservation, renewal debit, the Admin owner's separately authorized ₦100 correction and its complete compensating reversal. The reversal shows -₦100 and the correction +₦100, preserving both records and returning the posted balance to ₦5,500. The portal made no further financial mutations. Evidence: `live-persisted-ledger.png`, `mobile-ledger.png`, `live-final-wallet.png`. The mobile ledger has five entries and no horizontal overflow at 390 CSS pixels. The repaired sidebar sign-out was also exercised successfully before the final login.
 
+## Integrated compiled build smoke
+
+The root owner's compiled production assets on `http://127.0.0.1:4176/` were checked with the same isolated account, separately from the owner preview on 4195. The read-only browser smoke verified available ₦5,500 / reserved ₦0 / pending ₦0, five preserved ledger entries, Active service with 20 Dec 2026 expiry, and the ₦19,500 quote blocked by insufficient funds with zero confirmation controls. The 390px mobile quote had no horizontal overflow; the viewport was reset. The desktop app restart interrupted the first pass after wallet/ledger checks, so the restored preview was reopened and service/quote/mobile checks completed after a fresh login. No financial mutation occurred in either pass.
+
+Evidence: `integrated-wallet-desktop.png`, `integrated-insufficient-quote.png`, `integrated-quote-mobile.png`, and machine-readable `integrated-smoke.json` in `evidence/stage5a/`. The root owner separately reports integrated 26-test, typecheck, build and canonical-parity checks passed.
+
 ## Layout checks
 
 The existing Home/public branding, image label, compact footer, approved typography and sidebar presentation are preserved. Wallet balances stack on narrow screens; actions, long references and ledger records wrap. Live wallet checks at approximately 320 and 390 CSS pixels showed no horizontal overflow. Outcome checks at approximately 320, 390, 768, 1024 and 1280 CSS pixels also passed without horizontal overflow. `mobile-wallet.png` records the mobile pending state; `mobile-timeout-review.png` records the mobile review outcome. Viewport overrides were reset after checks.
