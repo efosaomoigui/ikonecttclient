@@ -1,0 +1,5 @@
+{
+  "text": "Wallet Renewals\nWallet renewal\nReference\nc232441f-1784-44d9-908a-f58cf302ed12\nCustomer\nSIMULATED Stage5A timeout d6ec3f94\nSubscription\n5d20e0dc…b74f\nOrder\n3ee9cfe0…4a5c\nPlan\ne49bf975…a98f\nPlan\nSIMULATED Stage5A d6ec3f94\nAmount\n₦19,500.00\nCurrency\nNGN\nPeriod\n30 days\nStatus\nRequires Review\nPreviousendsat\n20 Nov 2026\nExpectedendsat\n20 Dec 2026\nConfirmedendsat\n—\nProvidermode\nsimulated\nProviderreference\nREVIEW-c232441f-1784-44d9-908a-f58cf302ed12\nData source\nSimulated\nCreated\n21 Oct 2026\nUpdated\n21 Oct 2026\nResolutionevidence\nProvider timeout or settlement uncertainty; do not retry the external request blindly\nResolvedbyid\n—\nSIMULATED development renewal. Funds remain reserved. A request acknowledgement or timeout is not service success. Provider: simulated.\n\nExpected period end (quote): 2026-12-20T02:20:43.776Z. Confirmed end: Not confirmed.\n\nClose",
+  "financeCanResolve": 0,
+  "financeCanProcess": 0
+}

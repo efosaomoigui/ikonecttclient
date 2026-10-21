@@ -41,3 +41,23 @@ test('wallet UI freezes one reviewed financial intent and UUID across an ambiguo
         Object.assign(globalThis, { document: previousDocument, FormData: previousFormData }); dom.window.close();
     }
 });
+test('wallet UI keeps a known reversed credit in history without offering a second reversal', async () => {
+    const dom = new JSDOM('<body></body>');
+    const previousDocument = globalThis.document;
+    Object.assign(globalThis, { document: dom.window.document });
+    const api = new WorkspaceApi(); api.preview('FINANCE');
+    const basis = api.data.walletEntries[0];
+    api.data.walletEntries.unshift(
+        { ...basis, id: uuid(601), kind: 'ADJUSTMENT_CREDIT', amountMinor: 10000, postedDeltaMinor: 10000, postedAfterMinor: 560000, reference: 'SIMULATED-CREDIT-CORRECTION', topUpId: null },
+        { ...basis, id: uuid(602), kind: 'REVERSAL', amountMinor: 10000, postedDeltaMinor: -10000, postedAfterMinor: 550000, reference: 'SIMULATED-CREDIT-REVERSAL', topUpId: null, reversalOfId: uuid(601) }
+    );
+    const ui = new WalletUi({ api, walletApi: new WalletApi(api), openModal: html => { document.body.innerHTML = html; }, closeModal: () => { document.body.innerHTML = ''; }, modalHeader: t => `<h2>${t}</h2>`, button: (label, action) => `<button type="button" data-action="${action}">${label}</button>`, esc: v => String(v ?? ''), money: n => String(n), badge: v => String(v), date: v => v, toast: () => {}, friendly: e => String(e), refresh: async () => {}, details: async () => {} });
+    try {
+        await ui.view(uuid(1));
+        const rows = [...document.querySelectorAll('tbody tr')];
+        const correction = rows.find(row => row.textContent!.includes('SIMULATED-CREDIT-CORRECTION'))!;
+        assert.match(correction.textContent!, /Reversed/);
+        assert.equal(correction.querySelector('[data-action^="wallet:reverse:"]'), null);
+        assert.ok(rows.some(row => row.textContent!.includes('SIMULATED-CREDIT-REVERSAL')));
+    } finally { Object.assign(globalThis, { document: previousDocument }); dom.window.close(); }
+});

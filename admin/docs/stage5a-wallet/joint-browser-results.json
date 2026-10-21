@@ -1,0 +1,65 @@
+[
+  {
+    "step": "initial wallet",
+    "customerId": "83028c05-b524-4c91-8288-c3c8373c970f",
+    "accountNumber": "84375004",
+    "availableMinor": 0,
+    "reservedMinor": 0,
+    "pendingTopUpsMinor": 0,
+    "ledgerEntries": 0
+  },
+  {
+    "step": "reported top-up",
+    "topUpId": "7bd78286-1694-4559-be69-71edcfd6e44d",
+    "allocation": "WALLET",
+    "amountMinor": 2500000,
+    "status": "REPORTED",
+    "simulated": true
+  },
+  {
+    "step": "Finance confirmation",
+    "topUpId": "7bd78286-1694-4559-be69-71edcfd6e44d",
+    "status": "CONFIRMED",
+    "availableMinor": 2500000,
+    "reservedMinor": 0,
+    "pendingTopUpsMinor": 0,
+    "ledgerEntries": 1,
+    "kind": "TOPUP_CREDIT"
+  },
+  {
+    "step": "separate Provisioner processing",
+    "renewalId": "e63ad55e-d577-48b0-beb6-a2dfe168f26c",
+    "amountMinor": 1950000,
+    "status": "SUCCEEDED",
+    "simulated": true,
+    "previousEndsAt": "2026-11-20T02:20:46.219Z",
+    "expectedEndsAt": "2026-12-20T02:20:46.219Z",
+    "confirmedEndsAt": "2026-12-20T02:20:46.219Z",
+    "processControlRemoved": true
+  },
+  {
+    "step": "Finance final main journey readback",
+    "customerId": "83028c05-b524-4c91-8288-c3c8373c970f",
+    "availableMinor": 550000,
+    "reservedMinor": 0,
+    "pendingTopUpsMinor": 0,
+    "ledgerEntries": 3,
+    "kinds": [
+      "TOPUP_CREDIT",
+      "RESERVE",
+      "CAPTURE"
+    ],
+    "subscriptionStatus": "ACTIVE",
+    "subscriptionEndsDate": "2026-12-20"
+  },
+  {
+    "step": "net zero controlled correction",
+    "creditMinor": 10000,
+    "reversalMinor": 10000,
+    "correctionEntryId": "15904ab0-2dc9-4bb9-a789-6445c06c2394",
+    "availableMinor": 550000,
+    "reservedMinor": 0,
+    "ledgerEntries": 5,
+    "originalHistoryRetained": true
+  }
+]
