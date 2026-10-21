@@ -1,6 +1,7 @@
 import {setupCodeError,setupCodeLimits} from "./form-validation.js";
 import { api } from "./api.js";
 import { customerGreeting } from "./live.js";
+import { updateAccountPage, setAccountPagePending } from "./navigation.js";
 import { config } from "./config.js";
 import { demoCredentials } from "./fixtures.js";
 import {
@@ -394,25 +395,34 @@ async function render() {
     notice = "";
     return;
   }
-  root.innerHTML =
-    '<main id="main" class="loading" role="status">Getting your account ready…</main>';
+  if (!setAccountPagePending(root, true, names[route] || routeNames[route] || "Account"))
+    root.innerHTML = '<main id="main" class="loading" role="status">Getting your account ready…</main>';
   try {
+    let nextCustomer = customer;
     if (!customer || (config.mode === "live" && !customer.mustChangePassword))
-      customer = await api.resume();
-    if (customer.mustChangePassword) {
+      nextCustomer = await api.resume();
+    if (tick !== version) return;
+    if (nextCustomer.mustChangePassword) {
       if (route !== "security") {
         location.hash = "/security";
         return;
       }
-      data = { profile: customer };
-    } else if (!data || config.mode === "live") data = await api.summary();
-    aux = customer.mustChangePassword
-      ? {}
-      : await loadJourney(route, id, api, data);
+    }
+    const nextData = nextCustomer.mustChangePassword
+      ? { profile: nextCustomer }
+      : (!data || config.mode === "live") ? await api.summary(route, nextCustomer) : data;
     if (tick !== version) return;
-    root.innerHTML = shell(content(route, id), route);
+    const nextAux = nextCustomer.mustChangePassword
+      ? {}
+      : await loadJourney(route, id, api, nextData);
+    if (tick !== version) return;
+    customer = nextCustomer;
+    data = nextData;
+    aux = nextAux;
+    const mounted = updateAccountPage(root, shell(content(route, id), route));
     notice = "";
-    bind();
+    if (mounted) bindShell();
+    bind(root.querySelector("#main"));
     document.querySelector("#main")?.focus({ preventScroll: true });
     window.scrollTo(0, 0);
   } catch (e) {
@@ -423,19 +433,21 @@ async function render() {
       notice = "Please sign in to access your account.";
       location.hash = "/login";
     } else {
-      root.innerHTML = publicShell(
-        `<section class="section"><h1>We couldn’t load your account.</h1><p role="alert">${esc(e.message)}</p><button class="button" data-retry>Try again</button> ${link("login", "Back to sign in")}</section>`,
-      );
-      bind();
+      const message = `<section class="section"><h1>We couldn’t load this page.</h1><p role="alert">${esc(e.message)}</p><button class="button" data-retry>Try again</button> ${link("login", "Back to sign in")}</section>`;
+      const main = root.querySelector(".app-shell #main");
+      if (main) {
+        main.innerHTML = message;
+        setAccountPagePending(root, false);
+        bind(main);
+      } else {
+        root.innerHTML = publicShell(message);
+        bind();
+      }
     }
   }
 }
-function bind() {
-  root.querySelectorAll('.sidebar nav a').forEach(link=>link.addEventListener('click',event=>{if(link.hash===location.hash){event.preventDefault();data=null;render();}}));
-  root
-    .querySelector(".sidebar nav a.active")
-    ?.setAttribute("aria-current", "page");
-  root.querySelectorAll("[data-reveal]").forEach(
+function bind(scope = root) {
+  scope.querySelectorAll("[data-reveal]").forEach(
     (b) =>
       (b.onclick = () => {
         const i = document.getElementById(b.dataset.reveal);
@@ -448,17 +460,33 @@ function bind() {
         );
       }),
   );
-  root.querySelector("[data-retry]")?.addEventListener("click", render);
-  root
+  scope.querySelector("[data-retry]")?.addEventListener("click", render);
+  scope
     .querySelector("[data-print]")
     ?.addEventListener("click", () => window.print());
-  root.querySelector("[data-chat]")?.addEventListener("click", () =>
+  scope.querySelector("[data-chat]")?.addEventListener("click", () =>
     window.dispatchEvent(
       new CustomEvent("ikonectt:customer-care-open", {
         detail: { source: "customer-portal" },
       }),
     ),
   );
+  document.querySelector(".skip").onclick = (e) => {
+    e.preventDefault();
+    document.querySelector("#main")?.focus();
+  };
+  scope.querySelectorAll("form").forEach((f) => {
+    f.addEventListener("submit", submit);
+    if (["reset", "password"].includes(f.dataset.form))
+      f.addEventListener("input", () => {
+        const error = f.querySelector(".form-error");
+        if (error) error.textContent = "";
+      });
+  });
+}
+function bindShell() {
+  root.querySelectorAll('.sidebar nav a').forEach(link=>link.addEventListener('click',event=>{if(link.hash===location.hash){event.preventDefault();render();}}));
+  root.querySelector(".sidebar nav a.active")?.setAttribute("aria-current", "page");
   root.querySelector(".menu-toggle")?.addEventListener("click", (e) => {
     const open = root.querySelector(".app-shell").classList.toggle("nav-open");
     e.currentTarget.setAttribute("aria-expanded", String(open));
@@ -476,16 +504,6 @@ function bind() {
       location.hash = "/login";
     }
   });
-  document.querySelector(".skip").onclick = (e) => {
-    e.preventDefault();
-    document.querySelector("#main")?.focus();
-  };
-  root
-    .querySelectorAll("form")
-    .forEach((f) => {
-      f.addEventListener("submit",submit);
-      if(["reset","password"].includes(f.dataset.form)) f.addEventListener("input",()=>{const error=f.querySelector(".form-error");if(error)error.textContent="";});
-    });
 }
 async function submit(e) {
   e.preventDefault();

@@ -77,7 +77,7 @@ export interface PortalAdapter {
   recover(accountNumber: string): Promise<{ message: string }>;
   resetPassword(token: string, password: string): Promise<void>;
   changePassword(current: string, next: string): Promise<void>;
-  summary(): Promise<Summary>;
+  summary(route?: string, profile?: Profile): Promise<Summary>;
   updateProfile(phone: string): Promise<Profile>;
   plans(): Promise<C.PlanContract[]>;
   orders(): Promise<C.OrderContract[]>;

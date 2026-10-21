@@ -1084,6 +1084,8 @@ th {
   place-items: center;
   color: #666;
 }
+.breadcrumb .route-status { margin-left: 12px; color: #606763; font-size: 11px; }
+.dashboard[aria-busy="true"] { cursor: progress; }
 .menu-toggle {
   display: none;
 }

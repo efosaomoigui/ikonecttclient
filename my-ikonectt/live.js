@@ -102,11 +102,14 @@ export function receiptView(r, orders = []) {
   };
 }
 export function createLiveAdapter({ base = config.apiBase, transport } = {}) {
-  let token, principal, expiryTimer;
+  let token, principal, expiryTimer, snapshot;
+  let summaryVersion = 0;
   const capabilities = { notifications: true, chat: false, guidance: false };
   const clear = () => {
     token = undefined;
     principal = undefined;
+    snapshot = undefined;
+    summaryVersion++;
     clearTimeout(expiryTimer);
   };
   const expired = () => {
@@ -135,6 +138,8 @@ export function createLiveAdapter({ base = config.apiBase, transport } = {}) {
   return {
     capabilities,
     async login(accountNumber, password) {
+      snapshot = undefined;
+      summaryVersion++;
       const session = await client.login({ accountNumber, password });
       if (session.principal.kind !== "CUSTOMER")
         throw new Error("Please use a customer account to access My Ikonectt.");
@@ -184,31 +189,41 @@ export function createLiveAdapter({ base = config.apiBase, transport } = {}) {
       await client.changePassword({ currentPassword, password });
       clear();
     },
-    async summary() {
-      const [
-        dashboard,
-        subscriptions,
-        plans,
-        orders,
-        payments,
-        tickets,
-        notifications,
-        providerCapabilities,
-      ] = await Promise.all([
-        client.dashboard(),
-        client.subscriptions(),
-        client.plans(),
-        client.orders(),
-        client.payments(),
-        client.tickets(),
-        client.notifications(),
-        client.capabilities(),
+    async summary(route = "overview", profile) {
+      const tick = ++summaryVersion;
+      const next = {
+        subscriptions: [], plans: [], orders: [], payments: [], tickets: [],
+        receipts: [], notifications: [], providerCapabilities: {}, ...snapshot,
+      };
+      if (profile) next.customer = profile;
+      const resources = {
+        subscriptions: () => client.subscriptions(),
+        plans: () => client.plans(),
+        orders: () => client.orders(),
+        payments: () => client.payments(),
+        tickets: () => client.tickets(),
+        notifications: () => client.notifications(),
+        providerCapabilities: () => client.capabilities(),
+      };
+      const groups = {
+        overview: Object.keys(resources),
+        services: ["subscriptions", "plans", "orders"],
+        orders: ["subscriptions", "plans", "orders"],
+        billing: ["orders", "payments"],
+        "payment-report": ["orders"],
+        support: ["tickets"],
+        notifications: ["notifications"],
+      };
+      const required = groups[route] || [];
+      await Promise.all([
+        ...required.map(async (key) => { next[key] = await resources[key](); }),
+        ...(!profile ? [client.dashboard().then((dashboard) => { next.customer = dashboard.customer; })] : []),
       ]);
-      capabilities.guidance =
-        providerCapabilities.ai === "guidance-only-no-model";
-      const receipts = (
+      if (required.includes("providerCapabilities"))
+        capabilities.guidance = next.providerCapabilities.ai === "guidance-only-no-model";
+      if (required.includes("payments")) next.receipts = (
         await Promise.all(
-          payments
+          next.payments
             .filter((p) => p.status === "CONFIRMED")
             .map((p) =>
               client.receipt(p.id).catch((e) => {
@@ -218,17 +233,8 @@ export function createLiveAdapter({ base = config.apiBase, transport } = {}) {
             ),
         )
       ).filter(Boolean);
-      return summaryView({
-        customer: dashboard.customer,
-        subscriptions,
-        plans,
-        orders,
-        payments,
-        tickets,
-        receipts,
-        notifications,
-        providerCapabilities,
-      });
+      if (tick === summaryVersion) snapshot = next;
+      return summaryView(next);
     },
     async updateProfile(phone) {
       return profileView(await client.updateProfile({ phone }));

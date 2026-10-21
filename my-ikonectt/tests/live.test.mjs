@@ -22,6 +22,7 @@ const page = (items) => ({ items, total: items.length, offset: 0, limit: 100 });
 test("canonical client sends bearer headers and validates real v1 wire responses", async () => {
   const calls = [];
   let revoked = false;
+  let listedTickets = rawFixture.tickets;
   const server = http.createServer(async (req, res) => {
     let body = "";
     for await (const chunk of req) body += chunk;
@@ -74,7 +75,7 @@ test("canonical client sends bearer headers and validates real v1 wire responses
         "/plans": page(rawFixture.plans),
         "/me/orders": page(rawFixture.orders),
         "/me/payments": page(rawFixture.payments),
-        "/me/tickets": page(rawFixture.tickets),
+        "/me/tickets": page(listedTickets),
         "/me/notifications": page([]),
         "/capabilities": {
           usage: "not-connected",
@@ -112,6 +113,13 @@ test("canonical client sends bearer headers and validates real v1 wire responses
     assert.equal(data.receipts[0].amount, 35000);
     assert.equal(data.services[0].monthlyAmount, 35000);
     assert.equal(data.services[0].address, null);
+    const boundary = calls.length;
+    listedTickets = rawFixture.tickets.map((ticket) => ({ ...ticket, subject: "Updated by support staff" }));
+    const refreshed = await api.summary("support", await api.resume());
+    assert.equal(refreshed.tickets[0].subject, "Updated by support staff");
+    assert.deepEqual(calls.slice(boundary).map((call) => call.path).sort(),
+      ["/auth/session", "/me/profile", "/me/tickets"].sort());
+    assert.equal(refreshed.services[0].id, data.services[0].id);
     assert.equal(
       (await api.ticket(rawFixture.tickets[0].id)).updates.length,
       2,
