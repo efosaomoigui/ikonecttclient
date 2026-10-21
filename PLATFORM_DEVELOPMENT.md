@@ -7,12 +7,13 @@ This integration branch contains the existing public website, the NestJS API, Ad
 | Folder | Responsibility |
 | --- | --- |
 | `backend/` | NestJS controllers/services, identity, permissions, Prisma schema/migrations, provider adapters, outbox, database helpers and backend tests |
-| `contracts/` | Canonical API v1.0.1 schemas, clients, OpenAPI, endpoint/permission map and frontend handoff |
+| `contracts/` | Canonical API v1.1.0 schemas, clients, OpenAPI, endpoint/permission map and wallet handoff |
 | `admin/` | Staff Admin/CRM frontend, its own dependencies/build/tests, pinned generated contract/permission copies |
 | `my-ikonectt/` | Customer frontend, its own dependencies/build/tests, pinned canonical client sources |
 | `shared/`, `option-a/` through `option-e/`, root HTML, `assets/`, `public_html/` | Existing public website/design showcase; no platform frontend is mixed into these presentation folders |
 | `scripts/platform*.mjs` | Local installation/start/stop/contract/acceptance/compiled-preview tools |
 | `docs/stage4/` | Credential-free consolidation evidence and release report |
+| `docs/stage5a/` | Wallet migration, API acceptance, persistence and integration evidence |
 | `.platform/` | Git-ignored local configuration references, process control token, logs, browser test credentials and isolated website build |
 
 Admin and customer UI code never import backend services or Prisma. Their shared boundary is the canonical HTTP API. Vendored contract copies retain canonical provenance and are checked for drift; do not edit copies independently.
@@ -22,7 +23,7 @@ Admin and customer UI code never import backend services or Prisma. Their shared
 Validated with the installed Node/npm and PostgreSQL 16 on Windows. Use the package lockfiles. From PowerShell:
 
 ```powershell
-Set-Location 'C:\Users\Efe-Dev\.codex\worktrees\ikonectt-platform-stage4\ikonectt'
+Set-Location 'C:\Users\Efe-Dev\.codex\worktrees\ikonectt-wallet-stage5a\ikonectt'
 npm run platform:install
 npm run platform:configure -- --backend-root 'C:\Users\Efe-Dev\.codex\worktrees\ikonectt-core-backend\ikonectt\backend'
 npm run platform:check
@@ -80,13 +81,17 @@ node admin/node_modules/tsx/dist/cli.mjs scripts/platform-acceptance.mjs
 
 The last command makes new isolated SIMULATED development records through real HTTP using the shipped frontend adapters. It requires the configured owner development environment and role account manifest. It must not target staging or production. It writes credential-free JSON under `docs/stage4/`; fresh browser credentials stay only in `.platform/browser-accounts.json`. Add `--api-only` to retain an existing coordinated browser account instead of preparing another one. No existing customer credentials or prior acceptance records are reset.
 
-Backend tests require the independent test database, not the development database. Start `node scripts/test-db.cjs start` in the **original backend owner** directory. Then, from this integration checkout's `backend/`:
+Backend tests require the independent test database. Stage 5A uses its own cluster on **55438**. Start `node scripts/test-db.cjs start` in this checkout's `backend/` directory (the existing ignored test state records its port). For a fresh isolated setup, set `TEST_PG_PORT=55438` before first initialization. Then, from the same directory:
 
 ```powershell
-node --env-file='C:\Users\Efe-Dev\.codex\worktrees\ikonectt-core-backend\ikonectt\backend\.env.test.local' --require ts-node/register/transpile-only --test --test-concurrency=1 test/*.test.ts
+node --env-file=.env.test.local --require ts-node/register/transpile-only --test --test-concurrency=1 test/*.test.ts
 ```
 
-Tests enforce a database name ending in `_test`. Use the owner `test-db.cjs stop` helper afterward. Never set test database variables to the development or production URL.
+Tests enforce a database name ending in `_test`. Use this checkout's `test-db.cjs stop` helper afterward. Never set test database variables to the development or production URL.
+
+Stage 5A wallet acceptance is `backend/scripts/wallet-acceptance.ts`, run from `backend/` with the original owner's `.env` explicitly loaded using Node's `--env-file` and `-r ts-node/register/transpile-only`. It creates fresh SIMULATED records and writes credential-free evidence to `docs/stage5a/`. Its private browser manifest is `.platform/stage5a-accounts.json`; rerunning replaces that manifest, so finish an existing coordinated browser journey first. It deliberately rejects a non-owned development target. Timeout preparation uses the real backend service with an in-process test-only timeout adapter, followed by live HTTP read/retry checks; it never enables a public provider-failure toggle. Concurrency runs against PostgreSQL in the backend test suite.
+
+The earlier `platform-acceptance.mjs` command above is the retained **Stage 4** harness and reports its original contract version. It is not the Stage 5A acceptance command. Wallet migration is deliberate and additive; startup never applies it or retroactively allocates order payments. Read `backend/WALLET_ARCHITECTURE.md` and `contracts/WALLET_HANDOFF.md` before any future deployment.
 
 Production asset smoke previews use only built `dist/` files and proxy `/api/` to the same local API:
 

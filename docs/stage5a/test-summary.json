@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-21",
+  "scope": "Local development, isolated SIMULATED acceptance records",
+  "backend": {
+    "passed": 60,
+    "failed": 0,
+    "walletScenarios": 21,
+    "existing": 39,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "prismaGenerate": "PASS"
+  },
+  "admin": {
+    "passed": 50,
+    "failed": 0,
+    "productionBuild": "PASS"
+  },
+  "portal": {
+    "passed": 26,
+    "failed": 0,
+    "typecheck": "PASS",
+    "mockAndLiveBuilds": "PASS"
+  },
+  "website": {
+    "passed": 143,
+    "failed": 0,
+    "isolatedProductionBuild": "PASS"
+  },
+  "contracts": {
+    "version": "1.1.0",
+    "paths": 78,
+    "operations": 95,
+    "sourceCommit": "cb05bb65c96c0b5bfff9c0a8a53b275d23659625",
+    "frontendParity": "PASS"
+  },
+  "persistence": {
+    "applicationRestart": "PASS",
+    "desktopRestart": "PASS",
+    "restoredBackup": "PASS"
+  },
+  "mainMerged": false,
+  "productionDeployed": false
+}

@@ -1,0 +1,35 @@
+{
+  "label": "after-desktop-restart",
+  "database": "ikonectt_development",
+  "verifiedAt": "2026-10-21T07:30:15.726Z",
+  "records": [
+    {
+      "customerId": "83028c05-b524-4c91-8288-c3c8373c970f",
+      "postedMinor": "550000",
+      "reservedMinor": "0",
+      "availableMinor": "550000",
+      "entries": 5,
+      "renewals": [
+        {
+          "id": "e63ad55e-d577-48b0-beb6-a2dfe168f26c",
+          "status": "SUCCEEDED"
+        }
+      ],
+      "fingerprint": "2a66587c6fb45e571a18c51a301f7209c7cba800c3709639dfe05bb9171b125a"
+    },
+    {
+      "customerId": "8ed394ec-8fb9-4830-8910-7933e53e74c7",
+      "postedMinor": "2500000",
+      "reservedMinor": "1950000",
+      "availableMinor": "550000",
+      "entries": 2,
+      "renewals": [
+        {
+          "id": "c232441f-1784-44d9-908a-f58cf302ed12",
+          "status": "REQUIRES_REVIEW"
+        }
+      ],
+      "fingerprint": "83e0f745eaa049b2d5e7cc0dc1a31380820c3e84eefbc5bc0b65e1a415e31f8a"
+    }
+  ]
+}

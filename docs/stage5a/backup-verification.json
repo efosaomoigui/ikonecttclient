@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "verifiedAt": "2026-10-21T07:10:04.731Z",
+  "archive": "ikonectt_development-1792566584265.dump",
+  "restoredDatabase": "ikonectt_development_1792566585420",
+  "activeDatabaseUnchanged": true,
+  "financialFingerprintsMatch": true,
+  "scope": "Wallet projections, immutable history, top-ups, renewals, subscriptions and orders for both main and timeout acceptance customers"
+}
