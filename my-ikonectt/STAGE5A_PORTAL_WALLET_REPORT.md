@@ -22,7 +22,7 @@ The dedicated preview is `http://127.0.0.1:4195/`, built in **live mode** and pr
 
 ## Live API browser acceptance
 
-These checks use isolated, explicitly **SIMULATED** development records and actual API requests; no real bank transfer or ISP operation occurred. Credentials remain in the backend owner's ignored file and are excluded from this report and screenshots.
+These checks use isolated, explicitly **SIMULATED** development records and actual API requests; no real bank transfer or ISP operation occurred. Browser customer credentials remain in the root Stage 5A worktree's ignored `.platform/stage5a-accounts.json`; the separate staff manifest remains in the backend owner's ignored file. All credentials are excluded from this report and screenshots.
 
 Customer `83028c05-b524-4c91-8288-c3c8373c970f`, account `84375004`, service `7dddabe9-5e29-4aa1-bd6c-27dfbba1aecb`:
 
@@ -36,6 +36,8 @@ Customer `83028c05-b524-4c91-8288-c3c8373c970f`, account `84375004`, service `7d
 Evidence: `evidence/stage5a/live-zero-wallet-quote.png`, `live-reported-topup.png`, `live-pending-wallet.png`, `live-funded-renewal-quote.png`, `live-reserved-renewal.png`, `live-completed-renewal.png`, `live-insufficient-after-renewal.png`.
 
 The separate timeout customer account `19544104` was inspected read-only. Renewal `c232441f-1784-44d9-908a-f58cf302ed12` showed **Review required**, no confirmed expiry, available ₦5,500 and reserved ₦19,500. The page explains that the provider outcome is uncertain, retains the hold and instructs the customer not to submit another renewal. It offers status refresh and navigation, with no customer process/release control. No timeout mutation occurred. Evidence: `live-timeout-review.png`, `mobile-timeout-review.png`.
+
+After the backend owner's controlled restart, a fresh login and read-only browser navigation verified the main wallet still has available ₦5,500 / reserved ₦0 / pending ₦0. The ledger contains exactly **five** records: original top-up credit, reservation, renewal debit, the Admin owner's separately authorized ₦100 correction and its complete compensating reversal. The reversal shows -₦100 and the correction +₦100, preserving both records and returning the posted balance to ₦5,500. The portal made no further financial mutations. Evidence: `live-persisted-ledger.png`, `mobile-ledger.png`, `live-final-wallet.png`. The mobile ledger has five entries and no horizontal overflow at 390 CSS pixels. The repaired sidebar sign-out was also exercised successfully before the final login.
 
 ## Layout checks
 
