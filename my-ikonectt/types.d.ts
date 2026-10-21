@@ -100,5 +100,14 @@ export interface PortalAdapter {
   ): Promise<C.Input<typeof C.CoverageResult>>;
   providerCapabilities(): Promise<Record<string, string>>;
   guidance(message: string): Promise<C.Input<typeof C.AssistantResponse>>;
+  wallet(): Promise<C.Input<typeof C.WalletSummary>>;
+  walletTransactions(offset?: number, limit?: number): Promise<C.Input<ReturnType<typeof C.page<typeof C.WalletEntry>>>>;
+  walletTopUps(offset?: number, limit?: number): Promise<C.Input<ReturnType<typeof C.page<typeof C.WalletTopUp>>>>;
+  reportWalletTopUp(input: C.Input<typeof C.ReportWalletTopUpRequest>): Promise<C.Input<typeof C.WalletTopUp>>;
+  walletRenewals(offset?: number, limit?: number): Promise<C.Input<ReturnType<typeof C.page<typeof C.WalletRenewal>>>>;
+  walletRenewal(id: string): Promise<C.Input<typeof C.WalletRenewal>>;
+  renewalEligibility(id: string): Promise<C.Input<typeof C.RenewalEligibility>>;
+  requestWalletRenewal(id: string, input: C.Input<typeof C.WalletRenewalRequest>): Promise<C.Input<typeof C.WalletRenewal>>;
+  previewWalletScenario?(scenario: string): Promise<void>;
   capabilities: { notifications: boolean; chat: boolean; guidance: boolean };
 }

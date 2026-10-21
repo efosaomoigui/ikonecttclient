@@ -210,5 +210,19 @@ export function createCustomerClient(
         "POST",
         parse(C.AssistantRequest, { message }),
       ),
+    wallet: () => request("/me/wallet", C.WalletSummary),
+    walletTransactions: (offset = 0, limit = 25) =>
+      request(query("/me/wallet/transactions", parse(C.ListQuery, { offset, limit })), C.page(C.WalletEntry)),
+    walletTopUps: (offset = 0, limit = 25) =>
+      request(query("/me/wallet/top-ups", parse(C.ListQuery, { offset, limit })), C.page(C.WalletTopUp)),
+    reportWalletTopUp: (input: C.Input<typeof C.ReportWalletTopUpRequest>) =>
+      request("/me/wallet/top-ups", C.WalletTopUp, "POST", parse(C.ReportWalletTopUpRequest, input)),
+    walletRenewals: (offset = 0, limit = 25) =>
+      request(query("/me/wallet/renewals", parse(C.ListQuery, { offset, limit })), C.page(C.WalletRenewal)),
+    walletRenewal: (id: string) => request("/me/wallet/renewals/" + parse(C.Id, id), C.WalletRenewal),
+    renewalEligibility: (id: string) =>
+      request("/me/subscriptions/" + parse(C.Id, id) + "/renewal-eligibility", C.RenewalEligibility),
+    requestWalletRenewal: (id: string, input: C.Input<typeof C.WalletRenewalRequest>) =>
+      request("/me/subscriptions/" + parse(C.Id, id) + "/wallet-renewals", C.WalletRenewal, "POST", parse(C.WalletRenewalRequest, input)),
   };
 }

@@ -17,6 +17,8 @@ for (const file of [
   "journeys.js",
   "form-validation.js",
   "navigation.js",
+  "wallet.js",
+  "wallet-fixtures.js",
 ]) {
   await copyFile(new URL(file, root), new URL(file, dest));
 }

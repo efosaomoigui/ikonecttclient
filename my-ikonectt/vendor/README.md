@@ -74,3 +74,7 @@ set a dedicated PostgreSQL URL and random notification encryption key, then in b
 `npm run db:generate`, `npm run db:migrate`, `npm run db:seed`, `npm run dev`.
 Seed requires explicit `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` environment variables.
 No default password or production catalogue is shipped. See backend README for full setup.
+
+## Internal wallet extension1.1.0
+
+See [WALLET_HANDOFF.md](WALLET_HANDOFF.md) for canonical schemas/routes, lifecycle, permissions, idempotency and manual verification boundaries.

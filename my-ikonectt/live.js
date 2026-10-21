@@ -267,5 +267,13 @@ export function createLiveAdapter({ base = config.apiBase, transport } = {}) {
       return result;
     },
     guidance: (message) => client.guidance(message),
+    wallet: () => client.wallet(),
+    walletTransactions: (offset, limit) => client.walletTransactions(offset, limit),
+    walletTopUps: (offset, limit) => client.walletTopUps(offset, limit),
+    reportWalletTopUp: (input) => client.reportWalletTopUp(input),
+    walletRenewals: (offset, limit) => client.walletRenewals(offset, limit),
+    walletRenewal: (id) => client.walletRenewal(id),
+    renewalEligibility: (id) => client.renewalEligibility(id),
+    requestWalletRenewal: (id, input) => client.requestWalletRenewal(id, input),
   };
 }
