@@ -1,13 +1,13 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
-const ref = process.argv[2] || "cb05bb65c96c0b5bfff9c0a8a53b275d23659625";
+const ref = process.argv[2] || "d0a300a2b5a17d63c637e71c71b523b88046a78f";
 const commit = execFileSync(
   "git",
   ["rev-parse", "--verify", `${ref}^{commit}`],
   { encoding: "utf8" },
 ).trim();
 await mkdir(new URL("./vendor/", import.meta.url), { recursive: true });
-for (const file of ["index.ts", "fixtures.ts", "README.md", "openapi.json", "WALLET_HANDOFF.md"]) {
+for (const file of ["index.ts", "fixtures.ts", "README.md", "openapi.json", "WALLET_HANDOFF.md", "SETTLEMENT_HANDOFF.md"]) {
   const data = execFileSync("git", ["show", `${commit}:contracts/${file}`], {
     maxBuffer: 4 * 1024 * 1024,
   });

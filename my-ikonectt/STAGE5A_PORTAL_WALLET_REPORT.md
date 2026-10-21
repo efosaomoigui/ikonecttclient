@@ -8,12 +8,20 @@ The human's subsequent clarification supersedes any assumption that every fundin
 
 Wallet balance and subscription status are independent: zero/positive wallet balances with active/inactive subscriptions are all valid. Customers explicitly choose and confirm each renewal; there is no recurring renewal or funding-triggered service action. Reservation and separately confirmed service outcome remain the renewal process.
 
-Portal audit found no wallet-based service activation or automatic renewal. Subscription status and dates are mapped directly from the subscription response; wallet pages load independently of service status; renewal actions use canonical backend eligibility and an initially unchecked required consent control. Two targeted regressions exercise the four balance/status combinations and explicit-consent/eligibility boundary. **28 tests pass** after this audit. The provider settlement adapter and its exact contract are owned by Agent 1; the portal will sync only its published canonical handoff. This audit introduces no settlement provider, inferred funding success, wallet mutation or schema change.
+Portal audit found no wallet-based service activation or automatic renewal. Subscription status and dates are mapped directly from the subscription response; wallet pages load independently of service status; renewal actions use canonical backend eligibility and an initially unchecked required consent control. Two targeted regressions exercise the four balance/status combinations and explicit-consent/eligibility boundary. **28 tests passed** after this audit. The subsequent canonical settlement update below preserves those regressions.
+
+## Canonical settlement display update
+
+Synced API **1.2.0** from exact published commit `d0a300a2b5a17d63c637e71c71b523b88046a78f`, including `SETTLEMENT_HANDOFF.md`. The HTTP inventory and permissions are unchanged. The live settlement capability is `not-connected`: no checkout, callback, provider connection or customer settlement-details route is invented.
+
+The ledger labels `SETTLEMENT_CREDIT` as **Settled wallet funding**, separately from **Manual top-up credit**, reservation and renewal debit. The optional `settlementPaymentId` is displayed as a plain settlement payment reference; `actorId:null` for a settlement is labelled **System settlement**. Historical manual entries without the additive field still validate. Provider-settlement entries have no reversal action in the customer portal. Manual top-up history explicitly scopes Finance verification to manual reports; verified provider settlement credit posts directly to wallet history. Wallet guidance states that adding funds does not activate or renew service and each renewal must be chosen and confirmed separately.
+
+**29 tests pass**, including a canonical settlement-credit render test with escaped description, plain source identifier, system actor, no fabricated link and no form/action controls. Type checking, live build and exact six-file canonical parity pass. This update changes display and contract consumption only; it performs no wallet mutation, provider action or runtime restart. Previous browser evidence below records the earlier API 1.1.0 manual-report journey; no settlement browser record is fabricated or claimed.
 
 ## Scope and contract
 
 - Portal-only implementation on `codex/my-ikonectt-wallet-stage5a`, based on approved UI consolidation `78a5570` plus SPA correction `36e7f49`.
-- Canonical API **1.1.0**, read-only snapshot from `cb05bb65c96c0b5bfff9c0a8a53b275d23659625`. No independent financial schema or backend changes.
+- Canonical API **1.2.0**, read-only snapshot from `d0a300a2b5a17d63c637e71c71b523b88046a78f` (initial manual-report journey used API 1.1.0 at `cb05bb6`). No independent financial schema or backend changes.
 - Customer methods use the eight published wallet/renewal endpoints, strict canonical request/response validation, and server pagination (25 records per history page).
 - All balances, ledger deltas, eligibility, price versions, billing periods and expiry dates come from the backend. Only NGN display formatting converts minor units.
 - Top-up reports have explicit review and confirmation; pending reports are unspendable. Order payments stay separate. No invented bank details, payment gateway, withdrawals or transfers.

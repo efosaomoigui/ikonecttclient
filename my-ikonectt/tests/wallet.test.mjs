@@ -19,8 +19,8 @@ const ctx = (data) => ({ ...data, result: {}, intents: createWalletIntents(), es
   date: value => value, input: () => "",
 });
 
-test("wallet UI pins API 1.1.0 and all explicit scenarios satisfy canonical schemas", () => {
-  assert.equal(C.API_VERSION, "1.1.0");
+test("wallet UI pins API 1.2.0 and all explicit scenarios satisfy canonical schemas", () => {
+  assert.equal(C.API_VERSION, "1.2.0");
   for (const scenario of walletScenarios) {
     const data = walletFixture(scenario);
     C.WalletSummary.parse(data.wallet); C.RenewalEligibility.parse(data.eligibility);
@@ -209,4 +209,24 @@ test("funded services still require authoritative eligibility and explicit custo
     assert.equal(dom.window.document.querySelectorAll("form").length, 1);
     dom.window.close();
   }
+});
+
+test("canonical settled funding is visible as an immutable system credit with a plain source reference", () => {
+  const fixture = walletFixture("funded");
+  const sourceId = "d0000000-0000-4000-8000-000000000001";
+  const entry = C.WalletEntry.parse({ ...fixture.entries[0], kind: "SETTLEMENT_CREDIT",
+    settlementPaymentId: sourceId, topUpId: null, actorId: null,
+    description: 'Verified settled funding <script>unsafe</script>' });
+  const context = ctx({ aux: { wallet: fixture.wallet, entries: { items: [entry], offset: 0, limit: 25, total: 1 } } });
+  const dom = new JSDOM(walletScreen("transactions", null, context));
+  assert.match(dom.window.document.body.textContent, /Settled wallet funding/);
+  assert.match(dom.window.document.body.textContent, /System settlement/);
+  assert.match(dom.window.document.body.textContent, new RegExp(sourceId));
+  assert.equal(dom.window.document.querySelector("script"), null);
+  assert.equal(dom.window.document.querySelector("a, button, form"), dom.window.document.querySelector('a[href="#/wallet"]'));
+  assert.equal(dom.window.document.querySelectorAll('a[href*="settlement"]').length, 0);
+  assert.equal(dom.window.document.querySelectorAll("button, form").length, 0);
+  dom.window.close();
+  // Existing manual-credit records without the additive field still validate.
+  C.WalletEntry.parse(fixture.entries[0]);
 });

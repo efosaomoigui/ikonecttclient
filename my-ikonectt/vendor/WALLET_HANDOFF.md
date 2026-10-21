@@ -1,5 +1,7 @@
 # Stage 5A wallet and self-service contract 1.1.0
 
+**Superseding clarification:** current contract is **1.2.0**. Approved provider settlement automatically funds the ledger-backed wallet, independently of services. Manual reports below remain a separate Finance-verified fallback. Read [SETTLEMENT_HANDOFF.md](SETTLEMENT_HANDOFF.md) for the SETTLEMENT_CREDIT source, disabled provider boundary and customer-authorized renewal rules. The original 1.1.0 handoff follows as historical context.
+
 Date: 21 October 2026. Additive API extension: **78 paths / 95 operations**, prefix `/api/v1`. Core schemas, routes, errors, HTTP200 writes, revocable bearer sessions and offset/limit pagination remain. Existing order payments are always ORDER allocated; separate wallet top-ups are always WALLET allocated. No historical payment becomes wallet credit. Wallets begin at zero.
 
 This publishes the shared interface so UI owners can work concurrently. Runtime financial/migration/concurrency acceptance must pass before the lead declares the backend ready. Until then use explicit schema-compliant SIMULATED fixtures; never turn a failed live request into mock success. Exact source commit is provided in the owner handoff.
