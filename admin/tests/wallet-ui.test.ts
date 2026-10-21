@@ -80,3 +80,34 @@ test('Admin wallet display is independent of zero/positive credit and active/ina
         assert.ok(!html.includes('wallet:process:') && !html.includes('wallet:resolve:'));
     }
 });
+test('canonical settlement credit renders system actor and plain source reference without reversal or invented endpoint', async () => {
+    const dom = new JSDOM('<body></body>');
+    const previousDocument = globalThis.document;
+    Object.assign(globalThis, { document: dom.window.document });
+    const calls: { url: string; method: string }[] = [];
+    const api: WorkspaceApi = new WorkspaceApi('', async (url, init): Promise<Response> => {
+        calls.push({ url: String(url), method: init?.method || 'GET' });
+        if (String(url).includes('/transactions?')) return Response.json({ items: api.data.walletEntries.filter(e => e.customerId === uuid(1)), total: 4, offset: 0, limit: 25 });
+        return Response.json({ ...api.data.walletSummaries[0], postedMinor: 560000, availableMinor: 560000 });
+    });
+    api.preview('FINANCE'); api.mode = 'live';
+    api.data.walletEntries.unshift({ ...api.data.walletEntries[0], id: uuid(610), kind: 'SETTLEMENT_CREDIT', amountMinor: 10000, postedDeltaMinor: 10000, postedAfterMinor: 560000, actorId: null, settlementPaymentId: uuid(611), topUpId: null, reference: 'WTX-SIMULATED-SETTLEMENT', description: 'SIMULATED authenticated provider settlement fixture only' });
+    const notices: string[] = [];
+    const ui = new WalletUi({ api, walletApi: new WalletApi(api), openModal: html => { document.body.innerHTML = html; }, closeModal: () => { document.body.innerHTML = ''; }, modalHeader: t => `<h2>${t}</h2>`, button: (label, action) => `<button type="button" data-action="${action}">${label}</button>`, esc: v => String(v ?? ''), money: n => String(n), badge: v => String(v), date: v => v, toast: m => { notices.push(m); }, friendly: e => e instanceof Error ? e.message : String(e), refresh: async () => {}, details: async () => {} });
+    try {
+        await ui.view(uuid(1));
+        const settlement = [...document.querySelectorAll('tbody tr')].find(row => row.textContent!.includes('WTX-SIMULATED-SETTLEMENT'))!;
+        assert.match(settlement.textContent!, /Settled wallet funding/);
+        assert.match(settlement.textContent!, /System/);
+        assert.match(settlement.textContent!, new RegExp(`Settlement payment ${uuid(611)}`));
+        assert.equal(settlement.querySelector('button,a'), null);
+        const manual = [...document.querySelectorAll('tbody tr')].find(row => row.textContent!.includes('SIMULATED-WALLET-1'))!;
+        assert.match(manual.textContent!, /Manual top-up credit/);
+        await ui.action(`wallet:reverse:${uuid(1)}:${uuid(610)}`);
+        assert.equal(document.querySelector('#wallet-operation'), null);
+        assert.ok(notices.some(m => /eligible credit entry/.test(m)));
+        assert.equal(calls.length, 2);
+        assert.ok(calls.every(c => c.method === 'GET' && c.url.includes('/wallet')));
+        assert.ok(!calls.some(c => c.url.includes('/settlements') || c.url.includes('/provision') || c.url.includes('/renewal')));
+    } finally { Object.assign(globalThis, { document: previousDocument }); dom.window.close(); }
+});

@@ -4,7 +4,7 @@ Date: 21 October 2026. Admin implementation: `698ddeaefda4f64008397128b0c0ab0659
 
 ## Admin/CRM implementation
 
-Branch: `codex/ikonectt-admin-wallet-stage5a`. Isolated baseline: `78a55705921a9b3bc733ca162d39f7d4b444b8e3`, preserving approved visual work and collapsible sidebar commit `33e5463`. Canonical API: **1.1.0**, source `cb05bb65c96c0b5bfff9c0a8a53b275d23659625`, 78 paths / 95 operations. Vendor schemas, permission export, operation map and provenance are synchronized from that exact commit. No independent frontend financial schemas were introduced.
+Branch: `codex/ikonectt-admin-wallet-stage5a`. Isolated baseline: `78a55705921a9b3bc733ca162d39f7d4b444b8e3`, preserving approved visual work and collapsible sidebar commit `33e5463`. Current canonical API: **1.2.0**, source `d0a300a2b5a17d63c637e71c71b523b88046a78f`, with unchanged 78 paths / 95 operations and role permissions. Vendor schemas, permission export, operation map and provenance are synchronized from that exact commit. The original joint browser journey below ran on API 1.1.0, source `cb05bb65c96c0b5bfff9c0a8a53b275d23659625`. No independent frontend financial schemas were introduced.
 
 Only Admin files change. Backend, portal, public website and approved logo/base typography/readability assets remain unchanged. Admin development UI uses port **3017** against the shared development API on **4000**. No merge to main or production deployment is performed.
 
@@ -90,9 +90,17 @@ Final implementation/report hashes accompany the completion handoff.
 
 The human subsequently clarified that approved-provider verified settlement must automatically create authoritative ledger credit and wallet funds, while never activating, renewing or provisioning service. Wallet funding and service state are independent: zero or positive wallet credit can coexist with active or inactive service. The customer must still explicitly confirm renewal, followed by the existing reservation and separate authorized confirmed service-outcome workflow. No recurring renewal is implied.
 
-The manually reported top-up/Finance acceptance above records the actual executed path; it does not require manual Finance approval for a future approved-provider settlement. Agent 1 owns the disabled-by-default settlement adapter, durable idempotent event boundary and historical allocation protection. Admin awaits the exact revised canonical contract before updating vendor schemas. No settlement-provider connection or new financial mutation is claimed in this report.
+The manually reported top-up/Finance acceptance above records the actual executed path; it does not require manual Finance approval for a future approved-provider settlement. Agent 1 owns the disabled-by-default settlement adapter, durable idempotent event boundary and historical allocation protection. Admin has now consumed the published 1.2.0 contract; its exact handoff is retained at [vendor/SETTLEMENT_HANDOFF.md](vendor/SETTLEMENT_HANDOFF.md). No settlement-provider connection or new financial mutation is claimed in this report.
 
 Admin display audit: the wallet summary and history are not gated by service status or nonzero funds. A targeted automated test covers zero/positive backend balances crossed with ACTIVE/SUSPENDED service, verifies the supplied balance remains visible in all four cases, and asserts the display requests only the wallet GET endpoint with no service/financial write. The suite now passes **51 tests**, zero failures. These matrix assertions are automated, not newly created live financial fixtures; all shared financial records remain unchanged.
+
+## API 1.2.0 settlement display supplement
+
+The canonical `SETTLEMENT_CREDIT` entry renders as **Settled wallet funding**, distinct from **Manual top-up credit**. A null actor displays **System**. The optional `settlementPaymentId` appears as an escaped plain source identifier; no settlement details link, checkout route, callback or operator settlement action is invented. Settlement credits remain excluded from controlled credit reversal in both rendering and the action guard. Existing manual wallet reports still require Finance verification; verified settlement from an approved connected provider credits the wallet automatically and neither path initiates renewal or provisioning.
+
+Integrations labels the capability **Payment settlement** and maps `not-connected` to its existing unavailable state. The explicit preview also marks settlement unconnected. The approved layouts, styles, fonts, logo and navigation are unchanged by this supplement.
+
+Targeted automated checks consume canonical settlement-credit responses, render the system actor/source reference, preserve ordinary manual credits, reject even a direct UI attempt to reverse a settlement credit, and assert only wallet GET requests occur. A separate check verifies the unconnected settlement capability. **Final local validation: 53 tests passed, zero failed; TypeScript/review build and production build passed; `git diff --check` passed.** Approved visual assets and the canonical role-permission export remain byte-identical to the prior approved Admin baseline. No shared live settlement was fabricated, no runtime was started/stopped for this supplement, and no additional live browser financial workflow was executed. The final commit is supplied in the accompanying handoff.
 
 ## Integrated compiled-asset acceptance
 
