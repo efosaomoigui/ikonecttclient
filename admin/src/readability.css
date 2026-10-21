@@ -110,10 +110,20 @@ tbody tr:hover, tbody tr:focus-within { background: #f1f4f8; }
 .login-box > p { color: var(--text-supporting); margin-bottom: 24px; }
 .login-box .secure { color: var(--text-supporting); font-size: 11px; margin: 16px 0; }
 .login-box > small { color: var(--text-supporting); font-size: 10px; margin-top: 16px; }
-.login-help { display: flex; flex-wrap: wrap; gap: 8px; }
-.login-help .btn { flex: 1 1 135px; }
-.preview-box { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 10px; padding: 14px; }
-.preview-box > strong, .preview-box > p { grid-column: 1 / -1; }
+.login-help { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; }
+.auth-link { color: var(--text-secondary); font-size: 12px; line-height: 1.6; text-underline-offset: 3px; }
+.auth-link:hover { color: var(--focus-ring); text-decoration: underline; }
+.preview-box { display: block; padding: 0; }
+.preview-box > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; cursor: pointer; padding: 14px; border-radius: 9px; }
+.preview-box > summary::-webkit-details-marker { display: none; }
+.preview-box > summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+.preview-toggle { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 11px; }
+.preview-toggle svg { width: 14px; height: 14px; }
+.preview-hide, .preview-box[open] .preview-show { display: none; }
+.preview-box[open] .preview-hide { display: inline; }
+.preview-box[open] .preview-toggle svg { transform: rotate(180deg); }
+.preview-content { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 10px; padding: 0 14px 14px; }
+.preview-content > p { grid-column: 1 / -1; }
 .preview-box p { color: var(--text-supporting); font-size: 11px; margin: 0; }
 .preview-box select { margin: 0; }
 .preview-box .btn { width: auto; }
@@ -143,5 +153,5 @@ tbody tr:hover, tbody tr:focus-within { background: #f1f4f8; }
   .page-heading > .btn { font-size: 11px; }
   .table-scroll th, .table-scroll td { padding: 13px 16px; }
   .login-panel { padding: 28px 25px; }
-  .preview-box { grid-template-columns: 1fr; }
+  .preview-content { grid-template-columns: 1fr; }
 }
