@@ -1,0 +1,25 @@
+{
+  "focus": {
+    "focused": "Open SIMULATED Stage4 isolation 97d198cc",
+    "outline": "rgb(183, 31, 43)",
+    "outlineWidth": "2.71698px",
+    "rowColor": "rgb(241, 244, 248)"
+  },
+  "form": {
+    "dialogOpen": true,
+    "inputSize": "13px",
+    "labelSize": "13px",
+    "requiredInvalid": 3
+  },
+  "mobile": {
+    "dialogClient": 715,
+    "dialogLeft": 12,
+    "dialogRight": 307.6981201171875,
+    "dialogScroll": 743,
+    "focusInDialog": true,
+    "height": 741,
+    "page": 320,
+    "submitBottom": 712.0330200195312,
+    "width": 320
+  }
+}

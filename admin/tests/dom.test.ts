@@ -38,6 +38,27 @@ test('DOM: every permitted admin screen mounts without rendering a page error', 
 finally {
     dom.window.close();
 } });
+test('DOM: navigation groups collapse independently and retain their state across navigation', async () => { const dom = boot(); try {
+    await preview(dom);
+    const doc = dom.window.document;
+    const group = () => doc.querySelector<HTMLButtonElement>('[data-group="Customers & sales"]')!;
+    const links = () => doc.getElementById(group().getAttribute('aria-controls')!)!;
+    assert.equal(group().getAttribute('aria-expanded'), 'true');
+    group().click();
+    assert.equal(group().getAttribute('aria-expanded'), 'false');
+    assert.equal(links().hidden, true);
+    assert.equal(doc.querySelector('[data-group="Services & operations"]')!.getAttribute('aria-expanded'), 'true');
+    await go(dom, 'plans');
+    assert.equal(links().hidden, true);
+    group().click();
+    assert.equal(links().hidden, false);
+    click(dom, 'a[href="#/customers"]');
+    await waitFor(() => !!doc.querySelector('a[aria-current=page][href="#/customers"]'));
+    assert.equal(group().getAttribute('aria-expanded'), 'true');
+}
+finally {
+    dom.window.close();
+} });
 test('DOM: customer search, detail, create form and saved record', async () => { const dom = boot(); try {
     await preview(dom);
     await go(dom, 'customers');

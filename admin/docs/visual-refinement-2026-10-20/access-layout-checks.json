@@ -1,0 +1,132 @@
+[
+  {
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "login": {
+      "height": 900,
+      "pageHeight": 900,
+      "pageWidth": 1440,
+      "width": 1440
+    },
+    "reset": {
+      "clientHeight": 511,
+      "height": 900,
+      "left": 465,
+      "right": 975,
+      "scrollHeight": 511,
+      "width": 1440
+    },
+    "recovery": {
+      "clientHeight": 344,
+      "left": 465,
+      "right": 975,
+      "scrollHeight": 344
+    }
+  },
+  {
+    "viewport": {
+      "w": 1024,
+      "h": 768
+    },
+    "login": {
+      "height": 768,
+      "pageHeight": 768,
+      "pageWidth": 1024,
+      "width": 1024
+    },
+    "reset": {
+      "clientHeight": 511,
+      "height": 768,
+      "left": 257.15093994140625,
+      "right": 767.1509399414062,
+      "scrollHeight": 511,
+      "width": 1024
+    },
+    "recovery": {
+      "clientHeight": 344,
+      "left": 257.15093994140625,
+      "right": 767.1509399414062,
+      "scrollHeight": 344
+    }
+  },
+  {
+    "viewport": {
+      "w": 768,
+      "h": 1024
+    },
+    "login": {
+      "height": 1024,
+      "pageHeight": 1024,
+      "pageWidth": 768,
+      "width": 768
+    },
+    "reset": {
+      "clientHeight": 511,
+      "height": 1024,
+      "left": 129,
+      "right": 639,
+      "scrollHeight": 511,
+      "width": 768
+    },
+    "recovery": {
+      "clientHeight": 344,
+      "left": 129,
+      "right": 639,
+      "scrollHeight": 344
+    }
+  },
+  {
+    "viewport": {
+      "w": 390,
+      "h": 844
+    },
+    "login": {
+      "height": 844,
+      "pageHeight": 844,
+      "pageWidth": 390,
+      "width": 390
+    },
+    "reset": {
+      "clientHeight": 485,
+      "height": 844,
+      "left": 12,
+      "right": 378.3396301269531,
+      "scrollHeight": 485,
+      "width": 390
+    },
+    "recovery": {
+      "clientHeight": 370,
+      "left": 12,
+      "right": 378.3396301269531,
+      "scrollHeight": 370
+    }
+  },
+  {
+    "viewport": {
+      "w": 320,
+      "h": 740
+    },
+    "login": {
+      "height": 741,
+      "pageHeight": 856,
+      "pageWidth": 304,
+      "width": 320
+    },
+    "reset": {
+      "clientHeight": 485,
+      "height": 741,
+      "left": 12,
+      "right": 307.6981201171875,
+      "scrollHeight": 485,
+      "width": 320
+    },
+    "recovery": {
+      "clientHeight": 391,
+      "left": 12,
+      "right": 307.6981201171875,
+      "scrollHeight": 391
+    }
+  }
+]
