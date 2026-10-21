@@ -76,6 +76,8 @@ Browser inspection found concatenated camel-case renewal labels; explicit readab
 
 `npm run build --prefix admin`: **passed** (TypeScript and production Vite bundle), after final source changes. `git diff --check`: **passed**. The compiled owner preview at port 3018 was also inspected in a real browser: no simulated-workspace entry controls, live Finance sign-in, actual 5500 NGN/zero hold/five-entry wallet readback, and sign-out. Evidence: `production-owner-check.json` and `production-owner-wallet.png`. No financial mutation occurred in that compiled smoke check.
 
+The consolidated compiled Admin at `http://127.0.0.1:3014/admin/` was then tested read-only after integration and desktop/runtime restoration: no preview entry controls; Finance showed 5500 NGN, zero hold and all five ledger entries, including the correction and compensation; Support showed the same balance/history with zero credit, reversal, top-up evidence or top-up navigation controls. Both staff sessions were signed out. Evidence: `compiled-integrated-check.json`, `compiled-integrated-finance.png`, `compiled-integrated-support.png`. Agent 1 separately reported the integrated 50-test suite and production build passed.
+
 Financial ledger/concurrency/migration tests belong to Agent 1; customer top-up/request/insufficient-balance browser actions belong to Agent 2. This report does not claim those workflows passed solely from Admin fixtures or mocked transport tests.
 
 ## Remaining limitations and readiness
@@ -83,6 +85,12 @@ Financial ledger/concurrency/migration tests belong to Agent 1; customer top-up/
 The Admin portion of the coordinated main journey, correction/reversal and protected timeout readback is complete. All Admin financial mutations are finished; the backend owner has been notified to fingerprint and back up the final shared state. Controlled integration review may proceed after final source/report handoff. No live gateway/bank details are invented. Alternate-period pricing, service refunds and external wallet transfers remain outside the canonical extension. The browser did not independently execute concurrent-spend races, an elapsed session expiry or a duplicate confirmation request after its control disappeared; those protections have automated coverage and backend-owner acceptance. This report distinguishes those checks from directly executed browser actions.
 
 Final implementation/report hashes accompany the completion handoff.
+
+## Subsequent settlement clarification
+
+The human subsequently clarified that approved-provider verified settlement must automatically create authoritative ledger credit and wallet funds, while never activating, renewing or provisioning service. Wallet funding and service state are independent: zero or positive wallet credit can coexist with active or inactive service. The customer must still explicitly confirm renewal, followed by the existing reservation and separate authorized confirmed service-outcome workflow. No recurring renewal is implied.
+
+The manually reported top-up/Finance acceptance above records the actual executed path; it does not require manual Finance approval for a future approved-provider settlement. Agent 1 owns the disabled-by-default settlement adapter, durable idempotent event boundary and historical allocation protection. Admin awaits the exact revised canonical contract before updating vendor schemas. No settlement-provider connection or new financial mutation is claimed in this report.
 
 ## Integrated compiled-asset acceptance
 
