@@ -12,7 +12,8 @@ export class Database extends PrismaClient implements OnModuleInit, OnModuleDest
     for (let attempt = 0; attempt < 3; attempt++) {
       try { return await this.$transaction(fn, { isolationLevel: 'Serializable' }); }
       catch (error) {
-        if (!(error instanceof Prisma.PrismaClientKnownRequestError) || error.code !== 'P2034') throw error;
+        const retryable=error instanceof Prisma.PrismaClientKnownRequestError && (error.code==='P2034' || (error.code==='P2010' && ['40001','40P01'].includes(String(error.meta?.code))));
+        if (!retryable) throw error;
       }
     }
     throw new ConflictException('Concurrent update; retry the request');
