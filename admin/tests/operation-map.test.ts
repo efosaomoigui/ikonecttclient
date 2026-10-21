@@ -5,7 +5,8 @@ import {modules} from '../src/modules';
 import {API_VERSION} from '../vendor/contracts';
 const spec=JSON.parse(readFileSync(new URL('../vendor/operations.json',import.meta.url),'utf8'));
 test('all Admin module operations exist in the pinned canonical OpenAPI release',()=>{
-    assert.equal(spec.version,API_VERSION);assert.equal(spec.operations.length,75);
+    assert.equal(spec.version,API_VERSION);assert.equal(spec.operations.length,95);
+    assert.equal(spec.sourceCommit,'cb05bb65c96c0b5bfff9c0a8a53b275d23659625');
     for(const [key,m] of Object.entries(modules)){
         assert.ok(spec.operations.includes(`GET /api/v1${m.path}`),`${key}: list`);
         if(m.input)assert.ok(spec.operations.includes(`POST /api/v1${m.path}`),`${key}: create`);

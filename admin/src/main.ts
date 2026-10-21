@@ -1,6 +1,9 @@
+import { WalletApi } from './wallet-api';
+import { WalletUi } from './wallet-ui';
 import './style.css';
 import './acceptance.css';
 import './readability.css';
+import './wallet.css';
 import { integrationState } from './integrations';
 import { createIcons, ArrowDown, ArrowRight, ArrowUpRight, Building2, CalendarDays, ChartNoAxesColumn, ChartNoAxesCombined, ChevronDown, ChevronLeft, ChevronRight, Contact, CreditCard, Eye, EyeOff, FlaskConical, Headphones, Layers, LayoutDashboard, LoaderCircle, LockKeyhole, LogOut, MapPin, Menu, Network, Pencil, Plug, Plus, RadioTower, ReceiptText, RefreshCw, ScrollText, Search, SearchX, Settings2, ShieldAlert, ShieldCheck, ShoppingBag, UserPlus, Users, X } from 'lucide';
 const icons = { ArrowDown, ArrowRight, ArrowUpRight, Building2, CalendarDays, ChartNoAxesColumn, ChartNoAxesCombined, ChevronDown, ChevronLeft, ChevronRight, Contact, CreditCard, Eye, EyeOff, FlaskConical, Headphones, Layers, LayoutDashboard, LoaderCircle, LockKeyhole, LogOut, MapPin, Menu, Network, Pencil, Plug, Plus, RadioTower, ReceiptText, RefreshCw, ScrollText, Search, SearchX, Settings2, ShieldAlert, ShieldCheck, ShoppingBag, UserPlus, Users, X };
@@ -10,6 +13,7 @@ import { WorkspaceApi } from './api';
 import { modules, labels, can, type Field, type RecordData } from './modules';
 declare const __IKONECTT_PREVIEW__: boolean;
 const api = new WorkspaceApi();
+const walletApi = new WalletApi(api);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 let route = 'dashboard', rows: RecordData[] = [], query = '', filter = '', page = 0, viewVersion = 0;
 let cache: Record<string, RecordData[]> = {};
@@ -142,7 +146,7 @@ async function navigate() {
 }
 async function loadRelated(key: string) {if(!can(api.permissions,modules[key].permission))return [];if(cache[key])return cache[key];return cache[key]=await api.list(key)}
 function value(key: string, v: any) { if (v === null || v === undefined || v === '')
-    return '<span class="muted">—</span>'; if (['priceMinor', 'amountMinor', 'confirmedPaymentsMinor'].includes(key))
+    return '<span class="muted">—</span>'; if (['priceMinor', 'renewalPriceMinor', 'amountMinor', 'confirmedPaymentsMinor'].includes(key))
     return `<strong class="money">${money(v)}</strong>`; if (key.endsWith('At'))
     return esc(date(v)); if (['status', 'eligibility', 'enabled'].includes(key))
     return badge(v); if (key === 'published')
@@ -169,7 +173,7 @@ async function dashboard(version: number) {
     content().innerHTML = heading('Operational Overview', `Current customers, orders and service activity.`, button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<div class="overview-date">${icon('calendar-days')}<time>${new Intl.DateTimeFormat('en-NG', { dateStyle: 'full', timeZone: 'Africa/Lagos' }).format(new Date())}</time><span aria-hidden="true">•</span><small class="overview-context">${api.mode === 'mock' ? 'Sample workspace' : 'Current operational records'}</small></div>${failures.length ? `<div class="notice" role="alert">Could not load: ${esc(failures.join(', '))}. ${button('Retry', 'refresh')}</div>` : ''}${cards ? (cards.startsWith('<div class="notice">')?cards:`<section class="metrics">${cards}</section>`) : '<div class="notice">Your role has access to reporting. Open Reports for operational summaries.</div>'}<section class="dashboard-grid"><div class="panel queue-panel"><div class="panel-title"><div><span class="eyebrow">OPERATIONS</span><h2>Pending Actions</h2></div>${icon('arrow-up-right')}</div>${tasks.length ? tasks.map(([key, , title, desc, i], n) => `<a class="task" href="#/${key}"><span class="task-icon">${icon(i)}</span><div><strong>${title}</strong><p>${desc}</p></div><span class="task-number">0${n + 1}</span>${icon('chevron-right')}</a>`).join('') : '<p class="panel-pad">Operational actions are limited by your assigned role.</p>'}</div><div class="panel health-panel"><span class="eyebrow">FULFILLMENT</span><h2>Service Workflow</h2><p>Payment approval and service activation are separate steps.</p><ol class="workflow"><li><span>1</span><div><strong>Customer request</strong><small>Review plan and address eligibility</small></div></li><li><span>2</span><div><strong>Payment verification</strong><small>Authorized staff check the evidence</small></div></li><li><span>3</span><div><strong>Service fulfillment</strong><small>Confirmed through provisioning</small></div></li></ol><div class="quiet-note">${icon('shield-check')} Each sensitive action is permission controlled.</div></div></section>${leads ? `<section class="panel"><div class="panel-title"><div><span class="eyebrow">CUSTOMERS & SALES</span><h2>Recent leads</h2></div><a class="text-link" href="#/leads">View all leads ${icon('arrow-right')}</a></div>${table('leads', leads)}</section>` : ''}<section class="workspace-note">${icon('network')}<div><strong>Shared customer records</strong><p>Customer and service records are shared across Ikonectt applications.</p></div></section>`;
 }
 function filtered() { return rows.filter(r => (!query || Object.values(r).some(v => String(v ?? '').toLowerCase().includes(query.toLowerCase()))) && (!filter || String(r[modules[route].status!]) === filter)); }
-function table(key: string, data: RecordData[]) { const m = modules[key]; const numeric = new Set(['priceMinor', 'amountMinor', 'speedMbps', 'billingDays', 'attempts']); return `<div class="table-scroll" tabindex="0" role="region" aria-label="${esc(m.label)} table"><table><thead><tr>${m.columns.map(k => `<th scope="col" class="${numeric.has(k) ? 'numeric' : ''}">${labels[k] || pretty(k)}</th>`).join('')}<th scope="col"><span class="sr-only">Open details</span></th></tr></thead><tbody>${data.map(r => `<tr>${m.columns.map((k, i) => `<td class="${numeric.has(k) ? 'numeric' : ''}">${i === 0 ? `<button class="record-link" data-detail="${esc(r.id)}" data-module="${key}">${value(k, r[k])}</button>` : value(k, r[k])}</td>`).join('')}<td><button class="icon-btn" data-detail="${esc(r.id)}" data-module="${key}" aria-label="Open ${esc(r.name || r.subject || m.singular)}">${icon('arrow-up-right')}</button></td></tr>`).join('')}</tbody></table></div>`; }
+function table(key: string, data: RecordData[]) { const m = modules[key]; const numeric = new Set(['priceMinor', 'renewalPriceMinor', 'amountMinor', 'speedMbps', 'billingDays', 'attempts']); return `<div class="table-scroll" tabindex="0" role="region" aria-label="${esc(m.label)} table"><table><thead><tr>${m.columns.map(k => `<th scope="col" class="${numeric.has(k) ? 'numeric' : ''}">${labels[k] || pretty(k)}</th>`).join('')}<th scope="col"><span class="sr-only">Open details</span></th></tr></thead><tbody>${data.map(r => `<tr>${m.columns.map((k, i) => `<td class="${numeric.has(k) ? 'numeric' : ''}">${i === 0 ? `<button class="record-link" data-detail="${esc(r.id)}" data-module="${key}">${value(k, r[k])}</button>` : value(k, r[k])}</td>`).join('')}<td><button class="icon-btn" data-detail="${esc(r.id)}" data-module="${key}" aria-label="Open ${esc(r.name || r.subject || m.singular)}">${icon('arrow-up-right')}</button></td></tr>`).join('')}</tbody></table></div>`; }
 function renderList() {
     const m = modules[route];
     const data = filtered();
@@ -191,6 +195,7 @@ function openModal(html: string, wide = false) { closeModal(); lastFocus = docum
     closeModal(); }); }
 function closeModal() { document.querySelector('.modal-overlay')?.remove(); document.body.classList.remove('modal-open'); lastFocus?.focus(); lastFocus = null; }
 const modalHeader = (title: string, sub = '') => `<header class="modal-header"><div><span class="eyebrow">${esc(sub)}</span><h2 id="dialog-title">${esc(title)}</h2></div><button class="icon-btn" aria-label="Close dialog" data-action="close">${icon('x')}</button></header>`;
+const walletUi = new WalletUi({ api, walletApi, openModal, closeModal, modalHeader, button, esc, money, badge, date, toast, friendly, refresh: async () => { cache = {}; await navigate(); }, details });
 function fieldHtml(f: Field, r: RecordData) {
     const v = r[f.key];
     const id = `field-${f.key}`;
@@ -245,7 +250,7 @@ async function edit(key: string, id?: string) {
                 else if (f.type === 'roles')
                     input[f.key] = fd.getAll('roles');
                 else if (f.type === 'number')
-                    input[f.key] = Number(v);
+                    input[f.key] = f.key === 'renewalPriceMinor' && !String(v ?? '').trim() ? null : Number(v);
                 else if (['features', 'planIds'].includes(f.key))
                     input[f.key] = String(v || '').split('\n').map(x => x.trim()).filter(Boolean);
                 else if (v !== null && String(v).trim())
@@ -293,7 +298,7 @@ async function details(key: string, id: string) {
             const related = await Promise.all(['orders', 'subscriptions', 'tickets'].map(async (k) => { if (!can(api.permissions, modules[k].permission))
                 return ''; const list = (await loadRelated(k)).filter(x => x.customerId === id); return `<div class="related-block"><h3>${modules[k].label} <span>${list.length}</span></h3>${list.length ? list.map(x => `<button class="related-row" data-detail="${esc(x.id)}" data-module="${k}"><span>${esc(x.subject || x.planName || x.id)}</span>${badge(x.status)}${icon('arrow-up-right')}</button>`).join('') : '<p class="muted">No related records.</p>'}</div>`; }));
             const refs = can(api.permissions, 'integrations.read') ? await api.references(id) : 'Your role does not include integration references.';
-            extra = (can(api.permissions,'customers.write')?button('Issue new setup token',`credentials:${id}`,'','lock-keyhole'):'')+related.join('') + `<div class="related-block"><h3>External CRM references</h3><pre>${esc(JSON.stringify(refs, null, 2))}</pre>${can(api.permissions, 'integrations.write') ? button('Link external reference', `reference:${id}`, '', 'plug') : ''}</div>`;
+            extra = (can(api.permissions,'customers.write')?button('Issue new setup token',`credentials:${id}`,'','lock-keyhole'):'')+(can(api.permissions,'wallet.read') ? await walletUi.customerSummary(id) : '') + related.join('') + `<div class="related-block"><h3>External CRM references</h3><pre>${esc(JSON.stringify(refs, null, 2))}</pre>${can(api.permissions, 'integrations.write') ? button('Link external reference', `reference:${id}`, '', 'plug') : ''}</div>`;
         }
         if (key === 'leads')
             extra = `<div class="notice">${r.buildingId ? 'Address-linked enquiry' : 'Address verification required'} · Source, assignment, notes and follow-ups await backend support.</div>${!r.customerId && can(api.permissions, 'customers.write') ? button('Create customer from lead', `convert:${id}`, 'primary', 'user-plus') : ''}`;
@@ -301,6 +306,9 @@ async function details(key: string, id: string) {
             extra = `<div class="notice">Order: ${esc(pretty(r.status))}. Payment confirmation does not activate service. Provisioning is an independent authorized workflow.</div>${r.status==='PENDING_PAYMENT'&&can(api.permissions,'orders.write')?button('Report payment',`payment-report:${id}`,'','credit-card'):''}${can(api.permissions, 'provisioning.write') ? '<a class="btn" href="#/provisioning">Open provisioning workflow</a>' : ''}`;
         if (key === 'payments')
             extra = `<div class="notice">Verification records the staff identity, timestamp and evidence. Confirmation never activates a subscription.</div>${r.status === 'REPORTED' && can(api.permissions, 'payments.verify') ? button('Review payment', `verify:${id}`, 'primary', 'shield-check') : ''}${r.status === 'CONFIRMED' ? button('View receipt', `receipt:${id}`, '', 'receipt-text') : ''}`;
+        if (key === 'subscriptions' && can(api.permissions, 'provisioning.write')) extra = walletUi.policyAction(r);
+        if (key === 'walletTopUps') extra = walletUi.topUpActions(r);
+        if (key === 'walletRenewals') extra = walletUi.renewalActions(r);
         if (key === 'tickets') {
             const messages = r.messages||await api.messages(id);
             extra = `<div class="related-block"><h3>Customer conversation</h3><p class="footnote">Messages here are visible to the customer. Private staff notes are unavailable.</p>${messages.map((msg: RecordData) => `<div class="message"><small>${esc(date(msg.createdAt))} · ${esc(msg.authorId)}</small><p>${esc(msg.message)}</p></div>`).join('') || '<p class="muted">No messages.</p>'}${can(api.permissions, 'support.write') ? `<form id="reply-form"><label>Reply to customer<textarea name="message" required maxlength="4000" rows="3"></textarea></label><button class="btn primary" type="submit">Send reply</button><div class="form-error" role="alert"></div></form>` : ''}</div>`;
@@ -370,6 +378,7 @@ document.addEventListener('click', async (e) => {
         return;
     }
     const action = target.dataset.action!;
+    if (action.startsWith('wallet:')) { await walletUi.action(action); return; }
     if (action === 'close')
         closeModal();
     else if (action === 'preview' && __IKONECTT_PREVIEW__) {
