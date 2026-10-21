@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import * as C from "../generated/contracts.js";
 import { createCustomerClient } from "../generated/contracts.js";
-import { createLiveAdapter } from "../live.js";
+import { createLiveAdapter, summaryView } from "../live.js";
 import { createMockWallet, walletFixture, walletScenarios } from "../wallet-fixtures.js";
 import { rawFixture } from "../fixtures.js";
 import { createWalletIntents, settleWalletFailure, validateTopUpDraft, renewalOutcome, renewalReady, walletScreen, loadWalletJourney, serviceRenewalActions, topUpNotice } from "../wallet.js";
@@ -19,8 +19,8 @@ const ctx = (data) => ({ ...data, result: {}, intents: createWalletIntents(), es
   date: value => value, input: () => "",
 });
 
-test("wallet UI pins API 1.1.0 and all explicit scenarios satisfy canonical schemas", () => {
-  assert.equal(C.API_VERSION, "1.1.0");
+test("wallet UI pins API 1.2.0 and all explicit scenarios satisfy canonical schemas", () => {
+  assert.equal(C.API_VERSION, "1.2.0");
   for (const scenario of walletScenarios) {
     const data = walletFixture(scenario);
     C.WalletSummary.parse(data.wallet); C.RenewalEligibility.parse(data.eligibility);
@@ -163,4 +163,70 @@ test("an uncertain renewal can recover its original request after eligibility or
     assert.match(dom.window.document.body.textContent, /original request reference and quote/);
     dom.window.close();
   }
+});
+
+test("zero and positive wallets remain independent of active and inactive subscription displays", async () => {
+  for (const status of ["ACTIVE", "SUSPENDED"]) {
+    for (const scenario of ["zero", "funded"]) {
+      const fixture = walletFixture(scenario);
+      const subscription = C.Subscription.parse({ ...rawFixture.subscriptions[0], status });
+      const original = structuredClone(subscription);
+      const data = summaryView({ ...rawFixture, subscriptions: [subscription] });
+      const calls = [];
+      const api = {
+        wallet: async () => { calls.push("wallet"); return fixture.wallet; },
+        requestWalletRenewal: async () => { throw new Error("Funding must not renew a service"); },
+      };
+      const aux = await loadWalletJourney("overview", null, api, data);
+      assert.equal(aux.wallet.availableMinor, scenario === "zero" ? 0 : 2500000);
+      assert.equal(data.services[0].status, status === "ACTIVE" ? "Active" : "Suspended");
+      assert.equal(data.services[0].renewalDate, original.endsAt);
+      assert.deepEqual(subscription, original);
+      assert.deepEqual(calls, ["wallet"]);
+      const context = ctx({ aux: { ...aux, topUps: { items: [] }, renewals: { items: [] } } });
+      const dom = new JSDOM(walletScreen("wallet", null, context));
+      assert.match(dom.window.document.body.textContent, /Available balance/);
+      assert.equal(dom.window.document.querySelector("form"), null);
+      dom.window.close();
+    }
+  }
+});
+
+test("funded services still require authoritative eligibility and explicit customer renewal consent", () => {
+  const quote = walletFixture("funded").eligibility;
+  for (const status of ["Active", "Suspended"]) {
+    const service = { id: quote.subscriptionId, status };
+    const denied = { ...quote, eligible: false, reasonCodes: ["SERVICE_NOT_ENABLED"] };
+    assert.doesNotMatch(serviceRenewalActions(service, { eligibility: { [service.id]: denied } }, ctx({})), /Renew Plan/);
+    const context = ctx({ aux: { quote } });
+    const dom = new JSDOM(walletScreen("renew", service.id, context));
+    const form = dom.window.document.querySelector('[data-form="wallet-renew"]');
+    assert.ok(form);
+    const consent = form.querySelector('input[type="checkbox"]');
+    assert.ok(consent.required);
+    assert.equal(consent.checked, false);
+    assert.match(form.textContent, /Confirm and reserve funds/);
+    assert.equal(dom.window.document.querySelectorAll("form").length, 1);
+    dom.window.close();
+  }
+});
+
+test("canonical settled funding is visible as an immutable system credit with a plain source reference", () => {
+  const fixture = walletFixture("funded");
+  const sourceId = "d0000000-0000-4000-8000-000000000001";
+  const entry = C.WalletEntry.parse({ ...fixture.entries[0], kind: "SETTLEMENT_CREDIT",
+    settlementPaymentId: sourceId, topUpId: null, actorId: null,
+    description: 'Verified settled funding <script>unsafe</script>' });
+  const context = ctx({ aux: { wallet: fixture.wallet, entries: { items: [entry], offset: 0, limit: 25, total: 1 } } });
+  const dom = new JSDOM(walletScreen("transactions", null, context));
+  assert.match(dom.window.document.body.textContent, /Settled wallet funding/);
+  assert.match(dom.window.document.body.textContent, /System settlement/);
+  assert.match(dom.window.document.body.textContent, new RegExp(sourceId));
+  assert.equal(dom.window.document.querySelector("script"), null);
+  assert.equal(dom.window.document.querySelector("a, button, form"), dom.window.document.querySelector('a[href="#/wallet"]'));
+  assert.equal(dom.window.document.querySelectorAll('a[href*="settlement"]').length, 0);
+  assert.equal(dom.window.document.querySelectorAll("button, form").length, 0);
+  dom.window.close();
+  // Existing manual-credit records without the additive field still validate.
+  C.WalletEntry.parse(fixture.entries[0]);
 });

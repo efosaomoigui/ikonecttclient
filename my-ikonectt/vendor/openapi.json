@@ -14780,6 +14780,7 @@
                             "type": "string",
                             "enum": [
                               "TOPUP_CREDIT",
+                              "SETTLEMENT_CREDIT",
                               "RESERVE",
                               "CAPTURE",
                               "RELEASE",
@@ -14825,6 +14826,11 @@
                             "nullable": true
                           },
                           "topUpId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "settlementPaymentId": {
                             "type": "string",
                             "format": "uuid",
                             "nullable": true
@@ -16705,6 +16711,7 @@
                             "type": "string",
                             "enum": [
                               "TOPUP_CREDIT",
+                              "SETTLEMENT_CREDIT",
                               "RESERVE",
                               "CAPTURE",
                               "RELEASE",
@@ -16750,6 +16757,11 @@
                             "nullable": true
                           },
                           "topUpId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "settlementPaymentId": {
                             "type": "string",
                             "format": "uuid",
                             "nullable": true
@@ -16977,6 +16989,7 @@
                       "type": "string",
                       "enum": [
                         "TOPUP_CREDIT",
+                        "SETTLEMENT_CREDIT",
                         "RESERVE",
                         "CAPTURE",
                         "RELEASE",
@@ -17022,6 +17035,11 @@
                       "nullable": true
                     },
                     "topUpId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "settlementPaymentId": {
                       "type": "string",
                       "format": "uuid",
                       "nullable": true
@@ -17933,6 +17951,7 @@
                       "type": "string",
                       "enum": [
                         "TOPUP_CREDIT",
+                        "SETTLEMENT_CREDIT",
                         "RESERVE",
                         "CAPTURE",
                         "RELEASE",
@@ -17978,6 +17997,11 @@
                       "nullable": true
                     },
                     "topUpId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "nullable": true
+                    },
+                    "settlementPaymentId": {
                       "type": "string",
                       "format": "uuid",
                       "nullable": true
@@ -19384,7 +19408,7 @@
   "info": {
     "title": "Ikonectt Core API",
     "description": "Public Website, My Ikonectt and Admin/CRM. No public registration. Money in NGN minor units. All writes return HTTP 200.",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "contact": {}
   },
   "tags": [],

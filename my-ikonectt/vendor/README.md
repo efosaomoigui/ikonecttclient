@@ -1,10 +1,10 @@
 # Ikonectt shared API v1
 
-Current compatible contract release: **1.0.1**. Exact methods and role permissions are generated in
+Current contract release: **1.2.0**. Exact methods and role permissions are generated in
 `ENDPOINTS.md`. See `FRONTEND_HANDOFF.md` for safe pinned-commit exports and progressive frontend integration.
 The shared persistent development environment and local account procedure are in `backend/DEVELOPMENT.md`.
 
-Backend branch: `codex/ikonectt-core-backend`. Independent NestJS service in `backend/`.
+Integration branch: `codex/ikonectt-wallet-stage5a`. Independent NestJS service in `backend/`.
 Base URL in development: `http://localhost:4000/api/v1`. Swagger: `/api/docs`.
 Canonical request/response schemas and inferred TypeScript types: `index.ts`.
 Generated language-neutral contract: `openapi.json` (run `npm run contracts` from backend).
