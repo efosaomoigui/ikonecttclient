@@ -1,0 +1,545 @@
+{
+  "lightBaselineUnchanged": true,
+  "lightBaseline": [
+    {
+      "background": "rgb(252, 251, 248)",
+      "border": "rgb(35, 37, 39)",
+      "color": "rgb(35, 37, 39)",
+      "font": "14px / 23.8px Jakarta, Arial, sans-serif",
+      "height": 748.2311401367188,
+      "padding": "0px",
+      "selector": "body",
+      "width": 1265.20751953125
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "rgb(35, 37, 39)",
+      "color": "rgb(35, 37, 39)",
+      "font": "14px / 23.8px Jakarta, Arial, sans-serif",
+      "height": 80.60377502441406,
+      "padding": "18px 63.2547px",
+      "selector": ".public-header",
+      "width": 1265.20751953125
+    },
+    {
+      "background": "rgb(238, 236, 231)",
+      "border": "rgb(35, 37, 39)",
+      "color": "rgb(35, 37, 39)",
+      "font": "14px / 23.8px Jakarta, Arial, sans-serif",
+      "height": 540,
+      "padding": "32px",
+      "selector": ".auth-story",
+      "width": 512.4197998046875
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "rgb(35, 37, 39)",
+      "color": "rgb(35, 37, 39)",
+      "font": "14px / 23.8px Jakarta, Arial, sans-serif",
+      "height": 502.867919921875,
+      "padding": "0px",
+      "selector": ".auth-panel",
+      "width": 512.4197998046875
+    },
+    {
+      "background": "rgb(232, 240, 254)",
+      "border": "rgb(217, 217, 213)",
+      "color": "rgb(0, 0, 0)",
+      "font": "650 13px / 22.1px Jakarta, Arial, sans-serif",
+      "height": 45.905662536621094,
+      "padding": "11px 14px",
+      "selector": "input",
+      "width": 512.4197998046875
+    },
+    {
+      "background": "rgb(199, 35, 50)",
+      "border": "rgba(0, 0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "font": "600 13px / 20.8px Jakarta, Arial, sans-serif",
+      "height": 44.60377502441406,
+      "padding": "11px 17px",
+      "selector": ".button",
+      "width": 115.24528503417967
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "rgb(231, 229, 223) rgb(96, 103, 99) rgb(96, 103, 99)",
+      "color": "rgb(96, 103, 99)",
+      "font": "14px / 23.8px Jakarta, Arial, sans-serif",
+      "height": 83.632080078125,
+      "padding": "14px 63.2547px",
+      "selector": "footer",
+      "width": 1265.20751953125
+    }
+  ],
+  "checks": [
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "wallet",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "wallet",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "top-up",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "top-up",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "transactions",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "transactions",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "services",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "services",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "service-detail",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "service-detail",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "renew-quote",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "renew-quote",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "new-order",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "new-order",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "plans",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "plans",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "coverage",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "coverage",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "billing",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "billing",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "receipt",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "receipt",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "profile",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "profile",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "notifications",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "notifications",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "support-empty",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "support-empty",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "support-form",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "support-form",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "security",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "security",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "error",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "error",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-wallet",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-wallet",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-renew-confirmation",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-renew-confirmation",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-reserved",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-reserved",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-processing",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-processing",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-review",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-review",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-failed",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-failed",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-support-list",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-support-list",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-conversation",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mock-conversation",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-login",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-login",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-login",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-login",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "portal-home",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "portal-home",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "help",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "help",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "overview",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "overview",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "wallet",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "wallet",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-wallet",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "mobile-wallet",
+      "theme": "dark"
+    },
+    {
+      "expected": "light",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "top-up",
+      "theme": "light"
+    },
+    {
+      "expected": "dark",
+      "headerControls": 1,
+      "overflow": false,
+      "page": "top-up",
+      "theme": "dark"
+    }
+  ],
+  "liveFinancialMutations": 0,
+  "mockStates": "Fixed presentation scenarios only, no live mutations",
+  "keyboardSpaceToggle": true,
+  "preferenceReload": true,
+  "draftPreserved": true,
+  "mobileMenuClosedAfterNavigation": true
+}

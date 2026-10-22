@@ -9,6 +9,7 @@ await mkdir(dest, { recursive: true });
 for (const file of [
   "index.html",
   "portal.css",
+  "theme.js",
   "app.js",
   "config.js",
   "api.js",

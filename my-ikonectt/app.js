@@ -85,11 +85,15 @@ const routeNames = {
   renewals: "Wallet / Renewals",
 };
 const pill = (s) =>
-  `<span class="pill ${["Active", "Paid", "Verified", "Resolved"].includes(s) ? "green" : ""}">${esc(s)}</span>`;
+  `<span data-status="${esc(String(s).toLowerCase().replaceAll("_", " ").replaceAll(" ", "-"))}" class="pill ${["Active", "Paid", "Verified", "Resolved"].includes(s) ? "green" : ""}">${esc(s)}</span>`;
 const empty = (heading, body) =>
   `<div class="empty"><span aria-hidden="true">◎</span><h3>${heading}</h3><p>${body}</p></div>`;
+function themeToggle() {
+  const dark = document.documentElement.dataset.theme === "dark";
+  return `<button type="button" class="theme-toggle" data-theme-toggle aria-label="Dark mode" aria-pressed="${dark}" title="Switch to ${dark ? "light" : "dark"} mode"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M20.2 15.3A8.4 8.4 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z"/></svg><span data-theme-label>${dark ? "Dark" : "Light"}</span></button>`;
+}
 function publicShell(body) {
-  return `<header class="public-header">${logo(false)}<nav aria-label="Main navigation">${link("", "Home")}${link("help", "Need help?")}${link("login", `Sign in ${arrow}`, "button small")}</nav></header><main id="main" class="public-main ${body.includes('class="auth-layout"') ? 'auth-main' : ''}" tabindex="-1">${body}</main><footer><div>${logo(false)}<p>A little closer to everything that matters.</p></div><div>${link("help", "Account help")}<span>© ${new Date().getFullYear()} Ikonectt</span></div></footer>`;
+  return `<header class="public-header">${logo(false)}<nav aria-label="Main navigation">${link("", "Home")}${link("help", "Need help?")}${link("login", `Sign in ${arrow}`, "button small")}${themeToggle()}</nav></header><main id="main" class="public-main ${body.includes('class="auth-layout"') ? 'auth-main' : ''}" tabindex="-1">${body}</main><footer><div>${logo(false)}<p>A little closer to everything that matters.</p></div><div>${link("help", "Account help")}<span>© ${new Date().getFullYear()} Ikonectt</span></div></footer>`;
 }
 function welcome() {
   return publicShell(
@@ -368,7 +372,7 @@ function shell(body, route) {
     )
     .join(
       "",
-    )}</nav><div class="sidebar-bottom"><div class="care-card"><strong>Account support</strong>${link("support/new", "Contact Support " + arrow)}</div><button data-logout class="logout">↪ <span>Sign out securely</span></button></div></aside><div class="app-body"><header class="app-header"><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button><span class="breadcrumb">My Ikonectt <span>/</span> ${names[route] || routeNames[route] || "Account"}</span><div class="account-chip"><span class="account-number">Account ${esc(customer.accountNumber)}</span>${link(
+    )}</nav><div class="sidebar-bottom"><div class="care-card"><strong>Account support</strong>${link("support/new", "Contact Support " + arrow)}</div><button data-logout class="logout">↪ <span>Sign out securely</span></button></div></aside><div class="app-body"><header class="app-header"><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button><span class="breadcrumb">My Ikonectt <span>/</span> ${names[route] || routeNames[route] || "Account"}</span><div class="account-chip">${themeToggle()}<span class="account-number">Account ${esc(customer.accountNumber)}</span>${link(
     "profile",
     esc(
       customer.name
