@@ -51,6 +51,28 @@ body { color: var(--text-primary); background: var(--surface-app); }
 .nav-group-toggle:hover { background: #e8ecf0; }
 .nav-group-toggle svg { width: 13px; height: 13px; }
 .nav-group-toggle[aria-expanded="false"] svg { transform: rotate(-90deg); }
+/* Keep the approved sidebar dimensions; only its navigation owns scrolling. */
+.sidebar > .brand, .sidebar > .sidebar-bottom { flex-shrink: 0; }
+.sidebar nav {
+  --sidebar-scroll-thumb: rgba(110, 120, 130, .32);
+  --sidebar-scroll-thumb-hover: rgba(110, 120, 130, .55);
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-scroll-thumb) transparent;
+}
+:root[data-theme="dark"] .sidebar nav {
+  --sidebar-scroll-thumb: rgba(160, 168, 178, .38);
+  --sidebar-scroll-thumb-hover: rgba(175, 183, 193, .62);
+}
+.sidebar nav:is(:hover, :focus-within, .is-scrolling) { scrollbar-color: var(--sidebar-scroll-thumb-hover) transparent; }
+.sidebar nav:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2px; }
+.sidebar nav::-webkit-scrollbar { width: 6px; }
+.sidebar nav::-webkit-scrollbar-track { background: transparent; }
+.sidebar nav::-webkit-scrollbar-thumb { background: var(--sidebar-scroll-thumb); border-radius: 6px; }
+.sidebar nav:is(:hover, :focus-within, .is-scrolling)::-webkit-scrollbar-thumb { background: var(--sidebar-scroll-thumb-hover); }
 .brand > span { font-size: 10px; line-height: 1.6; letter-spacing: 1.2px; margin-top: 10px; }
 .sidebar-bottom small { font-size: 9px; }
 .page-heading p, .metric > div, .task strong, .workflow strong,

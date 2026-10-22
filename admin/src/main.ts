@@ -20,7 +20,8 @@ const app = document.querySelector<HTMLDivElement>('#app')!;
 let route = 'dashboard', rows: RecordData[] = [], query = '', filter = '', page = 0, viewVersion = 0;
 let cache: Record<string, RecordData[]> = {};
 let lastFocus: HTMLElement | null = null;
-const collapsedNavGroups = new Set<string>();
+let expandedNavGroup: string | null = null;
+let navigationStarted = false;
 const esc = (v: unknown) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const pretty = (v: unknown) => String(v ?? '').toLowerCase().replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 const icon = (name: string) => `<i data-lucide="${name}" aria-hidden="true"></i>`;
@@ -35,7 +36,8 @@ const errorText = (e: unknown) => e instanceof Error ? e.message : 'The operatio
 function friendly(e: any) { if(e?.details&&Array.isArray(e.details))return e.details.map((x:any)=>`${x.path||'Request'}: ${x.message||'Invalid value'}`).join(' / '); return e?.issues ? e.issues.map((x: any) => `${x.path.join('.')}: ${x.message}`).join(' · ') : errorText(e); }
 api.onExpired = () => { cache = {}; closeModal(); login('Your session has expired. Please sign in again.'); };
 function login(message = '') {
-    collapsedNavGroups.clear();
+    expandedNavGroup = null;
+    navigationStarted = false;
     rows=[];cache={};
     viewVersion++;
     app.innerHTML = `<main class="login"><section class="login-story"><img src="/admin/logo-white.png" alt="Ikonectt"><div><span class="eyebrow">THE STAFF WORKSPACE</span><h1>Connections begin<br>with people.</h1><p>One place to care for customers, move work forward and keep Ikonectt connected.</p><div class="signal"><span></span><span></span><span></span><b>${icon('network')}</b></div></div><footer>IKONECTT ADMIN <span>Authorized personnel only</span></footer></section><section class="login-panel">${themeControl()}<div class="login-box"><img class="mobile-logo" data-theme-logo src="${themeLogo()}" alt="Ikonectt"><span class="eyebrow red">STAFF ACCESS</span><h2>Staff sign-in</h2><p>Use your authorized staff account.</p><form id="login-form"><label>Staff email<input name="email" type="email" autocomplete="username" required placeholder="you@ikonectt.com"></label><label>Password<div class="password"><input name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button type="button" aria-label="Show password" data-action="password">${icon('eye')}</button></div></label><div id="login-error" role="alert" class="form-error">${esc(message)}</div><button class="btn primary full" type="submit">Sign in to workspace ${icon('arrow-right')}</button></form><div class="login-help"><a class="auth-link" href="#/recovery" data-action="recovery">Forgot password?</a><a class="auth-link" href="#/reset-password" data-action="reset-password">Set password</a></div><p class="secure">${icon('lock-keyhole')} Your access is managed by your administrator.</p>${__IKONECTT_PREVIEW__?`<details class="preview-box"><summary><strong>Review the application</strong><span class="preview-toggle"><span class="preview-show">Show</span><span class="preview-hide">Hide</span>${icon('chevron-down')}</span></summary><div class="preview-content"><p>Explore a temporary workspace with labeled sample records. No production data is connected.</p><label class="sr-only" for="preview-role">Preview staff role</label><select id="preview-role">${Object.keys(ROLE_PERMISSIONS).map(r => `<option value="${r}">${pretty(r)}</option>`).join('')}</select>${button('Open simulated workspace', 'preview', 'full', 'arrow-up-right')}</div></details>`:""}<small>© ${new Date().getFullYear()} Ikonectt</small></div></section></main>`;
@@ -56,16 +58,36 @@ function login(message = '') {
         refreshIcons();
     } };
 }
+function navigationEntries() {
+    return [{ key: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard', group: 'Overview', permission: null }, ...Object.entries(modules).map(([key, m]) => ({ key, ...m })), { key: 'reports', label: 'Reports', icon: 'chart-no-axes-combined', group: 'Intelligence', permission: 'reports.read' }, { key: 'integrations', label: 'Integrations', icon: 'plug', group: 'Administration', permission: 'integrations.read' }, { key: 'settings', label: 'Settings', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' }];
+}
 function nav() {
-    const entries = [{ key: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard', group: 'Overview', permission: null }, ...Object.entries(modules).map(([key, m]) => ({ key, ...m })), { key: 'reports', label: 'Reports', icon: 'chart-no-axes-combined', group: 'Intelligence', permission: 'reports.read' }, { key: 'integrations', label: 'Integrations', icon: 'plug', group: 'Administration', permission: 'integrations.read' }, { key: 'settings', label: 'Settings', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' }];
+    const entries = navigationEntries();
     const groups = ['Overview', 'Customers & sales', 'Services & operations', 'Customer support', 'Intelligence', 'Administration'];
     return groups.map((g, index) => {
         const items = entries.filter(e => e.group === g && (!e.permission || can(api.permissions, e.permission)));
-        const expanded = !collapsedNavGroups.has(g);
+        const expanded = expandedNavGroup === g;
         return items.length ? `<div class="nav-group"><button type="button" class="nav-group-toggle" data-action="nav-group" data-group="${esc(g)}" aria-expanded="${expanded}" aria-controls="nav-group-${index}"><span>${g}</span>${icon('chevron-down')}</button><div id="nav-group-${index}"${expanded ? '' : ' hidden'}>${items.map(e => `<a href="#/${e.key}" class="nav-link ${route === e.key ? 'active' : ''}" ${route === e.key ? 'aria-current="page"' : ''}>${icon(e.icon)}${e.label}${e.key === 'dashboard' ? '<b></b>' : ''}</a>`).join('')}</div></div>` : '';
     }).join('');
 }
-function shell() { const title = modules[route]?.label || pretty(route); app.innerHTML = `<div class="workspace"><aside class="sidebar" id="sidebar"><a class="brand" href="#/dashboard"><img data-theme-logo src="${themeLogo()}" alt="Ikonectt"><span>STAFF WORKSPACE</span></a><nav aria-label="Main navigation">${nav()}</nav><div class="sidebar-bottom"><div class="workspace-label">${icon('building-2')} Ikonectt Operations</div><small>Connected people. Better service.</small></div></aside><div class="main-shell"><header class="topbar"><button class="icon-btn mobile-menu" aria-label="Toggle navigation" aria-expanded="false" data-action="menu">${icon('menu')}</button><div class="breadcrumb">Workspace ${icon('chevron-right')} <strong>${title}</strong></div><div class="top-right">${themeControl()}<span class="environment">${icon(api.mode === 'mock' ? 'flask-conical' : 'lock-keyhole')}${api.mode === 'mock' ? 'SIMULATED WORKSPACE' : 'SHARED BACKEND'}</span><button class="profile" data-action="account" aria-label="Account and sign out"><span>${api.session!.principal.roles[0].slice(0, 2)}</span><div><b>${pretty(api.session!.principal.roles.join(' · '))}</b><small>Staff account</small></div>${icon('chevron-down')}</button></div></header>${api.mode === 'mock' ? '<div class="demo-banner"><strong>Simulation mode</strong><span>All records and actions are sample data held in memory. Changes reset when you sign out or reload.</span></div>' : ''}<main id="content" tabindex="-1"><div class="loading">${icon('loader-circle')} Loading workspace…</div></main><footer class="app-footer"><span>© ${new Date().getFullYear()} Ikonectt</span><span>All times WAT</span></footer></div></div>`; refreshIcons(); }
+function revealActiveNavigation() {
+    const navigation = document.querySelector<HTMLElement>('.sidebar nav');
+    const active = navigation?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!navigation || !active || active.closest('[hidden]')) return;
+    const frame = navigation.getBoundingClientRect(), item = active.getBoundingClientRect();
+    if (item.bottom > frame.bottom) navigation.scrollTop += item.bottom - frame.bottom;
+    else if (item.top < frame.top) navigation.scrollTop -= frame.top - item.top;
+}
+const simulationBanner = () => '<div class="demo-banner"><strong>Simulation mode</strong><span>Viewing simulated development records. Simulation actions are not real customer operations; simulation data may reset.</span></div>';
+const sidebarScrollTimers = new WeakMap<HTMLElement, ReturnType<typeof setTimeout>>();
+document.addEventListener('scroll', event => {
+    const navigation = event.target;
+    if (!(navigation instanceof HTMLElement) || !navigation.matches('.sidebar nav')) return;
+    navigation.classList.add('is-scrolling');
+    clearTimeout(sidebarScrollTimers.get(navigation));
+    sidebarScrollTimers.set(navigation, setTimeout(() => navigation.classList.remove('is-scrolling'), 700));
+}, { capture: true, passive: true });
+function shell() { const title = modules[route]?.label || pretty(route); app.innerHTML = `<div class="workspace"><aside class="sidebar" id="sidebar"><a class="brand" href="#/dashboard"><img data-theme-logo src="${themeLogo()}" alt="Ikonectt"><span>STAFF WORKSPACE</span></a><nav aria-label="Main navigation" tabindex="0">${nav()}</nav><div class="sidebar-bottom"><div class="workspace-label">${icon('building-2')} Ikonectt Operations</div><small>Connected people. Better service.</small></div></aside><div class="main-shell"><header class="topbar"><button class="icon-btn mobile-menu" aria-label="Toggle navigation" aria-expanded="false" data-action="menu">${icon('menu')}</button><div class="breadcrumb">Workspace ${icon('chevron-right')} <strong>${title}</strong></div><div class="top-right">${themeControl()}<span class="environment">${icon(api.mode === 'mock' ? 'flask-conical' : 'lock-keyhole')}${api.mode === 'mock' ? 'SIMULATED WORKSPACE' : 'SHARED BACKEND'}</span><button class="profile" data-action="account" aria-label="Account and sign out"><span>${api.session!.principal.roles[0].slice(0, 2)}</span><div><b>${pretty(api.session!.principal.roles.join(' · '))}</b><small>Staff account</small></div>${icon('chevron-down')}</button></div></header>${api.mode === 'mock' ? simulationBanner() : ''}<main id="content" tabindex="-1"><div class="loading">${icon('loader-circle')} Loading workspace…</div></main><footer class="app-footer"><span>© ${new Date().getFullYear()} Ikonectt</span><span>All times WAT</span></footer></div></div>`; refreshIcons(); revealActiveNavigation(); }
 const content = () => document.querySelector<HTMLElement>('#content')!;
 const heading = (title: string, description: string, action = '') => `<div class="page-heading"><div><div class="eyebrow">IKONECTT / ${route === 'dashboard' ? 'OVERVIEW' : esc(modules[route]?.group || 'WORKSPACE').toUpperCase()}</div><h1>${title}</h1><p>${description}</p></div>${action}</div>`;
 function summaryCards(summary:C.Input<typeof C.Report>){
@@ -102,6 +124,11 @@ async function navigate() {
     }
     const hash = location.hash.replace(/^#\//, '');
     const next = hash.split('/')[0] || 'dashboard';
+    // Fresh dashboard sessions start collapsed. Deep links and subsequent page changes
+    // reveal their active parent, without forcing a group open after the user closes it.
+    if ((!navigationStarted && next !== 'dashboard') || (navigationStarted && next !== route))
+        expandedNavGroup = navigationEntries().find(entry => entry.key === next)?.group || null;
+    navigationStarted = true;
     if (next !== route) {
         query = '';
         filter = '';
@@ -171,7 +198,7 @@ async function dashboard(version: number) {
     const failures = results.flatMap((r, i) => r.status === 'rejected' ? [modules[keys[i]].label] : []);
     const defs = [['customers', 'Total customers', 'users', undefined], ['leads', 'New leads', 'contact', 'NEW'], ['orders', 'Pending orders', 'shopping-bag', 'PENDING_PAYMENT'], ['tickets', 'Open support tickets', 'headphones', 'OPEN'], ['subscriptions', 'Active subscriptions', 'radio-tower', 'ACTIVE'], ['payments', 'Payments to review', 'credit-card', 'REPORTED']] as const;
     let cards = defs.filter(([k]) => cache[k]&&can(api.permissions,modules[k].permission)).map(([k, label, i, status]) => { const count = status ? cache[k].filter(x => x.status === status).length : cache[k].length; return `<a href="#/${k}" class="metric"><div><span>${label}</span>${icon(i)}</div><strong>${count.toLocaleString()}</strong><small>${api.mode === 'mock' ? 'Sample records' : 'Backend records'} ${icon('arrow-up-right')}</small></a>`; }).join('');
-    if(can(api.permissions,'reports.read')){try{const summary=await api.report();if(version!==viewVersion)return;cards=summaryCards(summary);if(summary.includesSimulatedData)cards='<div class="notice">This overview includes SIMULATED development records.</div><section class="metrics">'+cards+'</section>';}catch(e){failures.push('Operational summary')}}
+    if(can(api.permissions,'reports.read')){try{const summary=await api.report();if(version!==viewVersion)return;cards=summaryCards(summary);if(summary.includesSimulatedData&&!document.querySelector('.demo-banner'))content().insertAdjacentHTML('beforebegin',simulationBanner());}catch(e){failures.push('Operational summary')}}
     const tasks = [['payments', 'payments.verify', 'Review reported payments', 'Verify transfer evidence before confirmation.', 'credit-card'], ['leads', 'leads.write', 'Follow up with new leads', 'Review enquiries awaiting follow-up.', 'contact'], ['tickets', 'support.write', 'Work the support queue', 'Review open requests and assignments.', 'headphones'], ['coverage', 'coverage.write', 'Review location eligibility', 'Resolve unknown or unverified addresses.', 'map-pin']].filter(([, p]) => can(api.permissions, p));
     const leads = can(api.permissions,'leads.read')?cache.leads?.slice(0, 4):undefined;
     content().innerHTML = heading('Operational Overview', `Current customers, orders and service activity.`, button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<div class="overview-date">${icon('calendar-days')}<time>${new Intl.DateTimeFormat('en-NG', { dateStyle: 'full', timeZone: 'Africa/Lagos' }).format(new Date())}</time><span aria-hidden="true">•</span><small class="overview-context">${api.mode === 'mock' ? 'Sample workspace' : 'Current operational records'}</small></div>${failures.length ? `<div class="notice" role="alert">Could not load: ${esc(failures.join(', '))}. ${button('Retry', 'refresh')}</div>` : ''}${cards ? (cards.startsWith('<div class="notice">')?cards:`<section class="metrics">${cards}</section>`) : '<div class="notice">Your role has access to reporting. Open Reports for operational summaries.</div>'}<section class="dashboard-grid"><div class="panel queue-panel"><div class="panel-title"><div><span class="eyebrow">OPERATIONS</span><h2>Pending Actions</h2></div>${icon('arrow-up-right')}</div>${tasks.length ? tasks.map(([key, , title, desc, i], n) => `<a class="task" href="#/${key}"><span class="task-icon">${icon(i)}</span><div><strong>${title}</strong><p>${desc}</p></div><span class="task-number">0${n + 1}</span>${icon('chevron-right')}</a>`).join('') : '<p class="panel-pad">Operational actions are limited by your assigned role.</p>'}</div><div class="panel health-panel"><span class="eyebrow">FULFILLMENT</span><h2>Service Workflow</h2><p>Payment approval and service activation are separate steps.</p><ol class="workflow"><li><span>1</span><div><strong>Customer request</strong><small>Review plan and address eligibility</small></div></li><li><span>2</span><div><strong>Payment verification</strong><small>Authorized staff check the evidence</small></div></li><li><span>3</span><div><strong>Service fulfillment</strong><small>Confirmed through provisioning</small></div></li></ol><div class="quiet-note">${icon('shield-check')} Each sensitive action is permission controlled.</div></div></section>${leads ? `<section class="panel"><div class="panel-title"><div><span class="eyebrow">CUSTOMERS & SALES</span><h2>Recent leads</h2></div><a class="text-link" href="#/leads">View all leads ${icon('arrow-right')}</a></div>${table('leads', leads)}</section>` : ''}<section class="workspace-note">${icon('network')}<div><strong>Shared customer records</strong><p>Customer and service records are shared across Ikonectt applications.</p></div></section>`;
@@ -405,11 +432,12 @@ document.addEventListener('click', async (e) => {
     }
     else if (action === 'nav-group') {
         const group = target.dataset.group!;
-        const expanded = target.getAttribute('aria-expanded') !== 'true';
-        if (expanded) collapsedNavGroups.delete(group);
-        else collapsedNavGroups.add(group);
-        target.setAttribute('aria-expanded', String(expanded));
-        document.getElementById(target.getAttribute('aria-controls')!)!.hidden = !expanded;
+        expandedNavGroup = expandedNavGroup === group ? null : group;
+        document.querySelectorAll<HTMLButtonElement>('.nav-group-toggle').forEach(toggle => {
+            const expanded = toggle.dataset.group === expandedNavGroup;
+            toggle.setAttribute('aria-expanded', String(expanded));
+            document.getElementById(toggle.getAttribute('aria-controls')!)!.hidden = !expanded;
+        });
     }
     else if (action === 'menu') {
         const open = document.querySelector('#sidebar')!.classList.toggle('open');

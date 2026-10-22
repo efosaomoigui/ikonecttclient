@@ -1,0 +1,237 @@
+{
+  "date": "2026-10-22",
+  "url": "http://127.0.0.1:3013/admin/",
+  "mode": "Explicit simulated preview; no credentials or financial actions",
+  "freshDashboard": {
+    "banners": 1,
+    "contentNotices": 0,
+    "expanded": [],
+    "headerIndicator": "SIMULATED WORKSPACE",
+    "links": [
+      "#/dashboard",
+      "#/leads",
+      "#/customers",
+      "#/plans",
+      "#/coverage",
+      "#/orders",
+      "#/subscriptions",
+      "#/walletTopUps",
+      "#/walletRenewals",
+      "#/payments",
+      "#/provisioning",
+      "#/tickets",
+      "#/reports",
+      "#/staff",
+      "#/notifications",
+      "#/audit",
+      "#/integrations",
+      "#/settings"
+    ]
+  },
+  "accordionClickAndKeyboard": "PASS: click, Space and Enter; one open group maximum",
+  "activeNavigation": {
+    "active": "#/provisioning",
+    "fontSize": "13px",
+    "iconWidth": 15.990567207336426,
+    "insideScrollArea": true,
+    "itemHeight": 36.069183349609375,
+    "padding": "10px 13px",
+    "pageScroll": 0,
+    "parent": "Services & operations"
+  },
+  "shortViewportKeyboard": {
+    "clientHeight": 250,
+    "focusOnNavigation": true,
+    "gutter": "stable",
+    "navWidth": 203.97799682617188,
+    "pageScroll": 0,
+    "scrollHeight": 647,
+    "scrollTop": 397.48431396484375,
+    "scrollbar": "rgba(175, 183, 193, 0.62) rgba(0, 0, 0, 0)",
+    "sidebarWidth": 204.9842834472656
+  },
+  "mouseWheel": "PASS: navigation scroll returned to0, document scroll stayed0",
+  "mobile390": {
+    "active": "#/settings",
+    "cssHeight": 640,
+    "cssWidth": 390,
+    "overflow": false,
+    "scrollbar": "rgba(110, 120, 130, 0.32) rgba(0, 0, 0, 0)",
+    "sidebarWidth": 229.9842834472656,
+    "theme": "light",
+    "thumbWidth": "6px"
+  },
+  "mobile320": {
+    "active": "#/provisioning",
+    "activeInside": true,
+    "cssHeight": 480,
+    "cssWidth": 320,
+    "navContent": 632,
+    "navHeight": 207,
+    "navScroll": 260.62896728515625,
+    "overflow": false,
+    "pageScroll": 0,
+    "theme": "dark"
+  },
+  "approvedDarkAppearance": {
+    "before": {
+      "card": {
+        "background": "rgb(32, 37, 44)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(242, 244, 246)",
+        "fontSize": "13px",
+        "gap": "normal",
+        "height": 145.9434051513672,
+        "padding": "20px",
+        "width": 219.32391357421875
+      },
+      "group": {
+        "background": "rgb(41, 47, 55)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(184, 192, 201)",
+        "fontSize": "10px",
+        "gap": "6px",
+        "height": 32.987422943115234,
+        "padding": "9px 10px",
+        "width": 166.93397521972656
+      },
+      "header": {
+        "background": "rgb(25, 29, 35)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(242, 244, 246)",
+        "fontSize": "13px",
+        "gap": "12px",
+        "height": 72.9874267578125,
+        "padding": "0px 25px",
+        "width": 739.9214477539062
+      },
+      "icon": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(255, 149, 157)",
+        "fontSize": "13px",
+        "gap": "normal",
+        "height": 15.990567207336426,
+        "padding": "0px",
+        "width": 15.990567207336426
+      },
+      "item": {
+        "background": "rgb(53, 37, 45)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(255, 149, 157)",
+        "fontSize": "13px",
+        "gap": "10px",
+        "height": 36.069183349609375,
+        "padding": "10px 13px",
+        "width": 166.93397521972656
+      },
+      "links": [
+        "#/dashboard",
+        "#/leads",
+        "#/customers",
+        "#/plans",
+        "#/coverage",
+        "#/orders",
+        "#/subscriptions",
+        "#/walletTopUps",
+        "#/walletRenewals",
+        "#/payments",
+        "#/provisioning",
+        "#/tickets",
+        "#/reports",
+        "#/staff",
+        "#/notifications",
+        "#/audit",
+        "#/integrations",
+        "#/settings"
+      ],
+      "noticeCount": 2,
+      "sidebar": {
+        "background": "rgb(25, 29, 35)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(242, 244, 246)",
+        "fontSize": "13px",
+        "gap": "normal",
+        "height": 887.5472412109375,
+        "padding": "0px",
+        "width": 204.9842834472656
+      },
+      "table": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(184, 192, 201)",
+        "fontSize": "13px",
+        "gap": "normal",
+        "height": 64.98428344726562,
+        "padding": "14px 18px",
+        "width": 139.685546875
+      },
+      "theme": "dark"
+    },
+    "after": {
+      "card": {
+        "background": "rgb(32, 37, 44)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(242, 244, 246)",
+        "fontSize": "13px",
+        "gap": "normal",
+        "height": 145.9434051513672,
+        "padding": "20px",
+        "width": 219.32391357421875
+      },
+      "groups": 0,
+      "header": {
+        "background": "rgb(25, 29, 35)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(242, 244, 246)",
+        "fontSize": "13px",
+        "gap": "12px",
+        "height": 72.9874267578125,
+        "padding": "0px 25px",
+        "width": 739.9214477539062
+      },
+      "scrollbar": "rgba(175, 183, 193, 0.62) rgba(0, 0, 0, 0)",
+      "sidebar": {
+        "background": "rgb(25, 29, 35)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(242, 244, 246)",
+        "fontSize": "13px",
+        "gap": "normal",
+        "height": 887.5472412109375,
+        "padding": "0px",
+        "width": 204.9842834472656
+      },
+      "table": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(54, 61, 70)",
+        "color": "rgb(184, 192, 201)",
+        "fontSize": "13px",
+        "gap": "normal",
+        "height": 64.98428344726562,
+        "padding": "14px 18px",
+        "width": 139.685546875
+      }
+    },
+    "unchanged": [
+      "sidebar geometry/colors",
+      "header geometry/colors",
+      "card geometry/colors",
+      "table typography/colors",
+      "navigation font/item height/padding/icon size"
+    ]
+  },
+  "viewportReset": true,
+  "originalDarkPreferenceRestored": true,
+  "mobile320Keyboard": {
+    "maxScroll": 425,
+    "navScroll": 424.6541137695313,
+    "pageScroll": 0,
+    "reachedBottom": true
+  },
+  "finalState": {
+    "expandedGroups": 0,
+    "extraDashboardNotices": 0,
+    "simulationBanners": 1,
+    "theme": "dark"
+  }
+}

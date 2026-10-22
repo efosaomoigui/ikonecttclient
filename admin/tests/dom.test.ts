@@ -96,27 +96,62 @@ test('DOM: both themes cover all major screens and preserve unsaved forms, roles
         assert.equal(doc.querySelector<HTMLSelectElement>('[data-theme-select]')!.value,'dark');
     } finally {dom.window.close();}
 });
-test('DOM: navigation groups collapse independently and retain their state across navigation', async () => { const dom = boot(); try {
+test('DOM: sidebar starts collapsed, uses an accordion, and reveals the active page parent', async () => { const dom = boot(); try {
     await preview(dom);
     const doc = dom.window.document;
     const group = () => doc.querySelector<HTMLButtonElement>('[data-group="Customers & sales"]')!;
     const links = () => doc.getElementById(group().getAttribute('aria-controls')!)!;
-    assert.equal(group().getAttribute('aria-expanded'), 'true');
-    group().click();
+    assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 0);
+    assert.equal(doc.querySelectorAll('.sidebar nav a').length, 18);
     assert.equal(group().getAttribute('aria-expanded'), 'false');
-    assert.equal(links().hidden, true);
-    assert.equal(doc.querySelector('[data-group="Services & operations"]')!.getAttribute('aria-expanded'), 'true');
+    group().click();
+    assert.equal(group().getAttribute('aria-expanded'), 'true');
+    assert.equal(links().hidden, false);
+    click(dom, '[data-group="Services & operations"]');
+    assert.equal(group().getAttribute('aria-expanded'), 'false');
+    assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 1);
+    click(dom, '[data-group="Services & operations"]');
+    assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 0);
     await go(dom, 'plans');
     assert.equal(links().hidden, true);
+    assert.equal(doc.querySelector('[data-group="Services & operations"]')!.getAttribute('aria-expanded'), 'true');
+    assert.equal(doc.querySelector('a[aria-current="page"][href="#/plans"]')!.closest('[hidden]'), null);
     group().click();
     assert.equal(links().hidden, false);
     click(dom, 'a[href="#/customers"]');
     await waitFor(() => !!doc.querySelector('a[aria-current=page][href="#/customers"]'));
     assert.equal(group().getAttribute('aria-expanded'), 'true');
+    await go(dom, 'dashboard');
+    assert.equal(doc.querySelector('[data-group="Overview"]')!.getAttribute('aria-expanded'), 'true');
+    click(dom, '[data-action=account]');
+    await waitFor(() => !!doc.querySelector('[data-action=logout]'));
+    click(dom, '[data-action=logout]');
+    await waitFor(() => !!doc.querySelector('#login-form'));
+    await preview(dom);
+    assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 0);
 }
 finally {
     dom.window.close();
 } });
+
+test('DOM: one primary simulation notice remains and native sidebar scrolling gets activity feedback', async () => {
+    const dom = boot();
+    try {
+        await preview(dom);
+        const doc = dom.window.document;
+        assert.equal(doc.querySelectorAll('.demo-banner').length, 1);
+        assert.doesNotMatch(doc.querySelector('#content')!.textContent!, /This overview includes SIMULATED/);
+        assert.match(doc.querySelector('.demo-banner')!.textContent!, /simulated development records/i);
+        assert.match(doc.querySelector('.demo-banner')!.textContent!, /not real customer operations/i);
+        assert.match(doc.querySelector('.demo-banner')!.textContent!, /data may reset/i);
+        assert.match(doc.querySelector('.environment')!.textContent!, /SIMULATED WORKSPACE/);
+        const navigation = doc.querySelector<HTMLElement>('.sidebar nav')!;
+        assert.equal(navigation.tabIndex, 0);
+        navigation.dispatchEvent(new dom.window.Event('scroll'));
+        assert.equal(navigation.classList.contains('is-scrolling'), true);
+        await waitFor(() => !navigation.classList.contains('is-scrolling'));
+    } finally { dom.window.close(); }
+});
 test('DOM: Support wallet is read-only, ledger is labeled and top-up evidence is inaccessible', async () => { const dom = boot(); try {
     await preview(dom, 'SUPPORT');
     const doc = dom.window.document;
