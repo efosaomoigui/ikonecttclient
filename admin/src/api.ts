@@ -29,7 +29,11 @@ export class WorkspaceApi {
                     this.clear();
                     this.onExpired();
                 }
-                throw new ApiError(payload?.message || `Request failed (${r.status})`, r.status,payload?.code,payload?.requestId,payload?.details,Number(r.headers.get('retry-after'))||undefined);
+                const retryAfter = Number(r.headers.get('retry-after')) || undefined;
+                const message = r.status === 429
+                    ? `Too many requests. Please wait ${retryAfter ? `${Math.ceil(retryAfter)} seconds` : 'a minute'} before trying again.`
+                    : payload?.message || `Request failed (${r.status})`;
+                throw new ApiError(message, r.status,payload?.code,payload?.requestId,payload?.details,retryAfter);
             }
             if (payload === null)
                 throw new ApiError('The service returned an invalid response.', 502);

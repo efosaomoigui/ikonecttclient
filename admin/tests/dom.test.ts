@@ -2,6 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
+import { fixtures, uuid } from '../src/fixtures';
+import { modules } from '../src/modules';
+import { ROLE_PERMISSIONS } from '../vendor/permissions';
 const assetDir = new URL('../dist/assets/', import.meta.url);
 const bundle = readFileSync(new URL(readdirSync(assetDir).find(x => x.endsWith('.js'))!, assetDir), 'utf8');
 async function waitFor(fn: () => boolean) { for (let i = 0; i < 150; i++) {
@@ -9,7 +12,7 @@ async function waitFor(fn: () => boolean) { for (let i = 0; i < 150; i++) {
         return;
     await new Promise(r => setTimeout(r, 10));
 } assert.fail('DOM state did not arrive'); }
-function boot() { const dom = new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>', { url: 'http://localhost/admin/', runScripts: 'outside-only', pretendToBeVisual: true }); Object.assign(dom.window, { structuredClone: globalThis.structuredClone, fetch: async () => { throw Error('No live backend in DOM test'); } }); dom.window.eval(bundle); return dom; }
+function boot(fetcher: typeof fetch = async () => { throw Error('No live backend in DOM test'); }) { const dom = new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>', { url: 'http://localhost/admin/', runScripts: 'outside-only', pretendToBeVisual: true }); Object.assign(dom.window, { structuredClone: globalThis.structuredClone, fetch: fetcher }); dom.window.eval(readFileSync(new URL('../public/theme-init.js', import.meta.url), 'utf8')); dom.window.eval(bundle); return dom; }
 function click(dom: JSDOM, selector: string) { const el = dom.window.document.querySelector<HTMLElement>(selector); assert.ok(el, selector); el.click(); }
 async function preview(dom: JSDOM, role = 'ADMIN') { click(dom, '.preview-box summary'); (dom.window.document.querySelector('#preview-role') as HTMLSelectElement).value = role; click(dom, '[data-action=preview]'); await waitFor(() => !!dom.window.document.querySelector('.metrics,.workspace-note')); }
 async function go(dom: JSDOM, path: string) { dom.window.location.hash = `#/${path}`; await waitFor(() => !!dom.window.document.querySelector(`a[aria-current=page][href="#/${path}"]`)); await waitFor(() => !dom.window.document.querySelector('.loading')); }
@@ -41,6 +44,58 @@ test('DOM: every permitted admin screen mounts without rendering a page error', 
 finally {
     dom.window.close();
 } });
+
+test('DOM: both themes cover all major screens and preserve unsaved forms, roles and session on switching', async () => {
+    const dom=boot();
+    try {
+        const doc=dom.window.document;
+        const choose=(value:string)=>{
+            const control=doc.querySelector<HTMLSelectElement>('[data-theme-select]')!;
+            control.value=value;
+            control.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+            assert.equal(doc.documentElement.dataset.theme,value);
+            assert.equal(dom.window.localStorage.getItem('ikonectt.admin.theme'),value);
+        };
+        choose('dark');
+        await preview(dom);
+        for(const theme of ['dark','light']){
+            choose(theme);
+            for(const path of ['dashboard','leads','customers','plans','coverage','orders','subscriptions','payments','walletTopUps','walletRenewals','provisioning','tickets','reports','staff','integrations','notifications','audit','settings']){
+                await go(dom,path);
+                assert.equal(doc.documentElement.dataset.theme,theme,path);
+                assert.equal(doc.querySelector('.error-state'),null,path);
+                assert.equal(doc.querySelector<HTMLImageElement>('.brand img')!.getAttribute('src'),`/admin/logo-${theme==='dark'?'white':'red'}.png`);
+            }
+        }
+        await go(dom,'customers');click(dom,'[data-action=create]');
+        await waitFor(()=>!!doc.querySelector('#record-form'));
+        const name=doc.querySelector<HTMLInputElement>('#field-name')!;
+        name.value='Unsaved customer draft';
+        const modal=doc.querySelector('.modal');
+        const route=dom.window.location.hash;
+        const links=doc.querySelectorAll('.nav-link').length;
+        choose('dark');
+        assert.equal(name.value,'Unsaved customer draft');
+        assert.equal(doc.querySelector('.modal'),modal);
+        assert.equal(dom.window.location.hash,route);
+        assert.equal(doc.querySelectorAll('.nav-link').length,links);
+        click(dom,'[data-action=close]');
+        click(dom,'[data-action=account]');
+        await waitFor(()=>!!doc.querySelector('[data-action=logout]'));
+        const accountTheme=doc.querySelector<HTMLSelectElement>('.account-theme [data-theme-select]')!;
+        assert.ok(accountTheme,'The mobile account menu has its own accessible theme selector');
+        accountTheme.value='light';
+        accountTheme.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+        assert.equal(doc.documentElement.dataset.theme,'light');
+        assert.ok(doc.querySelector('[data-action=logout]'),'Theme selection retains the account dialog/session');
+        accountTheme.value='dark';
+        accountTheme.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+        click(dom,'[data-action=logout]');
+        await waitFor(()=>!!doc.querySelector('#login-form'));
+        assert.equal(doc.documentElement.dataset.theme,'dark');
+        assert.equal(doc.querySelector<HTMLSelectElement>('[data-theme-select]')!.value,'dark');
+    } finally {dom.window.close();}
+});
 test('DOM: navigation groups collapse independently and retain their state across navigation', async () => { const dom = boot(); try {
     await preview(dom);
     const doc = dom.window.document;
@@ -179,6 +234,85 @@ test('DOM: support role cannot navigate to staff administration or verify paymen
 finally {
     dom.window.close();
 } });
+
+for (const role of ['SUPPORT', 'SALES'] as const) {
+    test(`DOM: live ${role} customer details refresh cross-application relationships without broadening permissions`, async () => {
+        const records = fixtures();
+        const customer = records.customers[0];
+        // Initially all related records belong to a different customer. The dashboard
+        // receives these snapshots before another application creates fresh records.
+        for (const key of ['orders', 'subscriptions', 'tickets'])
+            records[key] = records[key].map(record => ({ ...record, customerId: records.customers[1].id }));
+        const session = { accessToken: 'isolated-dom-session', tokenType: 'Bearer', expiresAt: new Date(Date.now() + 3600000).toISOString(), principal: { id: uuid(80), kind: 'STAFF', customerId: null, roles: [role], mustChangePassword: false } };
+        const calls: string[] = [];
+        const fetcher: typeof fetch = async (url) => {
+            const request = new URL(String(url), 'http://localhost');
+            const path = request.pathname.replace('/api/v1', '');
+            calls.push(path);
+            if (path === '/auth/staff/login') return Response.json(session);
+            if (path === '/auth/session') return Response.json(session.principal);
+            if (path === '/admin/permissions') return Response.json({ roles: [role], permissions: ROLE_PERMISSIONS[role] });
+            if (path === `/admin/customers/${customer.id}`) return Response.json(customer);
+            if (path === `/admin/customers/${customer.id}/wallet`)
+                return Response.json(records.walletSummaries.find(record => record.customerId === customer.id));
+            const key = Object.keys(modules).find(key => modules[key].path === path);
+            if (key) {
+                const offset = Number(request.searchParams.get('offset') || 0);
+                const limit = Number(request.searchParams.get('limit') || 100);
+                return Response.json({ items: records[key].slice(offset, offset + limit), total: records[key].length, offset, limit });
+            }
+            throw new Error(`Unexpected test request: ${path}`);
+        };
+        const dom = boot(fetcher);
+        try {
+            const doc = dom.window.document;
+            const form = doc.querySelector<HTMLFormElement>('#login-form')!;
+            (form.elements.namedItem('email') as HTMLInputElement).value = 'isolated-dom@example.test';
+            (form.elements.namedItem('password') as HTMLInputElement).value = 'isolated-test-password';
+            form.dispatchEvent(new dom.window.Event('submit', { bubbles: true, cancelable: true }));
+            await waitFor(() => !!doc.querySelector('.metrics'));
+            for (const key of ['orders', 'subscriptions', ...(role === 'SUPPORT' ? ['tickets'] : [])])
+                assert.ok(calls.includes(modules[key].path), `dashboard loaded ${key}`);
+            await go(dom, 'customers');
+            const openCustomer = async () => {
+                click(dom, `[data-detail="${customer.id}"]`);
+                await waitFor(() => !!doc.querySelector('.modal .related-block'));
+            };
+            const related = (label: string) => [...doc.querySelectorAll('.modal .related-block')].find(block => block.querySelector('h3')?.textContent?.startsWith(label));
+            await openCustomer();
+            assert.equal(related('Orders')!.querySelector('h3 span')!.textContent, '0');
+            assert.equal(related('Subscriptions')!.querySelector('h3 span')!.textContent, '0');
+            click(dom, '[data-action=close]');
+
+            records.orders.push(...[410, 411].map(n => ({ ...records.orders[0], id: uuid(n), customerId: customer.id, planName: `Cross-application order ${n}`, status: 'PENDING_PAYMENT' })));
+            records.subscriptions.push({ ...records.subscriptions[0], id: uuid(610), customerId: customer.id, status: 'ACTIVE' });
+            records.tickets.push({ ...records.tickets[0], id: uuid(710), customerId: customer.id, subject: 'Cross-application support request' });
+            await openCustomer();
+            assert.equal(related('Orders')!.querySelector('h3 span')!.textContent, '2');
+            assert.equal(related('Subscriptions')!.querySelector('h3 span')!.textContent, '1');
+            assert.match(related('Orders')!.textContent!, /Cross-application order 410/);
+            assert.equal(related('Orders')!.querySelectorAll('.related-row').length, 2);
+            if (role === 'SUPPORT') {
+                assert.equal(related('Support Tickets')!.querySelector('h3 span')!.textContent, '1');
+                assert.match(related('Support Tickets')!.textContent!, /Cross-application support request/);
+            } else {
+                assert.equal(related('Support Tickets'), undefined);
+                assert.equal(calls.includes('/admin/tickets'), false);
+            }
+            assert.equal(doc.querySelector('a[href="#/staff"]'), null);
+            assert.equal(doc.querySelector('[data-action^="verify:"]'), null);
+            click(dom, '[data-action=close]');
+
+            // Reopening must also observe updates after the first populated detail.
+            records.orders.find(record => record.id === uuid(410))!.status = 'COMPLETED';
+            records.orders.push({ ...records.orders[0], id: uuid(412), customerId: customer.id, planName: 'Later cross-application order' });
+            await openCustomer();
+            assert.equal(related('Orders')!.querySelector('h3 span')!.textContent, '3');
+            assert.match(related('Orders')!.textContent!, /Later cross-application order/);
+            assert.match(related('Orders')!.querySelector(`[data-detail="${uuid(410)}"]`)!.textContent!, /Completed/);
+        } finally { dom.window.close(); }
+    });
+}
 test('DOM: empty search, filter reset, modal Escape and logout work', async () => { const dom = boot(); try {
     await preview(dom);
     await go(dom, 'leads');

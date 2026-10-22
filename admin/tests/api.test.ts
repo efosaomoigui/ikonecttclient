@@ -9,6 +9,29 @@ import { integrationState } from '../src/integrations';
 const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; });
 const preview = (role: StaffRole = 'ADMIN') => { const api = new WorkspaceApi(); api.preview(role); return api; };
+
+test('live rate limiting explains the retry delay without mock login or a silent retry', async () => {
+    for (const seconds of [45, undefined]) {
+        let calls = 0;
+        const api = new WorkspaceApi('', async () => {
+            calls++;
+            return Response.json({message:'ThrottlerException: Too Many Requests'}, {
+                status:429, headers: seconds ? {'retry-after':String(seconds)} : {},
+            });
+        });
+        await assert.rejects(api.login('demo@example.test','existing-demo-password'), (error:unknown) => {
+            assert.ok(error instanceof ApiError);
+            assert.equal(error.status,429);
+            assert.equal(error.retryAfter,seconds);
+            assert.equal(error.message,`Too many requests. Please wait ${seconds ? `${seconds} seconds` : 'a minute'} before trying again.`);
+            return true;
+        });
+        assert.equal(calls,1);
+        assert.equal(api.mode,'live');
+        assert.equal(api.session,null);
+        assert.deepEqual(api.permissions,[]);
+    }
+});
 test('live sessions have no inferred permissions until the backend supplies them',async()=>{
     const api=preview();const session=structuredClone(api.session!);api.mode='live';api.setSession(session);assert.deepEqual(api.permissions,[]);
     const calls:string[]=[];globalThis.fetch=async(url)=>{calls.push(String(url));return Response.json(String(url).endsWith('/auth/session')?session.principal:{roles:['ADMIN'],permissions:['reports.read']})};
