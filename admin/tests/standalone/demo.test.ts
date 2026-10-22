@@ -122,6 +122,7 @@ test('fictional A/B scenarios and ledger totals reconcile without changing the r
     assert.equal(aSub.status,'SUSPENDED');assert.ok(aSub.endsAt<'2026-10-22');assert.equal(aSub.renewalEnabled,true);
     assert.equal(bSub.status,'ACTIVE');assert.equal(data.plans.find(p=>p.id===bSub.planId)!.kind,'BUSINESS');
     assert.equal(data.plans.find(p=>p.id===aSub.planId)!.renewalPriceMinor,1950000);
+    assert.equal(data.plans.find(p=>p.id===aSub.planId)!.priceMinor,1950000);
     const reset=standaloneFixtures();data.customers[0].name='Mutated';a.availableMinor=1;
     assert.equal(reset.customers[0].name,'Ada Okafor');assert.equal(reset.walletSummaries.find(s=>s.customerId===uuid(1))!.availableMinor,3000000);
 });

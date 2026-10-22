@@ -5,7 +5,7 @@ export function standaloneFixtures(): ReturnType<typeof fixtures> {
     const data=fixtures();
     const home=data.plans.find(p=>p.id===uuid(10))!;
     const business=data.plans.find(p=>p.id===uuid(11))!;
-    Object.assign(home,{name:'Demo Home 80',speedMbps:80,published:true,renewalPriceMinor:1950000,features:['Fictional demonstration plan','Illustrative NGN19,500 renewal; not approved commercial pricing']});
+    Object.assign(home,{name:'Demo Home 80',speedMbps:80,published:true,priceMinor:1950000,renewalPriceMinor:1950000,updatedAt:'2026-10-22T00:00:00.000Z',features:['Fictional demonstration plan','Illustrative NGN19,500 catalogue/renewal price; not approved commercial pricing']});
     Object.assign(business,{name:'Demo Business 250',published:true,features:['Fictional business demonstration plan','Illustrative commercial terms only']});
 
     // A: previously renewed, now expired, with an independently funded NGN30,000 wallet.
