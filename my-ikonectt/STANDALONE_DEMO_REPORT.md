@@ -28,7 +28,7 @@ All prices are illustrative, not approved production tariffs. The initial wallet
 
 ## Client navigation and actions
 
-1. Open the standalone preview root and choose a sample customer under **Review the application**.
+1. Open the standalone preview root, expand **Review the application**, and choose a sample customer. The existing sign-in composition remains visible with credential fields and real sign-in disabled in this separate build.
 2. Click **Open simulated account**. Explore the approved sidebar and Light/Dark header toggle.
 3. With Ada, choose **My Services → Renew Plan**, review ₦19,500, check consent and confirm. Wallet becomes posted ₦30,000 / held ₦19,500 / available ₦10,500. Service remains expired.
 4. On the renewal detail, use the separate **Simulate confirmed service completion** action. The fictional wallet becomes ₦10,500 / no hold and the sample service becomes Active with the simulated confirmed date. This is not an ISP request. A second renewal shows insufficient funds.
