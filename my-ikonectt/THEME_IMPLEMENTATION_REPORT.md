@@ -70,3 +70,7 @@ Additional named screenshots cover the other screens and states listed above. Cr
 - No backend, API, financial calculation, dependency, main-branch merge or deployment changes.
 
 There are no known outstanding theme defects from these checks. Native OS print dialogs and live financial submissions were not exercised; existing inline confirmation forms and native-control color schemes were checked without changing their behavior. The provider settlement capability remains unconnected, as before.
+
+## Running integration check
+
+The portal-only change was applied to the existing Stage 5A integration branch serving port **4175**, preserving unrelated Admin work. A separate read-only browser tab verified Light was the initial theme, Dark immediately used `rgb(17, 20, 24)`, and Dark persisted through reload. The preference was restored to Light and the temporary tab closed. Evidence: `integrated-light-login.png`, `integrated-dark-login.png`, `integrated-check.json`. No runtime restart, account mutation, main-branch merge or deployment occurred.

@@ -1,0 +1,11 @@
+{
+  "url": "http://127.0.0.1:4175/",
+  "defaultTheme": "light",
+  "dark": {
+    "background": "rgb(17, 20, 24)",
+    "theme": "dark"
+  },
+  "reloadTheme": "dark",
+  "restored": "light",
+  "accountMutations": 0
+}
