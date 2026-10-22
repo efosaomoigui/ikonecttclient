@@ -1093,6 +1093,14 @@ th {
 .wallet-summary .eyebrow { font-size: 10px; color: #606763; }
 .wallet-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
 .wallet-page-actions { margin-bottom: 24px; }
+.wallet-top-up-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: 24px; align-items: start; }
+.wallet-top-up-form { min-width: 0; }
+.wallet-top-up-form > .form-panel { max-width: none; margin-top: 0; }
+.wallet-payment-instructions { margin-top: 0; min-width: 0; }
+.wallet-payment-instructions h2 { font-size: 20px; }
+@media (max-width: 1000px) {
+  .wallet-top-up-layout { grid-template-columns: minmax(0, 1fr); }
+}
 .wallet-balances { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .wallet-balances h2 { margin: 12px 0; font-size: 30px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .wallet-balances .panel:nth-child(2) { background: #fdfefb; }
