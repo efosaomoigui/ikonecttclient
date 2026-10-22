@@ -25,7 +25,7 @@ Feasible as two isolated static frontend builds. No backend, database, authentic
 
 - Admin currently builds with `/admin/` as its base; an independent deployment must preserve that prefix or explicitly adapt asset paths. Its ordinary production build excludes the review entry.
 - The portal currently emits a runtime config containing a default localhost API origin. A standalone artifact must emit an explicit demo configuration without depending on that origin.
-- The portal contract compilation reads files outside its application folder. Vercel must include source files outside the configured project root, or use a repository-root build configuration for that project.
+- Portal contract compilation uses the committed local `vendor/` snapshot, so its application folder can be an independent build root. Contract synchronization is a separate integration operation and must not run during a client demo deployment.
 - No server API, environment secrets, database connections or external fonts should be necessary in either demo artifact.
 - Hash route refresh behavior, both themes, role gates, scenario transitions, mobile rendering and actual network isolation require verification on the built artifacts; source inspection is not browser acceptance evidence.
 
