@@ -3,19 +3,24 @@ import * as C from '../vendor/contracts';
 import { ROLE_PERMISSIONS, type StaffRole } from '../vendor/permissions';
 import { modules, type RecordData } from './modules';
 import { fixtures, uuid } from './fixtures';
+import { standaloneFixtures } from './demo-fixtures';
+import { STANDALONE_DEMO } from './runtime';
 import {CreatedCustomer,PermissionSnapshot,SetupCredentials,parseResponse,type ListOptions} from './contracts';
 export type Session = z.infer<typeof C.Session>;
+const freshFixtures = () => STANDALONE_DEMO ? standaloneFixtures() : fixtures();
 export class ApiError extends Error {
     constructor(message: string, public status = 400, public code?:string, public requestId?:string, public details?:unknown, public retryAfter?:number) { super(message); }
 }
 export class WorkspaceApi {
     session: Session | null = null;
     mode: 'live' | 'mock' = 'live';
-    data = fixtures();
+    data = freshFixtures();
     permissions: string[] = [];
     onExpired = () => { };
     constructor(private readonly baseUrl='',private readonly fetcher:typeof fetch=(...args)=>fetch(...args)){}
     async request(path: string, method = 'GET', body?: unknown): Promise<any> {
+        if (STANDALONE_DEMO)
+            throw new ApiError('Standalone demonstration: real sign-in, recovery and backend requests are unavailable. Use Review the application.',400,'STANDALONE_DEMO');
         const sessionAtStart = this.session;
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 15000);
@@ -48,7 +53,7 @@ export class WorkspaceApi {
             clearTimeout(timer);
         }
     }
-    clear() { this.session = null; this.permissions = []; this.data = fixtures(); }
+    clear() { this.session = null; this.permissions = []; this.data = freshFixtures(); }
     setSession(session: Session) {
         if(session.principal.kind!=='STAFF')throw new ApiError('Staff access is required.',403);
         this.session=session;
@@ -85,7 +90,7 @@ export class WorkspaceApi {
     async resetPassword(token:string,password:string){this.mode='live';return parseResponse(C.Ok,await this.request('/auth/reset-password','POST',C.ResetPasswordRequest.parse({token,password})))}
     async changePassword(currentPassword:string,password:string){if(this.mode!=='live')throw new ApiError('Password changes require the shared backend.');const result=parseResponse(C.Ok,await this.request('/auth/change-password','POST',C.ChangePasswordRequest.parse({currentPassword,password})));this.clear();return result}
     async credentials(id:string){this.assert('customers.write');if(this.mode!=='live')throw new ApiError('Credential setup requires the shared backend.');return parseResponse(SetupCredentials,await this.request(`/admin/customers/${C.Id.parse(id)}/credentials`,'POST'))}
-    preview(role: StaffRole) { this.mode = 'mock'; this.data = fixtures(); this.setSession({ accessToken: 'SIMULATED', tokenType: 'Bearer', expiresAt: new Date(Date.now() + 3600000).toISOString(), principal: { id: uuid(80), kind: 'STAFF', customerId: null, roles: [role], mustChangePassword: false } }); }
+    preview(role: StaffRole) { this.mode = 'mock'; this.data = freshFixtures(); this.setSession({ accessToken: 'SIMULATED', tokenType: 'Bearer', expiresAt: new Date(Date.now() + 3600000).toISOString(), principal: { id: uuid(80), kind: 'STAFF', customerId: null, roles: [role], mustChangePassword: false } }); }
     async logout() { try {
         if (this.mode === 'live' && this.session)
             await this.request('/auth/logout', 'POST');

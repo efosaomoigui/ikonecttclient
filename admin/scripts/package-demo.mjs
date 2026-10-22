@@ -1,0 +1,11 @@
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const root=fileURLToPath(new URL('../dist-demo/',import.meta.url));
+const app=path.join(root,'admin','index.html');
+const html=await readFile(app,'utf8');
+if(!html.includes('connect-src')||!html.includes('noindex'))throw new Error('Refusing to package a non-demo artifact.');
+await mkdir(root,{recursive:true});
+await writeFile(path.join(root,'robots.txt'),'User-agent: *\nDisallow: /\n');
+await writeFile(path.join(root,'index.html'),'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow,noarchive"><meta http-equiv="refresh" content="0;url=/admin/"><title>Ikonectt Admin demonstration</title></head><body><a href="/admin/">Open the standalone Admin demonstration</a></body></html>\n');
+console.log('Standalone Admin packaged in dist-demo/admin; normal dist is untouched. No deployment performed.');

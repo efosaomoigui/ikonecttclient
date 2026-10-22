@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 3013",
     "build": "tsc --noEmit && vite build",
+    "build:demo": "tsc --noEmit && vite build --mode demo && node scripts/package-demo.mjs",
+    "test:demo": "npm run build:demo && tsx --test tests/standalone/*.test.ts",
     "test": "npm run build:review && tsx --test tests/*.test.ts",
     "sync-contracts": "node scripts/sync-contracts.mjs",
     "build:review": "tsc --noEmit && vite build --mode review",
