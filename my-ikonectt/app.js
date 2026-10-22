@@ -143,6 +143,7 @@ function password(name, label, autocomplete = "current-password") {
   return `<label>${label}<span class="password"><input name="${name}" id="${name}" type="password" required ${limits} autocomplete="${autocomplete}"><button type="button" class="reveal" data-reveal="${name}" aria-label="Show ${label.toLowerCase()}" aria-pressed="false">Show</button></span></label>`;
 }
 function authPage(recovery = false) {
+  if (config.standaloneDemo) return publicShell(`<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel"><p class="eyebrow">STANDALONE DEMONSTRATION</p><h2>Review the application.</h2><p>Explore fictional customer journeys without a password or backend.</p><form data-form="demo-entry"><label>Sample customer<select name="demoProfile"><option value="ada">Ada Okafor — expired service · ₦30,000 wallet</option><option value="meridian">Meridian Studio — active service · ₦0 wallet</option></select></label><p class="form-error" role="alert"></p><button class="button" type="submit">Open simulated account ↗</button></form><p class="subtle-note">Illustrative prices and fictional records only. No payment or ISP connection. This browser demonstration is independent of Admin; refresh or reset restores the sample records.</p></div></section>`);
   return publicShell(
     `<section class="auth-layout"><div class="auth-story"><p class="eyebrow">MY IKONECTT</p><h1>Your world.<br>Within reach.</h1><p>A secure space for your connection, and a little more peace of mind.</p><img src="assets/welcome.webp" alt="Enjoying a connected moment at home"></div><div class="auth-panel">${link("", "← Back to home", "back")}<p class="eyebrow">${recovery ? "ACCOUNT RECOVERY" : "GOOD TO SEE YOU AGAIN"}</p><h2>${recovery ? "Let’s get you back in." : "Welcome back."}</h2>${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}<p>${recovery ? "Enter your account number to request recovery instructions." : "Sign in with the account details provided by Ikonectt."}</p><form data-form="${recovery ? "recover" : "login"}">${input("accountNumber", "Account number", "text", 'autocomplete="username" inputmode="text" maxlength="64"')}${recovery ? "" : password("password", "Password")}<p class="form-error" role="alert"></p><button class="button" type="submit">${recovery ? "Send recovery instructions" : "Sign in securely"} ${arrow}</button></form>${link(recovery ? "login" : "recover", recovery ? "Back to sign in" : "Forgot your password?", "text-link")}${link("reset", "Set up or recover your account", "setup-link")}<div class="subtle-note">Your account is created by Ikonectt. ${link("help", "Need help accessing it?")}</div>${config.mode === "mock" ? `<details class="demo"><summary>Development preview · demo access</summary><p>Account: <strong>${demoCredentials.accountNumber}</strong><br>Password: <strong>${demoCredentials.password}</strong></p><p>All account information and actions in this preview are simulated.</p></details>` : ""}</div></section>`,
   );
@@ -179,6 +180,7 @@ function details(entries) {
   return `<dl class="details">${entries.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v ?? "Not available")}</dd></div>`).join("")}</dl>`;
 }
 function content(route, id) {
+  if (config.standaloneDemo && route === "payment-report") return heading("Payment report preview", "No real payment information is collected in this demonstration.") + `<article class="panel"><p>Historical sample payments are read-only. Use the wallet's separate fictional settled-funding control to review wallet credit and explicit renewal.</p>${link("top-up", "Review simulated wallet funding", "button outline")}</article>`;
   const walletPage = walletScreen(route, id, { aux, result, intents: walletIntents, esc, link, heading, details, moneyMinor, date, input });
   if (walletPage !== null) return walletPage;
   const extra = journeyScreen(route, id, {
@@ -311,6 +313,8 @@ function content(route, id) {
       ])}<p class="subtle-note">Need to correct your details? Our team will verify and update your account.</p>${link("support/new", "Request a profile correction", "button outline")} ${link("security", "Manage account security →", "text-link")}</article>${phoneForm(data.profile, { esc })}`
     );
   if (route === "security")
+    if (config.standaloneDemo) return heading("Account Security", "This demonstration uses no credentials.") + `<article class="panel"><p>Password changes and recovery are unavailable in this standalone review. No real account is authenticated.</p>${link("login", "Choose another sample customer", "button outline")}</article>`;
+  if (route === "security")
     return (
       heading("Account Security", "Keep your connection to us secure.") +
       `<form data-form="password" class="panel form-panel"><h2>Change your password</h2><p>Choose a unique password with at least 12 characters. You’ll sign in again after it changes.</p>${password("current", "Current password")}${password("next", "New password", "new-password")}${password("confirm", "Confirm new password", "new-password")}<p class="form-error" role="alert"></p><button type="submit" class="button">Update password ${arrow}</button></form>`
@@ -358,6 +362,10 @@ function missing() {
   );
 }
 function shell(body, route) {
+  if (config.standaloneDemo) {
+    if (["wallet", "transactions"].includes(route)) body += `<article class="panel"><h2>Settlement simulation</h2><p>Demonstrate fictional settled funding. Payment initiation alone is not a credit, and funding never changes service status.</p><button type="button" class="button outline" data-demo-fund>Simulate settled funding +₦10,000</button></article>`;
+    if (aux.renewal?.status === "RESERVED") body += `<article class="panel"><h2>Separate simulated service outcome</h2><p>The funds are held. Use this separate demonstration action to simulate a confirmed outcome. No ISP request or real activation will occur.</p><button type="button" class="button" data-demo-complete="${esc(aux.renewal.id)}">Simulate confirmed service completion</button></article>`;
+  }
   const navigationRoute={orders:"services",plans:"services",coverage:"services","payment-report":"billing",guidance:"support","top-up":"wallet","top-ups":"wallet",transactions:"wallet",renew:"services",renewals:"wallet"}[route]||route;
   return `<div class="app-shell"><aside class="sidebar">${logo()}<div class="sidebar-label">YOUR ACCOUNT</div><nav aria-label="Account navigation">${Object.entries(
     names,
@@ -381,7 +389,7 @@ function shell(body, route) {
         .join(""),
     ),
     "avatar",
-  )}</div></header><main id="main" class="dashboard" tabindex="-1">${config.mode === "mock" ? '<div class="demo-banner">Development preview <span>Sample account · simulated actions</span></div>' : data.simulated ? '<div class="demo-banner">Connected to development API <span>SIMULATED fixture records · real API requests</span></div>' : ""}${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}${body}<div class="dashboard-footer"><span>Connected with Ikonectt.</span><span>Your account number: ${esc(customer.accountNumber)}</span></div></main></div></div>`;
+  )}</div></header><main id="main" class="dashboard" tabindex="-1">${config.standaloneDemo ? `<div class="demo-banner standalone-banner"><div><strong>STANDALONE DEMO · fictional records</strong><small>Independent browser state. Refresh/reset restores samples. Prices are illustrative, not approved tariffs.</small></div><div class="wallet-actions">${link("login", "Switch sample", "text-link")}<button type="button" class="button outline small" data-demo-reset>Reset demo</button></div></div>` : config.mode === "mock" ? '<div class="demo-banner">Development preview <span>Sample account · simulated actions</span></div>' : data.simulated ? '<div class="demo-banner">Connected to development API <span>SIMULATED fixture records · real API requests</span></div>' : ""}${notice ? `<div class="notice" role="status">${esc(notice)}</div>` : ""}${body}<div class="dashboard-footer"><span>Connected with Ikonectt.</span><span>Your account number: ${esc(customer.accountNumber)}</span></div></main></div></div>`;
 }
 async function render() {
   const tick = ++version;
@@ -393,6 +401,9 @@ async function render() {
     id = null;
   }
   document.title = `${names[route] || routeNames[route] || { "": "Welcome", login: "Sign in", recover: "Account recovery", help: "Account help" }[route] || "My account"} | My Ikonectt`;
+  if (config.standaloneDemo && ["recover", "reset"].includes(route)) {
+    root.innerHTML = authPage(); bind(); return;
+  }
   if (["", "login", "recover", "reset", "help"].includes(route)) {
     root.innerHTML =
       route === ""
@@ -463,6 +474,19 @@ async function render() {
   }
 }
 function bind(scope = root) {
+  if (config.standaloneDemo) {
+    const demoAction = async (button, action, message, reset = false) => {
+      button.disabled = true;
+      try {
+        await action(); data = null; result = {}; walletIntents.clear(); customer = await api.session(); notice = message;
+        if (reset && location.hash !== "#/overview") location.hash = "/overview";
+        else await render();
+      } catch (error) { notice = error.message; await render(); }
+    };
+    scope.querySelector('[data-demo-reset]')?.addEventListener('click', e => demoAction(e.currentTarget, () => api.resetDemo(), "Sample records restored.", true));
+    scope.querySelector('[data-demo-fund]')?.addEventListener('click', e => demoAction(e.currentTarget, () => api.simulateFunding(1000000), "Fictional settled funding recorded. Service status is unchanged."));
+    scope.querySelector('[data-demo-complete]')?.addEventListener('click', e => demoAction(e.currentTarget, () => api.completeDemoRenewal(e.currentTarget.dataset.demoComplete), "Simulated service completion recorded. No real ISP activation occurred."));
+  }
   scope.querySelectorAll("[data-reveal]").forEach(
     (b) =>
       (b.onclick = () => {
@@ -550,6 +574,17 @@ async function submit(e) {
   f.setAttribute("aria-busy", "true");
   try {
     switch (f.dataset.form) {
+      case "demo-entry":
+        if (!config.standaloneDemo) throw new Error("Standalone review is not enabled.");
+        customer = await api.enterDemo(values.demoProfile);
+        data = null; result = {}; walletIntents.clear(); location.hash = "/overview";
+        break;
+      case "demo-funding":
+        if (!config.standaloneDemo) throw new Error("Standalone review is not enabled.");
+        await api.simulateFunding(Number(values.demoAmount));
+        data = null; notice = "Fictional settled funding recorded. No real payment occurred; service status is unchanged.";
+        location.hash = "/wallet";
+        break;
       case "login":
         customer = await api.login(
           values.accountNumber.trim(),

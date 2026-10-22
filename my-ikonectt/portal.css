@@ -1197,6 +1197,9 @@ th {
 .service-renewal { border-top: 1px solid var(--border, #e5e7df); margin-top: 22px; padding-top: 18px; }
 .service-renewal .subtle-note { margin: 12px 0 0; }
 .wallet-demo { margin-bottom: 24px; }
+.standalone-banner { flex-wrap: wrap; align-items: center; }
+.standalone-banner > div:first-child { flex: 1 1 260px; }
+.standalone-banner small { display: block; }
 @media (max-width: 820px) {
   .wallet-summary { align-items: flex-start; flex-direction: column; }
   .wallet-balances { grid-template-columns: 1fr; gap: 0; }
