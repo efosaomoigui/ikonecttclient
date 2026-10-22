@@ -78,6 +78,7 @@ test("demo support, profile isolation, reset and refresh restore documented samp
 test("standalone deployment policy forbids backend connections and real form navigation", () => {
   const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url)));
   assert.equal(config.buildCommand, "npm run build:demo"); assert.equal(config.outputDirectory, "dist-demo");
+  assert.equal(config.installCommand, "npm ci --include=dev");
   const headers = config.headers[0].headers;
   const csp = headers.find(h => h.key === "Content-Security-Policy").value;
   assert.match(csp, /connect-src 'none'/); assert.match(csp, /form-action 'none'/);

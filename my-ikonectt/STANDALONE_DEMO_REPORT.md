@@ -8,7 +8,7 @@ Feasible without a framework, backend or layout redesign. The smallest safe exte
 
 ## Build and deployment boundary
 
-- Project root: **my-ikonectt**. Install `npm ci`; run **npm run build:demo**; deploy output **dist-demo** as a separate preview project. No secret or API environment variables are needed. No deployment has been performed.
+- Project root: **my-ikonectt**. Install `npm ci --include=dev` (build tools are required even when the host sets a production environment); run **npm run build:demo**; deploy output **dist-demo** as a separate preview project. No secret or API environment variables are needed. No deployment has been performed.
 - `build-demo.mjs` bundles the existing application using explicit standalone provider/config/view aliases. It rejects the integrated provider dependency graph, localhost/API origins and legacy development credential markers. Existing `npm run build` and `config.js` retain their integrated behavior; no runtime fallback is added.
 - The build safely replaces only its own guarded, non-symlink `dist-demo` directory, avoiding stale artifacts. No source, normal `dist`, backend or database directory is removed.
 - `vercel.json` selects the demo build/output and applies noindex, CSP and security headers. CSP has **connect-src 'none'** and **form-action 'none'**; an equivalent meta policy is included for basic static hosting. Static scripts, styles, fonts and images are local. There is no API proxy or API route in the artifact.
