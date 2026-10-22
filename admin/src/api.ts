@@ -188,8 +188,15 @@ export class WorkspaceApi {
             return structuredClone(item);
         }
         const item = { id: crypto.randomUUID(), ...body, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
-        if (key === 'customers')
+        if (key === 'customers') {
             Object.assign(item, { accountNumber: `SIM-${String(this.data.customers.length + 10000001)}`, accountNumberSimulated: true, status: 'ACTIVE', buildingId: body.buildingId || null });
+            if (STANDALONE_DEMO) this.data.walletSummaries.push(C.WalletSummary.parse({
+                customerId: item.id, currency: 'NGN', postedMinor: 0, reservedMinor: 0,
+                availableMinor: 0, pendingTopUpsMinor: 0, pendingTopUpsCount: 0, simulated: true,
+                topUpInstructions: { mode: 'MANUAL_REPORT', bankDetails: null,
+                    notice: 'Standalone fictional wallet. No transfer, bank settlement or live provider is connected.' }
+            }));
+        }
         if (key === 'plans')
             Object.assign(item, { simulated: true });
         if (key === 'coverage')

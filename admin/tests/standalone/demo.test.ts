@@ -137,6 +137,10 @@ test('standalone navigation, customer creation/filtering, support messages and r
         await waitFor(()=>!doc.querySelector('#record-form')&&!!doc.querySelector('tbody'));
         let search=doc.querySelector<HTMLInputElement>('#search')!;search.value='Fictional Demo Client';search.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
         assert.match(doc.querySelector('tbody')!.textContent!,/Fictional Demo Client/);
+        click(dom,'[data-detail]');await waitFor(()=>!!doc.querySelector('.wallet-summary'));
+        assert.match(doc.querySelector('.wallet-summary')!.textContent!,/Available credit.*0\.00/);
+        assert.equal(doc.querySelector('[data-action=credentials]'),null);
+        click(dom,'[data-action=close]');
         await go(dom,'tickets');click(dom,'[data-detail]');await waitFor(()=>!!doc.querySelector('#reply-form'));
         doc.querySelector<HTMLTextAreaElement>('#reply-form textarea')!.value='Fictional demo reply, not sent to the portal.';
         doc.querySelector('#reply-form')!.dispatchEvent(new dom.window.Event('submit',{bubbles:true,cancelable:true}));

@@ -1,0 +1,19 @@
+{
+  "source": "Isolated static server request log during browser QA; queries excluded",
+  "requests": 27,
+  "methods": [
+    "GET"
+  ],
+  "apiRequests": 0,
+  "nonStaticMethods": 0,
+  "paths": [
+    "/admin/",
+    "/admin/assets/index-CvUszWoF.js",
+    "/admin/assets/index-CZH5kmtM.js",
+    "/admin/assets/index-DNvhku-R.css",
+    "/admin/inter.woff2",
+    "/admin/logo-red.png",
+    "/admin/logo-white.png",
+    "/admin/theme-init.js"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "documentWidth": 390,
+  "drawerExpandedAndCollapsed": true,
+  "accountThemeSelector": "light",
+  "screenshots": [
+    "admin-mobile-dark.png",
+    "admin-mobile-light.png"
+  ]
+}

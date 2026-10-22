@@ -1,0 +1,250 @@
+[
+  {
+    "role": "FINANCE",
+    "start": {
+      "banners": 1,
+      "groups": 0
+    },
+    "visited": [
+      {
+        "screen": "Dashboard",
+        "heading": "Operational Overview"
+      },
+      {
+        "screen": "Customers",
+        "heading": "Customers"
+      },
+      {
+        "screen": "Orders",
+        "heading": "Orders"
+      },
+      {
+        "screen": "Subscriptions",
+        "heading": "Subscriptions"
+      },
+      {
+        "screen": "Wallet Top-ups",
+        "heading": "Wallet Top-ups"
+      },
+      {
+        "screen": "Wallet Renewals",
+        "heading": "Wallet Renewals"
+      },
+      {
+        "screen": "Payments",
+        "heading": "Payments"
+      },
+      {
+        "screen": "Reports",
+        "heading": "Operational reports"
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "role": "PROVISIONER",
+    "start": {
+      "banners": 1,
+      "groups": 0
+    },
+    "visited": [
+      {
+        "screen": "Dashboard",
+        "heading": "Operational Overview"
+      },
+      {
+        "screen": "Customers",
+        "heading": "Customers"
+      },
+      {
+        "screen": "Coverage",
+        "heading": "Coverage"
+      },
+      {
+        "screen": "Orders",
+        "heading": "Orders"
+      },
+      {
+        "screen": "Subscriptions",
+        "heading": "Subscriptions"
+      },
+      {
+        "screen": "Wallet Renewals",
+        "heading": "Wallet Renewals"
+      },
+      {
+        "screen": "Provisioning",
+        "heading": "Provisioning"
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "role": "EXECUTIVE",
+    "start": {
+      "banners": 1,
+      "groups": 0
+    },
+    "visited": [
+      {
+        "screen": "Dashboard",
+        "heading": "Operational Overview"
+      },
+      {
+        "screen": "Reports",
+        "heading": "Operational reports"
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "role": "ADMIN",
+    "start": {
+      "banners": 1,
+      "groups": 0
+    },
+    "visited": [
+      {
+        "screen": "Dashboard",
+        "heading": "Operational Overview"
+      },
+      {
+        "screen": "Leads",
+        "heading": "Leads"
+      },
+      {
+        "screen": "Customers",
+        "heading": "Customers"
+      },
+      {
+        "screen": "Plans",
+        "heading": "Plans"
+      },
+      {
+        "screen": "Coverage",
+        "heading": "Coverage"
+      },
+      {
+        "screen": "Orders",
+        "heading": "Orders"
+      },
+      {
+        "screen": "Subscriptions",
+        "heading": "Subscriptions"
+      },
+      {
+        "screen": "Wallet Top-ups",
+        "heading": "Wallet Top-ups"
+      },
+      {
+        "screen": "Wallet Renewals",
+        "heading": "Wallet Renewals"
+      },
+      {
+        "screen": "Payments",
+        "heading": "Payments"
+      },
+      {
+        "screen": "Provisioning",
+        "heading": "Provisioning"
+      },
+      {
+        "screen": "Support Tickets",
+        "heading": "Support Tickets"
+      },
+      {
+        "screen": "Reports",
+        "heading": "Operational reports"
+      },
+      {
+        "screen": "Staff & Roles",
+        "heading": "Staff & Roles"
+      },
+      {
+        "screen": "Notifications",
+        "heading": "Notifications"
+      },
+      {
+        "screen": "Audit Logs",
+        "heading": "Audit Logs"
+      },
+      {
+        "screen": "Integrations",
+        "heading": "Integrations"
+      },
+      {
+        "screen": "Settings",
+        "heading": "Workspace settings"
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "role": "SUPPORT",
+    "start": {
+      "banners": 1,
+      "groups": 0
+    },
+    "visited": [
+      {
+        "screen": "Dashboard",
+        "heading": "Operational Overview"
+      },
+      {
+        "screen": "Customers",
+        "heading": "Customers"
+      },
+      {
+        "screen": "Orders",
+        "heading": "Orders"
+      },
+      {
+        "screen": "Subscriptions",
+        "heading": "Subscriptions"
+      },
+      {
+        "screen": "Wallet Renewals",
+        "heading": "Wallet Renewals"
+      },
+      {
+        "screen": "Payments",
+        "heading": "Payments"
+      },
+      {
+        "screen": "Support Tickets",
+        "heading": "Support Tickets"
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "role": "SALES",
+    "start": {
+      "banners": 1,
+      "groups": 0
+    },
+    "visited": [
+      {
+        "screen": "Dashboard",
+        "heading": "Operational Overview"
+      },
+      {
+        "screen": "Leads",
+        "heading": "Leads"
+      },
+      {
+        "screen": "Customers",
+        "heading": "Customers"
+      },
+      {
+        "screen": "Orders",
+        "heading": "Orders"
+      },
+      {
+        "screen": "Subscriptions",
+        "heading": "Subscriptions"
+      }
+    ],
+    "consoleErrors": []
+  }
+]

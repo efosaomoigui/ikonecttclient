@@ -1,0 +1,9 @@
+{
+  "customerCreationAndSearch": true,
+  "newCustomerWallet": "zero, no schema error",
+  "supportReply": true,
+  "supportStatus": "RESOLVED",
+  "refreshResetStatus": "OPEN",
+  "deepRouteAfterRoleEntry": "#/tickets",
+  "consoleErrors": []
+}
