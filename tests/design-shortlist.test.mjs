@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import {activeDesigns,archivedDesigns,activeDesign} from '../shared/design-shortlist.js';
 import {mountDesignPreview,supportedHash} from '../shared/design-preview.js';
+import {heroPreservationHash} from './helpers/hero-preservation.mjs';
 
 const source=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
 test('shortlist exposes exactly Templates A and E, renumbered 1 and 2, while legacy entrypoints remain available',()=>{
@@ -51,7 +52,7 @@ test('original designs and shared journeys retain the shortlist checkpoint outsi
   const allowed=new Set(['option-a/src/App.tsx','option-a/src/components/pages/HomePage.tsx','option-d/index.html','option-e/index.html']);
   for(const [file,hash] of Object.entries(baseline.files)){
     if(allowed.has(file))continue;
-    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL('../'+file,import.meta.url))).digest('hex'),hash,file);
+    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL('../'+file,import.meta.url))).digest('hex'),heroPreservationHash(file,hash),file);
   }
   const css=fs.readFileSync(new URL('../option-a/src/inner-pages-hybrid.css',import.meta.url),'utf8');
   const selectors=css.replace(/\/\*[\s\S]*?\*\//g,'').match(/[^{}]+(?=\{)/g).filter(x=>!x.trim().startsWith('@'));

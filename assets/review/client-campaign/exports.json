@@ -1,0 +1,62 @@
+[
+  {
+    "id": "family",
+    "source": "family-flyer.png",
+    "sourceDimensions": [
+      619,
+      740
+    ],
+    "sourceSHA256": "87c97860eb5f3a53868b094254c1602360d78f96ad04ed27c7254ded70190401",
+    "crop": {
+      "left": 8,
+      "top": 157,
+      "width": 532,
+      "height": 243
+    },
+    "opaquePixelsVerified": 75446,
+    "changedOpaquePixels": 0,
+    "method": "Original pixels with a hand-traced alpha matte; cropped above advertising blocks; no reconstructed anatomy or facial retouching",
+    "exports": [
+      {
+        "path": "assets/visual-library/campaign/client-family-v1-320.webp",
+        "width": 320,
+        "bytes": 50884
+      },
+      {
+        "path": "assets/visual-library/campaign/client-family-v1-532.webp",
+        "width": 532,
+        "bytes": 101946
+      }
+    ]
+  },
+  {
+    "id": "individual",
+    "source": "individual-flyer.png",
+    "sourceDimensions": [
+      622,
+      771
+    ],
+    "sourceSHA256": "46a5dd0ba87d39fa283a7c8dfd39a5f01d8518106f7d244686082e38d674dd57",
+    "crop": {
+      "left": 227,
+      "top": 111,
+      "width": 362,
+      "height": 290
+    },
+    "opaquePixelsVerified": 60362,
+    "changedOpaquePixels": 0,
+    "method": "Original pixels with a hand-traced alpha matte; cropped above advertising blocks; no reconstructed anatomy or facial retouching",
+    "exports": [
+      {
+        "path": "assets/visual-library/campaign/client-individual-v1-320.webp",
+        "width": 320,
+        "bytes": 66340
+      },
+      {
+        "path": "assets/visual-library/campaign/client-individual-v1-362.webp",
+        "width": 362,
+        "bytes": 73122
+      }
+    ]
+  }
+]

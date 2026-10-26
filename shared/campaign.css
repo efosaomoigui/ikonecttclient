@@ -1,0 +1,29 @@
+/* Client campaign layer: A/E only. Preserve original source proportions and faces. */
+.ik-site:is([data-template=a],[data-template=e]) .ik-campaign-picture{display:block;pointer-events:none}
+.ik-site:is([data-template=a],[data-template=e]) .ik-campaign-picture img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.ik-site:is([data-template=a],[data-template=e]) .ik-campaign-family{overflow:hidden;border:0;border-radius:0;background:transparent;mask-image:none}
+.ik-site:is([data-template=a],[data-template=e]) .ik-campaign-family>.ik-campaign-picture{position:absolute;inset:auto 0 0;margin-inline:auto;width:100%;max-width:640px;height:auto;aspect-ratio:2/1;mask-image:linear-gradient(90deg,transparent,#000 16%,#000 97%,transparent),linear-gradient(0deg,transparent,#000 10%,#000 90%,transparent);mask-composite:intersect}
+.ik-site[data-template=a] #ik-main .ik-campaign-family>.ik-campaign-picture{top:50%;bottom:auto;transform:translateY(-50%)}
+.ik-site[data-template=e] .e-editorial .ik-campaign-family{left:52%;display:flex;align-items:flex-end;justify-content:center}
+.ik-site[data-template=e] .e-editorial .ik-campaign-family>.ik-campaign-picture{inset:auto 0 12%;max-width:600px}
+.ik-site[data-template=e] .e-editorial .ik-campaign-family::after{background:none}
+.ik-site[data-template=e] .e-editorial .ik-campaign-family img{filter:none;object-fit:contain}
+/* A portal: a broad grey editorial panel, with photography flowing in at right. */
+.ik-site[data-template=a] #home-portal{background:#fff;padding-block:72px}
+.ik-site[data-template=a] #home-portal .ik-campaign-portal{position:relative;isolation:isolate;overflow:hidden;background:#f1f2f4;border:1px solid #e3e4e7;border-radius:4px;min-height:370px;padding:clamp(32px,4.5vw,64px);display:flex;align-items:center}
+.ik-site[data-template=a] #home-portal .ik-campaign-portal>div{width:48%;max-width:520px;margin-inline:0;text-align:left;align-items:flex-start;position:relative;z-index:1}
+.ik-site[data-template=a] #home-portal .ik-campaign-picture{position:absolute;inset:0 0 0 50%;width:auto;height:auto;mask-image:linear-gradient(90deg,transparent,#000 32%);z-index:0}
+.ik-site[data-template=a] #home-portal .ik-campaign-picture img{width:100%;height:100%;object-fit:cover;object-position:right center;filter:none}
+.ik-site[data-template=a] #home-portal .ik-campaign-picture::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#f1f2f4,transparent 48%)}
+@media(max-width:767px){
+ .ik-site:is([data-template=a],[data-template=e]) #ik-main .ik-campaign-family{height:auto;aspect-ratio:2/1!important}
+ .ik-site[data-template=a] #ik-main .ik-campaign-family>.ik-campaign-picture{inset:0;transform:none}
+ .ik-site[data-template=e] .e-editorial .ik-campaign-family{left:auto}
+ .ik-site[data-template=e] .e-editorial .ik-campaign-family>.ik-campaign-picture{bottom:0;width:calc(100% - 48px);max-width:640px}
+ .ik-site[data-template=a] #home-portal{padding-block:40px}
+ .ik-site[data-template=a] #home-portal .ik-campaign-portal{width:calc(100% - 32px);padding:28px 24px 300px;min-height:0;display:block}
+ .ik-site[data-template=a] #home-portal .ik-campaign-portal>div{width:100%;max-width:100%;text-align:left;align-items:flex-start}
+ .ik-site[data-template=a] #home-portal .ik-campaign-picture{inset:auto 0 0;width:100%;height:280px;mask-image:linear-gradient(0deg,#000 90%,transparent)}
+ .ik-site[data-template=a] #home-portal .ik-campaign-picture img{object-position:65% center}
+ .ik-site[data-template=a] #home-portal .ik-campaign-picture::after{background:linear-gradient(0deg,transparent 88%,#f1f2f4)}
+}

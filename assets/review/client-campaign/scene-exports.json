@@ -1,0 +1,84 @@
+[
+  {
+    "id": "family",
+    "source": "family-flyer.png",
+    "sourceDimensions": [
+      619,
+      740
+    ],
+    "sourceSHA256": "87c97860eb5f3a53868b094254c1602360d78f96ad04ed27c7254ded70190401",
+    "crop": {
+      "left": 8,
+      "top": 157,
+      "width": 532,
+      "height": 243
+    },
+    "scene": {
+      "width": 640,
+      "height": 320,
+      "subjectLeft": 0,
+      "subjectTop": 77
+    },
+    "opaquePixelsVerified": 75446,
+    "changedOpaquePixels": 0,
+    "background": "Generated room-only plate, composited behind original visible subject pixels; no reconstructed people or hidden anatomy",
+    "exports": [
+      {
+        "path": "assets/visual-library/campaign/client-family-scene-v2-320.webp",
+        "width": 320,
+        "bytes": 63250,
+        "hasAlpha": false
+      },
+      {
+        "path": "assets/visual-library/campaign/client-family-scene-v2-480.webp",
+        "width": 480,
+        "bytes": 131650,
+        "hasAlpha": false
+      },
+      {
+        "path": "assets/visual-library/campaign/client-family-scene-v2-640.webp",
+        "width": 640,
+        "bytes": 213170,
+        "hasAlpha": false
+      }
+    ]
+  },
+  {
+    "id": "individual",
+    "source": "individual-flyer.png",
+    "sourceDimensions": [
+      622,
+      771
+    ],
+    "sourceSHA256": "46a5dd0ba87d39fa283a7c8dfd39a5f01d8518106f7d244686082e38d674dd57",
+    "crop": {
+      "left": 227,
+      "top": 111,
+      "width": 362,
+      "height": 290
+    },
+    "scene": {
+      "width": 480,
+      "height": 330,
+      "subjectLeft": 100,
+      "subjectTop": 40
+    },
+    "opaquePixelsVerified": 60362,
+    "changedOpaquePixels": 0,
+    "background": "Generated room-only plate, composited behind original visible subject pixels; no reconstructed people or hidden anatomy",
+    "exports": [
+      {
+        "path": "assets/visual-library/campaign/client-individual-scene-v2-320.webp",
+        "width": 320,
+        "bytes": 75290,
+        "hasAlpha": false
+      },
+      {
+        "path": "assets/visual-library/campaign/client-individual-scene-v2-480.webp",
+        "width": 480,
+        "bytes": 148860,
+        "hasAlpha": false
+      }
+    ]
+  }
+]

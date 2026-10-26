@@ -1,0 +1,1770 @@
+{
+  "results": [
+    {
+      "template": "a",
+      "width": 1440,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": 129,
+        "width": 1440,
+        "height": 741.59375,
+        "right": 1440,
+        "bottom": 870.59375
+      },
+      "columns": 3,
+      "cards": [
+        {
+          "box": {
+            "x": 168,
+            "y": 320.59375,
+            "width": 354.65625,
+            "height": 225,
+            "right": 522.65625,
+            "bottom": 545.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 542.65625,
+            "y": 320.59375,
+            "width": 354.671875,
+            "height": 225,
+            "right": 897.328125,
+            "bottom": 545.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 917.328125,
+            "y": 320.59375,
+            "width": 354.65625,
+            "height": 225,
+            "right": 1271.984375,
+            "bottom": 545.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 168,
+            "y": 565.59375,
+            "width": 354.65625,
+            "height": 225,
+            "right": 522.65625,
+            "bottom": 790.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 542.65625,
+            "y": 565.59375,
+            "width": 354.671875,
+            "height": 225,
+            "right": 897.328125,
+            "bottom": 790.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 917.328125,
+            "y": 565.59375,
+            "width": 354.65625,
+            "height": 225,
+            "right": 1271.984375,
+            "bottom": 790.59375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 162.96875,
+        "width": 1440,
+        "height": 674.03125,
+        "right": 1440,
+        "bottom": 837
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 168,
+            "y": 418.75,
+            "width": 540,
+            "height": 338.25,
+            "right": 708,
+            "bottom": 757
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 732,
+            "y": 418.75,
+            "width": 540,
+            "height": 338.25,
+            "right": 1272,
+            "bottom": 757
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 1280,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": 129.15625,
+        "width": 1280,
+        "height": 741.234375,
+        "right": 1280,
+        "bottom": 870.390625
+      },
+      "columns": 3,
+      "cards": [
+        {
+          "box": {
+            "x": 88,
+            "y": 320.390625,
+            "width": 354.65625,
+            "height": 225,
+            "right": 442.65625,
+            "bottom": 545.390625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 462.65625,
+            "y": 320.390625,
+            "width": 354.671875,
+            "height": 225,
+            "right": 817.328125,
+            "bottom": 545.390625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 837.328125,
+            "y": 320.390625,
+            "width": 354.65625,
+            "height": 225,
+            "right": 1191.984375,
+            "bottom": 545.390625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 88,
+            "y": 565.390625,
+            "width": 354.65625,
+            "height": 225,
+            "right": 442.65625,
+            "bottom": 790.390625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 462.65625,
+            "y": 565.390625,
+            "width": 354.671875,
+            "height": 225,
+            "right": 817.328125,
+            "bottom": 790.390625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 837.328125,
+            "y": 565.390625,
+            "width": 354.65625,
+            "height": 225,
+            "right": 1191.984375,
+            "bottom": 790.390625
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 1280,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 166.046875,
+        "width": 1280,
+        "height": 668.828125,
+        "right": 1280,
+        "bottom": 834.875
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 88,
+            "y": 421.46875,
+            "width": 540,
+            "height": 333.40625,
+            "right": 628,
+            "bottom": 754.875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 652,
+            "y": 421.46875,
+            "width": 540,
+            "height": 333.40625,
+            "right": 1192,
+            "bottom": 754.875
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 1024,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": 123.328125,
+        "width": 1024,
+        "height": 753.09375,
+        "right": 1024,
+        "bottom": 876.421875
+      },
+      "columns": 3,
+      "cards": [
+        {
+          "box": {
+            "x": 48,
+            "y": 305.421875,
+            "width": 296,
+            "height": 235.5,
+            "right": 344,
+            "bottom": 540.921875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 364,
+            "y": 305.421875,
+            "width": 296,
+            "height": 235.5,
+            "right": 660,
+            "bottom": 540.921875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 680,
+            "y": 305.421875,
+            "width": 296,
+            "height": 235.5,
+            "right": 976,
+            "bottom": 540.921875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 48,
+            "y": 560.921875,
+            "width": 296,
+            "height": 235.5,
+            "right": 344,
+            "bottom": 796.421875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 364,
+            "y": 560.921875,
+            "width": 296,
+            "height": 235.5,
+            "right": 660,
+            "bottom": 796.421875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 680,
+            "y": 560.921875,
+            "width": 296,
+            "height": 235.5,
+            "right": 976,
+            "bottom": 796.421875
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 1024,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 173.828125,
+        "width": 1024,
+        "height": 651.75,
+        "right": 1024,
+        "bottom": 825.578125
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 48,
+            "y": 420.109375,
+            "width": 452,
+            "height": 325.46875,
+            "right": 500,
+            "bottom": 745.578125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 524,
+            "y": 420.109375,
+            "width": 452,
+            "height": 325.46875,
+            "right": 976,
+            "bottom": 745.578125
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": 13.953125,
+        "width": 768,
+        "height": 972.78125,
+        "right": 768,
+        "bottom": 986.734375
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": 191.734375,
+            "width": 350,
+            "height": 225,
+            "right": 374,
+            "bottom": 416.734375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 394,
+            "y": 191.734375,
+            "width": 350,
+            "height": 225,
+            "right": 744,
+            "bottom": 416.734375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 436.734375,
+            "width": 350,
+            "height": 225,
+            "right": 374,
+            "bottom": 661.734375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 394,
+            "y": 436.734375,
+            "width": 350,
+            "height": 225,
+            "right": 744,
+            "bottom": 661.734375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 681.734375,
+            "width": 350,
+            "height": 225,
+            "right": 374,
+            "bottom": 906.734375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 394,
+            "y": 681.734375,
+            "width": 350,
+            "height": 225,
+            "right": 744,
+            "bottom": 906.734375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 162.015625,
+        "width": 768,
+        "height": 676.234375,
+        "right": 768,
+        "bottom": 838.25
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": 403.984375,
+            "width": 348,
+            "height": 354.265625,
+            "right": 372,
+            "bottom": 758.25
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 396,
+            "y": 403.984375,
+            "width": 348,
+            "height": 354.265625,
+            "right": 744,
+            "bottom": 758.25
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": -229.421875,
+        "width": 390,
+        "height": 1458.78125,
+        "right": 390,
+        "bottom": 1229.359375
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": -87.640625,
+            "width": 342,
+            "height": 197.5,
+            "right": 366,
+            "bottom": 109.859375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 125.859375,
+            "width": 342,
+            "height": 197.5,
+            "right": 366,
+            "bottom": 323.359375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 339.359375,
+            "width": 342,
+            "height": 197.5,
+            "right": 366,
+            "bottom": 536.859375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 552.859375,
+            "width": 342,
+            "height": 197.5,
+            "right": 366,
+            "bottom": 750.359375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 766.359375,
+            "width": 342,
+            "height": 197.5,
+            "right": 366,
+            "bottom": 963.859375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 979.859375,
+            "width": 342,
+            "height": 197.5,
+            "right": 366,
+            "bottom": 1177.359375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 29.046875,
+        "width": 390,
+        "height": 970.5,
+        "right": 390,
+        "bottom": 999.546875
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": 235.015625,
+            "width": 342,
+            "height": 346.265625,
+            "right": 366,
+            "bottom": 581.28125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 601.28125,
+            "width": 342,
+            "height": 346.265625,
+            "right": 366,
+            "bottom": 947.546875
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 320,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": -323.4375,
+        "width": 320,
+        "height": 1646.96875,
+        "right": 320,
+        "bottom": 1323.53125
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": -149.46875,
+            "width": 272,
+            "height": 223.5,
+            "right": 296,
+            "bottom": 74.03125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 90.03125,
+            "width": 272,
+            "height": 223.5,
+            "right": 296,
+            "bottom": 313.53125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 329.53125,
+            "width": 272,
+            "height": 223.5,
+            "right": 296,
+            "bottom": 553.03125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 569.03125,
+            "width": 272,
+            "height": 223.5,
+            "right": 296,
+            "bottom": 792.53125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 808.53125,
+            "width": 272,
+            "height": 223.5,
+            "right": 296,
+            "bottom": 1032.03125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 1048.03125,
+            "width": 272,
+            "height": 223.5,
+            "right": 296,
+            "bottom": 1271.53125
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "a",
+      "width": 320,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": -0.28125,
+        "width": 320,
+        "height": 1116.375,
+        "right": 320,
+        "bottom": 1116.09375
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": 260.96875,
+            "width": 272,
+            "height": 391.5625,
+            "right": 296,
+            "bottom": 652.53125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 672.53125,
+            "width": 272,
+            "height": 391.5625,
+            "right": 296,
+            "bottom": 1064.09375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": 128.765625,
+        "width": 1440,
+        "height": 741.59375,
+        "right": 1440,
+        "bottom": 870.359375
+      },
+      "columns": 3,
+      "cards": [
+        {
+          "box": {
+            "x": 130.390625,
+            "y": 320.359375,
+            "width": 379.734375,
+            "height": 225,
+            "right": 510.125,
+            "bottom": 545.359375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 530.125,
+            "y": 320.359375,
+            "width": 379.734375,
+            "height": 225,
+            "right": 909.859375,
+            "bottom": 545.359375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 929.859375,
+            "y": 320.359375,
+            "width": 379.75,
+            "height": 225,
+            "right": 1309.609375,
+            "bottom": 545.359375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 130.390625,
+            "y": 565.359375,
+            "width": 379.734375,
+            "height": 225,
+            "right": 510.125,
+            "bottom": 790.359375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 530.125,
+            "y": 565.359375,
+            "width": 379.734375,
+            "height": 225,
+            "right": 909.859375,
+            "bottom": 790.359375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 929.859375,
+            "y": 565.359375,
+            "width": 379.75,
+            "height": 225,
+            "right": 1309.609375,
+            "bottom": 790.359375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 162.53125,
+        "width": 1440,
+        "height": 675.03125,
+        "right": 1440,
+        "bottom": 837.5625
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 130.390625,
+            "y": 419.3125,
+            "width": 577.609375,
+            "height": 338.25,
+            "right": 708,
+            "bottom": 757.5625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 732,
+            "y": 419.3125,
+            "width": 577.609375,
+            "height": 338.25,
+            "right": 1309.609375,
+            "bottom": 757.5625
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 1280,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": 129.359375,
+        "width": 1280,
+        "height": 741.234375,
+        "right": 1280,
+        "bottom": 870.59375
+      },
+      "columns": 3,
+      "cards": [
+        {
+          "box": {
+            "x": 44.796875,
+            "y": 320.59375,
+            "width": 383.46875,
+            "height": 225,
+            "right": 428.265625,
+            "bottom": 545.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 448.265625,
+            "y": 320.59375,
+            "width": 383.46875,
+            "height": 225,
+            "right": 831.734375,
+            "bottom": 545.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 851.734375,
+            "y": 320.59375,
+            "width": 383.46875,
+            "height": 225,
+            "right": 1235.203125,
+            "bottom": 545.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 44.796875,
+            "y": 565.59375,
+            "width": 383.46875,
+            "height": 225,
+            "right": 428.265625,
+            "bottom": 790.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 448.265625,
+            "y": 565.59375,
+            "width": 383.46875,
+            "height": 225,
+            "right": 831.734375,
+            "bottom": 790.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 851.734375,
+            "y": 565.59375,
+            "width": 383.46875,
+            "height": 225,
+            "right": 1235.203125,
+            "bottom": 790.59375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 1280,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 164.765625,
+        "width": 1280,
+        "height": 669.828125,
+        "right": 1280,
+        "bottom": 834.59375
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 44.796875,
+            "y": 421.1875,
+            "width": 583.203125,
+            "height": 333.40625,
+            "right": 628,
+            "bottom": 754.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 652,
+            "y": 421.1875,
+            "width": 583.203125,
+            "height": 333.40625,
+            "right": 1235.203125,
+            "bottom": 754.59375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 1024,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": 114.953125,
+        "width": 1024,
+        "height": 770.03125,
+        "right": 1024,
+        "bottom": 884.984375
+      },
+      "columns": 3,
+      "cards": [
+        {
+          "box": {
+            "x": 35.828125,
+            "y": 297.046875,
+            "width": 304.109375,
+            "height": 243.96875,
+            "right": 339.9375,
+            "bottom": 541.015625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 359.9375,
+            "y": 297.046875,
+            "width": 304.109375,
+            "height": 243.96875,
+            "right": 664.046875,
+            "bottom": 541.015625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 684.046875,
+            "y": 297.046875,
+            "width": 304.125,
+            "height": 243.96875,
+            "right": 988.171875,
+            "bottom": 541.015625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 35.828125,
+            "y": 561.015625,
+            "width": 304.109375,
+            "height": 243.96875,
+            "right": 339.9375,
+            "bottom": 804.984375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 359.9375,
+            "y": 561.015625,
+            "width": 304.109375,
+            "height": 243.96875,
+            "right": 664.046875,
+            "bottom": 804.984375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 684.046875,
+            "y": 561.015625,
+            "width": 304.125,
+            "height": 243.96875,
+            "right": 988.171875,
+            "bottom": 804.984375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 1024,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 173.15625,
+        "width": 1024,
+        "height": 652.75,
+        "right": 1024,
+        "bottom": 825.90625
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 35.828125,
+            "y": 420.4375,
+            "width": 464.171875,
+            "height": 325.46875,
+            "right": 500,
+            "bottom": 745.90625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 524,
+            "y": 420.4375,
+            "width": 464.171875,
+            "height": 325.46875,
+            "right": 988.171875,
+            "bottom": 745.90625
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": -11.765625,
+        "width": 768,
+        "height": 1023.078125,
+        "right": 768,
+        "bottom": 1011.3125
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 26.875,
+            "y": 166.015625,
+            "width": 347.125,
+            "height": 241.765625,
+            "right": 374,
+            "bottom": 407.78125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 394,
+            "y": 166.015625,
+            "width": 347.125,
+            "height": 241.765625,
+            "right": 741.125,
+            "bottom": 407.78125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 26.875,
+            "y": 427.78125,
+            "width": 347.125,
+            "height": 241.765625,
+            "right": 374,
+            "bottom": 669.546875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 394,
+            "y": 427.78125,
+            "width": 347.125,
+            "height": 241.765625,
+            "right": 741.125,
+            "bottom": 669.546875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 26.875,
+            "y": 689.546875,
+            "width": 347.125,
+            "height": 241.765625,
+            "right": 374,
+            "bottom": 931.3125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 394,
+            "y": 689.546875,
+            "width": 347.125,
+            "height": 241.765625,
+            "right": 741.125,
+            "bottom": 931.3125
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 161.0625,
+        "width": 768,
+        "height": 677.234375,
+        "right": 768,
+        "bottom": 838.296875
+      },
+      "columns": 2,
+      "cards": [
+        {
+          "box": {
+            "x": 26.875,
+            "y": 404.03125,
+            "width": 345.125,
+            "height": 354.265625,
+            "right": 372,
+            "bottom": 758.296875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 396,
+            "y": 404.03125,
+            "width": 345.125,
+            "height": 354.265625,
+            "right": 741.125,
+            "bottom": 758.296875
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": -247.375,
+        "width": 390,
+        "height": 1494.03125,
+        "right": 390,
+        "bottom": 1246.65625
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": -105.59375,
+            "width": 342,
+            "height": 203.375,
+            "right": 366,
+            "bottom": 97.78125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 113.78125,
+            "width": 342,
+            "height": 203.375,
+            "right": 366,
+            "bottom": 317.15625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 333.15625,
+            "width": 342,
+            "height": 203.375,
+            "right": 366,
+            "bottom": 536.53125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 552.53125,
+            "width": 342,
+            "height": 203.375,
+            "right": 366,
+            "bottom": 755.90625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 771.90625,
+            "width": 342,
+            "height": 203.375,
+            "right": 366,
+            "bottom": 975.28125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 991.28125,
+            "width": 342,
+            "height": 203.375,
+            "right": 366,
+            "bottom": 1194.65625
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": 28.359375,
+        "width": 390,
+        "height": 971.5,
+        "right": 390,
+        "bottom": 999.859375
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": 235.328125,
+            "width": 342,
+            "height": 346.265625,
+            "right": 366,
+            "bottom": 581.59375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 601.59375,
+            "width": 342,
+            "height": 346.265625,
+            "right": 366,
+            "bottom": 947.859375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 320,
+      "type": "benefits",
+      "section": {
+        "x": 0,
+        "y": -332.625,
+        "width": 320,
+        "height": 1665.59375,
+        "right": 320,
+        "bottom": 1332.96875
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": -190.84375,
+            "width": 272,
+            "height": 231.96875,
+            "right": 296,
+            "bottom": 41.125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 57.125,
+            "width": 272,
+            "height": 231.96875,
+            "right": 296,
+            "bottom": 289.09375
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 305.09375,
+            "width": 272,
+            "height": 231.96875,
+            "right": 296,
+            "bottom": 537.0625
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 553.0625,
+            "width": 272,
+            "height": 231.96875,
+            "right": 296,
+            "bottom": 785.03125
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 801.03125,
+            "width": 272,
+            "height": 231.96875,
+            "right": 296,
+            "bottom": 1033
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 1049,
+            "width": 272,
+            "height": 231.96875,
+            "right": 296,
+            "bottom": 1280.96875
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "Why Choose Ikonectt",
+      "demo": null,
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 6,
+      "transitions": [
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    },
+    {
+      "template": "e",
+      "width": 320,
+      "type": "testimonials",
+      "section": {
+        "x": 0,
+        "y": -0.140625,
+        "width": 320,
+        "height": 1117.375,
+        "right": 320,
+        "bottom": 1117.234375
+      },
+      "columns": 1,
+      "cards": [
+        {
+          "box": {
+            "x": 24,
+            "y": 262.109375,
+            "width": 272,
+            "height": 391.5625,
+            "right": 296,
+            "bottom": 653.671875
+          },
+          "overflow": false
+        },
+        {
+          "box": {
+            "x": 24,
+            "y": 673.671875,
+            "width": 272,
+            "height": 391.5625,
+            "right": 296,
+            "bottom": 1065.234375
+          },
+          "overflow": false
+        }
+      ],
+      "overflow": false,
+      "heading": "What Our Customers Say",
+      "demo": "demo",
+      "portraitCount": 0,
+      "ratingCount": 0,
+      "icons": 0,
+      "transitions": [
+        "0s",
+        "0s"
+      ],
+      "errors": []
+    }
+  ],
+  "published": [
+    {
+      "template": "a",
+      "benefits": 6,
+      "testimonials": 0,
+      "reviewRequests": 0
+    },
+    {
+      "template": "e",
+      "benefits": 6,
+      "testimonials": 0,
+      "reviewRequests": 0
+    }
+  ]
+}

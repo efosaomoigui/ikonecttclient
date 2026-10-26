@@ -1,5 +1,6 @@
 import {visualPictureHTML} from '../shared/visual-assets.js';
 import {internalPhotos} from './hero-photos.js?v=2';
+import {creativePictureHTML} from '../shared/creative-assets.js';
 
 // Option E overrides only. Keep future campaign replacements in this map.
 export const heroAssets={
@@ -17,13 +18,11 @@ export function heroAsset(path){
 }
 export const isHeroPhoto=key=>Boolean(internalPhotos[key])||['home','tower','infrastructure','workplace','lagos'].includes(key);
 export function imageHTML(key,{decorative=false,priority=false,sizes='(max-width:767px) 100vw,60vw'}={}){
+  if(key==='lagos')return creativePictureHTML('city',{decorative,priority,sizes,legacyKey:'lagos'});
+  if(key==='tower')return creativePictureHTML('architecture',{decorative,priority,sizes,legacyKey:'tower'});
   if(internalPhotos[key]){
     const asset=internalPhotos[key],base=new URL(`./images/internal/${asset.stem}-`,import.meta.url).href;
     return `<picture class="ik-visual-picture" data-visual-asset="${key}" style="--e-photo-position:${asset.position||'62% 44%'}"><img src="${base}1280.webp" srcset="${asset.widths.map(w=>`${base}${w}.webp ${w}w`).join(',')}" sizes="${sizes}" width="${asset.width}" height="${asset.height}" alt="${decorative?'':asset.alt}" loading="${priority?'eager':'lazy'}" decoding="async"${priority?' fetchpriority="high"':''}></picture>`;
-  }
-  if(key==='tower'){
-    const path=new URL('./images/civic-tower-lagos-',import.meta.url).href;
-    return `<picture class="ik-visual-picture" data-visual-asset="tower"><img src="${path}1200.webp" srcset="${[480,800,1200,1600].map(w=>`${path}${w}.webp ${w}w`).join(',')}" sizes="${sizes}" width="3024" height="4032" alt="${decorative?'':'Civic Center Tower in Lagos, shown as general business architecture.'}" loading="${priority?'eager':'lazy'}" decoding="async"${priority?' fetchpriority="high"':''}></picture>`;
   }
   if(key==='portrait'){
     const path=new URL('./images/my-ikonectt-woman-',import.meta.url).href;

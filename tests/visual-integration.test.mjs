@@ -7,6 +7,7 @@ import {mountSite} from '../shared/public-site.js';
 import {mountVisuals} from '../shared/visuals.js';
 import {visualAssets,visualSlots,visualURL,visualPictureHTML} from '../shared/visual-assets.js';
 import {pages} from '../shared/routes.js';
+import {heroPreservationHash} from './helpers/hero-preservation.mjs';
 
 const read=file=>fs.readFileSync(new URL('../'+file,import.meta.url));
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
@@ -40,10 +41,11 @@ test('Phase 3 preserves template heroes, navigation, journeys, logos and archive
     let bytes=read(file);
     const text=/\.(?:html|js|jsx|ts|tsx|css|json|md)$/.test(file);
     if(text)bytes=Buffer.from(bytes.toString().replace(/\r\n/g,'\n'));
+    if(file==='option-e/index.html')bytes=Buffer.from(bytes.toString().replace('<link rel="stylesheet" href="../shared/brand-signature.css">\n','').replace('<script type="module" src="../shared/brand-signature-entry.js"></script>\n',''));
     if(file==='option-d/index.html'||file==='option-e/index.html'){
-      bytes=Buffer.from(bytes.toString().replace('<link rel="stylesheet" href="../shared/visuals.css">\n','').replace('<script type="module" src="../shared/visual-entry.js"></script>\n','').replace(/<link rel="stylesheet" href="\.\/refinement\.css(?:\?v=\d+)?">\n/,'').replace(/<script type="module" src="\.\/refinement\.js(?:\?v=\d+)?"><\/script>\n/,''));
+      bytes=Buffer.from(bytes.toString().replace('<link rel="stylesheet" href="../shared/visuals.css">\n','').replace('<script type="module" src="../shared/visual-entry.js"></script>\n','').replace(/<link rel="stylesheet" href="\.\/refinement\.css(?:\?v=\d+)?">\n/,'').replace(/<script type="module" src="\.\/refinement\.js(?:\?v=\d+)?"><\/script>\n/,'').replace('<link rel="stylesheet" href="../shared/campaign.css">\n','').replace('<script type="module" src="../shared/campaign-entry.js"></script>\n','').replace('<link rel="stylesheet" href="../shared/homepage-sections.css">\n','').replace('<script type="module" src="../shared/homepage-sections-entry.js"></script>\n',''));
     }
-    assert.equal(hash(bytes),expected,file);
+    assert.equal(hash(bytes),heroPreservationHash(file,expected,{normalized:true}),file);
   }
   const home=read('option-a/src/components/pages/HomePage.tsx').toString();
   assert.equal(hash(home.split('<HeroSlideshow>')[1].split('</HeroSlideshow>')[0].replace(/\r\n/g,'\n')),baseline.aHeroMarkup);

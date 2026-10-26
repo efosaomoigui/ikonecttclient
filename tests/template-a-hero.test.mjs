@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
+import fs from 'node:fs';
 import {mountHeroSlideshow} from '../option-a/src/components/ui/hero-slideshow.js';
 
 const flush = async () => {for(let n=0;n<6;n++) await Promise.resolve();};
 function fixture({reduced=false,fail=[]}={}) {
-  const dom=new JSDOM('<main><section><div data-hero-images><picture data-current data-slide="0"><img src="/0.webp"></picture></div><div data-hero-controls><button data-hero-step="-1">Previous</button><span data-hero-position></span><button data-hero-step="1">Next</button><button data-hero-toggle>Play/Pause</button></div><span data-hero-announcement></span></section></main>',{pretendToBeVisual:true});
+  const dom=new JSDOM('<main><section><div data-hero-images><picture data-current data-slide="0"><img src="/0.webp"></picture></div><div data-hero-controls><button data-hero-step="-1">Previous</button><button data-hero-step="1">Next</button><button data-hero-toggle>Play/Pause</button></div><span data-hero-announcement></span></section></main>',{pretendToBeVisual:true});
   const {window}=dom,root=window.document.querySelector('section');
   const media=new window.EventTarget();media.matches=reduced;window.matchMedia=()=>media;
   Object.defineProperties(window.HTMLImageElement.prototype,{complete:{get:()=>true},naturalWidth:{get(){return fail.includes(Number(this.getAttribute('src')?.match(/(\d)\.webp/)?.[1]))?0:1000;}}});
@@ -21,15 +22,46 @@ function fixture({reduced=false,fail=[]}={}) {
   return{window,root,media,step,selected,click,frames,cleanup,hide(value){hidden=value;window.document.dispatchEvent(new window.Event('visibilitychange'));}};
 }
 
-test('Template A hero cycles on one clock, blends decoded photos and preserves only two layers',async()=>{
+test('Template A hero cycles on one clock, unrolls decoded photos and preserves only two layers',async()=>{
   const f=fixture();await flush();
-  assert.equal(f.selected(),'0');await f.step(7050);
+  assert.equal(f.selected(),'0');await f.step(5450);assert.equal(f.selected(),'0');await f.step(100);
   assert.equal(f.selected(),'1');assert.equal(f.root.querySelectorAll('picture').length,2);
   assert.equal(f.root.querySelector('[data-slide="0"]').style.opacity,'');
-  await f.step(700);assert.equal(f.root.querySelectorAll('picture').length,1);
-  await f.step(7700);assert.equal(f.selected(),'2');
-  await f.step(7700);assert.equal(f.selected(),'0');
+  await f.step(1000);assert.equal(f.root.querySelectorAll('picture').length,1);
+  await f.step(6500);assert.equal(f.selected(),'2');
+  await f.step(6500);assert.equal(f.selected(),'0');
   f.cleanup();assert.equal(f.frames.size,0);f.window.close();
+});
+
+test('hero keeps all three controls while removing the visible numeric counter',()=>{
+  const source=fs.readFileSync(new URL('../option-a/src/components/ui/HeroSlideshow.tsx',import.meta.url),'utf8');
+  assert.match(source,/aria-label="Previous slide"/);assert.match(source,/aria-label="Next slide"/);assert.match(source,/aria-label="Pause slideshow"/);
+  assert.doesNotMatch(source,/data-hero-position|ik-hero-position|1 \/ 3/);
+  assert.match(source,/data-hero-announcement/);assert.match(source,/ik-hero-ring/);
+});
+
+test('carpet reveal rolls across an undistorted photo and removes its fold on completion',async()=>{
+  const f=fixture();await flush();f.click('[data-hero-step="1"]');await flush();
+  await f.step(200);const incoming=f.root.querySelector('[data-current]'),outgoing=f.root.querySelector('[data-slide="0"]');
+  const roll=f.root.querySelector('.ik-hero-carpet-roll');
+  assert.equal(incoming.style.opacity,'1');assert.equal(outgoing.style.opacity,'');
+  assert.ok(parseFloat(roll.style.left)>0&&parseFloat(roll.style.left)<20);
+  assert.match(incoming.style.clipPath,/inset\(0 [\d.]+% 0 0\)/);
+  assert.equal(incoming.querySelector('img').style.transform,'');assert.equal(incoming.style.transform,'');
+  await f.step(550);assert.ok(parseFloat(roll.style.left)>80);
+  await f.step(200);assert.equal(f.root.querySelectorAll('picture').length,1);
+  assert.equal(incoming.style.clipPath,'');assert.equal(f.root.querySelector('.ik-hero-carpet-roll'),null);
+  f.cleanup();f.window.close();
+});
+test('previous rolls in the opposite direction and reduced motion clears an active fold',async()=>{
+  const f=fixture();await flush();f.click('[data-hero-step="-1"]');await flush();await f.step(250);
+  const incoming=f.root.querySelector('[data-current]'),roll=f.root.querySelector('.ik-hero-carpet-roll');
+  assert.equal(roll.dataset.direction,'-1');assert.ok(parseFloat(roll.style.left)>70);
+  assert.match(incoming.style.clipPath,/inset\(0 0 0 [\d.]+%\)/);
+  f.media.matches=true;f.media.dispatchEvent(new f.window.Event('change'));
+  assert.equal(f.root.querySelectorAll('picture').length,1);assert.equal(incoming.style.clipPath,'');
+  assert.equal(f.root.querySelector('.ik-hero-carpet-roll'),null);assert.equal(f.frames.size,0);
+  f.cleanup();f.window.close();
 });
 test('manual previous/next wraps, pauses persistently and announces only manual selection',async()=>{
   const f=fixture();await flush();f.click('[data-hero-step="-1"]');await flush();

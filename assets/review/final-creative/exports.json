@@ -1,0 +1,82 @@
+[
+  {
+    "id": "city",
+    "source": "assets/review/final-creative/lagos-clean-v1.png",
+    "sourceSHA256": "e50329d7463cd64cb51812a9209f3a71d9ae0baf450be9a2168f13c24616e481",
+    "width": 1725,
+    "height": 912,
+    "exports": [
+      {
+        "path": "assets/visual-library/creative/lagos-clean-v1-480.webp",
+        "width": 480,
+        "height": 254,
+        "bytes": 24126
+      },
+      {
+        "path": "assets/visual-library/creative/lagos-clean-v1-800.webp",
+        "width": 800,
+        "height": 423,
+        "bytes": 57974
+      },
+      {
+        "path": "assets/visual-library/creative/lagos-clean-v1-1280.webp",
+        "width": 1280,
+        "height": 677,
+        "bytes": 123704
+      },
+      {
+        "path": "assets/visual-library/creative/lagos-clean-v1-1600.webp",
+        "width": 1600,
+        "height": 846,
+        "bytes": 165536
+      },
+      {
+        "path": "assets/visual-library/creative/lagos-clean-v1-1725.webp",
+        "width": 1725,
+        "height": 912,
+        "bytes": 190050
+      }
+    ]
+  },
+  {
+    "id": "architecture",
+    "source": "assets/review/final-creative/commercial-architecture-v1.png",
+    "sourceSHA256": "76178ea0dd0e7eb791d712108b498064e32bd6487ff2667e4fbb65fde937800d",
+    "width": 1086,
+    "height": 1448,
+    "exports": [
+      {
+        "path": "assets/visual-library/creative/commercial-architecture-v1-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 56438
+      },
+      {
+        "path": "assets/visual-library/creative/commercial-architecture-v1-800.webp",
+        "width": 800,
+        "height": 1067,
+        "bytes": 131072
+      },
+      {
+        "path": "assets/visual-library/creative/commercial-architecture-v1-1086.webp",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 204654
+      }
+    ]
+  },
+  {
+    "id": "official-i-mask",
+    "source": "assets/logos/iKonectt Logo Color Variants.png",
+    "sourceSHA256": "d194553d6006fb9786bf91f7c6e61dd6c85d270b2f1ce68be9471c2eb79c4170",
+    "crop": {
+      "left": 91,
+      "top": 240,
+      "width": 59,
+      "height": 221
+    },
+    "method": "Extract original raster symbol; derive alpha from red coverage. No font substitution, redraw, skew or AI generation.",
+    "path": "assets/brand/ikonectt-i-mask.png",
+    "sha256": "fedb83a6e38c01c05eeb0ebed36d0f9adb1693dd1028b2f0d5416876c805e65c"
+  }
+]

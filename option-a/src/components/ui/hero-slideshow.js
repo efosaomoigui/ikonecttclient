@@ -1,9 +1,8 @@
 // Template A only. The image and progress ring share one elapsed-time clock.
-export function mountHeroSlideshow(root, slides, {dwell = 7000, fade = 650, clock = root.ownerDocument.defaultView} = {}) {
+export function mountHeroSlideshow(root, slides, {dwell = 5500, fade = 900, clock = root.ownerDocument.defaultView} = {}) {
   const doc = root.ownerDocument, win = doc.defaultView;
   const stage = root.querySelector('[data-hero-images]');
   const toggle = root.querySelector('[data-hero-toggle]');
-  const position = root.querySelector('[data-hero-position]');
   const announcement = root.querySelector('[data-hero-announcement]');
   const motion = win.matchMedia('(prefers-reduced-motion: reduce)');
   const abort = new win.AbortController(), options = {signal: abort.signal};
@@ -41,6 +40,12 @@ export function mountHeroSlideshow(root, slides, {dwell = 7000, fade = 650, cloc
   }
 
   function blocked() { return !playing || reduced || doc.hidden || home?.hidden || !inView || hovered || focused; }
+  function finishTransition() {
+    transition.incoming.style.clipPath = '';
+    transition.incoming.style.removeProperty('will-change');
+    transition.outgoing?.remove(); transition.roll.remove();
+    transition = null; busy = false; elapsed = 0;
+  }
   function paint() {
     root.dataset.heroPlaying = String(playing && !reduced);
     root.dataset.heroState = busy ? 'loading' : blocked() ? 'paused' : 'playing';
@@ -49,7 +54,6 @@ export function mountHeroSlideshow(root, slides, {dwell = 7000, fade = 650, cloc
     toggle.setAttribute('aria-pressed', String(playing && !reduced));
     toggle.disabled = reduced || slides.length - failed.size < 2;
     toggle.title = reduced ? 'Automatic slideshow disabled by reduced-motion preference' : '';
-    position.textContent = `${index + 1} / ${slides.length}`;
     root.querySelectorAll('[data-hero-step]').forEach(button => button.disabled = busy || slides.length - failed.size < 2);
   }
   function wake() {
@@ -63,11 +67,15 @@ export function mountHeroSlideshow(root, slides, {dwell = 7000, fade = 650, cloc
     if (transition) {
       transition.elapsed += delta;
       const progress = reduced ? 1 : Math.min(1, transition.elapsed / fade);
-      transition.incoming.style.opacity = String(progress);
-      // Keep the outgoing photo opaque behind the incoming photo: no dark/blank dip.
-      if (progress === 1) {
-        transition.outgoing?.remove(); transition = null; busy = false; elapsed = 0;
-      }
+      // Unroll the new photograph without stretching or moving its approved crop.
+      const eased = progress * progress * (3 - 2 * progress);
+      const edge = transition.direction > 0 ? eased * 100 : (1 - eased) * 100;
+      transition.incoming.style.clipPath = transition.direction > 0
+        ? `inset(0 ${100 - edge}% 0 0)` : `inset(0 0 0 ${edge}%)`;
+      transition.roll.style.left = `${edge}%`;
+      transition.roll.style.opacity = String(Math.sin(Math.PI * progress) * .65);
+      // The outgoing image stays opaque underneath; there is no blank frame.
+      if (progress === 1) finishTransition();
     } else if (!blocked() && !busy) {
       elapsed += delta;
       if (elapsed >= dwell) {elapsed = dwell; void select(1, false);}
@@ -92,7 +100,15 @@ export function mountHeroSlideshow(root, slides, {dwell = 7000, fade = 650, cloc
         index = next; elapsed = 0;
         if (manual) announcement.textContent = `${slides[next].name}, slide ${next + 1} of ${slides.length}`;
         if (reduced || !outgoing) {outgoing?.remove(); picture.style.opacity = '1'; busy = false;}
-        else transition = {incoming:picture, outgoing, elapsed:0};
+        else {
+          picture.style.opacity = '1';
+          picture.style.clipPath = direction > 0 ? 'inset(0 100% 0 0)' : 'inset(0 0 0 100%)';
+          picture.style.willChange = 'clip-path';
+          const roll = doc.createElement('span'); roll.className = 'ik-hero-carpet-roll';
+          roll.setAttribute('aria-hidden', 'true'); roll.dataset.direction = String(direction);
+          roll.style.left = direction > 0 ? '0%' : '100%'; roll.style.opacity = '0'; stage.append(roll);
+          transition = {incoming:picture, outgoing, roll, direction, elapsed:0};
+        }
         wake(); return;
       } catch {
         picture.remove(); if (destroyed) return; failed.add(next);
@@ -113,7 +129,7 @@ export function mountHeroSlideshow(root, slides, {dwell = 7000, fade = 650, cloc
   root.addEventListener('focusout', event => {focused = root.contains(event.relatedTarget); wake();}, options);
   root.addEventListener('pointerdown', event => {if (event.pointerType === 'touch' && !event.target.closest('[data-hero-toggle]')) {playing = false; wake();}}, options);
   doc.addEventListener('visibilitychange', wake, options);
-  function motionChanged() {reduced = motion.matches; playing = false; if (reduced && transition) {transition.incoming.style.opacity = '1'; transition.outgoing?.remove(); transition = null; busy = false;} elapsed = 0; wake();}
+  function motionChanged() {reduced = motion.matches; playing = false; if (reduced && transition) finishTransition(); elapsed = 0; wake();}
   motion.addEventListener('change', motionChanged);
   const observer = new win.MutationObserver(wake);
   if (home) observer.observe(home, {attributes:true, attributeFilter:['hidden']});
@@ -128,6 +144,7 @@ export function mountHeroSlideshow(root, slides, {dwell = 7000, fade = 650, cloc
   paint();
   return () => {
     destroyed = true; abort.abort(); if (frame) clock.cancelAnimationFrame(frame);
+    if (transition) finishTransition();
     observer.disconnect(); intersection?.disconnect(); motion.removeEventListener('change', motionChanged);
   };
 }

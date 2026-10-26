@@ -1,0 +1,456 @@
+[
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "residential",
+    "section": {
+      "x": 0,
+      "y": 409.703125,
+      "width": 1440,
+      "height": 590.296875,
+      "right": 1440,
+      "bottom": 1000
+    },
+    "image": null,
+    "photo": null,
+    "images": [
+      {
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "loaded": true
+      }
+    ],
+    "text": [
+      {
+        "text": "Made for everyday moments.",
+        "box": {
+          "x": 130.390625,
+          "y": 624.28125,
+          "width": 584.15625,
+          "height": 43.1875,
+          "right": 714.546875,
+          "bottom": 667.46875
+        }
+      },
+      {
+        "text": "From video calls to movie nights, make room for everything you do online.",
+        "box": {
+          "x": 130.390625,
+          "y": 687.46875,
+          "width": 584.15625,
+          "height": 27.1875,
+          "right": 714.546875,
+          "bottom": 714.65625
+        }
+      },
+      {
+        "text": "Explore Residential Plans",
+        "box": {
+          "x": 130.390625,
+          "y": 740.65625,
+          "width": 222.171875,
+          "height": 44.75,
+          "right": 352.5625,
+          "bottom": 785.40625
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "home",
+    "section": {
+      "x": 0,
+      "y": 326.375,
+      "width": 1440,
+      "height": 346.359375,
+      "right": 1440,
+      "bottom": 672.734375
+    },
+    "image": null,
+    "photo": null,
+    "images": [],
+    "text": [
+      {
+        "text": "Manage your services with My Ikonectt.",
+        "box": {
+          "x": 384.984375,
+          "y": 407.375,
+          "width": 670.03125,
+          "height": 43.1875,
+          "right": 1055.015625,
+          "bottom": 450.5625
+        }
+      },
+      {
+        "text": "Access your account, view your services and find support in one place.",
+        "box": {
+          "x": 446.03125,
+          "y": 490.5625,
+          "width": 547.921875,
+          "height": 24.984375,
+          "right": 993.953125,
+          "bottom": 515.546875
+        }
+      },
+      {
+        "text": "My Ikonectt",
+        "box": {
+          "x": 652.90625,
+          "y": 543.546875,
+          "width": 134.171875,
+          "height": 49.1875,
+          "right": 787.078125,
+          "bottom": 592.734375
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "route": "residential",
+    "section": {
+      "x": 0,
+      "y": 426.859375,
+      "width": 390,
+      "height": 573.625,
+      "right": 390,
+      "bottom": 1000.484375
+    },
+    "image": null,
+    "photo": null,
+    "images": [
+      {
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-480.webp",
+        "loaded": true
+      }
+    ],
+    "text": [
+      {
+        "text": "Made for everyday moments.",
+        "box": {
+          "x": 20,
+          "y": 478.859375,
+          "width": 350,
+          "height": 30,
+          "right": 370,
+          "bottom": 508.859375
+        }
+      },
+      {
+        "text": "From video calls to movie nights, make room for everything you do online.",
+        "box": {
+          "x": 20,
+          "y": 528.859375,
+          "width": 350,
+          "height": 54.375,
+          "right": 370,
+          "bottom": 583.234375
+        }
+      },
+      {
+        "text": "Explore Residential Plans",
+        "box": {
+          "x": 20,
+          "y": 609.234375,
+          "width": 222.171875,
+          "height": 44.75,
+          "right": 242.171875,
+          "bottom": 653.984375
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "route": "home",
+    "section": {
+      "x": 0,
+      "y": 334.265625,
+      "width": 390,
+      "height": 332.15625,
+      "right": 390,
+      "bottom": 666.421875
+    },
+    "image": null,
+    "photo": null,
+    "images": [],
+    "text": [
+      {
+        "text": "Manage your services with My Ikonectt.",
+        "box": {
+          "x": 24,
+          "y": 387.265625,
+          "width": 342,
+          "height": 60,
+          "right": 366,
+          "bottom": 447.265625
+        }
+      },
+      {
+        "text": "Access your account, view your services and find support in one place.",
+        "box": {
+          "x": 24,
+          "y": 487.265625,
+          "width": 342,
+          "height": 49.96875,
+          "right": 366,
+          "bottom": 537.234375
+        }
+      },
+      {
+        "text": "My Ikonectt",
+        "box": {
+          "x": 127.90625,
+          "y": 565.234375,
+          "width": 134.171875,
+          "height": 49.1875,
+          "right": 262.078125,
+          "bottom": 614.421875
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "residential",
+    "section": {
+      "x": 0,
+      "y": 513.65625,
+      "width": 1440,
+      "height": 400,
+      "right": 1440,
+      "bottom": 913.65625
+    },
+    "image": null,
+    "photo": null,
+    "images": [
+      {
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "loaded": true
+      }
+    ],
+    "text": [
+      {
+        "text": "Made for everyday moments.",
+        "box": {
+          "x": 130.390625,
+          "y": 633.09375,
+          "width": 557.609375,
+          "height": 43.1875,
+          "right": 688,
+          "bottom": 676.28125
+        }
+      },
+      {
+        "text": "From video calls to movie nights, make room for everything you do online.",
+        "box": {
+          "x": 130.390625,
+          "y": 696.28125,
+          "width": 557.609375,
+          "height": 27.1875,
+          "right": 688,
+          "bottom": 723.46875
+        }
+      },
+      {
+        "text": "Explore Residential Plans",
+        "box": {
+          "x": 130.390625,
+          "y": 749.46875,
+          "width": 215.46875,
+          "height": 44.75,
+          "right": 345.859375,
+          "bottom": 794.21875
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "home",
+    "section": {
+      "x": 192,
+      "y": 331.9375,
+      "width": 1056,
+      "height": 336.265625,
+      "right": 1248,
+      "bottom": 668.203125
+    },
+    "image": null,
+    "photo": null,
+    "images": [
+      {
+        "src": "http://127.0.0.1:3021/public_html/option-e/images/my-ikonectt-woman-1024.webp",
+        "loaded": true
+      }
+    ],
+    "text": [
+      {
+        "text": "Manage your services with My Ikonectt.",
+        "box": {
+          "x": 257,
+          "y": 396.9375,
+          "width": 448,
+          "height": 69.09375,
+          "right": 705,
+          "bottom": 466.03125
+        }
+      },
+      {
+        "text": "Access your account, view your services and find support in one place.",
+        "box": {
+          "x": 257,
+          "y": 482.03125,
+          "width": 480,
+          "height": 54.375,
+          "right": 737,
+          "bottom": 536.40625
+        }
+      },
+      {
+        "text": "My Ikonectt",
+        "box": {
+          "x": 257,
+          "y": 560.40625,
+          "width": 130.40625,
+          "height": 42.796875,
+          "right": 387.40625,
+          "bottom": 603.203125
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "route": "residential",
+    "section": {
+      "x": 0,
+      "y": 459.859375,
+      "width": 390,
+      "height": 540.125,
+      "right": 390,
+      "bottom": 999.984375
+    },
+    "image": null,
+    "photo": null,
+    "images": [
+      {
+        "src": "http://127.0.0.1:3021/public_html/assets/visual-library/abstract/fibre-flow.svg",
+        "loaded": true
+      }
+    ],
+    "text": [
+      {
+        "text": "Made for everyday moments.",
+        "box": {
+          "x": 20,
+          "y": 555.859375,
+          "width": 350,
+          "height": 30,
+          "right": 370,
+          "bottom": 585.859375
+        }
+      },
+      {
+        "text": "From video calls to movie nights, make room for everything you do online.",
+        "box": {
+          "x": 20,
+          "y": 605.859375,
+          "width": 350,
+          "height": 54.375,
+          "right": 370,
+          "bottom": 660.234375
+        }
+      },
+      {
+        "text": "Explore Residential Plans",
+        "box": {
+          "x": 20,
+          "y": 686.234375,
+          "width": 215.46875,
+          "height": 44.75,
+          "right": 235.46875,
+          "bottom": 730.984375
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "route": "home",
+    "section": {
+      "x": 20,
+      "y": 252.328125,
+      "width": 350,
+      "height": 495.171875,
+      "right": 370,
+      "bottom": 747.5
+    },
+    "image": null,
+    "photo": null,
+    "images": [
+      {
+        "src": "http://127.0.0.1:3021/public_html/option-e/images/my-ikonectt-woman-1024.webp",
+        "loaded": true
+      }
+    ],
+    "text": [
+      {
+        "text": "Manage your services with My Ikonectt.",
+        "box": {
+          "x": 53,
+          "y": 285.328125,
+          "width": 284,
+          "height": 51.8125,
+          "right": 337,
+          "bottom": 337.140625
+        }
+      },
+      {
+        "text": "Access your account, view your services and find support in one place.",
+        "box": {
+          "x": 53,
+          "y": 353.140625,
+          "width": 284,
+          "height": 81.5625,
+          "right": 337,
+          "bottom": 434.703125
+        }
+      },
+      {
+        "text": "My Ikonectt",
+        "box": {
+          "x": 53,
+          "y": 458.703125,
+          "width": 130.40625,
+          "height": 42.796875,
+          "right": 183.40625,
+          "bottom": 501.5
+        }
+      }
+    ],
+    "overflow": false,
+    "errors": []
+  }
+]

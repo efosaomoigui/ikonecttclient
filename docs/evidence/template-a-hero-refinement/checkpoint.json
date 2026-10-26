@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-26",
+  "direction": "Keep controls without visible numbers. Try carpet-style hero image reveal only; preserve approved photography, crops, layout, copy and CTAs.",
+  "files": {
+    "option-a/src/components/ui/HeroSlideshow.tsx": {
+      "sha256": "44b142663761c91063c0f1eb4ddc72b20308961b30a121a0f6fa6b0f2c6e77d2",
+      "sha256LF": "44b142663761c91063c0f1eb4ddc72b20308961b30a121a0f6fa6b0f2c6e77d2"
+    },
+    "option-a/src/components/ui/hero-slideshow.js": {
+      "sha256": "58e526438df6857bb5ba0bee0c6750fe5b9c539025d29f6f29ea17f39a68f1a4",
+      "sha256LF": "58e526438df6857bb5ba0bee0c6750fe5b9c539025d29f6f29ea17f39a68f1a4"
+    },
+    "option-a/src/components/ui/hero-slideshow.css": {
+      "sha256": "c3ab29c0a1ab15e92788e35ee17844f8fc7671f99dbb772a76438face256399d",
+      "sha256LF": "c3ab29c0a1ab15e92788e35ee17844f8fc7671f99dbb772a76438face256399d"
+    }
+  }
+}

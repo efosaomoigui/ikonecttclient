@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-26",
+  "direction": "Client final creative brief: replace identified tower in active A/E, remove corporate signage from city photo, exact official i signature. No archived/selector/customer-logic edits.",
+  "files": {
+    "shared/visuals.js": {
+      "sha256": "a4ff05ff4e3be8741e095d6d845d3108e19fdf82343b59a02dd996fcd9673a57",
+      "sha256LF": "a4ff05ff4e3be8741e095d6d845d3108e19fdf82343b59a02dd996fcd9673a57"
+    },
+    "option-e/visual-map.js": {
+      "sha256": "2d742cca2daaf79a5069d03e7730b28a89c7c9043981a4b00ef424c9b6e477d5",
+      "sha256LF": "2d742cca2daaf79a5069d03e7730b28a89c7c9043981a4b00ef424c9b6e477d5"
+    },
+    "option-e/photo-credits.html": {
+      "sha256": "99d4e11275453fb5ffbc423af6f1f2c1fd55be33451caf760ac26a27a4c1cba6",
+      "sha256LF": "99d4e11275453fb5ffbc423af6f1f2c1fd55be33451caf760ac26a27a4c1cba6"
+    }
+  }
+}

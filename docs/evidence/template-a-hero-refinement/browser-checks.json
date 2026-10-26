@@ -1,0 +1,35 @@
+[
+  {
+    "width": 1440,
+    "reduced": false,
+    "controls": 3,
+    "numericCounter": false,
+    "firstChangeMs": 4750,
+    "manualNavigation": true,
+    "carpetReveal": true,
+    "foldCleaned": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "reduced": false,
+    "controls": 3,
+    "numericCounter": false,
+    "firstChangeMs": 4568,
+    "manualNavigation": true,
+    "carpetReveal": true,
+    "foldCleaned": true,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "reduced": true,
+    "controls": 3,
+    "numericCounter": false,
+    "firstChangeMs": null,
+    "manualNavigation": true,
+    "carpetReveal": false,
+    "foldCleaned": true,
+    "errors": []
+  }
+]

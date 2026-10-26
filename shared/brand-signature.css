@@ -1,0 +1,12 @@
+/* Exact extracted dot-and-lightning symbol, used once per homepage. */
+.ik-site:is([data-template=a],[data-template=e]) .ik-brand-story{position:relative;isolation:isolate;overflow:hidden}
+.ik-brand-story .ik-brand-i{position:absolute;display:block;height:200px;aspect-ratio:59/221;pointer-events:none;z-index:0;background:#ed101a;mask:url('../assets/brand/ikonectt-i-mask.png') center/contain no-repeat}
+.ik-site[data-template=a] #home-company.ik-brand-story>.ik-container{position:relative;z-index:1}
+.ik-site[data-template=a] #home-company .ik-brand-i{left:max(32px,calc((100% - 1180px)/2));top:50%;transform:translateY(-50%);opacity:.2}
+.ik-site[data-template=e] .about.ik-brand-story>.wrap{position:relative;z-index:1}
+.ik-site[data-template=e] .about.ik-brand-story::after{background-image:none}
+.ik-site[data-template=e] .about .ik-brand-i{right:5%;top:50%;transform:translateY(-50%);height:210px;background:#ff7182;opacity:.09}
+@media(max-width:767px){
+ .ik-site[data-template=a] #home-company .ik-brand-i{height:130px;left:16px;top:24px;transform:none;opacity:.1}
+ .ik-site[data-template=e] .about .ik-brand-i{height:135px;right:20px;top:24px;transform:none;opacity:.075}
+}

@@ -20,7 +20,6 @@ export function HeroSlideshow({children}: {children: React.ReactNode}) {
     {children}
     <div className="ik-hero-controls" data-hero-controls role="group" aria-label="Hero slideshow controls">
       <button type="button" data-hero-step="-1" aria-label="Previous slide"><ChevronLeft size={20} aria-hidden="true"/></button>
-      <span className="ik-hero-position" data-hero-position aria-hidden="true">1 / 3</span>
       <button type="button" data-hero-step="1" aria-label="Next slide"><ChevronRight size={20} aria-hidden="true"/></button>
       <button type="button" className="ik-hero-toggle" data-hero-toggle aria-label="Pause slideshow" aria-pressed="true">
         <svg className="ik-hero-ring" viewBox="0 0 44 44" aria-hidden="true"><circle className="ik-hero-ring-track" cx="22" cy="22" r="19"/><circle className="ik-hero-ring-value" cx="22" cy="22" r="19" pathLength="1"/></svg>

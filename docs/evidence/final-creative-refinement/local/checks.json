@@ -1,0 +1,1328 @@
+{
+  "origin": "http://127.0.0.1:3021/public_html",
+  "routeChecks": 180,
+  "results": [
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "home",
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "residential",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "residential/plans",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "residential/plans/demo-1",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "residential/plans/demo-2",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "residential/compare",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "residential/installation",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "business",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "business/solutions",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "business/solutions/connectivity",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "business/solutions/sme",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "business/solutions/enterprise",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "business/plans",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "business/quote",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "coverage",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "coverage/results",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "coverage/verification",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "support",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "support/faqs",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "support/troubleshooting",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "support/fault",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "support/service-request",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "support/contact",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "about",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "contact",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "privacy",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "terms",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "my-ikonectt/sign-in",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "my-ikonectt/forgot-password",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 1440,
+      "route": "my-ikonectt/preview",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "home",
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "residential",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "residential/plans",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "residential/plans/demo-1",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "residential/plans/demo-2",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "residential/compare",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "residential/installation",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "business",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "business/solutions",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "business/solutions/connectivity",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "business/solutions/sme",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "business/solutions/enterprise",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "business/plans",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "business/quote",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "coverage",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "coverage/results",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "coverage/verification",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "support",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "support/faqs",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "support/troubleshooting",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "support/fault",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "support/service-request",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "support/contact",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "about",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "contact",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "privacy",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "terms",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "my-ikonectt/sign-in",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "my-ikonectt/forgot-password",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "route": "my-ikonectt/preview",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "home",
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "residential",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "residential/plans",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "residential/plans/demo-1",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "residential/plans/demo-2",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "residential/compare",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "residential/installation",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "business",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "business/solutions",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "business/solutions/connectivity",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "business/solutions/sme",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "business/solutions/enterprise",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "business/plans",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "business/quote",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "coverage",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "coverage/results",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "coverage/verification",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "support",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "support/faqs",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "support/troubleshooting",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "support/fault",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "support/service-request",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "support/contact",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "about",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "contact",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "privacy",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "terms",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "my-ikonectt/sign-in",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "my-ikonectt/forgot-password",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "route": "my-ikonectt/preview",
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "home",
+      "images": 6,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "residential",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "residential/plans",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "residential/plans/demo-1",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "residential/plans/demo-2",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "residential/compare",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "residential/installation",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "business",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "business/solutions",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "business/solutions/connectivity",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "business/solutions/sme",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "business/solutions/enterprise",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "business/plans",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "business/quote",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "coverage",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "coverage/results",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "coverage/verification",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "support",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "support/faqs",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "support/troubleshooting",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "support/fault",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "support/service-request",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "support/contact",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "about",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "contact",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "privacy",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "terms",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "my-ikonectt/sign-in",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "my-ikonectt/forgot-password",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "route": "my-ikonectt/preview",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "home",
+      "images": 6,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "residential",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "residential/plans",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "residential/plans/demo-1",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "residential/plans/demo-2",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "residential/compare",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "residential/installation",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "business",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "business/solutions",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "business/solutions/connectivity",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "business/solutions/sme",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "business/solutions/enterprise",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "business/plans",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "business/quote",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "coverage",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "coverage/results",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "coverage/verification",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "support",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "support/faqs",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "support/troubleshooting",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "support/fault",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "support/service-request",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "support/contact",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "about",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "contact",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "privacy",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "terms",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "my-ikonectt/sign-in",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "my-ikonectt/forgot-password",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "route": "my-ikonectt/preview",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "home",
+      "images": 6,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "residential",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "residential/plans",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "residential/plans/demo-1",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "residential/plans/demo-2",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "residential/compare",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "residential/installation",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "business",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "business/solutions",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "business/solutions/connectivity",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "business/solutions/sme",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "business/solutions/enterprise",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "business/plans",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "business/quote",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "coverage",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "coverage/results",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "coverage/verification",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "support",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "support/faqs",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "support/troubleshooting",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "support/fault",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "support/service-request",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "support/contact",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "about",
+      "images": 2,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "contact",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "privacy",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "terms",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "my-ikonectt/sign-in",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "my-ikonectt/forgot-password",
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "route": "my-ikonectt/preview",
+      "images": 1,
+      "overflow": false
+    }
+  ],
+  "network": [
+    {
+      "template": "a",
+      "width": 1440,
+      "errors": [],
+      "failed": [],
+      "signatureStyle": {
+        "mask": "url(\"http://127.0.0.1:3021/public_html/option-a/assets/ikonectt-i-mask-Fcl8ZEf9.png\")",
+        "opacity": "0.2"
+      }
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "errors": [],
+      "failed": [],
+      "signatureStyle": {
+        "mask": "url(\"http://127.0.0.1:3021/public_html/option-a/assets/ikonectt-i-mask-Fcl8ZEf9.png\")",
+        "opacity": "0.2"
+      }
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "errors": [],
+      "failed": [],
+      "signatureStyle": {
+        "mask": "url(\"http://127.0.0.1:3021/public_html/option-a/assets/ikonectt-i-mask-Fcl8ZEf9.png\")",
+        "opacity": "0.1"
+      }
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "errors": [],
+      "failed": [],
+      "signatureStyle": {
+        "mask": "url(\"http://127.0.0.1:3021/public_html/assets/brand/ikonectt-i-mask.png\")",
+        "opacity": "0.09"
+      }
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "errors": [],
+      "failed": [],
+      "signatureStyle": {
+        "mask": "url(\"http://127.0.0.1:3021/public_html/assets/brand/ikonectt-i-mask.png\")",
+        "opacity": "0.09"
+      }
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "errors": [],
+      "failed": [],
+      "signatureStyle": {
+        "mask": "url(\"http://127.0.0.1:3021/public_html/assets/brand/ikonectt-i-mask.png\")",
+        "opacity": "0.075"
+      }
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import {mountTemplateE} from '../option-e/refinement.js';
 import {canAnimate,mountCityExperience} from '../option-e/city-experience.js';
 import {heroAsset,imageHTML} from '../option-e/visual-map.js';
 import {internalPhotos} from '../option-e/hero-photos.js';
+import {heroPreservationHash} from './helpers/hero-preservation.mjs';
 
 const tick=()=>new Promise(resolve=>setTimeout(resolve,8));
 const read=path=>fs.readFileSync(new URL('../'+path,import.meta.url));
@@ -17,8 +18,13 @@ test('E refinement preserves template designs and shared application sources',()
   const baseline=JSON.parse(read('docs/evidence/template-e-refinement/preservation.json'));
   for(const [path,expected] of Object.entries(baseline.files)){
     if(path==='index.html')continue; // 21 October: two-template selector explicitly authorised; shortlist tests cover it.
-    const buffer=read(path),value=/\.(js|css|html|tsx|ts|md|json)$/.test(path)?Buffer.from(buffer.toString().replace(/\r\n/g,'\n')):buffer;
-    assert.equal(crypto.createHash('sha256').update(value).digest('hex'),expected,path);
+    // 26 October: A's authorised campaign adapter regenerates the bundle/index.
+    // Source markup, hero, logos, fonts and hero photos retain their protections.
+    if(path==='public_html/option-a/index.html'||/^public_html\/option-a\/assets\/index-/.test(path))continue;
+    const buffer=read(path);let value=/\.(js|css|html|tsx|ts|md|json)$/.test(path)?Buffer.from(buffer.toString().replace(/\r\n/g,'\n')):buffer;
+    if(path==='option-a/src/App.tsx')value=Buffer.from(value.toString().replace("import '../../shared/brand-signature.css';\n",'').replace("import {mountBrandSignature} from '../../shared/brand-signature.js';\n",'').replace("    const signature = mountBrandSignature({root: root.current!, home: home.current!});\n",'').replace('signature(); ',''));
+    if(path==='option-a/src/App.tsx')value=Buffer.from(value.toString().replace("import '../../shared/campaign.css';\n",'').replace("import {mountCampaign} from '../../shared/campaign.js';\n",'').replace("    const campaign = mountCampaign({root: root.current!, home: home.current!});\n",'').replace("import '../../shared/homepage-sections.css';\n",'').replace("import {mountHomepageSections} from '../../shared/homepage-sections.js';\n",'').replace("    const extras = mountHomepageSections({root: root.current!, home: home.current!});\n",'').replace('extras.destroy(); ','').replace('campaign(); visuals(); site();','visuals(); site();'));
+    assert.equal(crypto.createHash('sha256').update(value).digest('hex'),heroPreservationHash(path,expected,{normalized:true}),path);
   }
 });
 
