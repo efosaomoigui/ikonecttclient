@@ -18,9 +18,9 @@ const output=path.resolve('docs/evidence/template-a-hero-refinement');
    let firstChangeMs=null;
    if(!reduced){
     const start=Date.now();
-    await page.waitForFunction(()=>document.querySelector('#home-hero [data-current]').dataset.slide!=='0',{},{timeout:8000});firstChangeMs=Date.now()-start;
+    await page.waitForFunction(()=>document.querySelector('#home-hero [data-current]').dataset.slide!=='0',{},{timeout:12000});firstChangeMs=Date.now()-start;
     await page.waitForFunction(()=>document.querySelectorAll('#home-hero picture').length===1);
-    assert.ok(firstChangeMs<7000,firstChangeMs);assert.equal(await hero.getAttribute('data-hero-playing'),'true');
+    assert.ok(firstChangeMs<11000,firstChangeMs);assert.equal(await hero.getAttribute('data-hero-playing'),'true');
    }else assert.equal(await hero.getAttribute('data-hero-playing'),'false');
    const prior=await hero.locator('[data-current]').getAttribute('data-slide');
    await controls.getByRole('button',{name:'Next slide'}).click();

@@ -11,6 +11,19 @@ export function mountHeroSlideshow(root, slides, {dwell = 5500, fade = 900, cloc
   let busy = true, destroyed = false, hovered = false, focused = false, inView = true;
   const failed = new Set();
   const home = root.closest('main');
+  const intro = root.querySelector('[data-hero-city-intro]');
+  let introActive=Boolean(intro&&!reduced&&!win.navigator.connection?.saveData),introElapsed=0;
+  if(!introActive)intro?.remove();
+  root.dataset.heroIntro=introActive?'city':'complete';
+  function endIntro(){introActive=false;intro?.remove();root.dataset.heroIntro='complete';elapsed=0;}
+  function paintIntro(){
+    const fadeProgress=Math.max(0,Math.min(1,(introElapsed-1800)/800));
+    intro.style.opacity=String(1-fadeProgress*fadeProgress*(3-2*fadeProgress));
+    intro.querySelectorAll('[data-city-route]').forEach((path,i)=>{
+      const travel=Math.max(0,Math.min(1,(introElapsed-i*300)/1300));path.style.strokeDashoffset=String(1-travel);
+    });
+    intro.querySelectorAll('[data-city-node]').forEach((node,i)=>node.style.opacity=String(.15+.85*Math.max(0,Math.min(1,(introElapsed-900-i*300)/400))));
+  }
 
   function pictureFor(i) {
     const picture = doc.createElement('picture');
@@ -59,12 +72,14 @@ export function mountHeroSlideshow(root, slides, {dwell = 5500, fade = 900, cloc
   function wake() {
     if (frame) clock.cancelAnimationFrame(frame);
     frame = 0; last = null; paint();
-    if (!destroyed && !doc.hidden && !home?.hidden && inView && (transition || (!blocked() && !busy))) frame = clock.requestAnimationFrame(tick);
+    if (!destroyed && !doc.hidden && !home?.hidden && inView && (transition || (!blocked() && (!busy||introActive)))) frame = clock.requestAnimationFrame(tick);
   }
   function tick(now) {
     frame = 0;
     const delta = last === null ? 0 : Math.min(now - last, 100); last = now;
-    if (transition) {
+    if (introActive&&!blocked()) {
+      introElapsed+=delta;paintIntro();if(introElapsed>=2600)endIntro();
+    } else if (transition) {
       transition.elapsed += delta;
       const progress = reduced ? 1 : Math.min(1, transition.elapsed / fade);
       // Unroll the new photograph without stretching or moving its approved crop.
@@ -81,11 +96,12 @@ export function mountHeroSlideshow(root, slides, {dwell = 5500, fade = 900, cloc
       if (elapsed >= dwell) {elapsed = dwell; void select(1, false);}
     }
     paint();
-    if (!destroyed && !doc.hidden && !home?.hidden && inView && (transition || (!blocked() && !busy))) frame = clock.requestAnimationFrame(tick);
+    if (!destroyed && !doc.hidden && !home?.hidden && inView && (transition || (!blocked() && (!busy||introActive)))) frame = clock.requestAnimationFrame(tick);
     else last = null;
   }
   async function select(direction, manual = true) {
     if (destroyed || busy) return;
+    if(introActive)endIntro();
     if (manual) {playing = false; elapsed = 0;}
     busy = true; wake();
     for (let offset = 1; offset < slides.length; offset++) {
@@ -129,22 +145,23 @@ export function mountHeroSlideshow(root, slides, {dwell = 5500, fade = 900, cloc
   root.addEventListener('focusout', event => {focused = root.contains(event.relatedTarget); wake();}, options);
   root.addEventListener('pointerdown', event => {if (event.pointerType === 'touch' && !event.target.closest('[data-hero-toggle]')) {playing = false; wake();}}, options);
   doc.addEventListener('visibilitychange', wake, options);
-  function motionChanged() {reduced = motion.matches; playing = false; if (reduced && transition) finishTransition(); elapsed = 0; wake();}
+  function motionChanged() {reduced = motion.matches; playing = false; if(reduced&&introActive)endIntro(); if (reduced && transition) finishTransition(); elapsed = 0; wake();}
   motion.addEventListener('change', motionChanged);
   const observer = new win.MutationObserver(wake);
   if (home) observer.observe(home, {attributes:true, attributeFilter:['hidden']});
   const intersection = win.IntersectionObserver ? new win.IntersectionObserver(entries => {inView = entries[0].isIntersecting; wake();}) : null;
   intersection?.observe(root);
 
-  const first = stage.querySelector('picture');
+  const first = stage.querySelector('[data-current]');
   ready(first).then(() => {if (!destroyed) {busy = false; wake();}}, () => {
     if (destroyed) return;
     first.remove(); failed.add(0); busy = false; void select(1, false);
   });
-  paint();
+  wake();
   return () => {
     destroyed = true; abort.abort(); if (frame) clock.cancelAnimationFrame(frame);
     if (transition) finishTransition();
+    if(introActive)endIntro();
     observer.disconnect(); intersection?.disconnect(); motion.removeEventListener('change', motionChanged);
   };
 }

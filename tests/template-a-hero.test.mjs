@@ -5,9 +5,11 @@ import fs from 'node:fs';
 import {mountHeroSlideshow} from '../option-a/src/components/ui/hero-slideshow.js';
 
 const flush = async () => {for(let n=0;n<6;n++) await Promise.resolve();};
-function fixture({reduced=false,fail=[]}={}) {
+function fixture({reduced=false,fail=[],intro=false,saveData=false}={}) {
   const dom=new JSDOM('<main><section><div data-hero-images><picture data-current data-slide="0"><img src="/0.webp"></picture></div><div data-hero-controls><button data-hero-step="-1">Previous</button><button data-hero-step="1">Next</button><button data-hero-toggle>Play/Pause</button></div><span data-hero-announcement></span></section></main>',{pretendToBeVisual:true});
   const {window}=dom,root=window.document.querySelector('section');
+  if(intro)root.querySelector('[data-hero-images]').insertAdjacentHTML('beforeend','<div data-hero-city-intro><svg><path data-city-route="0"/><circle data-city-node="0"/></svg></div>');
+  Object.defineProperty(window.navigator,'connection',{value:{saveData}});
   const media=new window.EventTarget();media.matches=reduced;window.matchMedia=()=>media;
   Object.defineProperties(window.HTMLImageElement.prototype,{complete:{get:()=>true},naturalWidth:{get(){return fail.includes(Number(this.getAttribute('src')?.match(/(\d)\.webp/)?.[1]))?0:1000;}}});
   window.HTMLImageElement.prototype.decode=()=>Promise.resolve();
@@ -99,4 +101,23 @@ test('keyboard focus temporarily pauses without overriding an explicit pause',as
   const f=fixture();await flush();f.root.querySelector('[data-hero-step="1"]').focus();await f.step(15000);assert.equal(f.selected(),'0');
   f.click('[data-hero-toggle]');f.root.querySelector('[data-hero-step="1"]').blur();await f.step(15000);assert.equal(f.selected(),'0');
   f.cleanup();f.window.close();
+});
+
+test('city intro is brief, pauses when hidden, then gives the human photo a full dwell',async()=>{
+ const f=fixture({intro:true});await flush();assert.equal(f.root.dataset.heroIntro,'city');
+ await f.step(1500);assert.equal(f.root.dataset.heroIntro,'city');const layer=f.root.querySelector('[data-hero-city-intro]');
+ const position=layer.querySelector('path').style.strokeDashoffset;f.hide(true);await f.step(9000);assert.equal(layer.querySelector('path').style.strokeDashoffset,position);
+ f.hide(false);await f.step(1200);assert.equal(f.root.dataset.heroIntro,'complete');assert.equal(f.root.querySelector('[data-hero-city-intro]'),null);
+ assert.equal(f.selected(),'0');await f.step(5000);assert.equal(f.selected(),'0');await f.step(650);assert.equal(f.selected(),'1');f.cleanup();f.window.close();
+});
+test('manual selection skips city introduction and preserves the carpet transition',async()=>{
+ const f=fixture({intro:true});await flush();f.click('[data-hero-step="1"]');await flush();
+ assert.equal(f.root.dataset.heroIntro,'complete');assert.equal(f.root.dataset.heroPlaying,'false');
+ assert.equal(f.selected(),'1');assert.ok(f.root.querySelector('.ik-hero-carpet-roll'));await f.step(1000);assert.equal(f.root.querySelectorAll('picture').length,1);f.cleanup();f.window.close();
+});
+test('reduced motion, preference changes and data saving skip the introduction',async()=>{
+ for(const options of [{intro:true,reduced:true},{intro:true,saveData:true}]){
+  const f=fixture(options);await flush();assert.equal(f.root.dataset.heroIntro,'complete');assert.equal(f.root.querySelector('[data-hero-city-intro]'),null);assert.equal(f.frames.size,0);f.cleanup();f.window.close();
+ }
+ const f=fixture({intro:true});await flush();await f.step(500);f.media.matches=true;f.media.dispatchEvent(new f.window.Event('change'));assert.equal(f.root.dataset.heroIntro,'complete');assert.equal(f.frames.size,0);f.cleanup();f.window.close();
 });

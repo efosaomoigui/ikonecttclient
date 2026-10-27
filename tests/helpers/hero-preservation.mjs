@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import {creativePreservationHash} from './creative-preservation.mjs';
+import {storyPreservationHash} from './story-preservation.mjs';
 
 // The client explicitly authorised this later hero refinement. Keep older phase
 // records immutable and protect these three sources at the new checkpoint.
@@ -11,5 +12,5 @@ const authorised=new Set([
 ]);
 export function heroPreservationHash(file,historical,{normalized=false}={}){
  if(!authorised.has(file))return creativePreservationHash(file,historical,{normalized});
- return checkpoint.files[file][normalized?'sha256LF':'sha256'];
+ return storyPreservationHash(file,checkpoint.files[file][normalized?'sha256LF':'sha256'],{normalized});
 }

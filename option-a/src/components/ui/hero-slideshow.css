@@ -2,6 +2,14 @@
 .ik-hero-images{position:absolute;inset:0;z-index:-2;overflow:hidden}
 .ik-hero-picture{position:absolute;inset:0;display:block;opacity:0}
 .ik-hero-picture img{display:block;width:100%;height:100%;object-fit:cover;object-position:100% 0}
+.ik-hero-city-intro{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;background:#12141b}
+.ik-hero-city-photo,.ik-hero-city-signals{position:absolute;right:0;bottom:0;display:block;width:min(100%,832px);height:306px;max-height:100%}
+.ik-hero-city-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:right bottom}
+.ik-hero-city-signals{fill:none;stroke-linecap:round}
+.ik-city-routes{stroke:#ff7a89;stroke-width:1;opacity:.2}
+.ik-city-pulses{stroke:#ffd5da;stroke-width:1.5;stroke-dasharray:.035 .965;stroke-dashoffset:1}
+.ik-hero-city-signals circle{fill:#ff6b7d;stroke:#ffd5da;stroke-width:1;opacity:.15}
+.ik-hero-city-blend{position:absolute;inset:0;background:linear-gradient(90deg,#12141b 12%,rgba(18,20,27,.76) 36%,transparent 75%),linear-gradient(0deg,transparent 180px,#12141b 400px)}
 .ik-hero-carpet-roll{position:absolute;top:-5%;height:110%;width:clamp(18px,3vw,42px);transform:translateX(-65%);border-radius:50%;background:linear-gradient(90deg,transparent,rgba(0,0,0,.26) 24%,rgba(255,255,255,.16) 53%,rgba(0,0,0,.2) 76%,transparent);pointer-events:none;will-change:left,opacity}
 .ik-hero-carpet-roll[data-direction="-1"]{transform:translateX(-35%) scaleX(-1)}
 .ik-hero-scrim{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(29,29,31,.46),rgba(29,29,31,.44) 45%,transparent 75%)}
@@ -23,5 +31,7 @@
   .ik-hero-scrim{height:340px;bottom:auto;background:linear-gradient(0deg,#1d1d1f,rgba(29,29,31,.12) 22%,transparent 42%)}
   .ik-cinematic-hero>.ik-container{padding-top:24px;padding-bottom:48px}
   .ik-hero-controls{bottom:auto;top:280px;right:24px}
+  .ik-hero-city-signals{display:none}
+  .ik-hero-city-blend{background:linear-gradient(0deg,#1d1d1f,transparent 24%),linear-gradient(180deg,#12141b,transparent 28%)}
 }
-@media(prefers-reduced-motion:reduce){.ik-hero-ring-value{stroke-dashoffset:1}}
+@media(prefers-reduced-motion:reduce){.ik-hero-ring-value{stroke-dashoffset:1}.ik-hero-city-intro{display:none}}

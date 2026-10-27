@@ -1,0 +1,185 @@
+[
+  {
+    "id": "lagos-night-city",
+    "source": "Ikonectt_Connectivity_Image_Library/01-lagos-night-city/01-lagos-night-city.jpg",
+    "sha256": "bc9a4453598d826523ea74f39caf98cf0e59d5eeb8efc61193d157172c9f3c59",
+    "width": 832,
+    "height": 309,
+    "exports": [
+      {
+        "path": "assets/visual-library/connectivity/lagos-night-city-320.webp",
+        "width": 320,
+        "height": 118,
+        "bytes": 10558
+      },
+      {
+        "path": "assets/visual-library/connectivity/lagos-night-city-480.webp",
+        "width": 480,
+        "height": 177,
+        "bytes": 20892
+      },
+      {
+        "path": "assets/visual-library/connectivity/lagos-night-city-640.webp",
+        "width": 640,
+        "height": 235,
+        "bytes": 33364
+      },
+      {
+        "path": "assets/visual-library/connectivity/lagos-night-city-832.webp",
+        "width": 832,
+        "height": 306,
+        "bytes": 49408
+      }
+    ],
+    "trimBottom": 3,
+    "exportHeight": 306
+  },
+  {
+    "id": "fibre-network-city",
+    "source": "Ikonectt_Connectivity_Image_Library/02-fibre-network-city/02-fibre-network-city.jpg",
+    "sha256": "dfe87ad4424d696220d3446bfb84a2b8543fabd187972c99c4d9abfcf53807a6",
+    "width": 832,
+    "height": 309,
+    "exports": [
+      {
+        "path": "assets/visual-library/connectivity/fibre-network-city-320.webp",
+        "width": 320,
+        "height": 118,
+        "bytes": 12366
+      },
+      {
+        "path": "assets/visual-library/connectivity/fibre-network-city-480.webp",
+        "width": 480,
+        "height": 177,
+        "bytes": 24456
+      },
+      {
+        "path": "assets/visual-library/connectivity/fibre-network-city-640.webp",
+        "width": 640,
+        "height": 235,
+        "bytes": 38300
+      },
+      {
+        "path": "assets/visual-library/connectivity/fibre-network-city-832.webp",
+        "width": 832,
+        "height": 306,
+        "bytes": 57644
+      }
+    ],
+    "trimBottom": 3,
+    "exportHeight": 306
+  },
+  {
+    "id": "digital-coverage-map",
+    "source": "Ikonectt_Connectivity_Image_Library/03-digital-coverage-map/03-digital-coverage-map.jpg",
+    "sha256": "78d12a15de7cdae69c9334fca1636460b46477bfa559dd0ec5dc32622398e313",
+    "width": 832,
+    "height": 306,
+    "exports": [
+      {
+        "path": "assets/visual-library/connectivity/digital-coverage-map-320.webp",
+        "width": 320,
+        "height": 118,
+        "bytes": 13612
+      },
+      {
+        "path": "assets/visual-library/connectivity/digital-coverage-map-480.webp",
+        "width": 480,
+        "height": 177,
+        "bytes": 27714
+      },
+      {
+        "path": "assets/visual-library/connectivity/digital-coverage-map-640.webp",
+        "width": 640,
+        "height": 235,
+        "bytes": 44906
+      },
+      {
+        "path": "assets/visual-library/connectivity/digital-coverage-map-832.webp",
+        "width": 832,
+        "height": 306,
+        "bytes": 65790
+      }
+    ],
+    "trimBottom": 0,
+    "exportHeight": 306
+  },
+  {
+    "id": "abstract-network",
+    "source": "Ikonectt_Connectivity_Image_Library/04-abstract-network/04-abstract-network.jpg",
+    "sha256": "161c9b29ee55e09b76618e08166e0878a8f632f413570a87455770d0104eeee3",
+    "width": 832,
+    "height": 306,
+    "exports": [
+      {
+        "path": "assets/visual-library/connectivity/abstract-network-320.webp",
+        "width": 320,
+        "height": 118,
+        "bytes": 7444
+      },
+      {
+        "path": "assets/visual-library/connectivity/abstract-network-480.webp",
+        "width": 480,
+        "height": 177,
+        "bytes": 12616
+      },
+      {
+        "path": "assets/visual-library/connectivity/abstract-network-640.webp",
+        "width": 640,
+        "height": 235,
+        "bytes": 18162
+      },
+      {
+        "path": "assets/visual-library/connectivity/abstract-network-832.webp",
+        "width": 832,
+        "height": 306,
+        "bytes": 25162
+      }
+    ],
+    "trimBottom": 0,
+    "exportHeight": 306
+  },
+  {
+    "id": "digital-wave",
+    "source": "Ikonectt_Connectivity_Image_Library/05-digital-wave/05-digital-wave.jpg",
+    "sha256": "b12f2528b5fa9d16d41b526218cfa255e13a3a4ac47848b9cc443f393c19d599",
+    "width": 832,
+    "height": 310,
+    "exports": [
+      {
+        "path": "assets/visual-library/connectivity/digital-wave-320.webp",
+        "width": 320,
+        "height": 119,
+        "bytes": 8524
+      },
+      {
+        "path": "assets/visual-library/connectivity/digital-wave-480.webp",
+        "width": 480,
+        "height": 179,
+        "bytes": 16912
+      },
+      {
+        "path": "assets/visual-library/connectivity/digital-wave-640.webp",
+        "width": 640,
+        "height": 238,
+        "bytes": 26980
+      },
+      {
+        "path": "assets/visual-library/connectivity/digital-wave-832.webp",
+        "width": 832,
+        "height": 310,
+        "bytes": 40320
+      }
+    ],
+    "trimBottom": 0,
+    "exportHeight": 310
+  },
+  {
+    "id": "connected-homes-businesses",
+    "source": "Ikonectt_Connectivity_Image_Library/06-connected-homes-businesses/06-connected-homes-businesses.jpg",
+    "sha256": "038d83151a0c29b74062280d643cba0b6ffca61cadbfce03b117b04afc74c689",
+    "width": 832,
+    "height": 310,
+    "exports": []
+  }
+]
