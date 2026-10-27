@@ -10,7 +10,8 @@ try{
  for(const template of ['a','e'])for(const width of [1440,1024,768,390,320]){
   const page=await browser.newPage({viewport:{width,height:1000},reducedMotion:'reduce',isMobile:width<768,hasTouch:width<768}),errors=[],failed=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)failed.push({status:r.status(),url:r.url()});});
-  await page.goto(`${origin}/option-${template}/?production-preview#/home`,{waitUntil:'networkidle',timeout:45000});await page.evaluate(()=>document.fonts.ready);
+  await page.goto(`${origin}/option-${template}/?production-preview#/home`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.waitForFunction(()=>document.querySelector('.ik-site')?.dataset.route==='home');await page.evaluate(()=>document.fonts.ready);
   const home=page.locator('.ik-home'),hero=page.locator(template==='a'?'#home-hero':'.ik-home .hero');
   assert.equal(await page.locator('#home-benefits .ik-benefit-card').count(),6);assert.equal(await page.locator('.ik-home .ik-plan-card').count(),5);
   assert.equal(await page.locator('[data-brand-signature]').count(),1);assert.equal(await page.locator('#home-testimonials').count(),0);
@@ -37,7 +38,9 @@ try{
   await section.screenshot({path:path.join(output,`${template}-flush-family-${width}.png`),style:screenshotStyle});
   await section.getByRole('link',{name:'Explore Residential Plans'}).click();await page.waitForFunction(()=>document.querySelector('.ik-site').dataset.route==='residential/plans');
   assert.equal(await page.locator('.ik-plan-grid .ik-plan-card').count(),5);
-  assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);results.push({template,width,geometry,errors,failed});await page.close();
+  assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);results.push({template,width,geometry,errors,failed});
+  fs.writeFileSync(path.join(output,'checks.json'),JSON.stringify({origin,results,pendingHeroChecks:true},null,2)+'\n');
+  console.log(`Checked ${template.toUpperCase()} at ${width}px`);await page.close();
  }
  // Record the actual city-to-people dissolve, followed by the preserved carpet reveal.
  for(const width of [1440,390]){

@@ -40,4 +40,16 @@ Atmospheric images are decorative, pointer-inert, responsive and lazy-loaded bel
 
 Screenshots: [city opening](evidence/connectivity-storytelling/local/a-city-intro-1440.png), [approved people hero](evidence/connectivity-storytelling/local/a-people-hero-1440.png), [coverage](evidence/connectivity-storytelling/local/a-coverage-1440.png), [company](evidence/connectivity-storytelling/local/a-about-1440.png), [desktop flush family](evidence/connectivity-storytelling/local/a-flush-family-1440.png), [tablet family](evidence/connectivity-storytelling/local/a-flush-family-768.png), [mobile family](evidence/connectivity-storytelling/local/a-flush-family-390.png), [E family](evidence/connectivity-storytelling/local/e-flush-family-1024.png).
 
-Publication uses the existing GitHub main/Vercel workflow. Verify the actual deployed A and E before reporting success; production screenshots and checks are saved alongside the local evidence after deployment.
+## Verified publication
+
+UI release [`56ce58ae62426a060dfd44649d72f650a4bf98b2`](https://github.com/efosaomoigui/ikonecttclient/commit/56ce58ae62426a060dfd44649d72f650a4bf98b2) is pushed to existing `main`. The existing [Vercel deployment](https://vercel.com/efosa-abel-omoiguis-projects/ikonecttclient/A8Sy1vwxv257pvZdTXGkcZcXTwmn) reports **success / Deployment has completed**. No new project or settings change.
+
+The first Git upload returned HTTP 408 and did not update main; the retry succeeded. An intermittent live navigation timeout was resolved by waiting for application readiness rather than global network idleness. The subsequent complete production run passed **all 10 responsive checks and both normal-motion hero checks**, with no missing resources, page errors or horizontal overflow.
+
+- [Live A Residential / flush family](https://ikonecttclient-kappa.vercel.app/option-a/#/residential)
+- [Live A homepage](https://ikonecttclient-kappa.vercel.app/option-a/#/home)
+- [Live E Residential](https://ikonecttclient-kappa.vercel.app/option-e/#/residential)
+- [Production checks](evidence/connectivity-storytelling/live/checks.json) · [Deployment record](evidence/connectivity-storytelling/deployment.json)
+- Production screenshots: [A desktop family](evidence/connectivity-storytelling/live/a-flush-family-1440.png), [A tablet family](evidence/connectivity-storytelling/live/a-flush-family-768.png), [A mobile family](evidence/connectivity-storytelling/live/a-flush-family-390.png), [city opening](evidence/connectivity-storytelling/live/a-city-intro-1440.png), [coverage](evidence/connectivity-storytelling/live/a-coverage-1440.png), [company](evidence/connectivity-storytelling/live/a-about-1440.png), [E family](evidence/connectivity-storytelling/live/e-flush-family-1024.png).
+
+Unrelated pre-existing untracked A-H03 review masters and `tmp/` are preserved and excluded from the release.

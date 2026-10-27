@@ -1,0 +1,179 @@
+{
+  "origin": "https://ikonecttclient-kappa.vercel.app",
+  "results": [
+    {
+      "template": "a",
+      "width": 1440,
+      "geometry": {
+        "right": 1440,
+        "width": 640,
+        "photoWidth": 640,
+        "photoHeight": 320,
+        "radius": "0px",
+        "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0) 15%)",
+        "fit": "cover",
+        "textRight": 696,
+        "photoLeft": 800
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "a",
+      "width": 1024,
+      "geometry": {
+        "right": 1024,
+        "width": 512,
+        "photoWidth": 512,
+        "photoHeight": 320,
+        "radius": "0px",
+        "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0) 15%)",
+        "fit": "cover",
+        "textRight": 488,
+        "photoLeft": 512
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "a",
+      "width": 768,
+      "geometry": {
+        "right": 768,
+        "width": 768,
+        "photoWidth": 768,
+        "photoHeight": 384,
+        "radius": "0px",
+        "mask": "none",
+        "fit": "cover",
+        "textRight": 741.125,
+        "photoLeft": 0
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "geometry": {
+        "right": 390,
+        "width": 390,
+        "photoWidth": 390,
+        "photoHeight": 195,
+        "radius": "0px",
+        "mask": "none",
+        "fit": "cover",
+        "textRight": 370,
+        "photoLeft": 0
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "a",
+      "width": 320,
+      "geometry": {
+        "right": 320,
+        "width": 320,
+        "photoWidth": 320,
+        "photoHeight": 160,
+        "radius": "0px",
+        "mask": "none",
+        "fit": "cover",
+        "textRight": 304,
+        "photoLeft": 0
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "geometry": {
+        "right": 1440,
+        "width": 640,
+        "photoWidth": 640,
+        "photoHeight": 320,
+        "radius": "0px",
+        "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0) 15%)",
+        "fit": "cover",
+        "textRight": 688,
+        "photoLeft": 800
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 1024,
+      "geometry": {
+        "right": 1024,
+        "width": 563.1875,
+        "photoWidth": 563.1875,
+        "photoHeight": 320,
+        "radius": "0px",
+        "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0) 15%)",
+        "fit": "cover",
+        "textRight": 480,
+        "photoLeft": 460.8125
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "geometry": {
+        "right": 768,
+        "width": 768,
+        "photoWidth": 768,
+        "photoHeight": 384,
+        "radius": "0px",
+        "mask": "none",
+        "fit": "cover",
+        "textRight": 741.125,
+        "photoLeft": 0
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "geometry": {
+        "right": 390,
+        "width": 390,
+        "photoWidth": 390,
+        "photoHeight": 195,
+        "radius": "0px",
+        "mask": "none",
+        "fit": "cover",
+        "textRight": 370,
+        "photoLeft": 0
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 320,
+      "geometry": {
+        "right": 320,
+        "width": 320,
+        "photoWidth": 320,
+        "photoHeight": 160,
+        "radius": "0px",
+        "mask": "none",
+        "fit": "cover",
+        "textRight": 304,
+        "photoLeft": 0
+      },
+      "errors": [],
+      "failed": []
+    }
+  ],
+  "normalHeroWidths": [
+    1440,
+    390
+  ]
+}
