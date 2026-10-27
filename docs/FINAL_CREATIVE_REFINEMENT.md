@@ -38,4 +38,14 @@ The original symbol is extracted at its native 59 × 221 bounding field from the
 
 ## Publication
 
-Commit/push and verification of the existing Vercel production deployment follow validation. Record the actual commit, deployed result and final checks here; do not infer deployment success from a push alone.
+Published 27 October 2026 from UI release commit [`99ad9d51020832ce8040eea49746adc6b8fba839`](https://github.com/efosaomoigui/ikonecttclient/commit/99ad9d51020832ce8040eea49746adc6b8fba839), pushed to existing `main`. The existing Vercel Git integration reported **success / Deployment has completed**: [deployment](https://vercel.com/efosa-abel-omoiguis-projects/ikonecttclient/AAUEFNbUMRUTX7WLX8151ibH1W3d). No new project or configuration change.
+
+Verified the actual production site, including **180 live route/viewport checks**, all current-page images, heading bounds, internal destinations and blank support-form validation. A's carpet reveal and E's city pause also passed in the live browser without reduced motion. An initial network-idle timeout during the separate animation check was resolved by waiting for explicit application/city readiness rather than global network idleness; the complete live rerun passed. DNS/connection failures during publication were transient and resolved without changing system DNS or deployment settings.
+
+- [Live Template A](https://ikonecttclient-kappa.vercel.app/option-a/#/home)
+- [Live Template E](https://ikonecttclient-kappa.vercel.app/option-e/#/home)
+- [Deployment status record](evidence/final-creative-refinement/deployment.json)
+- [Full live checks](evidence/final-creative-refinement/live/checks.json)
+- Production screenshots: [A customer panel](evidence/final-creative-refinement/live/a-portal-1440.png), [E replacement Business panel](evidence/final-creative-refinement/live/e-business-panel-390.png), [A brand signature](evidence/final-creative-refinement/live/a-brand-1440.png), [E brand signature](evidence/final-creative-refinement/live/e-brand-1440.png), [E city hero](evidence/final-creative-refinement/live/e-animated-hero-paused-1440.png).
+
+Unrelated pre-existing untracked A-H03 review masters and `tmp/` were preserved and excluded from the release.

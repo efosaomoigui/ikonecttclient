@@ -7,7 +7,8 @@ const origin=live?'https://ikonecttclient-kappa.vercel.app':'http://127.0.0.1:30
 const output=path.resolve('docs/evidence/final-creative-refinement',live?'live':'local');fs.mkdirSync(output,{recursive:true});
 (async()=>{
  const {pages,aliases}=await import('../shared/routes.js'),results=[],network=[];
- const browser=await chromium.launch({headless:true});
+ const reviewIP=process.env.IKONECTT_REVIEW_HOST_IP;
+ const browser=await chromium.launch({headless:true,args:live&&reviewIP&&/^\d{1,3}(\.\d{1,3}){3}$/.test(reviewIP)?[`--host-resolver-rules=MAP ikonecttclient-kappa.vercel.app ${reviewIP}`]:[]});
  try{
   for(const template of ['a','e'])for(const width of [1440,768,390]){
    const page=await browser.newPage({viewport:{width,height:1000},deviceScaleFactor:1,reducedMotion:'reduce',isMobile:width<768,hasTouch:width<768}),errors=[],failed=[];
@@ -66,10 +67,13 @@ const output=path.resolve('docs/evidence/final-creative-refinement',live?'live':
    network.push({template,width,errors,failed,signatureStyle});console.log(`Checked ${template.toUpperCase()} at ${width}px: ${Object.keys(pages).length} routes`);
    await page.close();
   }
+  fs.writeFileSync(path.join(output,'checks.json'),JSON.stringify({origin,routeChecks:results.length,results,network},null,2)+'\n');
+  // Readiness is explicit: city imports/rendering need not hold up navigation.
   // Exercise actual animation direction without reduced motion, and city pause.
   for(const template of ['a','e']){
    const page=await browser.newPage({viewport:{width:1440,height:1000}});
-   await page.goto(`${origin}/option-${template}/?production-preview#/home`,{waitUntil:'networkidle',timeout:45000});
+   await page.goto(`${origin}/option-${template}/?production-preview#/home`,{waitUntil:'domcontentloaded',timeout:45000});
+   await page.waitForFunction(()=>document.querySelector('.ik-site')?.dataset.route==='home');
    if(template==='a'){
     const hero=page.locator('#home-hero');await hero.locator('[data-hero-step="1"]').click();
     await page.waitForFunction(()=>Boolean(document.querySelector('.ik-hero-carpet-roll')));

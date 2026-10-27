@@ -13,4 +13,4 @@ This later authorised revision has its own source checkpoint in `docs/evidence/t
 
 Validation: all 160 tests passed and the production build completed. The carpet revision covers directional clipping, undistorted images and clearing an active fold when reduced motion is enabled. Browser checks passed at 1440px and 390px, plus 320px with reduced motion: three controls remain, no numeric counter, manual navigation works, and no console errors or horizontal overflow were found. Mid-transition screenshots confirm the image-only reveal leaves copy, CTAs and crops in place.
 
-Work remains local; not pushed or deployed.
+Published with UI release `99ad9d5` on 27 October 2026 and verified on the actual Vercel site. See `docs/FINAL_CREATIVE_REFINEMENT.md` for production checks and screenshots.

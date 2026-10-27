@@ -1,6 +1,6 @@
 # Client campaign photography integration
 
-26 October 2026. Active scope: **Templates A and E only**. Work is local for review; the selection interface and archived D remain unchanged.
+26 October 2026. Active scope: **Templates A and E only**. Published with UI release `99ad9d5` on 27 October 2026; the selection interface and archived D remain unchanged.
 
 ## Current direction
 
@@ -49,6 +49,6 @@ The flyers advertise i-Basic 50 Mbps at ₦32,500, i-Silver 100 Mbps at ₦65,00
 
 Browser review covers 1440, 1280, 1024, 768, 390 and 320px for both placements in A/E. It checks loading, errors, overflow, photo containment, text/CTA clearance and the A-man/E-woman selection. Before screenshots render the recorded Git baseline; after screenshots render the current production build. Evidence is in `docs/evidence/client-campaign/`.
 
-The updated regression suite passed **148 tests**, with zero failures; the production build passed. Existing hero, animation, support, route, form and catalogue protections passed. The browser results and screenshots are refreshed for the room compositions. This update is local and has not been pushed or deployed.
+The updated campaign regression suite passed **148 tests**, with zero failures; the production build passed. Existing hero, animation, support, route, form and catalogue protections passed. The browser results and screenshots are refreshed for the room compositions. The later combined release passed **164 tests** plus **180 actual production route/viewport checks**; see `docs/FINAL_CREATIVE_REFINEMENT.md` for deployment and screenshots.
 
 Final browser pass: all 24 template/route/viewport combinations passed with zero page errors, missing images, horizontal overflows, text/photo collisions or photos outside their section bounds. Desktop and mobile screenshots were inspected after the final spacing adjustment.

@@ -1,6 +1,6 @@
 # Homepage benefits and testimonials
 
-26 October 2026. Implemented locally for **Template A and Template E only**. Nothing has been pushed or deployed.
+26 October 2026. Implemented for **Template A and Template E only**. Published with UI release `99ad9d5` on 27 October 2026 and verified on Vercel. Review-only testimonial scenarios remain local; see `docs/FINAL_CREATIVE_REFINEMENT.md` for production evidence.
 
 ## Placement and design
 
