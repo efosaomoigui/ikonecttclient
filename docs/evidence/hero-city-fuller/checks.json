@@ -1,0 +1,80 @@
+[
+  {
+    "width": 1859,
+    "stage": {
+      "width": 1859,
+      "height": 720
+    },
+    "photo": {
+      "width": 1859,
+      "height": 720
+    },
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "stage": {
+      "width": 1440,
+      "height": 720
+    },
+    "photo": {
+      "width": 1440,
+      "height": 720
+    },
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "stage": {
+      "width": 1024,
+      "height": 720
+    },
+    "photo": {
+      "width": 1024,
+      "height": 720
+    },
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "stage": {
+      "width": 506.875,
+      "height": 380.15625
+    },
+    "photo": {
+      "width": 506.875,
+      "height": 380.15625
+    },
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "stage": {
+      "width": 390,
+      "height": 340
+    },
+    "photo": {
+      "width": 390,
+      "height": 340
+    },
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "stage": {
+      "width": 320,
+      "height": 340
+    },
+    "photo": {
+      "width": 320,
+      "height": 340
+    },
+    "overflow": false,
+    "errors": []
+  }
+]

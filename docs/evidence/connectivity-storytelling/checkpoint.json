@@ -1,18 +1,18 @@
 {
   "date": "2026-10-27",
-  "direction": "Brief city introduction ahead of the preserved people slideshow. Carpet transition, human photos, headline and CTA markup remain protected.",
+  "direction": "Fuller, edge-to-edge city introduction approved by the client on 27 October. Carpet transition, timing, human photos, headline and CTA markup remain protected.",
   "files": {
     "option-a/src/components/ui/HeroSlideshow.tsx": {
-      "sha256": "f682276f43c603801ebe98e10e32be5e93edecff2688297f93e730329e8d3910",
-      "sha256LF": "f682276f43c603801ebe98e10e32be5e93edecff2688297f93e730329e8d3910"
+      "sha256": "de41013003edb4745c8052e15c26bf91056cb37d8768f0d32d3b12b73f949133",
+      "sha256LF": "de41013003edb4745c8052e15c26bf91056cb37d8768f0d32d3b12b73f949133"
     },
     "option-a/src/components/ui/hero-slideshow.js": {
       "sha256": "63003b8e60967804c0305ef6de58e32c15173e36b0b26786db4fbba87602e5c0",
       "sha256LF": "63003b8e60967804c0305ef6de58e32c15173e36b0b26786db4fbba87602e5c0"
     },
     "option-a/src/components/ui/hero-slideshow.css": {
-      "sha256": "c2050eddf17255d7c7040af288fba0368bef0ae8b3f6ff47b37e8ac3b132e536",
-      "sha256LF": "c2050eddf17255d7c7040af288fba0368bef0ae8b3f6ff47b37e8ac3b132e536"
+      "sha256": "eaa7dd8c63487c8ddbc6cfa91b7fd747ca784a584f20d68cd19b49670c13a9ff",
+      "sha256LF": "eaa7dd8c63487c8ddbc6cfa91b7fd747ca784a584f20d68cd19b49670c13a9ff"
     }
   }
 }

@@ -18,7 +18,7 @@ export function HeroSlideshow({children}: {children: React.ReactNode}) {
       </picture>
       <div className="ik-hero-city-intro" data-hero-city-intro>
         <picture className="ik-hero-city-photo">
-          <img src={connectivityURL('city')} srcSet={connectivitySrcSet('city')} sizes="832px" width="832" height="306" alt="" loading="eager" decoding="async"/>
+          <img src={connectivityURL('city')} srcSet={connectivitySrcSet('city')} sizes="100vw" width="832" height="306" alt="" loading="eager" decoding="async"/>
         </picture>
         <svg className="ik-hero-city-signals" viewBox="0 0 832 306" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
           <g className="ik-city-routes"><path d="M830 296C730 258 658 222 570 209S433 190 340 169"/><path d="M570 209 555 178 555 142"/><path d="M660 236 701 206 737 160"/></g>
