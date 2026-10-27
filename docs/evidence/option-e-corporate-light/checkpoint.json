@@ -1,0 +1,41 @@
+{
+  "direction": "Client-authorised E-only corporate light theme; exact source mark and approved people, existing scene/controller/customer logic retained.",
+  "files": {
+    "option-e/index.html": {
+      "sha256": "3efdd9f8fb47aa07fbea40361f4fa4e2eccca687d45d8b0cd3418ce14796b088",
+      "sha256LF": "3efdd9f8fb47aa07fbea40361f4fa4e2eccca687d45d8b0cd3418ce14796b088"
+    },
+    "option-e/refinement.js": {
+      "sha256": "b4425345555234c0f3f35af53df8af8a8a3c1ef9d0ce0cc4de6ab6f7efd23a19",
+      "sha256LF": "b4425345555234c0f3f35af53df8af8a8a3c1ef9d0ce0cc4de6ab6f7efd23a19"
+    },
+    "option-e/refinement.css": {
+      "sha256": "2ab979be9db040229bc42e4086b1e8cb73c689fd7b4e952d4cb14ff3304b1435",
+      "sha256LF": "2ab979be9db040229bc42e4086b1e8cb73c689fd7b4e952d4cb14ff3304b1435"
+    },
+    "option-e/city-experience.js": {
+      "sha256": "df7059af1c3b7ed4c6a2315a90aa473f2be94fa29db7469ce6f2d6745fce63ee",
+      "sha256LF": "df7059af1c3b7ed4c6a2315a90aa473f2be94fa29db7469ce6f2d6745fce63ee"
+    },
+    "option-e/city-three.js": {
+      "sha256": "92cb8bbec86baedf5c01cbeb8acbfdcd0296ad572103881eff738360cab826e7",
+      "sha256LF": "92cb8bbec86baedf5c01cbeb8acbfdcd0296ad572103881eff738360cab826e7"
+    },
+    "option-e/city-fallback.svg": {
+      "sha256": "936711f3a537429eaa4bc54be5c6c94ac1dc16b49ad579a2a380e0bceedcbf2b",
+      "sha256LF": "88f97fb08396e725d3cb1bbb5ccc52c805ffea6a149e85ae6278b825194a2bc5"
+    },
+    "option-e/photo-credits.html": {
+      "sha256": "8288da94899316811f228d686b2570011eab831f3209e458793fff7838f7634d",
+      "sha256LF": "8288da94899316811f228d686b2570011eab831f3209e458793fff7838f7634d"
+    },
+    "option-e/corporate-light.js": {
+      "sha256": "f0c5ab1312a57274fd774fbeaf8f2dc912dc58d40145f9b1c67de76de243a393",
+      "sha256LF": "f0c5ab1312a57274fd774fbeaf8f2dc912dc58d40145f9b1c67de76de243a393"
+    },
+    "option-e/corporate-light.css": {
+      "sha256": "8cec1f5bda3d4622a29af15ee599b9457ab657ed94a69075d79d12fb5ce0e57f",
+      "sha256LF": "8cec1f5bda3d4622a29af15ee599b9457ab657ed94a69075d79d12fb5ce0e57f"
+    }
+  }
+}

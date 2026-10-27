@@ -1,0 +1,414 @@
+{
+  "origin": "http://127.0.0.1:3021/public_html",
+  "results": [
+    {
+      "width": 1440,
+      "theme": {
+        "background": "rgb(255, 255, 255)",
+        "text": "rgb(36, 39, 44)",
+        "scheme": "light",
+        "overflow": false
+      },
+      "contrast": [
+        {
+          "selector": ".hero h1",
+          "ratio": 12.97
+        },
+        {
+          "selector": ".hero .lead",
+          "ratio": 7.66
+        },
+        {
+          "selector": ".coverage h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".finder input",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-card h3",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-price",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-benefit-card p",
+          "ratio": 5.97
+        },
+        {
+          "selector": ".ik-footer h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".ik-footer-brand p",
+          "ratio": 5.47
+        },
+        {
+          "selector": ".ik-button",
+          "ratio": 5.22
+        },
+        {
+          "selector": ".btn.solid",
+          "ratio": 5.22
+        }
+      ],
+      "errors": [],
+      "failed": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 1280,
+      "theme": {
+        "background": "rgb(255, 255, 255)",
+        "text": "rgb(36, 39, 44)",
+        "scheme": "light",
+        "overflow": false
+      },
+      "contrast": [
+        {
+          "selector": ".hero h1",
+          "ratio": 12.97
+        },
+        {
+          "selector": ".hero .lead",
+          "ratio": 7.66
+        },
+        {
+          "selector": ".coverage h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".finder input",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-card h3",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-price",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-benefit-card p",
+          "ratio": 5.97
+        },
+        {
+          "selector": ".ik-footer h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".ik-footer-brand p",
+          "ratio": 5.47
+        },
+        {
+          "selector": ".ik-button",
+          "ratio": 5.22
+        },
+        {
+          "selector": ".btn.solid",
+          "ratio": 5.22
+        }
+      ],
+      "errors": [],
+      "failed": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 1024,
+      "theme": {
+        "background": "rgb(255, 255, 255)",
+        "text": "rgb(36, 39, 44)",
+        "scheme": "light",
+        "overflow": false
+      },
+      "contrast": [
+        {
+          "selector": ".hero h1",
+          "ratio": 12.97
+        },
+        {
+          "selector": ".hero .lead",
+          "ratio": 7.66
+        },
+        {
+          "selector": ".coverage h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".finder input",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-card h3",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-price",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-benefit-card p",
+          "ratio": 5.97
+        },
+        {
+          "selector": ".ik-footer h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".ik-footer-brand p",
+          "ratio": 5.47
+        },
+        {
+          "selector": ".ik-button",
+          "ratio": 5.22
+        },
+        {
+          "selector": ".btn.solid",
+          "ratio": 5.22
+        }
+      ],
+      "errors": [],
+      "failed": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 768,
+      "theme": {
+        "background": "rgb(255, 255, 255)",
+        "text": "rgb(36, 39, 44)",
+        "scheme": "light",
+        "overflow": false
+      },
+      "contrast": [
+        {
+          "selector": ".hero h1",
+          "ratio": 12.97
+        },
+        {
+          "selector": ".hero .lead",
+          "ratio": 7.66
+        },
+        {
+          "selector": ".coverage h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".finder input",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-card h3",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-price",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-benefit-card p",
+          "ratio": 5.97
+        },
+        {
+          "selector": ".ik-footer h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".ik-footer-brand p",
+          "ratio": 5.47
+        },
+        {
+          "selector": ".ik-button",
+          "ratio": 5.22
+        },
+        {
+          "selector": ".btn.solid",
+          "ratio": 5.22
+        }
+      ],
+      "errors": [],
+      "failed": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": {
+        "background": "rgb(255, 255, 255)",
+        "text": "rgb(36, 39, 44)",
+        "scheme": "light",
+        "overflow": false
+      },
+      "contrast": [
+        {
+          "selector": ".hero h1",
+          "ratio": 12.97
+        },
+        {
+          "selector": ".hero .lead",
+          "ratio": 7.66
+        },
+        {
+          "selector": ".coverage h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".finder input",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-card h3",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-price",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-benefit-card p",
+          "ratio": 5.97
+        },
+        {
+          "selector": ".ik-footer h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".ik-footer-brand p",
+          "ratio": 5.47
+        },
+        {
+          "selector": ".ik-button",
+          "ratio": 5.22
+        },
+        {
+          "selector": ".btn.solid",
+          "ratio": 5.22
+        }
+      ],
+      "errors": [],
+      "failed": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 320,
+      "theme": {
+        "background": "rgb(255, 255, 255)",
+        "text": "rgb(36, 39, 44)",
+        "scheme": "light",
+        "overflow": false
+      },
+      "contrast": [
+        {
+          "selector": ".hero h1",
+          "ratio": 12.97
+        },
+        {
+          "selector": ".hero .lead",
+          "ratio": 7.66
+        },
+        {
+          "selector": ".coverage h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".finder input",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-card h3",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-plan-price",
+          "ratio": 14.98
+        },
+        {
+          "selector": ".ik-benefit-card p",
+          "ratio": 5.97
+        },
+        {
+          "selector": ".ik-footer h2",
+          "ratio": 13.73
+        },
+        {
+          "selector": ".ik-footer-brand p",
+          "ratio": 5.47
+        },
+        {
+          "selector": ".ik-button",
+          "ratio": 5.22
+        },
+        {
+          "selector": ".btn.solid",
+          "ratio": 5.22
+        }
+      ],
+      "errors": [],
+      "failed": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 1440,
+      "normalMotion": true,
+      "metrics": {
+        "frames": 71,
+        "readyMs": 1051,
+        "drawCalls": 10,
+        "triangles": 1730,
+        "meanRenderMs": 2.62,
+        "sampledFPS": 15.7,
+        "slowFrames": 1,
+        "mode": "desktop",
+        "longTasks": 6,
+        "maxLongTaskMs": 708,
+        "jsHeapMB": 9.5,
+        "buildings": 36,
+        "pixelRatio": 1,
+        "bufferWidth": 860,
+        "bufferHeight": 370,
+        "networkStage": "network-transmission",
+        "activeSignals": 3,
+        "litBuildings": 0,
+        "networkCycle": 0.6,
+        "routes": 10,
+        "endpoints": 6,
+        "geometries": 8,
+        "textures": 2
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "normalMotion": true,
+      "metrics": {
+        "frames": 115,
+        "readyMs": 940,
+        "drawCalls": 10,
+        "triangles": 770,
+        "meanRenderMs": 2.1,
+        "sampledFPS": 26.7,
+        "slowFrames": 1,
+        "mode": "mobile",
+        "longTasks": 3,
+        "maxLongTaskMs": 381,
+        "jsHeapMB": 9.5,
+        "buildings": 16,
+        "pixelRatio": 1,
+        "bufferWidth": 400,
+        "bufferHeight": 400,
+        "networkStage": "network-transmission",
+        "activeSignals": 3,
+        "litBuildings": 0,
+        "networkCycle": 0.9,
+        "routes": 8,
+        "endpoints": 4,
+        "geometries": 8,
+        "textures": 2
+      },
+      "errors": []
+    }
+  ],
+  "optionAFunctional": true
+}

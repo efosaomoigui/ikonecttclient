@@ -1,7 +1,7 @@
 export const cityMessages=['Connectivity without limits.','A city powered by connection.','Your world. Always connected.'];
 export const canAnimate=state=>state.visible&&state.onscreen&&!state.reduced&&!state.paused&&!state.failed;
 
-export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=11'),delay=700}){
+export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=12'),delay=700}){
   if(!hero)return {destroy(){}};
   const win=root.ownerDocument.defaultView,doc=root.ownerDocument,abort=new win.AbortController(),opts={signal:abort.signal};
   const reduced=win.matchMedia('(prefers-reduced-motion:reduce)'),mobile=win.matchMedia('(max-width:1023px)').matches;
@@ -9,7 +9,7 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
   const forcedOff=new URL(win.location.href).searchParams.get('e-city')==='off';
   const state={visible:!doc.hidden,onscreen:root.dataset.route==='home',reduced:reduced.matches,paused:false,failed:false};
   const field=doc.createElement('div');field.className='e-city-field';field.setAttribute('aria-hidden','true');
-  field.innerHTML='<img class="e-city-fallback" src="'+new URL('./city-fallback.svg',import.meta.url).href+'" width="1200" height="650" alt="">';hero.append(field);
+  field.innerHTML='<img class="e-city-fallback" src="'+new URL('./city-fallback.svg?v=2',import.meta.url).href+'" width="1200" height="650" alt=""><span class="e-city-static-source"></span>';hero.append(field);
   hero.dataset.cityState=reduced.matches||constrained||forcedOff?'fallback':'opening';
   const heading=hero.querySelector('h1'),original=heading?.textContent||cityMessages[0];
   if(heading){heading.classList.add('e-headline');heading.setAttribute('aria-label',original);heading.replaceChildren(...cityMessages.map((text,i)=>{const span=doc.createElement('span');span.textContent=text;span.setAttribute('aria-hidden','true');span.dataset.active=String(i===0);return span;}));}

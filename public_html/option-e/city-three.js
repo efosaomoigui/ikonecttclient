@@ -4,22 +4,22 @@ import {createNetworkModel,createNetworkTimeline} from './network-model.js?v=10'
 // One E-only WebGL scene, driven by the existing visibility-aware 30 FPS controller.
 export async function createCityRenderer(host,{mobile=false}={}){
   const renderer=new THREE.WebGLRenderer({alpha:true,antialias:false,powerPreference:'low-power',stencil:false});
-  renderer.setClearColor(0x12070a,0);renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.setClearColor(0xe8edf2,0);renderer.outputColorSpace=THREE.SRGBColorSpace;
   renderer.domElement.className='e-city-canvas';renderer.domElement.setAttribute('aria-hidden','true');
   const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x12070a,.026);
   const camera=new THREE.PerspectiveCamera(38,1,.1,90),model=createNetworkModel({mobile}),timeline=createNetworkTimeline(model);
   const {grid,buildings}=model;
-  scene.add(new THREE.AmbientLight(0xc38b9c,1.35));
-  const sun=new THREE.DirectionalLight(0xffd8ca,2.1);sun.position.set(4,14,7);scene.add(sun);
+  scene.add(new THREE.AmbientLight(0xffffff,1.55));
+  const sun=new THREE.DirectionalLight(0xfff3e8,1.55);sun.position.set(4,14,7);scene.add(sun);
   const box=new THREE.BoxGeometry(1,1,1),dummy=new THREE.Object3D();
   const bodies=new THREE.InstancedMesh(box,new THREE.MeshLambertMaterial({color:0xffffff}),buildings.length);
-  const bands=new THREE.InstancedMesh(box,new THREE.MeshBasicMaterial({color:0xb46f82}),buildings.length*3);
+  const bands=new THREE.InstancedMesh(box,new THREE.MeshBasicMaterial({color:0x9ba7b5}),buildings.length*3);
   const baseColors=buildings.map((b,i)=>{
     const family=i%7;
-    if(family===1)return new THREE.Color().setHSL(.075,.12,b.lightness+.04); // warm stone
-    if(family===3)return new THREE.Color().setHSL(.96,.32,b.lightness*.70); // deep burgundy
-    if(family===5)return new THREE.Color().setHSL(.62,.10,b.lightness*.74); // charcoal slate
-    return new THREE.Color().setHSL(.95,.18,b.lightness);
+    if(family===1)return new THREE.Color().setHSL(.075,.09,.66+b.lightness*.25); // warm stone
+    if(family===3)return new THREE.Color().setHSL(.59,.13,.46+b.lightness*.2); // blue-grey glass
+    if(family===5)return new THREE.Color().setHSL(.62,.08,.36+b.lightness*.2); // charcoal slate
+    return new THREE.Color().setHSL(.58,.06,.61+b.lightness*.3);
   });
   buildings.forEach((b,i)=>{
     dummy.position.set(b.x,b.h/2,b.z);dummy.scale.set(b.w,b.h,b.d);dummy.updateMatrix();bodies.setMatrixAt(i,dummy.matrix);bodies.setColorAt(i,baseColors[i]);
@@ -28,16 +28,17 @@ export async function createCityRenderer(host,{mobile=false}={}){
   const roads=[],extent=grid/2*2.25;
   for(let n=0;n<=grid;n++){const v=(n-grid/2)*2.25;roads.push(v,.01,-extent,v,.01,extent,-extent,.01,v,extent,.01,v);}
   const roadGeo=new THREE.BufferGeometry();roadGeo.setAttribute('position',new THREE.Float32BufferAttribute(roads,3));
-  scene.add(new THREE.LineSegments(roadGeo,new THREE.LineBasicMaterial({color:0x61303e,transparent:true,opacity:.45})));
-  const cableGeo=new THREE.CylinderGeometry(.34,.36,1,16),coreGeo=new THREE.CylinderGeometry(.285,.285,.035,16);
-  const cableMat=new THREE.MeshLambertMaterial({color:0x67505b,transparent:true,opacity:0});
-  const coreMat=new THREE.MeshBasicMaterial({color:0x0b0609,transparent:true,opacity:0});
-  const base=new THREE.Vector3(...model.cableBase),tip=new THREE.Vector3(...model.source),direction=tip.clone().sub(base),cableLength=direction.length();direction.normalize();
-  const cable=new THREE.Mesh(cableGeo,cableMat),core=new THREE.Mesh(coreGeo,coreMat);
-  for(const object of [cable,core])object.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),direction);
-  cable.scale.y=cableLength;cable.position.copy(base).addScaledVector(direction,cableLength/2);core.position.copy(tip).addScaledVector(direction,.018);
-  // A low ground collar anchors the emerging cable without adding a ground plane.
-  const collar=new THREE.Mesh(coreGeo,cableMat);collar.scale.set(1.85,1.5,1.85);collar.position.copy(base);scene.add(cable,core,collar);
+  scene.add(new THREE.LineSegments(roadGeo,new THREE.LineBasicMaterial({color:0x8f9ba9,transparent:true,opacity:.4})));
+  // Render the exact approved dot-and-lightning mask, without redrawing the logo.
+  const mark=new host.ownerDocument.defaultView.Image();
+  mark.src=new URL('../assets/brand/ikonectt-i-mask.png',import.meta.url).href;
+  await mark.decode();
+  const markCanvas=host.ownerDocument.createElement('canvas');markCanvas.width=59;markCanvas.height=221;
+  markCanvas.getContext('2d').drawImage(mark,0,0);
+  const markTexture=new THREE.CanvasTexture(markCanvas);
+  const sourceMaterial=new THREE.MeshBasicMaterial({map:markTexture,color:0xed101a,transparent:true,opacity:.85,depthWrite:false});
+  const source=new THREE.Mesh(new THREE.PlaneGeometry(2.3*59/221,2.3),sourceMaterial);
+  source.position.set(...model.source);scene.add(source);
   const routePositions=[],routeRanges=[];
   for(const route of model.routes){const start=routePositions.length/3;for(let n=1;n<route.samples.length;n++)routePositions.push(...route.samples[n-1],...route.samples[n]);routeRanges.push({start,count:routePositions.length/3-start});}
   const routeGeo=new THREE.BufferGeometry(),routeColors=new Float32Array(routePositions.length);
@@ -50,16 +51,16 @@ export async function createCityRenderer(host,{mobile=false}={}){
   const texture=new THREE.CanvasTexture(sprite);
   function points(count,size){
     const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(new Float32Array(count*3),3));geometry.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(count*3),3));
-    const object=new THREE.Points(geometry,new THREE.PointsMaterial({map:texture,size,sizeAttenuation:true,vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));object.frustumCulled=false;scene.add(object);return object;
+    const object=new THREE.Points(geometry,new THREE.PointsMaterial({map:texture,size,sizeAttenuation:true,vertexColors:true,transparent:true,depthWrite:false}));object.frustumCulled=false;scene.add(object);return object;
   }
   const heads=points(model.routes.length,.30),halos=points(model.nodes.length,.85),cores=points(model.nodes.length,.22);
-  const headGlow=new THREE.Points(heads.geometry,new THREE.PointsMaterial({map:texture,size:.65,opacity:.35,sizeAttenuation:true,vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));headGlow.frustumCulled=false;scene.add(headGlow);
+  const headGlow=new THREE.Points(heads.geometry,new THREE.PointsMaterial({map:texture,size:.65,opacity:.35,sizeAttenuation:true,vertexColors:true,transparent:true,depthWrite:false}));headGlow.frustumCulled=false;scene.add(headGlow);
   for(const object of [halos,cores])model.nodes.forEach((node,i)=>object.geometry.attributes.position.array.set(node.position,i*3));
   const tailSegments=7,tailCount=model.routes.length*tailSegments*2,tailGeo=new THREE.BufferGeometry();
   tailGeo.setAttribute('position',new THREE.Float32BufferAttribute(new Float32Array(tailCount*3),3));tailGeo.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(tailCount*3),3));
-  const tails=new THREE.LineSegments(tailGeo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));tails.frustumCulled=false;scene.add(tails);
-  const a=new Float32Array(3),b=new Float32Array(3),color=new THREE.Color(),activationColor=new THREE.Color(0xffcfb7);
-  const signalColor=new THREE.Color(0xffd8c7),routeColor=new THREE.Color(0xa93b56);
+  const tails=new THREE.LineSegments(tailGeo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,depthWrite:false}));tails.frustumCulled=false;scene.add(tails);
+  const a=new Float32Array(3),b=new Float32Array(3),color=new THREE.Color(),activationColor=new THREE.Color(0xe89c97);
+  const signalColor=new THREE.Color(0xed101a),routeColor=new THREE.Color(0xbb3540);
   const updatedGeometries=[routeGeo,heads.geometry,halos.geometry,cores.geometry,tailGeo];
   const info={drawCalls:0,triangles:0,buildings:buildings.length,pixelRatio:1,bufferWidth:0,bufferHeight:0,networkStage:'opening',activeSignals:0,litBuildings:0,networkCycle:0,routes:model.routes.length,endpoints:model.nodes.filter(n=>n.kind==='endpoint').length,geometries:0,textures:0};
   let ratio=1,disposed=false;
@@ -74,7 +75,7 @@ export async function createCityRenderer(host,{mobile=false}={}){
   function render(time){
     const angle=.72+Math.sin(time/40)*.05,distance=mobile?17:21;
     camera.position.set(Math.sin(angle)*distance,mobile?9:10.5,Math.cos(angle)*distance);camera.lookAt(0,1,0);
-    const state=timeline.update(time);cableMat.opacity=coreMat.opacity=state.sourceLevel;
+    const state=timeline.update(time);sourceMaterial.opacity=.85+.15*state.sourceLevel;source.quaternion.copy(camera.quaternion);
     let litBuildings=0;
     for(let i=0;i<buildings.length;i++){const level=state.buildings[i];if(level>.1)litBuildings++;color.copy(baseColors[i]).lerp(activationColor,level*.42);bodies.setColorAt(i,color);}bodies.instanceColor.needsUpdate=true;
     state.paths.forEach((p,i)=>{
@@ -101,7 +102,7 @@ export async function createCityRenderer(host,{mobile=false}={}){
   function simplify(){ratio=Math.min(ratio,.75);resize();}
   function destroy(){
     if(disposed)return;disposed=true;const geometries=new Set(),materials=new Set();scene.traverse(object=>{if(object.geometry)geometries.add(object.geometry);if(object.material)for(const material of [].concat(object.material))materials.add(material);});
-    geometries.forEach(geometry=>geometry.dispose());materials.forEach(material=>material.dispose());texture.dispose();renderer.dispose();renderer.domElement.remove();
+    geometries.forEach(geometry=>geometry.dispose());materials.forEach(material=>material.dispose());texture.dispose();markTexture.dispose();renderer.dispose();renderer.domElement.remove();
   }
   renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();host.dispatchEvent(new CustomEvent('e:city-failed'));});
   return {render,resize,simplify,destroy};

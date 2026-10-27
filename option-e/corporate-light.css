@@ -1,0 +1,83 @@
+/* Option E's theme boundary. Shared geometry and customer journeys are unchanged. */
+.ik-site[data-template=e]{
+ --ik-bg:#fff;--ik-surface:#f4f5f6;--ik-text:#24272c;--ik-muted:#5d646f;--ik-line:#e8eaed;
+ --ik-accent:#ed101a;--ik-on-accent:#fff;--ik-weight:500;--e-action:#d90e18;
+ --base:var(--ik-bg);--deep:var(--ik-surface);--red:var(--ik-accent);--glow:#ce0c16;
+ --text:var(--ik-text);--muted:var(--ik-muted);--line:var(--ik-line);
+ --e-photo-white:#fff;--e-photo-white-rgb:255,255,255;--e-photo-panel:#f4f5f6;--e-photo-panel-rgb:244,245,246;
+ color-scheme:light;
+}
+/* Navigation remains in E's original position and retains its menus. */
+.ik-site[data-template=e][data-route=home] .ik-header{background:#fffffff5;border-bottom:1px solid var(--ik-line)}
+.ik-site[data-template=e] .ik-nav-trigger{font-weight:400}
+.ik-site[data-template=e] .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;font-weight:400}
+.ik-site[data-template=e] .btn.solid{background:var(--e-action);border-color:var(--e-action);color:var(--ik-on-accent)}
+.ik-site[data-template=e] .ik-button:not(.ik-button-secondary),.ik-site[data-template=e] .ik-carousel-audiences [aria-pressed=true]{background:var(--e-action)}
+.ik-site[data-template=e] .btn.solid:hover{background:var(--glow);border-color:var(--glow)}
+.ik-site[data-template=e] .btn.ghost{color:var(--ik-text);border-color:#969da6}
+.ik-site[data-template=e] .btn.ghost:hover{background:var(--ik-surface);border-color:var(--ik-text)}
+.ik-site[data-template=e] :is(.coverage,.plans){background:var(--ik-bg)}
+.ik-site[data-template=e] .coverage{background:var(--ik-surface)}
+.ik-site[data-template=e] .finder input{background:var(--ik-bg);border-color:#969da6;font-weight:400}
+.ik-site[data-template=e] :is(h1,h2){font-weight:400}
+.ik-site[data-template=e] .hero h1{font-weight:400}
+/* A complete blue-hour city from first paint, with the existing network above it. */
+.ik-site[data-template=e] .hero.ik-visual-backdrop{background:#e8edf2;color:var(--ik-text)}
+.ik-site[data-template=e] .hero.ik-visual-backdrop>.ik-visual-picture:first-child,
+.ik-site[data-template=e] .hero[data-city-state=ready]>.ik-visual-picture:first-child{opacity:.45;filter:saturate(.75) brightness(1.16)}
+.ik-site[data-template=e] .hero.ik-visual-backdrop>.ik-visual-picture:nth-child(2){opacity:.08}
+.ik-site[data-template=e] .hero.ik-visual-backdrop::after{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(244,247,249,.84) 35%,rgba(241,245,248,.42) 65%,#fff 100%)}
+.ik-site[data-template=e] .hero.ik-visual-backdrop :is(.eyebrow,.lead){color:#414b58}
+.ik-site[data-template=e] .hero.ik-visual-backdrop .eyebrow{color:var(--glow);font-weight:400}
+.ik-site[data-template=e] .hero.ik-visual-backdrop .horizon{border-top-color:#ed101a55;background:transparent;box-shadow:0 -3px 35px 2px #ed101a12,inset 0 20px 50px #ed101a08;opacity:.4}
+.ik-site[data-template=e] .e-city-field::after{background:linear-gradient(0deg,#fff,transparent 25%),radial-gradient(ellipse at 50% 0%,#f4f5f666,transparent 65%)}
+.ik-site[data-template=e] .e-city-pause{color:var(--ik-text);background:#fffffff0;border-color:#a3aab3}
+.ik-site[data-template=e] .e-city-static-source{position:absolute;left:22%;bottom:18%;height:78px;aspect-ratio:59/221;background:var(--ik-accent);mask:url('../assets/brand/ikonectt-i-mask.png') center/contain no-repeat;opacity:0}
+.ik-site[data-template=e] .hero[data-city-state=fallback] .e-city-static-source{opacity:.8}
+/* Approved people, with local charcoal scrims rather than burgundy surfaces. */
+.ik-site[data-template=e] .pane.ik-visual-backdrop{color:#fff}
+.ik-site[data-template=e] .pane.ik-visual-backdrop::before{background:linear-gradient(0deg,rgba(21,28,35,.96),rgba(21,28,35,.6) 35%,transparent 72%)}
+.ik-site[data-template=e] .pane.ik-visual-backdrop>.ik-visual-picture img{object-position:78% center}
+.ik-site[data-template=e] .pane.ik-visual-backdrop :is(h2,.sub){color:#fff}
+.ik-site[data-template=e] .pane.ik-visual-backdrop h2::before{content:"";display:block;width:42px;height:3px;background:var(--ik-accent);margin-bottom:20px}
+.ik-site[data-template=e] .pane .btn.ghost{border-color:#ffffffb3;color:#fff;background:transparent}
+.ik-site[data-template=e] .pane .btn.ghost:hover{background:#ffffff1a;border-color:#fff}
+/* Plan data and carousel geometry continue to come from the shared catalogue. */
+.ik-site[data-template=e] .ik-plan-card{background:var(--ik-bg);border:1px solid var(--ik-line);box-shadow:0 2px 8px #24272c04}
+.ik-site[data-template=e] .ik-carousel-rail .ik-plan-card[data-active=true]{border-color:var(--ik-accent);box-shadow:0 10px 28px #24272c0a}
+.ik-site[data-template=e] .ik-plan-card :is(h3,.ik-plan-price strong,.ik-plan-speed strong){font-weight:500}
+.ik-site[data-template=e] [data-plan-brand]{--ik-plan-brand-color:var(--ik-accent)}
+/* Bright, quiet benefit surfaces retain the original six icons and content. */
+.ik-site[data-template=e] .ik-home-extras{color:var(--ik-text);background:var(--ik-surface)}
+.ik-site[data-template=e] .ik-home-extras :is(.ik-extras-eyebrow,.ik-benefit-icon,.ik-quote-mark){color:var(--glow)}
+.ik-site[data-template=e] .ik-benefit-card{background:var(--ik-bg);border-color:var(--ik-line)}
+.ik-site[data-template=e] .ik-benefit-card p{color:var(--ik-muted)}
+.ik-site[data-template=e] .ik-benefits::after{display:none}
+.ik-site[data-template=e] .ik-testimonial-card{background:var(--ik-bg);border-color:var(--ik-line)}
+.ik-site[data-template=e] .ik-home-extras :is(.ik-customer-role,.ik-testimonial-notice,.ik-testimonial-demo-label){color:var(--ik-muted);border-color:var(--ik-line)}
+/* About uses one small native-resolution network field, on generous white space. */
+.ik-site[data-template=e] .about{padding-block:80px;background:var(--ik-bg);border-block:1px solid var(--ik-line)}
+.ik-site[data-template=e] .about .ik-brand-i{background:var(--ik-accent);opacity:.055}
+.ik-site[data-template=e] .ik-story-company>.ik-story-atmosphere{opacity:.1;filter:grayscale(.7)}
+.ik-site[data-template=e] .portal{background:var(--ik-bg);padding-top:80px}
+.ik-site[data-template=e] .e-portal{background:var(--ik-surface);border-color:var(--ik-line)}
+/* Inner pages keep their edge-to-edge imagery and single text-side fade. */
+.ik-site[data-template=e] .ik-visual-slot::after{background:linear-gradient(160deg,#ffffff08,#ffffff22)}
+.ik-site[data-template=e] .e-hero-visual img{filter:saturate(.92)}
+.ik-site[data-template=e] .e-hero-quiet .e-hero-visual{opacity:.18}
+/* Complete footer hierarchy, now on a light neutral foundation. */
+.ik-site[data-template=e] .ik-footer{background:var(--ik-surface);color:var(--ik-muted);border-color:var(--ik-line)}
+.ik-site[data-template=e] .ik-footer h2{color:var(--ik-text)}
+.ik-site[data-template=e] .ik-footer-brand p{color:var(--ik-muted)}
+.ik-site[data-template=e] .ik-footer-bottom{border-color:var(--ik-line)}
+.ik-site[data-template=e] .ik-footer::before{opacity:.035;filter:grayscale(1)}
+/* The same support form and scripted engine, with a light E skin. */
+.ik-site[data-template=e] .ik-assistant{--as-bg:#fff;--as-soft:#f4f5f6;--as-text:#24272c;--as-muted:#5d646f;--as-line:#d7dbe0;--as-header:#fff;--as-header-text:#24272c;--as-red:#ce0c16;color-scheme:light}
+.ik-site[data-template=e] .ik-assistant-field-error{color:var(--as-red)}
+@media(hover:hover) and (pointer:fine){.ik-site[data-template=e] .ik-benefit-card:hover{background:#fff;border-color:#d7dbe0}}
+@media(max-width:767px){
+ .ik-site[data-template=e] .hero.ik-visual-backdrop::after{background:linear-gradient(180deg,#fffffff5,#f4f7f9e6 40%,#f1f5f866 70%,#fff)}
+ .ik-site[data-template=e] .about{padding-block:52px}
+ .ik-site[data-template=e] .portal{padding-top:52px}
+ .ik-site[data-template=e] .pane.ik-visual-backdrop>.ik-visual-picture img{object-position:75% center}
+}

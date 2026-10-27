@@ -1,5 +1,6 @@
 import {heroAsset,isHeroPhoto,editorialAssets,imageHTML} from './visual-map.js?v=4';
-import {mountCityExperience} from './city-experience.js?v=12';
+import {mountCityExperience} from './city-experience.js?v=13';
+import {mountCorporateLight} from './corporate-light.js?v=1';
 
 export function mountTemplateE({root,home}){
   if(root.dataset.template!=='e')return ()=>{};
@@ -18,14 +19,13 @@ export function mountTemplateE({root,home}){
       if(key){host.innerHTML=imageHTML(key,{sizes:'(max-width:767px) 100vw,65vw'});host.dataset.visualInstalled=key;host.closest('section')?.classList.add('e-editorial');}
     }
   }
-  const business=home.querySelector('.pane.biz');
-  if(business){business.querySelector('.ik-visual-picture')?.remove();business.insertAdjacentHTML('afterbegin',imageHTML('tower',{decorative:true,sizes:'(max-width:860px) 100vw,50vw'}));business.classList.add('e-business-architecture');}
+  const corporate=mountCorporateLight(root,home);
   const portal=home.querySelector('.portal-box');
   if(portal){portal.classList.add('e-portal');portal.insertAdjacentHTML('afterbegin',`<div class="e-portal-portrait">${imageHTML('portrait')}</div>`);}
   decorate();
   const observer=new root.ownerDocument.defaultView.MutationObserver(decorate);
   if(main)observer.observe(main,{childList:true});
   const city=mountCityExperience({hero:home.querySelector('.hero'),root});
-  return ()=>{observer.disconnect();city.destroy();};
+  return ()=>{observer.disconnect();city.destroy();corporate();};
 }
 if(typeof document!=='undefined'&&document.body.dataset.template==='e')mountTemplateE({root:document.body,home:document.querySelector('.ik-home')});
