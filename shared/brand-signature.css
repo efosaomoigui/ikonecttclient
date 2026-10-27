@@ -1,4 +1,9 @@
 /* Exact extracted dot-and-lightning symbol, used once per homepage. */
+.ik-site:is([data-template=a],[data-template=e]) [data-plan-brand]{--ik-plan-brand-color:#ed101a}
+.ik-site[data-template=e] [data-plan-brand]{--ik-plan-brand-color:#f6f1f1}
+.ik-site:is([data-template=a],[data-template=e]) .ik-plan-brand-prefix{position:relative;display:inline-block;color:transparent}
+.ik-site:is([data-template=a],[data-template=e]) .ik-plan-brand-prefix::before{content:"";position:absolute;left:50%;top:50%;height:1em;width:calc(1em * 59 / 221);transform:translate(-50%,-50%);background:var(--ik-plan-brand-color);mask:url('../assets/brand/ikonectt-i-mask.png') center/contain no-repeat;pointer-events:none}
+.ik-site:is([data-template=a],[data-template=e]) .ik-plan-brand-dash{color:var(--ik-plan-brand-color)}
 .ik-site:is([data-template=a],[data-template=e]) .ik-brand-story{position:relative;isolation:isolate;overflow:hidden}
 .ik-brand-story .ik-brand-i{position:absolute;display:block;height:200px;aspect-ratio:59/221;pointer-events:none;z-index:0;background:#ed101a;mask:url('../assets/brand/ikonectt-i-mask.png') center/contain no-repeat}
 .ik-site[data-template=a] #home-company.ik-brand-story>.ik-container{position:relative;z-index:1}

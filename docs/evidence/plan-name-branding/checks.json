@@ -1,0 +1,138 @@
+[
+  {
+    "template": "a",
+    "width": 1440,
+    "symbol": {
+      "color": "rgb(237, 16, 26)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/option-a/assets/ikonectt-i-mask-Fcl8ZEf9.png\")",
+      "height": "20px",
+      "width": "5.32812px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  },
+  {
+    "template": "a",
+    "width": 768,
+    "symbol": {
+      "color": "rgb(237, 16, 26)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/option-a/assets/ikonectt-i-mask-Fcl8ZEf9.png\")",
+      "height": "20px",
+      "width": "5.32812px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "symbol": {
+      "color": "rgb(237, 16, 26)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/option-a/assets/ikonectt-i-mask-Fcl8ZEf9.png\")",
+      "height": "20px",
+      "width": "5.32812px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  },
+  {
+    "template": "a",
+    "width": 320,
+    "symbol": {
+      "color": "rgb(237, 16, 26)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/option-a/assets/ikonectt-i-mask-Fcl8ZEf9.png\")",
+      "height": "20px",
+      "width": "5.32812px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "symbol": {
+      "color": "rgb(246, 241, 241)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/assets/brand/ikonectt-i-mask.png\")",
+      "height": "23px",
+      "width": "6.125px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 768,
+    "symbol": {
+      "color": "rgb(246, 241, 241)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/assets/brand/ikonectt-i-mask.png\")",
+      "height": "23px",
+      "width": "6.125px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "symbol": {
+      "color": "rgb(246, 241, 241)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/assets/brand/ikonectt-i-mask.png\")",
+      "height": "22px",
+      "width": "5.85938px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  },
+  {
+    "template": "e",
+    "width": 320,
+    "symbol": {
+      "color": "rgb(246, 241, 241)",
+      "mask": "url(\"http://127.0.0.1:3021/public_html/assets/brand/ikonectt-i-mask.png\")",
+      "height": "22px",
+      "width": "5.85938px"
+    },
+    "cardGeometryUnchanged": true,
+    "typeUnchanged": true,
+    "home": true,
+    "catalogue": true,
+    "details": true,
+    "audienceSwitch": true,
+    "errors": []
+  }
+]
