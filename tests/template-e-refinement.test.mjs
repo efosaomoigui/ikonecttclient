@@ -21,6 +21,7 @@ test('E refinement preserves template designs and shared application sources',()
     // 26 October: A's authorised campaign adapter regenerates the bundle/index.
     // Source markup, hero, logos, fonts and hero photos retain their protections.
     if(path==='public_html/option-a/index.html'||/^public_html\/option-a\/assets\/index-/.test(path))continue;
+    if(path==='option-a/src/App.tsx'){assert.equal(crypto.createHash('sha256').update(read(path).toString().replace(/\r\n/g,'\n')).digest('hex'),heroPreservationHash(path,expected,{normalized:true}),path);continue;}
     const buffer=read(path);let value=/\.(js|css|html|tsx|ts|md|json)$/.test(path)?Buffer.from(buffer.toString().replace(/\r\n/g,'\n')):buffer;
     if(path==='option-a/src/App.tsx')value=Buffer.from(value.toString().replace("import '../../shared/connectivity-story.css';\n",'').replace("import {mountConnectivityStory} from '../../shared/connectivity-story.js';\n",'').replace("    const story = mountConnectivityStory({root: root.current!, home: home.current!});\n",'').replace('story(); ',''));
     if(path==='option-a/src/App.tsx')value=Buffer.from(value.toString().replace("import '../../shared/brand-signature.css';\n",'').replace("import {mountBrandSignature} from '../../shared/brand-signature.js';\n",'').replace("    const signature = mountBrandSignature({root: root.current!, home: home.current!});\n",'').replace('signature(); ',''));
@@ -84,15 +85,24 @@ test('city render loop targets 30 FPS and pauses for user, visibility, route and
   f.root.dataset.route='support';await tick();assert.equal(f.queue.size,0);
   f.close();assert.equal(f.destroyed,1);assert.equal(f.hero.querySelector('h1').textContent,'Connectivity without limits.');
 });
-test('WebGL failure keeps the arc, readable HTML and navigation with a static fallback',async()=>{
-  const f=cityFixture({reject:true});await tick();assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.hero.dataset.cityReason,'webgl-unavailable');assert.ok(f.hero.querySelector('.horizon'));assert.ok(f.hero.querySelector('a[href="#coverage"]'));assert.equal(f.queue.size,0);f.close();
+test('signal-layer failure keeps the photograph, readable HTML and navigation with static paths',async()=>{
+  const f=cityFixture({reject:true});await tick();assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.hero.dataset.cityReason,'signal-layer-unavailable');assert.ok(f.hero.querySelector('.e-photo-network'));assert.ok(f.hero.querySelector('a[href="#coverage"]'));assert.equal(f.queue.size,0);f.close();
 });
 test('normal opening keeps the flat fallback reserved for failure and reduced motion',async()=>{
   const f=cityFixture();assert.equal(f.hero.dataset.cityState,'opening');
-  assert.equal(f.hero.querySelector('button').textContent,'Pause city & text');await tick();f.step(10);
+  assert.equal(f.hero.querySelector('button').textContent,'Pause hero');await tick();f.step(10);
   assert.equal(f.hero.dataset.cityState,'ready');f.reduce(true);assert.equal(f.hero.dataset.cityState,'fallback');
   f.reduce(false);f.step(10);assert.equal(f.hero.dataset.cityState,'ready');
-  f.hero.querySelector('button').click();assert.equal(f.hero.querySelector('button').textContent,'Resume city & text');f.close();
+  f.hero.querySelector('button').click();assert.equal(f.hero.querySelector('button').textContent,'Resume hero');f.close();
+});
+
+test('oval introduction gradually reveals the city on the same pausable clock',async()=>{
+ const f=cityFixture();await tick();assert.equal(f.hero.dataset.heroOpening,'oval');
+ f.step(120);const reveal=parseFloat(f.hero.style.getPropertyValue('--e-city-reveal'));
+ assert.ok(reveal>0&&reveal<1,reveal);
+ f.hero.querySelector('button').click();f.step(300);assert.equal(parseFloat(f.hero.style.getPropertyValue('--e-city-reveal')),reveal);
+ f.hero.querySelector('button').click();f.step(150);assert.equal(f.hero.dataset.heroOpening,'complete');assert.equal(f.hero.style.getPropertyValue('--e-city-reveal'),'1');f.close();
+ const reduced=cityFixture({reduced:true});assert.equal(reduced.hero.dataset.heroOpening,'complete');assert.equal(reduced.hero.style.getPropertyValue('--e-city-reveal'),'1');reduced.close();
 });
 test('headline dwell follows elapsed render time without accumulating scheduler remainder',async()=>{
   const f=cityFixture();await tick();f.step(450);

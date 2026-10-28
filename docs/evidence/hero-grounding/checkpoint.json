@@ -1,0 +1,69 @@
+{
+  "direction": "Local review only: oval-to-city hero opening, slower signals, distinct E coverage address desk and reference-inspired price-header plan cards. Preserve A and shared customer journeys. Subsequently authorised: A-only public price-card assets with a white/gray variant; the native HTML adds their stylesheet and deferred script. 28 October: client-supplied newimages is authoritative; retain original A hero slides and append one family slide, vary existing people-photo fields, narrow E fades, enable shared assets in A live development. General polish explicitly authorised: global A/E Poppins/Nunito type, compact inner heroes, inner price cards, loader and Lax/Lenis; E three-scene hero with longer city dwell; A building tile and family second slide. Core journeys/catalogue remain unchanged. Client clarified the exact A hero woman: red cushion-only recolor in responsive originals, shared with E portal portrait. Originals retained. Local client follow-up: E Business second image removed from view, supplied everyday-couple panel, white source raised 14px, shorter A home hero and dark city/translucent benefit cards across A/E. Client requested grey replacing E pink plan background and supplied rooftop photograph replacing repeated city benefit backdrop.",
+  "files": {
+    "option-a/src/components/pages/HomePage.tsx": {
+      "sha256": "2575924aeff18524408df91103469ba67c147441f0b0ca8689bd5409a9fae016",
+      "sha256LF": "aea1adfcce21aa7c79ae46e001e8f46efc46d10b27dbd5fc5aa178a4742ffbc3"
+    },
+    "shared/campaign.js": {
+      "sha256": "8fcb90cc302c6687f31a632d5935d0f542961109f6d2e97af47597999ed16a79",
+      "sha256LF": "8fcb90cc302c6687f31a632d5935d0f542961109f6d2e97af47597999ed16a79"
+    },
+    "option-e/index.html": {
+      "sha256": "7f79af7d3c95a77dc3542d9cbaf91f68bda89a29f02ba5a2a238403f148813e8",
+      "sha256LF": "7f79af7d3c95a77dc3542d9cbaf91f68bda89a29f02ba5a2a238403f148813e8"
+    },
+    "option-e/corporate-light.js": {
+      "sha256": "a0557caaf8984d39be7eeb0488cfa7c07c15b8fff2266631d6ec4f919c05ba5a",
+      "sha256LF": "a0557caaf8984d39be7eeb0488cfa7c07c15b8fff2266631d6ec4f919c05ba5a"
+    },
+    "option-e/corporate-light.css": {
+      "sha256": "63d13bbdd3fa8021593d6fe17e4de7395f8ebc4cabf7bfa4025b5af4301b1e38",
+      "sha256LF": "63d13bbdd3fa8021593d6fe17e4de7395f8ebc4cabf7bfa4025b5af4301b1e38"
+    },
+    "option-e/refinement.js": {
+      "sha256": "0f59062e388d644878d6a09c513e3a8233b298fe7ba6d11f6212b7eec5da2834",
+      "sha256LF": "0f59062e388d644878d6a09c513e3a8233b298fe7ba6d11f6212b7eec5da2834"
+    },
+    "option-e/city-experience.js": {
+      "sha256": "0c2b8bd77a49b49f52c398fd2be495f2b7704c7cb1ec12b9d1ce47f6dc8bcda2",
+      "sha256LF": "0c2b8bd77a49b49f52c398fd2be495f2b7704c7cb1ec12b9d1ce47f6dc8bcda2"
+    },
+    "option-e/photo-network.js": {
+      "sha256": "51e8996c930307a1daf16c9522c79fd14c18ff6ededf6d1e73ced72bed39473a",
+      "sha256LF": "51e8996c930307a1daf16c9522c79fd14c18ff6ededf6d1e73ced72bed39473a"
+    },
+    "option-e/homepage-sections.js": {
+      "sha256": "aa27777a193e04b9466873d1b3f7c9c950effcd35fdb7eb74761d69da4dcaa11",
+      "sha256LF": "aa27777a193e04b9466873d1b3f7c9c950effcd35fdb7eb74761d69da4dcaa11"
+    },
+    "option-a/index.html": {
+      "sha256": "658ca3f0f9dfe69637e9d0fe0c267af890e74ce00bcf5d1ed1a0ac7f9a69a0d0",
+      "sha256LF": "658ca3f0f9dfe69637e9d0fe0c267af890e74ce00bcf5d1ed1a0ac7f9a69a0d0"
+    },
+    "option-a/vite.config.ts": {
+      "sha256": "1be13a30c06988f00ca7409a1a030acf482a5834983d47fc66b1f59ab540a097",
+      "sha256LF": "899d64305d0a2e75cb759454c008a0fadde8cd920ed90caa4aa86b25dea08fcb"
+    },
+    "option-a/src/components/ui/hero-slides.js": {
+      "sha256": "ac45f4bb76363608daf252f9216af52fee022b74bca21fd6a8d1f87089b155d3",
+      "sha256LF": "ac45f4bb76363608daf252f9216af52fee022b74bca21fd6a8d1f87089b155d3"
+    },
+    "option-e/visual-map.js": {
+      "sha256": "bcd380964bf02cf9866f21a85785926c0426be033d4f936761fc6551276cde85",
+      "sha256LF": "bcd380964bf02cf9866f21a85785926c0426be033d4f936761fc6551276cde85"
+    },
+    "shared/campaign.css": {
+      "sha256": "3cdfed8784831335f71dd33522e3b2881ad871bae0c974a19f539beafae87ab0",
+      "sha256LF": "3cdfed8784831335f71dd33522e3b2881ad871bae0c974a19f539beafae87ab0"
+    },
+    "option-a/src/App.tsx": {
+      "sha256": "23c595ed1ba4def9672139ad40f3faf7b8f00cc24ccd2ca58b05d8227b0c5f5f",
+      "sha256LF": "b75d49648efbe1fc9185899847c85c14827a003406445c0d1a0781ee0aae539c"
+    },
+    "shared/design-preview.js": {
+      "sha256": "dc6e93c046062ff08155835cea37789cb1b362b81198da7f23f2ff1b11b8285a",
+      "sha256LF": "33f658468842e55243c09ce5ad26fce508fc6d89ae4178ca657d3e79005d6e91"
+    }
+  }
+}

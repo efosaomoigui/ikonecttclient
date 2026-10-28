@@ -1,0 +1,66 @@
+{
+  "mode": "Built-in image_gen",
+  "prompts": {
+    "desktopAndMobile": "Use case: precise-object-edit. Edit target: the supplied existing wide photograph for a website hero. Change ONLY the two solid brown throw cushions behind the woman's left side to a rich vivid Ikonectt red woven fabric (around #e50920), retaining their original fabric texture, seams, folds, shadows and shape. Keep the black-and-cream patterned cushion unchanged. Preserve the woman's face, identity, hair, hands, cream clothing, pose, laptop, beige sofa, blanket, table, room, lighting, exact camera composition and wide aspect ratio. No new people, objects, graphics, lettering, logos, or watermark. This is a subtle cushion recolor, not a redesigned scene. Keep every other part unchanged.",
+    "medium": "Use case: precise-object-edit. Edit target: the supplied existing photograph of the woman seated using a laptop. Change ONLY the visible upholstered sofa back cushions behind the woman on the right into a rich vivid Ikonectt red woven fabric (#e50920). Retain fabric texture, seams, folds, lighting, shadows and exact shape. Leave the sofa arm, base, blanket and all other upholstery neutral beige. Preserve the woman's identity, face, hair, hands, cream clothing, pose, laptop, furniture, room, lighting, exact camera composition and aspect ratio. No new people, objects, graphics, lettering, logos or watermark. This is a cushion recolor, not a redesigned scene."
+  },
+  "variants": [
+    {
+      "kind": "desktop",
+      "file": "exec-c29252c2-20c3-46ea-acaf-7ff959de088f.png",
+      "widths": [
+        1024,
+        1672
+      ],
+      "stem": "a-h01-residential-woman-desktop-red-cushions-v1",
+      "master": "assets/review/red-cushions/a-h01-residential-woman-desktop-red-cushions-v1.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "280be2803b27e09f0c992b922d11271cc8f61962689c5bff2a8e720569276066",
+      "exports": [
+        "option-a/public/images/template-a/a-h01-residential-woman-desktop-red-cushions-v1-1024.webp",
+        "option-a/public/images/template-a/a-h01-residential-woman-desktop-red-cushions-v1-1672.webp"
+      ]
+    },
+    {
+      "kind": "medium",
+      "file": "exec-72c06379-37ed-4659-9a6e-6f2a54a0ebba.png",
+      "widths": [
+        960,
+        1448
+      ],
+      "stem": "a-h01-residential-woman-medium-red-cushions-v1",
+      "master": "assets/review/red-cushions/a-h01-residential-woman-medium-red-cushions-v1.png",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "sha256": "e924bc66c44171fca72f2bbaa03cc42bd25a80cd73902cf26543998177c66e4f",
+      "exports": [
+        "option-a/public/images/template-a/a-h01-residential-woman-medium-red-cushions-v1-960.webp",
+        "option-a/public/images/template-a/a-h01-residential-woman-medium-red-cushions-v1-1448.webp"
+      ]
+    },
+    {
+      "kind": "mobile",
+      "file": "exec-297e9490-a278-4d67-9a5f-db60ea23b2ce.png",
+      "widths": [
+        640,
+        941
+      ],
+      "stem": "a-h01-residential-woman-mobile-red-cushions-v1",
+      "master": "assets/review/red-cushions/a-h01-residential-woman-mobile-red-cushions-v1.png",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "sha256": "39fa9a383a95cbf9ada5ad7643af495ae99eb510c2d905f99643201ccc886b08",
+      "exports": [
+        "option-a/public/images/template-a/a-h01-residential-woman-mobile-red-cushions-v1-640.webp",
+        "option-a/public/images/template-a/a-h01-residential-woman-mobile-red-cushions-v1-941.webp"
+      ]
+    }
+  ]
+}

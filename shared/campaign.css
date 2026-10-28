@@ -27,3 +27,9 @@
  .ik-site[data-template=a] #home-portal .ik-campaign-picture img{object-position:65% center}
  .ik-site[data-template=a] #home-portal .ik-campaign-picture::after{background:linear-gradient(0deg,transparent 88%,#f1f2f4)}
 }
+
+/* Client-supplied scenes remain full photographs with their furniture and setting. */
+.ik-site[data-template=a] .ik-campaign-family>[data-client-image]{inset:0;width:100%;max-width:none;height:100%;aspect-ratio:auto;mask-image:none}
+.ik-site[data-template=a] .ik-campaign-family>[data-client-image] img{object-fit:cover;object-position:var(--client-photo-position)}
+
+.ik-site:is([data-template=a],[data-template=e]) #ik-main .ik-flush-family .ik-campaign-family>[data-client-image] img{object-position:var(--client-photo-position,50% 0%)}

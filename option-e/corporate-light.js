@@ -1,10 +1,6 @@
-// E-only presentation: reuse approved photography and the original red logo.
+// E-only presentation. Retain E's room/architecture photography and red logo.
+import {imageHTML} from './visual-map.js?v=5';
 const redLogo=new URL('../assets/logos/ikonectt_transparent.png',import.meta.url).href;
-const approved={family:{stem:'a-h02-connected-family-medium-v1',widths:[960,1448],height:1086},business:{stem:'a-h03-business-collaboration-desktop-v3',widths:[1024,1672],height:941}};
-export function approvedPeoplePicture(key){
- const {stem,widths,height}=approved[key],width=widths.at(-1),url=width=>new URL(`../option-a/images/template-a/${stem}-${width}.webp`,import.meta.url).href;
- return `<picture class="ik-visual-picture" data-e-people="${key}"><img src="${url(width)}" srcset="${widths.map(w=>`${url(w)} ${w}w`).join(',')}" sizes="(max-width:860px) 100vw,50vw" width="${width}" height="${height}" alt="" loading="lazy" decoding="async"></picture>`;
-}
 export function mountCorporateLight(root,home){
  if(root.dataset.template!=='e')return ()=>{};
  const originals=new Map();
@@ -14,10 +10,10 @@ export function mountCorporateLight(root,home){
   }
  }
  logos();
- for(const [selector,key] of [['.pane.res','family'],['.pane.biz','business']]){
+ for(const [selector,key] of [['.pane.res','client-everyday-couple'],['.pane.biz','tower']]){
   const pane=home.querySelector(selector);if(!pane)continue;
   pane.querySelector(':scope>.ik-visual-picture')?.remove();
-  pane.insertAdjacentHTML('afterbegin',approvedPeoplePicture(key));
+  pane.insertAdjacentHTML('afterbegin',imageHTML(key,{decorative:true,sizes:'(max-width:860px) 100vw,50vw'}));
  }
  // Conversation avatars arrive progressively; changing their logo has no session effects.
  const observer=new root.ownerDocument.defaultView.MutationObserver(logos);

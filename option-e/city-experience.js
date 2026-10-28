@@ -1,19 +1,34 @@
+import {photoNetworkHTML,layoutPhotoNetwork} from './photo-network.js?v=4';
 export const cityMessages=['Connectivity without limits.','A city powered by connection.','Your world. Always connected.'];
 export const canAnimate=state=>state.visible&&state.onscreen&&!state.reduced&&!state.paused&&!state.failed;
 
-export function mountCityExperience({hero,root,loadCity=()=>import('./city-three.js?v=12'),delay=700}){
+export function mountCityExperience({hero,root,loadCity=()=>import('./photo-network.js?v=4'),delay=200,onFrame=()=>{}}){
   if(!hero)return {destroy(){}};
   const win=root.ownerDocument.defaultView,doc=root.ownerDocument,abort=new win.AbortController(),opts={signal:abort.signal};
   const reduced=win.matchMedia('(prefers-reduced-motion:reduce)'),mobile=win.matchMedia('(max-width:1023px)').matches;
   const constrained=Boolean(win.navigator.connection?.saveData)||(win.navigator.deviceMemory&&win.navigator.deviceMemory<=2)||(win.navigator.hardwareConcurrency&&win.navigator.hardwareConcurrency<=2);
   const forcedOff=new URL(win.location.href).searchParams.get('e-city')==='off';
   const state={visible:!doc.hidden,onscreen:root.dataset.route==='home',reduced:reduced.matches,paused:false,failed:false};
+  let openingFinished=reduced.matches||constrained||forcedOff;
+  const openingDuration=3.8;
+  function paintOpening(seconds,instant=false){
+    if(instant)openingFinished=true;
+    const ease=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
+    const reveal=openingFinished?1:ease((seconds-1.2)/2.6);
+    if(reveal===1)openingFinished=true;
+    const oval=(.15+.7*ease(seconds/1.2))*(1-reveal)+(.25+.08*Math.sin(seconds*.5)**2)*reveal;
+    hero.style.setProperty('--e-city-reveal',String(reveal));
+    hero.style.setProperty('--e-oval-rise',(openingFinished?0:(1-ease(seconds/1.6))*70)+'px');
+    hero.style.setProperty('--e-oval-opacity',String(oval));
+    const phase=openingFinished?'complete':'oval';if(hero.dataset.heroOpening!==phase)hero.dataset.heroOpening=phase;
+  }
   const field=doc.createElement('div');field.className='e-city-field';field.setAttribute('aria-hidden','true');
-  field.innerHTML='<img class="e-city-fallback" src="'+new URL('./city-fallback.svg?v=2',import.meta.url).href+'" width="1200" height="650" alt=""><span class="e-city-static-source"></span>';hero.append(field);
+  field.innerHTML=photoNetworkHTML();hero.append(field);layoutPhotoNetwork(field);
+  paintOpening(0);
   hero.dataset.cityState=reduced.matches||constrained||forcedOff?'fallback':'opening';
   const heading=hero.querySelector('h1'),original=heading?.textContent||cityMessages[0];
   if(heading){heading.classList.add('e-headline');heading.setAttribute('aria-label',original);heading.replaceChildren(...cityMessages.map((text,i)=>{const span=doc.createElement('span');span.textContent=text;span.setAttribute('aria-hidden','true');span.dataset.active=String(i===0);return span;}));}
-  const pause=doc.createElement('button');pause.className='e-city-pause';pause.type='button';pause.textContent='Pause city & text';pause.title='Pauses the city animation, red arc and changing headline.';pause.setAttribute('aria-pressed','false');pause.hidden=reduced.matches;hero.append(pause);
+  const pause=doc.createElement('button');pause.className='e-city-pause';pause.type='button';pause.textContent='Pause hero';pause.title='Pauses the slideshow, network signals and changing headline.';pause.setAttribute('aria-pressed','false');pause.hidden=reduced.matches;hero.append(pause);
   let engine,loading=false,stopped=false,readyToLoad=false,raf=0,last=0,lastRender=0,elapsed=0,lastMessage=0,message=0,frameCount=0,renderTotal=0,sampleStart=0,sampleFrames=0,lastStats=0,simplified=false,lowFPSWindows=0;
   const started=win.performance.now();
   const metrics={frames:0,readyMs:null,drawCalls:0,triangles:0,meanRenderMs:0,sampledFPS:null,slowFrames:0,mode:mobile?'mobile':'desktop',longTasks:null,maxLongTaskMs:null,jsHeapMB:null};
@@ -22,7 +37,7 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
   if(win.PerformanceObserver?.supportedEntryTypes?.includes('longtask')){
     metrics.longTasks=0;metrics.maxLongTaskMs=0;taskObserver=new win.PerformanceObserver(list=>{for(const entry of list.getEntries()){metrics.longTasks++;metrics.maxLongTaskMs=Math.max(metrics.maxLongTaskMs,Math.round(entry.duration));}publish();});taskObserver.observe({type:'longtask',buffered:true});
   }
-  function fail(reason){state.failed=true;hero.dataset.cityState='fallback';hero.dataset.cityReason=reason;cancel();engine?.destroy();engine=null;publish();}
+  function fail(reason){state.failed=true;paintOpening(0,true);hero.dataset.cityState='fallback';hero.dataset.cityReason=reason;cancel();engine?.destroy();engine=null;publish();}
   function cancel(){if(raf){win.cancelAnimationFrame(raf);raf=0;}last=0;lastRender=0;sampleFrames=0;}
   function current(){state.visible=!doc.hidden;state.onscreen=root.dataset.route==='home'&&intersecting;return canAnimate(state);}
   let intersecting=true;
@@ -34,7 +49,7 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
       if(!current()){loading=false;hero.dataset.cityState=state.reduced?'fallback':'opening';return;}
       engine=await module.createCityRenderer(field,{mobile});if(stopped){engine.destroy();return;}
       metrics.readyMs=Math.round(win.performance.now()-started);loading=false;publish();update();
-    }catch(error){loading=false;if(!stopped)fail('webgl-unavailable');}
+    }catch(error){loading=false;if(!stopped)fail('signal-layer-unavailable');}
   }
   function frame(now){
     raf=0;if(!current()||stopped||!engine)return;
@@ -42,7 +57,9 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
     const delta=now-last,interval=1000/30;
     if(delta>=interval-.4){
       last=now-(delta>=interval?delta%interval:0);elapsed+=Math.min(now-lastRender,100)/1000;lastRender=now;
-      const before=win.performance.now(),info=engine.render(elapsed),cost=win.performance.now()-before;
+      paintOpening(elapsed);
+      const before=win.performance.now(),info=engine.render(Math.max(0,elapsed-openingDuration)),cost=win.performance.now()-before;
+      onFrame(elapsed,info);
       Object.assign(metrics,info);frameCount++;sampleFrames++;renderTotal+=cost;metrics.frames=frameCount;metrics.meanRenderMs=Math.round(renderTotal/frameCount*100)/100;if(cost>16)metrics.slowFrames++;
       if(hero.dataset.cityState!=='ready')hero.dataset.cityState='ready';
       if(elapsed-lastMessage>=8){lastMessage=elapsed;message=(message+1)%cityMessages.length;heading?.querySelectorAll('span').forEach((span,i)=>span.dataset.active=String(i===message));}
@@ -60,14 +77,16 @@ export function mountCityExperience({hero,root,loadCity=()=>import('./city-three
     raf=win.requestAnimationFrame(frame);
   }
   function update(){
+    layoutPhotoNetwork(field);
     const active=current();hero.dataset.cityPaused=String(!state.visible||!state.onscreen||state.reduced||state.paused);pause.hidden=state.reduced;
     if(active){if(engine&&!raf)raf=win.requestAnimationFrame(frame);else load();}else cancel();
   }
-  pause.addEventListener('click',()=>{state.paused=!state.paused;pause.textContent=state.paused?'Resume city & text':'Pause city & text';pause.title=state.paused?'Resumes the city animation, red arc and changing headline.':'Pauses the city animation, red arc and changing headline.';pause.setAttribute('aria-pressed',String(state.paused));update();},opts);
+  hero.addEventListener('e:pause-hero',()=>{if(!state.paused)pause.click();},opts);
+  pause.addEventListener('click',()=>{state.paused=!state.paused;pause.textContent=state.paused?'Resume hero':'Pause hero';pause.title=state.paused?'Resumes the slideshow, network signals and changing headline.':'Pauses the slideshow, network signals and changing headline.';pause.setAttribute('aria-pressed',String(state.paused));update();},opts);
   doc.addEventListener('visibilitychange',update,opts);
   field.addEventListener('e:city-failed',()=>fail('context-lost'),opts);
-  win.addEventListener('resize',()=>{engine?.resize();},opts);
-  const onReduced=()=>{state.reduced=reduced.matches;if(state.reduced){hero.dataset.cityState='fallback';message=0;heading?.querySelectorAll('span').forEach((span,i)=>span.dataset.active=String(i===0));}else if(!state.failed&&!constrained&&!forcedOff){hero.dataset.cityState='opening';}update();};
+  win.addEventListener('resize',()=>{layoutPhotoNetwork(field);engine?.resize();},opts);
+  const onReduced=()=>{state.reduced=reduced.matches;if(state.reduced){paintOpening(elapsed,true);hero.dataset.cityState='fallback';message=0;heading?.querySelectorAll('span').forEach((span,i)=>span.dataset.active=String(i===0));}else if(!state.failed&&!constrained&&!forcedOff){hero.dataset.cityState='opening';}update();};
   reduced.addEventListener?.('change',onReduced);
   const routeObserver=new win.MutationObserver(update);routeObserver.observe(root,{attributes:true,attributeFilter:['data-route']});
   const intersection=win.IntersectionObserver?new win.IntersectionObserver(entries=>{intersecting=entries[0].isIntersecting;update();},{threshold:.05}):null;intersection?.observe(hero);

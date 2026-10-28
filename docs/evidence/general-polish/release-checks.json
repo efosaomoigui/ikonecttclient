@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "template": "a",
+      "errors": [],
+      "failed": [],
+      "passed": true
+    },
+    {
+      "template": "e",
+      "errors": [],
+      "failed": [],
+      "passed": true
+    }
+  ]
+}

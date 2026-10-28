@@ -4,11 +4,14 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
+// Optional live A source preview. Packaged/static delivery remains the default.
+const A_DEV_URL = process.env.IKONECTT_A_DEV_URL;
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
   '.json': 'application/json',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
@@ -26,6 +29,15 @@ const server = http.createServer((req, res) => {
   let reqPath = decodeURI(req.url.split('?')[0]);
   if (reqPath === '/' || reqPath === '') {
     reqPath = '/index.html';
+  }
+
+  if (A_DEV_URL && /^\/(?:public_html\/)?option-a\/(?:index\.html)?$/.test(reqPath)) {
+    const target = new URL(A_DEV_URL);
+    target.search = new URL(req.url, 'http://localhost').search;
+    // Omit a fragment so the browser retains the visitor's current #/ route.
+    res.writeHead(302, {Location: target.href, 'Cache-Control': 'no-store'});
+    res.end();
+    return;
   }
 
   // React templates need their Vite builds; their source index.html cannot run

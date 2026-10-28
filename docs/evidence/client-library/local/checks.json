@@ -1,0 +1,74 @@
+[
+  {
+    "width": 1440,
+    "errors": [],
+    "failed": [],
+    "vivid": {
+      "opacity": "1",
+      "filter": "none"
+    },
+    "originalHeroesRetained": true,
+    "newHeroWraparound": true,
+    "coverageJourney": true
+  },
+  {
+    "width": 1280,
+    "errors": [],
+    "failed": [],
+    "vivid": {
+      "opacity": "1",
+      "filter": "none"
+    },
+    "originalHeroesRetained": true,
+    "newHeroWraparound": true,
+    "coverageJourney": true
+  },
+  {
+    "width": 1024,
+    "errors": [],
+    "failed": [],
+    "vivid": {
+      "opacity": "1",
+      "filter": "none"
+    },
+    "originalHeroesRetained": true,
+    "newHeroWraparound": true,
+    "coverageJourney": true
+  },
+  {
+    "width": 768,
+    "errors": [],
+    "failed": [],
+    "vivid": {
+      "opacity": "1",
+      "filter": "none"
+    },
+    "originalHeroesRetained": true,
+    "newHeroWraparound": true,
+    "coverageJourney": true
+  },
+  {
+    "width": 390,
+    "errors": [],
+    "failed": [],
+    "vivid": {
+      "opacity": "1",
+      "filter": "none"
+    },
+    "originalHeroesRetained": true,
+    "newHeroWraparound": true,
+    "coverageJourney": true
+  },
+  {
+    "width": 320,
+    "errors": [],
+    "failed": [],
+    "vivid": {
+      "opacity": "1",
+      "filter": "none"
+    },
+    "originalHeroesRetained": true,
+    "newHeroWraparound": true,
+    "coverageJourney": true
+  }
+]

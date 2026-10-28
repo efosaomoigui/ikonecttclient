@@ -1,0 +1,107 @@
+@import './polish-fonts.css';
+@import './vendor/lenis.css';
+.ik-site:is([data-template=a],[data-template=e]) .ik-review-copy-hidden{display:none!important}
+.ik-site:is([data-template=a],[data-template=e]) .ik-carousel-status{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+.ik-site:is([data-template=a],[data-template=e]).ik-polished{--font-sans:'Nunito Sans',sans-serif;--font-display:'Poppins',sans-serif;--ik-heading-font:'Poppins',sans-serif;--font:'Nunito Sans',sans-serif;font-family:'Nunito Sans',sans-serif;font-weight:400}
+.ik-site:is([data-template=a],[data-template=e]).ik-polished :is(h1,h2,h3){font-family:'Poppins',sans-serif;letter-spacing:-.025em}
+.ik-site.ik-polished .ik-page-hero h1{font-weight:600}
+.ik-brand-loader{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#fff;pointer-events:none;transition:opacity .22s;animation:ik-loader-failsafe .2s 2s forwards}
+.ik-brand-loader[data-ready=true]{opacity:0}
+.ik-loader-symbol{position:relative;width:100px;height:100px;display:grid;place-items:center}
+.ik-loader-symbol::before{content:'';display:block;width:23px;height:86px;background:#ed101a;mask:url('../assets/brand/ikonectt-i-mask.png') center/contain no-repeat}
+.ik-loader-symbol::after{content:'';position:absolute;inset:-12px;border:2px solid #ed101a18;border-top-color:#ed101a;border-right-color:#ed101a;border-radius:50%;animation:ik-loader-spin .85s linear infinite}
+@keyframes ik-loader-spin{to{transform:rotate(360deg)}}@keyframes ik-loader-failsafe{to{opacity:0;visibility:hidden}}
+.ik-site:is([data-template=a],[data-template=e]).ik-polished #home-benefits{background:#20262e;color:#fff}
+.ik-site.ik-polished #home-benefits .ik-extras-eyebrow{color:#ff8891}
+.ik-site.ik-polished #home-benefits .ik-benefit-card{background:rgba(25,35,48,.58);border:1px solid #ffffff30;box-shadow:0 8px 26px #00000018;border-radius:8px;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.ik-site.ik-polished #home-benefits .ik-benefit-card h3{color:#fff;font-weight:600;font-size:20px}
+.ik-site.ik-polished #home-benefits .ik-benefit-card p{color:#d7dce4}
+.ik-site.ik-polished #home-benefits .ik-benefit-icon{width:52px;height:52px;stroke-width:1.6;color:#ff7b86;margin-bottom:24px}
+.ik-site:is([data-template=a],[data-template=e]).ik-polished #ik-main .ik-panel{padding:28px}
+.ik-site:is([data-template=a],[data-template=e]).ik-polished .ik-card-icon{display:block;flex:none;width:52px;height:52px;margin:0 0 24px;color:#ed101a}
+@media(max-width:767px){
+ .ik-site:is([data-template=a],[data-template=e]).ik-polished #ik-main .ik-panel{padding:24px}
+ .ik-site:is([data-template=a],[data-template=e]).ik-polished .ik-card-icon{width:48px;height:48px}
+}
+.ik-site.ik-polished #home-benefits>.ik-story-atmosphere{opacity:.25;mask-image:linear-gradient(90deg,transparent,#000)}
+.ik-site.ik-polished #home-benefits>.ik-polish-benefit-photo{position:absolute;inset:0;z-index:-1;opacity:1;pointer-events:none;overflow:hidden}
+.ik-site.ik-polished #home-benefits>.ik-polish-benefit-photo :is(picture,img){position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 56%}
+.ik-polish-benefit-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,#0c1625bd,#0c162578),linear-gradient(0deg,#0c162580,transparent 70%)}
+@media(hover:hover){.ik-site.ik-polished #home-benefits .ik-benefit-card:hover{background:rgba(35,47,61,.72);border-color:#ffffff60;box-shadow:0 12px 30px #00000030}}
+.ik-site.ik-polished #home-benefits::after{display:none}
+/* One compact editorial header followed by a text-led introduction. */
+.ik-site:is([data-template=a],[data-template=e]).ik-polished #ik-main .ik-polish-inner-hero{padding-block:38px;min-height:260px;position:relative;isolation:isolate;overflow:hidden}
+.ik-site.ik-polished #ik-main .ik-polish-inner-hero>.ik-wrap{position:relative;z-index:2;padding-right:44%}
+.ik-site.ik-polished #ik-main .ik-polish-inner-hero h1{font-size:clamp(32px,3.3vw,46px);line-height:1.18;max-width:27ch;text-wrap:balance}
+.ik-site.ik-polished #ik-main .ik-polish-inner-hero .ik-breadcrumbs{margin-bottom:20px}
+.ik-site.ik-polished #ik-main .ik-polish-inner-hero p{font-size:18px;line-height:1.55;margin-top:20px;max-width:50ch}
+.ik-site.ik-polished #ik-main .ik-polish-inner-visual{position:absolute;inset:0 0 0 48%;z-index:-1;pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 25%)}
+.ik-polish-inner-visual>picture,.ik-polish-inner-visual img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:76% 42%}
+.ik-polish-inner-visual>.ik-polish-inner-picture img{object-fit:cover;max-width:832px;margin-left:auto;object-position:right center}
+.ik-site.ik-polished #ik-main .ik-polish-intro{display:block;min-height:0;padding-block:48px;background:#fff}
+.ik-site.ik-polished #ik-main .ik-polish-intro .ik-editorial{display:block;max-width:900px}
+.ik-site.ik-polished #ik-main .ik-polish-intro .ik-editorial h2{font-size:clamp(26px,2.5vw,34px)}
+.ik-site.ik-polished #ik-main .ik-polish-intro .ik-editorial p{max-width:65ch}
+/* The approved price-ribbon card is repeated through every catalogue/detail. */
+.ik-site.ik-polished #ik-main .ik-plan-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.ik-site.ik-polished #ik-main .ik-polish-price-card{display:flex;flex-direction:column;align-items:stretch;position:relative;padding:0 28px 28px;border:1px solid #e1e3e7;border-radius:12px;background:#fff;color:#25282e;overflow:hidden;text-align:center;box-shadow:none;min-height:480px}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-card-top{display:none}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-price{position:relative;margin:0 -28px 30px;padding:19px 10px;background:#d90e18;color:#fff;white-space:nowrap;line-height:1.3}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-price::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:11px solid transparent;border-top-color:#d90e18}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-price strong{font:600 28px 'Nunito Sans',sans-serif;color:#fff}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-price span{font-size:13px;color:#fff}
+.ik-site.ik-polished #ik-main .ik-polish-price-card :is(h2,h3){font-size:27px;font-weight:400;margin:0 0 20px;color:#24272c}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-speed{margin:0}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-speed strong{font-size:48px;font-weight:600;color:#25282e}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-speed span{font-size:13px;color:#62626a}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-plan-attributes{padding:0;border:0;margin:22px 0 0;gap:8px;font-size:14px;color:#62626a}
+.ik-site.ik-polished #ik-main .ik-polish-price-card li{justify-content:center}
+.ik-polish-card-network{margin:22px 0 24px;border-bottom:1px solid #ed101a40;color:#ed101a;line-height:0}
+.ik-polish-card-network svg{display:block;width:90px;height:62px;margin:0 auto -1px;background:white}
+.ik-site.ik-polished #ik-main .ik-polish-price-card :is(.ik-plan-card-actions,.ik-actions){display:grid;margin-top:auto;gap:8px;justify-content:stretch}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-button{border-radius:24px;padding:11px 14px;min-height:44px;font-size:14px}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-button:not(.ik-button-secondary){background:#d90e18;border:1px solid #d90e18;color:#fff}
+.ik-site.ik-polished #ik-main .ik-polish-price-card .ik-button-secondary{border:0;background:none;text-decoration:underline;text-underline-offset:4px;color:#24272c}
+.ik-site.ik-polished #ik-main .ik-plan-detail{grid-template-columns:1fr 1.1fr;max-width:1000px;margin:auto}
+.ik-site.ik-polished #ik-main .ik-polish-compare-cards{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:32px}
+.ik-site.ik-polished #ik-main .ik-polish-price-card>p.ik-muted{margin-top:20px;font-size:14px}
+.ik-site.ik-polished #ik-main .ik-polish-price-card [data-plan-brand]{--ik-plan-brand-color:#ed101a}
+/* E's company story uses a supplied physical emblem photograph. */
+.ik-site[data-template=e].ik-polished .about{position:relative;isolation:isolate;min-height:330px}
+.ik-site[data-template=e].ik-polished .about .wrap{position:relative;z-index:2}
+.ik-site[data-template=e].ik-polished .about :is(.ik-brand-i,.ik-story-atmosphere){display:none}
+.ik-site[data-template=e].ik-polished .about::after{display:none}
+.ik-polish-brand-photo{position:absolute;inset:0 0 0 52%;z-index:-1;pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 24%)}
+.ik-polish-brand-photo picture,.ik-polish-brand-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.ik-site[data-template=e].ik-polished .about .wrap>div:first-child{max-width:50%}
+@media(max-width:1023px){.ik-site.ik-polished #ik-main .ik-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767px){
+ .ik-site.ik-polished #ik-main .ik-polish-inner-hero{min-height:0;padding:30px 0 0}
+ .ik-site.ik-polished #ik-main .ik-polish-inner-hero>.ik-wrap{padding-right:24px}
+ .ik-site.ik-polished #ik-main .ik-polish-inner-hero h1{font-size:32px;max-width:24ch}
+ .ik-site.ik-polished #ik-main .ik-polish-inner-visual{position:relative;inset:auto;width:100%;height:175px;margin-top:24px;mask-image:none}
+ .ik-site.ik-polished #ik-main .e-hero-visual{height:175px}
+ .ik-site.ik-polished #ik-main .ik-polish-intro{padding-block:36px}
+ .ik-site.ik-polished #ik-main .ik-plan-grid,.ik-site.ik-polished #ik-main .ik-polish-compare-cards{grid-template-columns:1fr}
+ .ik-site.ik-polished #ik-main .ik-polish-price-card{min-height:460px}
+ .ik-site.ik-polished #ik-main .ik-plan-detail{grid-template-columns:1fr;gap:32px}
+ .ik-site.ik-polished #home-benefits .ik-benefit-icon{width:48px;height:48px}
+ .ik-site[data-template=e].ik-polished .about{padding-bottom:230px}
+ .ik-site[data-template=e].ik-polished .about .wrap>div:first-child{max-width:none}
+ .ik-polish-brand-photo{inset:auto 0 0;height:210px;mask-image:none}
+}
+@media(prefers-reduced-motion:reduce){.ik-loader-symbol::after{animation:none}.ik-brand-loader{transition:none}}
+
+.ik-site[data-template=e].ik-polished .about .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.ik-site[data-template=e].ik-polished .about .wrap>div{max-width:46%}
+.ik-site[data-template=e].ik-polished .about h2{max-width:18ch;font-size:clamp(30px,3vw,40px);font-weight:600}
+@media(max-width:767px){.ik-site[data-template=e].ik-polished .about .wrap>div{max-width:none}}
+
+/* A's established composition, with a slightly shorter homepage hero. */
+@media(min-width:1024px){.ik-site[data-template=a].ik-polished #home-hero{min-height:650px}}
+@media(min-width:768px) and (max-width:1023px){.ik-site[data-template=a].ik-polished #home-hero{min-height:560px}}
+@media(max-width:767px){
+ .ik-site[data-template=a].ik-polished #home-hero::before{height:300px}
+ .ik-site[data-template=a].ik-polished #home-hero :is(.ik-hero-images,.ik-hero-scrim){height:300px}
+ .ik-site[data-template=a].ik-polished #home-hero>.ik-container{padding-bottom:40px}
+}

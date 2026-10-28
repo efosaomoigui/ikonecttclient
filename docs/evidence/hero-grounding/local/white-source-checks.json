@@ -1,0 +1,74 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "sourceX": 79.19999999999999,
+    "sourceY": 780,
+    "fill": "#fff",
+    "destinations": 8,
+    "contentTop": 143.5,
+    "canvas": 0,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1280,
+    "height": 900,
+    "sourceX": 70.39999999999998,
+    "sourceY": 780,
+    "fill": "#fff",
+    "destinations": 8,
+    "contentTop": 143.5,
+    "canvas": 0,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 900,
+    "sourceX": 56.31999999999999,
+    "sourceY": 780,
+    "fill": "#fff",
+    "destinations": 8,
+    "contentTop": 143.5,
+    "canvas": 0,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 1000,
+    "sourceX": 42.24000000000001,
+    "sourceY": 870,
+    "fill": "#fff",
+    "destinations": 8,
+    "contentTop": 147,
+    "canvas": 0,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "sourceX": 32,
+    "sourceY": 724,
+    "fill": "#fff",
+    "destinations": 5,
+    "contentTop": 141.53125,
+    "canvas": 0,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "height": 700,
+    "sourceX": 32,
+    "sourceY": 580,
+    "fill": "#fff",
+    "destinations": 5,
+    "contentTop": 136.5,
+    "canvas": 0,
+    "overflow": false,
+    "errors": []
+  }
+]

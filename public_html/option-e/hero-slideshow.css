@@ -1,0 +1,37 @@
+/* E's city stays longer; photographic scenes reveal in staggered carpet blocks. */
+.ik-site[data-template=e] .hero[data-photo-controlled=true]>.ik-visual-picture{opacity:0}
+.e-scene-layer{position:absolute;inset:0;z-index:-2;pointer-events:none;isolation:isolate}
+.e-scene-layer::before{content:'';position:absolute;inset:0;background:#17222e;animation:e-scene-base .85s ease both;z-index:-1}
+.e-scene-window{position:absolute;inset:0;overflow:hidden}
+.e-scene-window>img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.e-scene-layer[data-scene=family] .e-scene-window>img{object-position:75% center}
+.e-scene-layer[data-scene=business] .e-scene-window{left:28%;mask-image:linear-gradient(90deg,transparent,#000 22%)}
+.e-scene-layer[data-scene=business] .e-scene-window>img{object-position:42% center}
+.e-scene-layer[data-scene=city] .e-scene-window{opacity:.9}
+.e-scene-tiles{position:absolute;inset:0;overflow:hidden;perspective:1000px}
+.e-scene-tiles span{position:absolute;display:block;background-repeat:no-repeat;transform-origin:50% 100%;animation:e-carpet-block .85s cubic-bezier(.2,.65,.2,1) both;backface-visibility:hidden}
+@keyframes e-carpet-block{from{transform:translateY(105%) rotateX(65deg);opacity:.3}to{transform:translateY(0) rotateX(0);opacity:1}}
+@keyframes e-scene-base{from{opacity:0}to{opacity:1}}
+.ik-site[data-template=e] .hero[data-e-slide=family] .e-city-field,.ik-site[data-template=e] .hero[data-e-slide=business] .e-city-field{opacity:0;visibility:hidden}
+.ik-site[data-template=e] .hero[data-e-slide=family] .hero-inner,.ik-site[data-template=e] .hero[data-e-slide=business] .hero-inner{text-align:left;width:min(1180px,calc(100% - 80px));max-width:none;justify-self:center}
+.ik-site[data-template=e] .hero[data-e-slide=family] .hero-inner>*,.ik-site[data-template=e] .hero[data-e-slide=business] .hero-inner>*{max-width:520px;margin-left:0;margin-right:0}
+.ik-site[data-template=e] .hero[data-e-slide=family] .horizon,.ik-site[data-template=e] .hero[data-e-slide=business] .horizon{visibility:hidden}
+.ik-site[data-template=e] .hero.ik-visual-backdrop[data-e-slide=family]::after,.ik-site[data-template=e] .hero.ik-visual-backdrop[data-e-slide=business]::after{background:linear-gradient(90deg,#0d1620e0 0%,#0d162088 38%,transparent 74%),linear-gradient(0deg,#17222e77,transparent 35%)}
+.ik-site[data-template=e] .hero[data-e-slide=family] .e-headline,.ik-site[data-template=e] .hero[data-e-slide=business] .e-headline{font-size:clamp(38px,3.5vw,56px);line-height:1.1;min-height:2.2em}
+.ik-site[data-template=e] .hero[data-e-slide=family] .actions,.ik-site[data-template=e] .hero[data-e-slide=business] .actions{justify-content:flex-start}
+.ik-site[data-template=e] .hero .hero-inner{transition:opacity .2s,transform .25s}
+.ik-site[data-template=e] .hero[data-e-slide-changing=true] .hero-inner{opacity:0;transform:translateY(8px)}
+.e-scene-controls{position:absolute;right:30px;bottom:24px;display:flex;gap:8px;z-index:5}
+.e-scene-controls button{width:44px;height:44px;background:#17222ee6;color:#fff;border:1px solid #ffffff80;border-radius:50%;font-size:22px;cursor:pointer}
+.e-scene-controls button:disabled{opacity:.5}
+.e-scene-controls button:focus-visible{outline:3px solid white;outline-offset:3px}
+.ik-scene-announcement{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+@media(max-width:767px){
+ .e-scene-layer:not([data-scene=city]) .e-scene-window{inset:55% 0 0;mask-image:linear-gradient(0deg,#000 80%,transparent)}
+ .ik-site[data-template=e] .hero[data-e-slide=family] .hero-inner,.ik-site[data-template=e] .hero[data-e-slide=business] .hero-inner{margin-top:0;text-align:center;width:calc(100% - 40px)}
+ .ik-site[data-template=e] .hero[data-e-slide=family] .hero-inner>*,.ik-site[data-template=e] .hero[data-e-slide=business] .hero-inner>*{margin-left:auto;margin-right:auto}
+ .ik-site[data-template=e] .hero[data-e-slide=family] .e-headline,.ik-site[data-template=e] .hero[data-e-slide=business] .e-headline{font-size:34px;min-height:2.3em}
+ .ik-site[data-template=e] .hero[data-e-slide=family] .actions,.ik-site[data-template=e] .hero[data-e-slide=business] .actions{justify-content:center}
+ .e-scene-controls{right:20px;bottom:20px}
+}
+@media(prefers-reduced-motion:reduce){.e-scene-tiles span,.e-scene-layer::before{animation:none}.ik-site[data-template=e] .hero .hero-inner{transition:none}}

@@ -1,0 +1,1174 @@
+[
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "home",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "residential",
+    "cards": [
+      {
+        "title": "Work from home",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Stream and unwind",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Connect the household",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/plans"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "residential/plans",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "residential/plans/demo-1",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "residential/plans/demo-2",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "residential/compare",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "residential/installation",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "business",
+    "cards": [
+      {
+        "title": "SME Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/sme"
+      },
+      {
+        "title": "Enterprise Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/enterprise"
+      },
+      {
+        "title": "Business connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/connectivity"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "business/solutions",
+    "cards": [
+      {
+        "title": "SME Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/sme"
+      },
+      {
+        "title": "Enterprise Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/enterprise"
+      },
+      {
+        "title": "Business connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/connectivity"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "business/solutions/connectivity",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "business/solutions/sme",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "business/solutions/enterprise",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "business/plans",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "business/quote",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "coverage",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "coverage/results",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "coverage/verification",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "support",
+    "cards": [
+      {
+        "title": "Internet and Wi-Fi",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=internet"
+      },
+      {
+        "title": "Plans and Payments",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=payments"
+      },
+      {
+        "title": "Coverage and Installation",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=coverage"
+      },
+      {
+        "title": "My Ikonectt Account",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=account"
+      },
+      {
+        "title": "Technical Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=technical"
+      },
+      {
+        "title": "Service Requests and Complaints",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=requests"
+      },
+      {
+        "title": "Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting"
+      },
+      {
+        "title": "Report a Fault",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/fault"
+      },
+      {
+        "title": "Service Request",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/service-request"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "support/faqs",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "support/troubleshooting",
+    "cards": [
+      {
+        "title": "No internet connection",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=no-internet&step=0"
+      },
+      {
+        "title": "Slow connection",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=slow&step=0"
+      },
+      {
+        "title": "Wi-Fi connection problems",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=wifi&step=0"
+      },
+      {
+        "title": "Router issues",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=router&step=0"
+      },
+      {
+        "title": "Payment or renewal questions",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=payment&step=0"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "support/fault",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "support/service-request",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "support/contact",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "about",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "contact",
+    "cards": [
+      {
+        "title": "General enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/contact?enquiry=general"
+      },
+      {
+        "title": "Residential enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/installation"
+      },
+      {
+        "title": "Business enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/quote"
+      },
+      {
+        "title": "Technical support",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "privacy",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "terms",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "my-ikonectt/sign-in",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "my-ikonectt/forgot-password",
+    "cards": []
+  },
+  {
+    "template": "a",
+    "width": 1440,
+    "route": "my-ikonectt/preview",
+    "cards": [
+      {
+        "title": "Your services",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/my-ikonectt/sign-in"
+      },
+      {
+        "title": "Payments and renewals",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/contact"
+      },
+      {
+        "title": "Support requests",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "route": "residential",
+    "cards": [
+      {
+        "title": "Work from home",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Stream and unwind",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Connect the household",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/plans"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "route": "business",
+    "cards": [
+      {
+        "title": "SME Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/solutions/sme"
+      },
+      {
+        "title": "Enterprise Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/solutions/enterprise"
+      },
+      {
+        "title": "Business connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/solutions/connectivity"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "route": "support",
+    "cards": [
+      {
+        "title": "Internet and Wi-Fi",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=internet"
+      },
+      {
+        "title": "Plans and Payments",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=payments"
+      },
+      {
+        "title": "Coverage and Installation",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=coverage"
+      },
+      {
+        "title": "My Ikonectt Account",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=account"
+      },
+      {
+        "title": "Technical Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=technical"
+      },
+      {
+        "title": "Service Requests and Complaints",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=requests"
+      },
+      {
+        "title": "Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/troubleshooting"
+      },
+      {
+        "title": "Report a Fault",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/fault"
+      },
+      {
+        "title": "Service Request",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/service-request"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "route": "contact",
+    "cards": [
+      {
+        "title": "General enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/contact?enquiry=general"
+      },
+      {
+        "title": "Residential enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/installation"
+      },
+      {
+        "title": "Business enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/quote"
+      },
+      {
+        "title": "Technical support",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support"
+      }
+    ]
+  },
+  {
+    "template": "a",
+    "width": 390,
+    "route": "my-ikonectt/preview",
+    "cards": [
+      {
+        "title": "Your services",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/my-ikonectt/sign-in"
+      },
+      {
+        "title": "Payments and renewals",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/contact"
+      },
+      {
+        "title": "Support requests",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "home",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "residential",
+    "cards": [
+      {
+        "title": "Work from home",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Stream and unwind",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Connect the household",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/plans"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "residential/plans",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "residential/plans/demo-1",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "residential/plans/demo-2",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "residential/compare",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "residential/installation",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "business",
+    "cards": [
+      {
+        "title": "SME Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/sme"
+      },
+      {
+        "title": "Enterprise Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/enterprise"
+      },
+      {
+        "title": "Business connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/connectivity"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "business/solutions",
+    "cards": [
+      {
+        "title": "SME Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/sme"
+      },
+      {
+        "title": "Enterprise Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/enterprise"
+      },
+      {
+        "title": "Business connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/solutions/connectivity"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "business/solutions/connectivity",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "business/solutions/sme",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "business/solutions/enterprise",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "business/plans",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "business/quote",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "coverage",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "coverage/results",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "coverage/verification",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "support",
+    "cards": [
+      {
+        "title": "Internet and Wi-Fi",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=internet"
+      },
+      {
+        "title": "Plans and Payments",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=payments"
+      },
+      {
+        "title": "Coverage and Installation",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=coverage"
+      },
+      {
+        "title": "My Ikonectt Account",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=account"
+      },
+      {
+        "title": "Technical Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=technical"
+      },
+      {
+        "title": "Service Requests and Complaints",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/faqs?category=requests"
+      },
+      {
+        "title": "Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting"
+      },
+      {
+        "title": "Report a Fault",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/fault"
+      },
+      {
+        "title": "Service Request",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/service-request"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "support/faqs",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "support/troubleshooting",
+    "cards": [
+      {
+        "title": "No internet connection",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=no-internet&step=0"
+      },
+      {
+        "title": "Slow connection",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=slow&step=0"
+      },
+      {
+        "title": "Wi-Fi connection problems",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=wifi&step=0"
+      },
+      {
+        "title": "Router issues",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=router&step=0"
+      },
+      {
+        "title": "Payment or renewal questions",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/troubleshooting?topic=payment&step=0"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "support/fault",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "support/service-request",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "support/contact",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "about",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "contact",
+    "cards": [
+      {
+        "title": "General enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/contact?enquiry=general"
+      },
+      {
+        "title": "Residential enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/residential/installation"
+      },
+      {
+        "title": "Business enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/business/quote"
+      },
+      {
+        "title": "Technical support",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "privacy",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "terms",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "my-ikonectt/sign-in",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "my-ikonectt/forgot-password",
+    "cards": []
+  },
+  {
+    "template": "e",
+    "width": 1440,
+    "route": "my-ikonectt/preview",
+    "cards": [
+      {
+        "title": "Your services",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/my-ikonectt/sign-in"
+      },
+      {
+        "title": "Payments and renewals",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support/contact"
+      },
+      {
+        "title": "Support requests",
+        "count": 1,
+        "hidden": "true",
+        "width": 52,
+        "href": "#/support"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "route": "residential",
+    "cards": [
+      {
+        "title": "Work from home",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Stream and unwind",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/plans"
+      },
+      {
+        "title": "Connect the household",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/plans"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "route": "business",
+    "cards": [
+      {
+        "title": "SME Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/solutions/sme"
+      },
+      {
+        "title": "Enterprise Connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/solutions/enterprise"
+      },
+      {
+        "title": "Business connectivity",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/solutions/connectivity"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "route": "support",
+    "cards": [
+      {
+        "title": "Internet and Wi-Fi",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=internet"
+      },
+      {
+        "title": "Plans and Payments",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=payments"
+      },
+      {
+        "title": "Coverage and Installation",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=coverage"
+      },
+      {
+        "title": "My Ikonectt Account",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=account"
+      },
+      {
+        "title": "Technical Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=technical"
+      },
+      {
+        "title": "Service Requests and Complaints",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/faqs?category=requests"
+      },
+      {
+        "title": "Troubleshooting",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/troubleshooting"
+      },
+      {
+        "title": "Report a Fault",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/fault"
+      },
+      {
+        "title": "Service Request",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/service-request"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "route": "contact",
+    "cards": [
+      {
+        "title": "General enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/contact?enquiry=general"
+      },
+      {
+        "title": "Residential enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/residential/installation"
+      },
+      {
+        "title": "Business enquiry",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/business/quote"
+      },
+      {
+        "title": "Technical support",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support"
+      }
+    ]
+  },
+  {
+    "template": "e",
+    "width": 390,
+    "route": "my-ikonectt/preview",
+    "cards": [
+      {
+        "title": "Your services",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/my-ikonectt/sign-in"
+      },
+      {
+        "title": "Payments and renewals",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support/contact"
+      },
+      {
+        "title": "Support requests",
+        "count": 1,
+        "hidden": "true",
+        "width": 48,
+        "href": "#/support"
+      }
+    ]
+  }
+]

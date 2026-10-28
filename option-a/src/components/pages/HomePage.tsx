@@ -3,7 +3,7 @@ import { PageId } from '../../types';
 import { HOMEPAGE_CONTENT as C } from '../../content';
 import { ChevronRight, MapPin } from 'lucide-react';
 import {HeroSlideshow} from '../ui/HeroSlideshow';
-import {visualAssets, visualURL, visualSrcSet} from '../../../../shared/visual-assets.js';
+import {clientImageAssets, clientImageURL, clientImageSrcSet} from '../../../../shared/client-image-library.js';
 
 interface HomePageProps {
   onNavigate: (page: PageId, options?: { plan?: string; address?: string }) => void;
@@ -12,8 +12,8 @@ interface HomePageProps {
 }
 
 const IMAGES = {
-  residential: 'home',
-  business: 'workplace',
+ residential: {...clientImageAssets['family-gaming'],src:clientImageURL('family-gaming'),srcSet:clientImageSrcSet('family-gaming'),id:'family-gaming'},
+ business: {width:1086,height:1448,alt:'Contemporary commercial architecture.',position:'50% 48%',src:new URL('../../../../assets/visual-library/creative/commercial-architecture-v1-1086.webp',import.meta.url).href,srcSet:'',id:'architecture'},
 } as const;
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt, onViewPlans }) => {
@@ -82,12 +82,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenMyIkonectt
             key={key}
             className="relative min-h-[520px] lg:min-h-[600px] flex items-end text-white overflow-hidden group"
           >
-            <picture className="ik-visual-picture" data-visual-asset={image}>
+            <picture className="ik-visual-picture" data-visual-asset={key === 'residential' ? 'family' : 'business'} data-client-image={image.id}>
             <img
-              src={visualURL(image)} srcSet={visualSrcSet(image)} sizes="(min-width: 1024px) max(50vw,900px), (min-width:768px) 100vw,780px"
-              width={visualAssets[image].width} height={visualAssets[image].height}
+              src={image.src} srcSet={image.srcSet || undefined} sizes="(min-width:1024px) 50vw,100vw"
+              width={image.width} height={image.height}
               loading="lazy" decoding="async"
-              alt={visualAssets[image].alt}
+              alt={image.alt}
+              style={{objectPosition: image.position}}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
             </picture>

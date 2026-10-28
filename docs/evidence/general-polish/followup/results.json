@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "id": "a",
+      "width": 1440,
+      "heroHeight": 650
+    },
+    {
+      "id": "a",
+      "width": 768,
+      "heroHeight": 560
+    },
+    {
+      "id": "a",
+      "width": 390,
+      "heroHeight": 655.828125
+    }
+  ],
+  "passed": true
+}

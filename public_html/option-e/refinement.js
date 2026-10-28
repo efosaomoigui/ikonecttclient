@@ -1,6 +1,9 @@
-import {heroAsset,isHeroPhoto,editorialAssets,imageHTML} from './visual-map.js?v=4';
-import {mountCityExperience} from './city-experience.js?v=13';
-import {mountCorporateLight} from './corporate-light.js?v=1';
+import {mountPolish} from '../shared/polish.js';
+import {mountEHeroSlideshow} from './hero-slideshow.js?v=1';
+import {heroAsset,isHeroPhoto,editorialAssets,imageHTML} from './visual-map.js?v=5';
+import {mountCityExperience} from './city-experience.js?v=19';
+import {mountCorporateLight} from './corporate-light.js?v=2';
+import {mountEPlanShowcase} from './homepage-sections.js?v=3';
 
 export function mountTemplateE({root,home}){
   if(root.dataset.template!=='e')return ()=>{};
@@ -20,12 +23,16 @@ export function mountTemplateE({root,home}){
     }
   }
   const corporate=mountCorporateLight(root,home);
+  const plans=mountEPlanShowcase(home);
   const portal=home.querySelector('.portal-box');
   if(portal){portal.classList.add('e-portal');portal.insertAdjacentHTML('afterbegin',`<div class="e-portal-portrait">${imageHTML('portrait')}</div>`);}
   decorate();
   const observer=new root.ownerDocument.defaultView.MutationObserver(decorate);
   if(main)observer.observe(main,{childList:true});
-  const city=mountCityExperience({hero:home.querySelector('.hero'),root});
-  return ()=>{observer.disconnect();city.destroy();corporate();};
+  const hero=home.querySelector('.hero');
+  const slideshow=mountEHeroSlideshow({hero,root});
+  const city=mountCityExperience({hero,root,onFrame:slideshow.frame});
+  const polish=mountPolish({root,home});
+  return ()=>{observer.disconnect();polish();slideshow.destroy();city.destroy();corporate();plans();};
 }
 if(typeof document!=='undefined'&&document.body.dataset.template==='e')mountTemplateE({root:document.body,home:document.querySelector('.ik-home')});

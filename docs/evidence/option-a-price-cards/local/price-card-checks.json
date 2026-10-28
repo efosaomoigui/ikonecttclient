@@ -1,0 +1,98 @@
+[
+  {
+    "width": 1440,
+    "geometry": {
+      "overflow": false,
+      "railWidth": 1104,
+      "cardWidth": 352,
+      "active": 2,
+      "priceHeaders": true,
+      "background": "rgb(237, 16, 26)",
+      "activeTransform": "matrix(1, 0, 0, 1, 0, -24)"
+    },
+    "errors": [],
+    "failed": [],
+    "keyboardAndAudiencePassed": true,
+    "selectedQuotePassed": true
+  },
+  {
+    "width": 1280,
+    "geometry": {
+      "overflow": false,
+      "railWidth": 1104,
+      "cardWidth": 352,
+      "active": 2,
+      "priceHeaders": true,
+      "background": "rgb(237, 16, 26)",
+      "activeTransform": "matrix(1, 0, 0, 1, 0, -24)"
+    },
+    "errors": [],
+    "failed": [],
+    "keyboardAndAudiencePassed": true,
+    "selectedQuotePassed": true
+  },
+  {
+    "width": 1024,
+    "geometry": {
+      "overflow": false,
+      "railWidth": 928,
+      "cardWidth": 293.328125,
+      "active": 2,
+      "priceHeaders": true,
+      "background": "rgb(237, 16, 26)",
+      "activeTransform": "matrix(1, 0, 0, 1, 0, -24)"
+    },
+    "errors": [],
+    "failed": [],
+    "keyboardAndAudiencePassed": true,
+    "selectedQuotePassed": true
+  },
+  {
+    "width": 768,
+    "geometry": {
+      "overflow": false,
+      "railWidth": 720,
+      "cardWidth": 348,
+      "active": 2,
+      "priceHeaders": true,
+      "background": "rgb(237, 16, 26)",
+      "activeTransform": "matrix(1, 0, 0, 1, 0, -24)"
+    },
+    "errors": [],
+    "failed": [],
+    "keyboardAndAudiencePassed": true,
+    "selectedQuotePassed": true
+  },
+  {
+    "width": 390,
+    "geometry": {
+      "overflow": false,
+      "railWidth": 342,
+      "cardWidth": 306,
+      "active": 2,
+      "priceHeaders": true,
+      "background": "rgb(237, 16, 26)",
+      "activeTransform": "matrix(1, 0, 0, 1, 0, -12)"
+    },
+    "errors": [],
+    "failed": [],
+    "keyboardAndAudiencePassed": true,
+    "selectedQuotePassed": true
+  },
+  {
+    "width": 320,
+    "geometry": {
+      "overflow": false,
+      "railWidth": 272,
+      "cardWidth": 236,
+      "active": 2,
+      "priceHeaders": true,
+      "background": "rgb(237, 16, 26)",
+      "activeTransform": "matrix(1, 0, 0, 1, 0, -12)"
+    },
+    "errors": [],
+    "failed": [],
+    "keyboardAndAudiencePassed": true,
+    "selectedQuotePassed": true
+  }
+]

@@ -1,0 +1,351 @@
+{
+  "origin": "Client supplied files; no image generation or content retouching. Only proportional resizing, WebP encoding and the documented portrait crop.",
+  "assets": [
+    {
+      "id": "family-tablet-1",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/Family_using_tablet_together_1ab2422c.jpg",
+      "sourceSHA256": "9b1f1b9b8b70fb80a12d34685bd6032d0a0cac81b8575311ed8a6da2b947e8c9",
+      "width": 1376,
+      "height": 768,
+      "widths": [
+        480,
+        800,
+        1280,
+        1376
+      ],
+      "alt": "A family sharing a tablet in a bright living room with red cushions.",
+      "position": "76% 45%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/family-tablet-1-480.webp",
+          "width": 480,
+          "height": 268,
+          "bytes": 33856
+        },
+        {
+          "path": "assets/visual-library/client-library/family-tablet-1-800.webp",
+          "width": 800,
+          "height": 447,
+          "bytes": 78192
+        },
+        {
+          "path": "assets/visual-library/client-library/family-tablet-1-1280.webp",
+          "width": 1280,
+          "height": 714,
+          "bytes": 170130
+        },
+        {
+          "path": "assets/visual-library/client-library/family-tablet-1-1376.webp",
+          "width": 1376,
+          "height": 768,
+          "bytes": 195628
+        }
+      ]
+    },
+    {
+      "id": "family-tablet-2",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/Family_using_tablet_together_1b1ddf84.jpg",
+      "sourceSHA256": "8d9d8e8e08967bffb2898d0b89c43ceb0ae77f426383a46fd22999ebd3330412",
+      "width": 1376,
+      "height": 768,
+      "widths": [
+        480,
+        800,
+        1280,
+        1376
+      ],
+      "alt": "Parents and children enjoying a tablet together on a sofa.",
+      "position": "80% 45%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/family-tablet-2-480.webp",
+          "width": 480,
+          "height": 268,
+          "bytes": 30340
+        },
+        {
+          "path": "assets/visual-library/client-library/family-tablet-2-800.webp",
+          "width": 800,
+          "height": 447,
+          "bytes": 67016
+        },
+        {
+          "path": "assets/visual-library/client-library/family-tablet-2-1280.webp",
+          "width": 1280,
+          "height": 714,
+          "bytes": 144924
+        },
+        {
+          "path": "assets/visual-library/client-library/family-tablet-2-1376.webp",
+          "width": 1376,
+          "height": 768,
+          "bytes": 164912
+        }
+      ]
+    },
+    {
+      "id": "family-gaming",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/image.png_5d67509c.jpg",
+      "sourceSHA256": "77d22abaf8d80222cd26064be9c1888c60b3636e1ea230cebef8725137624eeb",
+      "width": 2048,
+      "height": 1536,
+      "widths": [
+        480,
+        800,
+        1280,
+        1600,
+        2048
+      ],
+      "alt": "A family enjoying video games together in their living room.",
+      "position": "52% 0%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/family-gaming-480.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 40398
+        },
+        {
+          "path": "assets/visual-library/client-library/family-gaming-800.webp",
+          "width": 800,
+          "height": 600,
+          "bytes": 82252
+        },
+        {
+          "path": "assets/visual-library/client-library/family-gaming-1280.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 175252
+        },
+        {
+          "path": "assets/visual-library/client-library/family-gaming-1600.webp",
+          "width": 1600,
+          "height": 1200,
+          "bytes": 243868
+        },
+        {
+          "path": "assets/visual-library/client-library/family-gaming-2048.webp",
+          "width": 2048,
+          "height": 1536,
+          "bytes": 341670
+        }
+      ]
+    },
+    {
+      "id": "conference-room",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/make_the_stand_suit_guys_20261027180922.jpg",
+      "sourceSHA256": "496817999f73e247852aebd07c4b35912f8c566567c8a081b3a46d450641f3c6",
+      "width": 1376,
+      "height": 768,
+      "widths": [
+        480,
+        800,
+        1280,
+        1376
+      ],
+      "alt": "A business professional beside colleagues taking part in a video conference.",
+      "position": "48% 40%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/conference-room-480.webp",
+          "width": 480,
+          "height": 268,
+          "bytes": 31594
+        },
+        {
+          "path": "assets/visual-library/client-library/conference-room-800.webp",
+          "width": 800,
+          "height": 447,
+          "bytes": 63714
+        },
+        {
+          "path": "assets/visual-library/client-library/conference-room-1280.webp",
+          "width": 1280,
+          "height": 714,
+          "bytes": 117408
+        },
+        {
+          "path": "assets/visual-library/client-library/conference-room-1376.webp",
+          "width": 1376,
+          "height": 768,
+          "bytes": 128004
+        }
+      ]
+    },
+    {
+      "id": "friends-gaming",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/Men_playing_video_games_together_467cdb85.jpg",
+      "sourceSHA256": "22dfe669edb6e2beb46af3f56d30998d517fad11cf870bb6f75bd563250c38f3",
+      "width": 1376,
+      "height": 768,
+      "widths": [
+        480,
+        800,
+        1280,
+        1376
+      ],
+      "alt": "Two friends playing video games on a sofa with red cushions.",
+      "position": "50% 42%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/friends-gaming-480.webp",
+          "width": 480,
+          "height": 268,
+          "bytes": 27668
+        },
+        {
+          "path": "assets/visual-library/client-library/friends-gaming-800.webp",
+          "width": 800,
+          "height": 447,
+          "bytes": 59064
+        },
+        {
+          "path": "assets/visual-library/client-library/friends-gaming-1280.webp",
+          "width": 1280,
+          "height": 714,
+          "bytes": 109962
+        },
+        {
+          "path": "assets/visual-library/client-library/friends-gaming-1376.webp",
+          "width": 1376,
+          "height": 768,
+          "bytes": 121832
+        }
+      ]
+    },
+    {
+      "id": "red-emblem",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/Red_acrylic_emblem_on_table_22960efd.jpg",
+      "sourceSHA256": "02df72c133810cb117876373fc59c009ab39e18e1b0429e0de4c99bb273f42a3",
+      "width": 1376,
+      "height": 768,
+      "widths": [
+        480,
+        800,
+        1280,
+        1376
+      ],
+      "alt": "A photographed red acrylic emblem standing on a dark table.",
+      "position": "50% 50%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/red-emblem-480.webp",
+          "width": 480,
+          "height": 268,
+          "bytes": 9118
+        },
+        {
+          "path": "assets/visual-library/client-library/red-emblem-800.webp",
+          "width": 800,
+          "height": 447,
+          "bytes": 17620
+        },
+        {
+          "path": "assets/visual-library/client-library/red-emblem-1280.webp",
+          "width": 1280,
+          "height": 714,
+          "bytes": 33852
+        },
+        {
+          "path": "assets/visual-library/client-library/red-emblem-1376.webp",
+          "width": 1376,
+          "height": 768,
+          "bytes": 38134
+        }
+      ]
+    },
+    {
+      "id": "everyday-couple",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/image.png_76191433.jpg",
+      "sourceSHA256": "f29f1878a977958ed48382e9db02e080f331edea5c384b8abb0ab43eaa13628f",
+      "width": 1513,
+      "height": 823,
+      "widths": [
+        480,
+        800,
+        1280,
+        1513
+      ],
+      "alt": "A couple sharing a tablet in a bright living room overlooking the city.",
+      "position": "68% 45%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/everyday-couple-480.webp",
+          "width": 480,
+          "height": 261,
+          "bytes": 37932
+        },
+        {
+          "path": "assets/visual-library/client-library/everyday-couple-800.webp",
+          "width": 800,
+          "height": 435,
+          "bytes": 86724
+        },
+        {
+          "path": "assets/visual-library/client-library/everyday-couple-1280.webp",
+          "width": 1280,
+          "height": 696,
+          "bytes": 169430
+        },
+        {
+          "path": "assets/visual-library/client-library/everyday-couple-1513.webp",
+          "width": 1513,
+          "height": 823,
+          "bytes": 215730
+        }
+      ]
+    },
+    {
+      "id": "rooftop-network",
+      "source": "Ikonectt_Connectivity_Image_Library/newimages/Satellite_dish_on_office_rooftop_c8b8cffa.jpg",
+      "sourceSHA256": "d68ea4cfac8a387f46e753131ae4a1d417b0e9e83194c8c6d011bec6b1ad5e18",
+      "width": 1376,
+      "height": 768,
+      "widths": [
+        480,
+        800,
+        1280,
+        1376
+      ],
+      "alt": "Telecommunications equipment on an office rooftop at dusk.",
+      "position": "62% 50%",
+      "exports": [
+        {
+          "path": "assets/visual-library/client-library/rooftop-network-480.webp",
+          "width": 480,
+          "height": 268,
+          "bytes": 33842
+        },
+        {
+          "path": "assets/visual-library/client-library/rooftop-network-800.webp",
+          "width": 800,
+          "height": 447,
+          "bytes": 66520
+        },
+        {
+          "path": "assets/visual-library/client-library/rooftop-network-1280.webp",
+          "width": 1280,
+          "height": 714,
+          "bytes": 124976
+        },
+        {
+          "path": "assets/visual-library/client-library/rooftop-network-1376.webp",
+          "width": 1376,
+          "height": 768,
+          "bytes": 140498
+        }
+      ]
+    }
+  ],
+  "heroPortraitCrop": {
+    "source": "Family_using_tablet_together_1ab2422c.jpg",
+    "box": [
+      600,
+      0,
+      1376,
+      768
+    ],
+    "width": 776,
+    "height": 768
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "reference": "https://ipnxnigeria.ng/home-broadband/",
+  "roles": {
+    "heading": "Poppins",
+    "body": "Nunito Sans"
+  },
+  "fonts": [
+    {
+      "family": "Nunito Sans",
+      "weight": "400",
+      "file": "nunito-sans-400.ttf",
+      "url": "https://fonts.gstatic.com/s/nunitosans/v19/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilntA.ttf"
+    },
+    {
+      "family": "Nunito Sans",
+      "weight": "600",
+      "file": "nunito-sans-600.ttf",
+      "url": "https://fonts.gstatic.com/s/nunitosans/v19/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GCC5ntA.ttf"
+    },
+    {
+      "family": "Nunito Sans",
+      "weight": "700",
+      "file": "nunito-sans-700.ttf",
+      "url": "https://fonts.gstatic.com/s/nunitosans/v19/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GMS5ntA.ttf"
+    },
+    {
+      "family": "Poppins",
+      "weight": "400",
+      "file": "poppins-400.ttf",
+      "url": "https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrFJA.ttf"
+    },
+    {
+      "family": "Poppins",
+      "weight": "600",
+      "file": "poppins-600.ttf",
+      "url": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6V1s.ttf"
+    },
+    {
+      "family": "Poppins",
+      "weight": "700",
+      "file": "poppins-700.ttf",
+      "url": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7V1s.ttf"
+    }
+  ]
+}

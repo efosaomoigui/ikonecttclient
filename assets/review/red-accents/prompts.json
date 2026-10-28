@@ -1,0 +1,21 @@
+{
+  "tool": "Built-in imagegen",
+  "mode": "Existing-photo edits",
+  "edits": [
+    {
+      "key": "family-tile",
+      "file": "C:/Users/Efe-Dev/Documents/business News/ikonectt/option-a/public/images/template-a/a-h02-connected-family-medium-v1-1448.webp",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached approved family photograph for a broadband website. Change ONLY the sofa's visible upholstered fabric from beige to a refined, rich Ikonectt red, around #C51C2B, keeping exactly the same woven fabric texture, stitching, dimensions, shadows and shape. Recolour one existing small sofa cushion a complementary muted red if useful; retain the black-and-cream patterned cushion. Keep all three Nigerian family members, their exact identities, faces, expressions, hands, clothes, tablet, poses, room, furniture, camera position and framing unchanged. Preserve the dark wall negative space on the left and the family on the right. Photorealistic, natural warm interior light. Do not add people, objects, text, logos or artificial red light. Keep the original 4:3 composition. This is a localised upholstery colour edit, not a recreated scene."
+    },
+    {
+      "key": "business-tile",
+      "file": "C:/Users/Efe-Dev/Documents/business News/ikonectt/option-a/public/images/template-a/a-h03-business-collaboration-desktop-v3-1672.webp",
+      "prompt": "Use case: precise-object-edit. Edit target: this approved photograph of two Nigerian professionals collaborating in a contemporary office. Introduce only a small sophisticated red accent: change two of the existing plain blue rectangular tiles on the presentation screen to muted corporate red, and give the existing smartphone a thin dark-red protective case. Everything else must stay unchanged: the exact two people, faces, hairstyles, skin tones, expressions, fingers, clothes, device shape, office, glass partitions, architecture, lighting, perspective, original screen layout, framing and dark negative space on the left. No added words or logos, no new props or new furniture, no red tint on people. Preserve the photographic realism and original wide composition. Change only these small existing details."
+    },
+    {
+      "key": "campaign-family",
+      "file": "C:/Users/Efe-Dev/Documents/business News/ikonectt/assets/review/client-campaign/client-family-scene-v2.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the approved Ikonectt campaign family photograph. Change ONLY the beige sofa upholstery to a tasteful rich red, around #C51C2B, keeping the exact original fabric weave, seams, cushion shapes, couch proportions, material appearance and realistic light and shadow. Preserve all four people's exact faces, hairstyles, expressions, skin colours, clothes, bodies, poses and hands, including the father's pointing hand. Preserve the room, plants, lamp, framed art, lighting, original wide crop and all existing furniture. Do not cut the family out or remove the background. No new objects, no graphic overlays, no words or logos. Local upholstery colour edit only; everything outside the couch should remain identical."
+    }
+  ]
+}

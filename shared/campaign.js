@@ -1,4 +1,5 @@
 import {campaignPicture} from './campaign-assets.js';
+import {clientPicture} from './client-image-library.js';
 
 // Presentation-only enhancement of existing image reservations and portal panels.
 // Never attach to archived B/C/D, the home hero, forms, plans or the assistant.
@@ -12,7 +13,7 @@ export function mountCampaign({root,home}){
   const slot=main?.querySelector('.ik-image-slot[data-slot=residential]');
   if(!slot||slot.dataset.campaignInstalled)return;
   slot.dataset.campaignInstalled='family';slot.classList.add('ik-campaign-family');
-  slot.innerHTML=campaignPicture('family');
+  slot.innerHTML=clientPicture(template==='a'?'friends-gaming':'family-gaming',{className:'ik-campaign-picture',campaign:true});
  }
  // A uses the campaign man. E keeps its approved woman with a laptop.
  const portal=template==='a'?home.querySelector('#home-portal>.ik-container'):null;

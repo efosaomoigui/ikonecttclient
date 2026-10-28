@@ -49,6 +49,14 @@ export function mountDesignPreview(doc = document, win = window) {
     sync();
   }
   function childChanged() {readContext();}
+  // A's optional live source server is a separate local origin. Retain the
+  // visitor's page when switching designs after its entrypoint redirects there.
+  win.addEventListener('message', event => {
+    if (!['localhost','127.0.0.1'].includes(win.location.hostname) || selected.id !== 'a') return;
+    if (event.source !== frame.contentWindow || !['http://127.0.0.1:3001','http://localhost:3001'].includes(event.origin)) return;
+    if (event.data?.type !== 'ik:local-preview-route') return;
+    route = supportedHash(event.data.hash);sync();
+  });
   frame.addEventListener('load', () => {
     try {
       childWindow?.removeEventListener('hashchange',childChanged);

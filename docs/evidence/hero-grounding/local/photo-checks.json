@@ -1,0 +1,71 @@
+{
+  "checks": [
+    {
+      "template": "a",
+      "width": 1440,
+      "sources": [
+        "http://127.0.0.1:3021/public_html/option-a/assets/family-red-sofa-v1-800-BRu6igGW.webp",
+        "http://127.0.0.1:3021/public_html/option-a/assets/business-red-details-v1-800-CzOq091e.webp"
+      ],
+      "family": "http://127.0.0.1:3021/public_html/option-a/assets/campaign-family-red-sofa-v1-640-BqQkP6bw.webp",
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "a",
+      "width": 390,
+      "sources": [
+        "http://127.0.0.1:3021/public_html/option-a/assets/family-red-sofa-v1-480-MMAKv7Fe.webp",
+        "http://127.0.0.1:3021/public_html/option-a/assets/business-red-details-v1-480-DYeMS4LI.webp"
+      ],
+      "family": "http://127.0.0.1:3021/public_html/option-a/assets/campaign-family-red-sofa-v1-640-BqQkP6bw.webp",
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "a",
+      "width": 320,
+      "sources": [
+        "http://127.0.0.1:3021/public_html/option-a/assets/family-red-sofa-v1-480-MMAKv7Fe.webp",
+        "http://127.0.0.1:3021/public_html/option-a/assets/business-red-details-v1-480-DYeMS4LI.webp"
+      ],
+      "family": "http://127.0.0.1:3021/public_html/option-a/assets/campaign-family-red-sofa-v1-640-BqQkP6bw.webp",
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 1440,
+      "sources": [
+        "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-800.webp",
+        "http://127.0.0.1:3021/public_html/assets/visual-library/creative/commercial-architecture-v1-800.webp"
+      ],
+      "family": "http://127.0.0.1:3021/public_html/assets/visual-library/campaign/client-family-scene-v2-640.webp",
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "sources": [
+        "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-480.webp",
+        "http://127.0.0.1:3021/public_html/assets/visual-library/creative/commercial-architecture-v1-480.webp"
+      ],
+      "family": "http://127.0.0.1:3021/public_html/assets/visual-library/campaign/client-family-scene-v2-640.webp",
+      "errors": [],
+      "failed": []
+    },
+    {
+      "template": "e",
+      "width": 320,
+      "sources": [
+        "http://127.0.0.1:3021/public_html/assets/visual-library/residential/connected-home-480.webp",
+        "http://127.0.0.1:3021/public_html/assets/visual-library/creative/commercial-architecture-v1-480.webp"
+      ],
+      "family": "http://127.0.0.1:3021/public_html/assets/visual-library/campaign/client-family-scene-v2-640.webp",
+      "errors": [],
+      "failed": []
+    }
+  ],
+  "comparisonToggle": true
+}

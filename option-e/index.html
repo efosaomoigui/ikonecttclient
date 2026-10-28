@@ -155,14 +155,18 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
 <link rel="stylesheet" href="../shared/visuals.css">
 <link rel="stylesheet" href="./refinement.css?v=8">
 <link rel="preload" href="../assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" type="image/png" href="../assets/brand/ikonectt-i-mask.png">
+<link rel="stylesheet" href="../shared/polish.css?v=1">
+<link rel="stylesheet" href="./hero-slideshow.css?v=1">
 </head>
 <body data-template="e">
+<div class="ik-brand-loader" data-brand-loader aria-hidden="true"><span class="ik-loader-symbol"></span></div>
 
 
 
 
 <main id="top">
-  <section class="hero">
+  <section class="hero" data-hero-opening="oval" data-grounded-source="buried">
     <div class="horizon" aria-hidden="true"></div>
     <div class="hero-inner">
       <p class="eyebrow">Fibre internet for a brighter Nigeria</p>
@@ -177,16 +181,21 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
 
   <section class="coverage" id="coverage">
     <div class="wrap">
-      <div>
+      <div class="e-coverage-locator" aria-hidden="true">
+        <svg viewBox="0 0 240 240" fill="none"><path d="M0 60H240M0 120H240M0 180H240M60 0V240M120 0V240M180 0V240" stroke="currentColor" opacity=".1"/><circle cx="120" cy="142" r="82" stroke="currentColor" opacity=".12"/><ellipse cx="120" cy="174" rx="64" ry="21" stroke="currentColor" opacity=".2"/><ellipse cx="120" cy="174" rx="36" ry="11" fill="#ed101a" opacity=".08"/><path d="M120 168S80 124 80 100a40 40 0 0 1 80 0c0 24-40 68-40 68Z" fill="white" stroke="#d90e18" stroke-width="2"/><circle cx="120" cy="100" r="12" fill="#d90e18"/><path d="M104 188H136" stroke="#d90e18" stroke-width="2"/></svg>
+      </div>
+      <div class="e-coverage-desk">
+        <p class="e-section-kicker">YOUR NEXT CONNECTION</p>
         <h2>Is Ikonectt available in your area?</h2>
         <p class="sub">Check service availability at your address.</p>
-      </div>
-      <div>
-        <div class="finder">
-          <input id="addr" type="text" placeholder="Enter your street or estate" aria-label="Street or estate" aria-describedby="helper" autocomplete="street-address">
-          <button class="btn solid" type="button" id="check">Check Coverage</button>
+        <div class="e-address-entry">
+          <label for="addr">Street or estate</label>
+          <div class="finder">
+            <input id="addr" type="text" placeholder="Enter your address" aria-describedby="helper" autocomplete="street-address">
+            <button class="btn solid" type="button" id="check">Check Coverage <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="helper" id="helper" aria-live="polite">Availability is subject to address verification.</p>
         </div>
-        <p class="helper" id="helper" aria-live="polite">Availability is subject to address verification.</p>
       </div>
     </div>
   </section>
@@ -212,6 +221,7 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
     <div class="wrap">
       <div class="plans-head">
         <div>
+          <p class="e-section-kicker">AT A GLANCE</p>
           <h2>Find your connection.</h2>
           <p class="sub">Browse available plans and choose what suits your needs.</p>
         </div>
@@ -251,7 +261,7 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
 
 <script type="module" src="../shared/static-adapter.js"></script>
 <script type="module" src="../shared/visual-entry.js"></script>
-<script type="module" src="./refinement.js?v=16"></script>
+<script type="module" src="./refinement.js?v=25"></script>
 <link rel="stylesheet" href="../shared/campaign.css">
 <script type="module" src="../shared/campaign-entry.js"></script>
 <link rel="stylesheet" href="../shared/homepage-sections.css">
@@ -260,6 +270,6 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
 <script type="module" src="../shared/brand-signature-entry.js"></script>
 <link rel="stylesheet" href="../shared/connectivity-story.css">
 <script type="module" src="../shared/connectivity-story-entry.js"></script>
-<link rel="stylesheet" href="./corporate-light.css?v=1">
+<link rel="stylesheet" href="./corporate-light.css?v=10">
 </body>
 </html>
