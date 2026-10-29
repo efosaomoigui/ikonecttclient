@@ -15,7 +15,7 @@ test('shortlist exposes exactly Templates A and E, renumbered 1 and 2, while leg
   assert.deepEqual([...doc.querySelectorAll('[data-option-link]')].map(x=>x.dataset.optionLink),['a','e']);
   assert.equal(doc.querySelectorAll('[id^="btn-toggle-"]').length,2);
   assert.equal(doc.querySelectorAll('#comparison thead th').length,3);
-  assert.match(doc.querySelector('h1').textContent,/Four experiences/);
+  assert.match(doc.querySelector('h1').textContent,/Two designs/);
   assert.doesNotMatch(source,/A\+C Hybrid|Template D|option-d|btn-toggle-d|Option 3/);
   assert.equal(doc.querySelector('#preview-frame').getAttribute('src'),'./option-a/');
   for(const id of ['a','b','c','d','e'])assert.ok(fs.existsSync(new URL(`../public_html/option-${id}/index.html`,import.meta.url)));

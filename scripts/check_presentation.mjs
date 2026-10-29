@@ -13,7 +13,11 @@ for(const route of ['/','/option-a/','/option-e/','/admin/','/my-ikonectt/']){
   assert.equal(response.status,200,route+' must load without backend authentication');
   const html=await response.text();
   assert.match(html,/<html/i);
-  if(route==='/')for(const target of ['option-a/','option-e/','admin/','my-ikonectt/'])assert(html.includes(`href="./${target}"`),'Missing landing destination '+target);
+  if(route==='/'){
+    for(const target of ['option-a/','option-e/'])assert(html.includes(`href="./${target}"`),'Missing design destination '+target);
+    assert(html.includes('Two designs.'),'Preserve the approved two-design landing page.');
+    assert(!html.includes('data-application-link'),'Applications open from templates, not new landing cards.');
+  }
   const demo=['/admin/','/my-ikonectt/'].includes(route);
   if(demo){assert.match(response.headers.get('content-security-policy')||'',/connect-src 'none'/);assert.match(response.headers.get('content-security-policy')||'',/form-action 'none'/);assert.match(response.headers.get('x-robots-tag')||'',/noindex/);}
   for(const match of html.matchAll(/(?:src|href)=["']([^"']+)["']/g)){
