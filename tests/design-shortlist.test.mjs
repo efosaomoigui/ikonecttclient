@@ -15,7 +15,7 @@ test('shortlist exposes exactly Templates A and E, renumbered 1 and 2, while leg
   assert.deepEqual([...doc.querySelectorAll('[data-option-link]')].map(x=>x.dataset.optionLink),['a','e']);
   assert.equal(doc.querySelectorAll('[id^="btn-toggle-"]').length,2);
   assert.equal(doc.querySelectorAll('#comparison thead th').length,3);
-  assert.match(doc.querySelector('h1').textContent,/Two designs/);
+  assert.match(doc.querySelector('h1').textContent,/Four experiences/);
   assert.doesNotMatch(source,/A\+C Hybrid|Template D|option-d|btn-toggle-d|Option 3/);
   assert.equal(doc.querySelector('#preview-frame').getAttribute('src'),'./option-a/');
   for(const id of ['a','b','c','d','e'])assert.ok(fs.existsSync(new URL(`../public_html/option-${id}/index.html`,import.meta.url)));
@@ -52,7 +52,17 @@ test('original designs and shared journeys retain the shortlist checkpoint outsi
   const allowed=new Set(['option-a/src/App.tsx','option-a/src/components/pages/HomePage.tsx','option-d/index.html','option-e/index.html']);
   for(const [file,hash] of Object.entries(baseline.files)){
     if(allowed.has(file))continue;
-    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL('../'+file,import.meta.url))).digest('hex'),heroPreservationHash(file,hash),file);
+    const bytes=fs.readFileSync(new URL('../'+file,import.meta.url));
+    const variants=[bytes];
+    // Historical records contain both LF and CRLF text hashes. Git checkout
+    // may change only line endings; keep every source character protected and
+    // keep binary assets byte-exact without rewriting the approved checkpoints.
+    if(/\.(?:js|css|html|tsx|ts|md|json)$/.test(file)){
+      const lf=bytes.toString().replace(/\r\n/g,'\n');
+      variants.push(Buffer.from(lf),Buffer.from(lf.replace(/\n/g,'\r\n')));
+    }
+    const expected=heroPreservationHash(file,hash);
+    assert.ok(variants.some(value=>crypto.createHash('sha256').update(value).digest('hex')===expected),file+' differs from its approved content checkpoint');
   }
   const css=fs.readFileSync(new URL('../option-a/src/inner-pages-hybrid.css',import.meta.url),'utf8');
   const selectors=css.replace(/\/\*[\s\S]*?\*\//g,'').match(/[^{}]+(?=\{)/g).filter(x=>!x.trim().startsWith('@'));

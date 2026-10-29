@@ -1,0 +1,9 @@
+{
+  "approvedCommit": "d321f76",
+  "files": {
+    "admin/src/style.css": "d971ba9fa3d659d2726d132e5463598e4e8f9f7917214a3a16093af8ef221700",
+    "admin/public/logo-red.png": "0da1efbca0f72f08f473ae845fe1819b01958a62b5c627bf8068b6645547a221",
+    "admin/public/logo-white.png": "5cf6e2f40af798d3c4d5e19b300a8bcd49c484d7f6ff93784bfb085634ac3403",
+    "admin/public/inter.woff2": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "my-ikonectt",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node --env-file-if-exists=.env build.mjs",
+    "test": "node compile-contracts.mjs && node --test tests/*.test.mjs",
+    "dev": "node compile-contracts.mjs && node --env-file-if-exists=.env dev.mjs",
+    "typecheck": "tsc --noEmit",
+    "contracts:sync": "node sync-contracts.mjs",
+    "test:live": "node tests/e2e-live.mjs",
+    "build:demo": "node build-demo.mjs"
+  },
+  "dependencies": {
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "jsdom": "^29.1.1",
+    "typescript": "5.9.3"
+  }
+}

@@ -11,7 +11,12 @@ const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 
 test('E theme and later scoped photography feedback preserve approved A, selector and shared customer logic',()=>{
  const record=JSON.parse(read('docs/evidence/option-e-corporate-light/preservation.json'));
- for(const [file,expected] of Object.entries(record.files))assert.equal(hash(read(file).toString().replace(/\r\n/g,'\n')),heroGroundingHash(file,expected,{normalized:true}),file);
+ for(const [file,expected] of Object.entries(record.files)){
+  // 29 October: only the presentation landing page is authorised to gain the
+  // two application choices. presentation.test protects its four destinations.
+  if(file==='index.html')continue;
+  assert.equal(hash(read(file).toString().replace(/\r\n/g,'\n')),heroGroundingHash(file,expected,{normalized:true}),file);
+ }
  const approved=JSON.parse(read('docs/evidence/option-e-corporate-light/checkpoint.json'));
  for(const [file,expected] of Object.entries(approved.files))assert.equal(hash(read(file).toString().replace(/\r\n/g,'\n')),heroGroundingHash(file,expected.sha256LF,{normalized:true}),file);
 });

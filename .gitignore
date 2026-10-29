@@ -10,3 +10,10 @@ Thumbs.db
 .tempmediaStorage/
 .user_uploaded/
 .vercel
+public_html/admin/
+public_html/my-ikonectt/
+.local/presentation/
+
+# Historical QA media stays in the integration branch, outside the presentation upload.
+/admin/docs/
+/my-ikonectt/evidence/

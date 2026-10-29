@@ -1,0 +1,28 @@
+{
+  "name": "@ikonectt/admin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3013",
+    "build": "tsc --noEmit && vite build",
+    "build:demo": "tsc --noEmit && vite build --mode demo && node scripts/package-demo.mjs",
+    "test:demo": "npm run build:demo && tsx --test tests/standalone/*.test.ts",
+    "test": "npm run build:review && tsx --test tests/*.test.ts",
+    "sync-contracts": "node scripts/sync-contracts.mjs",
+    "build:review": "tsc --noEmit && vite build --mode review",
+    "test:live": "tsx scripts/live-integration.ts"
+  },
+  "dependencies": {
+    "zod": "^3.25.76",
+    "lucide": "^0.468.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "vite": "^6.1.0",
+    "tsx": "^4.20.0",
+    "@types/node": "^22.0.0",
+    "jsdom": "^26.0.0",
+    "@types/jsdom": "^21.1.7"
+  }
+}
