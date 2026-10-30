@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "template": "a",
+      "customerHome": "/my-ikonectt/#/",
+      "admin": "/admin/",
+      "separateTabs": true,
+      "mobileLinks": true,
+      "errors": []
+    },
+    {
+      "template": "e",
+      "customerHome": "/my-ikonectt/#/",
+      "admin": "/admin/",
+      "separateTabs": true,
+      "mobileLinks": true,
+      "errors": []
+    }
+  ],
+  "passed": true
+}

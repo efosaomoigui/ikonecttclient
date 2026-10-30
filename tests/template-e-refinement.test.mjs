@@ -11,6 +11,7 @@ import {canAnimate,mountCityExperience} from '../option-e/city-experience.js';
 import {heroAsset,imageHTML} from '../option-e/visual-map.js';
 import {internalPhotos} from '../option-e/hero-photos.js';
 import {heroPreservationHash} from './helpers/hero-preservation.mjs';
+import {brandSpelling} from '../shared/brand-spelling.js';
 
 const tick=()=>new Promise(resolve=>setTimeout(resolve,8));
 const read=path=>fs.readFileSync(new URL('../'+path,import.meta.url));
@@ -30,7 +31,7 @@ test('E refinement preserves template designs and shared application sources',()
   }
 });
 
-test('all E internal heroes receive contextual, non-geographic visuals without changing forms or copy',async()=>{
+test('E internal heroes retain forms and copy with the approved lowercase brand spelling',async()=>{
   const dom=new JSDOM('<div id="root"><main id="home"><h1>Home</h1></main></div>',{url:'http://preview.test/option-e/',pretendToBeVisual:true});
   const {window}=dom;
   for(const key of ['window','document','CustomEvent','FormData','AbortController'])globalThis[key]=key==='window'?window:window[key];
@@ -42,7 +43,7 @@ test('all E internal heroes receive contextual, non-geographic visuals without c
     window.location.hash='#/'+path;await new Promise(resolve=>window.addEventListener('hashchange',resolve,{once:true}));await tick();
     const hero=root.querySelector('.ik-page-hero');assert.equal(hero.dataset.eRefined,heroAsset(path),path);
     assert.ok(hero.classList.contains('e-hero-photo'),path+' should use the Residential photo treatment');
-    if(!path.includes('/plans/demo-')){assert.equal(hero.querySelector('h1').textContent,heading);assert.equal(hero.querySelector('p').textContent,description);}
+    if(!path.includes('/plans/demo-')){assert.equal(hero.querySelector('h1').textContent,brandSpelling(heading));assert.equal(hero.querySelector('p').textContent,brandSpelling(description));}
     assert.equal(root.querySelectorAll('form .e-hero-visual,.ik-plan-card .e-hero-visual,.ik-faq .e-hero-visual,.ik-visual-credit').length,0,path);
     assert.equal(root.querySelectorAll('.e-hero-visual').length,1,path);
   }

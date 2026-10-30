@@ -4,6 +4,7 @@ import {connectivityURL,connectivitySrcSet} from './connectivity-assets.js';
 import {planCardHTML} from './plan-ui.js';
 import {getPlan} from './catalogue.js';
 import {decorateInformationCards} from './card-icons.js';
+import {mountBrandSpelling} from './brand-spelling.js';
 
 const networkIcon='<svg viewBox="0 0 100 68" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20 25a46 46 0 0 1 60 0M31 37a29 29 0 0 1 38 0M42 49a12 12 0 0 1 16 0M50 59v8M0 67h100"/><circle cx="50" cy="58" r="2" fill="currentColor" stroke="none"/></svg>';
 
@@ -21,16 +22,16 @@ export function mountPresentationCopy(root){
   'Approved terms are awaiting confirmation.',
   'A solution-detail preview awaiting verified product definitions.',
   'Sign-in interface preview.',
- ]);
+ ].map(value=>value.toLowerCase()));
  const selector='.ik-pricing-note,.ik-page-hero p,#home-coverage p,.coverage .sub,.coverage .helper,.ik-footer-brand p,.ik-field small[id$="-hint"]';
  const changed=new Set();
  function apply(){
   for(const node of root.querySelectorAll(selector)){
-   const text=node.textContent.replace(/\s+/g,' ').trim(),hide=redundant.has(text)||(node.matches('.coverage .helper')&&!text);
+   const text=node.textContent.replace(/\s+/g,' ').trim(),hide=redundant.has(text.toLowerCase())||(node.matches('.coverage .helper')&&!text);
    node.classList.toggle('ik-review-copy-hidden',hide);if(hide)changed.add(node);
   }
   for(const value of root.querySelectorAll('.ik-plan-facts dd,.ik-plan-comparison td')){
-   if(!['Requires address verification','Requires verification','To be confirmed by Ikonectt','To be confirmed'].includes(value.textContent.trim()))continue;
+   if(!['requires address verification','requires verification','to be confirmed by ikonectt','to be confirmed'].includes(value.textContent.trim().toLowerCase()))continue;
    const row=value.closest('tr')||value.parentElement;row.classList.add('ik-review-copy-hidden');changed.add(row);
   }
  }
@@ -116,7 +117,7 @@ export async function mountSmoothMotion({root,home}){
  return ()=>{stopped=true;cleanup();win.removeEventListener('hashchange',route);reduced.removeEventListener?.('change',change);};
 }
 export function mountPolish(options){
- const visual=mountVisualPolish(options),copy=mountPresentationCopy(options.root),loader=finishBrandLoader(options.root.ownerDocument);let motion;
+ const visual=mountVisualPolish(options),copy=mountPresentationCopy(options.root),spelling=mountBrandSpelling(options.root),loader=finishBrandLoader(options.root.ownerDocument);let motion;
  mountSmoothMotion(options).then(cleanup=>motion=cleanup);
- return ()=>{copy();visual();loader();motion?.();};
+ return ()=>{spelling();copy();visual();loader();motion?.();};
 }

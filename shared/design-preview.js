@@ -1,5 +1,6 @@
 import {activeDesigns, activeDesign} from './design-shortlist.js?v=2';
 import {pages,parseRoute} from './routes.js';
+import {mountBrandSpelling} from './brand-spelling.js';
 
 export function supportedHash(hash) {
   if (typeof hash !== 'string' || !hash.startsWith('#/') || hash.length > 2048) return '#/home';
@@ -9,6 +10,7 @@ export function supportedHash(hash) {
 export function mountDesignPreview(doc = document, win = window) {
   const frame = doc.getElementById('preview-frame');
   if (!frame) return;
+  mountBrandSpelling(doc.body);
   const params = new URLSearchParams(win.location.search);
   let selected = activeDesign(params.get('design') || params.get('option'));
   let route = supportedHash(params.get('route') || '#/home');

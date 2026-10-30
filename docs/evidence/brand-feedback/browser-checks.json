@@ -1,0 +1,105 @@
+{
+  "results": [
+    {
+      "template": "e",
+      "width": 1440,
+      "logo": {
+        "width": 35.19999694824219,
+        "height": 131.99993896484375,
+        "left": 36.399993896484375,
+        "top": 660.4000854492188,
+        "bottom": 792.4000244140625,
+        "heroBottom": 800,
+        "fill": "rgb(237, 16, 26)"
+      },
+      "title": {
+        "text": "Is ikonectt available in your area?",
+        "height": 38.359375,
+        "line": 38.376,
+        "width": 815,
+        "available": 815
+      }
+    },
+    {
+      "template": "e",
+      "width": 1024,
+      "logo": {
+        "width": 35.200016021728516,
+        "height": 131.99993896484375,
+        "left": 36.39998245239258,
+        "top": 521.4000854492188,
+        "bottom": 653.4000244140625,
+        "heroBottom": 661,
+        "fill": "rgb(237, 16, 26)"
+      },
+      "title": {
+        "text": "Is ikonectt available in your area?",
+        "height": 28.59375,
+        "line": 28.6,
+        "width": 727,
+        "available": 727.09375
+      }
+    },
+    {
+      "template": "e",
+      "width": 768,
+      "logo": {
+        "width": 35.200016021728516,
+        "height": 131.99993896484375,
+        "left": 36.399967193603516,
+        "top": 455.40008544921875,
+        "bottom": 587.4000244140625,
+        "heroBottom": 595,
+        "fill": "rgb(237, 16, 26)"
+      },
+      "title": {
+        "text": "Is ikonectt available in your area?",
+        "height": 28.59375,
+        "line": 28.6,
+        "width": 492,
+        "available": 491.5625
+      }
+    },
+    {
+      "template": "e",
+      "width": 390,
+      "logo": {
+        "width": 26.66666603088379,
+        "height": 100,
+        "left": 26.66666603088379,
+        "top": 446.33331298828125,
+        "bottom": 546.3333129882812,
+        "heroBottom": 555,
+        "fill": "rgb(237, 16, 26)"
+      },
+      "title": {
+        "text": "Is ikonectt available in your area?",
+        "height": 24.328125,
+        "line": 24.336,
+        "width": 350,
+        "available": 350
+      }
+    },
+    {
+      "template": "e",
+      "width": 320,
+      "logo": {
+        "width": 26.66666603088379,
+        "height": 100,
+        "left": 26.66666603088379,
+        "top": 416.33331298828125,
+        "bottom": 516.3333129882812,
+        "heroBottom": 525,
+        "fill": "rgb(237, 16, 26)"
+      },
+      "title": {
+        "text": "Is ikonectt available in your area?",
+        "height": 20.796875,
+        "line": 20.8,
+        "width": 280,
+        "available": 280
+      }
+    }
+  ],
+  "passed": true
+}

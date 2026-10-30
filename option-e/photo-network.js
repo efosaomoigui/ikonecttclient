@@ -21,21 +21,22 @@ const routes={
  ],nodes:[[740,565],[800,595],[880,580],[970,545],[1000,650]]}
 };
 export function photoNetworkHTML(){
- return `<svg class="e-photo-network" viewBox="0 0 1725 912" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="e-photo-node-glow"><stop stop-color="#ff7180" stop-opacity=".7"/><stop offset="1" stop-color="#ed101a" stop-opacity="0"/></radialGradient>${Object.entries(routes).map(([name,r])=>`<mask id="e-photo-i-${name}" maskUnits="userSpaceOnUse" x="${r.source[0]-8}" y="${r.source[1]-58}" width="16" height="60"><image href="${markURL}" x="${r.source[0]-8}" y="${r.source[1]-58}" width="16" height="60"/></mask>`).join('')}</defs>${Object.entries(routes).map(([name,r])=>`<g class="e-photo-routes-${name}" data-photo-profile="${name}"><g data-photo-origin><ellipse cx="${r.source[0]}" cy="${r.source[1]+3}" rx="20" ry="4" fill="#071018" opacity=".55"/><rect data-photo-source x="${r.source[0]-8}" y="${r.source[1]-58}" width="16" height="60" fill="#fff" mask="url(#e-photo-i-${name})"/><path d="M${r.source[0]-12} ${r.source[1]+1}Q${r.source[0]} ${r.source[1]+5} ${r.source[0]+12} ${r.source[1]+1}" fill="none" stroke="#fff" stroke-opacity=".25"/></g>${r.paths.map(d=>`<path class="e-photo-route" d="${d}"/><path data-photo-pulse d="${d}" pathLength="1"/>`).join('')}${r.nodes.map(([x,y])=>`<g data-photo-node><circle class="e-photo-node-halo" cx="${x}" cy="${y}" r="24" fill="url(#e-photo-node-glow)"/><circle cx="${x}" cy="${y}" r="3" fill="#ff8a95"/></g>`).join('')}</g>`).join('')}</svg>`;
+ return `<svg class="e-photo-network" viewBox="0 0 1725 912" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="e-photo-node-glow"><stop stop-color="#ff7180" stop-opacity=".7"/><stop offset="1" stop-color="#ed101a" stop-opacity="0"/></radialGradient>${Object.entries(routes).map(([name,r])=>`<mask id="e-photo-i-${name}" maskUnits="userSpaceOnUse" x="${r.source[0]-8}" y="${r.source[1]-58}" width="16" height="60"><image href="${markURL}" x="${r.source[0]-8}" y="${r.source[1]-58}" width="16" height="60"/></mask>`).join('')}</defs>${Object.entries(routes).map(([name,r])=>`<g class="e-photo-routes-${name}" data-photo-profile="${name}"><g data-photo-origin><ellipse cx="${r.source[0]}" cy="${r.source[1]+3}" rx="20" ry="4" fill="#071018" opacity=".55"/><rect data-photo-source x="${r.source[0]-8}" y="${r.source[1]-58}" width="16" height="60" fill="#ed101a" mask="url(#e-photo-i-${name})"/><path d="M${r.source[0]-12} ${r.source[1]+1}Q${r.source[0]} ${r.source[1]+5} ${r.source[0]+12} ${r.source[1]+1}" fill="none" stroke="#fff" stroke-opacity=".25"/></g>${r.paths.map(d=>`<path class="e-photo-route" d="${d}"/><path data-photo-pulse d="${d}" pathLength="1"/>`).join('')}${r.nodes.map(([x,y])=>`<g data-photo-node><circle class="e-photo-node-halo" cx="${x}" cy="${y}" r="24" fill="url(#e-photo-node-glow)"/><circle cx="${x}" cy="${y}" r="3" fill="#ff8a95"/></g>`).join('')}</g>`).join('')}</svg>`;
 }
 export function layoutPhotoNetwork(host){
  const svg=host.querySelector('.e-photo-network');if(!svg)return;
  const rect=host.getBoundingClientRect(),width=rect.width||1725,height=rect.height||912;
  const scale=Math.max(width/1725,height/912),offsetX=(width-1725*scale)/2,offsetY=(height-912*scale)/2;
- const x=(32-offsetX)/scale,y=(height+(host.closest('.hero')?.dataset.groundedSource==='buried'?14:-2)-offsetY)/scale;
+ const logoHeight=width<768?100:132,logoScale=logoHeight/(60*scale);
+ const x=((width<768?40:54)-offsetX)/scale,y=(height-12-offsetY)/scale;
  for(const group of svg.querySelectorAll('[data-photo-profile]')){
   const profile=routes[group.dataset.photoProfile],[oldX,oldY]=profile.source;
-  group.querySelector('[data-photo-origin]').setAttribute('transform',`translate(${x-oldX} ${y-oldY})`);
+  group.querySelector('[data-photo-origin]').setAttribute('transform',`translate(${x} ${y}) scale(${logoScale}) translate(${-oldX} ${-oldY})`);
   const prefix=`M${x} ${y}C${x+40} ${y-20} ${(x+oldX)/2} ${oldY+25} ${oldX} ${oldY}`;
   group.querySelectorAll('.e-photo-route').forEach((path,i)=>path.setAttribute('d',prefix+profile.paths[i].slice(profile.paths[i].indexOf('C'))));
   group.querySelectorAll('[data-photo-pulse]').forEach((path,i)=>path.setAttribute('d',prefix+profile.paths[i].slice(profile.paths[i].indexOf('C'))));
  }
- svg.dataset.sourceX=String(x*scale+offsetX);svg.dataset.sourceY=String(y*scale+offsetY);
+ svg.dataset.sourceX=String(x*scale+offsetX);svg.dataset.sourceY=String(y*scale+offsetY);svg.dataset.sourceHeight=String(logoHeight);
 }
 export async function createCityRenderer(host){
  const svg=host.querySelector('.e-photo-network');

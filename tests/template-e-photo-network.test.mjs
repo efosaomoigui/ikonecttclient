@@ -16,20 +16,21 @@ test('photographic signals travel to facade nodes without creating buildings, ca
  assert.equal(frames,0);renderer.destroy();const frozen=pulse.style.strokeDashoffset;renderer.render(10);assert.equal(pulse.style.strokeDashoffset,frozen);assert.equal(pulse.style.opacity,'0');dom.window.close();
 });
 
-test('white source rises from the bottom-left boundary after resizing while facade anchors stay fixed',()=>{
+test('large red source stays fully visible at the bottom-left while facade anchors stay fixed',()=>{
  const dom=new JSDOM(`<div>${photoNetworkHTML()}</div>`),host=dom.window.document.querySelector('div'),svg=host.querySelector('svg');
  const node=host.querySelector('[data-photo-node] circle'),originalNode=node.outerHTML;
- assert.equal(host.querySelector('[data-photo-source]').getAttribute('fill'),'#fff');
+ assert.equal(host.querySelector('[data-photo-source]').getAttribute('fill'),'#ed101a');
  assert.equal(host.querySelectorAll('.e-photo-routes-desktop [data-photo-node]').length,8);
  assert.equal(host.querySelectorAll('.e-photo-routes-mobile [data-photo-node]').length,5);
  for(const [width,height] of [[1440,900],[390,844],[320,700]]){
   host.getBoundingClientRect=()=>({width,height});layoutPhotoNetwork(host);
-  assert.ok(Math.abs(Number(svg.dataset.sourceX)-32)<.01);
-  assert.ok(Math.abs(Number(svg.dataset.sourceY)-(height-2))<.01);
+  assert.ok(Math.abs(Number(svg.dataset.sourceX)-(width<768?40:54))<.01);
+  assert.ok(Math.abs(Number(svg.dataset.sourceY)-(height-12))<.01);
+  assert.equal(Number(svg.dataset.sourceHeight),width<768?100:132);
   assert.equal(node.outerHTML,originalNode);
  }
  const hero=dom.window.document.createElement('section');hero.className='hero';hero.dataset.groundedSource='buried';host.before(hero);hero.append(host);
  host.getBoundingClientRect=()=>({width:1440,height:720});layoutPhotoNetwork(host);
- assert.equal(Number(svg.dataset.sourceY),734);assert.equal(node.outerHTML,originalNode);
+ assert.equal(Number(svg.dataset.sourceY),708);assert.equal(node.outerHTML,originalNode);
  dom.window.close();
 });

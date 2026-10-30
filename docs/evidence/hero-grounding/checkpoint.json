@@ -1,5 +1,5 @@
 {
-  "direction": "Local review only: oval-to-city hero opening, slower signals, distinct E coverage address desk and reference-inspired price-header plan cards. Preserve A and shared customer journeys. Subsequently authorised: A-only public price-card assets with a white/gray variant; the native HTML adds their stylesheet and deferred script. 28 October: client-supplied newimages is authoritative; retain original A hero slides and append one family slide, vary existing people-photo fields, narrow E fades, enable shared assets in A live development. General polish explicitly authorised: global A/E Poppins/Nunito type, compact inner heroes, inner price cards, loader and Lax/Lenis; E three-scene hero with longer city dwell; A building tile and family second slide. Core journeys/catalogue remain unchanged. Client clarified the exact A hero woman: red cushion-only recolor in responsive originals, shared with E portal portrait. Originals retained. Local client follow-up: E Business second image removed from view, supplied everyday-couple panel, white source raised 14px, shorter A home hero and dark city/translucent benefit cards across A/E. Client requested grey replacing E pink plan background and supplied rooftop photograph replacing repeated city benefit backdrop.",
+  "direction": "Local review only: oval-to-city hero opening, slower signals, distinct E coverage address desk and reference-inspired price-header plan cards. Preserve A and shared customer journeys. Subsequently authorised: A-only public price-card assets with a white/gray variant; the native HTML adds their stylesheet and deferred script. 28 October: client-supplied newimages is authoritative; retain original A hero slides and append one family slide, vary existing people-photo fields, narrow E fades, enable shared assets in A live development. General polish explicitly authorised: global A/E Poppins/Nunito type, compact inner heroes, inner price cards, loader and Lax/Lenis; E three-scene hero with longer city dwell; A building tile and family second slide. Core journeys/catalogue remain unchanged. Client clarified the exact A hero woman: red cushion-only recolor in responsive originals, shared with E portal portrait. Originals retained. Local client follow-up: E Business second image removed from view, supplied everyday-couple panel, white source raised 14px, shorter A home hero and dark city/translucent benefit cards across A/E. Client requested grey replacing E pink plan background and supplied rooftop photograph replacing repeated city benefit backdrop. 29 October client: larger fully visible red E hero brand i, official brand-i coverage locator with pin in its dot, single-line smaller coverage title, and lowercase ikonectt in active designs and selector. Brand correction is presentation-only and preserves entered user content.",
   "files": {
     "option-a/src/components/pages/HomePage.tsx": {
       "sha256": "2575924aeff18524408df91103469ba67c147441f0b0ca8689bd5409a9fae016",
@@ -10,16 +10,16 @@
       "sha256LF": "8fcb90cc302c6687f31a632d5935d0f542961109f6d2e97af47597999ed16a79"
     },
     "option-e/index.html": {
-      "sha256": "7f79af7d3c95a77dc3542d9cbaf91f68bda89a29f02ba5a2a238403f148813e8",
-      "sha256LF": "7f79af7d3c95a77dc3542d9cbaf91f68bda89a29f02ba5a2a238403f148813e8"
+      "sha256": "4594436fde677759271b5553ca60cf62c42b3baecb04944d09b44d2df84e307b",
+      "sha256LF": "647c9927a3d1b52dc6c4df2f9819744494a34c531ae7cac305648205d5ce47dc"
     },
     "option-e/corporate-light.js": {
       "sha256": "a0557caaf8984d39be7eeb0488cfa7c07c15b8fff2266631d6ec4f919c05ba5a",
       "sha256LF": "a0557caaf8984d39be7eeb0488cfa7c07c15b8fff2266631d6ec4f919c05ba5a"
     },
     "option-e/corporate-light.css": {
-      "sha256": "63d13bbdd3fa8021593d6fe17e4de7395f8ebc4cabf7bfa4025b5af4301b1e38",
-      "sha256LF": "63d13bbdd3fa8021593d6fe17e4de7395f8ebc4cabf7bfa4025b5af4301b1e38"
+      "sha256": "bac41e4fae05da59ac3472c03b5fb1f02fd80fa3399829650c84c1beca5e7354",
+      "sha256LF": "bac41e4fae05da59ac3472c03b5fb1f02fd80fa3399829650c84c1beca5e7354"
     },
     "option-e/refinement.js": {
       "sha256": "0f59062e388d644878d6a09c513e3a8233b298fe7ba6d11f6212b7eec5da2834",
@@ -30,16 +30,16 @@
       "sha256LF": "0c2b8bd77a49b49f52c398fd2be495f2b7704c7cb1ec12b9d1ce47f6dc8bcda2"
     },
     "option-e/photo-network.js": {
-      "sha256": "51e8996c930307a1daf16c9522c79fd14c18ff6ededf6d1e73ced72bed39473a",
-      "sha256LF": "51e8996c930307a1daf16c9522c79fd14c18ff6ededf6d1e73ced72bed39473a"
+      "sha256": "dbed0b78a212842508cdd5e7ecf8aaa4ccb062d08577bb9395e023b09519be7c",
+      "sha256LF": "8a47a8976c62109bc0074e01bf94aac5136a2f2e4902a566daf3c4eb007e3e22"
     },
     "option-e/homepage-sections.js": {
       "sha256": "aa27777a193e04b9466873d1b3f7c9c950effcd35fdb7eb74761d69da4dcaa11",
       "sha256LF": "aa27777a193e04b9466873d1b3f7c9c950effcd35fdb7eb74761d69da4dcaa11"
     },
     "option-a/index.html": {
-      "sha256": "658ca3f0f9dfe69637e9d0fe0c267af890e74ce00bcf5d1ed1a0ac7f9a69a0d0",
-      "sha256LF": "658ca3f0f9dfe69637e9d0fe0c267af890e74ce00bcf5d1ed1a0ac7f9a69a0d0"
+      "sha256": "3e59bbe041520c99a4a55e01fea3830bdeba2618a2d735a2cc20f5c62834fd4d",
+      "sha256LF": "43d54b657741358cbc9720df01587511876a0be0a50056185d1df0e5cb6f0885"
     },
     "option-a/vite.config.ts": {
       "sha256": "1be13a30c06988f00ca7409a1a030acf482a5834983d47fc66b1f59ab540a097",
@@ -62,8 +62,8 @@
       "sha256LF": "b75d49648efbe1fc9185899847c85c14827a003406445c0d1a0781ee0aae539c"
     },
     "shared/design-preview.js": {
-      "sha256": "dc6e93c046062ff08155835cea37789cb1b362b81198da7f23f2ff1b11b8285a",
-      "sha256LF": "33f658468842e55243c09ce5ad26fce508fc6d89ae4178ca657d3e79005d6e91"
+      "sha256": "1202c0120bf85362c046fa551c897dd05be18d4868e5531041d5c2fea2f771e2",
+      "sha256LF": "58d6be684b93d02ae106247cdafdab7570b1982d25ed607f7df10ae6fad3a0f6"
     }
   }
 }

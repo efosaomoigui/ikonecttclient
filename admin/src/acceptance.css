@@ -1,0 +1,6 @@
+/* Keep absolute screen-reader table labels inside the horizontal scroll container. */
+.table-scroll { position: relative; }
+/* Preserve the two-column overview while fitting backend currency totals on phones. */
+@media (max-width: 700px) {
+  .metric > strong.metric-amount { font-size: clamp(14px, 5vw, 27px); }
+}
