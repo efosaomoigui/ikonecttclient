@@ -10,3 +10,7 @@ Evidence is under `docs/evidence/brand-feedback/`. Browser checks cover all 29 E
 Preview: http://127.0.0.1:3021/public_html/option-e/?review=brand-feedback#/home
 
 No production build or push was performed. Main's last published Git commit remains `70ae105`. A runs from its current local source at http://127.0.0.1:3001/.
+
+30 October clarification (local only): the original white location pin with red outline, grid, circle, ground rings and short baseline are restored. Only the centre red dot is replaced by the red official brand i, centred at the original dot position. The prior inverted design (large i with a tiny pin in its dot) is superseded. Desktop/mobile browser checks passed; screenshots: docs/evidence/location-pin-correction/. The unified Git/live release remains b6b2f99 until this correction is approved for push.
+
+30 October release approval: the client requested pushing this location-pin correction. The original pin surround is preserved, with only its centre dot replaced by the red brand i. Fourteen targeted branding, hero and preservation checks passed; desktop/mobile visual checks are recorded in the location-pin evidence folder.
