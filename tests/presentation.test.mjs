@@ -34,7 +34,7 @@ test('presentation keeps the original two-design landing and packages isolated a
   const config=JSON.parse(read('vercel.json'));
   const pkg=JSON.parse(read('package.json'));
   assert.equal(config.outputDirectory,'dist-public');
-  assert.equal(config.buildCommand,'npm run build');
+  assert.equal(config.buildCommand,'npm run build -- --with-demos');
   assert.equal(pkg.scripts['build:showcase'],'node scripts/build_showcase.js');
   assert.equal(pkg.scripts['build:presentation'],'node scripts/build_presentation.cjs');
   assert.ok(!config.functions&&!config.builds,'Presentation must not introduce server functions.');

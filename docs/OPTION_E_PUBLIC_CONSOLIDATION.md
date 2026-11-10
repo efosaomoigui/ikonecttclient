@@ -1,14 +1,14 @@
 # Ikonectt — Option E public website consolidation
 
-**10 November 2026 · prepared locally; not deployed.** The client-approved Option E now opens directly from the public root. Its established markup, corporate light layout, imagery, controls, and animations are retained. This branch is based on approved website revision `b10c760`. The existing `presentation/vercel-demo` reference and historical shortlist remain recoverable.
+The client-approved Option E now opens directly from the public root. Its established markup, corporate light layout, imagery, controls, and animations are retained. This branch is based on approved website revision `b10c760`. The existing `presentation/vercel-demo` reference and historical shortlist remain recoverable.
 
 ## What changes for visitors
 
 - `/` redirects to `/option-e/`, the canonical public document. Using the established base path keeps relative assets and bookmarkable hash routes intact.
 - Retired A–D URL paths redirect to Option E rather than showing a design selector. The old standalone Residential, Business and Coverage entry points redirect to the corresponding Option E pages. Old selector anchors open the home view.
 - `npm run build` packages Option E, shared modules and public assets into `dist-public`. It does not compile A–C, serve Option D, inject presentation links, or include the Admin, customer portal or API. Local public preview: run `npm start` after building.
-- `npm run build:presentation` still uses the isolated showcase build and two standalone demos. Its historical selector source and test fixtures are retained for that build, outside the production output. No preview branch, Vercel project or hosted environment was modified.
-- Public **My Ikonectt** links resolve to an honest account-unavailable view with a public support link. Legacy sign-in, recovery and account-preview hashes show that same safe state, with no credential inputs or fake login. Live customer and staff application URLs remain independent release decisions.
+- `npm run build:presentation` still uses the isolated showcase build and two standalone demos. Its historical selector source and test fixtures are retained for that build, outside the production output.
+- The existing Vercel build adds the labelled Admin/CRM and My Ikonectt demos to the Option E site, with the same new-tab links and security headers. The standalone public build keeps its account-unavailable view. Live customer and staff integrations remain pending.
 
 ## Page-by-page audit
 
@@ -16,7 +16,7 @@ This pass reviewed Option E markup, route definitions, declared image choices an
 
 | Route | Findings and disposition |
 | --- | --- |
-| Home | Preserve connected-city, family and business scenes, existing card spacing, plan and support CTAs. Add a quiet architectural backdrop to coverage. The account CTA now reaches the safe account status. |
+| Home | Preserve connected-city, family and business scenes, existing card spacing, plan and support CTAs. The account CTA now reaches the safe account status. |
 | Residential overview | Household imagery and work/streaming/device examples support the page. Keep approved campaign image, plans and installation links. |
 | Residential plans | Preserve approved price cards and connected-home photo. Recheck narrow-width pricing and descriptive text at zoom in browser QA. |
 | Residential plan detail (both legacy routes and plan parameters) | Same established home-plan photo and published tariff detail. Preserve speed and price values; plan selection remains query-driven. |
@@ -52,7 +52,7 @@ On **Support → Troubleshooting**, the current infrastructure hero describes a 
 
 ## Coverage and animation
 
-The coverage background reuses the existing local architecture SVG, masked away from the address form and toned down on small screens. The existing pin, branded centre mark, and address launcher remain. The background is decorative CSS, has no DOM accessibility burden, and adds no animation, script or photograph.
+Coverage uses its approved background, pin, branded centre mark and address launcher. The proposed skyline was withdrawn after review.
 
 | Motion | Decision | Basis |
 | --- | --- | --- |
@@ -63,7 +63,6 @@ The coverage background reuses the existing local architecture SVG, masked away 
 | Hover and menu transitions | Keep | Existing feedback; confirm focus visibility independently of hover during final browser QA. |
 | Lax/Lenis scroll polish | Refine if profiling warrants | Existing reduced-motion fallback and scroll exclusions retained; assess overhead on mobile before changing the approved motion. |
 | Entry loader | Refine if real loading measurements warrant | Existing finite wait retained. Measure first-view delay and avoid masking page content unnecessarily. |
-| Coverage skyline | Keep static | No animation or additional runtime needed. |
 
 No animated behavior was removed. Lower-powered device testing, 200% zoom, narrow-page wrapping, contrast checks and image focal-point verification remain real-browser acceptance items.
 
@@ -72,7 +71,7 @@ No animated behavior was removed. Lower-powered device testing, 200% zoom, narro
 - `npm run build` passed. `node --test tests/*.test.mjs`: **189 passed, 0 failed** against that output.
 - Static HTTP checks verified the root/compatibility redirects, all local entry asset references, no app/API routes, and a read-only static server.
 - DOM checks rendered all 29 declared public routes, preserved the historical preview packaging, and confirmed that account routes expose no credential forms.
-- Local Edge spot-check at 1732 px: root landed on Option E, the coverage skyline CSS resolved to its local SVG, the page had no horizontal overflow, and clicking My Ikonectt reached the unavailable/help state with zero password fields. This was a desktop spot-check rather than full mobile or accessibility acceptance.
+- Local Edge spot-check at 1732 px: root landed on Option E, the page had no horizontal overflow, and clicking My Ikonectt reached the unavailable/help state with zero password fields. This was a desktop spot-check rather than full mobile or accessibility acceptance.
 
 ## Launch limits
 
