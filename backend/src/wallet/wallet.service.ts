@@ -1,10 +1,11 @@
-import {BadRequestException,ConflictException,Injectable,NotFoundException} from '@nestjs/common';
+import {BadRequestException,ConflictException,Injectable,NotFoundException,ServiceUnavailableException} from '@nestjs/common';
 import {createHash,randomUUID} from 'node:crypto';
 import * as C from '../../../contracts';
 import {audit,Database,Tx} from '../core/database';
 import {Actor} from '../identity/access';
 import {Config} from '../core/config';
 import {activeCustomer} from '../commerce/commerce.service';
+import {ClientWalletBalances} from './client-wallet.provider';
 import {RenewalProvider} from './renewal.provider';
 
 const MAX=1_000_000_000_000n;
@@ -12,7 +13,7 @@ const fingerprint=(value:unknown)=>createHash('sha256').update(JSON.stringify(va
 const pending=['RESERVED','PROCESSING','REQUIRES_REVIEW'];
 @Injectable()
 export class WalletService{
- constructor(private readonly db:Database,private readonly config:Config,private readonly provider:RenewalProvider){}
+ constructor(private readonly db:Database,private readonly config:Config,private readonly provider:RenewalProvider,private readonly clientBalances:ClientWalletBalances){}
  private async lock(tx:Tx,customerId:string){
   await tx.$queryRaw`SELECT "id" FROM "Wallet" WHERE "customerId"=${customerId}::uuid FOR UPDATE`;
   return tx.wallet.findUniqueOrThrow({where:{customerId},include:{customer:true}});
@@ -23,11 +24,24 @@ export class WalletService{
   const simulated=wallet.customer.accountNumberSimulated||!!await tx.walletEntry.findFirst({where:{walletId:wallet.id,simulated:true},select:{id:true}});
   return{customerId,currency:'NGN' as const,postedMinor:wallet.postedMinor,reservedMinor:wallet.reservedMinor,availableMinor:wallet.postedMinor-wallet.reservedMinor,pendingTopUpsMinor:topUps._sum.amountMinor||0n,pendingTopUpsCount:topUps._count,simulated,topUpInstructions:{mode:'MANUAL_REPORT' as const,bankDetails:null,notice:'Report a transfer only using payment details supplied by Ikonectt through an approved channel. No bank details or live gateway are configured here. A report is not spendable until Finance verifies it.'}};
  }
- summary(customerId:string){return this.db.mutate(tx=>this.summaryIn(tx,customerId))}
+ async summary(customerId:string){
+  if(this.config.values.WALLET_AUTHORITY==='local')return this.db.mutate(tx=>this.summaryIn(tx,customerId));
+  const verified=await this.clientBalances.get(customerId);
+  return{
+   customerId,currency:verified.currency,postedMinor:BigInt(verified.postedMinor),
+   reservedMinor:BigInt(verified.reservedMinor),availableMinor:BigInt(verified.availableMinor),
+   pendingTopUpsMinor:0n,pendingTopUpsCount:0,simulated:false,
+   topUpInstructions:{mode:'MANUAL_REPORT' as const,bankDetails:null,notice:'Wallet funding is currently unavailable through this portal.'},
+  };
+ }
+ private requireLocalAuthority(){
+  if(this.config.values.WALLET_AUTHORITY==='client')throw new ServiceUnavailableException('This wallet operation is currently unavailable through the portal.');
+ }
  private entry(tx:Tx,wallet:{id:string;customerId:string},input:{kind:string;amountMinor:bigint;postedDeltaMinor:bigint;reservedDeltaMinor:bigint;operationKey:string;description:string;actorId:string;simulated:boolean;requestFingerprint?:string;topUpId?:string;renewalId?:string;reversalOfId?:string}){
   return tx.walletEntry.create({data:{...input,requestFingerprint:input.requestFingerprint||fingerprint({operationKey:input.operationKey}),walletId:wallet.id,customerId:wallet.customerId,reference:'WTX-'+randomUUID()}});
  }
  report(actor:Actor,input:C.Input<typeof C.ReportWalletTopUpRequest>){
+  this.requireLocalAuthority();
   return this.db.mutate(async tx=>{
    const customerId=actor.customerId!;
    const wallet=await this.lock(tx,customerId);
@@ -43,6 +57,7 @@ export class WalletService{
   });
  }
  verify(actor:Actor,id:string,input:C.Input<typeof C.VerifyPaymentRequest>){
+  this.requireLocalAuthority();
   return this.db.mutate(async tx=>{
    const lookup=await tx.walletTopUp.findUniqueOrThrow({where:{id}});
    const wallet=await this.lock(tx,lookup.customerId);
@@ -60,6 +75,7 @@ export class WalletService{
   });
  }
  adjust(actor:Actor,customerId:string,input:C.Input<typeof C.WalletAdjustmentRequest>){
+  this.requireLocalAuthority();
   return this.db.mutate(async tx=>{
    const wallet=await this.lock(tx,customerId),operationKey=`adjust:${wallet.id}:${input.idempotencyKey}`,hash=fingerprint(input);
    const old=await tx.walletEntry.findUnique({where:{operationKey}});
@@ -72,6 +88,7 @@ export class WalletService{
   });
  }
  reverse(actor:Actor,id:string,input:C.Input<typeof C.WalletReversalRequest>){
+  this.requireLocalAuthority();
   return this.db.mutate(async tx=>{
    const lookup=await tx.walletEntry.findUniqueOrThrow({where:{id}}),wallet=await this.lock(tx,lookup.customerId);
    const original=await tx.walletEntry.findUniqueOrThrow({where:{id}});
@@ -106,10 +123,12 @@ export class WalletService{
   return{subscription,plan,wallet,reasons,expectedEndsAt};
  }
  eligibility(customerId:string,id:string){return this.db.mutate(async tx=>{
+  this.requireLocalAuthority();
   const q=await this.quote(tx,customerId,id);
   return{subscriptionId:id,eligible:!q.reasons.length,reasonCodes:q.reasons,amountMinor:q.plan.renewalPriceMinor,priceVersion:q.plan.updatedAt,billingDays:q.plan.billingDays,currentEndsAt:q.subscription.endsAt,expectedEndsAt:q.expectedEndsAt,planName:q.plan.name,speedMbps:q.plan.speedMbps,wallet:q.wallet,simulated:q.subscription.simulated||q.plan.simulated||this.config.values.PROVISIONING_ADAPTER==='simulated'};
  })}
  reserve(actor:Actor,id:string,input:C.Input<typeof C.WalletRenewalRequest>){
+  this.requireLocalAuthority();
   return this.db.mutate(async tx=>{
    const customerId=actor.customerId!,wallet=await this.lock(tx,customerId),hash=fingerprint({subscriptionId:id,...input});
    const old=await tx.walletRenewal.findUnique({where:{customerId_idempotencyKey:{customerId,idempotencyKey:input.idempotencyKey}}});
@@ -131,6 +150,7 @@ export class WalletService{
   await audit(tx,actor.id,'subscription.renewal_policy','Subscription',id,{enabled:input.enabled,reason:input.reason});return result;
  })}
  async process(actor:Actor,id:string){
+  this.requireLocalAuthority();
   const prepared=await this.db.mutate(async tx=>{
    const lookup=await tx.walletRenewal.findUniqueOrThrow({where:{id}});await this.lock(tx,lookup.customerId);
    const renewal=await tx.walletRenewal.findUniqueOrThrow({where:{id},include:{subscription:true}});
@@ -157,6 +177,7 @@ export class WalletService{
   await audit(tx,actor.id,'wallet.renewal_review','WalletRenewal',id,{status});return result;
  })}
  async resolve(actor:Actor,id:string,input:C.Input<typeof C.RenewalResolutionRequest>){
+  this.requireLocalAuthority();
   if(input.decision==='SUCCEEDED'&&!input.confirmedEndsAt)throw new BadRequestException('Authoritative confirmed expiry is required');
   return this.finish(actor,id,input.decision,input.reference,input.evidence,input.confirmedEndsAt);
  }

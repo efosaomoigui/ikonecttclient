@@ -1,9 +1,10 @@
-import {Body,Controller,Get,Module,Param,Patch,Post,Query} from '@nestjs/common';
+import {Body,Controller,Get,Header,Module,Param,Patch,Post,Query} from '@nestjs/common';
 import {ApiBearerAuth,ApiTags} from '@nestjs/swagger';
 import * as C from '../../../contracts';
 import {Database} from '../core/database';
 import {Contract,present,ZodPipe} from '../core/http';
 import {Actor,CurrentActor,CustomerOnly,Require} from '../identity/access';
+import {ClientWalletBalances,ClientWalletProvider,UnconfiguredClientWalletProvider} from './client-wallet.provider';
 import {WalletService} from './wallet.service';
 import {RenewalProvider} from './renewal.provider';
 import {SettlementAdapter,DisabledSettlementAdapter} from './settlement.adapter';
@@ -15,7 +16,7 @@ async function page(model:any,query:{offset:number;limit:number},where:any={}){
 @ApiTags('Customer wallet') @ApiBearerAuth() @CustomerOnly() @Controller('me/wallet')
 export class CustomerWalletController{
  constructor(private readonly db:Database,private readonly wallets:WalletService){}
- @Get() @Contract(C.WalletSummary)
+ @Get() @Header('Cache-Control','no-store') @Contract(C.WalletSummary)
  async summary(@CurrentActor() a:Actor){return present(C.WalletSummary,await this.wallets.summary(a.customerId!))}
  @Get('transactions') @Contract(C.page(C.WalletEntry),undefined,C.ListQuery)
  async entries(@CurrentActor() a:Actor,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){return present(C.page(C.WalletEntry),await page(this.db.walletEntry,q,{customerId:a.customerId}))}
@@ -39,7 +40,7 @@ export class CustomerWalletRenewalController{
 @ApiTags('Admin customer wallets') @ApiBearerAuth() @Controller('admin/customers')
 export class AdminWalletController{
  constructor(private readonly db:Database,private readonly wallets:WalletService){}
- @Require('wallet.read') @Get(':id/wallet') @Contract(C.WalletSummary)
+ @Require('wallet.read') @Get(':id/wallet') @Header('Cache-Control','no-store') @Contract(C.WalletSummary)
  async summary(@Param('id',new ZodPipe(C.Id)) id:string){return present(C.WalletSummary,await this.wallets.summary(id))}
  @Require('wallet.read') @Get(':id/wallet/transactions') @Contract(C.page(C.WalletEntry),undefined,C.ListQuery)
  async entries(@Param('id',new ZodPipe(C.Id)) id:string,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){return present(C.page(C.WalletEntry),await page(this.db.walletEntry,q,{customerId:id}))}
@@ -80,5 +81,5 @@ export class RenewalPolicyController{
  @Require('provisioning.write') @Patch(':id/renewal-policy') @Contract(C.Subscription,C.RenewalPolicyRequest)
  async policy(@CurrentActor() a:Actor,@Param('id',new ZodPipe(C.Id)) id:string,@Body(new ZodPipe(C.RenewalPolicyRequest)) b:C.Input<typeof C.RenewalPolicyRequest>){return present(C.Subscription,await this.wallets.policy(a,id,b))}
 }
-@Module({controllers:[CustomerWalletController,CustomerWalletRenewalController,AdminWalletController,AdminTopUpController,WalletCorrectionController,AdminRenewalController,RenewalPolicyController],providers:[WalletService,RenewalProvider,SettlementService,{provide:SettlementAdapter,useClass:DisabledSettlementAdapter}],exports:[SettlementService]})
+@Module({controllers:[CustomerWalletController,CustomerWalletRenewalController,AdminWalletController,AdminTopUpController,WalletCorrectionController,AdminRenewalController,RenewalPolicyController],providers:[WalletService,RenewalProvider,SettlementService,ClientWalletBalances,{provide:ClientWalletProvider,useClass:UnconfiguredClientWalletProvider},{provide:SettlementAdapter,useClass:DisabledSettlementAdapter}],exports:[SettlementService]})
 export class WalletModule{}

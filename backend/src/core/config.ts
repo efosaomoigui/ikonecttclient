@@ -10,6 +10,7 @@ const Environment = z.object({
   CORS_ORIGINS: z.string().default('http://localhost:3000,http://localhost:3001,http://127.0.0.1:4175'),
   SESSION_HOURS: z.coerce.number().int().min(1).max(24).default(8),
   NOTIFICATION_ENCRYPTION_KEY: z.string().regex(/^[0-9a-f]{64}$/i),
+  WALLET_AUTHORITY: z.enum(['local', 'client']).default('local'),
   PAYMENT_ADAPTER: z.enum(['manual', 'disabled', 'simulated']).default('manual'),
   COVERAGE_ADAPTER: z.enum(['native', 'disabled', 'simulated']).default('native'),
   PROVISIONING_ADAPTER: z.enum(['manual', 'disabled', 'simulated']).default('manual'),

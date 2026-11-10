@@ -1,4 +1,4 @@
-import {BadRequestException,ConflictException,ForbiddenException,Injectable} from '@nestjs/common';
+import {BadRequestException,ConflictException,ForbiddenException,Injectable,ServiceUnavailableException} from '@nestjs/common';
 import {createHash,randomUUID} from 'node:crypto';
 import {z} from 'zod';
 import {audit,Database} from '../core/database';
@@ -13,6 +13,7 @@ const hash=(v:unknown)=>createHash('sha256').update(JSON.stringify(v)).digest('h
 export class SettlementService{
  constructor(private readonly db:Database,private readonly config:Config,private readonly adapter:SettlementAdapter){}
  private identity(){
+  if(this.config.values.WALLET_AUTHORITY==='client')throw new ServiceUnavailableException('Local settlement is disabled for client-managed wallets');
   const identity=SettlementIdentity.parse(this.adapter.identity());
   if(identity.simulated&&!['test','development'].includes(this.config.values.NODE_ENV))throw new ForbiddenException('Simulated settlement is restricted to development/test');
   return identity;
