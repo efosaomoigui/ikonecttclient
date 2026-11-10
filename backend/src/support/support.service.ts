@@ -19,9 +19,9 @@ export class SupportService {
     });
   }
   async detail(id: string, customerId?: string) {
-    const ticket = await this.db.ticket.findFirst({ where: { id, ...(customerId ? { customerId } : {}) }, include: { messages: { orderBy: { createdAt: 'asc' }, take: 500 } } });
+    const ticket = await this.db.ticket.findFirst({ where: { id, ...(customerId ? { customerId } : {}) }, include: { messages: { orderBy: [{ createdAt: 'desc' }, { id: 'desc' }], take: 500 } } });
     if (!ticket) throw new NotFoundException('Ticket not found');
-    return ticket;
+    return { ...ticket, messages: ticket.messages.reverse() };
   }
   message(actor: Actor, id: string, input: C.Input<typeof C.TicketMessageRequest>, customerId?: string) {
     return this.db.mutate(async tx => {
@@ -40,8 +40,12 @@ export class SupportService {
         const staff = await tx.user.findFirst({ where: { id: input.assignedToId, kind: 'STAFF', enabled: true, roles: { hasSome: ['ADMIN', 'SUPPORT'] } } });
         if (!staff) throw new BadRequestException('Assignee must be enabled support staff');
       }
-      const ticket = await tx.ticket.update({ where: { id }, data: input });
-      await audit(tx, actor.id, 'ticket.updated', 'Ticket', id, { status: input.status, ...(input.assignedToId ? { assignedToId: input.assignedToId } : {}) });
+      const previous = await tx.ticket.findUniqueOrThrow({ where: { id } });
+      const ticket = await tx.ticket.update({ where: { id }, data: input, include: { customer: { select: { email: true } } } });
+      await audit(tx, actor.id, 'ticket.updated', 'Ticket', id, { previousStatus: previous.status, status: ticket.status, ...(input.assignedToId !== undefined ? { assignedToId: input.assignedToId } : {}) });
+      if (previous.status !== ticket.status && ['RESOLVED', 'CLOSED'].includes(ticket.status)) {
+        await this.notifications.enqueue(tx, { customerId: ticket.customerId, destination: ticket.customer.email, template: `TICKET_${ticket.status}`, payload: { ticketId: id } });
+      }
       return ticket;
     });
   }

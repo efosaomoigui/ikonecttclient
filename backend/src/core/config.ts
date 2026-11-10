@@ -26,6 +26,9 @@ export class Config {
     if (['staging', 'production'].includes(this.values.NODE_ENV) && Object.entries(this.values).some(([key, value]) => key.endsWith('_ADAPTER') && value === 'simulated')) {
       throw new Error('Simulated adapters are restricted to development and test');
     }
+    if (this.values.NODE_ENV === 'production' && this.values.WALLET_AUTHORITY !== 'client') {
+      throw new Error('Production requires WALLET_AUTHORITY=client; the local ledger is not the client wallet');
+    }
     if (this.values.CORS_ORIGINS.split(',').some(origin => origin.trim() === '*')) throw new Error('Explicit CORS origins are required');
     if (this.values.NODE_ENV === 'production' && this.values.CORS_ORIGINS.split(',').some(origin => !origin.trim().startsWith('https://'))) throw new Error('Production CORS origins must use HTTPS');
   }

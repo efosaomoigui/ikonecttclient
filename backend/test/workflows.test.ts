@@ -7,7 +7,9 @@ import { PrismaClient } from '@prisma/client';
 import * as C from '../../contracts';
 import { createApp, openApi } from '../src/bootstrap';
 import { Config } from '../src/core/config';
+import { Database } from '../src/core/database';
 import { decrypt, digest, hashPassword } from '../src/core/crypto';
+import { IdentityService } from '../src/identity/identity.service';
 import { NotificationsService } from '../src/notifications/notifications.service';
 import { Simulator, SimulatedLegacyProvider, SimulatedPaymentProvider, SimulatedProvisioningProvider } from '../src/integrations/adapters';
 
@@ -236,9 +238,17 @@ test('support ticket creation, replies, assignment and status enforce ownership'
   await api('post', `/me/tickets/${ticket.id}/messages`, otherToken, { message: 'Cannot read another customer' }).expect(404);
   await api('post', `/admin/tickets/${ticket.id}/messages`, support, { message: 'Test-only support reply' }).expect(200);
   await api('patch', `/admin/tickets/${ticket.id}`, support, { status: 'IN_PROGRESS', assignedToId: staffIds.FINANCE }).expect(400);
+  await api('patch', `/admin/tickets/${ticket.id}`, finance, { status: 'RESOLVED' }).expect(403);
+  await api('patch', `/admin/tickets/${ticket.id}`, support, { status: 'RESOLVED', assignedToId: staffIds.SUPPORT }).expect(200);
+  await api('patch', `/admin/tickets/${ticket.id}`, support, { status: 'RESOLVED', assignedToId: staffIds.SUPPORT }).expect(200);
   await api('patch', `/admin/tickets/${ticket.id}`, support, { status: 'CLOSED', assignedToId: staffIds.SUPPORT }).expect(200);
   await api('post', `/me/tickets/${ticket.id}/messages`, customerToken, { message: 'Closed ticket reply' }).expect(409);
-  C.TicketDetail.parse((await api('get', `/me/tickets/${ticket.id}`, customerToken).expect(200)).body);
+  const readback = C.TicketDetail.parse((await api('get', `/me/tickets/${ticket.id}`, customerToken).expect(200)).body);
+  assert.equal(readback.status, 'CLOSED');
+  assert.deepEqual(readback.messages.map(entry => entry.message), [input.message, 'Test-only support reply']);
+  const notifications = await db.notification.findMany({ where: { customerId: customer.id, template: { in: ['TICKET_RESOLVED', 'TICKET_CLOSED'] } } });
+  assert.deepEqual(notifications.map(row => row.template).sort(), ['TICKET_CLOSED', 'TICKET_RESOLVED']);
+  for (const row of notifications) assert.deepEqual(decrypt(row.encryptedPayload, process.env.NOTIFICATION_ENCRYPTION_KEY!), { ticketId: ticket.id });
 });
 test('notifications expose metadata, keep credential payloads encrypted and simulate without delivery', async () => {
   const row = await db.notification.findFirstOrThrow({ where: { customerId: customer.id, template: 'ACCOUNT_SETUP' } });
@@ -309,6 +319,58 @@ test('simulators provide success, failure and timeout without real providers', a
 test('production/staging refuse simulated adapters', () => {
   const env = process.env.NODE_ENV; process.env.NODE_ENV = 'production';
   try { assert.throws(() => new Config(), /Simulated adapters/); } finally { process.env.NODE_ENV = env; }
+});
+test('login rechecks the credential before issuing a session', async () => {
+  const email = `rotation-race-${run}@example.test`;
+  const staff = await db.user.create({ data: { kind: 'STAFF', name: 'SIMULATED rotation race', email, roles: ['SUPPORT'], passwordHash: await hashPassword(password) } });
+  const replacementHash = await hashPassword(`Replacement-${run}-Password!`);
+  const appDb = app.get(Database);
+  const mutate = appDb.mutate;
+  // Rotate after the login has verified the old hash and before the real session transaction.
+  appDb.mutate = async function(fn) {
+    appDb.mutate = mutate;
+    await db.user.update({ where: { id: staff.id }, data: { passwordHash: replacementHash } });
+    return mutate.call(appDb, fn) as ReturnType<typeof appDb.mutate>;
+  } as typeof appDb.mutate;
+  try {
+    await assert.rejects(app.get(IdentityService).login(email, password, true), /Invalid credentials/);
+    assert.equal(await db.session.count({ where: { userId: staff.id } }), 0);
+  } finally { appDb.mutate = mutate; }
+});
+test('production requires client wallet authority while retaining manual order workflows', () => {
+  const overrides = { NODE_ENV: 'production', CORS_ORIGINS: 'https://portal.example.test', WALLET_AUTHORITY: 'local', EMAIL_ADAPTER: 'disabled', SMS_ADAPTER: 'disabled', LEGACY_ADAPTER: 'disabled' };
+  const previous = Object.fromEntries(Object.keys(overrides).map(key => [key, process.env[key]]));
+  Object.assign(process.env, overrides);
+  try {
+    assert.throws(() => new Config(), /Production requires WALLET_AUTHORITY=client/);
+    process.env.WALLET_AUTHORITY = 'client';
+    const { values } = new Config();
+    assert.equal(values.WALLET_AUTHORITY, 'client');
+    assert.equal(values.PAYMENT_ADAPTER, 'manual');
+    assert.equal(values.PROVISIONING_ADAPTER, 'manual');
+    assert.equal(values.COVERAGE_ADAPTER, 'native');
+  } finally {
+    for (const [key, value] of Object.entries(previous)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+});
+test('production staff onboarding requires an approved account identifier', async () => {
+  const config = app.get(Config);
+  const mode = config.values.NODE_ENV;
+  const profile = { kind: 'RESIDENTIAL', name: 'Test-only production guard', email: `production-guard-${run}@example.test`, phone: '+2348000000000' };
+  config.values.NODE_ENV = 'production';
+  try {
+    await api('post', '/admin/customers', admin, profile).expect(400);
+    assert.equal(await db.customer.count({ where: { email: profile.email } }), 0);
+    const accountNumber = `APPROVED-${run}`;
+    const { body } = await api('post', '/admin/customers', admin, { ...profile, accountNumber }).expect(200);
+    assert.equal(body.customer.accountNumber, accountNumber);
+    assert.equal(body.customer.accountNumberSimulated, false);
+  } finally {
+    config.values.NODE_ENV = mode;
+  }
 });
 test('staff recovery is generic and does not disclose credential tokens', async () => {
   const result = await api('post', '/auth/staff/recovery', undefined, { email: `finance-${run}@example.test` }).expect(200);

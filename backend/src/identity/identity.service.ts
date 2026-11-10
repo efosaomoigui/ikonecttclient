@@ -12,14 +12,21 @@ export class IdentityService {
   async login(identifier: string, password: string, staff = false) {
     const user = staff ? await this.db.user.findUnique({ where: { email: identifier.toLowerCase() }, include: { customer: true } }) : (await this.db.customer.findUnique({ where: { accountNumber: identifier }, include: { user: true } }))?.user;
     const matches = await verifyPassword(password, user?.passwordHash);
-    const customer = user?.customerId ? await this.db.customer.findUnique({ where: { id: user.customerId } }) : null;
-    if (!user || !matches || !user.enabled || user.kind !== (staff ? 'STAFF' : 'CUSTOMER') || customer?.status === 'CLOSED') throw new UnauthorizedException('Invalid credentials');
+    if (!user || !matches || !user.enabled || user.kind !== (staff ? 'STAFF' : 'CUSTOMER')) throw new UnauthorizedException('Invalid credentials');
     const accessToken = token(), expiresAt = new Date(Date.now() + this.config.values.SESSION_HOURS * 3_600_000);
-    await this.db.mutate(async tx => {
-      await tx.session.create({ data: { userId: user.id, tokenHash: digest(accessToken), expiresAt } });
-      await audit(tx, user.id, 'identity.login', 'User', user.id);
+    const principal = await this.db.mutate(async tx => {
+      // Serialize session issuance against a concurrent password reset or account change.
+      await tx.$queryRaw`SELECT id FROM "User" WHERE id=${user.id}::uuid FOR UPDATE`;
+      const current = await tx.user.findUnique({ where: { id: user.id }, include: { customer: true } });
+      if (!current || !current.enabled || current.kind !== user.kind || current.passwordHash !== user.passwordHash ||
+          (staff ? current.email !== identifier.toLowerCase() : !current.customer || current.customer.status === 'CLOSED' || current.customer.accountNumber !== identifier)) {
+        throw new UnauthorizedException('Invalid credentials');
+      }
+      await tx.session.create({ data: { userId: current.id, tokenHash: digest(accessToken), expiresAt } });
+      await audit(tx, current.id, 'identity.login', 'User', current.id);
+      return this.principal(current);
     });
-    return { accessToken, tokenType: 'Bearer', expiresAt, principal: this.principal(user) };
+    return { accessToken, tokenType: 'Bearer', expiresAt, principal };
   }
   principal(user: Pick<User, 'id' | 'kind' | 'customerId' | 'roles' | 'mustChangePassword'>) {
     return { id: user.id, kind: user.kind, customerId: user.customerId, roles: user.roles, mustChangePassword: user.mustChangePassword };

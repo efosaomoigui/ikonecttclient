@@ -34,7 +34,7 @@ export class WalletService{
    topUpInstructions:{mode:'MANUAL_REPORT' as const,bankDetails:null,notice:'Wallet funding is currently unavailable through this portal.'},
   };
  }
- private requireLocalAuthority(){
+ requireLocalAuthority(){
   if(this.config.values.WALLET_AUTHORITY==='client')throw new ServiceUnavailableException('This wallet operation is currently unavailable through the portal.');
  }
  private entry(tx:Tx,wallet:{id:string;customerId:string},input:{kind:string;amountMinor:bigint;postedDeltaMinor:bigint;reservedDeltaMinor:bigint;operationKey:string;description:string;actorId:string;simulated:boolean;requestFingerprint?:string;topUpId?:string;renewalId?:string;reversalOfId?:string}){
@@ -144,7 +144,8 @@ export class WalletService{
    await audit(tx,actor.id,'wallet.renewal_reserved','WalletRenewal',renewal.id,{orderId:order.id});return renewal;
   });
  }
- policy(actor:Actor,id:string,input:C.Input<typeof C.RenewalPolicyRequest>){return this.db.mutate(async tx=>{
+ policy(actor:Actor,id:string,input:C.Input<typeof C.RenewalPolicyRequest>){
+ this.requireLocalAuthority();return this.db.mutate(async tx=>{
   await tx.$queryRaw`SELECT "id" FROM "Subscription" WHERE "id"=${id}::uuid FOR UPDATE`;
   const result=await tx.subscription.update({where:{id},data:{renewalEnabled:input.enabled}});
   await audit(tx,actor.id,'subscription.renewal_policy','Subscription',id,{enabled:input.enabled,reason:input.reason});return result;

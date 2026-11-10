@@ -19,15 +19,15 @@ export class CustomerWalletController{
  @Get() @Header('Cache-Control','no-store') @Contract(C.WalletSummary)
  async summary(@CurrentActor() a:Actor){return present(C.WalletSummary,await this.wallets.summary(a.customerId!))}
  @Get('transactions') @Contract(C.page(C.WalletEntry),undefined,C.ListQuery)
- async entries(@CurrentActor() a:Actor,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){return present(C.page(C.WalletEntry),await page(this.db.walletEntry,q,{customerId:a.customerId}))}
+ async entries(@CurrentActor() a:Actor,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){this.wallets.requireLocalAuthority();return present(C.page(C.WalletEntry),await page(this.db.walletEntry,q,{customerId:a.customerId}))}
  @Get('top-ups') @Contract(C.page(C.WalletTopUp),undefined,C.ListQuery)
- async topUps(@CurrentActor() a:Actor,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){return present(C.page(C.WalletTopUp),await page(this.db.walletTopUp,q,{customerId:a.customerId}))}
+ async topUps(@CurrentActor() a:Actor,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){this.wallets.requireLocalAuthority();return present(C.page(C.WalletTopUp),await page(this.db.walletTopUp,q,{customerId:a.customerId}))}
  @Post('top-ups') @Contract(C.WalletTopUp,C.ReportWalletTopUpRequest)
  async report(@CurrentActor() a:Actor,@Body(new ZodPipe(C.ReportWalletTopUpRequest)) b:C.Input<typeof C.ReportWalletTopUpRequest>){return present(C.WalletTopUp,await this.wallets.report(a,b))}
  @Get('renewals') @Contract(C.page(C.WalletRenewal),undefined,C.ListQuery)
- async renewals(@CurrentActor() a:Actor,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){return present(C.page(C.WalletRenewal),await page(this.db.walletRenewal,q,{customerId:a.customerId}))}
+ async renewals(@CurrentActor() a:Actor,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){this.wallets.requireLocalAuthority();return present(C.page(C.WalletRenewal),await page(this.db.walletRenewal,q,{customerId:a.customerId}))}
  @Get('renewals/:id') @Contract(C.WalletRenewal)
- async renewal(@CurrentActor() a:Actor,@Param('id',new ZodPipe(C.Id)) id:string){return present(C.WalletRenewal,await this.db.walletRenewal.findFirstOrThrow({where:{id,customerId:a.customerId!}}))}
+ async renewal(@CurrentActor() a:Actor,@Param('id',new ZodPipe(C.Id)) id:string){this.wallets.requireLocalAuthority();return present(C.WalletRenewal,await this.db.walletRenewal.findFirstOrThrow({where:{id,customerId:a.customerId!}}))}
 }
 @ApiTags('Customer wallet renewals') @ApiBearerAuth() @CustomerOnly() @Controller('me/subscriptions')
 export class CustomerWalletRenewalController{
@@ -43,7 +43,7 @@ export class AdminWalletController{
  @Require('wallet.read') @Get(':id/wallet') @Header('Cache-Control','no-store') @Contract(C.WalletSummary)
  async summary(@Param('id',new ZodPipe(C.Id)) id:string){return present(C.WalletSummary,await this.wallets.summary(id))}
  @Require('wallet.read') @Get(':id/wallet/transactions') @Contract(C.page(C.WalletEntry),undefined,C.ListQuery)
- async entries(@Param('id',new ZodPipe(C.Id)) id:string,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){return present(C.page(C.WalletEntry),await page(this.db.walletEntry,q,{customerId:id}))}
+ async entries(@Param('id',new ZodPipe(C.Id)) id:string,@Query(new ZodPipe(C.ListQuery)) q:C.Input<typeof C.ListQuery>){this.wallets.requireLocalAuthority();return present(C.page(C.WalletEntry),await page(this.db.walletEntry,q,{customerId:id}))}
  @Require('wallet.adjust') @Post(':id/wallet/adjustments') @Contract(C.WalletEntry,C.WalletAdjustmentRequest)
  async adjust(@CurrentActor() a:Actor,@Param('id',new ZodPipe(C.Id)) id:string,@Body(new ZodPipe(C.WalletAdjustmentRequest)) b:C.Input<typeof C.WalletAdjustmentRequest>){return present(C.WalletEntry,await this.wallets.adjust(a,id,b))}
 }
@@ -51,9 +51,9 @@ export class AdminWalletController{
 export class AdminTopUpController{
  constructor(private readonly db:Database,private readonly wallets:WalletService){}
  @Require('payments.verify') @Get() @Contract(C.page(C.AdminWalletTopUp),undefined,C.WalletTopUpQuery)
- async list(@Query(new ZodPipe(C.WalletTopUpQuery)) q:C.Input<typeof C.WalletTopUpQuery>){const{offset,limit,...where}=q;return present(C.page(C.AdminWalletTopUp),await page(this.db.walletTopUp,{offset,limit},where))}
+ async list(@Query(new ZodPipe(C.WalletTopUpQuery)) q:C.Input<typeof C.WalletTopUpQuery>){this.wallets.requireLocalAuthority();const{offset,limit,...where}=q;return present(C.page(C.AdminWalletTopUp),await page(this.db.walletTopUp,{offset,limit},where))}
  @Require('payments.verify') @Get(':id') @Contract(C.AdminWalletTopUp)
- async get(@Param('id',new ZodPipe(C.Id)) id:string){return present(C.AdminWalletTopUp,await this.db.walletTopUp.findUniqueOrThrow({where:{id}}))}
+ async get(@Param('id',new ZodPipe(C.Id)) id:string){this.wallets.requireLocalAuthority();return present(C.AdminWalletTopUp,await this.db.walletTopUp.findUniqueOrThrow({where:{id}}))}
  @Require('payments.verify') @Post(':id/verify') @Contract(C.AdminWalletTopUp,C.VerifyPaymentRequest)
  async verify(@CurrentActor() a:Actor,@Param('id',new ZodPipe(C.Id)) id:string,@Body(new ZodPipe(C.VerifyPaymentRequest)) b:C.Input<typeof C.VerifyPaymentRequest>){return present(C.AdminWalletTopUp,await this.wallets.verify(a,id,b))}
 }
@@ -67,9 +67,9 @@ export class WalletCorrectionController{
 export class AdminRenewalController{
  constructor(private readonly db:Database,private readonly wallets:WalletService){}
  @Require('renewals.read') @Get() @Contract(C.page(C.AdminWalletRenewal),undefined,C.WalletRenewalQuery)
- async list(@Query(new ZodPipe(C.WalletRenewalQuery)) q:C.Input<typeof C.WalletRenewalQuery>){const{offset,limit,...where}=q;return present(C.page(C.AdminWalletRenewal),await page(this.db.walletRenewal,{offset,limit},where))}
+ async list(@Query(new ZodPipe(C.WalletRenewalQuery)) q:C.Input<typeof C.WalletRenewalQuery>){this.wallets.requireLocalAuthority();const{offset,limit,...where}=q;return present(C.page(C.AdminWalletRenewal),await page(this.db.walletRenewal,{offset,limit},where))}
  @Require('renewals.read') @Get(':id') @Contract(C.AdminWalletRenewal)
- async get(@Param('id',new ZodPipe(C.Id)) id:string){return present(C.AdminWalletRenewal,await this.db.walletRenewal.findUniqueOrThrow({where:{id}}))}
+ async get(@Param('id',new ZodPipe(C.Id)) id:string){this.wallets.requireLocalAuthority();return present(C.AdminWalletRenewal,await this.db.walletRenewal.findUniqueOrThrow({where:{id}}))}
  @Require('provisioning.write') @Post(':id/process') @Contract(C.AdminWalletRenewal)
  async process(@CurrentActor() a:Actor,@Param('id',new ZodPipe(C.Id)) id:string){return present(C.AdminWalletRenewal,await this.wallets.process(a,id))}
  @Require('provisioning.write') @Post(':id/resolve') @Contract(C.AdminWalletRenewal,C.RenewalResolutionRequest)

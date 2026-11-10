@@ -58,6 +58,24 @@ test('Finance confirmation is exactly-once under repeated and concurrent request
  assert.equal((await summary(f.token)).availableMinor,2500000);assert.equal(await db.walletEntry.count({where:{topUpId:top.id}}),1);
  await confirm(top.id).expect(200);await reconcileProjection(f.customer.id);
 });
+test('client authority fails closed for local wallet reads and writes without blocking the account',async()=>{
+ const f=await fixture(2500000),top=await topUp(f);
+ const response=await reserve(f);assert.equal(response.status,200);const renewal=response.body;
+ const config=app.get(Config).values, previous=config.WALLET_AUTHORITY;
+ config.WALLET_AUTHORITY='client';
+ try{
+  for(const path of ['/me/wallet','/me/wallet/transactions','/me/wallet/top-ups','/me/wallet/renewals',`/me/wallet/renewals/${renewal.id}`,`/me/subscriptions/${f.subscription.id}/renewal-eligibility`])await api('get',path,f.token).expect(503);
+  await api('get',`/admin/customers/${f.customer.id}/wallet/transactions`,staff.SUPPORT.token).expect(503);
+  await api('get',`/admin/wallet-top-ups/${top.id}`,staff.FINANCE.token).expect(503);
+  await api('get',`/admin/wallet-renewals/${renewal.id}`,staff.PROVISIONER.token).expect(503);
+  await api('post','/me/wallet/top-ups',f.token,top.input).expect(503);
+  await confirm(top.id).expect(503);
+  await api('patch',`/admin/subscriptions/${f.subscription.id}/renewal-policy`,staff.PROVISIONER.token,{enabled:false,reason:'Test only'}).expect(503);
+  await api('get','/me/dashboard',f.token).expect(200);
+ }finally{config.WALLET_AUTHORITY=previous}
+ assert.equal((await summary(f.token)).postedMinor,2500000);
+ assert.equal((await db.walletRenewal.findUniqueOrThrow({where:{id:renewal.id}})).status,'RESERVED');
+});
 test('rejected top-up never credits and cannot later be confirmed',async()=>{
  const f=await fixture(),top=await topUp(f);
  await api('post',`/admin/wallet-top-ups/${top.id}/verify`,staff.FINANCE.token,{decision:'REJECTED',evidence:'SIMULATED definite evidence mismatch'}).expect(200);

@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { randomInt } from 'node:crypto';
 import * as C from '../../../contracts';
 import { audit, Database } from '../core/database';
+import { Config } from '../core/config';
 import { Actor } from '../identity/access';
 import { IdentityService } from '../identity/identity.service';
 import { NotificationsService } from '../notifications/notifications.service';
@@ -9,8 +10,11 @@ import { CoverageService } from '../catalogue/catalogue.service';
 
 @Injectable()
 export class CustomersService {
-  constructor(private readonly db: Database, private readonly identity: IdentityService, private readonly notifications: NotificationsService, private readonly coverage: CoverageService) {}
+  constructor(private readonly db: Database, private readonly identity: IdentityService, private readonly notifications: NotificationsService, private readonly coverage: CoverageService, private readonly config: Config) {}
   async create(actor: Actor, input: C.Input<typeof C.CreateCustomerRequest>) {
+    if (this.config.values.NODE_ENV === 'production' && !input.accountNumber) {
+      throw new BadRequestException('An approved customer account identifier is required in production');
+    }
     return this.db.mutate(async tx => {
       if (input.buildingId) await this.coverage.building(tx, input.buildingId);
       const accountNumber = input.accountNumber || String(randomInt(10_000_000, 100_000_000));
