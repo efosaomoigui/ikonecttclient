@@ -10,6 +10,7 @@ Thumbs.db
 .tempmediaStorage/
 .user_uploaded/
 .vercel
+dist-public/
 
 public_html/admin/
 public_html/my-ikonectt/

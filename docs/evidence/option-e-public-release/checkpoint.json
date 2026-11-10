@@ -1,0 +1,9 @@
+{
+  "baseline": "b10c760b51141b5562de4ad06f43b260c00f055d",
+  "scope": "Fail closed for unconnected public customer-account paths only; preserve archived previews and public journeys.",
+  "files": {
+    "shared/public-site.js": {
+      "sha256LF": "83011b884afe23570a501f67b030b14faeda99b5992c19896e0ed558f1a7431f"
+    }
+  }
+}

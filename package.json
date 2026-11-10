@@ -1,12 +1,15 @@
 {
   "name": "ikonecttclient",
   "version": "1.0.0",
-  "description": "iKonectt Client Presentation & Dual-Option Architecture Showcase",
-  "main": "server.js",
+  "description": "Ikonectt public website and isolated presentation tooling",
+  "main": "scripts/serve_public.cjs",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
-    "build": "node scripts/build_showcase.js",
+    "start": "node scripts/serve_public.cjs",
+    "dev": "node scripts/serve_public.cjs",
+    "build": "node scripts/build_public.cjs",
+    "build:showcase": "node scripts/build_showcase.js",
+    "dev:showcase": "node server.js",
+    "pretest": "npm run build",
     "test": "node --test tests/*.test.mjs",
     "build:presentation": "node scripts/build_presentation.cjs"
   },

@@ -33,16 +33,15 @@ test('presentation keeps the original two-design landing and packages isolated a
 
   const config=JSON.parse(read('vercel.json'));
   const pkg=JSON.parse(read('package.json'));
-  assert.equal(config.outputDirectory,'public_html');
-  assert.equal(config.buildCommand,'npm run build:presentation');
-  assert.equal(pkg.scripts.build,'node scripts/build_showcase.js');
+  assert.equal(config.outputDirectory,'dist-public');
+  assert.equal(config.buildCommand,'npm run build');
+  assert.equal(pkg.scripts['build:showcase'],'node scripts/build_showcase.js');
   assert.equal(pkg.scripts['build:presentation'],'node scripts/build_presentation.cjs');
   assert.ok(!config.functions&&!config.builds,'Presentation must not introduce server functions.');
-  for(const prefix of ['/admin','/my-ikonectt']){
-    const redirect=config.redirects.find(rule=>rule.source===prefix);
-    assert.equal(redirect?.destination,prefix+'/','Relative customer assets require a trailing slash.');
-    const route=config.headers.find(rule=>rule.source===prefix+'/(.*)');
-    assert.ok(route,`Missing isolated demo policy for ${prefix}`);
+  for(const app of ['admin','my-ikonectt']){
+    const demoConfig=JSON.parse(read(app+'/vercel.json'));
+    const route=demoConfig.headers.find(rule=>rule.source==='/(.*)');
+    assert.ok(route,`Missing isolated demo policy for ${app}`);
     const headers=new Map(route.headers.map(header=>[header.key.toLowerCase(),header.value]));
     assert.match(headers.get('content-security-policy'),/connect-src 'none'/);
     assert.match(headers.get('content-security-policy'),/form-action 'none'/);
@@ -74,7 +73,7 @@ test('presentation keeps the original two-design landing and packages isolated a
     return {builds,copies,fileCopies,writes,sampleHtml};
   };
   const result=execute();
-  assert.deepEqual(result.builds,[['npm run build',path.resolve(root)],['npm run build:demo',path.join(root,'admin')],['npm run build:demo',path.join(root,'my-ikonectt')]]);
+  assert.deepEqual(result.builds,[['npm run build:showcase',path.resolve(root)],['npm run build:demo',path.join(root,'admin')],['npm run build:demo',path.join(root,'my-ikonectt')]]);
   assert.deepEqual(result.copies,[
     [path.join(root,'admin','dist-demo','admin'),path.join(root,'public_html','admin')],
     [path.join(root,'my-ikonectt','dist-demo'),path.join(root,'public_html','my-ikonectt')],

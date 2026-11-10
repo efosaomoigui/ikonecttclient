@@ -17,6 +17,7 @@ export function mountSite({root,home,template}) {
   const abort=new AbortController(),opts={signal:abort.signal};
   const state={address:{},coverage:null,plan:'',audience:'residential',selectedPlans:{residential:'',business:''}};
   const originalTitle=home.dataset.originalTitle||document.title;
+  const publicRelease=template==='e'&&root.hasAttribute('data-public-release');
   home.dataset.originalTitle=originalTitle;
   let previous='',menuTimer,hoverOpened=null;
   root.classList.add('ik-site');root.dataset.template=template;
@@ -80,7 +81,9 @@ export function mountSite({root,home,template}) {
     if(target.matches('a[href^="#/"]')){closeMenus();closeMobile();}
   },opts);
   function render(){
-    const {path,query}=parseRoute(window.location.hash),isHome=path==='home';
+    const {path:requestedPath,query}=parseRoute(window.location.hash);
+    const path=publicRelease&&['design-options','preview-area','comparison'].includes(requestedPath)?'home':requestedPath;
+    const isHome=path==='home';
     root.dataset.route=path;home.hidden=!isHome;main.hidden=isHome;
     closeMenus();closeMobile();
     const requestedPlan=getPlan(query.get('plan'));
@@ -94,9 +97,12 @@ export function mountSite({root,home,template}) {
     if(isHome){document.title=originalTitle;main.replaceChildren();carousels.forEach(carousel=>carousel.setAudience(state.audience));}
     else{
       const detail=path.startsWith('residential/plans/demo-')?getPlan(query.get('plan')||(path.endsWith('2')?'res-isilver':'res-ibasic')):null;
-      const title=detail?.audience==='residential'?planName(detail):pages[path]?.[0]||'Page not found',description=pages[path]?.[1]||'Choose a page from the navigation.';
+      const accountUnavailable=publicRelease&&path.startsWith('my-ikonectt/');
+      const title=accountUnavailable?'My Ikonectt':detail?.audience==='residential'?planName(detail):pages[path]?.[0]||'Page not found';
+      const description=accountUnavailable?'Customer account access is not available from this website yet.':pages[path]?.[1]||'Choose a page from the navigation.';
       const section=path.split('/')[0];const sectionName=menus.find(item=>item.id===section)?.label||'Ikonectt';
-      main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(title)}</span></nav><h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${renderPage(path,{state,query})}`;
+      const content=accountUnavailable?`<section class="ik-section"><div class="ik-wrap"><p class="ik-notice">For account assistance, use the public support information. Do not enter your password or payment details on this website.</p>${link('support','View support information',true)}</div></section>`:renderPage(path,{state,query});
+      main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(title)}</span></nav><h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${content}`;
       document.title=title+' | Ikonectt';
       initializePage();
     }

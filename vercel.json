@@ -1,8 +1,7 @@
 {
   "version": 2,
-  "installCommand": "npm ci --prefix option-a --include=dev && npm ci --prefix option-b --include=dev && npm ci --prefix option-c --include=dev && npm ci --prefix admin --include=dev && npm ci --prefix my-ikonectt --include=dev",
-  "buildCommand": "npm run build:presentation",
-  "outputDirectory": "public_html",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist-public",
   "cleanUrls": true,
   "headers": [
     {
@@ -11,71 +10,53 @@
         {
           "key": "X-Frame-Options",
           "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         }
       ]
-    },
-    {
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "no-referrer"
-        }
-      ],
-      "source": "/admin/(.*)"
-    },
-    {
-      "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
-        },
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "no-referrer"
-        }
-      ],
-      "source": "/my-ikonectt/(.*)"
-    },
-    {
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        }
-      ],
-      "source": "/(.*)"
     }
   ],
   "redirects": [
     {
-      "source": "/admin",
-      "permanent": false,
-      "destination": "/admin/"
+      "source": "/",
+      "destination": "/option-e/",
+      "permanent": false
     },
     {
-      "source": "/my-ikonectt",
-      "permanent": false,
-      "destination": "/my-ikonectt/"
+      "source": "/option-e",
+      "destination": "/option-e/",
+      "permanent": false
+    },
+    {
+      "source": "/option-([a-d])",
+      "destination": "/option-e/",
+      "permanent": false
+    },
+    {
+      "source": "/option-([a-d])/(.*)",
+      "destination": "/option-e/",
+      "permanent": false
+    },
+    {
+      "source": "/residential(.html)?",
+      "destination": "/option-e/#/residential",
+      "permanent": false
+    },
+    {
+      "source": "/business(.html)?",
+      "destination": "/option-e/#/business",
+      "permanent": false
+    },
+    {
+      "source": "/coverage(.html)?",
+      "destination": "/option-e/#/coverage",
+      "permanent": false
     }
   ]
 }
