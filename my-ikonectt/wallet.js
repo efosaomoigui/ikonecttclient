@@ -62,7 +62,14 @@ export async function loadWalletJourney(route, id, api, data) {
   if (route === "top-ups") return { wallet, topUps: await api.walletTopUps(offset) };
   if (route === "renewals") return { wallet, renewals: await api.walletRenewals(offset) };
   if (route === "wallet") {
-    const [topUps, renewals] = await Promise.all([api.walletTopUps(0, 5), api.walletRenewals(0, 5)]);
+    const optionalHistory = async (read) => {
+      try { return await read(); }
+      catch (error) { if (error.status !== 503) throw error; return null; }
+    };
+    const [topUps, renewals] = await Promise.all([
+      optionalHistory(() => api.walletTopUps(0, 5)),
+      optionalHistory(() => api.walletRenewals(0, 5)),
+    ]);
     return { wallet, topUps, renewals };
   }
   return { wallet };
@@ -118,7 +125,8 @@ export function walletScreen(route, id, { aux, result, intents, esc, link, headi
   const records = (items, render, empty) => items.length ? `<div class="list">${items.map(render).join("")}</div>` : `<p class="subtle-note">${empty}</p>`;
   const topUps = (page) => records(page.items, t => `<div class="list-row wallet-record"><div><h3>${esc(t.reference)}</h3><small>${date(t.createdAt)} · ${esc(t.status.replaceAll("_", " "))}${t.simulated ? " · SIMULATED" : ""}</small></div><strong>${money(t.amountMinor)}</strong></div>`, "No wallet top-ups reported.");
   const renewals = (page) => records(page.items, r => link(`renewals/${r.id}`, `<div><h3>${esc(r.planName)}</h3><small>${date(r.createdAt)} · ${esc(renewalOutcome(r)[0])}${r.simulated ? " · SIMULATED" : ""}</small></div><strong>${money(r.amountMinor)} ↗</strong>`, "list-row wallet-record"), "No wallet-funded renewals.");
-  if (route === "wallet") return heading("Wallet", "Verified internal account credit for eligible service renewals.") + simulation(wallet) + balances + `<div class="wallet-actions wallet-page-actions">${link("top-up", "Top Up Wallet ↗", "button")}${link("transactions", "View Transactions", "button outline")}</div><article class="panel"><div class="section-heading compact"><h2>Top-up reports</h2>${link("top-ups", "View all", "text-link")}</div>${topUps(aux.topUps)}</article><article class="panel"><div class="section-heading compact"><h2>Service renewals</h2>${link("renewals", "View all", "text-link")}</div>${renewals(aux.renewals)}</article><p class="subtle-note">Adding wallet funds does not activate or renew service. Choose and confirm each renewal separately. Wallet funds are internal account credits; withdrawals, transfers and external payments are not available.</p>` + preview;
+  const unavailableHistory = '<p class="subtle-note" role="status">This history is currently unavailable.</p>';
+  if (route === "wallet") return heading("Wallet", "Verified internal account credit for eligible service renewals.") + simulation(wallet) + balances + `<div class="wallet-actions wallet-page-actions">${link("top-up", "Top Up Wallet ↗", "button")}${link("transactions", "View Transactions", "button outline")}</div><article class="panel"><div class="section-heading compact"><h2>Top-up reports</h2>${link("top-ups", "View all", "text-link")}</div>${aux.topUps ? topUps(aux.topUps) : unavailableHistory}</article><article class="panel"><div class="section-heading compact"><h2>Service renewals</h2>${link("renewals", "View all", "text-link")}</div>${aux.renewals ? renewals(aux.renewals) : unavailableHistory}</article><p class="subtle-note">Adding wallet funds does not activate or renew service. Choose and confirm each renewal separately. Wallet funds are internal account credits; withdrawals, transfers and external payments are not available.</p>` + preview;
   if (route === "transactions") {
     const delta = n => `${n > 0 ? "+" : ""}${money(n)}`;
     return back + heading("Wallet Transactions", "Recorded ledger activity. Reservations and released holds are separate from posted credits and debits.") + simulation(wallet) + `<article class="panel">${records(aux.entries.items, entry => `<div class="wallet-ledger-entry"><div class="row"><h3>${esc(kindNames[entry.kind] || entry.kind)}</h3><span class="pill">Recorded</span></div><p>${esc(entry.description)}</p>${details([["Date", date(entry.createdAt)], ["Reference", entry.reference], ...(entry.settlementPaymentId ? [["Settlement payment reference", entry.settlementPaymentId]] : []), ...(entry.kind === "SETTLEMENT_CREDIT" && entry.actorId === null ? [["Posted by", "System settlement"]] : []), ["Posted change", delta(entry.postedDeltaMinor)], ["Reserved change", delta(entry.reservedDeltaMinor)], ["Posted balance after entry", money(entry.postedAfterMinor)], ["Reserved after entry", money(entry.reservedAfterMinor)]])}${entry.renewalId ? link(`renewals/${entry.renewalId}`, "View related renewal", "text-link") : entry.topUpId ? link("top-ups", "View top-up reports", "text-link") : ""}${simulation(entry)}</div>`, "No wallet transactions yet.")}${pager(aux.entries, "transactions", link)}</article>` + preview;

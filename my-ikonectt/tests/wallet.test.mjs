@@ -230,3 +230,18 @@ test("canonical settled funding is visible as an immutable system credit with a 
   // Existing manual-credit records without the additive field still validate.
   C.WalletEntry.parse(fixture.entries[0]);
 });
+
+test("verified wallet balance stays visible while client transaction history is unavailable", async () => {
+  const wallet = walletFixture(walletScenarios[0]).wallet;
+  const unavailable = async () => { throw Object.assign(new Error("Unavailable"), { status: 503 }); };
+  const api = { wallet: async () => wallet, walletTopUps: unavailable, walletRenewals: unavailable };
+  const aux = await loadWalletJourney("wallet", null, api, {});
+  assert.equal(aux.wallet, wallet);
+  assert.equal(aux.topUps, null);
+  assert.equal(aux.renewals, null);
+  const html = walletScreen("wallet", null, ctx({ aux }));
+  assert.match(html, /Available balance/);
+  assert.equal(html.match(/This history is currently unavailable/g).length, 2);
+  api.walletTopUps = async () => { throw Object.assign(new Error("Expired"), { status: 401 }); };
+  await assert.rejects(loadWalletJourney("wallet", null, api, {}), { status: 401 });
+});
