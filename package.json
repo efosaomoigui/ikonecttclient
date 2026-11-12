@@ -11,7 +11,9 @@
     "dev:showcase": "node server.js",
     "pretest": "npm run build",
     "test": "node --test tests/*.test.mjs",
-    "build:presentation": "node scripts/build_presentation.cjs"
+    "build:presentation": "node scripts/build_presentation.cjs",
+    "build:public-demo": "node scripts/build_public.cjs --with-demos",
+    "predev": "npm run build:public-demo"
   },
   "keywords": [
     "telecom",

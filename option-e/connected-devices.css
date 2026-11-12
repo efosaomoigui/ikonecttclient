@@ -1,9 +1,9 @@
-/* A quiet, photographic category strip before the approved Plans stage. */
+/* Fixed image slots keep all five labels aligned; only the artwork is smaller. */
 .ik-site[data-template=e] .e-connected-devices{background:#f4f5f7;padding-block:64px 54px}
 .ik-site[data-template=e] .e-device-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;max-width:1280px;margin:0 auto;padding:16px clamp(20px,3.5vw,56px) 12px}
 .ik-site[data-template=e] .e-device-link{display:flex;flex-direction:column;align-items:center;gap:22px;min-width:0;padding:12px 4px;border-radius:8px;text-align:center;color:#30343a;text-decoration:none;outline-offset:4px}
 .ik-site[data-template=e] .e-device-picture{display:grid;place-items:center;width:100%;height:190px;overflow:visible}
-.ik-site[data-template=e] .e-device-picture img{display:block;width:100%;height:100%;object-fit:contain;transform:translateX(var(--e-device-shift,0px));transform-origin:50% 80%;transition:transform 360ms cubic-bezier(.2,.7,.25,1);will-change:auto}
+.ik-site[data-template=e] .e-device-picture img{display:block;width:90%;height:90%;object-fit:contain;transform:translateX(var(--e-device-shift,0px));transform-origin:50% 80%;transition:transform 360ms cubic-bezier(.2,.7,.25,1);will-change:auto}
 .ik-site[data-template=e] .e-device-label{font-size:17px;line-height:1.4;font-weight:700;transition:color 180ms ease}
 .ik-site[data-template=e] .e-device-link[data-device-active=true] .e-device-picture img{transform:translateY(-12px) scale(1.1) rotate(-1deg)}
 .ik-site[data-template=e] .e-device-link[data-device-active=true] .e-device-label{color:#b90b16}
@@ -26,3 +26,6 @@
  .ik-site[data-template=e] .e-device-picture img,.ik-site[data-template=e] .e-device-label{transition:none}
  .ik-site[data-template=e] #connected-life .e-device-picture img{transform:none}
 }
+
+.ik-site[data-template=e] #connected-life .e-device-heading{max-width:1280px;margin:0 auto 24px;padding-inline:clamp(20px,3.5vw,56px);text-align:center}
+.ik-site[data-template=e] #connected-life .e-device-heading h2{margin:0;font-size:clamp(26px,2.6vw,36px);font-weight:700;line-height:1.25;color:#24272c;text-wrap:balance}

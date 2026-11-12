@@ -19,9 +19,9 @@ export function publishableTestimonials(items){
  return items.filter(item=>item.approval?.quote===true&&item.approval?.attribution===true&&item.approval?.publication===true&&typeof item.name==='string'&&item.name.trim()&&typeof item.quote==='string'&&item.quote.trim());
 }
 
-export function testimonialsHTML(items,{demo=false}={}){
+export function testimonialsHTML(items,{demo=false,emptyState=false}={}){
  const records=demo?items:publishableTestimonials(items);
- if(!records.length)return '';
+ if(!records.length)return emptyState?'<section id="home-testimonials" class="ik-home-extras ik-testimonials" data-home-extra="testimonials" data-testimonial-mode="pending" aria-labelledby="home-testimonials-title"><div class="ik-extras-wrap"><header class="ik-extras-heading"><p class="ik-extras-eyebrow">Customer stories</p><h2 id="home-testimonials-title">What Our Customers Say</h2></header><p class="ik-testimonial-notice">Customer stories will be shared here.</p></div></section>':'';
  return `<section id="home-testimonials" class="ik-home-extras ik-testimonials" data-home-extra="testimonials"${demo?' data-testimonial-mode="demo"':' data-testimonial-mode="approved"'} aria-labelledby="home-testimonials-title"><div class="ik-extras-wrap"><header class="ik-extras-heading"><p class="ik-extras-eyebrow">${demo?'Demonstration content':'Customer stories'}</p><h2 id="home-testimonials-title">What Our Customers Say</h2>${demo?'<p class="ik-testimonial-notice">Sample copy for layout review. Customer stories and permissions are awaiting approval.</p>':''}</header><div class="ik-testimonials-grid">${records.map((item,index)=>{
  const portrait=!demo&&item.approval?.portrait===true&&item.portrait?.src?`<img class="ik-customer-portrait" src="${esc(item.portrait.src)}" width="48" height="48" alt="${esc(item.portrait.alt||item.name)}" loading="lazy" decoding="async">`:'';
  const rating=!demo&&item.approval?.rating===true&&Number.isFinite(item.rating)&&item.rating>=0&&item.rating<=5?`<span class="ik-customer-rating" aria-label="Rating: ${item.rating} out of 5">${item.rating}/5</span>`:'';
@@ -40,10 +40,11 @@ export function mountHomepageSections({root,home,testimonials=approvedHomepageTe
  const plans=home.querySelector('#plans');
  if(plans){const section=create(benefitsHTML());plans.after(section);inserted.push(section);}
  const portal=home.querySelector(root.dataset.template==='a'?'#home-portal':'.portal');
- const install=(items,demo)=>{if(stopped||!portal)return;const html=testimonialsHTML(items,{demo});if(html){const section=create(html);portal.before(section);inserted.push(section);}};
+ const install=(items,demo)=>{if(stopped||!portal)return;const html=testimonialsHTML(items,{demo,emptyState:root.dataset.template==='e'});if(html){const section=create(html);portal.before(section);inserted.push(section);}};
  const approved=publishableTestimonials(testimonials);
  let ready=Promise.resolve();
  if(approved.length)install(approved,false);
+ else if(root.dataset.template==='e')install([],false);
  else if(isLocalReview(win.location)&&!new URL(win.location.href).searchParams.has('production-preview')){
   // Review samples live outside public_html and are excluded by the existing
   // assets/review packaging rule. Never fetch them on a published host.

@@ -1,5 +1,5 @@
-/* Alternating audience rows; temporary review gap is controlled below. */
-.ik-site[data-template=e] .e-audience-sections{--e-audience-section-gap:72px;display:grid;grid-template-columns:1fr;gap:var(--e-audience-section-gap);background:#f4f5f7}
+/* Alternating audience rows meet flush on the shared white background. */
+.ik-site[data-template=e] .e-audience-sections{display:grid;grid-template-columns:1fr;gap:0;background:#fff}
 .ik-site[data-template=e] .e-audience-sections .pane{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,4fr);min-height:600px;padding:0;gap:0;margin:0;background:#fff;color:#24272c}
 .ik-site[data-template=e] .e-audience-sections .pane::before,.ik-site[data-template=e] .e-audience-sections .pane::after{display:none}
 .ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture{position:absolute;inset:0 auto 0 0;width:60%;height:100%;z-index:0;opacity:1;transform:none;transition:none;mask-image:none}
@@ -26,7 +26,6 @@
  .ik-site[data-template=e] :is(#residential,#business) .e-audience-copy .sub{font-size:17px}
 }
 @media(max-width:1023px){
- .ik-site[data-template=e] .e-audience-sections{--e-audience-section-gap:72px}
  .ik-site[data-template=e] .e-audience-sections .pane,.ik-site[data-template=e] .e-audience-sections .pane.biz{grid-template-columns:1fr;min-height:0}
  .ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture{position:relative;inset:auto;width:100%;height:clamp(240px,65vw,380px);grid-column:1;grid-row:1}
  .ik-site[data-template=e] .e-audience-sections .pane.biz>.ik-visual-picture{inset:auto}
@@ -47,6 +46,3 @@
 }
 
 @media(prefers-reduced-motion:reduce){.ik-site[data-template=e] .e-audience-arrow{transition:none;transform:none!important}}
-
-/* Match the existing Coverage section spacing on small screens. */
-@media(max-width:767px){.ik-site[data-template=e] .e-audience-sections{--e-audience-section-gap:48px}}

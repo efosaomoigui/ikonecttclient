@@ -25,7 +25,7 @@ http.createServer(async(req,res)=>{
     if(relative.startsWith('..')||path.isAbsolute(relative))throw new Error('Invalid path');
     if((await fs.stat(file)).isDirectory())file=path.join(file,'index.html');
     const body=await fs.readFile(file);
-    res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff'});
+    res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff','Cache-Control':'no-store'});
     res.end(req.method==='HEAD'?undefined:body);
   }catch{res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});res.end('Page not found.');}
 }).listen(port,'127.0.0.1',function(){console.log('Ikonectt public preview: http://127.0.0.1:'+this.address().port+'/');});

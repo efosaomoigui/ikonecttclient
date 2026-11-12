@@ -48,8 +48,8 @@ for(const template of ['a','e'])test(`Template ${template}: sections use existin
  assert.deepEqual([...f.home.children].map(node=>node.id||node.className),['hero','plans','home-benefits','company','home-testimonials',template==='a'?'home-portal':'portal']);
  assert.deepEqual(original.map(node=>node.outerHTML),markup);
  f.home.querySelector('#portal-cta').click();assert.equal(clicks,1);
- assert.equal(f.home.querySelectorAll('.ik-benefit-card').length,6);assert.equal(f.home.querySelectorAll('.ik-testimonial-card').length,2);
- assert.equal(f.home.querySelector('#home-testimonials').dataset.testimonialMode,'demo');
+ assert.equal(f.home.querySelectorAll('.ik-benefit-card').length,6);assert.equal(f.home.querySelectorAll('.ik-testimonial-card').length,template==='e'?0:2);
+ assert.equal(f.home.querySelector('#home-testimonials').dataset.testimonialMode,template==='e'?'pending':'demo');
  const duplicate=mountHomepageSections({...f,loadReview:async()=>samples});await duplicate.ready;assert.equal(f.home.querySelectorAll('#home-benefits').length,1);
  duplicate.destroy();mount.destroy();assert.deepEqual([...f.home.children],original);f.dom.window.close();
 });
@@ -66,10 +66,24 @@ test('published hosts never load demonstration content, even when a review query
 
 test('production-preview on localhost suppresses samples; approved stories can publish without local demo data',async()=>{
  const f=fixture('e','http://127.0.0.1:3021/?production-preview');let calls=0;
- const mount=mountHomepageSections({...f,loadReview:async()=>{calls++;return samples;}});await mount.ready;assert.equal(calls,0);assert.equal(f.home.querySelectorAll('#home-testimonials').length,0);mount.destroy();f.dom.window.close();
+ const mount=mountHomepageSections({...f,loadReview:async()=>{calls++;return samples;}});await mount.ready;assert.equal(calls,0);assert.equal(f.home.querySelectorAll('#home-testimonials').length,1);assert.equal(f.home.querySelector('#home-testimonials').dataset.testimonialMode,'pending');mount.destroy();f.dom.window.close();
  const p=fixture('a');
  const publish=mountHomepageSections({...p,testimonials:[{name:'Authorised customer fixture',quote:'Approved quotation fixture.',approval:{quote:true,attribution:true,publication:true}}],loadReview:async()=>{throw Error('not needed');}});
  await publish.ready;assert.equal(p.home.querySelector('#home-testimonials').dataset.testimonialMode,'approved');assert.doesNotMatch(p.home.textContent,/Demonstration/);publish.destroy();p.dom.window.close();
+});
+
+test('E keeps the same testimonial section in local and public builds without publishing sample endorsements',async()=>{
+ let expected;
+ for(const origin of ['http://localhost:3000/option-e/','http://localhost:3000/option-e/?production-preview','https://ikonecttclient-kappa.vercel.app/option-e/']){
+  const f=fixture('e',origin);let calls=0;
+  const mount=mountHomepageSections({...f,loadReview:async()=>{calls++;return samples;}});await mount.ready;
+  const section=f.home.querySelector('#home-testimonials');
+  assert.ok(section);assert.equal(section.dataset.testimonialMode,'pending');assert.equal(calls,0);
+  assert.equal(section.querySelectorAll('blockquote,.ik-testimonial-card,img,.ik-customer-rating').length,0);
+  assert.doesNotMatch(section.textContent,/Example home customer|Example business customer/);
+  if(expected)assert.equal(section.outerHTML,expected);else expected=section.outerHTML;
+  mount.destroy();f.dom.window.close();
+ }
 });
 
 test('missing review data and early teardown leave the homepage functional without late inserts',async()=>{
@@ -77,7 +91,7 @@ test('missing review data and early teardown leave the homepage functional witho
  const mount=mountHomepageSections({...f,loadReview:()=>new Promise(done=>resolve=done)});await Promise.resolve();mount.destroy();resolve(samples);await mount.ready;
  assert.equal(f.home.querySelectorAll('[data-home-extra]').length,0);f.dom.window.close();
  const p=fixture('e','http://localhost:3021');const broken=mountHomepageSections({...p,loadReview:async()=>{throw Error('offline');}});await broken.ready;
- assert.equal(p.home.querySelectorAll('#home-benefits').length,1);assert.equal(p.home.querySelectorAll('#home-testimonials').length,0);broken.destroy();p.dom.window.close();
+ assert.equal(p.home.querySelectorAll('#home-benefits').length,1);assert.equal(p.home.querySelectorAll('#home-testimonials').length,1);assert.equal(p.home.querySelector('#home-testimonials').dataset.testimonialMode,'pending');broken.destroy();p.dom.window.close();
 });
 
 test('archived B, C and D receive neither section',async()=>{

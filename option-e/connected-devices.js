@@ -1,6 +1,9 @@
 // As the pointer or keyboard moves across the row, the imagery follows gently.
 const row = document.querySelector('.ik-site[data-template=e] .e-device-row');
 if (row) {
+ const section = row.closest('.e-connected-devices');
+ const business = document.querySelector('.e-audience-sections #business');
+ if (section && business) business.before(section);
  const links = [...row.querySelectorAll('.e-device-link')];
  const select = selected => links.forEach((link, index) => {
   link.dataset.deviceActive = String(index === selected);
