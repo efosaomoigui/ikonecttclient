@@ -1,0 +1,48 @@
+/* Section 02: E's existing plan stage, carousel and card geometry stay intact. */
+.ik-site[data-template=e] .ik-home .plans{background:#f4f5f6;padding-block:0 48px;isolation:isolate}
+.ik-site[data-template=e] .plans .e-plans-introduction{
+ background:linear-gradient(90deg,#40020aa3,#40020a99),url('./images/crimson-energy-arc.png') center 52%/cover no-repeat;
+ padding-block:64px 192px;color:#fff;
+}
+.ik-site[data-template=e] .ik-home .plans .plans-head{margin:0;padding:0;border:0;gap:0}
+.ik-site[data-template=e] .ik-home #plans .plans-head h2{color:#fff;font-size:clamp(30px,3.3vw,46px);font-weight:700;line-height:1.2;margin:0;text-wrap:balance}
+.ik-site[data-template=e] .plans .plans-head .e-section-kicker{color:#fff;font-weight:600;margin:0 0 12px}
+.ik-site[data-template=e] .plans .plans-head .sub{color:#fff;font-size:18px;line-height:1.6;max-width:620px;margin:16px auto 0}
+.ik-site[data-template=e] .plans .e-plans-container{position:relative;margin-top:-160px}
+.ik-site[data-template=e] .plans .ik-carousel-audiences button{font-size:17px;font-weight:700;color:#fff;border-bottom-color:transparent}
+.ik-site[data-template=e] .plans .ik-carousel-audiences [aria-pressed=true]{color:#fff;border-bottom-color:#fff;background:transparent}
+.ik-site[data-template=e] .plans .ik-carousel-audiences button:hover{color:#fff;background:#ffffff18}
+.ik-site[data-template=e] .plans .ik-carousel-audiences button:focus-visible{outline-color:#fff}
+.ik-site[data-template=e] .plans .ik-carousel-arrows button{background:#fff;border-color:#fff;box-shadow:0 2px 8px #28040b12}
+.ik-site[data-template=e] .ik-home #plans .ik-plan-card h3{font-size:32px;font-weight:700}
+.ik-site[data-template=e] .ik-home .plans .ik-plan-price strong{font-size:clamp(28px,2.7cqw,34px);font-weight:700}
+.ik-site[data-template=e] .ik-home .plans .ik-plan-speed strong{font-size:52px;font-weight:700}
+.ik-site[data-template=e] .ik-home .plans :is(.ik-plan-price span,.ik-plan-speed span){font-size:14px;font-weight:600}
+.ik-site[data-template=e] .ik-home .plans .ik-plan-attributes{font-size:14px;font-weight:600}
+.ik-site[data-template=e] .ik-home .plans .ik-plan-card-actions .ik-button{font-size:14px;font-weight:700}
+@media(max-width:767px){
+ .ik-site[data-template=e] .plans .e-plans-introduction{padding-block:44px 156px;background-position:58% center}
+ .ik-site[data-template=e] .plans .e-plans-container{margin-top:-124px}
+ .ik-site[data-template=e] .plans .plans-head .sub{font-size:17px;max-width:36ch}
+ .ik-site[data-template=e] .plans .ik-carousel-audiences button{font-size:16px}
+ .ik-site[data-template=e] .ik-home #plans .ik-plan-card h3{font-size:30px}
+ .ik-site[data-template=e] .ik-home .plans .ik-plan-price strong{font-size:30px}
+ .ik-site[data-template=e] .ik-home .plans .ik-plan-speed strong{font-size:50px}
+}
+/* At narrow phone widths the existing toolbar wraps onto two rows. Extend
+   the backdrop behind that row while keeping the cards at the same height. */
+@media(max-width:359px){
+ .ik-site[data-template=e] .plans .e-plans-introduction{padding-bottom:192px}
+ .ik-site[data-template=e] .plans .e-plans-container{margin-top:-160px}
+}
+
+/* Review refinement: immerse cards further and remove the pale top hairline. */
+.ik-site[data-template=e] .ik-home #plans .ik-carousel-rail{padding-top:36px}
+.ik-site[data-template=e] .ik-home #plans .ik-plan-card{border-top-width:0}
+.ik-site[data-template=e] .ik-home #plans .ik-button{font-weight:700}
+@media(max-width:767px){
+ .ik-site[data-template=e] .ik-home #plans .ik-carousel-rail{padding-top:24px}
+}
+
+/* Every plan carries the same red outline, including inactive cards. */
+.ik-site[data-template=e] .ik-home #plans .ik-plan-card{border:1px solid var(--ik-accent)}

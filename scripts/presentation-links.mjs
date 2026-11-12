@@ -14,6 +14,12 @@ export function installPresentationLinks(doc = document) {
       anchor.dataset.ikPresentationCustomer = 'true';
     }
     for (const header of doc.querySelectorAll('.ik-header')) {
+      // Option E's public header omits staff access. A local presentation can
+      // explicitly opt in; this flag changes visibility only, never access.
+      const optionE = win.location.pathname.includes('/option-e/');
+      const demoAdmin = ['localhost', '127.0.0.1'].includes(win.location.hostname) &&
+        new win.URLSearchParams(win.location.search).get('demo-admin') === '1';
+      if (optionE && !demoAdmin) continue;
       for (const [selector, mobile] of [['.ik-nav-actions', false], ['.ik-desktop-nav', true]]) {
         const host = header.querySelector(selector);
         if (!host || host.querySelector('[data-ik-presentation-admin]')) continue;

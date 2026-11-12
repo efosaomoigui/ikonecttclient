@@ -7,6 +7,16 @@ import {fileURLToPath} from 'node:url';
 import {JSDOM} from 'jsdom';
 import {installPresentationLinks} from '../scripts/presentation-links.mjs';
 
+test('E staff shortcut requires an explicit local demo flag and preserves customer access',()=>{
+ for(const [origin,expected] of [['http://localhost:3000',2],['http://127.0.0.1:3000',2],['https://presentation.example.test',0]]){
+  const dom=new JSDOM('<header class="ik-header"><nav class="ik-desktop-nav"></nav><div class="ik-nav-actions"><a href="#/my-ikonectt/sign-in">My Ikonectt</a></div></header>',{url:origin+'/option-e/?demo-admin=1'});
+  const cleanup=installPresentationLinks(dom.window.document);
+  assert.equal(dom.window.document.querySelectorAll('[data-ik-presentation-admin]').length,expected);
+  assert.equal(dom.window.document.querySelector('[data-ik-presentation-customer]').getAttribute('href'),'/my-ikonectt/#/');
+  cleanup();dom.window.close();
+ }
+});
+
 const root=fileURLToPath(new URL('../',import.meta.url));
 const read=file=>fs.readFileSync(path.join(root,file),'utf8');
 
@@ -120,6 +130,9 @@ for(const template of ['a','e'])test(`Template ${template}: presentation links o
       }
       const desktop=doc.querySelectorAll('.ik-nav-actions [data-ik-presentation-admin]');
       const mobile=doc.querySelectorAll('.ik-desktop-nav [data-ik-presentation-admin]');
+      if(template==='e'){
+        assert.equal(desktop.length,0);assert.equal(mobile.length,0);return;
+      }
       assert.equal(desktop.length,1);assert.equal(mobile.length,1);
       assert.ok(!desktop[0].classList.contains('ik-mobile-portal'));
       assert.ok(mobile[0].classList.contains('ik-mobile-portal'));

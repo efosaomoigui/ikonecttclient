@@ -207,33 +207,74 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
     </div>
   </section>
 
-  <div class="split">
-    <section class="pane res" id="residential">
-      <div>
-        <h2>Internet for every day.</h2>
+  <div class="split e-audience-sections">
+    <section class="pane res" id="residential" aria-labelledby="residential-home-title">
+      <div class="e-audience-copy">
+        <h2 id="residential-home-title">Internet for every day.</h2>
         <p class="sub">Stay connected at home for work, learning and entertainment.</p>
+        <p class="e-audience-note">Explore broadband plans and check coverage for your home.</p>
+        <nav class="e-audience-links" aria-label="Home broadband">
+          <a class="e-audience-link e-audience-primary" href="#/residential"><span>Explore Residential</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+          <a class="e-audience-link" href="#/residential/plans"><span>Residential Plans</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+          <a class="e-audience-link" href="#/residential/compare"><span>Compare Plans</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+          <a class="e-audience-link" href="#/coverage"><span>Check Coverage</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+        </nav>
       </div>
-      <a class="btn ghost" href="#residential">Explore Residential</a>
     </section>
-    <section class="pane biz" id="business">
-      <div>
-        <h2>Connectivity that works for business.</h2>
+    <section class="pane biz" id="business" aria-labelledby="business-home-title">
+      <div class="e-audience-copy">
+        <h2 id="business-home-title">Connectivity that works for business.</h2>
         <p class="sub">Explore broadband options for your team, office or organisation.</p>
+        <p class="e-audience-note">Find business solutions and share your requirements with our team.</p>
+        <nav class="e-audience-links" aria-label="Business broadband">
+          <a class="e-audience-link e-audience-primary" href="#/business"><span>Explore Business</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+          <a class="e-audience-link" href="#/business/solutions"><span>Business Solutions</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+          <a class="e-audience-link" href="#/business/plans"><span>Business Plans</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+          <a class="e-audience-link" href="#/business/quote"><span>Request a Quote</span><span class="e-audience-arrow" aria-hidden="true">&#8594;</span></a>
+        </nav>
       </div>
-      <a class="btn ghost" href="#business">Explore Business</a>
     </section>
   </div>
 
+  <section class="e-connected-devices" id="connected-life" aria-label="Explore your connected life">
+    <nav class="e-device-row" aria-label="Explore connectivity">
+        <a class="e-device-link" href="#/residential">
+          <span class="e-device-picture"><img src="./images/devices/router.webp" width="512" height="512" alt="" loading="lazy" decoding="async"></span>
+          <span class="e-device-label">Fibre Internet</span>
+        </a>
+        <a class="e-device-link" href="#/residential">
+          <span class="e-device-picture"><img src="./images/devices/video-call.webp" width="512" height="512" alt="" loading="lazy" decoding="async"></span>
+          <span class="e-device-label">Video Calls</span>
+        </a>
+        <a class="e-device-link" href="#/residential">
+          <span class="e-device-picture"><img src="./images/devices/streaming.webp" width="512" height="512" alt="" loading="lazy" decoding="async"></span>
+          <span class="e-device-label">TV &amp; Streaming</span>
+        </a>
+        <a class="e-device-link" href="#/business">
+          <span class="e-device-picture"><img src="./images/devices/work.webp" width="512" height="512" alt="" loading="lazy" decoding="async"></span>
+          <span class="e-device-label">Work &amp; Learn</span>
+        </a>
+        <a class="e-device-link" href="#/residential/plans">
+          <span class="e-device-picture"><img src="./images/devices/plans.webp" width="512" height="512" alt="" loading="lazy" decoding="async"></span>
+          <span class="e-device-label">Explore Plans</span>
+        </a>
+    </nav>
+  </section>
+
   <section class="plans" id="plans">
-    <div class="wrap">
-      <div class="plans-head">
-        <div>
-          <p class="e-section-kicker">AT A GLANCE</p>
-          <h2>Find your connection.</h2>
-          <p class="sub">Browse available plans and choose what suits your needs.</p>
+    <div class="e-plans-introduction">
+      <div class="wrap">
+        <div class="plans-head">
+          <div>
+            <p class="e-section-kicker">AT A GLANCE</p>
+            <h2>Find your perfect connection.</h2>
+            <p class="sub">Explore broadband plans designed for the way you live, work and stay connected.</p>
+          </div>
+          <a class="btn ghost" href="#plans">View All Plans</a>
         </div>
-        <a class="btn ghost" href="#plans">View All Plans</a>
       </div>
+    </div>
+    <div class="wrap e-plans-container">
       <div data-home-plan-carousel></div>
     </div>
   </section>
@@ -278,5 +319,17 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 calc(env(safe-area-inse
 <link rel="stylesheet" href="../shared/connectivity-story.css">
 <script type="module" src="../shared/connectivity-story-entry.js"></script>
 <link rel="stylesheet" href="./corporate-light.css?v=10">
+<link rel="stylesheet" href="./navigation-refinement.css?v=1">
+<link rel="stylesheet" href="./plans-refinement.css?v=1">
+<link rel="stylesheet" href="./connected-devices.css?v=1">
+<link rel="stylesheet" href="./audience-sections.css?v=1">
+<link rel="stylesheet" href="./benefits-refinement.css?v=1">
+<link rel="stylesheet" href="./button-refinement.css?v=1">
+<link rel="stylesheet" href="./company-story.css?v=1">
+<link rel="stylesheet" href="./footer-refinement.css?v=1">
+<script type="module" src="./footer-refinement.js?v=1"></script>
+<script type="module" src="./homepage-order.js?v=1"></script>
+<script type="module" src="./connected-devices.js?v=1"></script>
+<script type="module" src="./navigation-refinement.js?v=1"></script>
 </body>
 </html>

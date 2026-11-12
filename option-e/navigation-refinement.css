@@ -1,0 +1,64 @@
+/* Section 01: Option E navigation and reusable type roles only. */
+.ik-site[data-template=e] :is(.ik-home,#ik-main,.ik-header){
+ --ik-muted:#454a52;--muted:var(--ik-muted);--ik-weight:600;
+ --e-heading-weight:600;--e-label-weight:600;--e-nav-text:#4b5057;
+}
+.ik-site[data-template=e] :is(.ik-home,#ik-main) :is(h1,h2,h3){font-weight:var(--e-heading-weight)}
+.ik-site[data-template=e] :is(.ik-home,#ik-main) :is(.e-section-kicker,.ik-breadcrumbs,label){font-weight:var(--e-label-weight)}
+.ik-site[data-template=e] .ik-header{color:var(--e-nav-text);background:#fff;border-bottom:1px solid #e4e6ea}
+.ik-site[data-template=e] .ik-header-row{max-width:1360px;min-height:88px;gap:32px;padding-inline:clamp(20px,3.5vw,48px)}
+.ik-site[data-template=e] .ik-header .ik-logo img{width:152px}
+.ik-site[data-template=e] .ik-desktop-nav{gap:clamp(18px,2vw,30px)}
+.ik-site[data-template=e] .ik-nav-trigger{font-size:17px;font-weight:700;gap:7px;min-height:88px;padding:24px 0;color:var(--e-nav-text)}
+.ik-site[data-template=e] .ik-nav-trigger:is(:hover,[aria-expanded=true],[data-active=true]){color:var(--glow)}
+.ik-site[data-template=e] .ik-header .ik-button{font-size:16px;font-weight:700;line-height:1.2;min-height:44px;padding:13px 20px;white-space:nowrap;background:var(--e-action);color:#fff;border:1px solid var(--e-action);transition:background-color 160ms ease,box-shadow 160ms ease}
+.ik-site[data-template=e] .ik-header .ik-button:hover{background:var(--glow);border-color:var(--glow);box-shadow:0 3px 10px #ce0c1620}
+.ik-site[data-template=e] .ik-nav-actions{gap:12px;flex-shrink:0}
+.ik-site[data-template=e] .ik-mega{inset:100% max(20px,calc((100% - 1264px)/2)) auto;background:#f7f8fa;color:var(--e-nav-text);border:1px solid #e4e6ea;border-radius:0 0 10px 10px;box-shadow:0 16px 32px #20263014;max-height:calc(100dvh - 100px)}
+.ik-site[data-template=e] .ik-mega:not([hidden]){animation:e-menu-reveal 160ms ease-out}
+.ik-site[data-template=e] .ik-mega-inner{padding:28px;gap:32px}
+.ik-site[data-template=e] .ik-menu-group h2{font-size:13px;font-weight:600;letter-spacing:.07em;color:var(--e-nav-text);border-left:3px solid var(--ik-accent);padding-left:10px;margin:0 0 14px}
+.ik-site[data-template=e] .ik-menu-group a{font-size:15px;line-height:1.45;font-weight:400;min-height:44px;padding:10px 12px;border-radius:5px;transition:background-color 140ms ease,color 140ms ease}
+.ik-site[data-template=e] .ik-menu-group a:is(:hover,[aria-current=page]){background:#fcebed;color:#ae0a13;text-decoration:none}
+.ik-site[data-template=e] .ik-promo{background:#fff;border:1px solid #e4e6ea;border-radius:6px;padding:24px}
+.ik-site[data-template=e] .ik-promo h3{font-weight:600;font-size:22px;line-height:1.3}
+.ik-site[data-template=e] .ik-promo a{display:inline-flex;align-items:center;min-height:44px;color:var(--glow);font-weight:600}
+.ik-site[data-template=e] .ik-header :is(a,button):focus-visible{outline:3px solid #ae0a13;outline-offset:3px;border-radius:4px}
+@keyframes e-menu-reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(min-width:1024px) and (max-width:1199px){
+ .ik-site[data-template=e] .ik-header-row{gap:22px;padding-inline:24px}
+ .ik-site[data-template=e] .ik-desktop-nav{gap:18px}
+ .ik-site[data-template=e] .ik-nav-trigger{font-size:16px}
+ .ik-site[data-template=e] .ik-header .ik-logo img{width:132px}
+ .ik-site[data-template=e] .ik-header .ik-button{padding-inline:16px}
+}
+@media(max-width:1023px){
+ .ik-site[data-template=e] .ik-header-row{min-height:72px;gap:12px}
+ .ik-site[data-template=e] .ik-header .ik-logo img{width:132px}
+ .ik-site[data-template=e] .ik-nav-actions>.ik-button{display:inline-flex;font-size:15px}
+ .ik-site[data-template=e] .ik-desktop-nav{padding:12px 24px 24px;background:#fff;max-height:calc(100dvh - 72px);overscroll-behavior:contain;box-shadow:0 16px 32px #20263014}
+ .ik-site[data-template=e] .ik-nav-trigger{font-size:16px;min-height:52px;padding:14px 4px}
+ .ik-site[data-template=e] .ik-mega{position:static;border:1px solid #e4e6ea;border-radius:6px;box-shadow:none;max-height:none;overflow:visible}
+ .ik-site[data-template=e] .ik-mega-inner,.ik-site[data-template=e] .ik-mega-inner[data-promo=true]{padding:20px 12px;gap:24px;grid-template-columns:1fr}
+ .ik-site[data-template=e] .ik-mega-inner[data-groups="1"] .ik-menu-group{display:block}
+ .ik-site[data-template=e] .ik-mobile-button{font-size:15px;font-weight:600;border-color:#c7cbd1;border-radius:4px;min-width:64px}
+ .ik-site[data-template=e] .ik-mobile-button[aria-expanded=true]{background:#fcebed;border-color:#ce0c16}
+ .ik-site[data-template=e] .ik-desktop-nav .ik-mobile-portal{display:none}
+}
+@media(max-width:389px){
+ .ik-site[data-template=e] .ik-header-row{gap:8px;padding-inline:16px}
+ .ik-site[data-template=e] .ik-header .ik-logo img{width:104px}
+ .ik-site[data-template=e] .ik-nav-actions{gap:8px}
+ .ik-site[data-template=e] .ik-header .ik-nav-actions>.ik-button{font-size:13px;padding:12px 10px}
+ .ik-site[data-template=e] .ik-mobile-button{min-width:56px;padding-inline:10px;font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ik-site[data-template=e] .ik-mega:not([hidden]){animation:none}
+ .ik-site[data-template=e] .ik-header :is(a,button,.ik-chevron){transition:none}
+}
+
+/* Keep the address name available to screen readers without a visible label. */
+.ik-site[data-template=e] .e-address-entry label{
+ position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+ overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;
+}

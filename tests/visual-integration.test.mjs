@@ -8,6 +8,7 @@ import {mountVisuals} from '../shared/visuals.js';
 import {visualAssets,visualSlots,visualURL,visualPictureHTML} from '../shared/visual-assets.js';
 import {pages} from '../shared/routes.js';
 import {heroPreservationHash} from './helpers/hero-preservation.mjs';
+import {withoutNavigationRefinement} from './helpers/section-01-preservation.mjs';
 
 const read=file=>fs.readFileSync(new URL('../'+file,import.meta.url));
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
@@ -38,7 +39,7 @@ test('Phase 3 preserves template heroes, navigation, journeys, logos and archive
     // 21 October: the client explicitly reduced/relabelled the selector. Its
     // semantics are covered by design-shortlist.test.mjs; template protection remains.
     if(['index.html','shared/design-shortlist.js','shared/design-preview.js'].includes(file))continue;
-    let bytes=read(file);
+    let bytes=withoutNavigationRefinement(file,read(file));
     const text=/\.(?:html|js|jsx|ts|tsx|css|json|md)$/.test(file);
     if(text)bytes=Buffer.from(bytes.toString().replace(/\r\n/g,'\n'));
     // The corporate-light brief authorises E's full entry document. Protect its

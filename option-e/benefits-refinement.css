@@ -1,0 +1,24 @@
+/* Supplied ribbon artwork, light glass cards and dark readable copy. E only. */
+.ik-site[data-template=e] .ik-home #home-benefits{
+ background:#f9f4f7 url('./images/luminous-red-pink-gradient.png') center/cover no-repeat;
+ color:#171e2a;
+}
+.ik-site[data-template=e] .ik-home #home-benefits>.ik-polish-benefit-photo,
+.ik-site[data-template=e] .ik-home #home-benefits>.ik-story-atmosphere{display:none}
+.ik-site[data-template=e] .ik-home #home-benefits::after{display:none}
+.ik-site[data-template=e] .ik-home #home-benefits .ik-extras-eyebrow{color:#a90b16;font-weight:700}
+.ik-site[data-template=e] .ik-home #home-benefits .ik-extras-heading h2{color:#171e2a;font-weight:700}
+.ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card{
+ background:rgba(255,255,255,.74);border:1px solid #ffffffc7;border-radius:16px;
+ box-shadow:0 5px 16px #2733470d;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card h3{color:#171e2a;font-weight:700;font-size:20px}
+.ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card p{color:#454a52;line-height:1.65}
+.ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-icon{color:#e10c18}
+.ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-corner{display:none}
+@media(hover:hover) and (pointer:fine){
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card:hover{background:rgba(255,255,255,.88);border-color:#fff;box-shadow:0 8px 20px #27334714}
+}
+@media(max-width:639px){
+ .ik-site[data-template=e] .ik-home #home-benefits{background-position:52% center}
+}

@@ -1,0 +1,22 @@
+/* Supplied company artwork replaces the earlier photo/atmosphere treatment. */
+.ik-site[data-template=e] .ik-home #about.about{
+ position:relative;isolation:isolate;min-height:clamp(320px,30vw,460px);padding-block:64px;
+ background:#fff7fa url('./images/glossy-red-lightning-pink-waves.png') center/cover no-repeat;
+ border:0;border-top:3px solid #ed101a;color:#24272c;
+}
+.ik-site[data-template=e] .ik-home #about :is(.ik-polish-brand-photo,.ik-story-atmosphere,.ik-brand-i){display:none}
+.ik-site[data-template=e] .ik-home #about::after{display:none}
+.ik-site[data-template=e] .ik-home #about .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.ik-site[data-template=e] .ik-home #about .wrap>div{max-width:44%}
+.ik-site[data-template=e] .ik-home #about h2{font-size:clamp(28px,2.8vw,40px);font-weight:700;line-height:1.2;max-width:18ch;margin:0;color:#24272c}
+.ik-site[data-template=e] .ik-home #about h2::before{content:'';display:block;width:42px;height:3px;background:var(--ik-accent);margin-bottom:20px}
+.ik-site[data-template=e] .ik-home #about p{font-size:17px;line-height:1.65;max-width:42ch;margin:0;color:#30343a}
+.ik-site[data-template=e] .ik-home #about .btn{margin-top:24px;min-height:46px;background:var(--e-action);border-color:var(--e-action);color:#fff;font-weight:700}
+.ik-site[data-template=e] .ik-home #about .btn:hover{background:var(--glow);border-color:var(--glow)}
+@media(max-width:767px){
+ .ik-site[data-template=e] .ik-home #about.about{min-height:0;padding-block:44px 304px;background-position:right bottom;background-size:auto 280px}
+ .ik-site[data-template=e] .ik-home #about::before{content:'';position:absolute;left:0;right:0;bottom:200px;height:80px;z-index:1;pointer-events:none;background:linear-gradient(#fff7fa,#fff7fa00)}
+ .ik-site[data-template=e] .ik-home #about .wrap>div{max-width:100%}
+ .ik-site[data-template=e] .ik-home #about h2{font-size:30px}
+ .ik-site[data-template=e] .ik-home #about p{font-size:16px}
+}

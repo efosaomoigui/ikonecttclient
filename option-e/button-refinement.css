@@ -1,0 +1,7 @@
+/* Consistent public-site CTA shapes; existing red/charcoal/outline colours stay. */
+.ik-site[data-template=e]{--ik-button-radius:999px}
+.ik-site[data-template=e] :is(.ik-header,.ik-home,#ik-main) :is(.btn,.ik-button,.ik-mobile-button){border-radius:999px}
+.ik-site[data-template=e] :is(.ik-home,#ik-main) .ik-carousel-arrows button{border-radius:50%}
+/* Remove the visible hero pause control; existing slide arrows and motion
+   preference handling continue to use the shared hero controller. */
+.ik-site[data-template=e] .hero .e-city-pause{display:none}

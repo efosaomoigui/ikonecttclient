@@ -6,7 +6,8 @@ import {JSDOM} from 'jsdom';
 import {mountCorporateLight} from '../option-e/corporate-light.js';
 import {heroGroundingHash} from './helpers/hero-grounding-preservation.mjs';
 import {redAccentAssets,redAccentSrcSet} from '../shared/red-accent-assets.js';
-const read=file=>fs.readFileSync(new URL('../'+file,import.meta.url));
+import {withoutNavigationRefinement} from './helpers/section-01-preservation.mjs';
+const read=file=>withoutNavigationRefinement(file,fs.readFileSync(new URL('../'+file,import.meta.url)));
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 
 test('E theme and later scoped photography feedback preserve approved A, selector and shared customer logic',()=>{

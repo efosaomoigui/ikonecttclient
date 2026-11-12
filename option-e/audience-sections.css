@@ -1,0 +1,52 @@
+/* Alternating audience rows; temporary review gap is controlled below. */
+.ik-site[data-template=e] .e-audience-sections{--e-audience-section-gap:72px;display:grid;grid-template-columns:1fr;gap:var(--e-audience-section-gap);background:#f4f5f7}
+.ik-site[data-template=e] .e-audience-sections .pane{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,4fr);min-height:600px;padding:0;gap:0;margin:0;background:#fff;color:#24272c}
+.ik-site[data-template=e] .e-audience-sections .pane::before,.ik-site[data-template=e] .e-audience-sections .pane::after{display:none}
+.ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture{position:absolute;inset:0 auto 0 0;width:60%;height:100%;z-index:0;opacity:1;transform:none;transition:none;mask-image:none}
+.ik-site[data-template=e] .e-audience-sections .pane.biz>.ik-visual-picture{inset:0 0 0 auto}
+.ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture img{width:100%;height:100%;object-fit:cover;filter:none;object-position:center;transform:scale(1);transition:transform 700ms cubic-bezier(.2,.65,.25,1)}
+.ik-site[data-template=e] .e-audience-sections .pane.res>.ik-visual-picture img{object-position:78% center}
+.ik-site[data-template=e] .e-audience-copy{position:relative;z-index:1;grid-column:2;grid-row:1;align-self:stretch;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(24px,2.5vw,40px);padding-left:clamp(48px,5.5vw,88px);background:#fff}
+.ik-site[data-template=e] .pane.biz .e-audience-copy{grid-column:1}
+.ik-site[data-template=e] .e-audience-sections .pane.biz{grid-template-columns:minmax(0,4fr) minmax(0,6fr)}
+.ik-site[data-template=e] :is(#residential,#business) .e-audience-copy h2{font-size:clamp(30px,2.6vw,40px);font-weight:700;line-height:1.18;letter-spacing:-.025em;color:#24272c;max-width:20ch;margin:0;text-wrap:balance}
+.ik-site[data-template=e] .e-audience-copy h2::before{width:50px;height:3px;margin-bottom:24px}
+.ik-site[data-template=e] :is(#residential,#business) .e-audience-copy .sub{font-size:18px;line-height:1.7;color:#454a52;max-width:48ch;margin:22px 0 0}
+.ik-site[data-template=e] .e-audience-note{font-size:16px;line-height:1.65;font-weight:600;color:#454a52;max-width:48ch;margin:22px 0 0}
+.ik-site[data-template=e] .e-audience-links{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:28px;max-width:100%}
+.ik-site[data-template=e] .e-audience-link{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;max-width:100%;min-height:52px;padding:12px 22px;border-radius:999px;background:#252a2f;color:#fff;font-size:16px;font-weight:700;line-height:1.35;text-decoration:none;transition:background-color 160ms ease}
+.ik-site[data-template=e] .e-audience-link.e-audience-primary{background:var(--e-action)}
+.ik-site[data-template=e] .e-audience-link.e-audience-primary:hover{background:var(--glow)}
+.ik-site[data-template=e] .e-audience-link:hover{background:#30363c}
+.ik-site[data-template=e] .e-audience-arrow{display:inline-block;flex:0 0 auto;color:inherit;font-size:22px;font-weight:600;line-height:1;transition:transform 180ms ease}
+.ik-site[data-template=e] .e-audience-link:hover .e-audience-arrow{transform:translateX(3px)}
+.ik-site[data-template=e] .e-audience-link:focus-visible{outline:3px solid #ae0a13;outline-offset:4px}
+@media(min-width:768px) and (max-width:1023px){
+ .ik-site[data-template=e] .e-audience-copy{padding:36px 28px}
+ .ik-site[data-template=e] :is(#residential,#business) .e-audience-copy .sub{font-size:17px}
+}
+@media(max-width:1023px){
+ .ik-site[data-template=e] .e-audience-sections{--e-audience-section-gap:72px}
+ .ik-site[data-template=e] .e-audience-sections .pane,.ik-site[data-template=e] .e-audience-sections .pane.biz{grid-template-columns:1fr;min-height:0}
+ .ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture{position:relative;inset:auto;width:100%;height:clamp(240px,65vw,380px);grid-column:1;grid-row:1}
+ .ik-site[data-template=e] .e-audience-sections .pane.biz>.ik-visual-picture{inset:auto}
+ .ik-site[data-template=e] .e-audience-sections .e-audience-copy{grid-column:1;grid-row:2;padding:40px 24px 40px 32px}
+ .ik-site[data-template=e] :is(#residential,#business) .e-audience-copy h2{font-size:30px}
+ .ik-site[data-template=e] :is(#residential,#business) .e-audience-copy .sub{font-size:17px;margin-top:20px}
+ .ik-site[data-template=e] .e-audience-note{margin-top:18px}
+ .ik-site[data-template=e] .e-audience-links{margin-top:24px}
+ .ik-site[data-template=e] .e-audience-link{font-size:15px;padding-left:20px}
+}
+@media(prefers-reduced-motion:reduce){.ik-site[data-template=e] .e-audience-link{transition:none}}
+
+@media(hover:hover) and (pointer:fine){
+ .ik-site[data-template=e] .e-audience-sections .pane:is(:hover,:focus-within)>.ik-visual-picture img{transform:scale(1.045)}
+}
+@media(prefers-reduced-motion:reduce){
+ .ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture img{transition:none;transform:none!important}
+}
+
+@media(prefers-reduced-motion:reduce){.ik-site[data-template=e] .e-audience-arrow{transition:none;transform:none!important}}
+
+/* Match the existing Coverage section spacing on small screens. */
+@media(max-width:767px){.ik-site[data-template=e] .e-audience-sections{--e-audience-section-gap:48px}}
