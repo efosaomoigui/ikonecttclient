@@ -44,10 +44,11 @@
  .ik-site[data-template=e] .ik-home #plans .ik-carousel-rail{padding-top:24px}
 }
 
-/* Every plan carries the same red outline, including inactive cards. */
+/* All plans share a thin outline; active and inactive colours follow below. */
 .ik-site[data-template=e] .ik-home #plans .ik-plan-card{border:1px solid var(--ik-accent)}
 
 /* The active plan stays red; neighbouring plans use the audience-button charcoal. */
+.ik-site[data-template=e] .ik-home #plans .ik-plan-card:not([data-active=true]){border-color:#727780}
 .ik-site[data-template=e] .ik-home #plans .ik-plan-card:not([data-active=true]) .ik-plan-price{background:#252a2f}
 .ik-site[data-template=e] .ik-home #plans .ik-plan-card:not([data-active=true]) .ik-plan-price::after{border-top-color:#252a2f}
 .ik-site[data-template=e] .ik-home #plans .ik-plan-card:not([data-active=true]) .ik-plan-card-actions .ik-button:not(.ik-button-secondary){background:#252a2f;border-color:#252a2f;color:#fff}
