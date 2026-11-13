@@ -9,7 +9,7 @@
 .ik-site[data-template=e] .ik-header-row{max-width:1360px;min-height:88px;gap:32px;padding-inline:clamp(20px,3.5vw,48px)}
 .ik-site[data-template=e] .ik-header .ik-logo img{width:152px}
 .ik-site[data-template=e] .ik-desktop-nav{gap:clamp(18px,2vw,30px)}
-.ik-site[data-template=e] .ik-nav-trigger{font-size:17px;font-weight:700;gap:7px;min-height:88px;padding:24px 0;color:var(--e-nav-text)}
+.ik-site[data-template=e] .ik-nav-trigger{font-size:16px;font-weight:700;gap:7px;min-height:88px;padding:24px 0;color:var(--e-nav-text)}
 .ik-site[data-template=e] .ik-nav-trigger:is(:hover,[aria-expanded=true],[data-active=true]){color:var(--glow)}
 .ik-site[data-template=e] .ik-header .ik-button{font-size:16px;font-weight:700;line-height:1.2;min-height:44px;padding:13px 20px;white-space:nowrap;background:var(--e-action);color:#fff;border:1px solid var(--e-action);transition:background-color 160ms ease,box-shadow 160ms ease}
 .ik-site[data-template=e] .ik-header .ik-button:hover{background:var(--glow);border-color:var(--glow);box-shadow:0 3px 10px #ce0c1620}
