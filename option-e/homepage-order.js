@@ -6,8 +6,11 @@ export function arrangeHomepage(home) {
   const benefits = home.querySelector('#home-benefits');
   const testimonials = home.querySelector('#home-testimonials');
   const about = home.querySelector('#about');
+  const plans = home.querySelector('#plans');
   if (!benefits || !testimonials || !about) return false;
-  if (benefits.nextElementSibling !== testimonials) benefits.after(testimonials);
+  if (plans && plans.previousElementSibling !== benefits) plans.before(benefits);
+  const preceding = plans || benefits;
+  if (preceding.nextElementSibling !== testimonials) preceding.after(testimonials);
   if (testimonials.nextElementSibling !== about) testimonials.after(about);
   return true;
  };

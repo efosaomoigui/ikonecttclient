@@ -6,3 +6,4 @@
 - Validate the generated public artifact in the browser, including the homepage section order. Do not use `server.js` or another worktree's preview as the public preview.
 - Coordinate writes and Git operations. One agent owns the commit; a delegated publishing agent may push that checked commit from this checkout. Do not overwrite unrelated dirty work or force-push.
 - Testimonials without approved quotes keep a visible, truthful empty state in both local and public builds. Never convert illustrative quotes into approved customer endorsements.
+- Explicitly requested sample customer cards may appear in local review only, with clear sample labels; public hosts and `?production-preview` retain the pending state until genuine stories are approved.

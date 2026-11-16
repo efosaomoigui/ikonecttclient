@@ -31,7 +31,8 @@ export function mountFooter(root,contacts=footerContacts){
   ?contacts.address:localSample?{lines:['12 Example Avenue','Lagos, Nigeria'],sample:true}:null;
  const emails=(contacts.emails||[]).filter(item=>item.verified===true&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(item.address));
  const phones=(contacts.phones||[]).filter(item=>item.verified===true&&/^\+[1-9]\d{6,14}$/.test(item.number));
- const socials=(contacts.socials||[]).filter(item=>item.verified===true&&socialNames[item.platform]&&safeURL(item.url,socialHosts[item.platform]));
+ const verifiedSocials=(contacts.socials||[]).filter(item=>item.verified===true&&socialNames[item.platform]&&safeURL(item.url,socialHosts[item.platform]));
+ const socials=Object.keys(socialNames).map(platform=>verifiedSocials.find(item=>item.platform===platform)||{platform,url:`https://${platform==='x'?'x':platform}.com/`,placeholder:true});
  const strip=doc.createElement('section');strip.className='e-footer-contact-strip';strip.setAttribute('aria-label','Contact and social media');
  const group=(title,icon)=>{
   const outer=doc.createElement('div');outer.className='e-footer-contact-group';
@@ -56,7 +57,8 @@ export function mountFooter(root,contacts=footerContacts){
  }
  if(socials.length){
   const content=group('Social Media'),row=doc.createElement('div');row.className='e-footer-social-links';
-  socials.forEach(item=>{const link=doc.createElement('a');link.className='e-footer-social-link';link.href=safeURL(item.url,socialHosts[item.platform]);link.setAttribute('aria-label',socialNames[item.platform]+' (opens in a new tab)');link.title=socialNames[item.platform];external(link);link.append(svg(doc,item.platform,'e-footer-social-icon'));row.append(link);});content.append(row);
+  socials.forEach(item=>{const link=doc.createElement('a');link.className='e-footer-social-link';link.href=safeURL(item.url,socialHosts[item.platform]);link.setAttribute('aria-label',socialNames[item.platform]+(item.placeholder?' · placeholder profile':'')+' (opens in a new tab)');link.title=socialNames[item.platform];external(link);link.append(svg(doc,item.platform,'e-footer-social-icon'));const label=doc.createElement('span');label.textContent=socialNames[item.platform];link.append(label);row.append(link);});content.append(row);
+  if(socials.some(item=>item.placeholder)){const label=doc.createElement('small');label.className='e-footer-social-pending';label.textContent='Preview links · official profiles coming soon';content.append(label);}
  }
  if(strip.children.length){strip.style.setProperty('--e-contact-groups',String(strip.children.length));bottom.before(strip);}
  // Use the existing official light wordmark against the charcoal background.

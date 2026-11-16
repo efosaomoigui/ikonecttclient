@@ -46,3 +46,8 @@
 }
 
 @media(prefers-reduced-motion:reduce){.ik-site[data-template=e] .e-audience-arrow{transition:none;transform:none!important}}
+
+/* A second supplied photograph fades over each original image. */
+.ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture.e-audience-alternate{z-index:1;opacity:0;transition:opacity 1400ms ease}
+.ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture.e-audience-alternate[data-visible=true]{opacity:1}
+@media(prefers-reduced-motion:reduce){.ik-site[data-template=e] .e-audience-sections .pane>.ik-visual-picture.e-audience-alternate{transition:none}}

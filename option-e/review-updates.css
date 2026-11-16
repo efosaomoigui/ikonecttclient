@@ -1,0 +1,106 @@
+/* Compact information cards share the homepage Why Choose treatment.
+   Pricing cards, forms, notices and tables retain their own layouts. */
+.ik-site[data-template=e] #ik-main .ik-section:has(.ik-grid>article.ik-panel>.ik-card-icon){background:#edf0f5 url('./images/silver-wave-mesh.png') center/cover no-repeat}
+.ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon){position:relative;display:grid;grid-template-columns:76px minmax(0,1fr);grid-template-rows:auto 1fr auto;align-content:start;gap:10px 20px;padding:28px;min-width:0;border:1px solid #ffffffc9;border-radius:20px;background:#ffffffc9;box-shadow:0 7px 18px #2338541c;overflow:hidden;backdrop-filter:blur(10px)}
+.ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)::after{content:'';position:absolute;top:0;right:0;width:62%;height:3px;background:linear-gradient(90deg,transparent,#ed101a);pointer-events:none}
+.ik-site[data-template=e].ik-polished #ik-main article.ik-panel>.ik-card-icon{box-sizing:border-box;grid-column:1;grid-row:1/4;width:76px;height:76px;padding:16px;margin:0;background:#ffe6e9;border-radius:20px;color:#ed101a;align-self:start}
+.ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)>:is(h3,p,.ik-button){grid-column:2;margin:0}
+.ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)>h3{font-size:20px;line-height:1.3;font-weight:700;color:#111e2b}
+.ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)>p{font-size:16px;line-height:1.6;color:#454a52}
+.ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)>.ik-button{justify-self:start;align-self:end;margin-top:10px;font-weight:700;background:#e50918;border-color:#e50918;color:#fff}
+.ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)>.ik-button:hover{background:#bd0713;border-color:#bd0713}
+/* Keep the existing price ribbon, speed, network motif and carousel geometry.
+   Internal pages use a quiet grey stage, bold labels and red primary buttons. */
+.ik-site[data-template=e] #ik-main .e-internal-plans{--ik-card-width:330px;background:#f4f5f6;border-radius:20px}
+.ik-site[data-template=e] #ik-main .e-internal-plans .ik-carousel-audiences{display:none}
+.ik-site[data-template=e] #ik-main .e-internal-plans .ik-carousel-toolbar{justify-content:flex-end}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card{background:#f4f5f6;border:1px solid #727780;box-shadow:none}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card[data-active=true]{border-color:#ed101a}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card h3{font-size:32px;font-weight:700}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-price strong{font-size:32px;font-weight:700}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-speed strong{font-size:52px;font-weight:700}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-attributes{font-weight:600}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-button{font-weight:700}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-polish-card-network svg{background:#f4f5f6}
+
+.ik-site[data-template=e] .e-device-viewport{max-width:1280px;margin:auto;overflow:hidden}
+.ik-site[data-template=e] .e-device-row{max-width:none}
+.ik-site[data-template=e] .e-device-picture img{transition:transform 1000ms cubic-bezier(.22,.68,.25,1)}
+.ik-site[data-template=e] .e-device-link[data-device-active=true] .e-device-picture img{transform:translateY(-10px) scale(1.16)}
+.ik-site[data-template=e] .e-motion-toggle{display:block;margin:18px auto 0;padding:8px 16px;min-height:44px;border:1px solid #cdd1d7;border-radius:24px;background:transparent;color:#555e6a;font:inherit;font-size:12px;cursor:pointer}
+.ik-site[data-template=e] .e-motion-toggle:hover{border-color:#ed101a;color:#b90b16}
+
+.ik-site[data-template=e] #home-testimonials{background:#f5f6f8;padding-block:80px;color:#182330}
+.ik-site[data-template=e] #home-testimonials .ik-extras-wrap{max-width:1320px}
+.ik-site[data-template=e] #home-testimonials .ik-extras-heading{text-align:center;max-width:none;margin-bottom:24px}
+.ik-site[data-template=e] #home-testimonials h2{font-size:clamp(30px,3.4vw,48px);color:#182330}
+.ik-site[data-template=e] #home-testimonials .ik-extras-eyebrow{color:#c9101e;letter-spacing:.12em}
+.ik-site[data-template=e] .e-stories-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:20px}
+.ik-site[data-template=e] .e-stories-controls button{width:46px;height:46px;border-radius:50%;border:1px solid #ced4dc;background:#fff;color:#252c35;font-size:24px;cursor:pointer}
+.ik-site[data-template=e] .e-stories-controls button:hover{background:#ed101a;color:#fff;border-color:#ed101a}
+.ik-site[data-template=e] .e-stories-viewport{overflow-x:auto;scrollbar-width:thin;overscroll-behavior-x:contain;padding:4px 0 20px}
+.ik-site[data-template=e] .e-stories-track{display:flex;gap:24px;position:relative}
+.ik-site[data-template=e] .e-story-card{position:relative;flex:0 0 calc((100% - 24px)/2);min-width:0;margin:0;padding:36px;border:1px solid #e2e6ec;border-left:4px solid #ed101a;border-radius:22px;background:linear-gradient(130deg,#fff,#fcfcfd);box-shadow:0 8px 18px #23385409;display:flex;flex-direction:column;overflow:hidden}
+.ik-site[data-template=e] .e-story-quote{position:absolute;right:24px;top:2px;color:#fbe8eb;font-family:Georgia,serif;font-size:140px;line-height:1;pointer-events:none}
+.ik-site[data-template=e] .e-story-stars{position:relative;letter-spacing:3px;color:#c80e1a;font-size:19px;margin-bottom:20px}
+.ik-site[data-template=e] .e-story-stars span{color:#858d97}
+.ik-site[data-template=e] .e-story-card h3{position:relative;font-size:23px;line-height:1.3;margin:0 0 16px;color:#182330}
+.ik-site[data-template=e] .e-story-card blockquote{margin:0 0 28px;flex:1}
+.ik-site[data-template=e] .e-story-card blockquote p{font-size:20px;line-height:1.65;margin:0;color:#4d5663}
+.ik-site[data-template=e] .e-story-card figcaption{display:flex;align-items:center;gap:20px;border-top:1px solid #e7e9ee;padding-top:24px}
+.ik-site[data-template=e] .e-story-portrait{display:block;position:relative;flex:0 0 88px;width:88px;height:102px;overflow:hidden;border-radius:44px;background:#f1f2f5}
+/* CSS viewport onto the supplied source card: original image stays intact. */
+.ik-site[data-template=e] .e-story-portrait img{position:absolute;width:492.31%;max-width:none;height:auto;left:-15.38%;top:-20.83%}
+.ik-site[data-template=e] .e-story-card figcaption strong{display:block;font-size:18px;color:#182330}
+.ik-site[data-template=e] .e-story-card figcaption small{display:block;font-size:14px;color:#68717c;margin-top:6px}
+.ik-site[data-template=e] .e-footer-contact-strip{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+.ik-site[data-template=e] .e-footer-contact-content{flex:1}
+.ik-site[data-template=e] .e-footer-contact-strip>.e-footer-contact-group:only-child{grid-column:1/-1}
+.ik-site[data-template=e] .e-footer-social-links{justify-content:space-between;gap:16px}
+.ik-site[data-template=e] .e-footer-social-links .e-footer-social-link{width:auto;height:auto;min-height:48px;padding:10px 14px;gap:10px;border-radius:8px;font-size:14px}
+.ik-site[data-template=e] .e-footer-social-pending{display:block;color:#adb5c0;margin-top:14px;font-size:12px}
+.ik-site[data-template=e] :is(.e-stories-controls button,.e-motion-toggle,.e-stories-viewport):focus-visible{outline:3px solid #b90b16;outline-offset:4px}
+@media(max-width:767px){
+ .ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon){grid-template-columns:60px minmax(0,1fr);gap:10px 16px;padding:22px}
+ .ik-site[data-template=e].ik-polished #ik-main article.ik-panel>.ik-card-icon{width:60px;height:60px;padding:12px;border-radius:16px}
+ .ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)>h3{font-size:18px}
+ .ik-site[data-template=e] #ik-main .e-internal-plans{--ik-card-width:clamp(244px,74vw,320px)}
+ .ik-site[data-template=e] #connected-life>.e-motion-toggle{display:none}
+ .ik-site[data-template=e] #home-testimonials{padding-block:48px}
+ .ik-site[data-template=e] .e-story-card{flex-basis:100%;padding:26px}
+ .ik-site[data-template=e] .e-story-card blockquote p{font-size:18px}
+ .ik-site[data-template=e] .e-footer-contact-strip{grid-template-columns:1fr}
+ .ik-site[data-template=e] .e-footer-social-links{justify-content:flex-start}
+}
+@media(prefers-reduced-motion:reduce){.ik-site[data-template=e] .e-motion-toggle{display:none}.ik-site[data-template=e] .e-device-picture img{transition:none}}
+/* Review: flush inner plans and compact contact strip. */
+.ik-site[data-template=e] #ik-main .e-internal-plans{container-type:inline-size;--ik-card-width:calc((100cqw - 48px)/3);background:transparent;border-radius:0;max-width:1100px;margin-inline:auto}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card{background:#fff;transform:none;min-height:460px}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card[data-active=true]{transform:translateY(-16px)}
+.ik-site[data-template=e] #ik-main .e-internal-plans .ik-carousel-rail{gap:24px;padding-top:32px;padding-bottom:20px}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-polish-card-network svg{background:#fff}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card:not([data-active=true]) .ik-plan-price{background:#e4e6e9;color:#252a2f}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card:not([data-active=true]) .ik-plan-price :is(strong,span){color:#252a2f}
+.ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card:not([data-active=true]) .ik-plan-price::after{border-top-color:#e4e6e9}
+.ik-site[data-template=e] .e-footer-contact-strip{grid-template-columns:repeat(var(--e-contact-groups,4),minmax(0,1fr));gap:32px;padding-block:40px;align-items:start}
+.ik-site[data-template=e] .e-footer-social-links{justify-content:flex-end;gap:12px}
+.ik-site[data-template=e] .e-footer-social-links .e-footer-social-link{width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;flex:0 0 44px}
+.ik-site[data-template=e] .e-footer-social-link>span{display:none}
+.ik-site[data-template=e] .e-footer-social-pending{text-align:right}
+@media(max-width:767px){
+.ik-site[data-template=e] #ik-main .e-internal-plans{--ik-card-width:100cqw}
+.ik-site[data-template=e] #ik-main .e-internal-plans .ik-carousel-rail{padding-inline:0}
+.ik-site[data-template=e] .e-footer-contact-strip{grid-template-columns:1fr;gap:24px}
+.ik-site[data-template=e] .e-footer-social-links{justify-content:flex-start}
+.ik-site[data-template=e] .e-footer-social-pending{text-align:left}
+}
+/* Shared carousel controls: white circles, full arrows and red hover. */
+.ik-site[data-template=e] :is(.ik-home,#ik-main) :is(.ik-carousel-arrows,.e-stories-controls,.e-scene-controls,.e-feedback-controls) button{display:inline-grid;place-items:center;width:50px;height:50px;min-height:50px;flex:0 0 50px;padding:0;border:1px solid #ced4dc;border-radius:50%;background:#fff;color:#4d5663;font-size:26px;font-weight:400;line-height:1;box-shadow:none;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}
+.ik-site[data-template=e] :is(.ik-home,#ik-main) :is(.ik-carousel-arrows,.e-stories-controls,.e-scene-controls,.e-feedback-controls) button:hover:not(:disabled){background:#ed101a;border-color:#ed101a;color:#fff}
+.ik-site[data-template=e] :is(.ik-home,#ik-main) :is(.ik-carousel-arrows,.e-stories-controls,.e-scene-controls,.e-feedback-controls) button:focus-visible{outline:3px solid #ed101a;outline-offset:4px}
+.ik-site[data-template=e] .ik-carousel-arrows button svg{display:none}
+.ik-site[data-template=e] .ik-carousel-arrows [data-carousel-step='-1']::after{content:'←'}
+.ik-site[data-template=e] .ik-carousel-arrows [data-carousel-step='1']::after{content:'→'}
+.ik-site[data-template=e] :is(.e-stories-viewport,.e-feedback-rail){scrollbar-width:none;-ms-overflow-style:none}
+.ik-site[data-template=e] :is(.e-stories-viewport,.e-feedback-rail)::-webkit-scrollbar{display:none}
+.ik-site[data-template=e] :is(.e-motion-toggle,.e-city-pause){display:none!important}

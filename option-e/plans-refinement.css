@@ -1,7 +1,7 @@
 /* Section 02: E's existing plan stage, carousel and card geometry stay intact. */
 .ik-site[data-template=e] .ik-home .plans{background:#f4f5f6;padding-block:0 48px;isolation:isolate}
 .ik-site[data-template=e] .plans .e-plans-introduction{
- background:linear-gradient(90deg,#40020aa3,#40020a99),url('./images/crimson-energy-arc.png') center 52%/cover no-repeat;
+ background:linear-gradient(90deg,#69000788,#62000870),url('./images/glowing-red-wave-mesh.png') center 52%/cover no-repeat;
  padding-block:64px 192px;color:#fff;
 }
 .ik-site[data-template=e] .ik-home .plans .plans-head{margin:0;padding:0;border:0;gap:0}
