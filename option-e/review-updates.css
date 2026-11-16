@@ -104,3 +104,50 @@
 .ik-site[data-template=e] :is(.e-stories-viewport,.e-feedback-rail){scrollbar-width:none;-ms-overflow-style:none}
 .ik-site[data-template=e] :is(.e-stories-viewport,.e-feedback-rail)::-webkit-scrollbar{display:none}
 .ik-site[data-template=e] :is(.e-motion-toggle,.e-city-pause){display:none!important}
+/* Supplied residential overview photograph. */
+.ik-site[data-template=e][data-route=residential] #ik-main .ik-section:has(.ik-grid>article.ik-panel>.ik-card-icon){background:linear-gradient(90deg,#f4f5f633,#f4f5f614),url('./images/internal-sections/residential-family-gaming.jpg') center 38%/cover no-repeat}
+@media(min-width:768px){.ik-site[data-template=e][data-route=residential] #ik-main .ik-section:has(.ik-grid>article.ik-panel>.ik-card-icon){min-height:520px;display:flex;align-items:center}}
+.ik-site[data-template=e][data-route=residential] #ik-main .ik-section:has(.ik-grid>article.ik-panel>.ik-card-icon)>.ik-wrap>h2{display:none}
+.ik-site[data-template=e][data-route=residential] #ik-main .ik-section:has(.ik-grid>article.ik-panel>.ik-card-icon) .ik-grid{max-width:1120px;margin:0 auto;gap:24px}
+.ik-site[data-template=e][data-route=residential] #ik-main article.ik-panel:has(>.ik-card-icon){grid-template-columns:64px minmax(0,1fr);gap:8px 18px;padding:22px 24px}
+.ik-site[data-template=e][data-route=residential].ik-polished #ik-main article.ik-panel>.ik-card-icon{width:64px;height:64px;padding:14px;border-radius:18px}
+.ik-site[data-template=e][data-route=residential] #ik-main article.ik-panel:has(>.ik-card-icon)>.ik-button{min-height:44px;padding:10px 22px;margin-top:4px}
+.ik-site[data-template=e][data-route=residential] #ik-main article.ik-panel:has(>.ik-card-icon){background:#fffffff0}
+@media(max-width:767px){.ik-site[data-template=e][data-route=residential] #ik-main .ik-section:has(.ik-grid>article.ik-panel>.ik-card-icon){background-position:55% center}}
+/* Supplied map keeps its white sky behind the form and its pins at the base. */
+.ik-site[data-template=e] .ik-home #coverage{min-height:380px;padding-block:64px 120px;background:linear-gradient(#ffffffb3,#ffffffb3),#fff url('./images/coverage-city-map.png') center bottom/cover no-repeat}
+.ik-site[data-template=e] .ik-home #coverage>.wrap{max-width:1100px;margin-inline:auto}
+@media(max-width:767px){
+ .ik-site[data-template=e] .ik-home #coverage{min-height:464px;padding-block:32px 120px;background-size:auto 100%;background-position:55% bottom}
+ .ik-site[data-template=e][data-route=residential] #ik-main article.ik-panel:has(>.ik-card-icon){grid-template-columns:52px minmax(0,1fr);gap:8px 14px;padding:20px}
+ .ik-site[data-template=e][data-route=residential].ik-polished #ik-main article.ik-panel>.ik-card-icon{width:52px;height:52px;padding:11px;border-radius:14px}
+}
+/* Landing-page rhythm: keep audience photography flush, pad the copy itself. */
+.ik-site[data-template=e] .ik-home #coverage{min-height:460px;padding-block:88px 152px}
+.ik-site[data-template=e] .ik-home #connected-life{padding-block:96px 88px}
+.ik-site[data-template=e] .ik-home #home-benefits{padding-block:112px}
+.ik-site[data-template=e] .ik-home #plans{padding-bottom:96px}
+.ik-site[data-template=e] .ik-home #plans .e-plans-introduction{padding-top:104px}
+.ik-site[data-template=e] .ik-home #home-testimonials{padding-block:112px}
+.ik-site[data-template=e] .ik-home #about.about{min-height:520px;padding-block:104px}
+.ik-site[data-template=e] .ik-home #portal{padding-block:112px}
+.ik-site[data-template=e] .ik-home .e-audience-sections .pane{min-height:680px}
+.ik-site[data-template=e] .ik-home .e-audience-sections .e-audience-copy{padding:72px clamp(40px,4.5vw,72px);justify-content:flex-start}
+@media(max-width:1023px){
+ .ik-site[data-template=e] .ik-home .e-audience-sections .pane{min-height:0}
+ .ik-site[data-template=e] .ik-home .e-audience-sections .pane>.ik-visual-picture{height:clamp(280px,65vw,440px)}
+ .ik-site[data-template=e] .ik-home .e-audience-sections .e-audience-copy{padding:56px 32px}
+}
+@media(max-width:767px){
+ .ik-site[data-template=e] .ik-home #coverage{min-height:540px;padding-block:56px 144px}
+ .ik-site[data-template=e] .ik-home #connected-life{padding-block:64px 56px}
+ .ik-site[data-template=e] .ik-home #home-benefits,.ik-site[data-template=e] .ik-home #home-testimonials{padding-block:72px}
+ .ik-site[data-template=e] .ik-home #plans{padding-bottom:72px}
+ .ik-site[data-template=e] .ik-home #plans .e-plans-introduction{padding-top:64px}
+ .ik-site[data-template=e] .ik-home #about.about{min-height:0;padding-block:72px 336px}
+ .ik-site[data-template=e] .ik-home #portal{padding-block:72px}
+}
+/* Supplied red network artwork for the Business overview's audience cards. */
+.ik-site[data-template=e][data-route=business] #ik-main .ik-section:has(.ik-grid a[href="#/business/solutions/sme"]){background:#bd0713 url('./images/glowing-red-wave-mesh.png') center/cover no-repeat}
+.ik-site[data-template=e][data-route=business] #ik-main .ik-section:has(.ik-grid a[href="#/business/solutions/sme"])>.ik-wrap>h2{color:#fff}
+.ik-site[data-template=e][data-route=business] #ik-main .ik-section:has(.ik-grid a[href="#/business/solutions/sme"]) article.ik-panel{background:#fffffff5}

@@ -1,5 +1,5 @@
 /* Silver-mesh benefits showcase, scoped to the approved Option E homepage. */
-.ik-site[data-template=e] .ik-home #home-benefits{padding-block:72px 80px;background:#edf0f5 url('./images/silver-wave-mesh.png') center/cover no-repeat;color:#111e2b}
+.ik-site[data-template=e] .ik-home #home-benefits{padding-block:72px 80px;background:#edf0f5 url('./images/silver-wave-mesh-subtle.png') center/cover no-repeat;color:#111e2b}
 .ik-site[data-template=e] .ik-home #home-benefits>.ik-polish-benefit-photo,.ik-site[data-template=e] .ik-home #home-benefits>.ik-story-atmosphere,.ik-site[data-template=e] .ik-home #home-benefits::after{display:none}
 .ik-site[data-template=e] .ik-home #home-benefits .ik-extras-wrap{max-width:1400px;padding-inline:clamp(24px,4vw,56px)}
 .ik-site[data-template=e] .ik-home #home-benefits .ik-extras-heading{max-width:1100px;margin:0 auto 52px;text-align:center}
