@@ -1,5 +1,5 @@
 import {photoNetworkHTML,layoutPhotoNetwork} from './photo-network.js?v=4';
-export const cityMessages=['Connectivity without limits.','A city powered by connection.','Your world. Always connected.'];
+export const cityMessages=['Fibre broadband for home and business.','Internet for life at home.','Connectivity for your business.'];
 export const canAnimate=state=>state.visible&&state.onscreen&&!state.reduced&&!state.paused&&!state.failed;
 
 export function mountCityExperience({hero,root,loadCity=()=>import('./photo-network.js?v=4'),delay=200,onFrame=()=>{}}){

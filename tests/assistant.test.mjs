@@ -24,9 +24,9 @@ test('all scripted intents are deterministic, safe and route only to existing jo
     assert.ok(response.text.length>50);
     for(const action of response.actions)if(action.route)assert.ok(pages[parseRoute('#/'+action.route).path],action.route);
   }
-  assert.match(demoProvider.respond({intent:'coverage'}).text,/cannot confirm coverage/);
+  assert.match(demoProvider.respond({intent:'coverage'}).text,/cannot confirm live coverage/);
   assert.match(demoProvider.respond({intent:'billing'}).text,/cannot access balances/);
-  assert.match(demoProvider.respond({intent:'fault'}).text,/no ticket is created/);
+  assert.match(demoProvider.respond({intent:'fault'}).text,/does not create or send a ticket/);
   assert.match(demoProvider.respond({intent:'support'}).text,/no live agent/);
 });
 test('public context excludes private fields and invalid catalogue selections',()=>{
@@ -76,7 +76,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       start();assert.equal(find('[data-conversation]').hidden,false);assert.equal(find('[data-introduction]').childElementCount,0);
       assert.match(find('[data-messages]').textContent,/Hi Efe! Welcome to Ikonectt\./);assert.doesNotMatch(find('[data-messages]').textContent,/803 123|Demo/);
       assert.equal(document.activeElement,find('[data-composer] input'));
-      for(const [text,expected] of [['I need internet for my home',/residential plans/],['My internet is not working',/cannot diagnose/],['How do I get connected?',/fees and times require confirmation/],['I want to check my bill',/cannot access balances/],['<img src=x onerror=alert(1)>',/no AI model is connected/]]){
+      for(const [text,expected] of [['I need internet for my home',/residential plans/],['My internet is not working',/cannot diagnose/],['How do I get connected?',/fees and times require confirmation/],['I want to check my bill',/cannot access balances/],['<img src=x onerror=alert(1)>',/Replies are automated/]]){
         fill('[data-composer] input',text);assert.equal(find('[data-composer] button').disabled,false);submit('[data-composer]');await flush();assert.match(find('[data-messages]').lastElementChild.textContent,expected);
       }
       assert.equal(find('[data-messages] img:not(.ik-assistant-avatar)'),null);assert.ok(find('[data-messages]').textContent.includes('<img src=x'));

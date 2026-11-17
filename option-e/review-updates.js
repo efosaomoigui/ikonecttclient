@@ -2,6 +2,7 @@ import {carouselHTML} from '../shared/plan-ui.js';
 import {initializeCarousel} from '../shared/carousel.js';
 import {escapeHTML as esc} from '../shared/forms.js';
 import {customerStories} from './customer-stories.js';
+import {publishableTestimonials} from '../shared/homepage-sections.js';
 
 const root=document.querySelector('.ik-site[data-template=e]');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -31,7 +32,7 @@ if(root){
   new IntersectionObserver(([entry])=>visible=entry.isIntersecting,{threshold:.15}).observe(viewport);
   const mark=()=>{if(active){const items=[...track.children];items.forEach((item,n)=>item.dataset.deviceActive=String(n===Math.floor(items.length/2)));}};
   async function step(direction=1){
-   if(busy)return;busy=true;
+   if(busy||track.children.length<2)return;busy=true;
    const first=track.firstElementChild,last=track.lastElementChild;
    const distance=track.children[1].offsetLeft-first.offsetLeft;
    viewport.scrollLeft=0;
@@ -67,8 +68,13 @@ if(root){
  }
  const installStories=()=>{
   const section=root.querySelector('#home-testimonials');if(!section||section.dataset.clientStories)return;
-  section.dataset.clientStories='true';section.dataset.testimonialMode='approved';
-  section.innerHTML=`<div class="ik-extras-wrap"><header class="ik-extras-heading"><p class="ik-extras-eyebrow">Connected lives. Shared experiences.</p><h2 id="home-testimonials-title">What our customers say.</h2><p>Real experiences from the Ikonectt community.</p></header><div class="e-stories-controls"><button type="button" data-story-prev aria-label="Previous customer story">←</button><button type="button" data-story-next aria-label="Next customer story">→</button></div><div class="e-stories-viewport" tabindex="0" role="region" aria-label="Customer stories. Use the arrow controls or swipe to browse."><div class="e-stories-track">${customerStories.map(item=>`<figure class="e-story-card"><span class="e-story-quote" aria-hidden="true">“</span><div class="e-story-stars" aria-label="${item.rating} out of 5 stars">${'★'.repeat(item.rating)}<span aria-hidden="true">${'☆'.repeat(5-item.rating)}</span></div><h3>${esc(item.title)}</h3><blockquote><p>${esc(item.quote)}</p></blockquote><figcaption><span class="e-story-portrait"><img src="${esc(item.portrait.src)}" alt="${esc(item.portrait.alt)}" width="1024" height="389" loading="eager"></span><span><strong>${esc(item.name)}</strong><small>${esc(item.descriptor)}</small></span></figcaption></figure>`).join('')}</div></div></div>`;
+  const stories=publishableTestimonials(customerStories);
+  section.dataset.clientStories='true';section.dataset.testimonialMode=stories.length?'approved':'pending';
+  if(!stories.length){
+   section.innerHTML='<div class="ik-extras-wrap"><header class="ik-extras-heading"><h2 id="home-testimonials-title">Customer stories</h2></header><p class="ik-testimonial-notice">Customer stories will be shared here after publication approval.</p></div>';
+   return;
+  }
+  section.innerHTML=`<div class="ik-extras-wrap"><header class="ik-extras-heading"><h2 id="home-testimonials-title">Customer stories</h2></header><div class="e-stories-controls"><button type="button" data-story-prev aria-label="Previous customer story">←</button><button type="button" data-story-next aria-label="Next customer story">→</button></div><div class="e-stories-viewport" tabindex="0" role="region" aria-label="Customer stories. Use the arrow controls or swipe to browse."><div class="e-stories-track">${stories.map(item=>`<figure class="e-story-card"><span class="e-story-quote" aria-hidden="true">“</span>${item.approval?.rating===true&&Number.isInteger(item.rating)&&item.rating>=0&&item.rating<=5?`<div class="e-story-stars" aria-label="${item.rating} out of 5 stars">${'★'.repeat(item.rating)}<span aria-hidden="true">${'☆'.repeat(5-item.rating)}</span></div>`:''}<h3>${esc(item.title)}</h3><blockquote><p>${esc(item.quote)}</p></blockquote><figcaption>${item.approval?.portrait===true&&item.portrait?.src?`<span class="e-story-portrait"><img src="${esc(item.portrait.src)}" alt="${esc(item.portrait.alt||item.name)}" width="1024" height="389" loading="eager"></span>`:''}<span><strong>${esc(item.name)}</strong><small>${esc(item.descriptor||'')}</small></span></figcaption></figure>`).join('')}</div></div></div>`;
   const viewport=section.querySelector('.e-stories-viewport'),step=loop(viewport,section.querySelector('.e-stories-track'),{delay:5500});
   section.querySelector('[data-story-prev]').onclick=()=>step(-1);section.querySelector('[data-story-next]').onclick=()=>step(1);
   viewport.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();step(e.key==='ArrowRight'?1:-1);}});

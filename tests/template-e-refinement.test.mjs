@@ -59,7 +59,7 @@ test('E inner-page photographs resolve every local responsive export and stay de
 });
 
 function cityFixture({reject=false,reduced=false,saveData=false}={}){
-  const dom=new JSDOM('<div id="root" data-template="e" data-route="home"><section class="hero"><div class="horizon"></div><h1>Connectivity without limits.</h1><a href="#coverage">Check Coverage</a></section></div>',{url:'http://preview.test/option-e/',pretendToBeVisual:true});
+  const dom=new JSDOM('<div id="root" data-template="e" data-route="home"><section class="hero"><div class="horizon"></div><h1>Fibre broadband for home and business.</h1><a href="#coverage">Check Coverage</a></section></div>',{url:'http://preview.test/option-e/',pretendToBeVisual:true});
   const win=dom.window,root=win.document.querySelector('#root'),hero=root.querySelector('.hero');
   let hidden=false,id=0,time=0,destroyed=0,frames=0,io,change;
   Object.defineProperty(win.document,'hidden',{get:()=>hidden,configurable:true});
@@ -84,7 +84,7 @@ test('city render loop targets 30 FPS and pauses for user, visibility, route and
   for(const pause of [()=>f.hidden(true),()=>f.offscreen(true),()=>f.reduce(true)]){pause();f.step(30);assert.equal(f.queue.size,0);}
   f.hidden(false);f.offscreen(false);f.reduce(false);f.step(5);assert.ok(f.queue.size);
   f.root.dataset.route='support';await tick();assert.equal(f.queue.size,0);
-  f.close();assert.equal(f.destroyed,1);assert.equal(f.hero.querySelector('h1').textContent,'Connectivity without limits.');
+  f.close();assert.equal(f.destroyed,1);assert.equal(f.hero.querySelector('h1').textContent,'Fibre broadband for home and business.');
 });
 test('signal-layer failure keeps the photograph, readable HTML and navigation with static paths',async()=>{
   const f=cityFixture({reject:true});await tick();assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.hero.dataset.cityReason,'signal-layer-unavailable');assert.ok(f.hero.querySelector('.e-photo-network'));assert.ok(f.hero.querySelector('a[href="#coverage"]'));assert.equal(f.queue.size,0);f.close();
@@ -107,8 +107,8 @@ test('oval introduction gradually reveals the city on the same pausable clock',a
 });
 test('headline dwell follows elapsed render time without accumulating scheduler remainder',async()=>{
   const f=cityFixture();await tick();f.step(450);
-  assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Connectivity without limits.');
-  f.step(60);assert.equal(f.hero.querySelector('[data-active=true]').textContent,'A city powered by connection.');assert.equal(f.imports,1,'headline change must not reload the scene');f.close();
+  assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Fibre broadband for home and business.');
+  f.step(60);assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Internet for life at home.');assert.equal(f.imports,1,'headline change must not reload the scene');f.close();
 });
 test('reduced motion and data-saving devices avoid loading Three.js',async()=>{
   for(const config of [{reduced:true},{saveData:true}]){const f=cityFixture(config);await tick();assert.equal(f.imports,0);assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.queue.size,0);f.close();}

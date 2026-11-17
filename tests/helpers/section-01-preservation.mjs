@@ -1,11 +1,14 @@
 import fs from 'node:fs';
+const release=JSON.parse(fs.readFileSync(new URL('../../docs/evidence/option-e-public-release/checkpoint.json',import.meta.url)));
+// The current requested content rewrite checkpoints the full E entrypoint.
+// Preserve historical stripping only for entrypoints without a later checkpoint.
 const approvedPlans = fs.readFileSync(new URL('./approved-plans-section.html', import.meta.url), 'utf8');
 const approvedAudiences = fs.readFileSync(new URL('./approved-audience-sections.html', import.meta.url), 'utf8');
 // Sections 01/02 and the connected-device strip authorize their entry points,
 // the Plans introduction, and the new strip immediately before Plans.
 // Historical checks still compare every byte outside the approved scope.
 export function withoutNavigationRefinement(file, bytes) {
- if (file !== 'option-e/index.html') return bytes;
+ if (file !== 'option-e/index.html' || release.files[file]?.sha256LF) return bytes;
  return Buffer.from(bytes.toString()
   // 15 November: client-authorized router, cards, stories and social styling.
   .replace(/<link rel="stylesheet" href="\.\/review-updates\.css\?v=1">\r?\n/, '')

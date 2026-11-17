@@ -9,7 +9,7 @@ const empty={address:null,emails:[],phones:[],socials:[]};
 test('E local footer adds the labelled sample address and authorized social previews and preserves existing content',()=>{
  const dom=fixture('http://localhost:3000/option-e/'),root=dom.window.document.body;
  const nav=root.querySelector('.ik-footer-links').outerHTML,bottom=root.querySelector('.ik-footer-bottom').outerHTML;
- const stop=mountFooter(root);
+ const stop=mountFooter(root,empty);
  assert.match(root.querySelector('address').textContent,/12 Example Avenue/);
  assert.match(root.querySelector('.e-footer-sample-label').textContent,/Sample address/);
  assert.equal(root.querySelectorAll('.e-footer-contact-group').length,2);

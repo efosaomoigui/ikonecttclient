@@ -1,6 +1,8 @@
 // Extend E's existing disclosures without changing routes or shared templates.
 const header = document.querySelector('.ik-site[data-template=e] .ik-header');
 if (header) {
+ const companyLabel = header.querySelector('[data-menu="about"] > span');
+ if (companyLabel) companyLabel.textContent = 'Our Company';
  const nav = header.querySelector('.ik-desktop-nav');
  const mobile = header.querySelector('.ik-mobile-button');
  const close = () => {

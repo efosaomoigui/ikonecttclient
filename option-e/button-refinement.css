@@ -1,7 +1,36 @@
-/* Consistent public-site CTA shapes; existing red/charcoal/outline colours stay. */
-.ik-site[data-template=e]{--ik-button-radius:999px}
+/* Shared CTA shape and the soft grey used alongside brand red. */
+.ik-site[data-template=e]{
+ --ik-button-radius:999px;
+ --e-button-grey:#e4e6e9;
+ --e-button-grey-hover:#d5d8de;
+ --e-button-grey-border:#727780;
+ --e-button-grey-text:#252a2f;
+}
 .ik-site[data-template=e] :is(.ik-header,.ik-home,#ik-main) :is(.btn,.ik-button,.ik-mobile-button){border-radius:999px}
 .ik-site[data-template=e] :is(.ik-home,#ik-main) .ik-carousel-arrows button{border-radius:50%}
 /* Remove the visible hero pause control; existing slide arrows and motion
    preference handling continue to use the shared hero controller. */
 .ik-site[data-template=e] .hero .e-city-pause{display:none}
+
+/* Grey filled actions, alternating information cards and inactive plans. */
+.ik-site[data-template=e].ik-polished :is(
+ #about .btn,
+ #ik-main .ik-grid>.ik-panel:nth-child(even)>.ik-button:not(.ik-button-secondary),
+ #ik-main .ik-section:nth-of-type(even) .ik-actions>a.ik-button:not(.ik-button-secondary):first-child,
+ .ik-plan-card:not([data-active=true]) .ik-plan-card-actions .ik-button:not(.ik-button-secondary)
+){
+ background:var(--e-button-grey);
+ border:1px solid var(--e-button-grey-border);
+ color:var(--e-button-grey-text);
+}
+.ik-site[data-template=e].ik-polished :is(
+ #about .btn,
+ #ik-main .ik-grid>.ik-panel:nth-child(even)>.ik-button:not(.ik-button-secondary),
+ #ik-main .ik-section:nth-of-type(even) .ik-actions>a.ik-button:not(.ik-button-secondary):first-child,
+ .ik-plan-card:not([data-active=true]) .ik-plan-card-actions .ik-button:not(.ik-button-secondary)
+):hover:not(:disabled){
+ background:var(--e-button-grey-hover);
+ border-color:var(--e-button-grey-text);
+ color:var(--e-button-grey-text);
+ filter:none;
+}

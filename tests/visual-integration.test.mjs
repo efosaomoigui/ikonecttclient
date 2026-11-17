@@ -66,7 +66,7 @@ for(const template of ['a','d','e'])test(`Template ${template}: imagery follows 
   const site=mountSite({root,home,template}),visuals=mountVisuals({root,home,template});
   if(template==='e'){
     const credits=[...root.querySelectorAll('.ik-footer a')].find(a=>a.textContent==='Photo credits');
-    assert.equal(credits?.getAttribute('href'),'./photo-credits.html');
+    assert.equal(credits,undefined,'The footer does not display a Photo credits link.');
     const page=read('option-e/photo-credits.html').toString();
     for(const text of ['Clara Sanchiz','Mrnyben1313','https://creativecommons.org/licenses/by-sa/2.0/','https://creativecommons.org/licenses/by-sa/4.0/'])assert.ok(page.includes(text),text);
   }
@@ -76,7 +76,8 @@ for(const template of ['a','d','e'])test(`Template ${template}: imagery follows 
     await new Promise(resolve=>window.addEventListener('hashchange',resolve,{once:true}));
     await new Promise(resolve=>setTimeout(resolve,0));
     const pictures=[...root.querySelectorAll('#ik-main [data-visual-asset]')];
-    assert.equal(pictures.length,visualSlots[template][path]?1:0,path);
+    const expectedAsset=template==='e'&&path==='about'?null:visualSlots[template][path];
+    assert.equal(pictures.length,expectedAsset?1:0,path);
     if(pictures.length)assert.equal(pictures[0].dataset.visualAsset,visualSlots[template][path]);
     if(template==='e')assert.equal(root.querySelectorAll('.ik-visual-credit').length,0,path);
     assert.equal(root.querySelectorAll('form [data-visual-asset],.ik-plan-card [data-visual-asset],.ik-faq [data-visual-asset]').length,0,path);

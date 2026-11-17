@@ -1,0 +1,26 @@
+{
+  "checks": 90,
+  "viewports": [
+    1440,
+    1024,
+    768,
+    390,
+    320
+  ],
+  "routes": 30,
+  "homepageOrder": [
+    "coverage",
+    "residential",
+    "connected-life",
+    "business",
+    "home-benefits",
+    "plans",
+    "home-testimonials",
+    "about",
+    "portal"
+  ],
+  "errors": [],
+  "badResponses": [],
+  "confirmation": "Preview complete. Your request has not been sent. Email customercare@ikonectt.com or call 02013301220 to contact the team.",
+  "portal": "/my-ikonectt/#/"
+}

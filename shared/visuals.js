@@ -9,11 +9,6 @@ export function mountVisuals({root,home,template}){
   const credit=key=>template==='e'?'':visualCreditHTML(key).replace('resized / cropped',key==='lagos'&&template==='a'?'signage retouched / resized / cropped':'resized / cropped');
   const picture=(key,options)=>key==='lagos'&&['a','e'].includes(template)?creativePictureHTML('city',{...options,legacyKey:'lagos'}):visualPictureHTML(key,options);
   let creditsLink;
-  if(template==='e'){
-    creditsLink=root.ownerDocument.createElement('a');
-    creditsLink.href='./photo-credits.html';creditsLink.textContent='Photo credits';
-    root.querySelector('.ik-footer-bottom > div')?.append(creditsLink);
-  }
   function installSlots(){
     const path=root.dataset.route;
     if(!visualSlots[template][path])return;

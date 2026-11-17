@@ -8,20 +8,18 @@ const icons={
  growth:'<path d="M3 21v-6h4v6M10 21V10h4v11M17 21V5h4v16M3 10l7-6 5 2 6-5M17 1h4v4"/>',
 };
 const benefits=[
- ['Reliable & Fast','Explore broadband connectivity for homes and businesses.','speed'],
- ['Flexible Plans','Choose a plan that fits your needs and budget.','plans'],
- ['Responsive Support','Find guidance and assistance when you need help.','support'],
- ['Secure & Trusted','Get guidance for a safer connected experience.','secure'],
- ['Wider Coverage','Check service availability at your address.','coverage'],
- ['Built for Growth','Explore connectivity for home, work and business goals.','growth'],
+ ['Fibre Broadband','Browse connection options for your home or office.','speed'],
+ ['Monthly Plans','Compare plan speeds and monthly prices.','plans'],
+ ['Customer Support','Find answers and contact the support team.','support'],
+ ['Connection Guidance','Get help with Wi-Fi, routers and connection problems.','secure'],
+ ['Address Checks','Contact us to confirm coverage at your address.','coverage'],
+ ['Business Options','Discuss your organisation’s connectivity requirements.','growth'],
 ];
 function showcase(){
  const section=home?.querySelector('#home-benefits');if(!section||section.dataset.showcase)return Boolean(section);
  section.dataset.showcase='silver';
- section.querySelector('.ik-extras-eyebrow').textContent='Why Choose Ikonectt';
- section.querySelector('h2').textContent='A Better Broadband Experience';
- const subtitle=document.createElement('p');subtitle.className='e-benefits-intro';subtitle.textContent='Reliable connectivity, flexible plans and customer support you can count on.';
- section.querySelector('.ik-extras-heading').append(subtitle);
+ section.querySelector('.ik-extras-eyebrow')?.remove();
+ section.querySelector('h2').textContent='Plans, coverage and support.';
  section.querySelectorAll('.ik-benefit-card').forEach((card,index)=>{
   const [title,description,key]=benefits[index];
   const icon=card.querySelector('svg');icon.innerHTML=icons[key];

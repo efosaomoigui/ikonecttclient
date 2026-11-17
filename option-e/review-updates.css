@@ -114,18 +114,79 @@
 .ik-site[data-template=e][data-route=residential] #ik-main article.ik-panel:has(>.ik-card-icon)>.ik-button{min-height:44px;padding:10px 22px;margin-top:4px}
 .ik-site[data-template=e][data-route=residential] #ik-main article.ik-panel:has(>.ik-card-icon){background:#fffffff0}
 @media(max-width:767px){.ik-site[data-template=e][data-route=residential] #ik-main .ik-section:has(.ik-grid>article.ik-panel>.ik-card-icon){background-position:55% center}}
-/* Supplied map keeps its white sky behind the form and its pins at the base. */
-.ik-site[data-template=e] .ik-home #coverage{min-height:380px;padding-block:64px 120px;background:linear-gradient(#ffffffb3,#ffffffb3),#fff url('./images/coverage-city-map.png') center bottom/cover no-repeat}
-.ik-site[data-template=e] .ik-home #coverage>.wrap{max-width:1100px;margin-inline:auto}
+/* Rounded coverage panel with a clear address field and branded location mark. */
+.ik-site[data-template=e] .ik-home #coverage{
+ min-height:0;padding-block:48px;background:#fff;
+}
+.ik-site[data-template=e] .ik-home #coverage>.wrap{
+ width:calc(100% - 64px);max-width:1160px;margin-inline:auto;padding:32px 36px;
+ display:grid;grid-template-columns:160px minmax(0,1fr);gap:32px;
+ background:#f2f3f5;border-radius:28px;
+}
+.ik-site[data-template=e] #coverage .e-coverage-locator{
+ position:relative;width:160px;height:160px;max-width:none;margin:0;overflow:hidden;
+}
+.ik-site[data-template=e] #coverage .e-coverage-locator svg{
+ position:absolute;left:50%;top:50%;width:260px;height:260px;
+ transform:translate(-50%,-50%);
+}
+.ik-site[data-template=e] #coverage .e-coverage-locator svg>path:not([data-location-pin]),
+.ik-site[data-template=e] #coverage .e-coverage-locator svg>circle{display:none}
+.ik-site[data-template=e] #coverage [data-location-pin]{stroke:#ed101a;stroke-width:3}
+.ik-site[data-template=e] #coverage .e-coverage-locator ellipse{
+ stroke:#ed101a;stroke-width:3;opacity:.14;
+}
+.ik-site[data-template=e] #coverage .e-coverage-desk{
+ border-left:2px solid #dde0e5;padding-left:40px;
+}
+.ik-site[data-template=e] #coverage .e-section-kicker{
+ font-size:12px;font-weight:700;letter-spacing:.16em;margin-bottom:12px;
+}
+.ik-site[data-template=e] #coverage h2{
+ font-size:clamp(22px,2.4vw,32px);font-weight:700;line-height:1.3;margin:0;
+}
+.ik-site[data-template=e] #coverage .e-address-entry{margin-top:24px}
+.ik-site[data-template=e] #coverage .finder{flex-direction:row;gap:28px}
+.ik-site[data-template=e] #coverage .finder input{
+ min-width:0;min-height:48px;padding:12px 0;font-size:16px;border-bottom-color:#848c98;
+}
+.ik-site[data-template=e] #coverage .finder .btn{
+ min-height:50px;padding:12px 24px;font-size:16px;font-weight:700;line-height:1.25;gap:20px;
+}
+.ik-site[data-template=e] #coverage .finder .btn span{font-size:22px;line-height:1}
+/* A restrained neutral focus ring for fields throughout the public site. */
+.ik-site[data-template=e].ik-polished :is(input,select,textarea):focus-visible{
+ outline:2px solid #9aa4b2;outline-offset:2px;box-shadow:0 0 0 3px #8994a312;
+}
+.ik-site[data-template=e].ik-polished #coverage .finder input:focus-visible{
+ outline:none;border-bottom-color:#727e8e;box-shadow:0 1px 0 #727e8e;
+}
+@media(min-width:768px) and (max-width:1023px){
+ .ik-site[data-template=e] .ik-home #coverage>.wrap{grid-template-columns:120px minmax(0,1fr);padding:32px;gap:24px}
+ .ik-site[data-template=e] #coverage .e-coverage-locator{width:120px}
+ .ik-site[data-template=e] #coverage .e-coverage-desk{padding-left:24px}
+ .ik-site[data-template=e] #coverage h2{white-space:normal}
+ .ik-site[data-template=e] #coverage .finder{flex-direction:column;gap:20px}
+ .ik-site[data-template=e] #coverage .finder .btn{align-self:flex-start}
+}
 @media(max-width:767px){
- .ik-site[data-template=e] .ik-home #coverage{min-height:464px;padding-block:32px 120px;background-size:auto 100%;background-position:55% bottom}
+ .ik-site[data-template=e] .ik-home #coverage{padding-block:32px}
+ .ik-site[data-template=e] .ik-home #coverage>.wrap{
+  width:calc(100% - 32px);grid-template-columns:1fr;gap:16px;padding:24px;border-radius:24px;
+ }
+ .ik-site[data-template=e] #coverage .e-coverage-locator{width:96px;height:96px}
+ .ik-site[data-template=e] #coverage .e-coverage-locator svg{width:180px;height:180px}
+ .ik-site[data-template=e] #coverage .e-coverage-desk{border:0;padding:0}
+ .ik-site[data-template=e] #coverage h2{font-size:22px;white-space:normal;text-wrap:balance}
+ .ik-site[data-template=e] #coverage .e-section-kicker{font-size:10px}
+ .ik-site[data-template=e] #coverage .e-address-entry{margin-top:24px}
+ .ik-site[data-template=e] #coverage .finder{flex-direction:column;gap:20px}
+ .ik-site[data-template=e] #coverage .finder .btn{min-height:48px;padding:12px 20px;font-size:16px;justify-content:space-between}
  .ik-site[data-template=e][data-route=residential] #ik-main article.ik-panel:has(>.ik-card-icon){grid-template-columns:52px minmax(0,1fr);gap:8px 14px;padding:20px}
  .ik-site[data-template=e][data-route=residential].ik-polished #ik-main article.ik-panel>.ik-card-icon{width:52px;height:52px;padding:11px;border-radius:14px}
 }
 /* Landing-page rhythm: keep audience photography flush, pad the copy itself. */
-.ik-site[data-template=e] .ik-home #coverage{min-height:460px;padding-block:88px 152px}
 .ik-site[data-template=e] .ik-home #connected-life{padding-block:96px 88px}
-.ik-site[data-template=e] .ik-home #home-benefits{padding-block:112px}
 .ik-site[data-template=e] .ik-home #plans{padding-bottom:96px}
 .ik-site[data-template=e] .ik-home #plans .e-plans-introduction{padding-top:104px}
 .ik-site[data-template=e] .ik-home #home-testimonials{padding-block:112px}
@@ -139,9 +200,8 @@
  .ik-site[data-template=e] .ik-home .e-audience-sections .e-audience-copy{padding:56px 32px}
 }
 @media(max-width:767px){
- .ik-site[data-template=e] .ik-home #coverage{min-height:540px;padding-block:56px 144px}
  .ik-site[data-template=e] .ik-home #connected-life{padding-block:64px 56px}
- .ik-site[data-template=e] .ik-home #home-benefits,.ik-site[data-template=e] .ik-home #home-testimonials{padding-block:72px}
+ .ik-site[data-template=e] .ik-home #home-testimonials{padding-block:72px}
  .ik-site[data-template=e] .ik-home #plans{padding-bottom:72px}
  .ik-site[data-template=e] .ik-home #plans .e-plans-introduction{padding-top:64px}
  .ik-site[data-template=e] .ik-home #about.about{min-height:0;padding-block:72px 336px}
@@ -151,3 +211,130 @@
 .ik-site[data-template=e][data-route=business] #ik-main .ik-section:has(.ik-grid a[href="#/business/solutions/sme"]){background:#bd0713 url('./images/glowing-red-wave-mesh.png') center/cover no-repeat}
 .ik-site[data-template=e][data-route=business] #ik-main .ik-section:has(.ik-grid a[href="#/business/solutions/sme"])>.ik-wrap>h2{color:#fff}
 .ik-site[data-template=e][data-route=business] #ik-main .ik-section:has(.ik-grid a[href="#/business/solutions/sme"]) article.ik-panel{background:#fffffff5}
+
+/* Consistent content panels for the requested plans, enquiry and support pages. */
+.ik-site[data-template=e]{
+ --e-panel-gutter:64px;--e-panel-padding:40px;--e-panel-radius:32px;
+ --e-panel-section-space:48px 64px;
+}
+.ik-site[data-template=e]:is(
+ [data-route="residential/plans"], [data-route="business/plans"],
+ [data-route="coverage"], [data-route="coverage/verification"],
+ [data-route="business/quote"], [data-route^="support"],
+ [data-route^="business/solutions/"]
+) #ik-main>.ik-section:has(form,.ik-help-search,.e-internal-plans,.ik-table-wrap){
+ padding-block:var(--e-panel-section-space);background:#fff;
+}
+.ik-site[data-template=e]:is(
+ [data-route="residential/plans"], [data-route="business/plans"],
+ [data-route="coverage"], [data-route="coverage/verification"],
+ [data-route="business/quote"], [data-route^="support"],
+ [data-route^="business/solutions/"]
+) #ik-main>.ik-section:has(form,.ik-help-search,.e-internal-plans,.ik-table-wrap)>.ik-wrap{
+ width:calc(100% - var(--e-panel-gutter));max-width:1232px;padding:var(--e-panel-padding);
+ background:#f0f2f6;border-radius:var(--e-panel-radius);
+}
+.ik-site[data-template=e]:is(
+ [data-route="coverage"], [data-route="coverage/verification"],
+ [data-route="business/quote"], [data-route^="support"]
+) #ik-main .ik-form{max-width:none}
+@media(max-width:767px){
+ .ik-site[data-template=e]{
+  --e-panel-gutter:32px;--e-panel-padding:28px 20px;--e-panel-radius:24px;
+  --e-panel-section-space:32px 48px;
+ }
+}
+
+/* Brand-red page scrollbar, with a rounded thumb in WebKit-based browsers. */
+html:has(body[data-template=e]){scrollbar-color:#ed101a #f0f2f6;scrollbar-width:thin}
+html:has(body[data-template=e])::-webkit-scrollbar{width:10px;height:10px}
+html:has(body[data-template=e])::-webkit-scrollbar-track{background:#f0f2f6}
+html:has(body[data-template=e])::-webkit-scrollbar-thumb{
+ background:#ed101a;border:2px solid #f0f2f6;border-radius:999px;
+}
+html:has(body[data-template=e])::-webkit-scrollbar-thumb:hover{background:#ce0c16}
+
+/* Wider Help cards use lightweight navigation links instead of filled CTAs. */
+.ik-site[data-template=e][data-route^=support] #ik-main .ik-grid{
+ grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;
+}
+.ik-site[data-template=e][data-route^=support] #ik-main article.ik-panel:has(>.ik-card-icon){
+ grid-template-columns:64px minmax(0,1fr);gap:12px 20px;min-height:156px;
+}
+.ik-site[data-template=e].ik-polished[data-route^=support] #ik-main article.ik-panel>.ik-card-icon{
+ width:64px;height:64px;padding:14px;border-radius:16px;
+}
+.ik-site[data-template=e][data-route^=support] #ik-main article.ik-panel>p:empty{display:none}
+.ik-site[data-template=e].ik-polished[data-route^=support] #ik-main .ik-section .ik-grid>article.ik-panel>a.ik-button:not(.ik-button-secondary){
+ display:inline-flex;gap:8px;min-height:36px;padding:4px 0;margin-top:8px;
+ border:0;border-radius:0;background:transparent;box-shadow:none;color:#30343a;
+ font-size:15px;font-weight:600;line-height:1.5;white-space:normal;
+ text-decoration:underline;text-decoration-color:#a7afb9;text-underline-offset:4px;
+}
+.ik-site[data-template=e].ik-polished[data-route^=support] #ik-main .ik-section .ik-grid>article.ik-panel>a.ik-button:not(.ik-button-secondary):is(:hover,:focus-visible):not(:disabled){
+ background:transparent;color:var(--ik-accent);text-decoration-color:currentColor;filter:none;
+}
+.ik-site[data-template=e][data-route^=support] #ik-main article.ik-panel>a.ik-button::after{content:'→';font-size:20px}
+
+/* Company content follows the client-supplied official About and Contact pages. */
+.ik-site[data-template=e] #ik-main .e-company-overview-grid,
+.ik-site[data-template=e] #ik-main .e-company-approach-grid{
+ display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:center;
+}
+.ik-site[data-template=e] #ik-main .e-company-eyebrow{
+ color:var(--ik-accent);font-size:12px;font-weight:700;letter-spacing:.14em;
+ text-transform:uppercase;margin:0 0 16px;
+}
+.ik-site[data-template=e] #ik-main :is(.e-company-overview,.e-company-approach) p:not(.e-company-eyebrow){
+ color:#454a52;font-size:17px;line-height:1.75;
+}
+.ik-site[data-template=e] #ik-main .e-company-overview .e-company-lead{
+ font-size:20px;font-weight:600;margin-bottom:20px;
+}
+.ik-site[data-template=e] #ik-main .e-company-network{
+ background:#f0f2f6;border-radius:28px;padding:36px;
+}
+.ik-site[data-template=e] #ik-main .e-company-network h3{font-size:24px;font-weight:700}
+.ik-site[data-template=e] #ik-main .e-company-network ul{
+ display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:24px 0 0;
+}
+.ik-site[data-template=e] #ik-main .e-company-network li{
+ padding:7px 12px;background:#fff;border-radius:999px;font-size:12px;font-weight:600;
+}
+.ik-site[data-template=e].ik-polished[data-route=about] #ik-main>section.ik-section.e-company-audiences{background:#fff}
+.ik-site[data-template=e] #ik-main .e-company-panel{
+ width:calc(100% - 64px);max-width:1232px;padding:40px;background:#f0f2f6;border-radius:32px;
+}
+.ik-site[data-template=e] #ik-main .e-company-services{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px}
+.ik-site[data-template=e] #ik-main .e-text-link{
+ display:inline-flex;align-items:center;gap:8px;min-height:36px;max-width:100%;
+ color:#30343a;font-size:15px;font-weight:600;line-height:1.5;
+ text-decoration:underline;text-decoration-color:#a7afb9;text-underline-offset:4px;
+ overflow-wrap:anywhere;
+}
+.ik-site[data-template=e] #ik-main .e-text-link:hover{color:var(--ik-accent);text-decoration-color:currentColor}
+.ik-site[data-template=e] #ik-main article.ik-panel>.e-text-link{grid-column:2;margin-top:8px;justify-self:start}
+.ik-site[data-template=e] #ik-main .e-contact-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.ik-site[data-template=e] #ik-main .e-contact-card.ik-panel{
+ grid-template-columns:60px minmax(0,1fr);gap:10px 16px;min-height:200px;
+}
+.ik-site[data-template=e].ik-polished #ik-main .e-contact-card.ik-panel>.ik-card-icon{
+ width:60px;height:60px;padding:12px;border-radius:16px;
+}
+.ik-site[data-template=e].ik-polished #ik-main .ik-section:has(.e-contact-grid.ik-grid){background:#fff}
+.ik-site[data-template=e] #ik-main .e-contact-profiles{
+ display:flex;flex-wrap:wrap;gap:16px 28px;margin-top:24px;
+}
+@media(max-width:1023px){
+ .ik-site[data-template=e] #ik-main .e-company-overview-grid,
+ .ik-site[data-template=e] #ik-main .e-company-approach-grid{grid-template-columns:1fr;gap:32px}
+ .ik-site[data-template=e] #ik-main .e-contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:767px){
+ .ik-site[data-template=e][data-route^=support] #ik-main .ik-grid,
+ .ik-site[data-template=e] #ik-main :is(.e-company-services,.e-contact-grid){grid-template-columns:1fr;gap:20px}
+ .ik-site[data-template=e][data-route^=support] #ik-main article.ik-panel:has(>.ik-card-icon){grid-template-columns:52px minmax(0,1fr);padding:20px;gap:10px 14px}
+ .ik-site[data-template=e].ik-polished[data-route^=support] #ik-main article.ik-panel>.ik-card-icon{width:52px;height:52px;padding:11px}
+ .ik-site[data-template=e] #ik-main .e-company-panel{width:calc(100% - 32px);padding:28px 20px;border-radius:24px}
+ .ik-site[data-template=e] #ik-main .e-company-network{padding:28px 24px;border-radius:24px}
+}

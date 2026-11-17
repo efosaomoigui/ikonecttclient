@@ -1,12 +1,60 @@
 {
   "baseline": "b10c760b51141b5562de4ad06f43b260c00f055d",
-  "scope": "Fail closed for unconnected public customer-account paths only; preserve archived previews and public journeys. 16 November client-approved overview edits: combine residential lifestyle cards into Work from home and Connect the household; remove the redundant Find the right business connection CTA. All other routes and journey logic remain protected by the source digest.",
+  "scope": "Fail closed for unconnected public customer-account paths only; preserve archived previews and public journeys. 16 November client-approved overview edits: combine residential lifestyle cards into Work from home and Connect the household; remove the redundant Find the right business connection CTA. All other routes and journey logic remain protected by the source digest. 17 November client-approved official About and Contact content, shared public contact data and Support contact FAQ, using ikonectt.com/about-us-2/ and ikonectt.com/contact/. 17 November 2026: user-requested complete Option E public content overhaul, pending local client review. Authorises copy consolidation, accurate preview messages, route-specific metadata and approval-aware story rendering; imagery, catalogue records, routes, validation and integration boundaries remain protected. Client follow-up: remove sample/preview/demonstration wording from public copy and remove the footer Photo credits link, retaining truthful service limitations and the attribution document.",
   "files": {
     "shared/public-site.js": {
-      "sha256LF": "83011b884afe23570a501f67b030b14faeda99b5992c19896e0ed558f1a7431f"
+      "sha256LF": "3de78782ba94e5e36b258a47d9f1e6888c46cea4efaa373c6280a52dd0c3ced9"
     },
     "shared/pages.js": {
-      "sha256LF": "2a1398a9394e6b91764c23efc683e73ff7596dae5dc4760c0f5d82e4a103deda"
+      "sha256LF": "65904cca986c157943205ff5c72af2661535134097fd34b0b3ec316501f26b8c"
+    },
+    "shared/content.js": {
+      "sha256LF": "59e3fa2ca7d2b4a72b8f8fd4dd8f6abf1dda595c8f5cbc4da187ce37d7521936"
+    },
+    "shared/routes.js": {
+      "sha256LF": "64b06160e80cfd5e6ce696f905c48858b500e57b2e57ab31d658902398903bc0"
+    },
+    "shared/forms.js": {
+      "sha256LF": "59f99d7d98fd535486aeede33ed87546c6a5e56847d6dfe459af4e16fa9a178a"
+    },
+    "shared/assistant-engine.js": {
+      "sha256LF": "43f8fd7c3dd38d99951d14afc0783d9a9c0422e7cd11867f79995cbaf8076373"
+    },
+    "shared/assistant-view.js": {
+      "sha256LF": "ee542653736d76d1fccc6e40501ed6326860254fb7d631eade2fc50b46de421f"
+    },
+    "shared/plan-ui.js": {
+      "sha256LF": "69ff98ce9349e8d6bb75492752f119392d106841fa13151c432cae788e54e68a"
+    },
+    "shared/polish.js": {
+      "sha256LF": "ab716b7ed92a928c0f349bb6cac7dcab42a3f25d30648dccc406f072b88e991b"
+    },
+    "shared/static-adapter.js": {
+      "sha256LF": "ba35083038e5206c1120023250871bf6bc57ea71ac78e28d61395ba4f9c5b03a"
+    },
+    "option-e/index.html": {
+      "sha256LF": "565335f761bb81ba633d49fe39672a6ddfa0987ea049a2290fe7b01a28b8e809"
+    },
+    "option-e/city-experience.js": {
+      "sha256LF": "21880740cbf1dd75a20a5641c61210ddfc3eca2037b79663a8460b756c9c901f"
+    },
+    "option-e/section-showcase.js": {
+      "sha256LF": "986bfcb7a91cd8514f40c545b49ff4f56d9f75c7436ff1fa1acd9220e2fba687"
+    },
+    "option-e/review-updates.js": {
+      "sha256LF": "8e8430a1fa706a787f8eccb743f719ba89971838f1a40f436e819a956a41a22b"
+    },
+    "scripts/presentation-links.mjs": {
+      "sha256LF": "b5f5632cf1f9cf170f21b783044a13be59a9271d8a2c63e7e872d0e3b7c17544"
+    },
+    "shared/company-pages.js": {
+      "sha256LF": "887f62f4e3d1ae274aaa2ba2e5877189aae3a51ce80860afc08c2ee77dca7085"
+    },
+    "shared/visuals.js": {
+      "sha256LF": "a70bd2a2cdf7be9a81f7eb46e6b9c5fb76328267396529b27cb1eac4869ccbe2"
+    },
+    "shared/catalogue.js": {
+      "sha256LF": "8160dc944933101a2acd2097b58f37a36af50009db328a4902f8235c8b602624"
     }
   }
 }

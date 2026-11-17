@@ -84,7 +84,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       document.querySelector('[data-menu="business"]').click();assert.equal(document.querySelector('[data-menu="business"]').getAttribute('aria-expanded'),'true');
       trigger.click();assert.equal(document.querySelector('[data-menu="business"]').getAttribute('aria-expanded'),'false');
       document.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(document.querySelector('.ik-mobile-button').getAttribute('aria-expanded'),'false');
-      assert.deepEqual(menus.map(m=>m.label),['Residential','Business','Coverage','Support','About Us']);
+      assert.deepEqual(menus.map(m=>m.label),['Residential','Business','Coverage','Support','Our Company']);
     });
     await t.test('audience selection follows routes and persists through shared journeys',async()=>{
       await go('residential');
@@ -187,7 +187,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
         fill('state','Demo state changed');assert.equal(document.querySelector('[name="city"]').value,'');assert.equal(document.querySelector('[name="district"]').disabled,true);
         fill('city','Demo city');fill('district','Demo district');fill('street','Demo street');fill('building','<img src=x onerror=alert(1)>');fill('scenario',scenario);await submit();
         assert.equal(root.dataset.route,'coverage/results');assert.equal(document.querySelector('.ik-result h2').textContent,result.title);
-        assert.equal(document.querySelector('.ik-result img'),null);assert.match(document.querySelector('.ik-result').textContent,/Demonstration result/);
+        assert.equal(document.querySelector('.ik-result img'),null);assert.match(document.querySelector('.ik-result').textContent,/requires confirmation/i);
         await click(result.route);assert.ok(document.querySelector('form'));checkTemplate();
       }
       assert.equal(window.localStorage.length,0);assert.equal(window.sessionStorage.length,0);
@@ -202,7 +202,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
         }
         const email=document.querySelector('[type="email"]');email.value='invalid';await submit();assert.equal(email.getAttribute('aria-invalid'),'true');email.value='demo@example.test';
         const phone=document.querySelector('[type="tel"]');phone.value='letters';await submit();assert.equal(phone.getAttribute('aria-invalid'),'true');phone.value='+234 800 000 0000';
-        await submit();assert.match(document.querySelector('[data-status]').textContent,/Nothing was sent or stored/);checkTemplate();
+        await submit();assert.match(document.querySelector('[data-status]').textContent,/has not been sent/);checkTemplate();
       }
     });
     await t.test('support search, FAQ grouping and troubleshooting escalation',async()=>{

@@ -9,6 +9,14 @@ export function installPresentationLinks(doc = document) {
     anchor.setAttribute('rel', 'noopener noreferrer');
   }
   function refresh() {
+    // Demo-only wording follows the same build boundary as the portal links.
+    const intro=doc.querySelector('[data-portal-intro]');
+    const copy='Account access and payments are not connected to live customer services. Contact customer care for assistance.';
+    if(intro&&intro.textContent!==copy)intro.textContent=copy;
+    const heading=doc.querySelector('[data-portal-heading]');
+    if(heading&&heading.textContent!=='My ikonectt.')heading.textContent='My ikonectt.';
+    const cta=doc.querySelector('[data-portal-cta]');
+    if(cta&&cta.textContent!=='My ikonectt')cta.textContent='My ikonectt';
     for (const anchor of doc.querySelectorAll('a[href="#/my-ikonectt/sign-in"], a[href="#portal"]')) {
       external(anchor, portal);
       anchor.dataset.ikPresentationCustomer = 'true';
@@ -25,7 +33,7 @@ export function installPresentationLinks(doc = document) {
         if (!host || host.querySelector('[data-ik-presentation-admin]')) continue;
         const anchor = doc.createElement('a');
         anchor.textContent = 'Admin';
-        anchor.title = 'Temporary Admin/CRM demonstration · opens in a new tab';
+        anchor.title = 'Admin/CRM · opens in a new tab';
         anchor.className = 'ik-button ik-presentation-admin' + (mobile ? ' ik-mobile-portal' : '');
         anchor.dataset.ikPresentationAdmin = 'true';
         external(anchor, '/admin/');

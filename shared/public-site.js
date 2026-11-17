@@ -2,7 +2,7 @@ import {getPlan,planName,planOptions,planRoute} from './catalogue.js';
 import {carouselHTML,comparisonHTML} from './plan-ui.js';
 import {initializeCarousel} from './carousel.js';
 import {pages,menus,parseRoute} from './routes.js';
-import {company} from './content.js';
+import {company,publicContacts} from './content.js';
 import {renderPage,filterFAQs,renderFAQResults,link} from './pages.js';
 import {addressFields,validateForm,escapeHTML as esc} from './forms.js';
 import {mountAssistant} from './assistant.js';
@@ -17,6 +17,8 @@ export function mountSite({root,home,template}) {
   const abort=new AbortController(),opts={signal:abort.signal};
   const state={address:{},coverage:null,plan:'',audience:'residential',selectedPlans:{residential:'',business:''}};
   const originalTitle=home.dataset.originalTitle||document.title;
+  const descriptionMeta=document.querySelector('meta[name="description"]')||document.head.appendChild(Object.assign(document.createElement('meta'),{name:'description'}));
+  const originalDescription=descriptionMeta.content||pages.home[1];
   const publicRelease=template==='e'&&root.hasAttribute('data-public-release');
   home.dataset.originalTitle=originalTitle;
   let previous='',menuTimer,hoverOpened=null;
@@ -94,16 +96,17 @@ export function mountSite({root,home,template}) {
     if(requestedPlan?.audience===state.audience)state.selectedPlans[state.audience]=requestedPlan.id;
     if(path.startsWith('residential/plans/demo-')&&!query.has('plan'))state.selectedPlans.residential=path.endsWith('2')?'res-isilver':'res-ibasic';
     state.plan=state.selectedPlans[state.audience];
-    if(isHome){document.title=originalTitle;main.replaceChildren();carousels.forEach(carousel=>carousel.setAudience(state.audience));}
+    if(isHome){document.title=originalTitle;descriptionMeta.content=originalDescription;main.replaceChildren();carousels.forEach(carousel=>carousel.setAudience(state.audience));}
     else{
       const detail=path.startsWith('residential/plans/demo-')?getPlan(query.get('plan')||(path.endsWith('2')?'res-isilver':'res-ibasic')):null;
       const accountUnavailable=publicRelease&&path.startsWith('my-ikonectt/');
       const title=accountUnavailable?'My Ikonectt':detail?.audience==='residential'?planName(detail):pages[path]?.[0]||'Page not found';
-      const description=accountUnavailable?'Customer account access is not available from this website yet.':pages[path]?.[1]||'Choose a page from the navigation.';
+      const description=accountUnavailable?'Customer account access is not available on this page. Contact customer care for account assistance.':detail?.audience==='residential'?`${planName(detail)} fibre broadband: ${detail.speedMbps} Mbps at ${new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format(detail.monthlyPriceNGN)} per month. Confirm prices, coverage and service terms with the team.`:pages[path]?.[1]||'Choose a page from the navigation.';
+      descriptionMeta.content=description;
       const section=path.split('/')[0];const sectionName=menus.find(item=>item.id===section)?.label||'Ikonectt';
-      const content=accountUnavailable?`<section class="ik-section"><div class="ik-wrap"><p class="ik-notice">For account assistance, use the public support information. Do not enter your password or payment details on this website.</p>${link('support','View support information',true)}</div></section>`:renderPage(path,{state,query});
+      const content=accountUnavailable?`<section class="ik-section"><div class="ik-wrap"><p class="ik-notice">For help with your account, payments or renewals, contact customer care. Do not enter passwords or payment details on this page.</p>${link('support','View support information',true)}</div></section>`:renderPage(path,{state,query,template:root.dataset.template});
       main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(title)}</span></nav><h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${content}`;
-      document.title=title+' | Ikonectt';
+      document.title=title+(detail?.audience==='residential'?' — '+detail.speedMbps+' Mbps':'')+' | ikonectt';
       initializePage();
     }
     header.querySelectorAll('.ik-nav-trigger').forEach(button=>{
@@ -127,7 +130,7 @@ export function mountSite({root,home,template}) {
     }
     if(main.querySelector('#help-search')){
       const search=main.querySelector('#help-search'),category=main.querySelector('#help-category');
-      const update=()=>{const matches=filterFAQs(search.value,category.value);main.querySelector('#ik-search-results').innerHTML=renderFAQResults(matches);main.querySelector('#ik-search-count').textContent=`${matches.length} answer${matches.length===1?'':'s'} found`;};
+      const update=()=>{const prompt=root.dataset.route==='support'&&!search.value.trim()&&!category.value,matches=filterFAQs(search.value,category.value);main.querySelector('#ik-search-results').innerHTML=prompt?'':renderFAQResults(matches);main.querySelector('#ik-search-count').textContent=prompt?'Search for a question or choose a topic.':`${matches.length} answer${matches.length===1?'':'s'} found`;};
       search.addEventListener('input',update,opts);category.addEventListener('change',update,opts);update();
     }
     if(main.querySelector('#compare-first')){
@@ -141,7 +144,7 @@ export function mountSite({root,home,template}) {
     if(input.name==='audience'&&['residential','business'].includes(input.value)){
       state.audience=input.value;state.plan=state.selectedPlans[state.audience];syncAudience();
       const select=input.form?.elements.namedItem('plan');
-      if(select){select.innerHTML='<option value="">Select an option</option>'+planOptions(state.audience).map(([value,label])=>`<option value="${value}">${esc(label)}</option>`).join('');select.value=state.plan;}
+      if(select){select.innerHTML='<option value="">No plan selected</option>'+planOptions(state.audience).map(([value,label])=>`<option value="${value}">${esc(label)}</option>`).join('');select.value=state.plan;}
     }
     if(input.name==='plan'&&input.form){const plan=getPlan(input.value);if(plan?.audience===state.audience){state.plan=plan.id;state.selectedPlans[state.audience]=plan.id;}else if(!input.value){state.plan='';state.selectedPlans[state.audience]='';}}
   },opts);
@@ -156,9 +159,9 @@ export function mountSite({root,home,template}) {
     }
     if(['installation','verification'].includes(kind))state.address={...state.address,...Object.fromEntries(addressFields.filter(field=>data[field.name]).map(field=>[field.name,String(data[field.name]).trim()]))};
     if(kind==='sign-in'){
-      form.elements.namedItem('password').value='';status.innerHTML='Preview only. Sign-in is not connected; you are not authenticated. '+link('my-ikonectt/preview','View Portal Preview');
-    }else if(kind==='recovery')status.textContent='Demonstration only. No recovery link was sent and no account was looked up. Live account recovery is not connected.';
-    else status.innerHTML='Demonstration complete. Nothing was sent or stored. A live request endpoint is required before this form can deliver a message.'+`<div class="ik-actions">${link(state.audience+'/plans',state.audience==='business'?'Explore Business Plans':'Explore Residential Plans',true)}${link('support','Help Centre',true)}${link('home','Home',true)}</div>`;
+      form.elements.namedItem('password').value='';status.innerHTML='Sign-in is not connected here; you are not authenticated. '+link('my-ikonectt/preview','Account Information');
+    }else if(kind==='recovery')status.textContent='No recovery link was sent and no account was looked up. Contact customer care for help recovering your real account.';
+    else status.innerHTML=`Your ${kind==='fault'?'fault report':kind==='contact'?'message':'request'} has not been sent. Email <a href="mailto:${publicContacts.emails[0].address}">${publicContacts.emails[0].address}</a> or call <a href="tel:${publicContacts.phones[0].number}">${publicContacts.phones[0].label}</a> to contact the team.`;
     status.focus();
   },opts);
   window.addEventListener('hashchange',render,opts);
@@ -178,5 +181,5 @@ function headerHTML(template){
 }
 function footerHTML(){
   const group=(label,items)=>`<nav aria-label="${label}"><h2>${label}</h2>${items.map(([text,route])=>`<a href="#/${route}">${text}</a>`).join('')}</nav>`;
-  return `<div class="ik-wrap"><div class="ik-footer-grid"><div class="ik-footer-brand"><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img src="${whiteLogo}" width="132" height="44" alt="Ikonectt"></a><p>${company.description}</p><p>Verified contact details awaiting confirmation.</p></div><div class="ik-footer-links">${group('Residential',[['Overview','residential'],['Residential Plans','residential/plans'],['Compare Plans','residential/compare'],['Installation Enquiry','residential/installation']])}${group('Business',[['Overview','business'],['Business Solutions','business/solutions'],['Business Plans','business/plans'],['Request a Quote','business/quote']])}${group('Coverage',[['Check Coverage','coverage'],['Address Verification','coverage/verification'],['Coverage FAQs','support/faqs?category=coverage']])}${group('Support',[['Help Centre','support'],['FAQs','support/faqs'],['Troubleshooting','support/troubleshooting'],['Report a Fault','support/fault'],['Service Requests','support/service-request'],['Contact Support','support/contact']])}${group('Company',[['About Us','about'],['Contact','contact'],['My Ikonectt','my-ikonectt/sign-in']])}</div></div><div class="ik-footer-bottom"><span>© 2026 ${company.legalName}.</span><div><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms and Conditions</a></div></div></div>`;
+  return `<div class="ik-wrap"><div class="ik-footer-grid"><div class="ik-footer-brand"><a class="ik-logo" href="#/home" aria-label="Ikonectt home"><img src="${whiteLogo}" width="132" height="44" alt="Ikonectt"></a><p>${company.description}</p></div><div class="ik-footer-links">${group('Residential',[['Overview','residential'],['Residential Plans','residential/plans'],['Compare Plans','residential/compare'],['Installation Enquiry','residential/installation']])}${group('Business',[['Overview','business'],['Business Solutions','business/solutions'],['Business Plans','business/plans'],['Request a Quote','business/quote']])}${group('Coverage',[['Check Coverage','coverage'],['Address Verification','coverage/verification'],['Coverage FAQs','support/faqs?category=coverage']])}${group('Support',[['Help Centre','support'],['FAQs','support/faqs'],['Troubleshooting','support/troubleshooting'],['Report a Fault','support/fault'],['Service Requests','support/service-request'],['Contact Support','support/contact']])}${group('Company',[['About Us','about'],['Contact','contact'],['My Ikonectt','my-ikonectt/sign-in']])}</div></div><div class="ik-footer-bottom"><span>© 2026 ${company.legalName}.</span><div><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms and Conditions</a></div></div></div>`;
 }

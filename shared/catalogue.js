@@ -19,7 +19,7 @@ export const catalogue=Object.freeze([
   make('biz-500','business',null,500,359000,3),
   make('biz-1000','business',null,1000,437000,4)
 ]);
-export const previewPricingNote='Preview pricing is subject to client confirmation. Availability and final terms require address verification.';
+export const previewPricingNote='Prices and service terms require confirmation. Availability depends on your address.';
 export const plansFor=audience=>catalogue.filter(plan=>plan.audience===audience).sort((a,b)=>a.displayOrder-b.displayOrder);
 export const getPlan=id=>catalogue.find(plan=>plan.id===id)||null;
 export const planName=plan=>plan.displayName||`${plan.speedMbps} Mbps`;

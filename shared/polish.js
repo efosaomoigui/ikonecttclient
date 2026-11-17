@@ -15,7 +15,6 @@ export function mountPresentationCopy(root){
   'Check service availability at your address.',
   'Availability is subject to address verification.',
   'Plan availability and installation are subject to location verification and applicable terms.',
-  'Preview pricing is subject to client confirmation. Availability and final terms require address verification.',
   'Preview selection. Pricing and service terms require client confirmation.',
   'Verified contact details awaiting confirmation.',
   'Approved policy text is awaiting confirmation.',

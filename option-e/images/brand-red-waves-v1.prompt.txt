@@ -1,0 +1,9 @@
+Created with the built-in ImageGen tool in edit mode from the client-supplied red banner.
+
+Final prompt
+
+Use case: precise-object-edit. Asset type: wide website section background. Input image 1 is the edit target. Remove EVERY foreground element from the supplied banner: all headings, all letters, all icons, all feature labels, and the white top border. Reconstruct ONLY the underlying abstract red background seamlessly across the entire frame. Preserve the reference's rich vivid red and deep crimson palette, smooth broad translucent wave folds, subtle curved layered shapes and restrained tonal shading. A quiet open center suitable for live white website headings; soft curves more visible toward sides and lower edge, matching the original background. Full bleed wide landscape banner, approximately 4:1 aspect ratio. Crisp, clean high-resolution smooth gradients. No text, typography, logos, symbols, icons, cards, objects, people, borders, highlights resembling lettering, network grids, dots or mesh.
+
+Website treatment
+
+The plan section uses the official brand red #ed101a as its background colour and luminosity blending to retain the wave shading in that hue.
