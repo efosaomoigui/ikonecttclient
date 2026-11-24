@@ -181,3 +181,7 @@
 
 .ik-site[data-template=c] #residential-editorial h2{font-size:clamp(1.875rem,1.2rem + 2vw,3rem);line-height:1.18;letter-spacing:-.02em;word-spacing:normal;font-kerning:normal;transform:none;animation:none;text-wrap:balance}
 .ik-site[data-template=c] #residential-editorial :is(p,h2){font-synthesis:none}
+
+/* Native consent control with a stable pointer target and visible keyboard focus. */
+.ik-site .ik-enquiry-consent{display:flex;align-items:flex-start;gap:12px;cursor:pointer;line-height:1.6}
+.ik-site .ik-enquiry-consent input[type=checkbox]{appearance:auto;flex:0 0 20px;width:20px;height:20px;margin:3px 0 0;cursor:pointer}

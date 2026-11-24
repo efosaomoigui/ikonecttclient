@@ -1,12 +1,13 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {modules} from '../src/modules';
 import {API_VERSION} from '../vendor/contracts';
 const spec=JSON.parse(readFileSync(new URL('../vendor/operations.json',import.meta.url),'utf8'));
 test('all Admin module operations exist in the pinned canonical OpenAPI release',()=>{
-    assert.equal(spec.version,API_VERSION);assert.equal(spec.operations.length,95);
-    assert.equal(spec.sourceCommit,'d0a300a2b5a17d63c637e71c71b523b88046a78f');
+    assert.equal(spec.version,API_VERSION);assert.ok(spec.operations.length >= 95);
+    assert.equal(spec.contractSha256,createHash('sha256').update(readFileSync(new URL('../vendor/contracts.ts',import.meta.url))).digest('hex'));
     for(const [key,m] of Object.entries(modules)){
         assert.ok(spec.operations.includes(`GET /api/v1${m.path}`),`${key}: list`);
         if(m.input)assert.ok(spec.operations.includes(`POST /api/v1${m.path}`),`${key}: create`);

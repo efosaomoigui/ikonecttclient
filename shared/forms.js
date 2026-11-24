@@ -31,7 +31,8 @@ export function validateForm(form) {
     let error='';
     if(!control.disabled) {
       const value=control.type==='password'?control.value:control.value.trim();
-      if(control.required&&!value) error=control.tagName==='SELECT'?'Choose an option.':'Enter the required information.';
+      if(control.required&&control.type==='checkbox'&&!control.checked)error='Please confirm your consent before submitting.';
+      else if(control.required&&!value) error=control.tagName==='SELECT'?'Choose an option.':'Enter the required information.';
       else if(value&&control.type==='email'&&!control.validity.valid) error='Enter an email address, such as name@example.com.';
       else if(value&&control.type==='tel'&&(!/^[+\d() .-]{7,25}$/.test(value)||value.replace(/\D/g,'').length<7||value.replace(/\D/g,'').length>15)) error='Enter a phone number with 7 to 15 digits. Use + for an international prefix.';
       else if(control.validity.tooLong) error=`Use ${control.maxLength} characters or fewer.`;

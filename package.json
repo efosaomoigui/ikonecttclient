@@ -4,8 +4,8 @@
   "description": "Ikonectt public website and isolated presentation tooling",
   "main": "scripts/serve_public.cjs",
   "scripts": {
-    "start": "node scripts/serve_public.cjs",
-    "dev": "node scripts/serve_public.cjs",
+    "start": "node --env-file-if-exists=.env.local scripts/serve_public.cjs",
+    "dev": "node --env-file-if-exists=.env.local scripts/serve_public.cjs",
     "build": "node scripts/build_public.cjs",
     "build:showcase": "node scripts/build_showcase.js",
     "dev:showcase": "node server.js",

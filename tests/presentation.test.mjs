@@ -12,7 +12,7 @@ test('E staff shortcut requires an explicit local demo flag and preserves custom
   const dom=new JSDOM('<header class="ik-header"><nav class="ik-desktop-nav"></nav><div class="ik-nav-actions"><a href="#/my-ikonectt/sign-in">My Ikonectt</a></div></header>',{url:origin+'/option-e/?demo-admin=1'});
   const cleanup=installPresentationLinks(dom.window.document);
   assert.equal(dom.window.document.querySelectorAll('[data-ik-presentation-admin]').length,expected);
-  assert.equal(dom.window.document.querySelector('[data-ik-presentation-customer]').getAttribute('href'),'/my-ikonectt/#/');
+  assert.equal(dom.window.document.querySelector('[data-ik-presentation-customer]').getAttribute('href'),'https://portal.ikonectt.com');
   cleanup();dom.window.close();
  }
 });
@@ -124,7 +124,7 @@ for(const template of ['a','e'])test(`Template ${template}: presentation links o
       const customerLinks=[...doc.querySelectorAll('[data-ik-presentation-customer]')];
       assert.equal(customerLinks.length,template==='a'?2:3);
       for(const link of customerLinks){
-        assert.equal(link.href,'https://presentation.example.test/my-ikonectt/#/');
+        assert.equal(link.href,'https://portal.ikonectt.com/');
         assert.equal(link.target,'_blank');
         assert.ok(link.relList.contains('noopener')&&link.relList.contains('noreferrer'));
       }
@@ -153,7 +153,7 @@ for(const template of ['a','e'])test(`Template ${template}: presentation links o
     assert.equal(legacyClicks,0);
     if(template==='a'){
       assert.equal(heroEvent.defaultPrevented,true);
-      assert.deepEqual(opened,[['/my-ikonectt/#/','_blank','noopener,noreferrer']]);
+      assert.deepEqual(opened,[['https://portal.ikonectt.com','_blank','noopener,noreferrer']]);
     }else{
       assert.equal(heroEvent.defaultPrevented,false);
       assert.deepEqual(opened,[]);

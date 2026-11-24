@@ -1,3 +1,4 @@
+import './helpers/catalogue-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
@@ -106,7 +107,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
         assert.ok(anchor,`${from} → ${target}`);
         anchor.click();await new Promise(resolve=>window.setTimeout(resolve,30));
         assert.equal(root.dataset.route,parseRoute('#/'+target).path);assert.equal(window.location.pathname,`/option-${template}/`);assert.equal(root.dataset.template,template);assert.ok(!find('dialog').hasAttribute('open'));
-        if(from.includes('plan=res-igold'))assert.equal(document.querySelector('#ik-main [name="plan"]').value,'res-igold');
+        if(from.includes('plan=res-igold'))assert.match(window.location.hash,/plan=res-igold/);
       }
     });
     await t.test('assistant plan picker preserves verified plan across coverage and quote',async()=>{
@@ -115,7 +116,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
         click(`[data-intent="${audience}"]`);await flush();click(`[data-select-plan="${id}"]`);
         const anchor=[...root.querySelectorAll('.ik-assistant [data-assistant-route]')].find(a=>parseRoute(a.getAttribute('href')).path===destination);
         assert.ok(anchor.getAttribute('href').includes('plan='+id));anchor.click();await new Promise(resolve=>window.setTimeout(resolve,30));
-        assert.equal(document.querySelector('#ik-main [name="plan"]').value,id);
+        assert.match(window.location.hash,new RegExp('plan='+id));
       }
     });
     await t.test('no sensitive persistence, delivery, authentication or network calls',async()=>{

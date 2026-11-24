@@ -1,3 +1,4 @@
+import './helpers/catalogue-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -38,8 +39,8 @@ test('content overhaul retains route and catalogue contracts, progressive help a
   go('home');assert.equal(doc.querySelector('meta[name=description]').content,originalDescription);
   assert.doesNotMatch(doc.querySelector('[data-portal-intro]').textContent,/sample|fictional|wallet funding/);
   const stopLinks=installPresentationLinks(doc);
-  assert.match(doc.querySelector('[data-portal-intro]').textContent,/Account access and payments are not connected/);
-  assert.equal(doc.querySelector('[data-portal-cta]').getAttribute('href'),'/my-ikonectt/#/');
+  assert.match(doc.querySelector('[data-portal-intro]').textContent,/official My Ikonectt/);
+  assert.equal(doc.querySelector('[data-portal-cta]').getAttribute('href'),'https://portal.ikonectt.com');
   stopLinks();
   assert.equal(catalogue.length,9);
  }finally{stop();win.close();for(const key of keys)globalThis[key]=previous[key];}

@@ -1,4 +1,5 @@
-import {plansFor,planName,planRoute} from './catalogue.js';
+import {plansFor,planName,planRoute,catalogueStatus} from './catalogue.js';
+import {escapeHTML as esc} from './forms.js';
 import {planCardHTML} from './plan-ui.js';
 export function initializeCarousel(element,{onAudienceChange=()=>{},signal}={}){
   const rail=element.querySelector('.ik-carousel-rail'),status=element.querySelector('.ik-carousel-status');
@@ -9,12 +10,13 @@ export function initializeCarousel(element,{onAudienceChange=()=>{},signal}={}){
   function mark(next){
     const items=plansFor(audience);index=Math.max(0,Math.min(items.length-1,next));
     cards().forEach((card,n)=>{card.dataset.active=String(n===index);if(n===index)card.setAttribute('aria-current','true');else card.removeAttribute('aria-current');});
-    element.querySelector('[data-carousel-step="-1"]').disabled=index===0;
-    element.querySelector('[data-carousel-step="1"]').disabled=index===items.length-1;
-    status.textContent=`${planName(items[index])} · ${index+1} of ${items.length}`;
+    element.querySelector('[data-carousel-step="-1"]').disabled=!items.length||index===0;
+    element.querySelector('[data-carousel-step="1"]').disabled=!items.length||index===items.length-1;
+    status.textContent=items.length?`${planName(items[index])} · ${index+1} of ${items.length}`:catalogueStatus.message||'No published plans available';
   }
   function go(next,smooth=true){
     mark(next);const card=cards()[index];
+    if(!card)return;
     const left=card.offsetLeft-(rail.clientWidth-card.offsetWidth)/2;
     if(typeof rail.scrollTo==='function')rail.scrollTo({left,behavior:smooth&&!reduced()?'smooth':'instant'});else rail.scrollLeft=left;
   }
@@ -26,7 +28,7 @@ export function initializeCarousel(element,{onAudienceChange=()=>{},signal}={}){
     if(!['residential','business'].includes(next))return;
     const changed=audience!==next;audience=next;
     element.querySelectorAll('[data-carousel-audience]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.carouselAudience===audience)));
-    if(changed)rail.innerHTML=plansFor(audience).map((plan,n,items)=>planCardHTML(plan,{carousel:true,index:n,count:items.length})).join('');
+    if(changed)rail.innerHTML=plansFor(audience).map((plan,n,items)=>planCardHTML(plan,{carousel:true,index:n,count:items.length})).join('')||`<p role="status">${esc(catalogueStatus.message||'No published plans available')}</p>`;
     links();go(changed?Math.min(2,plansFor(audience).length-1):index,false);
     if(announce)onAudienceChange(audience);
   }
@@ -53,5 +55,5 @@ export function initializeCarousel(element,{onAudienceChange=()=>{},signal}={}){
   // Keep a newly focused offscreen card visible without changing focus or tab order.
   rail.addEventListener('focusin',event=>{const card=event.target.closest('.ik-plan-card');if(card)go(cards().indexOf(card));},opts);
   setAudience(audience);frame=window.requestAnimationFrame(()=>go(index,false));
-  return {setAudience,destroy(){clearTimeout(scrollTimer);window.cancelAnimationFrame(frame);}};
+  return {setAudience,refresh(){rail.innerHTML=plansFor(audience).map((plan,n,items)=>planCardHTML(plan,{carousel:true,index:n,count:items.length})).join('')||`<p role="status">${esc(catalogueStatus.message||'No published plans available')}</p>`;setAudience(audience);},destroy(){clearTimeout(scrollTimer);window.cancelAnimationFrame(frame);}};
 }

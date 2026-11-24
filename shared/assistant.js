@@ -1,4 +1,4 @@
-import {getPlan,planName,priceLabel,previewPricingNote} from './catalogue.js';
+import {getPlan,planName,priceLabel,pricePeriod,previewPricingNote} from './catalogue.js';
 import {parseRoute} from './routes.js';
 import {demoProvider,publicContext,contextActions,initialActions,validateIntroduction} from './assistant-engine.js';
 import {shellHTML,introductionHTML,messageHTML,actionHTML,planPickerHTML,welcomeActions} from './assistant-view.js';
@@ -79,9 +79,15 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
   }
   async function respond(text,intent){
     const currentRevision=revision;
-    const response=await provider.respond({text,intent,context:context()});
-    if(currentRevision!==revision)return;
-    append('assistant',response.text);guide(response);
+    try{
+      const response=await provider.respond({text,intent,context:context()});
+      if(currentRevision!==revision)return;
+      append('assistant',response.text);guide(response);
+    }catch{
+      if(currentRevision!==revision)return;
+      append('assistant','Approved help could not be loaded. Email customercare@ikonectt.com or use the official My Ikonectt portal for account assistance.');
+      guide({actions:[{label:'Contact Support',route:'support/contact'},{label:'My Ikonectt',route:'my-ikonectt/sign-in'}]});
+    }
   }
   function start(){
     const form=intro.querySelector('form'),name=form.elements.namedItem('name'),phone=form.elements.namedItem('phone');
@@ -110,7 +116,7 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     guide({actions:welcomeActions(current),contextual:current.path!=='home'?contextActions(current):null});
     if(plan){
       const label=document.createElement('p');label.className='ik-assistant-selected';
-      label.textContent=`Selected: ${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}/month. ${previewPricingNote}`;
+      label.textContent=`Selected: ${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}${pricePeriod(plan)}. ${previewPricingNote}`;
       guidance.prepend(label);
     }
   }
@@ -128,7 +134,7 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
       const plan=getPlan(target.dataset.selectPlan),current=publicContext(getContext());
       localKey=`${current.path}|${current.audience}|${current.plan}`;localPlan=plan.id;
       append('visitor',`Explore ${planName(plan)} · ${plan.speedMbps} Mbps`);
-      append('assistant',`${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}/month. ${previewPricingNote}`);
+      append('assistant',`${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}${pricePeriod(plan)}. ${previewPricingNote}`);
       guide({actions:contextActions({...context(),path:plan.audience+'/plans'})});input.focus();
     }
   },options);

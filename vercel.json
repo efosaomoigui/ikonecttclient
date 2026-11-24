@@ -116,9 +116,14 @@
     },
     {
       "source": "/my-ikonectt",
-      "permanent": false,
-      "destination": "/my-ikonectt/"
+      "destination": "https://portal.ikonectt.com",
+      "permanent": false
+    },
+    {
+      "source": "/my-ikonectt/(.*)",
+      "destination": "https://portal.ikonectt.com",
+      "permanent": false
     }
   ],
-  "installCommand": "npm ci && npm ci --prefix admin --include=dev && npm ci --prefix my-ikonectt --include=dev"
+  "installCommand": "npm ci && npm ci --prefix admin --include=dev"
 }

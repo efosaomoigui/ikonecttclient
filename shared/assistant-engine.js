@@ -1,4 +1,4 @@
-import {getPlan,planName,priceLabel,planRoute,detailRoute,plansFor,previewPricingNote} from './catalogue.js';
+import {getPlan,planName,priceLabel,pricePeriod,planRoute,detailRoute,plansFor,previewPricingNote} from './catalogue.js';
 import {troubleshooting} from './content.js';
 
 // Provider contract: respond({text, intent?, context:{path,audience,plan}}) ->
@@ -62,12 +62,12 @@ export const demoProvider=Object.freeze({
   id:'local-scripted-demo',
   respond({text='',intent,context:raw={}}) {
     const context=publicContext(raw),{audience}=context,plan=getPlan(context.plan);
-    const selected=plan?`Selected plan: ${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}/month. ${previewPricingNote}`:'';
+    const selected=plan?`Selected plan: ${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}${pricePeriod(plan)}. ${previewPricingNote}`:'';
     const route=(label,path,targetAudience=audience)=>go(label,planRoute(path,plan,targetAudience));
     let topic=intent||matchIntent(text);
     if(!intent&&topic==='residential'&&audience==='business'&&!/home|residential/i.test(text))topic='business';
     switch(topic) {
-      case 'residential':return {text:'Compare residential plans by speed and monthly price. Coverage must be confirmed for your address before installation. '+(plan?.audience==='residential'?selected:previewPricingNote),actions:[route('View Residential Plans','residential/plans','residential'),go('Compare Plans',plan?.audience==='residential'?'residential/compare?first='+plan.id:'residential/compare'),route('Check Coverage','coverage','residential')],plans:plansFor('residential').map(p=>p.id)};
+      case 'residential':return {text:'Compare residential plans by speed and price. Coverage must be confirmed for your address before installation. '+(plan?.audience==='residential'?selected:previewPricingNote),actions:[route('View Residential Plans','residential/plans','residential'),go('Compare Plans',plan?.audience==='residential'?'residential/compare?first='+plan.id:'residential/compare'),route('Check Coverage','coverage','residential')],plans:plansFor('residential').map(p=>p.id)};
       case 'business':return {text:'Compare business plans or discuss your location and requirements with the team. Quote forms do not send enquiries. '+(plan?.audience==='business'?selected:previewPricingNote),actions:[route('View Business Plans','business/plans','business'),go('Business Solutions','business/solutions'),route('Request a Quote','business/quote','business')],plans:plansFor('business').map(p=>p.id)};
       case 'coverage':return {text:'The checker cannot confirm live coverage. Contact the team to review your address. '+selected,actions:[route('Check Coverage','coverage'),route('Request Address Verification','coverage/verification')]};
       case 'installation':return {text:'The team must confirm coverage and installation requirements for your address. Installation fees and times require confirmation. The installation enquiry form does not book a visit or send a request.',actions:[route('Check Coverage','coverage'),route('Installation Enquiry','residential/installation','residential'),go('Installation FAQs','support/faqs?category=coverage')]};

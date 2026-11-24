@@ -102,7 +102,7 @@ test('DOM: sidebar starts collapsed, uses an accordion, and reveals the active p
     const group = () => doc.querySelector<HTMLButtonElement>('[data-group="Customers & sales"]')!;
     const links = () => doc.getElementById(group().getAttribute('aria-controls')!)!;
     assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 0);
-    assert.equal(doc.querySelectorAll('.sidebar nav a').length, 18);
+    assert.equal(doc.querySelectorAll('.sidebar nav a').length, 20);
     assert.equal(group().getAttribute('aria-expanded'), 'false');
     group().click();
     assert.equal(group().getAttribute('aria-expanded'), 'true');

@@ -26,17 +26,19 @@ export const categories = [
   ['coverage', 'Coverage and Installation'], ['account', 'My Ikonectt Account'],
   ['technical', 'Technical Troubleshooting'], ['requests', 'Service Requests and Complaints']
 ];
-export const faqs = [
-  ['coverage', 'How do I confirm coverage at my address?', 'Contact customer care with your full address for confirmation. The website checker cannot confirm live coverage.'],
-  ['payments', 'How do I choose a plan?', 'Compare the listed speeds and monthly prices, then discuss your household or business needs with the team. Prices and final service terms require confirmation.'],
-  ['coverage', 'How do I arrange installation?', 'Ask the team to confirm coverage, equipment and installation costs for your address. Email or call customer care with the details in the installation enquiry form.'],
-  ['payments', 'Where can I confirm plan conditions?', 'Ask customer care about installation, equipment, usage conditions and any applicable charges before subscribing.'],
-  ['internet', 'Can I connect several devices?', 'Yes, compatible devices can share your home network. Your experience depends on your plan, Wi-Fi setup and the activities running at the same time.'],
-  ['payments', 'How do I get help with payments and renewals?', 'Contact customer care about your existing account. Payments and renewals are not processed on this website.'],
-  ['technical', 'How can I improve Wi-Fi coverage at home?', 'Try your device nearer the router and note whether the connection improves. Building layout, equipment and interference can affect Wi-Fi coverage. Contact support if you need help.'],
-  ['account', 'How do I access My ikonectt?', 'Contact customer care for account access or password recovery. Live customer account access is not connected here.'],
-  ['requests', 'How do I contact support?', `Email ${publicContacts.emails[0].address} or call ${publicContacts.phones[0].label}. Website enquiry forms do not send messages.`]
-];
+// The published knowledge API is the one source for FAQ answers. Do not copy
+// approved articles into an unrelated frontend-only knowledge collection.
+export const faqs=[];
+export function replacePublishedKnowledge(records){
+  if(!Array.isArray(records))throw new Error('Invalid published knowledge response.');
+  const mapped=records.filter(record=>record.published!==false).map(record=>{
+    if(typeof record.question!=='string'||typeof record.answer!=='string'||typeof record.category!=='string')throw new Error('Invalid published article.');
+    const key=record.category.toLowerCase();
+    const category=categories.some(([id])=>id===key)?key:/install|cover/.test(key)?'coverage':/payment|plan|subscription|renew/.test(key)?'payments':/account|portal/.test(key)?'account':/router|technical|troubleshoot/.test(key)?'technical':/support|complaint/.test(key)?'requests':'internet';
+    return [category,record.question,record.answer];
+  });
+  faqs.splice(0,faqs.length,...mapped);
+}
 export const coverageStates = {
   available: {title:'Available', text:'An available status requires confirmation from the team. Contact customer care to check coverage and installation requirements for your address.', route:'residential/installation', action:'Installation Enquiry'},
   verification: {title:'Verification Required', text:'For a manual address review, contact the team with your location and a nearby landmark.', route:'coverage/verification', action:'Request Address Verification'},

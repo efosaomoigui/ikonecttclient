@@ -2,7 +2,7 @@
 // ordinary website builds keep their existing navigation behavior.
 export function installPresentationLinks(doc = document) {
   const win = doc.defaultView;
-  const portal = '/my-ikonectt/#/';
+  const portal = 'https://portal.ikonectt.com';
   function external(anchor, href) {
     anchor.setAttribute('href', href);
     anchor.setAttribute('target', '_blank');
@@ -11,7 +11,7 @@ export function installPresentationLinks(doc = document) {
   function refresh() {
     // Demo-only wording follows the same build boundary as the portal links.
     const intro=doc.querySelector('[data-portal-intro]');
-    const copy='Account access and payments are not connected to live customer services. Contact customer care for assistance.';
+    const copy='Manage your account and subscription through the official My Ikonectt customer portal.';
     if(intro&&intro.textContent!==copy)intro.textContent=copy;
     const heading=doc.querySelector('[data-portal-heading]');
     if(heading&&heading.textContent!=='My ikonectt.')heading.textContent='My ikonectt.';

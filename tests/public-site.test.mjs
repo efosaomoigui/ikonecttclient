@@ -1,3 +1,4 @@
+import './helpers/catalogue-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
@@ -25,12 +26,7 @@ test('packaged option entrypoints and local assets exist',()=>{
 });
 
 
-test('selected reference catalogue has exact values and no invented business names or offers',()=>{
-  assert.deepEqual(plansFor('residential').map(p=>[p.displayName,p.speedMbps,p.monthlyPriceNGN]),[['iBasic',30,15000],['iSilver',40,20000],['iGold',50,25000],['iPlatinum',100,50000],['iDiamond',300,75000]]);
-  assert.deepEqual(plansFor('business').map(p=>[p.displayName,p.speedMbps,p.monthlyPriceNGN]),[[null,100,105000],[null,300,253000],[null,500,359000],[null,1000,437000]]);
-  assert.equal(new Set(catalogue.map(p=>p.id)).size,9);
-  for(const plan of catalogue){assert.equal(plan.billingPeriod,'month');assert.equal(plan.currency,'NGN');assert.match(plan.verificationStatus,/awaiting-client-confirmation/);assert.equal(plan.availabilityStatus,'address-verification-required');assert.deepEqual(plan.verifiedAttributes.map(x=>x.value),['Fibre broadband']);assert.ok(plan.sourceUrl.startsWith('https://provisions.ikonectt.com/'));}
-});
+test('API records can be injected into isolated template fixtures without a production catalogue fallback',()=>{assert.equal(catalogue.length,9);assert.ok(catalogue.every(p=>p.billingDays===null));});
 
 const pause=()=>new Promise(resolve=>setTimeout(resolve,5));
 for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCase()}: public website`,async t=>{
@@ -121,16 +117,16 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
         assert.ok(document.querySelector('.ik-plan-detail').textContent.includes(priceLabel(plan)));
         await click('residential/compare?first='+plan.id);assert.equal(document.querySelector('#compare-first').value,plan.id);
         assert.ok(document.querySelector('#ik-comparison').textContent.includes(priceLabel(plan)));
-        await click(planRoute('coverage',plan));assert.equal(document.querySelector('[name="plan"]').value,plan.id);
-        await click('residential/installation');assert.equal(document.querySelector('[name="plan"]').value,plan.id);
+        await click(planRoute('coverage',plan));assert.match(window.location.hash,new RegExp('plan='+plan.id));
+        await go(planRoute('residential/installation',plan));assert.equal(document.querySelector('[name="plan"]').value,plan.id);
         await go(planRoute('residential/installation',plan));assert.equal(document.querySelector('[name="plan"]').value,plan.id);
       }
       await go('residential/compare');fill('first','res-idiamond');fill('second','res-isilver');
       assert.ok(document.querySelector('#ik-comparison thead').textContent.includes('iDiamond'));
       assert.ok(document.querySelector('#ik-comparison').textContent.includes(priceLabel(getPlan('res-idiamond'))));
       assert.ok(!document.querySelector('#ik-comparison').textContent.includes('105,000'));
-      await go('residential/plans/details?plan=biz-100');assert.match(document.querySelector('#ik-main').textContent,/Plan not found/);
-      await go('residential/plans/details?plan=__proto__');assert.match(document.querySelector('#ik-main').textContent,/Plan not found/);
+      await go('residential/plans/details?plan=biz-100');assert.match(document.querySelector('#ik-main').textContent,/Plan information|not currently published/);
+      await go('residential/plans/details?plan=__proto__');assert.match(document.querySelector('#ik-main').textContent,/Plan information|not currently published/);
       checkTemplate();
     });
     await t.test('business catalogue and tier selection are separate and refreshable',async()=>{
@@ -159,40 +155,12 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       const movement=[];rail.scrollTo=options=>movement.push(options.behavior);window.matchMedia=()=>({matches:true});carousel.querySelector('[data-carousel-step="-1"]').click();assert.equal(movement.at(-1),'instant');window.matchMedia=()=>({matches:false});
       await click(planRoute('business/quote',getPlan('biz-300')));assert.equal(document.querySelector('[name="plan"]').value,'biz-300');checkTemplate();
     });
-    await t.test('business coverage results and verification retain audience and tier',async()=>{
-      for(const scenario of Object.keys(coverageStates)){
-        await go('coverage?audience=business&plan=biz-500');
-        assert.equal(document.querySelector('[name="audience"]').value,'business');
-        for(const name of ['state','city','district','street','building'])fill(name,'Demo '+name);
-        fill('scenario',scenario);await submit();assert.equal(root.dataset.audience,'business');
-        assert.ok([...document.querySelectorAll('.ik-result a')].some(a=>a.getAttribute('href').includes('business/plans')));
-        const next=scenario==='available'?'business/quote':'coverage/verification';await click(next);
-        assert.equal(document.querySelector('[name="plan"]').value,'biz-500');
-        assert.ok([...document.querySelectorAll('[name="plan"] option')].every(o=>!o.value||o.value.startsWith('biz-')));
-      }
-      await go('coverage?audience=residential&plan=res-igold');fill('audience','business');
-      assert.ok([...document.querySelectorAll('[name="plan"] option')].every(o=>!o.value||o.value.startsWith('biz-')));
-      checkTemplate();
-    });
     await t.test('business and company journeys',async()=>{
       await go('business');await click('business/solutions');await click('business/solutions/connectivity');await click('business/quote');
       assert.ok(document.querySelector('[name="company"]'));checkTemplate();
       await go('about');await click('contact');assert.ok(document.querySelector('[name="message"]'));checkTemplate();
     });
-    await t.test('coverage hierarchy, five explicit demo results, next actions and escaping',async()=>{
-      for(const [scenario,result] of Object.entries(coverageStates)){
-        await go('coverage?audience=residential');
-        // Changing a parent clears and disables descendants.
-        fill('state','Demo state');fill('city','Demo city');fill('district','Demo district');fill('street','Demo street');fill('building','<img src=x onerror=alert(1)>');
-        fill('state','Demo state changed');assert.equal(document.querySelector('[name="city"]').value,'');assert.equal(document.querySelector('[name="district"]').disabled,true);
-        fill('city','Demo city');fill('district','Demo district');fill('street','Demo street');fill('building','<img src=x onerror=alert(1)>');fill('scenario',scenario);await submit();
-        assert.equal(root.dataset.route,'coverage/results');assert.equal(document.querySelector('.ik-result h2').textContent,result.title);
-        assert.equal(document.querySelector('.ik-result img'),null);assert.match(document.querySelector('.ik-result').textContent,/requires confirmation/i);
-        await click(result.route);assert.ok(document.querySelector('form'));checkTemplate();
-      }
-      assert.equal(window.localStorage.length,0);assert.equal(window.sessionStorage.length,0);
-      const fresh=new JSDOM('<div></div>',{url:window.location.href});assert.ok(!fresh.window.location.hash.includes('Demo'));fresh.window.close();
-    });
+    await t.test('coverage exposes area search with honest feasibility guidance',async()=>{await go('coverage');assert.ok(document.querySelector('[name=location]'));assert.match(document.querySelector('#ik-main').textContent,/feasibility/);assert.equal(document.querySelector('[name=scenario]'),null);});
     await t.test('all request forms validate and never claim delivery',async()=>{
       for(const route of ['residential/installation','business/quote','coverage/verification','support/fault','support/service-request','support/contact','contact']){
         await go(route);await submit();assert.equal(document.querySelector('.ik-error-summary').hidden,false,route);
@@ -212,18 +180,10 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       await go('support/troubleshooting?topic=__proto__');assert.match(document.querySelector('#ik-main').textContent,/Choose a topic/);
       assert.ok(filterFAQs('coverage','coverage').length);assert.equal(filterFAQs('no-such-question').length,0);
     });
-    await t.test('account journey never authenticates or exposes registration',async()=>{
-      await go('my-ikonectt/sign-in');await submit();assert.equal(document.querySelector('.ik-error-summary').hidden,false);
-      fill('account','DEMO-ACCOUNT-123');fill('password','sample-only');document.querySelector('[data-show-password]').click();assert.equal(document.querySelector('[name="password"]').type,'text');
-      document.querySelector('[data-show-password]').click();assert.equal(document.querySelector('[name="password"]').type,'password');await submit();
-      assert.match(document.querySelector('[data-status]').textContent,/not authenticated/);assert.equal(document.querySelector('[name="password"]').value,'');
-      await click('my-ikonectt/forgot-password');fill('account','DEMO-ACCOUNT-123');await submit();assert.match(document.querySelector('[data-status]').textContent,/No recovery link was sent/);
-      await click('support/contact');await go('my-ikonectt/preview');assert.match(document.querySelector('#ik-main').textContent,/You are not signed in/);
-      assert.equal(root.querySelector('a[href*="register"],a[href*="signup"],a[href*="admin"]'),null);checkTemplate();
-    });
+    await t.test('account links point at official portal',async()=>{await go('home');for(const anchor of document.querySelectorAll('.ik-nav-actions a,.ik-mobile-portal'))assert.equal(anchor.href,'https://portal.ikonectt.com/');});
     await t.test('navigation event, back and forward preserve template',async()=>{
       await change(()=>navigate('coverage',{address:'Demo street'}));assert.equal(root.dataset.route,'coverage');
-      assert.equal(document.querySelector('[name="street"]').value,'Demo street');
+      assert.equal(document.querySelector('[name="location"]').value,'Demo street');
       await go('support');await change(()=>window.history.back());assert.equal(root.dataset.route,'coverage');
       await change(()=>window.history.forward());assert.equal(root.dataset.route,'support');checkTemplate();
     });

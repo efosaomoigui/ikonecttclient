@@ -117,3 +117,24 @@ test('network failure rejects live reads and writes without mock success or muta
 test('401 and local expiry clear the session', async () => { const api = preview(); api.mode = 'live'; let expired = 0; api.onExpired = () => expired++; globalThis.fetch = async () => Response.json({ message: 'Expired' }, { status: 401 }); await assert.rejects(api.list('customers')); assert.equal(api.session, null); assert.equal(expired, 1); api.preview('ADMIN'); api.session!.expiresAt = new Date(0).toISOString(); await assert.rejects(api.list('customers'), /expired/); assert.equal(api.session, null); });
 test('live tickets and external references use the actual controller routes', async () => { const api = preview(); api.mode = 'live'; const paths: string[] = []; globalThis.fetch = async (url) => { paths.push(String(url)); return Response.json(String(url).includes('/tickets/') ? { ...api.data.tickets[0], messages: api.data.messages.filter(m => m.ticketId === uuid(70)) } : []); }; await api.messages(uuid(70)); await api.references(uuid(1)); assert.equal(paths[0], `/api/v1/admin/tickets/${uuid(70)}`); assert.equal(paths[1], `/api/v1/admin/integrations/customers/${uuid(1)}/references`); });
 test('live pagination consumes all pages without assuming first page is complete', async () => { const api = preview(); api.mode = 'live'; const calls: string[] = []; const customer = api.data.customers[0]; globalThis.fetch = async (url) => { calls.push(String(url)); const second = String(url).includes('offset=1'); return Response.json({ items: [{ ...customer, id: second ? uuid(2) : uuid(1) }], offset: second ? 1 : 0, limit: 100, total: 2 }); }; assert.equal((await api.list('customers')).length, 2); assert.equal(calls.length, 2); assert.match(calls[1], /offset=1/); });
+
+test('client catalogue preserves unpublished prices and unknown billing frequency through Admin edits', async () => {
+    const api = preview();
+    const existing = api.data.plans[1];
+    const edited = await api.save('plans', { priceMinor: null, billingDays: null, uploadMbps: 300 }, existing.id);
+    assert.equal(edited.priceMinor, null);
+    assert.equal(edited.billingDays, null);
+    assert.equal(edited.uploadMbps, 300);
+    for (const field of ['priceMinor', 'billingDays', 'uploadMbps']) assert.equal(modules.plans.fields.find(item => item.key === field)!.required, false);
+});
+
+test('service area activation and knowledge publication remain permission-checked Admin workflows', async () => {
+    const admin = preview();
+    const area = admin.data.serviceAreas[0];
+    assert.equal((await admin.save('serviceAreas', { active: false }, area.id)).active, false);
+    const article = admin.data.knowledge[0];
+    assert.equal((await admin.save('knowledge', { published: true }, article.id)).published, true);
+    const support = preview('SUPPORT');
+    await assert.rejects(support.save('knowledge', { published: true }, article.id), { status: 403 });
+    await assert.rejects(support.save('serviceAreas', { active: false }, area.id), { status: 403 });
+});

@@ -9,7 +9,7 @@ const icons={
 };
 const benefits=[
  ['Fibre Broadband','Browse connection options for your home or office.','speed'],
- ['Monthly Plans','Compare plan speeds and monthly prices.','plans'],
+ ['Service Plans','Compare plan speeds and prices.','plans'],
  ['Customer Support','Find answers and contact the support team.','support'],
  ['Connection Guidance','Get help with Wi-Fi, routers and connection problems.','secure'],
  ['Address Checks','Contact us to confirm coverage at your address.','coverage'],

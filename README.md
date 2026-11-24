@@ -1,16 +1,29 @@
-# iKonectt — Client Design Shortlist
+# Ikonectt
 
-This repository (`ikonecttclient`) contains the unified client-facing digital experience proposals for **iKonectt** (flagship broadband brand of **Intelivision Technologies Limited**).
+Option E is the approved public website. The canonical source is this checkout on main. The public root opens Option E and retired design URLs redirect to it. Public customer account actions open https://portal.ikonectt.com. The custom portal source remains available for future activation.
 
-## Current shortlist
+## Client information and Admin
 
-The client-facing hub now exposes exactly two choices: **Option 1 — Template A** and **Option 2 — Template E**. Template A is the previously approved A+C hybrid, renamed A; its homepage, slideshow and inner pages are unchanged. Template E retains its approved independent design.
+Plans, coverage service areas and published help articles are served by the persistent backend in backend/ using the shared contracts in contracts/. Authorized staff manage them in the existing admin/ application.
 
-Stable active URLs: `/option-a/` and `/option-e/`. Switching in the packaged/live hub retains supported page/query context. A bookmarked hub URL can use `?design=e&route=%23%2Fresidential%2Fplans`.
+The supplied dataset contains three residential plans, four business plans, 83 coverage source rows and 21 knowledge articles. Business prices and all billing periods are unconfirmed. Two possible duplicate coverage groups produce 81 primary public search records. The referral article remains a draft.
 
-Templates B/C/D remain accessible at their existing URLs for compatibility, but are absent from the active selector. Future implementation work is scoped to A and E unless the client requests otherwise. All five originals are preserved at `21b060e` on `codex/preserve-five-templates-2026-10-16`. See [consolidation record](docs/CLIENT_DESIGN_SHORTLIST_CONSOLIDATION.md) and [presentation manifest](shared/design-shortlist.js).
+## Local review
 
-The sections below preserve the original five-template implementation/development history. Build packaging still includes archived B/C/D so existing links remain valid.
+The website runs at http://127.0.0.1:3000/, Admin at http://127.0.0.1:3013/admin/ and the API at http://127.0.0.1:4000/api/v1. Start the existing local PostgreSQL database before the applications.
+
+- Install dependencies with npm ci in the root, contracts/, backend/ and admin/ directories.
+- Configure backend/.env using backend/.env.example and the existing local database. Keep credentials in ignored environment files.
+- In backend/, generate Prisma, apply additive migrations and run npm run data:import-client and npm run knowledge:import-client. Repeat imports preserve Admin edits and deactivations.
+- Run npm run dev in backend/ and admin/.
+- Set IKONECTT_PUBLIC_API_ORIGIN=http://127.0.0.1:4000 in the ignored root .env.local. Run npm run build followed by npm start in the root.
+- Public production builds use IKONECTT_PUBLIC_API_BASE for the configured persistent API. The browser receives a public API URL, never privileged credentials.
+
+The website records enquiries as local leads with a returned reference. Client ECRM synchronisation, live notification delivery and the client's future coverage API require confirmed contracts. See contracts/ENDPOINTS.md and backend/README.md for the API and operational setup.
+
+## Historical implementation notes
+
+The following sections document earlier design and presentation work.
 
 ## Phase 1 public website
 

@@ -17,3 +17,10 @@ public_html/my-ikonectt/
 .local/presentation/
 /admin/docs/
 /my-ikonectt/evidence/
+
+.local/client-review/
+
+frontend-test-results.txt
+
+final-frontend-tests.txt
+final-frontend-green-tests.txt

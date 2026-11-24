@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const API_VERSION = '1.2.0';
+export const API_VERSION = '1.3.0';
 export const API_PREFIX = '/api/v1';
 export const Id = z.string().uuid();
 const Text = z.string().trim().min(1).max(250);
@@ -28,7 +28,7 @@ export const UpdateCustomerRequest = CreateCustomerRequest.omit({ accountNumber:
 export const UpdateProfileRequest = z.object({ phone: z.string().trim().min(7).max(30) }).strict();
 export const CreateStaffRequest = z.object({ name: Text, email: z.string().email().max(254), password: Password, roles: z.array(Role).min(1).max(6) }).strict();
 export const UpdateStaffRequest = z.object({ roles: z.array(Role).min(1).max(6).optional(), enabled: z.boolean().optional() }).strict();
-export const PlanInput = z.object({ code: z.string().min(2).max(50).regex(/^[a-z0-9-]+$/), name: Text, kind: CustomerKind, priceMinor: Money.positive(), currency: z.literal('NGN').default('NGN'), speedMbps: z.number().int().positive().max(100000), billingDays: z.number().int().min(1).max(366).default(30), features: z.array(Text).max(30).default([]), published: z.boolean().default(false), renewalPriceMinor: Money.positive().nullable().optional() }).strict();
+export const PlanInput = z.object({ code: z.string().min(2).max(50).regex(/^[a-z0-9-]+$/), name: Text, kind: CustomerKind, priceMinor: Money.positive().nullable(), currency: z.literal('NGN').default('NGN'), speedMbps: z.number().int().positive().max(100000), uploadMbps: z.number().int().positive().max(100000).nullable().optional(), billingDays: z.number().int().min(1).max(366).nullable().default(30), features: z.array(Text).max(30).default([]), published: z.boolean().default(false), renewalPriceMinor: Money.positive().nullable().optional() }).strict();
 export const PlanUpdate = PlanInput.partial().strict();
 export const CoverageInput = z.object({ name: Text, level: CoverageLevel, parentId: Id.optional(), eligibility: Eligibility.default('UNKNOWN'), planIds: z.array(Id).max(100).default([]), evidence: z.string().max(1000).optional() }).strict();
 export const CoverageUpdate = z.object({ eligibility: Eligibility, planIds: z.array(Id).max(100), evidence: z.string().trim().min(3).max(1000) }).strict();
@@ -123,3 +123,13 @@ export const AdminWalletRenewal=WalletRenewal.extend({resolutionEvidence:z.strin
 export const RenewalEligibility=z.object({subscriptionId:Id,eligible:z.boolean(),reasonCodes:z.array(RenewalReason),amountMinor:Money.nullable(),priceVersion:DateTime.nullable(),billingDays:z.number().int().positive().nullable(),currentEndsAt:DateTime.nullable(),expectedEndsAt:DateTime.nullable(),planName:z.string(),speedMbps:z.number().int().positive().nullable(),wallet:WalletSummary,simulated:z.boolean()});
 export const WalletTopUpQuery=ListQuery.extend({customerId:Id.optional(),status:PaymentStatus.optional()}).strict();
 export const WalletRenewalQuery=ListQuery.extend({customerId:Id.optional(),status:WalletRenewalStatus.optional()}).strict();
+
+export const ServiceAreaInput=z.object({name:Text,scope:z.enum(['ESTATE','AREA','SITE']),aliases:z.array(Text).max(30).default([]),active:z.boolean().default(true),displayPrimary:z.boolean().default(true),duplicateGroup:Text.nullable().optional(),reviewNote:z.string().max(2000).nullable().optional()}).strict();
+export const ServiceAreaUpdate=ServiceAreaInput.partial().strict();
+export const ServiceArea=ServiceAreaInput.omit({reviewNote:true,duplicateGroup:true}).extend({id:Id,notice:z.string()}).strip();
+export const AdminServiceArea=ServiceArea.extend({duplicateGroup:z.string().nullable(),reviewNote:z.string().nullable(),sourceKey:z.string(),sourceName:z.string(),createdAt:z.string().datetime(),updatedAt:z.string().datetime()});
+export const ServiceAreaQuery=ListQuery.extend({search:z.string().trim().max(150).optional()}).strict();
+export const AdminServiceAreaQuery=ServiceAreaQuery.extend({active:z.enum(['true','false']).optional()}).strict();
+export const KnowledgeInput=z.object({key:z.string().trim().min(1).max(100).regex(/^[a-z0-9-]+$/),category:z.string().trim().min(1).max(80),question:z.string().trim().min(1).max(250),answer:z.string().trim().min(1).max(2000),keywords:z.array(z.string().trim().min(1).max(80)).max(30).default([]),published:z.boolean().default(false)}).strict();
+export const KnowledgeUpdate=KnowledgeInput.partial().strict().refine(v=>Object.keys(v).length>0);
+export const KnowledgeArticle=KnowledgeInput.extend({id:Id,createdAt:z.string().datetime(),updatedAt:z.string().datetime()});

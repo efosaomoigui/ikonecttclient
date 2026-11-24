@@ -197,6 +197,7 @@ export class WorkspaceApi {
                     notice: 'Standalone fictional wallet. No transfer, bank settlement or live provider is connected.' }
             }));
         }
+        if (key === 'serviceAreas') Object.assign(item, { sourceKey: 'manual:' + item.id, sourceName: body.name, notice: 'Listed service area; exact-address feasibility confirmation is required.', duplicateGroup: body.duplicateGroup || null, reviewNote: body.reviewNote || null });
         if (key === 'plans')
             Object.assign(item, { simulated: true });
         if (key === 'coverage')

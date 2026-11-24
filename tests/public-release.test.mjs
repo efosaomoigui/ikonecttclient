@@ -28,7 +28,9 @@ test('public build and server expose one design and no sample applications',asyn
     assert.equal(response.headers.get('location'),'/option-e/?from=bookmark#/'+name);
   }
   assert.equal((await fetch(base+'/option-e/')).status,200);
-  for(const name of ['admin','my-ikonectt','api','backend','public_html','.env'])assert.equal((await fetch(base+'/'+name+'/')).status,404,name);
+  const customer=await fetch(base+'/my-ikonectt/',{redirect:'manual'});assert.equal(customer.status,307);assert.equal(customer.headers.get('location'),'https://portal.ikonectt.com/');
+  for(const name of ['admin','backend','public_html','.env'])assert.equal((await fetch(base+'/'+name+'/')).status,404,name);
+  assert.equal((await fetch(base+'/api/v1/plans')).status,503);
   assert.equal((await fetch(base+'/option-e/',{method:'POST'})).status,405);
   for(const name of ['admin','my-ikonectt','option-a','option-b','option-c','option-d','shared/presentation-links.mjs'])assert.ok(!existsSync(new URL(name,output)),name);
   const html=entry();
@@ -60,7 +62,7 @@ test('all public routes render and old account links never collect credentials',
       assert.ok(main.querySelector('h1')?.textContent.trim(),route);
       assert.doesNotMatch(main.textContent,/Page not found/,route);
       if(route.startsWith('my-ikonectt/')){
-        assert.match(main.textContent,/Customer account access is not available/);
+        assert.match(main.textContent,/official portal/);
         assert.equal(main.querySelector('form,input[type=password]'),null);
       }
     }

@@ -1,0 +1,50 @@
+{
+  "reason": "Client-authorized official portal and API-backed plans, coverage, knowledge and enquiry integration. Historical checkpoints remain immutable.",
+  "files": {
+    "option-e/index.html": {
+      "sha256LF": "a54b070c290db2e8c952b140a0138729454139526130af8182c6780a31dd20df"
+    },
+    "option-e/section-showcase.js": {
+      "sha256LF": "2fdfbcb021ab6435ac6e61440f89b71c0133b87ffda4b2bd0f7355bfc9ad7881"
+    },
+    "shared/assistant-engine.js": {
+      "sha256LF": "4dd8ad24c51732a2c85e21e2b704b2a49e1304fef7ccec3b31857243708ed441"
+    },
+    "shared/assistant-view.js": {
+      "sha256LF": "c54d42e2ce9af7ad6771ed9d78aea493a0b55c7acba2d09f8a454da59b4d18fd"
+    },
+    "shared/assistant.js": {
+      "sha256LF": "2eb0fccc717a6c3bf4c822e5513a8614837bb7d29816f29b6e5b2dc0552da235"
+    },
+    "shared/carousel.js": {
+      "sha256LF": "807ae6e0a1c47ff59848ed4d15ea444ce31ab81deb814a186c0ea5288ca052d8"
+    },
+    "shared/catalogue.js": {
+      "sha256LF": "c48828bff32742e859fca2c7dce6aee9d7234be2174f822dea2fc3dee3c127fc"
+    },
+    "shared/content.js": {
+      "sha256LF": "e403106935dda0ba83f41dc3f8bea64ae23fe6f4f4d4bb19281bd3d0ba6d8072"
+    },
+    "shared/forms.js": {
+      "sha256LF": "9205f6d272927015a199c072a231bbc272b5e83a73d000ca921babf0c8981a3b"
+    },
+    "shared/pages.js": {
+      "sha256LF": "9107b447b618314ba9623f29d4c051543fe68d8ad5a283fc816906e7aff04cbe"
+    },
+    "shared/plan-ui.js": {
+      "sha256LF": "40f1dde50dc4f257b768edd033aace2a607b16b5653096fedb21db699f2d761f"
+    },
+    "shared/public-site.js": {
+      "sha256LF": "f24fbeab3c9982fcb6b23a52fe60246d49e4c74a07b1b906f7b45c93a8d39ba4"
+    },
+    "shared/public-site.css": {
+      "sha256LF": "623ba5aacddd0dc488e329c42402dc1f87b6dbadfe672513b3bc55318a8509cd"
+    },
+    "shared/routes.js": {
+      "sha256LF": "f4358b5f10a345fa815184c85e7de37f4e0ee73deeb31c0d69565ecb31ed41c5"
+    },
+    "shared/brand-signature.js": {
+      "sha256LF": "d9d2cea2ea2644a82005f6fca0fc38493c8c5c65a3127f195055318088c8a2fd"
+    }
+  }
+}

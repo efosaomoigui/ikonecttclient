@@ -20,6 +20,11 @@ for (const name of ['option-e', 'shared', 'assets']) {
   }});
 }
 
+const apiBase=process.env.IKONECTT_PUBLIC_API_BASE||'/api/v1';
+if(!apiBase.startsWith('/')&&!/^https?:\/\//.test(apiBase))throw new Error('Invalid public API base.');
+if(apiBase.startsWith('//')||(/[\r\n]/.test(apiBase)))throw new Error('Invalid public API base.');
+if(/^https?:/.test(apiBase)){const parsed=new URL(apiBase);if(parsed.username||parsed.password)throw new Error('Public API URL cannot contain credentials.');}
+fs.writeFileSync(path.join(output,'shared','public-config.js'),'globalThis.__IKONECTT_PUBLIC_CONFIG__='+JSON.stringify({mode:'api',apiBase})+';\n');
 const file=path.join(output,'option-e','index.html');
 const source=fs.readFileSync(file,'utf8');
 if(!source.includes('<body data-template="e">')||!source.includes('</head>'))throw new Error('Approved website entry is missing.');
@@ -28,15 +33,15 @@ const demoLinks = includeDemos
   : '';
 fs.writeFileSync(file,source
   .replace('<body data-template="e">','<body data-template="e" data-public-release>')
-  .replace('href="#portal">My ikonectt','href="#/my-ikonectt/sign-in">My ikonectt')
-  .replace('</head>', '<link rel="canonical" href="/option-e/">\n' + demoLinks + '</head>'));
+
+  .replace('</head>', '<script src="/shared/public-config.js"></script><link rel="canonical" href="/option-e/">\n' + demoLinks + '</head>'));
 fs.writeFileSync(path.join(output,'index.html'),'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/option-e/"><title>Ikonectt</title></head><body><a href="/option-e/">Visit Ikonectt</a></body></html>\n');
 if (includeDemos) {
-  for (const app of ['admin', 'my-ikonectt']) {
+  for (const app of ['admin']) {
     execSync('npm run build:demo', { cwd: path.join(root, app), stdio: 'inherit' });
   }
   fs.cpSync(path.join(root, 'admin', 'dist-demo', 'admin'), path.join(output, 'admin'), { recursive: true });
-  fs.cpSync(path.join(root, 'my-ikonectt', 'dist-demo'), path.join(output, 'my-ikonectt'), { recursive: true });
+  // The custom customer application remains in source, outside the public artifact.
   for (const name of ['presentation-links.mjs', 'presentation-links.css']) {
     fs.copyFileSync(path.join(root, 'scripts', name), path.join(output, 'shared', name));
   }

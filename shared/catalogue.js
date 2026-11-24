@@ -1,33 +1,27 @@
-// Selected published reference catalogue for the client preview. Not a live commercial offer.
-const residentialSource='https://provisions.ikonectt.com/for-homes';
-const businessSource='https://provisions.ikonectt.com/';
-const make=(id,audience,displayName,speedMbps,monthlyPriceNGN,displayOrder)=>Object.freeze({
-  id,audience,displayName,speedMbps,monthlyPriceNGN,currency:'NGN',billingPeriod:'month',
-  verifiedAttributes:Object.freeze([{key:'connection',label:'Connection',value:'Fibre broadband'}].map(Object.freeze)),
-  sourceUrl:audience==='residential'?residentialSource:businessSource,
-  verificationStatus:'published-reference-awaiting-client-confirmation',
-  availabilityStatus:'address-verification-required',displayOrder
-});
-export const catalogue=Object.freeze([
-  make('res-ibasic','residential','iBasic',30,15000,1),
-  make('res-isilver','residential','iSilver',40,20000,2),
-  make('res-igold','residential','iGold',50,25000,3),
-  make('res-iplatinum','residential','iPlatinum',100,50000,4),
-  make('res-idiamond','residential','iDiamond',300,75000,5),
-  make('biz-100','business',null,100,105000,1),
-  make('biz-300','business',null,300,253000,2),
-  make('biz-500','business',null,500,359000,3),
-  make('biz-1000','business',null,1000,437000,4)
-]);
-export const previewPricingNote='Prices and service terms require confirmation. Availability depends on your address.';
-export const plansFor=audience=>catalogue.filter(plan=>plan.audience===audience).sort((a,b)=>a.displayOrder-b.displayOrder);
-export const getPlan=id=>catalogue.find(plan=>plan.id===id)||null;
-export const planName=plan=>plan.displayName||`${plan.speedMbps} Mbps`;
-export const priceLabel=plan=>new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format(plan.monthlyPriceNGN);
-export const planOptions=audience=>plansFor(audience).map(plan=>[plan.id,`${planName(plan)}${plan.displayName?' · '+plan.speedMbps+' Mbps':''} · ${priceLabel(plan)}/month`]);
+// Public catalogue state is populated from the Admin-backed API. No commercial
+// prices are inferred from reference websites or supplied as a network fallback.
+export const catalogue=[];
+export const catalogueStatus={state:'loading',message:'Loading service plans…'};
+export const previewPricingNote='Installation, equipment and service terms require confirmation. Availability is subject to address feasibility.';
+export function replaceCatalogue(records){
+  if(!Array.isArray(records))throw new Error('Invalid plans response.');
+  const mapped=records.filter(p=>p.published!==false).map((p,index)=>{
+    if(typeof p.id!=='string'||typeof p.name!=='string'||!['RESIDENTIAL','BUSINESS'].includes(p.kind)||!Number.isFinite(p.speedMbps)||p.speedMbps<=0||!(p.priceMinor===null||(Number.isSafeInteger(p.priceMinor)&&p.priceMinor>=0)))throw new Error('Invalid published plan.');
+    if(!(p.billingDays==null||(Number.isInteger(p.billingDays)&&p.billingDays>0))||!(p.uploadMbps==null||(Number.isFinite(p.uploadMbps)&&p.uploadMbps>0)))throw new Error('Invalid plan details.');
+    return Object.freeze({id:p.id,code:p.code,audience:p.kind==='BUSINESS'?'business':'residential',displayName:p.name,speedMbps:p.speedMbps,uploadMbps:p.uploadMbps??null,priceMinor:p.priceMinor,billingDays:p.billingDays??null,billingPeriod:null,currency:p.currency||'NGN',displayOrder:index+1,verifiedAttributes:[],simulated:p.simulated===true});
+  });
+  catalogue.splice(0,catalogue.length,...mapped);
+  Object.assign(catalogueStatus,{state:'ready',message:mapped.length?'':'No published plans are currently available. Contact customer care.'});
+}
+export const plansFor=audience=>catalogue.filter(p=>p.audience===audience).sort((a,b)=>a.speedMbps-b.speedMbps);
+export const getPlan=id=>catalogue.find(p=>p.id===id||p.code===id)||null;
+export const planName=plan=>plan?.displayName||'Plan information unavailable';
+export const priceLabel=plan=>!plan||plan.priceMinor==null||(plan.audience==='business'&&plan.priceMinor===0)?'Request a Quote':new Intl.NumberFormat('en-NG',{style:'currency',currency:plan.currency,maximumFractionDigits:2}).format(plan.priceMinor/100);
+export const billingLabel=plan=>plan?.billingDays?`${plan.billingDays} days`:'Billing period to be confirmed';
+export const pricePeriod=plan=>plan?.billingDays?` / ${plan.billingDays} days`:'';
+export const planOptions=audience=>plansFor(audience).map(p=>[p.id,`${planName(p)} · ${p.speedMbps} Mbps · ${priceLabel(p)}`]);
 export function planRoute(route,plan,audience=plan?.audience||'residential'){
-  const [path,search='']=route.split('?'),query=new URLSearchParams(search);
-  query.set('audience',audience);
+  const [path,search='']=route.split('?'),query=new URLSearchParams(search);query.set('audience',audience);
   if(plan?.audience===audience)query.set('plan',plan.id);else query.delete('plan');
   return path+'?'+query.toString();
 }

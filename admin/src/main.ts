@@ -181,10 +181,10 @@ async function loadRelated(key: string) {if(!can(api.permissions,modules[key].pe
 function value(key: string, v: any) { if (v === null || v === undefined || v === '')
     return '<span class="muted">—</span>'; if (['priceMinor', 'renewalPriceMinor', 'amountMinor', 'confirmedPaymentsMinor'].includes(key))
     return `<strong class="money">${money(v)}</strong>`; if (key.endsWith('At'))
-    return esc(date(v)); if (['status', 'eligibility', 'enabled'].includes(key))
+    return esc(date(v)); if (['status', 'eligibility', 'enabled', 'active', 'displayPrimary'].includes(key))
     return badge(v); if (key === 'published')
     return badge(v ? 'PUBLISHED' : 'DRAFT'); if (key === 'accountNumberSimulated')return badge(v?'SIMULATED':'OFFICIAL'); if (key === 'simulated')
-    return badge(v ? 'SIMULATED' : 'NATIVE'); if (key === 'speedMbps')
+    return badge(v ? 'SIMULATED' : 'NATIVE'); if (['speedMbps', 'uploadMbps'].includes(key))
     return `${v} <span class="muted">Mbps</span>`; if (key === 'billingDays')
     return `${v} days`; if (key === 'roles')
     return esc(v.map(pretty).join(', ')); if (key === 'id')
@@ -256,7 +256,7 @@ async function edit(key: string, id?: string) {
         await Promise.all(['customers', 'plans', 'coverage', 'staff', 'orders', 'subscriptions'].filter(k => can(api.permissions, modules[k].permission)).map(k => loadRelated(k)));
         if(['orders','coverage'].includes(key)){for(const k of ['plans','coverage'] as const){if(!cache[k])cache[k]=await api.publicOptions(k)}}
         if(key==='customers'&&!cache.coverage)cache.coverage=await api.publicOptions('coverage');
-        const r = id ? await api.detail(key,id) : { kind: 'RESIDENTIAL', billingDays: 30, eligibility: 'UNKNOWN' };
+        const r = id ? await api.detail(key,id) : { kind: 'RESIDENTIAL', eligibility: 'UNKNOWN', scope: 'ESTATE', active: true, displayPrimary: true };
         if (!r)
             throw new Error('Record not found.');
         if(key==='coverage'&&id&&r.level!=='BUILDING_ADDRESS')throw new Error('Final eligibility is managed at building/address level.');
@@ -283,8 +283,8 @@ async function edit(key: string, id?: string) {
                 else if (f.type === 'roles')
                     input[f.key] = fd.getAll('roles');
                 else if (f.type === 'number')
-                    input[f.key] = f.key === 'renewalPriceMinor' && !String(v ?? '').trim() ? null : Number(v);
-                else if (['features', 'planIds'].includes(f.key))
+                    input[f.key] = ['priceMinor', 'billingDays', 'uploadMbps', 'renewalPriceMinor'].includes(f.key) && !String(v ?? '').trim() ? null : Number(v);
+                else if (['features', 'planIds', 'aliases', 'keywords'].includes(f.key))
                     input[f.key] = String(v || '').split('\n').map(x => x.trim()).filter(Boolean);
                 else if (v !== null && String(v).trim())
                     input[f.key] = String(v).trim();
