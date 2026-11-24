@@ -176,7 +176,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
     await t.test('support search, FAQ grouping and troubleshooting escalation',async()=>{
       await go('support');fill('search','zzzz-not-a-topic');assert.match(document.querySelector('#ik-search-count').textContent,/0 answers/);assert.match(document.querySelector('#ik-search-results').textContent,/No matching answers/);
       fill('search','');fill('category','coverage');assert.equal(document.querySelectorAll('#ik-search-results details').length,2);
-      await click('support/troubleshooting');await click('support/troubleshooting?topic=no-internet&step=0');await click('support/troubleshooting?topic=no-internet&step=1');await click('support/troubleshooting?topic=no-internet&step=2');await click('support/fault');checkTemplate();
+      await click('support/troubleshooting');await click('support/troubleshooting?topic=no-internet');await click('support/fault');checkTemplate();
       await go('support/troubleshooting?topic=__proto__');assert.match(document.querySelector('#ik-main').textContent,/Choose a topic/);
       assert.ok(filterFAQs('coverage','coverage').length);assert.equal(filterFAQs('no-such-question').length,0);
     });

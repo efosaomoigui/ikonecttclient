@@ -24,7 +24,7 @@ export function aboutPageHTML(){
    <p class="e-company-eyebrow">The people we connect</p>
    <h2>Who we serve.</h2>
    <div class="ik-grid e-company-services">
-    <article class="ik-panel"><h3>Homes and estates</h3><p>Uncapped fixed-fibre broadband for everyday home life and residential communities.</p><a class="e-text-link" href="#/residential">Explore residential connectivity <span aria-hidden="true">→</span></a></article>
+    <article class="ik-panel"><h3>Homes and estates</h3><p>Fibre broadband for everyday home life and residential communities.</p><a class="e-text-link" href="#/residential">Explore residential connectivity <span aria-hidden="true">→</span></a></article>
     <article class="ik-panel"><h3>Businesses and enterprise</h3><p>Connectivity options shaped around offices, organisations and larger business requirements.</p><a class="e-text-link" href="#/business">Explore business connectivity <span aria-hidden="true">→</span></a></article>
    </div>
   </div>

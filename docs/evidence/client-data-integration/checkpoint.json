@@ -23,19 +23,19 @@
       "sha256LF": "c48828bff32742e859fca2c7dce6aee9d7234be2174f822dea2fc3dee3c127fc"
     },
     "shared/content.js": {
-      "sha256LF": "e403106935dda0ba83f41dc3f8bea64ae23fe6f4f4d4bb19281bd3d0ba6d8072"
+      "sha256LF": "444b2c7c59a5b063c520ce05e77a1462287cd5d88ed5e735d0e4b4082899137a"
     },
     "shared/forms.js": {
       "sha256LF": "9205f6d272927015a199c072a231bbc272b5e83a73d000ca921babf0c8981a3b"
     },
     "shared/pages.js": {
-      "sha256LF": "9107b447b618314ba9623f29d4c051543fe68d8ad5a283fc816906e7aff04cbe"
+      "sha256LF": "127e88dc334cfd9c8ac76b668eb685e6fb897e1c7027c1a5190e2ad10d660bf4"
     },
     "shared/plan-ui.js": {
       "sha256LF": "40f1dde50dc4f257b768edd033aace2a607b16b5653096fedb21db699f2d761f"
     },
     "shared/public-site.js": {
-      "sha256LF": "f24fbeab3c9982fcb6b23a52fe60246d49e4c74a07b1b906f7b45c93a8d39ba4"
+      "sha256LF": "18e8c05643a017bc32e04e29f21fc9a0dd80dc3314149de098e036807363d666"
     },
     "shared/public-site.css": {
       "sha256LF": "623ba5aacddd0dc488e329c42402dc1f87b6dbadfe672513b3bc55318a8509cd"
@@ -45,6 +45,9 @@
     },
     "shared/brand-signature.js": {
       "sha256LF": "d9d2cea2ea2644a82005f6fca0fc38493c8c5c65a3127f195055318088c8a2fd"
+    },
+    "shared/company-pages.js": {
+      "sha256LF": "a558867de3c29ed1890d1893434071d613f970a9d0e6df86c55b05d45ed2901e"
     }
   }
 }

@@ -215,7 +215,7 @@ export function mountSite({root,home,template}) {
     carousels.forEach(carousel=>carousel.refresh());
     for(const select of main.querySelectorAll('select[name=plan]')){const value=select.value;select.innerHTML='<option value="">No plan selected</option>'+planOptions(state.audience).map(([id,label])=>`<option value="${esc(id)}">${esc(label)}</option>`).join('');select.value=getPlan(value)?value:'';}
     const route=root.dataset.route;
-    if(route==='home'||route==='residential/plans'||route==='residential/compare'||route.startsWith('residential/plans/')||route==='business/plans'||route==='support'||route==='support/faqs')render();
+    if(route==='home'||route==='residential/plans'||route==='residential/compare'||route.startsWith('residential/plans/')||route==='business/plans'||route==='support'||route==='support/faqs'||route==='residential'||route==='residential/installation'||route==='support/troubleshooting')render();
   }
   window.addEventListener('focus',()=>{void refreshPublicData();},opts);
   render();

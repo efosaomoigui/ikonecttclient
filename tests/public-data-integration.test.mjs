@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import {createPublicDataClient,loadWebsiteData,websiteData} from '../shared/public-data.js';
 import {catalogue,replaceCatalogue,plansFor,priceLabel,pricePeriod,catalogueStatus} from '../shared/catalogue.js';
-import {faqs} from '../shared/content.js';
+import {faqs,replacePublishedKnowledge} from '../shared/content.js';
 import {catalogueHTML,planCardHTML,detailHTML,planCardName} from '../shared/plan-ui.js';
 import {renderPage} from '../shared/pages.js';
 import {mountBrandSignature} from '../shared/brand-signature.js';
@@ -58,4 +58,25 @@ test('plan card names use approved i-dash branding while API and detail names re
   const record={...plan('label'),name:raw};replaceCatalogue([record]);const item=catalogue[0];assert.equal(item.displayName,raw);assert.equal(planCardName(item),clean);assert.match(detailHTML(item),new RegExp(raw));
   const dom=new JSDOM('<div data-template="e"><main>'+planCardHTML(item)+'</main></div>');const root=dom.window.document.querySelector('[data-template]');const stop=mountBrandSignature({root,home:root.querySelector('main')});const heading=root.querySelector('h3');assert.equal(heading.textContent,clean);assert.equal(heading.querySelectorAll('.ik-plan-brand-prefix').length,1);assert.equal(heading.querySelectorAll('.ik-plan-brand-dash').length,1);assert.doesNotMatch(heading.textContent,/--|Mbps/);stop();assert.equal(heading.textContent,clean);dom.window.close();
  }
+});
+
+
+test('installation and troubleshooting pages reuse current approved articles without stale draft copy',()=>{
+ const articles=[
+  {key:'installation-process',category:'Installation',question:'Installation?',answer:'Approved installation process. Usually 3–7 working days, subject to feasibility.',published:true},
+  {key:'optical-signal',category:'Troubleshooting',question:'Optical signal?',answer:'Approved optical guidance. Do not repair fibre cables.',published:true},
+ ];
+ replacePublishedKnowledge(articles);
+ const render=(route,query='')=>renderPage(route,{state:{audience:'residential',address:{}},query:new URLSearchParams(query),template:'e'});
+ try{
+  assert.match(render('residential'),/Approved installation process/);
+  assert.match(render('residential/installation'),/3–7 working days, subject to feasibility/);
+  assert.match(render('support/troubleshooting','topic=optical'),/Approved optical guidance/);
+  articles[1].answer='Updated approved optical guidance.';
+  replacePublishedKnowledge(articles);
+  assert.match(render('support/troubleshooting','topic=optical'),/Updated approved optical guidance/);
+  replacePublishedKnowledge([]);
+  assert.doesNotMatch(render('support/troubleshooting','topic=optical'),/Updated approved optical guidance/);
+  assert.doesNotMatch(render('about'),/uncapped/i);
+ }finally{replacePublishedKnowledge([]);}
 });

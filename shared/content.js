@@ -29,6 +29,8 @@ export const categories = [
 // The published knowledge API is the one source for FAQ answers. Do not copy
 // approved articles into an unrelated frontend-only knowledge collection.
 export const faqs=[];
+const publishedKnowledge=new Map();
+export const approvedAnswer=key=>publishedKnowledge.get(key)?.answer||null;
 export function replacePublishedKnowledge(records){
   if(!Array.isArray(records))throw new Error('Invalid published knowledge response.');
   const mapped=records.filter(record=>record.published!==false).map(record=>{
@@ -37,6 +39,8 @@ export function replacePublishedKnowledge(records){
     const category=categories.some(([id])=>id===key)?key:/install|cover/.test(key)?'coverage':/payment|plan|subscription|renew/.test(key)?'payments':/account|portal/.test(key)?'account':/router|technical|troubleshoot/.test(key)?'technical':/support|complaint/.test(key)?'requests':'internet';
     return [category,record.question,record.answer];
   });
+  publishedKnowledge.clear();
+  for(const record of records)if(record.published!==false&&typeof record.key==='string')publishedKnowledge.set(record.key,{answer:record.answer});
   faqs.splice(0,faqs.length,...mapped);
 }
 export const coverageStates = {

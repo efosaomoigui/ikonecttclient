@@ -1,7 +1,7 @@
 import {plansFor,getPlan,planName,priceLabel,planOptions,detailRoute,planRoute,catalogueStatus} from './catalogue.js';
 import {websiteData,officialPortal} from './public-data.js';
 import {catalogueHTML,detailHTML,comparisonHTML,pricingNoteHTML} from './plan-ui.js';
-import { company, categories, faqs, coverageStates, troubleshooting } from './content.js';
+import { company, categories, faqs, coverageStates, approvedAnswer } from './content.js';
 import {escapeHTML as esc,formHTML,fieldHTML,addressFields,contactFields} from './forms.js';
 import {aboutPageHTML,contactDetailsHTML} from './company-pages.js';
 export const link=(route,label,secondary=false)=>`<a class="ik-button${secondary?' ik-button-secondary':''}" href="${route.startsWith('my-ikonectt')?officialPortal:'#/'+esc(route)}"${route.startsWith('my-ikonectt')?' target="_blank" rel="noopener noreferrer"':''}>${label}</a>`;
@@ -16,6 +16,21 @@ const faqHTML=(items)=>items.map(([category,q,a])=>`<details class="ik-faq" data
 const cta=(title,copy,route,label)=>section(title,`<p class="ik-muted">${copy}</p>${actions(link(route,label))}`,true);
 const selectedPlan=state=>{const plan=getPlan(state.plan);return plan?.audience===state.audience?plan:null;};
 const journey=(route,state)=>planRoute(route,selectedPlan(state),state.audience);
+const approvedCopy=key=>{
+  const answer=approvedAnswer(key);
+  return answer?'<p>'+esc(answer)+'</p>':'<p role="status">'+(websiteData.knowledge==='loading'?'Loading approved service information…':'Service information is currently unavailable. Contact customercare@ikonectt.com.')+'</p>';
+};
+const troubleshootingArticles={
+ 'no-internet':['No internet connection','router-no-internet'],
+ slow:['Slow connection','speed-test'],
+ wifi:['Devices and Wi-Fi passwords','device-wifi'],
+ router:['Router powered on without internet','router-no-internet'],
+ disconnections:['Intermittent disconnections','disconnections'],
+ optical:['ONU/ONT and loss of optical signal','optical-signal'],
+ outages:['Possible network outage','router-no-internet'],
+ damage:['Equipment damage','equipment-damage'],
+ payment:['Subscriptions, payments and renewal','subscription-renewal'],
+};
 const residentialCatalogue=()=>catalogueHTML('residential')+actions(link('residential/compare','Compare Plans',true),link('coverage?audience=residential','Check Coverage'),link('residential/installation','Installation Enquiry',true));
 const planField=audience=>field('plan','Selected plan',{optional:true,options:planOptions(audience),help:'Choose a plan if you have one in mind.'});
 
@@ -28,11 +43,11 @@ export function supportSearchHTML(query={},promptOnly=false) {
 }
 export function renderPage(path,{state,query,template}) {
   switch(path) {
-  case 'residential': return editorial('Broadband for your household.','Connect your devices for work, learning, streaming and everyday browsing.','Residential lifestyle',actions(link('residential/plans','View Residential Plans')))+section('How you use your connection',grid(tile('Work from home','Compare plan speeds for video calls and daily tasks.','residential/plans'),tile('Connect the household','Choose a plan for the devices and activities in your home.','residential/compare','Compare Plans')),true)+section('Getting connected',`<ol class="ik-steps"><li>Contact the team to confirm coverage at your address.</li><li>Choose a plan and confirm installation and equipment costs.</li><li>Agree the installation arrangements with the team.</li></ol>${actions(link('residential/installation','Installation Enquiry'),link('support/faqs?category=coverage','Installation FAQs',true))}`,true);
+  case 'residential': return editorial('Broadband for your household.','Connect your devices for work, learning, streaming and everyday browsing.','Residential lifestyle',actions(link('residential/plans','View Residential Plans')))+section('How you use your connection',grid(tile('Work from home','Compare plan speeds for video calls and daily tasks.','residential/plans'),tile('Connect the household','Choose a plan for the devices and activities in your home.','residential/compare','Compare Plans')),true)+section('Getting connected',`${approvedCopy('installation-process')}${actions(link('residential/installation','Installation Enquiry'),link('support/faqs?category=coverage','Installation FAQs',true))}`,true);
   case 'residential/plans':return section('Residential service plans',residentialCatalogue());
   case 'residential/plans/demo-1':case 'residential/plans/demo-2':{const choices=plansFor('residential'),id=query.get('plan'),plan=id?getPlan(id):choices[path.endsWith('2')?1:0];if(!plan||plan.audience!=='residential')return section('Plan information',notice(catalogueStatus.message||'The selected plan is not currently published.')+actions(link('residential/plans','View Residential Plans')));return section('',detailHTML(plan));}
   case 'residential/compare':{const items=plansFor('residential'),first=items.find(p=>p.id===query.get('first'))||items[0],second=items.find(p=>p.id===query.get('second'))||items[2]||items[1]||items[0];if(!first||!second)return section('Compare plans',notice(catalogueStatus.message||'Plan comparison is currently unavailable.'));return section('Choose two plans',`<div class="ik-form">${fieldHTML(field('first','First plan',{noBlank:true,options:planOptions('residential')}),{first:first.id},'compare')}${fieldHTML(field('second','Second plan',{noBlank:true,options:planOptions('residential')}),{second:second.id},'compare')}</div><div id="ik-comparison">${comparisonHTML(first.id,second.id)}</div>${actions(link('residential/plans','View All Residential Plans',true))}`);}
-  case 'residential/installation':return section('Installation details',formHTML('installation',[...contactFields,...addressFields.slice(1,3),field('district','Area or estate'),field('street','Street address'),planField('residential'),comments],'Review Enquiry',{...state.address,plan:state.plan||''}));
+  case 'residential/installation':return section('New installation process',approvedCopy('installation-process'))+section('Installation details',formHTML('installation',[...contactFields,...addressFields.slice(1,3),field('district','Area or estate'),field('street','Street address'),planField('residential'),comments],'Review Enquiry',{...state.address,plan:state.plan||''}));
   case 'business':return editorial('Plan your business connection.','Tell us about your workplace, team and online activities so we can discuss suitable options.','Business collaboration',actions(link('business/plans','View Business Plans'),link('business/solutions','Business Solutions',true)))+section('Find the right starting point',businessSegments(),true)+cta('Discuss your connection','Share your location, number of users and service requirements.','business/quote','Request a Quote');
   case 'business/solutions':return section('Choose your business needs',businessSegments()+grid(tile('Workplace connectivity','Discuss one office, several locations or a connection you are planning to replace.','business/solutions/connectivity','View Connectivity Options')))+section('Compare business plans',`<p>View published speeds and prices before preparing your enquiry.</p>${actions(link('business/plans','View Business Plans'))}`,true);
   case 'business/solutions/connectivity':case 'business/solutions/sme':case 'business/solutions/enterprise':return businessSolutionPage(path);
@@ -79,10 +94,9 @@ function coverageResult(state){
   return section('',`<div class="ik-result"><span class="ik-badge">Coverage requires confirmation</span><h2>${result.title}</h2><p>${result.text}</p><p class="ik-notice">Address entered: ${esc(addressFields.map(field=>state.address[field.name]).filter(Boolean).join(', '))}</p>${actions(link(journey(state.audience==='business'&&state.coverage==='available'?'business/quote':result.route,state),state.audience==='business'&&state.coverage==='available'?'Request a Quote':result.action),link(journey(state.audience+'/plans',state),state.audience==='business'?'Explore Business Plans':'Explore Residential Plans',true),link(journey('coverage',state),'Check Another Address',true))}</div>`);
 }
 function troubleshootingPage(query){
-  const topic=query.get('topic'),guide=Object.hasOwn(troubleshooting,topic)?troubleshooting[topic]:null;
-  if(!guide) return section('Choose a topic',notice('Choose the problem you are experiencing. These guides do not run tests on your connection.')+grid(...Object.entries(troubleshooting).map(([key,value])=>tile(value.title,'',`support/troubleshooting?topic=${key}&step=0`,'Start Guide'))));
-  const step=Math.min(guide.steps.length-1,Math.max(0,Number.parseInt(query.get('step')||'0',10)||0));
-  return section(guide.title,`<span class="ik-badge">Step ${step+1} of ${guide.steps.length}</span><p>${guide.steps[step]}</p>${actions(...(step?[link(`support/troubleshooting?topic=${topic}&step=${step-1}`,'Previous',true)]:[]),...(step<guide.steps.length-1?[link(`support/troubleshooting?topic=${topic}&step=${step+1}`,'Next Step')]:[link('support/fault','Report a Fault'),link('support/contact','Contact Support',true)]),link('support/troubleshooting','All Guides',true))}`);
+  const topic=query.get('topic'),guide=Object.hasOwn(troubleshootingArticles,topic)?troubleshootingArticles[topic]:null;
+  if(!guide)return section('Choose a topic',notice('Choose the problem you are experiencing. These guides do not run tests on your connection.')+grid(...Object.entries(troubleshootingArticles).map(([key,[title]])=>tile(title,'',`support/troubleshooting?topic=${key}`,'Start Guide'))));
+  return section(guide[0],approvedCopy(guide[1])+actions(link('support/fault','Report a Fault'),link('my-ikonectt/sign-in','Open My Ikonectt',true),link('support/contact','Contact Support',true),link('support/troubleshooting','All Guides',true)));
 }
 export function filterFAQs(search='',category='') {
   const value=search.toLocaleLowerCase().trim();
