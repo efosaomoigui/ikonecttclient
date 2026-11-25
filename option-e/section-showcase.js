@@ -8,18 +8,24 @@ const icons={
  growth:'<path d="M3 21v-6h4v6M10 21V10h4v11M17 21V5h4v16M3 10l7-6 5 2 6-5M17 1h4v4"/>',
 };
 const benefits=[
- ['Fibre Broadband','Browse connection options for your home or office.','speed'],
- ['Service Plans','Compare plan speeds and prices.','plans'],
- ['Customer Support','Find answers and contact the support team.','support'],
- ['Connection Guidance','Get help with Wi-Fi, routers and connection problems.','secure'],
- ['Address Checks','Contact us to confirm coverage at your address.','coverage'],
- ['Business Options','Discuss your organisation’s connectivity requirements.','growth'],
+ ['Fibre for Everyday Life','Connect for work, learning, streaming and time together.','speed'],
+ ['Plans That Fit Your Needs','Choose a speed suited to your household or business.','plans'],
+ ['Customer Care You Can Reach','Get guidance and support from our customer-care team.','support'],
+ ['Practical Connection Help','Find straightforward help with Wi-Fi, routers and connection issues.','secure'],
+ ['Guidance Before Installation','Confirm coverage and address feasibility before getting connected.','coverage'],
+ ['Connectivity for Your Business','Discuss the needs of your team, devices and daily work.','growth'],
 ];
 function showcase(){
  const section=home?.querySelector('#home-benefits');if(!section||section.dataset.showcase)return Boolean(section);
  section.dataset.showcase='silver';
- section.querySelector('.ik-extras-eyebrow')?.remove();
- section.querySelector('h2').textContent='Plans, coverage and support.';
+ const heading=section.querySelector('.ik-extras-heading');
+ let eyebrow=heading.querySelector('.ik-extras-eyebrow');
+ if(!eyebrow){eyebrow=document.createElement('p');eyebrow.className='ik-extras-eyebrow';heading.prepend(eyebrow);}
+ eyebrow.textContent='WHY CHOOSE US';
+ heading.querySelector('h2').textContent='A Better Broadband Experience';
+ const intro=document.createElement('p');intro.className='e-benefits-intro';
+ intro.textContent='Fibre connectivity, flexible plans and customer support for homes and businesses.';
+ heading.append(intro);
  section.querySelectorAll('.ik-benefit-card').forEach((card,index)=>{
   const [title,description,key]=benefits[index];
   const icon=card.querySelector('svg');icon.innerHTML=icons[key];

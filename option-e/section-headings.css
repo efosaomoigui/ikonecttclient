@@ -1,0 +1,28 @@
+/* Editorial hierarchy for the approved Option E layout. */
+.ik-site[data-template=e] .e-section-kicker{
+ display:flex;align-items:center;gap:12px;
+ margin:0 0 14px;padding:0;
+ color:var(--ik-accent,#ed101a);
+ font-size:13px;font-weight:700;line-height:1.5;
+ letter-spacing:.14em;text-transform:uppercase;
+}
+.ik-site[data-template=e] .e-section-kicker::before,
+.ik-site[data-template=e] .e-section-kicker::after{
+ content:'';display:block;flex:0 0 42px;width:42px;height:1px;
+ background:currentColor;
+}
+.ik-site[data-template=e] .ik-home #about .e-section-kicker{
+ color:var(--ik-accent,#ed101a);font-size:13px;font-weight:700;line-height:1.5;margin:0 0 14px;
+}
+.ik-site[data-template=e] .e-section-kicker-center{justify-content:center}
+.ik-site[data-template=e] .e-plans-introduction .e-section-kicker{color:#fff}
+.ik-site[data-template=e] .e-audience-copy h2::before{display:none}
+.ik-site[data-template=e] .ik-home :is(#coverage,#portal,#home-testimonials) h2{font-weight:700}
+.ik-site[data-template=e] .ik-page-hero .e-section-kicker{margin-top:20px}
+.ik-site[data-template=e] .ik-page-hero h1{font-weight:700}
+@media(max-width:639px){
+ .ik-site[data-template=e] .ik-home #about .e-section-kicker{font-size:11px}
+ .ik-site[data-template=e] .e-section-kicker{font-size:11px;letter-spacing:.1em;gap:10px}
+ .ik-site[data-template=e] .e-section-kicker::before,
+ .ik-site[data-template=e] .e-section-kicker::after{flex-basis:35px;width:35px}
+}

@@ -13,8 +13,6 @@ export function installPresentationLinks(doc = document) {
     const intro=doc.querySelector('[data-portal-intro]');
     const copy='Manage your account and subscription through the official My Ikonectt customer portal.';
     if(intro&&intro.textContent!==copy)intro.textContent=copy;
-    const heading=doc.querySelector('[data-portal-heading]');
-    if(heading&&heading.textContent!=='My ikonectt.')heading.textContent='My ikonectt.';
     const cta=doc.querySelector('[data-portal-cta]');
     if(cta&&cta.textContent!=='My ikonectt')cta.textContent='My ikonectt';
     for (const anchor of doc.querySelectorAll('a[href="#/my-ikonectt/sign-in"], a[href="#portal"]')) {

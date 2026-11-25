@@ -44,7 +44,7 @@ export function mountSite({root,home,template}) {
     assistant.updateContext();
   }
   const carousels=[...home.querySelectorAll('[data-home-plan-carousel]')].map(host=>{
-    host.innerHTML=carouselHTML(state.audience);
+    host.innerHTML=carouselHTML(state.audience,{showPricingNote:root.dataset.template!=='e'});
     return initializeCarousel(host.querySelector('[data-plan-carousel]'),{signal:abort.signal,onAudienceChange:audience=>{state.audience=audience;state.plan=state.selectedPlans[audience];syncAudience();}});
   });
 
@@ -108,8 +108,13 @@ export function mountSite({root,home,template}) {
       const description=accountUnavailable?'Use the official Ikonectt customer portal for account and subscription functions.':detail?.audience==='residential'?`${planName(detail)} fibre broadband: ${detail.speedMbps} Mbps. ${priceLabel(detail)}${pricePeriod(detail)}. Confirm address feasibility and service terms.`:pages[path]?.[1]||'Choose a page from the navigation.';
       descriptionMeta.content=description;
       const section=path.split('/')[0];const sectionName=menus.find(item=>item.id===section)?.label||'Ikonectt';
+      const intro=root.dataset.template==='e'?({
+       residential:'FOR YOUR HOME',business:'FOR YOUR BUSINESS',
+       'residential/plans':'OUR BROADBAND PLANS','business/plans':'OUR BROADBAND PLANS',
+       coverage:'CHECK AVAILABILITY',about:'ABOUT IKONECTT',support:'HERE TO HELP',
+      })[path]:null;
       const content=accountUnavailable?`<section class="ik-section"><div class="ik-wrap"><p>Manage your account through the client's official portal. Account authentication and payments are handled there.</p>${link('my-ikonectt/sign-in','Open My Ikonectt')}${link('support','View Support Information',true)}</div></section>`:renderPage(path,{state,query,template:root.dataset.template});
-      main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(title)}</span></nav><h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${content}`;
+      main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(title)}</span></nav>${intro?'<p class="e-section-kicker">'+intro+'</p>':''}<h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${content}`;
       document.title=title+(detail?.audience==='residential'?' — '+detail.speedMbps+' Mbps':'')+' | ikonectt';
       initializePage();
     }

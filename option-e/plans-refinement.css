@@ -54,3 +54,9 @@
 .ik-site[data-template=e] .ik-home #plans .ik-plan-card:not([data-active=true]) .ik-plan-price::after{border-top-color:#252a2f}
 .ik-site[data-template=e] .ik-home #plans .ik-plan-card:not([data-active=true]) .ik-plan-card-actions .ik-button:not(.ik-button-secondary){background:#252a2f;border-color:#252a2f;color:#fff}
 .ik-site[data-template=e] .ik-home #plans .ik-plan-card:not([data-active=true]) .ik-plan-card-actions .ik-button:not(.ik-button-secondary):hover{background:#343b42;border-color:#343b42}
+
+/* Fit the initial three-card desktop view with clearance for both outer borders. */
+@media(min-width:1024px){
+ .ik-site[data-template=e] .ik-home .e-plan-showcase{--ik-card-width:calc((100cqw - 52px)/3)}
+ .ik-site[data-template=e] .ik-home .e-plan-showcase .ik-carousel-rail{padding-inline:2px}
+}

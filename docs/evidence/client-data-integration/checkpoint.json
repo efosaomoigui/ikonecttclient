@@ -2,10 +2,10 @@
   "reason": "Client-authorized official portal and API-backed plans, coverage, knowledge and enquiry integration. Historical checkpoints remain immutable.",
   "files": {
     "option-e/index.html": {
-      "sha256LF": "a54b070c290db2e8c952b140a0138729454139526130af8182c6780a31dd20df"
+      "sha256LF": "35420fbab2ae71ac9c17e840657ae0fa8ab5149571694ac96ebdfb7e60105e91"
     },
     "option-e/section-showcase.js": {
-      "sha256LF": "2fdfbcb021ab6435ac6e61440f89b71c0133b87ffda4b2bd0f7355bfc9ad7881"
+      "sha256LF": "52c49a061a3bdb257b91e29c99bc77a2aab28f358f947bfdf1b5a7ee8e63888c"
     },
     "shared/assistant-engine.js": {
       "sha256LF": "4dd8ad24c51732a2c85e21e2b704b2a49e1304fef7ccec3b31857243708ed441"
@@ -17,7 +17,7 @@
       "sha256LF": "2eb0fccc717a6c3bf4c822e5513a8614837bb7d29816f29b6e5b2dc0552da235"
     },
     "shared/carousel.js": {
-      "sha256LF": "807ae6e0a1c47ff59848ed4d15ea444ce31ab81deb814a186c0ea5288ca052d8"
+      "sha256LF": "c648bc84b137c0d81423ccb4251e3edf7b8de3ae5c438ac5c02d03dd2fcf99db"
     },
     "shared/catalogue.js": {
       "sha256LF": "c48828bff32742e859fca2c7dce6aee9d7234be2174f822dea2fc3dee3c127fc"
@@ -32,10 +32,10 @@
       "sha256LF": "127e88dc334cfd9c8ac76b668eb685e6fb897e1c7027c1a5190e2ad10d660bf4"
     },
     "shared/plan-ui.js": {
-      "sha256LF": "40f1dde50dc4f257b768edd033aace2a607b16b5653096fedb21db699f2d761f"
+      "sha256LF": "8eec87cba7da64d2e07b4ef1263c8324cce1709f68f735f135e53a9bbf790f24"
     },
     "shared/public-site.js": {
-      "sha256LF": "18e8c05643a017bc32e04e29f21fc9a0dd80dc3314149de098e036807363d666"
+      "sha256LF": "fb08efa6c0434f1c869d080f7908999acfe7fb5261f95865d3bb6a3d994c4d0c"
     },
     "shared/public-site.css": {
       "sha256LF": "623ba5aacddd0dc488e329c42402dc1f87b6dbadfe672513b3bc55318a8509cd"

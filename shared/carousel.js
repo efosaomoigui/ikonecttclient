@@ -3,8 +3,9 @@ import {escapeHTML as esc} from './forms.js';
 import {planCardHTML} from './plan-ui.js';
 export function initializeCarousel(element,{onAudienceChange=()=>{},signal}={}){
   const rail=element.querySelector('.ik-carousel-rail'),status=element.querySelector('.ik-carousel-status');
-  let audience=element.querySelector('[data-carousel-audience][aria-pressed=true]').dataset.carouselAudience,index=2,frame=0,scrollTimer;
+  let audience=element.querySelector('[data-carousel-audience][aria-pressed=true]').dataset.carouselAudience,index=element.closest('.ik-site')?.dataset.template==='e'?1:2,frame=0,scrollTimer;
   const opts=signal?{signal}:{};
+  const defaultIndex=()=>Math.min(element.closest('.ik-site')?.dataset.template==='e'?1:2,plansFor(audience).length-1);
   const cards=()=>[...rail.querySelectorAll('.ik-plan-card')];
   const reduced=()=>window.matchMedia?.('(prefers-reduced-motion:reduce)').matches;
   function mark(next){
@@ -29,7 +30,7 @@ export function initializeCarousel(element,{onAudienceChange=()=>{},signal}={}){
     const changed=audience!==next;audience=next;
     element.querySelectorAll('[data-carousel-audience]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.carouselAudience===audience)));
     if(changed)rail.innerHTML=plansFor(audience).map((plan,n,items)=>planCardHTML(plan,{carousel:true,index:n,count:items.length})).join('')||`<p role="status">${esc(catalogueStatus.message||'No published plans available')}</p>`;
-    links();go(changed?Math.min(2,plansFor(audience).length-1):index,false);
+    links();go(changed?defaultIndex():index,false);
     if(announce)onAudienceChange(audience);
   }
   element.addEventListener('click',event=>{
@@ -55,5 +56,5 @@ export function initializeCarousel(element,{onAudienceChange=()=>{},signal}={}){
   // Keep a newly focused offscreen card visible without changing focus or tab order.
   rail.addEventListener('focusin',event=>{const card=event.target.closest('.ik-plan-card');if(card)go(cards().indexOf(card));},opts);
   setAudience(audience);frame=window.requestAnimationFrame(()=>go(index,false));
-  return {setAudience,refresh(){rail.innerHTML=plansFor(audience).map((plan,n,items)=>planCardHTML(plan,{carousel:true,index:n,count:items.length})).join('')||`<p role="status">${esc(catalogueStatus.message||'No published plans available')}</p>`;setAudience(audience);},destroy(){clearTimeout(scrollTimer);window.cancelAnimationFrame(frame);}};
+  return {setAudience,refresh(){const previous=cards()[index]?.dataset.planId;index=previous?Math.max(0,plansFor(audience).findIndex(plan=>plan.id===previous)):defaultIndex();rail.innerHTML=plansFor(audience).map((plan,n,items)=>planCardHTML(plan,{carousel:true,index:n,count:items.length})).join('')||`<p role="status">${esc(catalogueStatus.message||'No published plans available')}</p>`;setAudience(audience);},destroy(){clearTimeout(scrollTimer);window.cancelAnimationFrame(frame);}};
 }
