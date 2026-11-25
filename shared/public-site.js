@@ -33,7 +33,7 @@ export function mountSite({root,home,template}) {
   const main=document.createElement('main');main.id='ik-main';main.tabIndex=-1;main.hidden=true;
   const footer=document.createElement('footer');footer.className='ik-footer';footer.innerHTML=footerHTML();
   root.prepend(skip,header);root.append(main,footer);
-  const assistant=mountAssistant({root,template,navigate,...(publicClient?{provider:{respond:publicClient.guidance}}:{}),getContext:()=>({path:parseRoute(window.location.hash).path,audience:state.audience,plan:state.plan})});
+  const assistant=mountAssistant({root,template,navigate,...(publicClient?{guest:true,publicClient,provider:{respond:publicClient.guidance}}:{}),getContext:()=>({path:parseRoute(window.location.hash).path,audience:state.audience,plan:state.plan})});
   const nav=header.querySelector('.ik-desktop-nav'),mobile=header.querySelector('.ik-mobile-button');
   function syncAudience(){
     root.dataset.audience=state.audience;

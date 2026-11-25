@@ -16,7 +16,7 @@
 }
 .ik-site[data-template=e] .e-section-kicker-center{justify-content:center}
 .ik-site[data-template=e] .e-plans-introduction .e-section-kicker{color:#fff}
-.ik-site[data-template=e] .e-audience-copy h2::before{display:none}
+.ik-site[data-template=e] .ik-home :is(#residential,#business) .e-audience-copy h2::before{content:none;display:none}
 .ik-site[data-template=e] .ik-home :is(#coverage,#portal,#home-testimonials) h2{font-weight:700}
 .ik-site[data-template=e] .ik-page-hero .e-section-kicker{margin-top:20px}
 .ik-site[data-template=e] .ik-page-hero h1{font-weight:700}

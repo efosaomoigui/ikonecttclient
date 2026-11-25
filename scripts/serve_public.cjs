@@ -5,11 +5,11 @@ const {existsSync}=require('node:fs');
 const root=path.resolve(__dirname,'../dist-public');
 if(!existsSync(path.join(root,'option-e','index.html')))throw new Error('Run npm run build before starting the public site.');
 const port=Number(process.env.PORT??3000);
-const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.woff':'font/woff'};
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json','.txt':'text/plain; charset=utf-8','.xml':'application/xml; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.woff':'font/woff'};
 const rules=require('../vercel.json').redirects;
 const apiOrigin=process.env.IKONECTT_PUBLIC_API_ORIGIN;
 if(apiOrigin){const parsed=new URL(apiOrigin);if(!['http:','https:'].includes(parsed.protocol)||parsed.username||parsed.password||parsed.pathname!=='/')throw new Error('Invalid public API origin.');}
-const publicPaths=new Map([['/api/v1/plans','GET'],['/api/v1/coverage/service-areas','GET'],['/api/v1/knowledge','GET'],['/api/v1/leads','POST'],['/api/v1/assistant/guidance','POST']]);
+const publicPaths=new Map([['/api/v1/plans','GET'],['/api/v1/coverage/service-areas','GET'],['/api/v1/knowledge','GET'],['/api/v1/contact-settings','GET'],['/api/v1/leads','POST'],['/api/v1/assistant/guidance','POST']]);
 http.createServer(async(req,res)=>{
 
   try {

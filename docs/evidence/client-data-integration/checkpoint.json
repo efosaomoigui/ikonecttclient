@@ -1,8 +1,8 @@
 {
-  "reason": "Client-authorized official portal and API-backed plans, coverage, knowledge and enquiry integration. Historical checkpoints remain immutable.",
+  "reason": "Client-authorized API integration, guest assistant and WhatsApp refinement; approved website design retained.",
   "files": {
     "option-e/index.html": {
-      "sha256LF": "35420fbab2ae71ac9c17e840657ae0fa8ab5149571694ac96ebdfb7e60105e91"
+      "sha256LF": "cc8a05c70f88d5dbf5ea8e4172b8021c9e5fc1510e8c33132ce6d9343ceb6f82"
     },
     "option-e/section-showcase.js": {
       "sha256LF": "52c49a061a3bdb257b91e29c99bc77a2aab28f358f947bfdf1b5a7ee8e63888c"
@@ -11,10 +11,10 @@
       "sha256LF": "4dd8ad24c51732a2c85e21e2b704b2a49e1304fef7ccec3b31857243708ed441"
     },
     "shared/assistant-view.js": {
-      "sha256LF": "c54d42e2ce9af7ad6771ed9d78aea493a0b55c7acba2d09f8a454da59b4d18fd"
+      "sha256LF": "8604cc3ae4ac068e10cb4d4540151da33c7323e1d2958404e86e1a82e7c5f585"
     },
     "shared/assistant.js": {
-      "sha256LF": "2eb0fccc717a6c3bf4c822e5513a8614837bb7d29816f29b6e5b2dc0552da235"
+      "sha256LF": "2b351fc0ca21a709d47b042ef5ee81d716eda4621e287b3ddda969473af367dd"
     },
     "shared/carousel.js": {
       "sha256LF": "c648bc84b137c0d81423ccb4251e3edf7b8de3ae5c438ac5c02d03dd2fcf99db"
@@ -35,7 +35,7 @@
       "sha256LF": "8eec87cba7da64d2e07b4ef1263c8324cce1709f68f735f135e53a9bbf790f24"
     },
     "shared/public-site.js": {
-      "sha256LF": "fb08efa6c0434f1c869d080f7908999acfe7fb5261f95865d3bb6a3d994c4d0c"
+      "sha256LF": "b117b0c71f1e50137524c9bca493d668517b45a4aa415ed4b15bc3ef24f0ff52"
     },
     "shared/public-site.css": {
       "sha256LF": "623ba5aacddd0dc488e329c42402dc1f87b6dbadfe672513b3bc55318a8509cd"
@@ -48,6 +48,12 @@
     },
     "shared/company-pages.js": {
       "sha256LF": "a558867de3c29ed1890d1893434071d613f970a9d0e6df86c55b05d45ed2901e"
+    },
+    "shared/assistant.css": {
+      "sha256LF": "53b06f791c760a00d392f9e6e75ef4059292381da5e83a2f244a4e6959f084c0"
+    },
+    "shared/public-data.js": {
+      "sha256LF": "4c0c58809e8bcaffbca927fd33d7175c4d4e4335210c563b34581a5c2e8db07f"
     }
   }
 }

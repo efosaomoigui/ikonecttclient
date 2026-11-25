@@ -7,8 +7,8 @@ import {fileURLToPath} from 'node:url';
 import {JSDOM} from 'jsdom';
 import {installPresentationLinks} from '../scripts/presentation-links.mjs';
 
-test('E staff shortcut requires an explicit local demo flag and preserves customer access',()=>{
- for(const [origin,expected] of [['http://localhost:3000',2],['http://127.0.0.1:3000',2],['https://presentation.example.test',0]]){
+test('public navigation omits temporary staff shortcuts and preserves customer access',()=>{
+ for(const [origin,expected] of [['http://localhost:3000',0],['http://127.0.0.1:3000',0],['https://presentation.example.test',0]]){
   const dom=new JSDOM('<header class="ik-header"><nav class="ik-desktop-nav"></nav><div class="ik-nav-actions"><a href="#/my-ikonectt/sign-in">My Ikonectt</a></div></header>',{url:origin+'/option-e/?demo-admin=1'});
   const cleanup=installPresentationLinks(dom.window.document);
   assert.equal(dom.window.document.querySelectorAll('[data-ik-presentation-admin]').length,expected);
@@ -106,7 +106,7 @@ test('presentation keeps the original two-design landing and packages isolated a
   assert.throws(()=>execute(true),/Unsafe presentation output directory/);
 });
 
-for(const template of ['a','e'])test(`Template ${template}: presentation links open customer home/Admin in new tabs and survive header rerenders`,async()=>{
+for(const template of ['a','e'])test(`Template ${template}: presentation links open the official customer portal in new tabs and survive header rerenders`,async()=>{
   const header=()=>`<header class="ik-header"><nav class="ik-desktop-nav"><a class="ik-mobile-portal" href="#/my-ikonectt/sign-in"><span>My Ikonectt mobile</span></a></nav><div class="ik-nav-actions"><a href="#/my-ikonectt/sign-in"><span>My Ikonectt desktop</span></a></div></header>`;
   const hero=template==='a'?'<button id="home-my-ikonectt"><span>My Ikonectt</span></button>':'<a id="hero-portal" href="#portal"><span>My Ikonectt</span></a>';
   const dom=new JSDOM(`<div class="ik-site">${header()}<main>${hero}<p>Existing approved website content</p></main></div>`,{url:`https://presentation.example.test/option-${template}/`});
@@ -130,17 +130,8 @@ for(const template of ['a','e'])test(`Template ${template}: presentation links o
       }
       const desktop=doc.querySelectorAll('.ik-nav-actions [data-ik-presentation-admin]');
       const mobile=doc.querySelectorAll('.ik-desktop-nav [data-ik-presentation-admin]');
-      if(template==='e'){
-        assert.equal(desktop.length,0);assert.equal(mobile.length,0);return;
-      }
-      assert.equal(desktop.length,1);assert.equal(mobile.length,1);
-      assert.ok(!desktop[0].classList.contains('ik-mobile-portal'));
-      assert.ok(mobile[0].classList.contains('ik-mobile-portal'));
-      for(const link of [...desktop,...mobile]){
-        assert.equal(link.href,'https://presentation.example.test/admin/');
-        assert.equal(link.target,'_blank');
-        assert.ok(link.relList.contains('noopener')&&link.relList.contains('noreferrer'));
-      }
+      assert.equal(desktop.length,0);
+      assert.equal(mobile.length,0);
     };
     assertLinks();
     const customer=doc.querySelector('.ik-nav-actions [data-ik-presentation-customer]');

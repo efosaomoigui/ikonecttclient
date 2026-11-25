@@ -100,3 +100,37 @@
 .ik-site .ik-assistant-bubble .ik-assistant-more{margin:8px 0 0;white-space:normal}
 .ik-site .ik-assistant-more summary{margin-left:16px;padding:8px 0;min-height:36px;color:var(--as-muted)}
 .ik-site .ik-assistant-more p{white-space:pre-wrap;font-size:13px;line-height:1.65;margin-top:4px}
+
+/* Completion refinements retain the existing chat shell and brand. */
+.ik-site .ik-assistant-header>img{margin-right:auto}
+.ik-site .ik-assistant-header-chat{display:grid;place-items:center;color:#ed101a;width:32px;height:32px;flex:0 0 32px}
+.ik-site .ik-assistant-header-chat svg{width:25px;height:25px}
+.ik-site .ik-assistant-whatsapp{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 6px 24px #063d1930}
+.ik-site .ik-assistant-whatsapp svg{width:29px;height:29px}
+.ik-site .ik-assistant [hidden]{display:none!important}
+.ik-site .ik-assistant{font-size:15px}
+.ik-site .ik-assistant-bubble,.ik-site .ik-assistant-more p{font-size:15px;line-height:1.7;padding:15px 16px}
+.ik-site .ik-assistant-bubble{min-width:0;max-width:100%}
+.ik-site .ik-assistant-message{margin-bottom:22px}
+.ik-site .ik-assistant-message>small{font-size:11px}
+.ik-site .ik-assistant-action{font-size:14px!important;line-height:1.5;min-width:0;overflow-wrap:anywhere}
+.ik-site .ik-assistant label,.ik-site .ik-assistant-tools :is(button,a){font-size:13px}
+.ik-site .ik-assistant :is(input,textarea){font-size:16px}
+.ik-site .ik-assistant :is(summary,.ik-assistant-secondary){font-size:14px}
+.ik-site .ik-assistant :is(.ik-assistant-footer,.ik-assistant-composer small,.ik-assistant-privacy){font-size:12px!important}
+.ik-site .ik-assistant-intro h3,.ik-site .ik-assistant-enquiry-review h3{font-size:24px;font-weight:600;line-height:1.25}
+.ik-site .ik-assistant-scroll,.ik-site .ik-assistant-body{overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#8c949d70 transparent;scrollbar-gutter:stable}
+.ik-site .ik-assistant :is(.ik-assistant-scroll,.ik-assistant-body)::-webkit-scrollbar{width:6px}
+.ik-site .ik-assistant :is(.ik-assistant-scroll,.ik-assistant-body)::-webkit-scrollbar-track{background:transparent}
+.ik-site .ik-assistant :is(.ik-assistant-scroll,.ik-assistant-body)::-webkit-scrollbar-thumb{background:#8c949d70;border-radius:8px}
+.ik-site .ik-assistant :is(.ik-assistant-scroll,.ik-assistant-body):hover{scrollbar-color:#8c949daa transparent}
+.ik-site .ik-assistant :is(.ik-assistant-scroll,.ik-assistant-body)::-webkit-scrollbar-thumb:hover{background:#8c949daa}
+.ik-site .ik-assistant-typing{color:var(--as-muted);font-size:13px;padding:10px 0!important}
+.ik-site .ik-assistant [data-chat-enquiry]{display:block;padding:0;background:transparent;box-shadow:none;border:0;min-width:0}
+.ik-site .ik-assistant [data-chat-enquiry] .ik-field{display:block;margin-top:16px}
+.ik-site .ik-assistant [data-chat-enquiry] .ik-field small{font-size:12px}
+.ik-site .ik-assistant [data-chat-enquiry] select{width:100%;max-width:100%;min-height:46px;font:inherit;background:var(--as-bg);color:var(--as-text);border:1px solid var(--as-line);padding:10px}
+.ik-site .ik-assistant-enquiry-review dd{margin:0 0 12px;overflow-wrap:anywhere;white-space:pre-wrap}
+.ik-site .ik-assistant-enquiry-review dt{font-weight:600;font-size:13px}
+.ik-site .ik-assistant .ik-assistant-consent{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.ik-site .ik-assistant .ik-assistant-consent input{appearance:auto;flex:0 0 20px;min-height:20px;width:20px;height:20px;padding:0;margin-top:3px}
