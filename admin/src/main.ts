@@ -13,6 +13,7 @@ const icons = { ArrowDown, ArrowRight, ArrowUpRight, Building2, CalendarDays, Ch
 import * as C from '../vendor/contracts';
 import { ROLE_PERMISSIONS, type StaffRole } from '../vendor/permissions';
 import { WorkspaceApi } from './api';
+import { AssistantSettingsView } from './assistant-settings';
 import { modules, labels, can, type Field, type RecordData } from './modules';
 declare const __IKONECTT_PREVIEW__: boolean;
 const api = new WorkspaceApi();
@@ -59,8 +60,13 @@ function login(message = '') {
         refreshIcons();
     } };
 }
+const activeModules = new Set(['plans', 'serviceAreas', 'leads', 'knowledge', 'tickets', 'staff', 'audit', 'notifications']);
 function navigationEntries() {
-    return [{ key: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard', group: 'Overview', permission: null }, ...Object.entries(modules).map(([key, m]) => ({ key, ...m })), { key: 'reports', label: 'Reports', icon: 'chart-no-axes-combined', group: 'Intelligence', permission: 'reports.read' }, { key: 'integrations', label: 'Integrations', icon: 'plug', group: 'Administration', permission: 'integrations.read' }, { key: 'settings', label: 'Settings', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' }];
+    const entries = [{ key: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard', group: 'Overview', permission: null }, ...Object.entries(modules).map(([key, m]) => ({ key, ...m })), { key: 'reports', label: 'Reports', icon: 'chart-no-axes-combined', group: 'Intelligence', permission: 'reports.read' }, { key: 'integrations', label: 'Integrations', icon: 'plug', group: 'Administration', permission: 'integrations.read' }, { key: 'settings', label: 'Settings', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' }];
+    if (api.mode === 'mock') return entries;
+    return [...entries.filter(entry => entry.key === 'dashboard' || activeModules.has(entry.key) || ['integrations', 'settings'].includes(entry.key)),
+        { key: 'assistantSettings', label: 'AI Assistant', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' },
+        { key: 'contactSettings', label: 'Contact settings', icon: 'contact', group: 'Administration', permission: 'staff.manage' }];
 }
 function nav() {
     const entries = navigationEntries();
@@ -145,7 +151,14 @@ async function navigate() {
             passwordSetup();
             return;
         }
-        if (modules[route]) {
+        if (api.mode === 'live' && !navigationEntries().some(entry => entry.key === route))
+            throw new Error('This module is outside the active website delivery.');
+        if (route === 'assistantSettings' || route === 'contactSettings') {
+            api.assert('staff.manage');
+            const settingsView = new AssistantSettingsView(api, content(), () => version === viewVersion);
+            if (route === 'assistantSettings') await settingsView.assistant(); else await settingsView.contact();
+        }
+        else if (modules[route]) {
             api.assert(modules[route].permission);
             rows = await api.list(route);
             cache[route] = rows;
@@ -192,7 +205,26 @@ function value(key: string, v: any) { if (v === null || v === undefined || v ===
     const ref = Object.values(cache).flat().find(r => r.id === v);
     return esc(ref?.name || ref?.subject || `${v.slice(0, 8)}…${v.slice(-4)}`);
 } return esc(Array.isArray(v) ? v.join(', ') : typeof v === 'object' ? JSON.stringify(v) : v); }
+async function websiteDashboard(version: number) {
+    const definitions = [
+        ['plans', 'Published plans', 'layers', (records: RecordData[]) => records.filter(record => record.published && !record.simulated).length],
+        ['serviceAreas', 'Active service areas', 'map-pin', (records: RecordData[]) => records.filter(record => record.active && record.displayPrimary).length],
+        ['leads', 'New website enquiries', 'contact', (records: RecordData[]) => records.filter(record => record.status === 'NEW').length],
+        ['knowledge', 'Published knowledge', 'scroll-text', (records: RecordData[]) => records.filter(record => record.published).length],
+        ['tickets', 'Open local support requests', 'headphones', (records: RecordData[]) => records.filter(record => ['OPEN', 'IN_PROGRESS'].includes(record.status)).length],
+    ] as const;
+    const available = definitions.filter(([key]) => can(api.permissions, modules[key].permission));
+    const result = await Promise.allSettled(available.map(([key]) => api.list(key)));
+    if (version !== viewVersion) return;
+    const cards = available.map(([key, label, symbol, count], index) => {
+        const outcome = result[index];
+        const amount = outcome.status === 'fulfilled' ? count(outcome.value).toLocaleString() : 'Unavailable';
+        return `<a href="#/${key}" class="metric"><div><span>${label}</span>${icon(symbol)}</div><strong>${amount}</strong><small>Persistent backend records ${icon('arrow-up-right')}</small></a>`;
+    }).join('');
+    content().innerHTML = heading('Website Overview', 'Published website information and locally recorded requests.', button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<section class="metrics">${cards}</section><section class="panel panel-pad"><h2>Website operations</h2><p>Manage current plans, listed service areas and published knowledge. Customer account and subscription services are provided through the official customer portal.</p><p>Local enquiries and support records do not confirm submission to the client's ECRM.</p>${can(api.permissions, 'staff.manage') ? '<div class="wallet-actions"><a class="btn" href="#/assistantSettings">AI Assistant settings</a><a class="btn" href="#/contactSettings">Contact settings</a></div>' : ''}</section>${!available.length ? '<div class="notice">Your role has no access to website summary records. Contact your administrator if access is required.</div>' : ''}`;
+}
 async function dashboard(version: number) {
+    if (api.mode === 'live') { await websiteDashboard(version); return; }
     const keys = Object.keys(modules).filter(k => !['audit', 'staff', 'provisioning','notifications'].includes(k) && can(api.permissions, modules[k].permission));
     const results = await Promise.allSettled(keys.map(k => loadRelated(k)));
     if (version !== viewVersion)
@@ -386,8 +418,8 @@ async function verify(id: string) {
 async function reports(version: number) { const r = await api.report(); if (version !== viewVersion)
     return; content().innerHTML = heading('Operational reports', 'Current application records. Provider revenue, usage and network performance are unavailable.', button('Refresh report', 'refresh', '', 'refresh-cw')) + `${r.includesSimulatedData ? '<div class="notice">This report includes simulated data.</div>' : ''}<section class="metrics">${[['Customers', r.customers], ['Leads', r.leads], ['Orders', r.orders], ['Open tickets', r.openTickets]].map(([name, n]) => `<div class="metric"><div><span>${name}</span>${icon('chart-no-axes-column')}</div><strong>${n}</strong><small>Current records</small></div>`).join('')}</section><section class="dashboard-grid"><div class="panel panel-pad"><span class="eyebrow">SERVICE DISTRIBUTION</span><h2>Subscriptions by status</h2><div class="bar-chart">${r.subscriptionsByStatus.map((x: any) => `<div><span>${pretty(x.status)}</span><meter min="0" max="${Math.max(1, ...r.subscriptionsByStatus.map((s: any) => s.count))}" value="${x.count}">${x.count}</meter><strong>${x.count}</strong></div>`).join('')}</div></div><div class="panel panel-pad"><span class="eyebrow">FINANCIAL VERIFICATION</span><h2>Confirmed payment records</h2><div class="report-money">${money(r.confirmedPaymentsMinor)}</div><p class="muted">Sum of confirmed payments in the application. Settlement, revenue recognition and external billing are outside this report.</p></div></section>`; }
 async function integrations(version: number) { const response = await api.integrations(); if (version !== viewVersion)
-    return; const list:RecordData[] = Array.isArray(response) ? response : Object.entries(response).map(([name, v]) => ({ name, ...(typeof v === 'object' ? v as object : { mode: v }) })); content().innerHTML = heading('Integrations', 'Provider connections and application capabilities, as reported by the shared service.', button('Refresh status', 'refresh', '', 'refresh-cw')) + `<div class="integration-grid">${list.map((x: RecordData) => { const { status, message } = integrationState(x); return `<section class="panel integration-card"><div class="integration-icon">${icon('plug')}</div>${badge(status)}<h2>${esc(x.name === 'paymentSettlement' ? 'Payment settlement' : pretty(x.name || x.provider || x.key))}</h2><p>${esc(message)}</p><dl><dt>Mode</dt><dd>${esc(x.mode || status)}</dd></dl></section>`; }).join('')}</div><p class="footnote">Credentials and infrastructure configuration stay on the server. A simulated provider is never a live production connection.</p>`; }
-function settings() { content().innerHTML = heading('Workspace settings', 'Application configuration and the access model for this workspace.') + `<section class="panel panel-pad"><span class="eyebrow">ACCESS CONTROL</span><h2>Shared role permissions</h2><p>${STANDALONE_DEMO ? 'Sample permissions illustrate the existing staff roles within this independent demonstration.' : 'Permissions below are synchronized from Agent 1’s backend. Live access uses the server’s permissions endpoint. Role changes are available under Staff & Roles.'}</p><div class="permission-grid">${Object.entries(ROLE_PERMISSIONS).map(([role, permissions]) => `<div><h3>${pretty(role)}</h3><ul>${permissions.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('')}</div></section><section class="panel panel-pad settings-note"><h2>Operational configuration</h2><p>The approved API currently provides integration status and role assignment. It does not expose editable operational settings, custom role definitions or provider credentials. These settings require Agent 1’s contract before they can be edited.</p></section>`; }
+    return; const list:RecordData[] = Array.isArray(response) ? response : Object.entries(response).map(([name, v]) => ({ name, ...(typeof v === 'object' ? v as object : { mode: v }) })); content().innerHTML = heading('Integrations', 'Provider connections and application capabilities, as reported by the shared service.', button('Refresh status', 'refresh', '', 'refresh-cw')) + `<div class="integration-grid">${list.filter(x => api.mode === 'mock' || ['email', 'sms', 'coverage', 'ai', 'support'].includes(x.name || x.key)).map((x: RecordData) => { const { status, message } = integrationState(x); return `<section class="panel integration-card"><div class="integration-icon">${icon('plug')}</div>${badge(status)}<h2>${esc(x.name === 'paymentSettlement' ? 'Payment settlement' : pretty(x.name || x.provider || x.key))}</h2><p>${esc(message)}</p><dl><dt>Mode</dt><dd>${esc(x.mode || status)}</dd></dl></section>`; }).join('')}</div><p class="footnote">Credentials and infrastructure configuration stay on the server. A simulated provider is never a live production connection.</p>`; }
+function settings() { content().innerHTML = heading('Workspace settings', 'Application configuration and the access model for this workspace.') + `<section class="panel panel-pad"><span class="eyebrow">ACCESS CONTROL</span><h2>Shared role permissions</h2><p>${STANDALONE_DEMO ? 'Sample permissions illustrate the existing staff roles within this independent demonstration.' : 'Permissions below are synchronized from Agent 1’s backend. Live access uses the server’s permissions endpoint. Role changes are available under Staff & Roles.'}</p><div class="permission-grid">${Object.entries(ROLE_PERMISSIONS).map(([role, permissions]) => `<div><h3>${pretty(role)}</h3><ul>${permissions.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('')}</div></section><section class="panel panel-pad settings-note"><h2>Operational configuration</h2><p>Manage model assistance and customer-support contacts in the dedicated settings views. Provider credentials are handled by the server.</p></section>`; }
 function passwordSetup() { content().innerHTML = heading('Update your staff password', 'Your account requires a password change before accessing operational data.') + `<form class="panel panel-pad compact-form" id="change-password"><label>Current password<input type="password" name="currentPassword" required autocomplete="current-password"></label><label>New password<input type="password" name="password" required minlength="12" maxlength="128" autocomplete="new-password"></label><div class="form-error" role="alert"></div><button class="btn primary">Update password</button></form>`; document.querySelector<HTMLFormElement>('#change-password')!.onsubmit = async (e) => { e.preventDefault(); const f = e.currentTarget as HTMLFormElement; try {
     const data = C.ChangePasswordRequest.parse(Object.fromEntries(new FormData(f)));
     await api.changePassword(data.currentPassword,data.password);

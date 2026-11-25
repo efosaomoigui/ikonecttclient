@@ -17,6 +17,8 @@ export function integrationState(item: RecordData): {
         return { status: 'NOT_CONFIGURED', message: 'An external provider is not configured.' };
     if (mode === 'guidance-only-no-model')
         return { status: 'NOT_CONFIGURED', message: 'Read-only guidance is available. No autonomous agent or model service is connected.' };
+    if (mode === 'configured-model-see-settings')
+        return { status: 'CONFIGURED', message: 'Model assistance is configured. Check AI Assistant settings for the last connection test, credentials and usage limits.' };
     if (mode === 'error')
         return { status: 'ERROR', message: 'The service reported an integration error.' };
     return { status: 'UNKNOWN', message: 'The backend did not report a recognized connection state.' };

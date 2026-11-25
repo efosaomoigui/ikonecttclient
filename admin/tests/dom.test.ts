@@ -271,34 +271,19 @@ finally {
 } });
 
 for (const role of ['SUPPORT', 'SALES'] as const) {
-    test(`DOM: live ${role} customer details refresh cross-application relationships without broadening permissions`, async () => {
-        const records = fixtures();
-        const customer = records.customers[0];
-        // Initially all related records belong to a different customer. The dashboard
-        // receives these snapshots before another application creates fresh records.
-        for (const key of ['orders', 'subscriptions', 'tickets'])
-            records[key] = records[key].map(record => ({ ...record, customerId: records.customers[1].id }));
+    test(`DOM: live ${role} sees website records and dormant portal routes are isolated`, async () => {
+        const records = fixtures(), calls: string[] = [];
         const session = { accessToken: 'isolated-dom-session', tokenType: 'Bearer', expiresAt: new Date(Date.now() + 3600000).toISOString(), principal: { id: uuid(80), kind: 'STAFF', customerId: null, roles: [role], mustChangePassword: false } };
-        const calls: string[] = [];
-        const fetcher: typeof fetch = async (url) => {
+        const dom = boot(async url => {
             const request = new URL(String(url), 'http://localhost');
-            const path = request.pathname.replace('/api/v1', '');
-            calls.push(path);
+            const path = request.pathname.replace('/api/v1', ''); calls.push(path);
             if (path === '/auth/staff/login') return Response.json(session);
             if (path === '/auth/session') return Response.json(session.principal);
             if (path === '/admin/permissions') return Response.json({ roles: [role], permissions: ROLE_PERMISSIONS[role] });
-            if (path === `/admin/customers/${customer.id}`) return Response.json(customer);
-            if (path === `/admin/customers/${customer.id}/wallet`)
-                return Response.json(records.walletSummaries.find(record => record.customerId === customer.id));
             const key = Object.keys(modules).find(key => modules[key].path === path);
-            if (key) {
-                const offset = Number(request.searchParams.get('offset') || 0);
-                const limit = Number(request.searchParams.get('limit') || 100);
-                return Response.json({ items: records[key].slice(offset, offset + limit), total: records[key].length, offset, limit });
-            }
-            throw new Error(`Unexpected test request: ${path}`);
-        };
-        const dom = boot(fetcher);
+            if (key) return Response.json({ items: records[key], total: records[key].length, offset: 0, limit: 100 });
+            throw Error('Unexpected request ' + path);
+        });
         try {
             const doc = dom.window.document;
             const form = doc.querySelector<HTMLFormElement>('#login-form')!;
@@ -306,48 +291,19 @@ for (const role of ['SUPPORT', 'SALES'] as const) {
             (form.elements.namedItem('password') as HTMLInputElement).value = 'isolated-test-password';
             form.dispatchEvent(new dom.window.Event('submit', { bubbles: true, cancelable: true }));
             await waitFor(() => !!doc.querySelector('.metrics'));
-            for (const key of ['orders', 'subscriptions', ...(role === 'SUPPORT' ? ['tickets'] : [])])
-                assert.ok(calls.includes(modules[key].path), `dashboard loaded ${key}`);
-            await go(dom, 'customers');
-            const openCustomer = async () => {
-                click(dom, `[data-detail="${customer.id}"]`);
-                await waitFor(() => !!doc.querySelector('.modal .related-block'));
-            };
-            const related = (label: string) => [...doc.querySelectorAll('.modal .related-block')].find(block => block.querySelector('h3')?.textContent?.startsWith(label));
-            await openCustomer();
-            assert.equal(related('Orders')!.querySelector('h3 span')!.textContent, '0');
-            assert.equal(related('Subscriptions')!.querySelector('h3 span')!.textContent, '0');
-            click(dom, '[data-action=close]');
-
-            records.orders.push(...[410, 411].map(n => ({ ...records.orders[0], id: uuid(n), customerId: customer.id, planName: `Cross-application order ${n}`, status: 'PENDING_PAYMENT' })));
-            records.subscriptions.push({ ...records.subscriptions[0], id: uuid(610), customerId: customer.id, status: 'ACTIVE' });
-            records.tickets.push({ ...records.tickets[0], id: uuid(710), customerId: customer.id, subject: 'Cross-application support request' });
-            await openCustomer();
-            assert.equal(related('Orders')!.querySelector('h3 span')!.textContent, '2');
-            assert.equal(related('Subscriptions')!.querySelector('h3 span')!.textContent, '1');
-            assert.match(related('Orders')!.textContent!, /Cross-application order 410/);
-            assert.equal(related('Orders')!.querySelectorAll('.related-row').length, 2);
-            if (role === 'SUPPORT') {
-                assert.equal(related('Support Tickets')!.querySelector('h3 span')!.textContent, '1');
-                assert.match(related('Support Tickets')!.textContent!, /Cross-application support request/);
-            } else {
-                assert.equal(related('Support Tickets'), undefined);
-                assert.equal(calls.includes('/admin/tickets'), false);
+            assert.match(doc.querySelector('h1')!.textContent!, /Website Overview/);
+            for (const key of ['customers', 'orders', 'subscriptions', 'payments', 'walletTopUps', 'walletRenewals']) {
+                assert.equal(doc.querySelector(`.sidebar a[href="#/${key}"]`), null);
+                assert.equal(calls.includes(modules[key].path), false);
             }
-            assert.equal(doc.querySelector('a[href="#/staff"]'), null);
-            assert.equal(doc.querySelector('[data-action^="verify:"]'), null);
-            click(dom, '[data-action=close]');
-
-            // Reopening must also observe updates after the first populated detail.
-            records.orders.find(record => record.id === uuid(410))!.status = 'COMPLETED';
-            records.orders.push({ ...records.orders[0], id: uuid(412), customerId: customer.id, planName: 'Later cross-application order' });
-            await openCustomer();
-            assert.equal(related('Orders')!.querySelector('h3 span')!.textContent, '3');
-            assert.match(related('Orders')!.textContent!, /Later cross-application order/);
-            assert.match(related('Orders')!.querySelector(`[data-detail="${uuid(410)}"]`)!.textContent!, /Completed/);
+            assert.equal(doc.querySelector('.sidebar a[href="#/assistantSettings"]'), null);
+            dom.window.location.hash = '#/customers';
+            await waitFor(() => !!doc.querySelector('.error-state'));
+            assert.equal(calls.includes('/admin/customers'), false);
         } finally { dom.window.close(); }
     });
 }
+
 test('DOM: empty search, filter reset, modal Escape and logout work', async () => { const dom = boot(); try {
     await preview(dom);
     await go(dom, 'leads');
