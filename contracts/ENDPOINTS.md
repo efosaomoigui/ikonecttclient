@@ -1,4 +1,4 @@
-# Canonical API v1.3.0 endpoint and permission map
+# Canonical API v1.4.0 endpoint and permission map
 
 Generated from the actual NestJS route and guard metadata. All successful writes return HTTP 200.
 Customer data ownership is checked inside the application in addition to route permissions.
@@ -6,7 +6,9 @@ ADMIN is the highest existing role; there is no separate SUPER_ADMIN bypass.
 
 | Method | Full API path | Access / action permission |
 | --- | --- | --- |
+| GET | `/api/v1/admin/assistant/settings` | staff.manage; ADMIN |
 | GET | `/api/v1/admin/audit` | audit.read; ADMIN |
+| GET | `/api/v1/admin/contact-settings` | staff.manage; ADMIN |
 | GET | `/api/v1/admin/coverage` | coverage.write; ADMIN, PROVISIONER |
 | GET | `/api/v1/admin/customers/{id}/wallet/transactions` | wallet.read; ADMIN, SUPPORT, FINANCE |
 | GET | `/api/v1/admin/customers/{id}/wallet` | wallet.read; ADMIN, SUPPORT, FINANCE |
@@ -40,6 +42,7 @@ ADMIN is the highest existing role; there is no separate SUPER_ADMIN bypass.
 | GET | `/api/v1/admin/wallet-top-ups` | payments.verify; ADMIN, FINANCE |
 | GET | `/api/v1/auth/session` | Authenticated session |
 | GET | `/api/v1/capabilities` | Public |
+| GET | `/api/v1/contact-settings` | Public |
 | GET | `/api/v1/coverage/locations` | Public |
 | GET | `/api/v1/coverage/service-areas` | Public |
 | GET | `/api/v1/health` | Public |
@@ -63,6 +66,8 @@ ADMIN is the highest existing role; there is no separate SUPER_ADMIN bypass.
 | GET | `/api/v1/me/wallet` | Customer; owned account only |
 | GET | `/api/v1/plans/{id}` | Public |
 | GET | `/api/v1/plans` | Public |
+| PATCH | `/api/v1/admin/assistant/settings` | staff.manage; ADMIN |
+| PATCH | `/api/v1/admin/contact-settings` | staff.manage; ADMIN |
 | PATCH | `/api/v1/admin/coverage/{id}` | coverage.write; ADMIN, PROVISIONER |
 | PATCH | `/api/v1/admin/customers/{id}` | customers.write; ADMIN, SALES |
 | PATCH | `/api/v1/admin/knowledge/{id}` | catalogue.write; ADMIN |
@@ -73,6 +78,8 @@ ADMIN is the highest existing role; there is no separate SUPER_ADMIN bypass.
 | PATCH | `/api/v1/admin/subscriptions/{id}/renewal-policy` | provisioning.write; ADMIN, PROVISIONER |
 | PATCH | `/api/v1/admin/tickets/{id}` | support.write; ADMIN, SUPPORT |
 | PATCH | `/api/v1/me/profile` | Customer; owned account only |
+| POST | `/api/v1/admin/assistant/revoke` | staff.manage; ADMIN |
+| POST | `/api/v1/admin/assistant/test` | staff.manage; ADMIN |
 | POST | `/api/v1/admin/coverage` | coverage.write; ADMIN, PROVISIONER |
 | POST | `/api/v1/admin/customers/{id}/credentials` | customers.write; ADMIN, SALES |
 | POST | `/api/v1/admin/customers/{id}/wallet/adjustments` | wallet.adjust; ADMIN, FINANCE |

@@ -338,7 +338,7 @@ test('login rechecks the credential before issuing a session', async () => {
   } finally { appDb.mutate = mutate; }
 });
 test('production requires client wallet authority while retaining manual order workflows', () => {
-  const overrides = { NODE_ENV: 'production', CORS_ORIGINS: 'https://portal.example.test', WALLET_AUTHORITY: 'local', EMAIL_ADAPTER: 'disabled', SMS_ADAPTER: 'disabled', LEGACY_ADAPTER: 'disabled' };
+  const overrides = { NODE_ENV: 'production', CORS_ORIGINS: 'https://portal.example.test', WALLET_AUTHORITY: 'local', CUSTOMER_PORTAL_ENABLED:'true', EMAIL_ADAPTER: 'disabled', SMS_ADAPTER: 'disabled', LEGACY_ADAPTER: 'disabled' };
   const previous = Object.fromEntries(Object.keys(overrides).map(key => [key, process.env[key]]));
   Object.assign(process.env, overrides);
   try {

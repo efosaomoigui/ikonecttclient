@@ -70,7 +70,7 @@ export class IdentityService {
     const passwordHash = await hashPassword(password);
     await this.db.mutate(async tx => {
       const reset = await tx.passwordReset.findUnique({ where: { tokenHash: digest(resetToken) }, include: { user: { include: { customer: true } } } });
-      if (!reset || reset.usedAt || reset.expiresAt <= new Date() || !reset.user.enabled || reset.user.customer?.status === 'CLOSED') throw new BadRequestException('Reset token is invalid or expired');
+      if (!reset || reset.usedAt || reset.expiresAt <= new Date() || !reset.user.enabled || reset.user.customer?.status === 'CLOSED' || (reset.user.kind==='CUSTOMER'&&!this.customerPortalEnabled())) throw new BadRequestException('Reset token is invalid or expired');
       await tx.passwordReset.update({ where: { id: reset.id }, data: { usedAt: new Date() } });
       await tx.user.update({ where: { id: reset.userId }, data: { passwordHash, mustChangePassword: false } });
       await tx.passwordReset.updateMany({ where: { userId: reset.userId, usedAt: null }, data: { usedAt: new Date() } });
@@ -79,7 +79,9 @@ export class IdentityService {
     });
     return { ok: true };
   }
+  private customerPortalEnabled(){return this.config.values.CUSTOMER_PORTAL_ENABLED==='true'||(this.config.values.CUSTOMER_PORTAL_ENABLED!=='false'&&this.config.values.NODE_ENV!=='production')}
   async change(actor: Actor, currentPassword: string, password: string) {
+    if(actor.kind==='CUSTOMER'&&!this.customerPortalEnabled())throw new UnauthorizedException('Customer portal is not available');
     const passwordHash = await hashPassword(password);
     await this.db.mutate(async tx => {
       const user = await tx.user.findUniqueOrThrow({ where: { id: actor.id } });

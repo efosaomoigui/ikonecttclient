@@ -13,11 +13,16 @@ export async function createApp(quiet = false) {
   const app = await NestFactory.create(AppModule, { bodyParser: false, ...(quiet ? { logger: false as const } : {}) });
   const config = app.get(Config);
   app.setGlobalPrefix('api/v1');
+  if(config.values.TRUST_LOOPBACK_PROXY==='true')app.getHttpAdapter().getInstance().set('trust proxy','loopback');
   app.use(helmet());
   app.use((req: Request & { requestId?: string }, res: Response, next: NextFunction) => {
     req.requestId = randomUUID(); res.setHeader('X-Request-Id', req.requestId); res.setHeader('Cache-Control', 'no-store'); next();
   });
   app.use(json({ limit: '32kb' }));
+  app.use((req:Request,res:Response,next:NextFunction)=>{
+    const enabled=config.values.CUSTOMER_PORTAL_ENABLED==='true'||(config.values.CUSTOMER_PORTAL_ENABLED!=='false'&&config.values.NODE_ENV!=='production');
+    if(!enabled&&(/^\/api\/v1\/me(?:\/|$)/.test(req.path)||/^\/api\/v1\/auth\/(?:login|recovery)$/.test(req.path))){res.status(404).json({statusCode:404,code:'NOT_FOUND',message:'Customer portal is not available',requestId:(req as any).requestId});return}next();
+  });
   app.enableCors({ origin: config.values.CORS_ORIGINS.split(',').map(value => value.trim()), allowedHeaders: ['Authorization', 'Content-Type'], methods: ['GET', 'POST', 'PATCH', 'OPTIONS'], credentials: false });
   app.useGlobalFilters(new Errors());
   app.enableShutdownHooks();
@@ -30,7 +35,7 @@ export function openApi(app: Awaited<ReturnType<typeof createApp>>) {
   document.components.schemas ||= {};
   document.components.schemas.ApiError = schema(ErrorResponse);
   // Nest includes class bearer metadata on anonymous authentication handlers; remove it there.
-  const publicPaths = new Set(['/api/v1/auth/login','/api/v1/auth/staff/login','/api/v1/auth/recovery','/api/v1/auth/staff/recovery','/api/v1/auth/reset-password','/api/v1/plans','/api/v1/plans/{id}','/api/v1/coverage/locations','/api/v1/coverage/check','/api/v1/leads','/api/v1/assistant/guidance','/api/v1/capabilities','/api/v1/health','/api/v1/coverage/service-areas','/api/v1/knowledge']);
+  const publicPaths = new Set(['/api/v1/auth/login','/api/v1/auth/staff/login','/api/v1/auth/recovery','/api/v1/auth/staff/recovery','/api/v1/auth/reset-password','/api/v1/plans','/api/v1/plans/{id}','/api/v1/coverage/locations','/api/v1/coverage/check','/api/v1/leads','/api/v1/assistant/guidance','/api/v1/capabilities','/api/v1/health','/api/v1/contact-settings','/api/v1/coverage/service-areas','/api/v1/knowledge']);
   for (const [path, operations] of Object.entries(document.paths)) {
     for (const [method, operation] of Object.entries(operations)) {
       if (!['get','post','patch'].includes(method) || !operation || typeof operation !== 'object') continue;

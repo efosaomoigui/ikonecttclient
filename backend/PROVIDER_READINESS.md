@@ -1,3 +1,9 @@
+# Provider scope
+
+The active delivery uses the internal service-area database for coverage. No external coverage API is required. Customer account actions open the client portal. Payment, wallet, provisioning and external identity notes below describe preserved dormant capabilities. The active assistant, contact settings and optional client ECRM boundary are documented in docs/CLIENT_HANDOVER.md at the repository root.
+
+The optional OpenAI Responses adapter is implemented in `src/assistant/ai-settings.service.ts`. It uses client-owned server credentials or encrypted Admin configuration, bounded requests and approved-answer orchestration. No live client key was supplied or verified. The existing `SupportService` and enquiry service remain the local integration seam; external support delivery is not implemented until the client's actual API contract is available.
+
 # Connecting a future approved provider
 
 For payments, the current superseding funding boundary is `src/wallet/settlement.adapter.ts` / `settlement.service.ts`, documented in `contracts/SETTLEMENT_HANDOFF.md` (API1.2.0). The old order-oriented `PaymentProvider` interface is not settlement proof and must not be wired directly to wallet credit or activation. Approved, authenticated and independently verified SETTLED events fund the wallet automatically; explicit customer authorization starts a separate renewal. The default settlement adapter is disabled and no public webhook/checkout route is exposed. Future order-related provider checkout must use wallet-first settlement and a separately approved wallet-funded purchase operation; existing consumed order payments remain unchanged.

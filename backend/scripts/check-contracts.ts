@@ -44,7 +44,7 @@ async function main() {
     }
     const documented = new Set(Object.entries(live.paths).flatMap(([path, operations]) => Object.keys(operations).filter(method => ['get','post','patch'].includes(method)).map(method => `${method.toUpperCase()} ${path}`)));
     assert.deepEqual(actual, documented, 'OpenAPI and actual route inventory differ');
-    assert.equal(actual.size,103); assert.equal(Object.keys(live.paths).length,84);
+    assert.equal(actual.size,110); assert.equal(Object.keys(live.paths).length,89);
     for (const path of ['/api/v1/admin/plans','/api/v1/me/payments']) {
       const field = path.endsWith('plans') ? 'priceMinor' : 'amountMinor';
       assert.equal((live.paths as any)[path].post.requestBody.content['application/json'].schema.properties[field].exclusiveMinimum, true);

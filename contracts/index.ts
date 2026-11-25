@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const API_VERSION = '1.3.0';
+export const API_VERSION = '1.4.0';
 export const API_PREFIX = '/api/v1';
 export const Id = z.string().uuid();
 const Text = z.string().trim().min(1).max(250);
@@ -46,7 +46,7 @@ export const CreateTicketRequest = z.object({ subject: Text, message: z.string()
 export const UpdateTicketRequest = z.object({ status: TicketStatus, assignedToId: Id.optional() }).strict();
 export const TicketMessageRequest = z.object({ message: z.string().trim().min(1).max(4000) }).strict();
 export const ExternalReferenceRequest = z.object({ system: Text, externalId: Text }).strict();
-export const AssistantRequest = z.object({ message: z.string().trim().min(1).max(1000) }).strict();
+export const AssistantRequest = z.object({message:z.string().trim().min(1).max(1000),history:z.array(z.object({role:z.enum(['user','assistant']),content:z.string().max(1000)}).strict()).max(8).optional(),context:z.object({path:z.string().max(200),audience:CustomerKind.optional(),plan:z.string().max(100).optional()}).strict().optional()}).strict();
 
 // Response schemas deliberately exclude credentials, tokens, internal payment evidence and staff-only notes.
 export const Customer = z.object({ id: Id, accountNumber: z.string(), accountNumberSimulated: z.boolean(), kind: CustomerKind, name: z.string(), email: z.string(), phone: z.string(), status: CustomerStatus, buildingId: Id.nullable(), createdAt: z.string().datetime() });
@@ -71,7 +71,7 @@ export const Report = z.object({ customers: z.number().int(), leads: z.number().
 export const Provisioning = z.object({ id: Id, orderId: Id, subscriptionId: Id, status: z.enum(['PENDING', 'ACTIVE', 'FAILED', 'REQUIRES_REVIEW']), mode: z.string(), reference: z.string().nullable(), simulated: z.boolean(), createdAt: z.string().datetime() });
 export const Audit = z.object({ id: Id, actorId: Id.nullable(), action: z.string(), entityType: z.string(), entityId: z.string(), metadata: z.record(z.unknown()), createdAt: z.string().datetime() });
 export const ExternalReference = ExternalReferenceRequest.extend({ id: Id, customerId: Id, createdAt: z.string().datetime() });
-export const AssistantResponse = z.object({ answer: z.string(), links: z.array(z.object({ label: z.string(), path: z.string() })), escalationAvailable: z.literal(true), sensitiveActionsAllowed: z.literal(false), simulated: z.boolean() });
+export const AssistantResponse = z.object({ answer: z.string(), mode:z.enum(['deterministic','ai','fallback']).optional(), intent:z.string().optional(), links: z.array(z.object({ label: z.string(), path: z.string() })), escalationAvailable: z.literal(true), sensitiveActionsAllowed: z.literal(false), simulated: z.boolean() });
 export const ErrorResponse = z.object({ statusCode: z.number().int(), code: z.string(), message: z.string(), requestId: z.string(), details: z.unknown().optional() });
 export const page = <T extends z.ZodTypeAny>(item: T) => z.object({ items: z.array(item), total: z.number().int(), offset: z.number().int(), limit: z.number().int() });
 
@@ -133,3 +133,9 @@ export const AdminServiceAreaQuery=ServiceAreaQuery.extend({active:z.enum(['true
 export const KnowledgeInput=z.object({key:z.string().trim().min(1).max(100).regex(/^[a-z0-9-]+$/),category:z.string().trim().min(1).max(80),question:z.string().trim().min(1).max(250),answer:z.string().trim().min(1).max(2000),keywords:z.array(z.string().trim().min(1).max(80)).max(30).default([]),published:z.boolean().default(false)}).strict();
 export const KnowledgeUpdate=KnowledgeInput.partial().strict().refine(v=>Object.keys(v).length>0);
 export const KnowledgeArticle=KnowledgeInput.extend({id:Id,createdAt:z.string().datetime(),updatedAt:z.string().datetime()});
+
+export const AssistantSettingsInput=z.object({enabled:z.boolean().optional(),provider:z.literal('openai').optional(),model:z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9._:-]+$/).optional(),maxOutputTokens:z.number().int().min(64).max(600).optional(),dailyRequestLimit:z.number().int().min(1).max(1000).optional(),apiKey:z.string().trim().min(10).max(300).optional()}).strict();
+export const AssistantSettingsView=z.object({enabled:z.boolean(),provider:z.literal('openai'),model:z.string(),maxOutputTokens:z.number(),dailyRequestLimit:z.number(),credentialConfigured:z.boolean(),credentialSource:z.enum(['environment','encrypted','none']),lastTestStatus:z.string(),knowledgePublished:z.number(),usageToday:z.number()});
+export const AssistantConnectionResult=z.object({ok:z.boolean(),status:z.string(),message:z.string()});
+export const ContactSettings=z.object({whatsappUrl:z.string(),customerCareEmail:z.literal('customercare@ikonectt.com'),portalUrl:z.literal('https://portal.ikonectt.com')});
+export const ContactSettingsInput=z.object({whatsappUrl:z.string().url().max(300).refine(v=>{try{const u=new URL(v);return u.protocol==='https:'&&u.hostname==='api.whatsapp.com'&&u.pathname==='/send/'&&/^\d{8,15}$/.test(u.searchParams.get('phone')||'')}catch{return false}},'Use an HTTPS api.whatsapp.com/send/ link with an international phone number')}).strict();
