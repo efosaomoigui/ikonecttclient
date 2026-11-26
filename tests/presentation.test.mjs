@@ -44,10 +44,11 @@ test('presentation keeps the original two-design landing and packages isolated a
   const config=JSON.parse(read('vercel.json'));
   const pkg=JSON.parse(read('package.json'));
   assert.equal(config.outputDirectory,'dist-public');
-  assert.equal(config.buildCommand,'npm run build -- --with-demos');
+  assert.equal(config.buildCommand,'npm run build -- --with-admin');
   assert.equal(pkg.scripts['build:showcase'],'node scripts/build_showcase.js');
   assert.equal(pkg.scripts['build:presentation'],'node scripts/build_presentation.cjs');
-  assert.ok(!config.functions&&!config.builds,'Presentation must not introduce server functions.');
+  assert.deepEqual(Object.keys(config.functions||{}),['api/**/*.js'],'Only the explicit live backend bridge is configured.');
+  assert.ok(!config.builds,'Do not introduce legacy build configuration.');
   for(const app of ['admin','my-ikonectt']){
     const demoConfig=JSON.parse(read(app+'/vercel.json'));
     const route=demoConfig.headers.find(rule=>rule.source==='/(.*)');

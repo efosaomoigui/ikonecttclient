@@ -92,3 +92,11 @@ For releases: backup, apply additive migrations with `prisma migrate deploy`, st
 - Configure real email/SMS only if commissioned; a disabled adapter does not deliver messages.
 
 WhatsApp is a secure external link only: no WhatsApp Business API, message synchronization or automatic delivery claims. Model-driven financial/account actions are prohibited. Optional future work includes additional tested provider adapters and separately commissioned search rendering; neither is required for the current interface.
+
+## Vercel live release correction — 26 November 2026
+
+The root Vercel build uses `npm run build -- --with-admin`, not `--with-demos`. This includes the actual staff sign-in and removes the simulated review entry. Admin CSP permits same-origin API requests. `api/[...path].js` forwards `/api/v1/*` to the existing backend using the private Vercel environment setting `IKONECTT_BACKEND_ORIGIN=https://<actual-backend-host>` (origin only, no API path, credentials or localhost). It preserves bearer authentication and delegates all authorization to the backend; it does not create a second backend/database.
+
+Set that environment variable in the existing Vercel project and redeploy after the real backend and persistent PostgreSQL are hosted. If absent, API calls return 503 BACKEND_NOT_CONFIGURED; no mock records or authentication bypass are substituted. A Git push cannot expose this computer's 127.0.0.1:4000 service to Vercel or transfer the local administrator/database. The existing production domain/project is retained.
+
+Official platform references: https://vercel.com/docs/functions/runtimes/node-js and https://vercel.com/docs/environment-variables . Demo packaging remains an explicitly invoked QA utility, not the normal release path.
