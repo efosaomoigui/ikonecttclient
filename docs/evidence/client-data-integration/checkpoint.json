@@ -1,5 +1,5 @@
 {
-  "reason": "Authorized operational enquiry routing and simplified assistant page handoff; approved website layout preserved.",
+  "reason": "Authorized consolidation of release configuration and always-available approved WhatsApp contact; operational data remains API-backed.",
   "files": {
     "option-e/index.html": {
       "sha256LF": "22a5ebee9f5a2e50d9f3dd6572cc36c747311f80acfafa4b9d8fcc3a36dbe3c5"
@@ -14,7 +14,7 @@
       "sha256LF": "b11b4db3da23573806f4e0030b93fa6b04646aa2b44fd927f34a6e9f0c723750"
     },
     "shared/assistant.js": {
-      "sha256LF": "a50180bf3f8f2511129b9a0cdbc19967f40f88bdd8f0afce177e6210cf03ec2a"
+      "sha256LF": "010f892c121cdcce4b211676b80e1d6dfeb87a22564dbbf4a986a7c48e922d66"
     },
     "shared/carousel.js": {
       "sha256LF": "c648bc84b137c0d81423ccb4251e3edf7b8de3ae5c438ac5c02d03dd2fcf99db"
@@ -53,7 +53,7 @@
       "sha256LF": "9195b89bfc63ad1b99ac2cd6d003bea98dcc8626788ee5bcdc2f4b6271e63cea"
     },
     "shared/public-data.js": {
-      "sha256LF": "4c0c58809e8bcaffbca927fd33d7175c4d4e4335210c563b34581a5c2e8db07f"
+      "sha256LF": "af38e0987791ef42eb3b48cc1d89ccfeb6606563187e82c15afbe10781a0ca01"
     },
     "option-e/refinement.js": {
       "sha256LF": "bd4b3c07ddcb75a7f8b3b5ef8711076b19d4ecbaccba03e014f8814637c9e88f"
@@ -65,7 +65,7 @@
       "sha256LF": "7b1e4a642d48b50c28018d4ed3b896126adf9dba2f2b571d6399a8ad40f26838"
     },
     "option-e/contact-support.js": {
-      "sha256LF": "0b2a19731a8ac0215b435674ead23565dde6b913af97db38b10a9ce67a04d50b"
+      "sha256LF": "a986068c523c9c680e6ad4bbc9a07d73b68db50d54bee9fd56ce7a6a8d04434a"
     },
     "option-e/contact-support.css": {
       "sha256LF": "47d8bc631a1d9cf4445c2b70f013033ec2fd10b2e19ef4bceca20ee4a8db1c8f"

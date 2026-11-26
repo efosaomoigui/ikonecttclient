@@ -1,7 +1,7 @@
 import {prepareEnquiryHandoff,clearEnquiryHandoff} from './enquiry-handoff.js';
 import {createAssistantFlows} from './assistant-flows.js';
 import {normalizePhone,phoneCountry,formatPhoneInput} from './phone-input.js';
-import {supportContacts} from './public-data.js';
+import {supportContacts,initializeSupportContacts} from './public-data.js';
 import {escapeHTML as esc} from './forms.js';
 import {getPlan,planName,priceLabel,pricePeriod,previewPricingNote} from './catalogue.js';
 import {parseRoute} from './routes.js';
@@ -28,7 +28,9 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     scroll.scrollTop+=anchor.getBoundingClientRect().top-scroll.getBoundingClientRect().top-12;
   }
   const supportActions=()=>[{label:'Contact Support',route:'support/contact'},...(supportContacts.whatsappUrl?[{label:'Chat on WhatsApp',href:supportContacts.whatsappUrl}]:[]),{label:'My Ikonectt',href:'https://portal.ikonectt.com'}];
-  if(guest&&publicClient)void publicClient.contacts().then(()=>{if(abort.signal.aborted)return;const link=find('[data-whatsapp]');link.href=supportContacts.whatsappUrl;link.hidden=false;}).catch(()=>{});
+  function syncWhatsApp(){if(abort.signal.aborted||!supportContacts.whatsappUrl)return;const link=find('[data-whatsapp]');link.href=supportContacts.whatsappUrl;link.hidden=false;}
+  if(guest){initializeSupportContacts();syncWhatsApp();if(publicClient)void publicClient.contacts().then(syncWhatsApp).catch(syncWhatsApp);}
+
   function context(){
     const current=publicContext(getContext());
     const key=`${current.path}|${current.audience}|${current.plan}`;

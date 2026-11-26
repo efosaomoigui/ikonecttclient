@@ -1,9 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { execSync } = require('node:child_process');
+const {createHash}=require('node:crypto');
 
 const includeDemos = process.argv.includes('--with-demos');
 const includeAdmin = process.argv.includes('--with-admin');
+if(includeDemos&&process.env.VERCEL)throw new Error('The canonical Vercel release must use the live Admin build.');
 if (includeDemos && includeAdmin) throw new Error('Choose the live Admin or demo build.');
 const root = path.resolve(__dirname, '..');
 const output = path.resolve(root, 'dist-public');
@@ -18,7 +20,7 @@ for (const name of ['option-e', 'shared', 'assets']) {
   const source = path.join(root,name);
   fs.cpSync(source,path.join(output,name),{recursive:true,filter:file=>{
     const parts=path.relative(source,file).split(path.sep);
-    return !parts.some(part=>part==='review'||part==='node_modules'||part.startsWith('.'));
+    return !parts.some(part=>part==='review'||part==='node_modules'||part.startsWith('.')||/^feedback-preview\.(?:js|css)$/.test(part));
   }});
 }
 
@@ -37,7 +39,10 @@ if(process.env.NODE_ENV==='production'&&/^http:/.test(apiBase))throw new Error('
 if(!apiBase.startsWith('/')&&!/^https?:\/\//.test(apiBase))throw new Error('Invalid public API base.');
 if(apiBase.startsWith('//')||(/[\r\n]/.test(apiBase)))throw new Error('Invalid public API base.');
 if(/^https?:/.test(apiBase)){const parsed=new URL(apiBase);if(parsed.username||parsed.password)throw new Error('Public API URL cannot contain credentials.');}
-fs.writeFileSync(path.join(output,'shared','public-config.js'),'globalThis.__IKONECTT_PUBLIC_CONFIG__='+JSON.stringify({mode:'api',apiBase})+';\n');
+const contacts=JSON.parse(fs.readFileSync(path.join(root,'shared','public-contact-settings.json'),'utf8'));
+const whatsapp=new URL(contacts.whatsappUrl);
+if(whatsapp.protocol!=='https:'||!['api.whatsapp.com','wa.me'].includes(whatsapp.hostname)||whatsapp.username||whatsapp.password)throw new Error('Invalid published WhatsApp contact.');
+fs.writeFileSync(path.join(output,'shared','public-config.js'),'globalThis.__IKONECTT_PUBLIC_CONFIG__='+JSON.stringify({mode:'api',apiBase,contacts})+';\n');
 const file=path.join(output,'option-e','index.html');
 const source=fs.readFileSync(file,'utf8');
 if(!source.includes('<body data-template="e">')||!source.includes('</head>'))throw new Error('Approved website entry is missing.');
@@ -71,3 +76,12 @@ if (includeDemos) {
   }
 }
 console.log('Canonical public website built in dist-public. Presentation and application builds are separate.');
+
+let commit=process.env.VERCEL_GIT_COMMIT_SHA||'';
+if(!/^[a-f0-9]{40}$/.test(commit))try{commit=execSync('git rev-parse HEAD',{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();}catch{commit='unknown';}
+const checkedFiles=[];
+function collectReleaseFiles(directory){for(const entry of fs.readdirSync(path.join(output,directory),{withFileTypes:true})){const name=directory+'/'+entry.name;if(entry.isDirectory())collectReleaseFiles(name);else if(/\.(?:html|js|css|json)$/.test(name))checkedFiles.push(name);}}
+for(const directory of ['option-e','shared',...(includeAdmin?['admin']:[])])collectReleaseFiles(directory);
+checkedFiles.sort();
+const files=Object.fromEntries(checkedFiles.map(name=>[name,createHash('sha256').update(fs.readFileSync(path.join(output,name),'utf8').replace(/\r\n/g,'\n')).digest('hex')]));
+fs.writeFileSync(path.join(output,'release.json'),JSON.stringify({application:'ikonectt',template:'option-e',commit,builtAt:new Date().toISOString(),admin:includeAdmin?'live':includeDemos?'demo':'excluded',files},null,2)+'\n');

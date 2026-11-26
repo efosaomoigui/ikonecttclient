@@ -1,10 +1,11 @@
+import publicContactSettings from '../../../shared/public-contact-settings.json';
 import {BadRequestException,Injectable} from '@nestjs/common';
 import {Database,audit} from '../core/database';
 import {Config} from '../core/config';
 import {decrypt,encrypt} from '../core/crypto';
 import {Actor} from '../identity/access';
 import * as C from '../../../contracts';
-export const DEFAULT_WHATSAPP='https://api.whatsapp.com/send/?phone=2349168965000&text&type=phone_number&app_absent=0';
+export const DEFAULT_WHATSAPP=publicContactSettings.whatsappUrl;
 export interface Completion {text:string;inputTokens:number;outputTokens:number}
 @Injectable()
 export class OpenAiProvider {
@@ -22,7 +23,7 @@ export class OpenAiProvider {
 @Injectable()
 export class AiSettingsService{
  constructor(private db:Database,private config:Config,private provider:OpenAiProvider){}
- async row(){return this.db.assistantSettings.upsert({where:{id:'main'},create:{id:'main'},update:{}})}
+ async row(){return this.db.assistantSettings.upsert({where:{id:'main'},create:{id:'main',whatsappUrl:DEFAULT_WHATSAPP},update:{}})}
  async contacts(){const row=await this.row();return{whatsappUrl:row.whatsappUrl,customerCareEmail:'customercare@ikonectt.com' as const,portalUrl:'https://portal.ikonectt.com' as const}}
  private credential(row:Awaited<ReturnType<AiSettingsService['row']>>){
   if(row.encryptedCredential){if(!this.config.values.AI_ENCRYPTION_KEY)throw Error('MISSING_ENCRYPTION_KEY');return{key:decrypt(row.encryptedCredential,this.config.values.AI_ENCRYPTION_KEY).key as string,source:'encrypted' as const}}

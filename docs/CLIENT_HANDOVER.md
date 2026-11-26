@@ -100,3 +100,7 @@ The root Vercel build uses `npm run build -- --with-admin`, not `--with-demos`. 
 Set that environment variable in the existing Vercel project and redeploy after the real backend and persistent PostgreSQL are hosted. If absent, API calls return 503 BACKEND_NOT_CONFIGURED; no mock records or authentication bypass are substituted. A Git push cannot expose this computer's 127.0.0.1:4000 service to Vercel or transfer the local administrator/database. The existing production domain/project is retained.
 
 Official platform references: https://vercel.com/docs/functions/runtimes/node-js and https://vercel.com/docs/environment-variables . Demo packaging remains an explicitly invoked QA utility, not the normal release path.
+
+## Unified release and WhatsApp availability
+
+Use `npm run build:release` for the live site/Admin in both local and Vercel builds. See RELEASE_UNIFICATION.md for the shared approved public contact setting, outage behavior and commit/asset fingerprint checks. Plans, coverage, submissions and authentication still require the hosted backend; they are not replaced by a snapshot.

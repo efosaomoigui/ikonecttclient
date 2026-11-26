@@ -67,7 +67,7 @@ A client-only release export contains exactly 7 plans, 83 source rows, 21 knowle
 - Prisma migrations applied to local development and isolated test databases. TypeScript and generated OpenAPI/security/route parity checked. Current shared contract is 1.5.0.
 - Clean client-only bundle applied to a separate new `_test` database: 7 plans, 83 areas, 21 knowledge articles; zero users, customers, enquiries and payments. Re-import was refused.
 - Generated contract parity: 90 paths / 111 operations, version 1.5.0.
-- Local HTTP checks passed for website, Admin, direct API health and the public plans, coverage, knowledge and contact-settings proxy routes. Health is intentionally not exposed by the public proxy allowlist.
+- Local HTTP checks passed for website, Admin, direct API health and the public plans, coverage, knowledge and contact-settings proxy routes. The public proxy now also permits the read-only health check for release verification.
 - Post-cleanup local inventory: 1 preserved enquiry, 1 enabled staff administrator, 0 enabled customer accounts, 7 published client plans, 83 retained areas / 81 primary locations, 21 articles / 20 published. Historical simulated catalogue and financial records remain in the backed-up development database.
 
 Private logs: `.local/client-review/production-readiness-frontend.log`, `production-readiness-admin.log`, `public-forms-isolated-evidence.json`; backend `.local/production-readiness/backend-suite.log`, `final-focused.log`, `contracts.log`, `typecheck.log`, `release-verification.json`.
@@ -105,3 +105,7 @@ Active baseline: 1 real staff administrator, 1 preserved enquiry, 0 customers, 0
 Vercel was still explicitly building standalone demos despite the normal Admin mode fix. Its root build command and Admin CSP are now corrected for the live application. A same-origin serverless bridge requires IKONECTT_BACKEND_ORIGIN pointing to the actually hosted HTTPS backend. Until that address is configured, online authentication and live data are not commissioned; the UI must report unavailable service. See CLIENT_HANDOVER.md for settings. No new Vercel project or alternative client domain was created.
 
 Verification for the final deployment correction: 225 frontend tests passed, including Vercel proxy/configuration checks; the exact `--with-admin` build passed and its generated login was checked for enabled real credential fields and absence of the demo selector. The clean local backup was restored into a separate database with counts verified; the active database was not replaced during restoration testing.
+
+## Shared release and WhatsApp outage correction
+
+See RELEASE_UNIFICATION.md. Local/Vercel now use one live release command, and each release fingerprints its delivered code/config. The approved public WhatsApp destination is shared by the build and backend default, so it remains available during a backend outage; connected Admin settings still override it. Operational data remains API-backed. Verification: 233 frontend tests, 6 focused backend tests, type checks and backend build passed. Native browser tooling remains unavailable; HTTP/asset parity and DOM behavior are verified separately.

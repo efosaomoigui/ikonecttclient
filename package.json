@@ -13,8 +13,10 @@
     "test": "node --test tests/*.test.mjs",
     "build:presentation": "node scripts/build_presentation.cjs",
     "build:public-demo": "node scripts/build_public.cjs --with-demos",
-    "predev": "npm run build -- --with-admin",
-    "test:submissions": "node scripts/verify-public-submissions.mjs"
+    "predev": "npm run build:release",
+    "test:submissions": "node scripts/verify-public-submissions.mjs",
+    "build:release": "node scripts/build_public.cjs --with-admin",
+    "verify:release": "node --use-system-ca scripts/verify-release.mjs"
   },
   "keywords": [
     "telecom",

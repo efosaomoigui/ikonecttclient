@@ -4,6 +4,15 @@ export const officialPortal='https://portal.ikonectt.com';
 export const supportContacts={whatsappUrl:null,customerCareEmail:'customercare@ikonectt.com',portalUrl:officialPortal};
 export const websiteData={knowledge:'loading'};
 const settings=()=>globalThis.__IKONECTT_PUBLIC_CONFIG__||{mode:'api',apiBase:'/api/v1'};
+function validWhatsApp(value){try{const url=new URL(value);return url.protocol==='https:'&&['api.whatsapp.com','wa.me'].includes(url.hostname)&&!url.username&&!url.password;}catch{return false;}}
+// Published company contact metadata remains useful without a live operational API.
+// A successful API response overrides it; plans/coverage/requests never use snapshots.
+export function initializeSupportContacts(){
+ const published=settings().contacts;
+ if(!supportContacts.whatsappUrl&&validWhatsApp(published?.whatsappUrl))supportContacts.whatsappUrl=published.whatsappUrl;
+ return supportContacts;
+}
+
 export function createPublicDataClient({base=settings().apiBase||'/api/v1',fetcher=(...args)=>fetch(...args)}={}){
   const request=async(path,body)=>{
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
@@ -24,6 +33,7 @@ export function createPublicDataClient({base=settings().apiBase||'/api/v1',fetch
     }
     throw new Error('Public service response exceeds the supported page limit.');
   };
+  let contactRequest=null,contactsFetchedAt=0;
   return {
     plans:()=>all('/plans'),knowledge:()=>all('/knowledge'),
     searchCoverage:async query=>{
@@ -33,7 +43,13 @@ export function createPublicDataClient({base=settings().apiBase||'/api/v1',fetch
       return rows;
     },
     createEnquiry:input=>request('/leads',input),
-    contacts:async()=>{const value=await request('/contact-settings');const url=new URL(value.whatsappUrl);if(url.protocol!=='https:'||!['api.whatsapp.com','wa.me'].includes(url.hostname)||url.username||url.password)throw new Error('Invalid support contact.');Object.assign(supportContacts,{whatsappUrl:value.whatsappUrl});return supportContacts;},
+    contacts:()=>{
+      initializeSupportContacts();
+      if(contactsFetchedAt&&Date.now()-contactsFetchedAt<60000)return Promise.resolve(supportContacts);
+      if(contactRequest)return contactRequest;
+      contactRequest=request('/contact-settings').then(value=>{if(!validWhatsApp(value.whatsappUrl))throw new Error('Invalid support contact.');supportContacts.whatsappUrl=value.whatsappUrl;contactsFetchedAt=Date.now();return supportContacts;}).finally(()=>{contactRequest=null;});
+      return contactRequest;
+    },
     guidance:async({text,intent,history=[],context={}})=>{
       const prompts={residential:'Residential plans',business:'Business plans',coverage:'How do I check coverage?',installation:'Installation help',troubleshooting:'My internet is not working',fault:'Report a fault',billing:'Payments and renewals',account:'My Ikonectt portal',recovery:'Account recovery',sales:'Contact sales',support:'Contact support',enquiry:'I want to make an enquiry'};
       const result=await request('/assistant/guidance',{message:String(text||prompts[intent]||'Help with Ikonectt services').slice(0,1000),...(history.length?{history:history.slice(-8).map(({role,content})=>({role,content:content.slice(0,1000)}))}:{}),...(context.path?{context:{path:context.path.slice(0,200),audience:context.audience==='business'?'BUSINESS':'RESIDENTIAL',...(context.plan?{plan:context.plan}:{})}}:{})});

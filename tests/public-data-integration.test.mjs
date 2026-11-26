@@ -100,3 +100,8 @@ test('installation and troubleshooting pages reuse current approved articles wit
   assert.doesNotMatch(render('about'),/uncapped/i);
  }finally{replacePublishedKnowledge([]);}
 });
+
+test('contact refreshes coalesce and live Admin contact overrides published configuration',async()=>{
+ let calls=0,complete;const client=createPublicDataClient({fetcher:async()=>{calls++;await new Promise(r=>complete=r);return response({whatsappUrl:'https://api.whatsapp.com/send/?phone=2348000000000'});}});
+ const first=client.contacts(),second=client.contacts();assert.equal(calls,1);complete();assert.equal((await first).whatsappUrl,'https://api.whatsapp.com/send/?phone=2348000000000');await second;await client.contacts();assert.equal(calls,1);
+});

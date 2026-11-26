@@ -79,3 +79,11 @@ test('operational requests use existing website pages without writing records fr
   assert.equal(f.writes.length,0);assert.ok(f.root.querySelector('[data-composer]'));assert.equal(f.root.querySelector('.ik-assistant-all-topics'),null);
  }finally{f.close();}
 });
+
+test('published WhatsApp stays visible when the operational backend is unavailable',async()=>{
+ const settings=globalThis.__IKONECTT_PUBLIC_CONFIG__,oldUrl=supportContacts.whatsappUrl;
+ supportContacts.whatsappUrl=null;globalThis.__IKONECTT_PUBLIC_CONFIG__={contacts:{whatsappUrl:'https://api.whatsapp.com/send/?phone=2349168965000'}};
+ const f=await fixture({contacts:async()=>{throw Error('Backend is not configured');}});
+ try{await pause();const link=f.root.querySelector('[data-whatsapp]');assert.equal(link.hidden,false);assert.equal(link.href,'https://api.whatsapp.com/send/?phone=2349168965000');assert.equal(link.target,'_blank');assert.equal(link.rel,'noopener noreferrer');assert.equal(f.writes.length,0);}
+ finally{f.close();supportContacts.whatsappUrl=oldUrl;globalThis.__IKONECTT_PUBLIC_CONFIG__=settings;}
+});

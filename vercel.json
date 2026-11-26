@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm run build -- --with-admin",
+  "buildCommand": "npm run build:release",
   "outputDirectory": "dist-public",
   "cleanUrls": true,
   "headers": [

@@ -1,3 +1,4 @@
+import {initializeSupportContacts} from '../shared/public-data.js';
 import {publicContacts} from '../shared/content.js';
 import {escapeHTML as esc} from '../shared/forms.js';
 import {officialPortal} from '../shared/public-data.js';
@@ -41,9 +42,9 @@ export function initializeContactSupport(main,client,{signal}={}){
  },opts);
  const whatsapp=main.querySelector('[data-support-whatsapp]');
  const status=main.querySelector('[data-support-whatsapp-status]');
- if(client)void client.contacts().then(contacts=>{
-  if(!whatsapp.isConnected||signal?.aborted)return;
-  whatsapp.href=contacts.whatsappUrl;whatsapp.removeAttribute('aria-disabled');status.textContent='Start a conversation';
- }).catch(()=>{if(status.isConnected)status.textContent='Please call or email us instead.';});
- else status.textContent='Contact details are currently unavailable. Please call or email us.';
+ const apply=contacts=>{if(!whatsapp.isConnected||signal?.aborted||!contacts.whatsappUrl)return false;whatsapp.href=contacts.whatsappUrl;whatsapp.removeAttribute('aria-disabled');status.textContent='Start a conversation';return true;};
+ apply(initializeSupportContacts());
+ const unavailable=()=>{if(status.isConnected&&!whatsapp.hasAttribute('href'))status.textContent='Please call or email us instead.';};
+ if(client)void client.contacts().then(apply).catch(unavailable);
+ else unavailable();
 }
