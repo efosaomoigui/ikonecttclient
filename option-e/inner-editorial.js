@@ -5,7 +5,7 @@ import {renderPage} from '../shared/pages.js';
 export function mountInnerEditorial(root){
  if(root.dataset.template!=='e')return ()=>{};
  const doc=root.ownerDocument,main=root.querySelector('#ik-main');
- const menuImages={residential:'home-plans-photo',business:'client-conference-room',coverage:'coverage-photo',support:'support-photo',about:'client-conference-room'};
+ const menuImages={residential:'home-plans-photo',business:'client-conference-room',coverage:'coverage-drone-menu',support:'support-photo',about:'client-conference-room'};
  for(const [id,key] of Object.entries(menuImages)){
   const inner=root.querySelector(`#ik-menu-${id} .ik-mega-inner`);
   if(!inner||inner.querySelector('.e-mega-content'))continue;

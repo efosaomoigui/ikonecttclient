@@ -1,6 +1,7 @@
 // Original generated campaign illustrations, used only by Option E's inner heroes.
 // People, places and support facilities are illustrative, not company/site claims.
 export const internalPhotos={
+  'coverage-drone-menu':{position:'50% 50%',stem:'coverage-drone-city-v1',alt:'Illustrative aerial drone-style view of urban buildings and intersecting streets.',width:1536,height:1024,widths:[480,800,1280,1536]},
   'terms-photo':{stem:'legal-documents-v1',alt:'Illustrative paper documents and an unbranded pen on a desk.',width:1672,height:940,widths:[480,800,1280,1600]},
   'coverage-photo':{stem:'coverage-neighbourhood-v1',alt:'Illustrative Nigerian neighbourhood with contemporary homes and a tree-lined street.',width:1672,height:941,widths:[480,800,1280,1600]},
   'support-photo':{position:'75% 15%',stem:'support-adviser-v1',alt:'Illustrative Nigerian support adviser wearing a headset in a welcoming workspace.',width:1672,height:941,widths:[480,800,1280,1600]},

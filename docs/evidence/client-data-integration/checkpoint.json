@@ -1,5 +1,5 @@
 {
-  "reason": "Authorized consolidation of release configuration and always-available approved WhatsApp contact; operational data remains API-backed.",
+  "reason": "User-authorized Coverage mega-menu image replacement with a generated aerial city illustration; other approved imagery and layout preserved.",
   "files": {
     "option-e/index.html": {
       "sha256LF": "22a5ebee9f5a2e50d9f3dd6572cc36c747311f80acfafa4b9d8fcc3a36dbe3c5"
@@ -69,6 +69,12 @@
     },
     "option-e/contact-support.css": {
       "sha256LF": "47d8bc631a1d9cf4445c2b70f013033ec2fd10b2e19ef4bceca20ee4a8db1c8f"
+    },
+    "option-e/hero-photos.js": {
+      "sha256LF": "040f3280729bbfa43788d0c5e554540e773fb001e31cf703fba7f514133dc92d"
+    },
+    "option-e/inner-editorial.js": {
+      "sha256LF": "9f4d61a68580e55dc5ae364113ef521aad1c6d8dd30b2cfec6c8d3687d71e9da"
     }
   }
 }

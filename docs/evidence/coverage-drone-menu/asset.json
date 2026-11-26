@@ -1,0 +1,30 @@
+{
+  "tool": "built-in image_gen",
+  "type": "AI-generated illustrative drone-style city photograph; not a verified coverage location",
+  "original": "C:/Users/Efe-Dev/.codex/generated_images/01a15358-442c-78c2-825d-e8cdd568b5d8/exec-cf27cf95-89e7-479b-8eb1-d30bcd9e92a2.png",
+  "width": 1536,
+  "height": 1024,
+  "files": [
+    {
+      "file": "option-e/images/internal/coverage-drone-city-v1-480.webp",
+      "width": 480,
+      "bytes": 67356
+    },
+    {
+      "file": "option-e/images/internal/coverage-drone-city-v1-800.webp",
+      "width": 800,
+      "bytes": 173740
+    },
+    {
+      "file": "option-e/images/internal/coverage-drone-city-v1-1280.webp",
+      "width": 1280,
+      "bytes": 394164
+    },
+    {
+      "file": "option-e/images/internal/coverage-drone-city-v1-1536.webp",
+      "width": 1536,
+      "bytes": 548132
+    }
+  ],
+  "prompt": "Create a photorealistic aerial drone photograph for the Coverage mega-menu of a Nigerian fibre broadband company website. Wide landscape composition, approximately 3:2. An authentic contemporary Lagos urban neighbourhood seen from a drone about 100 metres above ground at a downward oblique angle: many believable two- to five-storey residential and mixed-use buildings, intersecting paved streets, visible street blocks and junctions, a few small cars, modest scattered green trees, realistic roof details and natural urban density. Buildings and connected street network should fill almost the entire frame; very little horizon and no dominant sky. Neutral clear daylight with natural colours, soft realistic shadows, sharp photographic details and credible city scale. Professional architectural drone photography, realistic everyday city rather than a luxurious gated-estate advertisement. Avoid sunset lighting, fantasy skyscrapers, duplicated buildings, warped roads, miniature/toy appearance, digital network graphics, labels, text, logos, UI or watermarks. This is an illustrative city image, not evidence of verified coverage at any specific address."
+}
