@@ -95,7 +95,7 @@ WhatsApp is a secure external link only: no WhatsApp Business API, message synch
 
 ## Vercel live release correction — 26 November 2026
 
-The root Vercel build uses `npm run build -- --with-admin`, not `--with-demos`. This includes the actual staff sign-in and removes the simulated review entry. Admin CSP permits same-origin API requests. `api/[...path].js` forwards `/api/v1/*` to the existing backend using the private Vercel environment setting `IKONECTT_BACKEND_ORIGIN=https://<actual-backend-host>` (origin only, no API path, credentials or localhost). It preserves bearer authentication and delegates all authorization to the backend; it does not create a second backend/database.
+The root Vercel build uses `npm run build -- --with-admin`, not `--with-demos`. This includes the actual staff sign-in and removes the simulated review entry. Admin CSP permits same-origin API requests. `api/backend.js` forwards `/api/v1/*` to the existing backend using the private Vercel environment setting `IKONECTT_BACKEND_ORIGIN=https://<actual-backend-host>` (origin only, no API path, credentials or localhost). It preserves bearer authentication and delegates all authorization to the backend; it does not create a second backend/database.
 
 Set that environment variable in the existing Vercel project and redeploy after the real backend and persistent PostgreSQL are hosted. If absent, API calls return 503 BACKEND_NOT_CONFIGURED; no mock records or authentication bypass are substituted. A Git push cannot expose this computer's 127.0.0.1:4000 service to Vercel or transfer the local administrator/database. The existing production domain/project is retained.
 

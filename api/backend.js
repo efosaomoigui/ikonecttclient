@@ -9,6 +9,8 @@ module.exports = async function backendProxy(req, res) {
   let origin, incoming;
   try {
     origin = new URL(configured); incoming = new URL(req.url,'https://request.invalid');
+    if(incoming.pathname==='/api/backend'){const value=req.query?.backendPath;const route=Array.isArray(value)?value.join('/'):value;if(typeof route!=='string')return fail(400,'INVALID_PATH','Invalid API path');incoming=new URL('/api/v1/'+route+incoming.search,'https://request.invalid');}
+    incoming.searchParams.delete('backendPath');
     if(origin.protocol!=='https:' || origin.username || origin.password || origin.search || origin.hash || origin.pathname!=='/' || ['localhost','127.0.0.1','::1','[::1]'].includes(origin.hostname)) throw Error();
     if(!incoming.pathname.startsWith('/api/v1/') || /%2e|%2f|%5c/i.test(incoming.pathname)) return fail(400,'INVALID_PATH','Invalid API path');
   } catch { return fail(503,'BACKEND_NOT_CONFIGURED','The backend connection is unavailable.'); }

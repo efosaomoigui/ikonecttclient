@@ -130,5 +130,11 @@
     "api/**/*.js": {
       "maxDuration": 20
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/api/v1/:path*",
+      "destination": "/api/backend?backendPath=:path*"
+    }
+  ]
 }
