@@ -134,3 +134,22 @@
 .ik-site .ik-assistant-enquiry-review dt{font-weight:600;font-size:13px}
 .ik-site .ik-assistant .ik-assistant-consent{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
 .ik-site .ik-assistant .ik-assistant-consent input{appearance:auto;flex:0 0 20px;min-height:20px;width:20px;height:20px;padding:0;margin-top:3px}
+.ik-site .ik-assistant-phone{display:grid;grid-template-columns:24px minmax(70px,105px) auto minmax(0,1fr);align-items:center;gap:8px;border:1px solid var(--as-line);border-radius:8px;padding:0 10px;background:var(--as-bg)}
+.ik-site .ik-assistant-phone [data-phone-flag]{display:grid;place-items:center;font-size:19px}
+.ik-site .ik-assistant-phone select{font:inherit;font-size:13px;min-width:0;width:100%;min-height:46px;border:0;padding:0;background:var(--as-bg);color:var(--as-text)}
+.ik-site .ik-assistant-phone [data-phone-dial]{font-size:14px;white-space:nowrap;color:var(--as-text)}
+.ik-site .ik-assistant-phone input{border:0;padding-inline:0;min-width:0}
+.ik-site .ik-assistant [data-chat-coverage]{display:block;border:0;border-radius:0;box-shadow:none;background:transparent;padding:0;margin:12px 0 0}
+.ik-site .ik-assistant [data-chat-coverage] > button{margin-top:14px}
+.ik-site .ik-assistant #chat-coverage-status{margin:12px 0;font-size:13px;color:var(--as-muted);line-height:1.5}
+.ik-site .ik-assistant .ik-assistant-location{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:14px 10px;min-height:52px;background:var(--as-bg);color:var(--as-text);border:0;border-bottom:1px solid var(--as-line);text-align:left;font-size:14px}
+.ik-site .ik-assistant-location strong{font-weight:600;overflow-wrap:anywhere}
+.ik-site .ik-assistant-location span{font-size:12px;color:var(--as-muted);flex-shrink:0}
+.ik-site .ik-assistant-coverage-result{padding:16px;margin-bottom:16px;border:1px solid #78b995;border-radius:10px;background:#eff9f2;color:#16452c}
+.ik-site .ik-assistant-coverage-result p,.ik-site .ik-assistant-flow-note{font-size:14px;line-height:1.65;margin-top:8px}
+.ik-site .ik-assistant .ik-assistant-guides details{border-bottom:1px solid var(--as-line);margin:0}
+.ik-site .ik-assistant .ik-assistant-guides summary{display:list-item;font-size:15px;font-weight:600;padding-block:16px}
+.ik-site .ik-assistant-guides p{font-size:15px;line-height:1.7;white-space:pre-line;padding:0 0 18px}
+.ik-site .ik-assistant .ik-assistant-plans button{font-size:14px}
+.ik-site .ik-assistant .ik-assistant-plans small{font-size:12px}
+@media(max-width:359px){.ik-site .ik-assistant-phone{grid-template-columns:20px minmax(60px,80px) auto minmax(0,1fr);gap:6px;padding-inline:8px}}

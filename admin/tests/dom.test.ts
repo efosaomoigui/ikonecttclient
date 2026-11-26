@@ -99,7 +99,7 @@ test('DOM: both themes cover all major screens and preserve unsaved forms, roles
 test('DOM: sidebar starts collapsed, uses an accordion, and reveals the active page parent', async () => { const dom = boot(); try {
     await preview(dom);
     const doc = dom.window.document;
-    const group = () => doc.querySelector<HTMLButtonElement>('[data-group="Customers & sales"]')!;
+    const group = () => doc.querySelector<HTMLButtonElement>('[data-group="Sales and Enquiries"]')!;
     const links = () => doc.getElementById(group().getAttribute('aria-controls')!)!;
     assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 0);
     assert.equal(doc.querySelectorAll('.sidebar nav a').length, 20);
@@ -107,20 +107,27 @@ test('DOM: sidebar starts collapsed, uses an accordion, and reveals the active p
     group().click();
     assert.equal(group().getAttribute('aria-expanded'), 'true');
     assert.equal(links().hidden, false);
-    click(dom, '[data-group="Services & operations"]');
+    click(dom, '[data-group="Products and Services"]');
     assert.equal(group().getAttribute('aria-expanded'), 'false');
     assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 1);
-    click(dom, '[data-group="Services & operations"]');
+    click(dom, '[data-group="Products and Services"]');
     assert.equal(doc.querySelectorAll('.nav-group-toggle[aria-expanded="true"]').length, 0);
     await go(dom, 'plans');
     assert.equal(links().hidden, true);
-    assert.equal(doc.querySelector('[data-group="Services & operations"]')!.getAttribute('aria-expanded'), 'true');
+    assert.equal(doc.querySelector('[data-group="Products and Services"]')!.getAttribute('aria-expanded'), 'true');
     assert.equal(doc.querySelector('a[aria-current="page"][href="#/plans"]')!.closest('[hidden]'), null);
     group().click();
     assert.equal(links().hidden, false);
     click(dom, 'a[href="#/customers"]');
     await waitFor(() => !!doc.querySelector('a[aria-current=page][href="#/customers"]'));
     assert.equal(group().getAttribute('aria-expanded'), 'true');
+    await go(dom, 'leads');
+    dom.window.location.hash='#/leads?category=INSTALLATION';
+    await waitFor(()=>doc.querySelector<HTMLSelectElement>('#request-category')?.value==='INSTALLATION');
+    assert.equal(doc.querySelector('.sidebar a[aria-current="page"]')!.getAttribute('href'),'#/leads');
+    assert.equal(group().getAttribute('aria-expanded'),'true');
+    click(dom,'.sidebar a[href="#/leads"]');
+    await waitFor(()=>doc.querySelector<HTMLSelectElement>('#request-category')?.value==='');
     await go(dom, 'dashboard');
     assert.equal(doc.querySelector('[data-group="Overview"]')!.getAttribute('aria-expanded'), 'true');
     click(dom, '[data-action=account]');
@@ -291,7 +298,7 @@ for (const role of ['SUPPORT', 'SALES'] as const) {
             (form.elements.namedItem('password') as HTMLInputElement).value = 'isolated-test-password';
             form.dispatchEvent(new dom.window.Event('submit', { bubbles: true, cancelable: true }));
             await waitFor(() => !!doc.querySelector('.metrics'));
-            assert.match(doc.querySelector('h1')!.textContent!, /Website Overview/);
+            assert.match(doc.querySelector('h1')!.textContent!, /Overview/);
             for (const key of ['customers', 'orders', 'subscriptions', 'payments', 'walletTopUps', 'walletRenewals']) {
                 assert.equal(doc.querySelector(`.sidebar a[href="#/${key}"]`), null);
                 assert.equal(calls.includes(modules[key].path), false);

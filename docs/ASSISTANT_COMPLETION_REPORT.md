@@ -1,6 +1,10 @@
+> Current status, 26 November 2026: superseded by `PRODUCTION_READINESS_REVIEW.md`. Operational chat forms were removed in favour of existing website pages with a private in-memory handoff; pre-chat remains mandatory. Earlier test enquiries named below were removed after backup.
+
 # Assistant, WhatsApp and handover verification
 
 25 November 2026. Canonical checkout: `C:/Users/Efe-Dev/Documents/business News/ikonectt`, branch `main`. Local implementation and commissioning preparation only; nothing pushed or deployed.
+
+**26 November correction:** the client's subsequent flow brief supersedes the guest-entry behavior recorded below. The welcome form is restored, with country-aware E.164 phone validation and contact prefilling. Interactive coverage, plans and troubleshooting use the existing public APIs inside chat. Current validation and the outstanding native-browser verification blocker are documented in `CLIENT_HANDOVER.md` under “Chat flow update.” The earlier phase report below remains a historical record.
 
 ## Preserved and verified
 

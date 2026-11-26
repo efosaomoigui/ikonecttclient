@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const API_VERSION = '1.4.0';
+export const API_VERSION = '1.5.0';
 export const API_PREFIX = '/api/v1';
 export const Id = z.string().uuid();
 const Text = z.string().trim().min(1).max(250);
@@ -14,7 +14,9 @@ export const OrderStatus = z.enum(['PENDING_PAYMENT', 'PAID', 'FULFILLING', 'COM
 export const SubscriptionStatus = z.enum(['PENDING', 'ACTIVE', 'SUSPENDED', 'FAILED', 'REQUIRES_REVIEW']);
 export const PaymentStatus = z.enum(['REPORTED', 'CONFIRMED', 'REJECTED']);
 export const TicketStatus = z.enum(['OPEN', 'IN_PROGRESS', 'RESOLVED', 'CLOSED']);
-export const LeadStatus = z.enum(['NEW', 'CONTACTED', 'QUALIFIED', 'CLOSED']);
+export const LeadStatus = z.enum(['NEW', 'ASSIGNED', 'IN_PROGRESS', 'AWAITING_CUSTOMER', 'RESOLVED', 'CLOSED', 'CONTACTED', 'QUALIFIED']);
+export const RequestCategory = z.enum(['GENERAL', 'RESIDENTIAL', 'BUSINESS', 'INSTALLATION', 'QUOTATION', 'COVERAGE', 'ADDRESS_VERIFICATION', 'SUPPORT', 'FAULT', 'SERVICE', 'FEEDBACK']);
+export const RequestChannel = z.enum(['WEBSITE', 'ASSISTANT', 'LEGACY']);
 export const Money = z.number().int().nonnegative().max(1_000_000_000_000);
 export const ListQuery = z.object({ offset: z.coerce.number().int().min(0).default(0), limit: z.coerce.number().int().min(1).max(100).default(25) }).strict();
 export const LoginRequest = z.object({ accountNumber: Text, password: z.string().min(1).max(128) }).strict();
@@ -34,8 +36,8 @@ export const CoverageInput = z.object({ name: Text, level: CoverageLevel, parent
 export const CoverageUpdate = z.object({ eligibility: Eligibility, planIds: z.array(Id).max(100), evidence: z.string().trim().min(3).max(1000) }).strict();
 export const CoverageQuery = z.object({ parentId: Id.optional(), level: CoverageLevel.optional() }).merge(ListQuery);
 export const CoverageCheckRequest = z.object({ buildingId: Id, planId: Id.optional() }).strict();
-export const CreateLeadRequest = z.object({ name: Text, email: z.string().email().max(254), phone: z.string().min(7).max(30), kind: CustomerKind, message: z.string().trim().min(3).max(4000), planId: Id.optional(), buildingId: Id.optional(), consent: z.literal(true) }).strict();
-export const UpdateLeadRequest = z.object({ status: LeadStatus, customerId: Id.optional() }).strict();
+export const CreateLeadRequest = z.object({ name: Text, email: z.string().email().max(254), phone: z.string().trim().min(7).max(30).regex(/^\+?[\d ().-]+$/).refine(v=>v.replace(/\D/g,'').length>=7&&v.replace(/\D/g,'').length<=15, 'Use 7 to 15 phone digits'), kind: CustomerKind, message: z.string().trim().min(3).max(4000), planId: Id.optional(), buildingId: Id.optional(), consent: z.literal(true), category: RequestCategory.default('GENERAL'), sourceChannel: RequestChannel.exclude(['LEGACY']).default('WEBSITE'), sourcePage: z.string().trim().max(200).regex(/^[a-zA-Z0-9/_-]*$/).default(''), idempotencyKey: Id.optional(), website: z.string().max(0).optional() }).strict();
+export const UpdateLeadRequest = z.object({ status: LeadStatus.optional(), customerId: Id.optional(), category: RequestCategory.optional(), assignedToId: Id.nullable().optional(), internalNote: z.string().trim().min(1).max(4000).optional() }).strict().refine(v => Object.keys(v).length > 0, 'Provide an update');
 export const CreateOrderRequest = z.object({ planId: Id, buildingId: Id, type: z.enum(['NEW_CONNECTION', 'RENEWAL', 'PLAN_CHANGE']).default('NEW_CONNECTION'), subscriptionId: Id.optional() }).strict();
 export const StaffOrderRequest = CreateOrderRequest.extend({ customerId: Id }).strict();
 export const ReportPaymentRequest = z.object({ orderId: Id, amountMinor: Money.positive(), currency: z.literal('NGN'), reference: z.string().trim().min(3).max(150), method: z.enum(['BANK_TRANSFER', 'OTHER']), evidence: z.string().trim().min(3).max(2000) }).strict();
@@ -61,7 +63,9 @@ export const Subscription = z.object({ id: Id, customerId: Id, planId: Id, build
 export const Ticket = z.object({ id: Id, customerId: Id, subscriptionId: Id.nullable(), subject: z.string(), status: TicketStatus, assignedToId: Id.nullable(), createdAt: z.string().datetime() });
 export const TicketMessage = z.object({ id: Id, ticketId: Id, authorId: Id, message: z.string(), createdAt: z.string().datetime() });
 export const TicketDetail = Ticket.extend({ messages: z.array(TicketMessage) });
-export const Lead = z.object({ id: Id, name: z.string(), email: z.string(), phone: z.string(), kind: CustomerKind, message: z.string(), planId: Id.nullable(), buildingId: Id.nullable(), customerId: Id.nullable(), status: LeadStatus, consent: z.boolean(), createdAt: z.string().datetime() });
+export const Lead = z.object({ id: Id, name: z.string(), email: z.string(), phone: z.string(), kind: CustomerKind, message: z.string(), planId: Id.nullable(), buildingId: Id.nullable(), customerId: Id.nullable(), status: LeadStatus, consent: z.boolean(), category: RequestCategory.default('GENERAL'), sourceChannel: RequestChannel.default('LEGACY'), sourcePage: z.string().default(''), assignedToId: Id.nullable().default(null), createdAt: z.string().datetime() });
+export const LeadDetail = Lead.extend({ activity: z.array(z.object({ id: Id, actorId: Id.nullable(), action: z.string(), note: z.string().nullable(), createdAt: z.string().datetime() })) });
+export const LeadQuery = ListQuery.extend({ search: z.string().trim().max(200).optional(), category: RequestCategory.optional(), status: LeadStatus.optional(), kind: CustomerKind.optional(), sourceChannel: RequestChannel.optional(), assignedToId: Id.optional(), sort: z.enum(['createdAt', 'name', 'status']).default('createdAt'), direction: z.enum(['asc','desc']).default('desc') }).strict();
 export const Staff = z.object({ id: Id, name: z.string(), email: z.string(), roles: z.array(Role), enabled: z.boolean(), createdAt: z.string().datetime() });
 export const Session = z.object({ accessToken: z.string(), tokenType: z.literal('Bearer'), expiresAt: z.string().datetime(), principal: z.object({ id: Id, kind: z.enum(['STAFF', 'CUSTOMER']), customerId: Id.nullable(), roles: z.array(Role), mustChangePassword: z.boolean() }) });
 export const Ok = z.object({ ok: z.literal(true) });
@@ -134,8 +138,8 @@ export const KnowledgeInput=z.object({key:z.string().trim().min(1).max(100).rege
 export const KnowledgeUpdate=KnowledgeInput.partial().strict().refine(v=>Object.keys(v).length>0);
 export const KnowledgeArticle=KnowledgeInput.extend({id:Id,createdAt:z.string().datetime(),updatedAt:z.string().datetime()});
 
-export const AssistantSettingsInput=z.object({enabled:z.boolean().optional(),provider:z.literal('openai').optional(),model:z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9._:-]+$/).optional(),maxOutputTokens:z.number().int().min(64).max(600).optional(),dailyRequestLimit:z.number().int().min(1).max(1000).optional(),apiKey:z.string().trim().min(10).max(300).optional()}).strict();
-export const AssistantSettingsView=z.object({enabled:z.boolean(),provider:z.literal('openai'),model:z.string(),maxOutputTokens:z.number(),dailyRequestLimit:z.number(),credentialConfigured:z.boolean(),credentialSource:z.enum(['environment','encrypted','none']),lastTestStatus:z.string(),knowledgePublished:z.number(),usageToday:z.number()});
+export const AssistantSettingsInput=z.object({retrievalArticleLimit:z.number().int().min(1).max(50).optional(),enabled:z.boolean().optional(),provider:z.literal('openai').optional(),model:z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9._:-]+$/).optional(),maxOutputTokens:z.number().int().min(64).max(600).optional(),dailyRequestLimit:z.number().int().min(1).max(1000).optional(),apiKey:z.string().trim().min(10).max(300).optional()}).strict();
+export const AssistantSettingsView=z.object({retrievalArticleLimit:z.number().int().min(1).max(50).default(12),enabled:z.boolean(),provider:z.literal('openai'),model:z.string(),maxOutputTokens:z.number(),dailyRequestLimit:z.number(),credentialConfigured:z.boolean(),credentialSource:z.enum(['environment','encrypted','none']),lastTestStatus:z.string(),knowledgePublished:z.number(),usageToday:z.number()});
 export const AssistantConnectionResult=z.object({ok:z.boolean(),status:z.string(),message:z.string()});
 export const ContactSettings=z.object({whatsappUrl:z.string(),customerCareEmail:z.literal('customercare@ikonectt.com'),portalUrl:z.literal('https://portal.ikonectt.com')});
 export const ContactSettingsInput=z.object({whatsappUrl:z.string().url().max(300).refine(v=>{try{const u=new URL(v);return u.protocol==='https:'&&u.hostname==='api.whatsapp.com'&&u.pathname==='/send/'&&/^\d{8,15}$/.test(u.searchParams.get('phone')||'')}catch{return false}},'Use an HTTPS api.whatsapp.com/send/ link with an international phone number')}).strict();

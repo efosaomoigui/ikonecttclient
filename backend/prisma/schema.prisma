@@ -42,6 +42,10 @@ enum Eligibility {
   UNKNOWN
 }
 enum LeadStatus {
+  ASSIGNED
+  IN_PROGRESS
+  AWAITING_CUSTOMER
+  RESOLVED
   NEW
   CONTACTED
   QUALIFIED
@@ -111,6 +115,7 @@ model User {
   customer Customer? @relation(fields: [customerId], references: [id])
   sessions Session[]
   passwordResets PasswordReset[]
+  assignedLeads Lead[]
   assignedTickets Ticket[]
   messages TicketMessage[]
   audits AuditLog[]
@@ -220,6 +225,15 @@ model CoveragePlan {
   @@id([locationId, planId])
 }
 model Lead {
+  category String @default("GENERAL")
+  sourceChannel String @default("LEGACY")
+  sourcePage String @default("")
+  idempotencyKey String? @unique @db.Uuid
+  requestHash String?
+  assignedToId String? @db.Uuid
+  assignedTo User? @relation(fields: [assignedToId], references: [id])
+  activity LeadActivity[]
+  @@index([category, status, createdAt])
   id String @id @default(uuid()) @db.Uuid
   name String
   email String
@@ -235,6 +249,16 @@ model Lead {
   buildingId String? @db.Uuid
   building CoverageLocation? @relation(fields: [buildingId], references: [id])
   createdAt DateTime @default(now())
+}
+model LeadActivity {
+  id String @id @default(uuid()) @db.Uuid
+  leadId String @db.Uuid
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  actorId String? @db.Uuid
+  action String
+  note String?
+  createdAt DateTime @default(now())
+  @@index([leadId, createdAt])
 }
 model Order {
   id String @id @default(uuid()) @db.Uuid
@@ -544,6 +568,7 @@ model KnowledgeArticle {
 }
 
 model AssistantSettings {
+ retrievalArticleLimit Int @default(12)
  id String @id @default("main")
  enabled Boolean @default(false)
  provider String @default("openai")

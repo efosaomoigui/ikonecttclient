@@ -29,6 +29,26 @@ test('area matches preserve scope and feasibility caveat, missing results do not
  assert.match(html,/&lt;Estate&gt;/);assert.match(html,/feasibility/i);assert.doesNotMatch(html,/<Estate>/);
  const empty=renderPage('coverage',{state:{coverageQuery:'unknown',coverageAreas:[]},query:new URLSearchParams()});assert.match(empty,/does not confirm|does not mean|not a confirmation/i);
 });
+
+test('coverage search updates beside its existing form without scrolling or duplicate requests',async()=>{
+ const dom=new JSDOM('<!doctype html><title>Home</title><body data-public-release><main><h1>Home</h1></main></body>',{url:'https://preview.test/option-e/#/coverage',pretendToBeVisual:true});
+ const win=dom.window,keys=['window','document','CustomEvent','FormData','AbortController','fetch'],saved=Object.fromEntries(keys.map(k=>[k,globalThis[k]]));
+ for(const k of keys.filter(k=>k!=='fetch'))globalThis[k]=k==='window'?win:win[k];
+ let scrolls=0,requests=0,finish;win.scrollTo=()=>scrolls++;win.matchMedia=()=>({matches:false});
+ globalThis.fetch=async url=>{if(String(url).includes('/coverage/service-areas')){requests++;return new Promise(resolve=>finish=resolve);}return response(page([]));};
+ const stop=mountSite({root:win.document.body,home:win.document.querySelector('main'),template:'e'}),pause=()=>new Promise(resolve=>setTimeout(resolve,20));
+ try{
+  await pause();const form=win.document.querySelector('[data-form="coverage-search"]'),input=form.elements.namedItem('location'),result=win.document.querySelector('[data-coverage-results]'),heading=win.document.querySelector('h1');
+  assert.ok(result.closest('.e-coverage-layout'));input.value='Victoria Island';input.focus();scrolls=0;
+  const submit=()=>form.dispatchEvent(new win.Event('submit',{bubbles:true,cancelable:true}));submit();submit();
+  assert.equal(requests,1);assert.equal(result.getAttribute('aria-busy'),'true');assert.equal(form.querySelector('button[type=submit]').disabled,true);assert.match(result.textContent,/Searching/);assert.equal(scrolls,0);
+  finish(response(page([{id:'area',name:'Victoria Island',scope:'AREA',notice:'Address review required.'}])));await pause();
+  assert.equal(win.document.querySelector('[data-form="coverage-search"]'),form);assert.equal(win.document.querySelector('h1'),heading);assert.equal(win.document.activeElement,input);assert.equal(input.value,'Victoria Island');assert.equal(scrolls,0);assert.equal(win.location.hash,'#/coverage');assert.match(result.textContent,/Victoria Island/);assert.equal(result.getAttribute('aria-busy'),'false');assert.equal(form.querySelector('button[type=submit]').disabled,false);
+  assert.equal(result.querySelector('.ik-panel'),null);const selected=result.querySelector('.e-coverage-match').getAttribute('href');assert.equal(selected,'#/residential/installation?area=Victoria%20Island');assert.match(result.textContent,/Address review required/);
+  submit();finish({ok:false});await pause();assert.equal(scrolls,0);assert.ok(result.querySelector('[role=alert]'));assert.equal(form.querySelector('button[type=submit]').disabled,false);
+  win.location.hash=selected;await pause();assert.equal(win.document.querySelector('[data-form="installation"] [name="district"]').value,'Victoria Island');
+ }finally{stop();win.close();for(const key of keys)globalThis[key]=saved[key];}
+});
 test('enquiry and assistant use existing API boundary with safe approved links',async()=>{
  const calls=[];const client=createPublicDataClient({fetcher:async(url,options)=>{calls.push([url,options]);return response(url.endsWith('/leads')?{id:'recorded'}:{answer:'Approved help',links:[{label:'Portal',path:'https://portal.ikonectt.com'},{label:'Email',path:'mailto:customercare@ikonectt.com'},{label:'Unsafe',path:'javascript:alert(1)'}]});}});
  const input={name:'Test',email:'test@example.test',phone:'08031234567',kind:'RESIDENTIAL',message:'Test enquiry',consent:true};assert.equal((await client.createEnquiry(input)).id,'recorded');assert.deepEqual(JSON.parse(calls[0][1].body),input);

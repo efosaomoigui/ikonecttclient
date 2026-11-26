@@ -60,21 +60,28 @@ function login(message = '') {
         refreshIcons();
     } };
 }
-const activeModules = new Set(['plans', 'serviceAreas', 'leads', 'knowledge', 'tickets', 'staff', 'audit', 'notifications']);
+const activeModules = new Set(['plans', 'serviceAreas', 'leads', 'knowledge', 'staff', 'audit', 'notifications']);
 function navigationEntries() {
     const entries = [{ key: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard', group: 'Overview', permission: null }, ...Object.entries(modules).map(([key, m]) => ({ key, ...m })), { key: 'reports', label: 'Reports', icon: 'chart-no-axes-combined', group: 'Intelligence', permission: 'reports.read' }, { key: 'integrations', label: 'Integrations', icon: 'plug', group: 'Administration', permission: 'integrations.read' }, { key: 'settings', label: 'Settings', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' }];
     if (api.mode === 'mock') return entries;
     return [...entries.filter(entry => entry.key === 'dashboard' || activeModules.has(entry.key) || ['integrations', 'settings'].includes(entry.key)),
-        { key: 'assistantSettings', label: 'AI Assistant', icon: 'settings-2', group: 'Administration', permission: 'staff.manage' },
+        {key:'leads?category=COVERAGE',label:'Coverage Requests',icon:'map-pin',group:'Coverage Management',permission:'leads.read'},
+        {key:'leads?category=ADDRESS_VERIFICATION',label:'Address Reviews',icon:'map-pin',group:'Coverage Management',permission:'leads.read'},
+        {key:'leads?category=SUPPORT',label:'Support Requests',icon:'headphones',group:'Customer Support',permission:'leads.read'},
+        {key:'leads?category=FAULT',label:'Fault Reports',icon:'headphones',group:'Customer Support',permission:'leads.read'},
+        {key:'leads?category=SERVICE',label:'Service Requests',icon:'headphones',group:'Customer Support',permission:'leads.read'},
+        { key: 'assistantSettings', label: 'AI Assistant', icon: 'settings-2', group: 'Knowledge and AI', permission: 'staff.manage' },
         { key: 'contactSettings', label: 'Contact settings', icon: 'contact', group: 'Administration', permission: 'staff.manage' }];
 }
 function nav() {
     const entries = navigationEntries();
-    const groups = ['Overview', 'Customers & sales', 'Services & operations', 'Customer support', 'Intelligence', 'Administration'];
+    const requestedKey=route==='leads'&&requestCategory?'leads?category='+requestCategory:route;
+    const activeKey=entries.some(entry=>entry.key===requestedKey)?requestedKey:route;
+    const groups = ['Overview', 'Sales and Enquiries', 'Coverage Management', 'Products and Services', 'Customer Support', 'Knowledge and AI', 'Intelligence', 'Administration'];
     return groups.map((g, index) => {
         const items = entries.filter(e => e.group === g && (!e.permission || can(api.permissions, e.permission)));
         const expanded = expandedNavGroup === g;
-        return items.length ? `<div class="nav-group"><button type="button" class="nav-group-toggle" data-action="nav-group" data-group="${esc(g)}" aria-expanded="${expanded}" aria-controls="nav-group-${index}"><span>${g}</span>${icon('chevron-down')}</button><div id="nav-group-${index}"${expanded ? '' : ' hidden'}>${items.map(e => `<a href="#/${e.key}" class="nav-link ${route === e.key ? 'active' : ''}" ${route === e.key ? 'aria-current="page"' : ''}>${icon(e.icon)}${e.label}${e.key === 'dashboard' ? '<b></b>' : ''}</a>`).join('')}</div></div>` : '';
+        return items.length ? `<div class="nav-group"><button type="button" class="nav-group-toggle" data-action="nav-group" data-group="${esc(g)}" aria-expanded="${expanded}" aria-controls="nav-group-${index}"><span>${g}</span>${icon('chevron-down')}</button><div id="nav-group-${index}"${expanded ? '' : ' hidden'}>${items.map(e => `<a href="#/${e.key}" class="nav-link ${activeKey === e.key ? 'active' : ''}" ${activeKey === e.key ? 'aria-current="page"' : ''}>${icon(e.icon)}${e.label}${e.key === 'dashboard' ? '<b></b>' : ''}</a>`).join('')}</div></div>` : '';
     }).join('');
 }
 function revealActiveNavigation() {
@@ -131,7 +138,8 @@ async function navigate() {
         return;
     }
     const hash = location.hash.replace(/^#\//, '');
-    const next = hash.split('/')[0] || 'dashboard';
+    const [routePath,routeQuery]=hash.split('?');
+    const next = routePath.split('/')[0] || 'dashboard';
     // Fresh dashboard sessions start collapsed. Deep links and subsequent page changes
     // reveal their active parent, without forcing a group open after the user closes it.
     if ((!navigationStarted && next !== 'dashboard') || (navigationStarted && next !== route))
@@ -142,6 +150,9 @@ async function navigate() {
         filter = '';
         page = 0;
     }
+    if(next==='leads'&&!routeQuery)requestCategory='';
+    if(next==='leads'&&routeQuery){const params=new URLSearchParams(routeQuery);requestCategory=C.RequestCategory.safeParse(params.get('category')).success?params.get('category')!:'';filter=C.LeadStatus.safeParse(params.get('status')).success?params.get('status')!:'';}
+    if(next==='leads')expandedNavGroup=navigationEntries().find(entry=>entry.key===hash)?.group||'Sales and Enquiries';
     route = next;
     const version = ++viewVersion;
     shell();
@@ -161,6 +172,7 @@ async function navigate() {
         else if (modules[route]) {
             api.assert(modules[route].permission);
             rows = await api.list(route);
+            if(api.mode==='live'&&route==='plans')rows=rows.filter(record=>!record.simulated);
             cache[route] = rows;
             if (version !== viewVersion)
                 return;
@@ -209,19 +221,23 @@ async function websiteDashboard(version: number) {
     const definitions = [
         ['plans', 'Published plans', 'layers', (records: RecordData[]) => records.filter(record => record.published && !record.simulated).length],
         ['serviceAreas', 'Active service areas', 'map-pin', (records: RecordData[]) => records.filter(record => record.active && record.displayPrimary).length],
-        ['leads', 'New website enquiries', 'contact', (records: RecordData[]) => records.filter(record => record.status === 'NEW').length],
+        ['leads', 'New enquiries', 'contact', (records: RecordData[]) => records.filter(record => record.status === 'NEW').length],
+        ['leads', 'Pending installations', 'contact', (records: RecordData[]) => records.filter(record => record.category === 'INSTALLATION'&&!['CLOSED','RESOLVED'].includes(record.status)).length],
+        ['leads', 'Pending coverage requests', 'map-pin', (records: RecordData[]) => records.filter(record => ['COVERAGE','ADDRESS_VERIFICATION'].includes(record.category)&&!['CLOSED','RESOLVED'].includes(record.status)).length],
         ['knowledge', 'Published knowledge', 'scroll-text', (records: RecordData[]) => records.filter(record => record.published).length],
-        ['tickets', 'Open local support requests', 'headphones', (records: RecordData[]) => records.filter(record => ['OPEN', 'IN_PROGRESS'].includes(record.status)).length],
+        ['leads', 'Open support requests', 'headphones', (records: RecordData[]) => records.filter(record => ['SUPPORT','FAULT','SERVICE'].includes(record.category)&&!['RESOLVED','CLOSED'].includes(record.status)).length],
     ] as const;
     const available = definitions.filter(([key]) => can(api.permissions, modules[key].permission));
-    const result = await Promise.allSettled(available.map(([key]) => api.list(key)));
+    const loads=new Map<string,Promise<RecordData[]>>();
+    const result = await Promise.allSettled(available.map(([key]) => {if(!loads.has(key))loads.set(key,api.list(key));return loads.get(key)!;}));
     if (version !== viewVersion) return;
     const cards = available.map(([key, label, symbol, count], index) => {
         const outcome = result[index];
         const amount = outcome.status === 'fulfilled' ? count(outcome.value).toLocaleString() : 'Unavailable';
-        return `<a href="#/${key}" class="metric"><div><span>${label}</span>${icon(symbol)}</div><strong>${amount}</strong><small>Persistent backend records ${icon('arrow-up-right')}</small></a>`;
+        const destination=label==='New enquiries'?'leads?status=NEW':label==='Pending installations'?'leads?category=INSTALLATION':key;
+        return `<a href="#/${destination}" class="metric"><div><span>${label}</span>${icon(symbol)}</div><strong>${amount}</strong><small>View records ${icon('arrow-up-right')}</small></a>`;
     }).join('');
-    content().innerHTML = heading('Website Overview', 'Published website information and locally recorded requests.', button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<section class="metrics">${cards}</section><section class="panel panel-pad"><h2>Website operations</h2><p>Manage current plans, listed service areas and published knowledge. Customer account and subscription services are provided through the official customer portal.</p><p>Local enquiries and support records do not confirm submission to the client's ECRM.</p>${can(api.permissions, 'staff.manage') ? '<div class="wallet-actions"><a class="btn" href="#/assistantSettings">AI Assistant settings</a><a class="btn" href="#/contactSettings">Contact settings</a></div>' : ''}</section>${!available.length ? '<div class="notice">Your role has no access to website summary records. Contact your administrator if access is required.</div>' : ''}`;
+    content().innerHTML = heading('Overview', 'Current website information and customer requests.', button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<section class="metrics">${cards}</section>${result.find((_,index)=>available[index][0]==='leads')?.status==='fulfilled'?`<section class="panel panel-pad"><h2>Recent submissions</h2>${table('leads',(result.find((_,index)=>available[index][0]==='leads') as PromiseFulfilledResult<RecordData[]>).value.slice(0,5))}</section>`:''}<section class="panel panel-pad"><h2>Website operations</h2><p>Manage current plans, listed service areas and published knowledge. Customer account and subscription services are provided through the official customer portal.</p>${can(api.permissions, 'staff.manage') ? '<div class="wallet-actions"><a class="btn" href="#/assistantSettings">AI Assistant settings</a><a class="btn" href="#/contactSettings">Contact settings</a></div>' : ''}</section>${!available.length ? '<div class="notice">Your role has no access to website summary records. Contact your administrator if access is required.</div>' : ''}`;
 }
 async function dashboard(version: number) {
     if (api.mode === 'live') { await websiteDashboard(version); return; }
@@ -237,14 +253,15 @@ async function dashboard(version: number) {
     const leads = can(api.permissions,'leads.read')?cache.leads?.slice(0, 4):undefined;
     content().innerHTML = heading('Operational Overview', `Current customers, orders and service activity.`, button('Refresh overview', 'refresh', '', 'refresh-cw')) + `<div class="overview-date">${icon('calendar-days')}<time>${new Intl.DateTimeFormat('en-NG', { dateStyle: 'full', timeZone: 'Africa/Lagos' }).format(new Date())}</time><span aria-hidden="true">•</span><small class="overview-context">${api.mode === 'mock' ? 'Sample workspace' : 'Current operational records'}</small></div>${failures.length ? `<div class="notice" role="alert">Could not load: ${esc(failures.join(', '))}. ${button('Retry', 'refresh')}</div>` : ''}${cards ? (cards.startsWith('<div class="notice">')?cards:`<section class="metrics">${cards}</section>`) : '<div class="notice">Your role has access to reporting. Open Reports for operational summaries.</div>'}<section class="dashboard-grid"><div class="panel queue-panel"><div class="panel-title"><div><span class="eyebrow">OPERATIONS</span><h2>Pending Actions</h2></div>${icon('arrow-up-right')}</div>${tasks.length ? tasks.map(([key, , title, desc, i], n) => `<a class="task" href="#/${key}"><span class="task-icon">${icon(i)}</span><div><strong>${title}</strong><p>${desc}</p></div><span class="task-number">0${n + 1}</span>${icon('chevron-right')}</a>`).join('') : '<p class="panel-pad">Operational actions are limited by your assigned role.</p>'}</div><div class="panel health-panel"><span class="eyebrow">FULFILLMENT</span><h2>Service Workflow</h2><p>Payment approval and service activation are separate steps.</p><ol class="workflow"><li><span>1</span><div><strong>Customer request</strong><small>Review plan and address eligibility</small></div></li><li><span>2</span><div><strong>Payment verification</strong><small>Authorized staff check the evidence</small></div></li><li><span>3</span><div><strong>Service fulfillment</strong><small>Confirmed through provisioning</small></div></li></ol><div class="quiet-note">${icon('shield-check')} Each sensitive action is permission controlled.</div></div></section>${leads ? `<section class="panel"><div class="panel-title"><div><span class="eyebrow">CUSTOMERS & SALES</span><h2>Recent leads</h2></div><a class="text-link" href="#/leads">View all leads ${icon('arrow-right')}</a></div>${table('leads', leads)}</section>` : ''}<section class="workspace-note">${icon('network')}<div><strong>${STANDALONE_DEMO ? 'Demonstration records' : 'Shared customer records'}</strong><p>${STANDALONE_DEMO ? 'This independent example does not synchronize with the separate customer portal.' : 'Customer and service records are shared across Ikonectt applications.'}</p></div></section>`;
 }
-function filtered() { return rows.filter(r => (!query || Object.values(r).some(v => String(v ?? '').toLowerCase().includes(query.toLowerCase()))) && (!filter || String(r[modules[route].status!]) === filter)); }
+let requestCategory='',requestSort='newest';
+function filtered() { return rows.filter(r => (!query || Object.values(r).some(v => String(v ?? '').toLowerCase().includes(query.toLowerCase()))) && (!filter || String(r[modules[route].status!]) === filter) && (route!=='leads'||!requestCategory||r.category===requestCategory)).sort((a,b)=>requestSort==='oldest'?String(a.createdAt).localeCompare(String(b.createdAt)):requestSort==='name'?String(a.name).localeCompare(String(b.name)):String(b.createdAt).localeCompare(String(a.createdAt))); }
 function table(key: string, data: RecordData[]) { const m = modules[key]; const numeric = new Set(['priceMinor', 'renewalPriceMinor', 'amountMinor', 'speedMbps', 'billingDays', 'attempts']); return `<div class="table-scroll" tabindex="0" role="region" aria-label="${esc(m.label)} table"><table><thead><tr>${m.columns.map(k => `<th scope="col" class="${numeric.has(k) ? 'numeric' : ''}">${labels[k] || pretty(k)}</th>`).join('')}<th scope="col"><span class="sr-only">Open details</span></th></tr></thead><tbody>${data.map(r => `<tr>${m.columns.map((k, i) => `<td class="${numeric.has(k) ? 'numeric' : ''}">${i === 0 ? `<button class="record-link" data-detail="${esc(r.id)}" data-module="${key}">${value(k, r[k])}</button>` : value(k, r[k])}</td>`).join('')}<td><button class="icon-btn" data-detail="${esc(r.id)}" data-module="${key}" aria-label="Open ${esc(r.name || r.subject || m.singular)}">${icon('arrow-up-right')}</button></td></tr>`).join('')}</tbody></table></div>`; }
 function renderList() {
     const m = modules[route];
     const data = filtered();
     page = Math.min(page, Math.max(0, Math.ceil(data.length / 10) - 1));
     const statuses = m.status ? [...new Set(rows.map(r => String(r[m.status!])))].sort() : [];
-    content().innerHTML = heading(m.label, m.description, m.input && can(api.permissions, m.write) ? button(`Create ${m.singular.toLowerCase()}`, 'create', 'primary', 'plus') : button('Refresh', 'refresh', '', 'refresh-cw')) + (route === 'coverage' ? '<div class="notice">Unknown coverage requires verification. Eligibility is managed at each location; a map is optional.</div>' : '') + `<section class="panel list-panel"><div class="list-toolbar"><label class="search">${icon('search')}<input id="search" type="search" placeholder="Search ${m.label.toLowerCase()}…" value="${esc(query)}" aria-label="Search ${m.label}"></label><div class="list-controls">${statuses.length ? `<label class="sr-only" for="status-filter">Filter status</label><select id="status-filter"><option value="">All ${m.status === 'eligibility' ? 'eligibilities' : m.status === 'published' ? 'availability' : m.status === 'enabled' ? 'access' : 'statuses'}</option>${statuses.map(s => `<option value="${esc(s)}" ${s === filter ? 'selected' : ''}>${s === 'true' ? 'Enabled / published' : s === 'false' ? 'Disabled / draft' : pretty(s)}</option>`).join('')}</select>` : ''}<span class="record-count">${data.length} records</span></div></div><div id="list-results">${data.length ? table(route, data.slice(page * 10, page * 10 + 10)) : `<div class="empty">${icon(query || filter ? 'search-x' : m.icon)}<h2>${query || filter ? 'No matching records' : `No ${m.label.toLowerCase()} yet`}</h2><p>${query || filter ? 'Try another search or clear your filters.' : 'Records will appear here when they are created in the shared service.'}</p>${query || filter ? button('Clear filters', 'clear') : ''}</div>`}</div><div class="pagination"><span>${data.length ? `${page * 10 + 1}–${Math.min(data.length, page * 10 + 10)} of ${data.length}` : '0 records'}</span><div>${button('Previous', 'previous', '', 'chevron-left')}<span>Page ${page + 1} of ${Math.max(1, Math.ceil(data.length / 10))}</span>${button('Next', 'next', '', 'chevron-right')}</div></div></section>${route === 'leads' ? '<p class="footnote">Enquiries use the shared lead queue. Assignment, private notes and follow-up activities await an approved backend contract.</p>' : route === 'tickets' ? `<p class="footnote">${STANDALONE_DEMO ? 'Messages update only this independent Admin demonstration. Private notes, category and priority are unavailable.' : 'Messages are shared with the customer. Private internal notes, category and priority are not yet supported by the backend.'}</p>` : ''}`;
+    content().innerHTML = heading(m.label, m.description, m.input && can(api.permissions, m.write) ? button(`Create ${m.singular.toLowerCase()}`, 'create', 'primary', 'plus') : button('Refresh', 'refresh', '', 'refresh-cw')) + (route === 'coverage' ? '<div class="notice">Unknown coverage requires verification. Eligibility is managed at each location; a map is optional.</div>' : '') + `<section class="panel list-panel"><div class="list-toolbar"><label class="search">${icon('search')}<input id="search" type="search" placeholder="Search ${m.label.toLowerCase()}…" value="${esc(query)}" aria-label="Search ${m.label}"></label><div class="list-controls">${route==='leads'?`<select id="request-category" aria-label="Request category"><option value="">All request categories</option>${C.RequestCategory.options.map(k=>`<option value="${k}" ${k===requestCategory?'selected':''}>${pretty(k)}</option>`).join('')}</select><select id="request-sort" aria-label="Sort requests"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="name">Customer name</option></select><button class="btn" id="export-requests" type="button">Export CSV</button>`:''}${statuses.length ? `<label class="sr-only" for="status-filter">Filter status</label><select id="status-filter"><option value="">All ${m.status === 'eligibility' ? 'eligibilities' : m.status === 'published' ? 'availability' : m.status === 'enabled' ? 'access' : 'statuses'}</option>${statuses.map(s => `<option value="${esc(s)}" ${s === filter ? 'selected' : ''}>${s === 'true' ? 'Enabled / published' : s === 'false' ? 'Disabled / draft' : pretty(s)}</option>`).join('')}</select>` : ''}<span class="record-count">${data.length} records</span></div></div><div id="list-results">${data.length ? table(route, data.slice(page * 10, page * 10 + 10)) : `<div class="empty">${icon(query || filter ? 'search-x' : m.icon)}<h2>${query || filter ? 'No matching records' : `No ${m.label.toLowerCase()} yet`}</h2><p>${query || filter ? 'Try another search or clear your filters.' : 'Records will appear here when they are created in the shared service.'}</p>${query || filter ? button('Clear filters', 'clear') : ''}</div>`}</div><div class="pagination"><span>${data.length ? `${page * 10 + 1}–${Math.min(data.length, page * 10 + 10)} of ${data.length}` : '0 records'}</span><div>${button('Previous', 'previous', '', 'chevron-left')}<span>Page ${page + 1} of ${Math.max(1, Math.ceil(data.length / 10))}</span>${button('Next', 'next', '', 'chevron-right')}</div></div></section>${route === 'leads' ? '' : route === 'tickets' ? `<p class="footnote">${STANDALONE_DEMO ? 'Messages update only this independent Admin demonstration. Private notes, category and priority are unavailable.' : 'Messages are shared with the customer. Private internal notes, category and priority are not yet supported by the backend.'}</p>` : ''}`;
     (document.querySelector('[data-action="previous"]') as HTMLButtonElement).disabled = page === 0;
     (document.querySelector('[data-action="next"]') as HTMLButtonElement).disabled = (page + 1) * 10 >= data.length;
     document.querySelector<HTMLInputElement>('#search')!.oninput = e => { const input = e.target as HTMLInputElement; const start = input.selectionStart; query = input.value; page = 0; renderList(); const next = document.querySelector<HTMLInputElement>('#search')!; next.focus(); try {
@@ -254,6 +271,18 @@ function renderList() {
     const select = document.querySelector<HTMLSelectElement>('#status-filter');
     if (select)
         select.onchange = () => { filter = select.value; page = 0; renderList(); };
+    if(route==='leads'){
+      const category=document.querySelector<HTMLSelectElement>('#request-category')!;
+      category.onchange=()=>{requestCategory=category.value;page=0;location.hash='#/leads'+(requestCategory?'?category='+requestCategory:'');renderList();};
+      const sort=document.querySelector<HTMLSelectElement>('#request-sort')!;sort.value=requestSort;
+      sort.onchange=()=>{requestSort=sort.value;page=0;renderList();};
+      document.querySelector<HTMLButtonElement>('#export-requests')!.onclick=()=>{
+        const fields=['id','name','email','phone','category','sourceChannel','sourcePage','status','assignedToId','message','createdAt'];
+        const csv=(v:unknown)=>'"'+String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replaceAll('"','""')+'"';
+        const blob=new Blob(['\ufeff'+[fields.join(','),...filtered().map(row=>fields.map(k=>csv(row[k])).join(','))].join('\r\n')],{type:'text/csv;charset=utf-8'});
+        const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='ikonectt-enquiries.csv';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      };
+    }
     refreshIcons();
 }
 function openModal(html: string, wide = false) { closeModal(); lastFocus = document.activeElement as HTMLElement; const el = document.createElement('div'); el.className = 'modal-overlay'; el.innerHTML = `<section class="modal ${wide ? 'wide' : ''}" role="dialog" aria-modal="true" aria-labelledby="dialog-title" tabindex="-1">${html}</section>`; document.body.append(el); document.body.classList.add('modal-open'); refreshIcons(); (el.querySelector('input,select,textarea,button') as HTMLElement || el.querySelector('section') as HTMLElement).focus(); el.addEventListener('click', e => { if (e.target === el)
@@ -287,6 +316,7 @@ async function edit(key: string, id?: string) {
         api.assert(m.write || 'denied');
         await Promise.all(['customers', 'plans', 'coverage', 'staff', 'orders', 'subscriptions'].filter(k => can(api.permissions, modules[k].permission)).map(k => loadRelated(k)));
         if(['orders','coverage'].includes(key)){for(const k of ['plans','coverage'] as const){if(!cache[k])cache[k]=await api.publicOptions(k)}}
+        if(key==='leads')cache.staff=await api.requestAssignees();
         if(key==='customers'&&!cache.coverage)cache.coverage=await api.publicOptions('coverage');
         const r = id ? await api.detail(key,id) : { kind: 'RESIDENTIAL', eligibility: 'UNKNOWN', scope: 'ESTATE', active: true, displayPrimary: true };
         if (!r)
@@ -318,6 +348,7 @@ async function edit(key: string, id?: string) {
                     input[f.key] = ['priceMinor', 'billingDays', 'uploadMbps', 'renewalPriceMinor'].includes(f.key) && !String(v ?? '').trim() ? null : Number(v);
                 else if (['features', 'planIds', 'aliases', 'keywords'].includes(f.key))
                     input[f.key] = String(v || '').split('\n').map(x => x.trim()).filter(Boolean);
+                else if(f.key==='assignedToId'&&!String(v||'').trim())input[f.key]=null;
                 else if (v !== null && String(v).trim())
                     input[f.key] = String(v).trim();
             }
@@ -374,13 +405,14 @@ async function details(key: string, id: string) {
         if (key === 'subscriptions' && can(api.permissions, 'provisioning.write')) extra = walletUi.policyAction(r);
         if (key === 'walletTopUps') extra = walletUi.topUpActions(r);
         if (key === 'walletRenewals') extra = walletUi.renewalActions(r);
+        if(key==='leads')extra=`<div class="related-block"><h3>Activity & internal notes</h3>${(r.activity||[]).map((entry:RecordData)=>`<div class="message"><small>${esc(date(entry.createdAt))} · ${esc(entry.actorId||'Website')}</small><p>${esc(entry.action)}</p>${entry.note?`<p>${esc(entry.note)}</p>`:''}</div>`).join('')||'<p>No recorded follow-up activity.</p>'}</div>`;
         if (key === 'tickets') {
             const messages = r.messages||await api.messages(id);
             extra = `<div class="related-block"><h3>Customer conversation</h3><p class="footnote">${STANDALONE_DEMO ? 'Replies update only this Admin demo; they are not sent to the separate customer portal.' : 'Messages here are visible to the customer. Private staff notes are unavailable.'}</p>${messages.map((msg: RecordData) => `<div class="message"><small>${esc(date(msg.createdAt))} · ${esc(msg.authorId)}</small><p>${esc(msg.message)}</p></div>`).join('') || '<p class="muted">No messages.</p>'}${can(api.permissions, 'support.write') ? `<form id="reply-form"><label>Reply to customer<textarea name="message" required maxlength="4000" rows="3"></textarea></label><button class="btn primary" type="submit">Send reply</button><div class="form-error" role="alert"></div></form>` : ''}</div>`;
         }
         if (viewVersion !== version || api.session !== session)
             return;
-        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).filter(([k]) => key !== 'tickets' || k !== 'messages').map(([k, v]) => `<div><dt>${key === 'provisioning' && k === 'reference' ? 'Provider reference' : labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) && (key!=='coverage'||r.level==='BUILDING_ADDRESS') && (key!=='provisioning'||(r.mode.toLowerCase()==='manual'&&r.status!=='ACTIVE')) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
+        openModal(modalHeader(r.name || r.subject || m.singular, m.label) + `<div class="modal-body"><dl class="detail-grid">${Object.entries(r).filter(([k]) => k!=='activity' && (key !== 'tickets' || k !== 'messages')).map(([k, v]) => `<div><dt>${key === 'provisioning' && k === 'reference' ? 'Provider reference' : labels[k] || pretty(k)}</dt><dd>${k === "id" ? `<code>${esc(v)}</code>` : value(k, v)}</dd></div>`).join('')}</dl>${extra}</div><footer class="modal-footer">${button('Close', 'close')}${m.update && can(api.permissions, m.write) && (key!=='coverage'||r.level==='BUILDING_ADDRESS') && (key!=='provisioning'||(r.mode.toLowerCase()==='manual'&&r.status!=='ACTIVE')) ? `<button class="btn primary" data-edit="${id}" data-module="${key}">${icon('pencil')}Edit ${m.singular.toLowerCase()}</button>` : ''}</footer>`, true);
         const form = document.querySelector<HTMLFormElement>('#reply-form');
         if (form)
             form.onsubmit = async (e) => { e.preventDefault(); const submit = form.querySelector('button')!; submit.disabled = true; try {
@@ -482,7 +514,7 @@ document.addEventListener('click', async (e) => {
     else if (action === 'refresh'){cache={};await navigate();}
     else if (action === 'clear') {
         query = '';
-        filter = '';
+        filter = '';requestCategory='';
         page = 0;
         renderList();
     }

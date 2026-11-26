@@ -1,5 +1,7 @@
 # Ikonectt core backend
 
+> Current rollout: public website operations and protected staff Admin only. The official customer portal is https://portal.ikonectt.com. Keep `CUSTOMER_PORTAL_ENABLED=false` in production. See `../docs/PRODUCTION_READINESS_REVIEW.md` for the current cleanup inventory, request management and clean-database release procedure; customer/financial sections below describe preserved dormant functionality.
+
 Independent TypeScript/NestJS API for the Public Website, My Ikonectt and Admin/CRM.
 Uses PostgreSQL 16+ and Prisma. Frontend files and the existing showcase server are unchanged.
 

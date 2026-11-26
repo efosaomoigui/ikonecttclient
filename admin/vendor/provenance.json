@@ -1,6 +1,6 @@
 {
   "source": "Agent 1 contracts/index.ts and backend/src/identity/access.ts",
-  "contractVersion": "1.4.0",
-  "contractSha256": "6c1f3889ef7076ba19c0f906145f16677fc6f95fcc7aad0389f6082a8944b4de",
-  "accessSha256": "2312ebab893f151b97f07dbe64ed693adf79f5f3a4896efa51752192aa3c757d"
+  "contractVersion": "1.5.0",
+  "contractSha256": "394d49b9865decb3756efb25d002fd0b2173bf8d235ce181903fc0e3f528610c",
+  "accessSha256": "a5ec59586126a10761b32ff31e64ef1cf8ee724ef7323c430c3b7d0c04bd9a58"
 }

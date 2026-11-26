@@ -128,8 +128,13 @@ export class WorkspaceApi {
     }
     async detail(key:string,id:string):Promise<RecordData>{
         const m=modules[key];this.assert(m.permission);C.Id.parse(id);
-        if(this.mode==='live'&&['customers','leads','orders','payments','subscriptions','tickets','walletTopUps','walletRenewals'].includes(key))return parseResponse(key==='tickets'?C.TicketDetail:m.schema,await this.request(`${m.path}/${id}`));
+        if(this.mode==='live'&&['customers','leads','orders','payments','subscriptions','tickets','walletTopUps','walletRenewals'].includes(key))return parseResponse(key==='tickets'?C.TicketDetail:key==='leads'?C.LeadDetail:m.schema,await this.request(`${m.path}/${id}`));
         const record=(await this.list(key)).find(x=>x.id===id);if(!record)throw new ApiError('Record not found.',404);return key==='tickets'?{...record,messages:await this.messages(id)}:record;
+    }
+    async requestAssignees(){
+        this.assert('leads.read');
+        if(this.mode==='mock')return this.data.staff.filter(x=>x.enabled).map(({id,name})=>({id,name}));
+        return parseResponse(z.array(z.object({id:C.Id,name:z.string()})),await this.request('/admin/leads/assignees'));
     }
     async publicOptions(key:'plans'|'coverage'){
         if(this.mode==='mock')return this.data[key].map(x=>modules[key].schema.parse(x));

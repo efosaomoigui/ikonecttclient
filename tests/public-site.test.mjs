@@ -1,3 +1,4 @@
+import * as phoneLibrary from 'libphonenumber-js/max';
 import './helpers/catalogue-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -33,6 +34,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
   const dom=new JSDOM('<!doctype html><title>Original home</title><div id="site"><main id="original"><h1>Original homepage</h1><div data-home-plan-carousel></div></main></div>',{url:`https://preview.test/option-${template}/`,pretendToBeVisual:true});
   const {window}=dom;
   for(const key of ['window','document','CustomEvent','FormData','AbortController'])globalThis[key]=key==='window'?window:window[key];
+  globalThis.libphonenumber=phoneLibrary;
   window.scrollTo=()=>{};window.matchMedia=()=>({matches:false});
   const root=document.querySelector('#site'),home=document.querySelector('#original');
   const cleanup=mountSite({root,home,template});
@@ -60,7 +62,7 @@ for(const template of ['a','b','c','d','e'])test(`Template ${template.toUpperCas
       for(const [path,[title]] of Object.entries(pages)){
         await go(path);checkTemplate();
         assert.equal(home.hidden,path!=='home');
-        if(path!=='home')assert.equal(document.querySelector('#ik-main h1').textContent,path.endsWith('/demo-1')?'iBasic':path.endsWith('/demo-2')?'iSilver':title);
+        if(path!=='home')assert.equal(document.querySelector('#ik-main h1').textContent,template==='e'&&path==='support/contact'?"We're here to help.":path.endsWith('/demo-1')?'iBasic':path.endsWith('/demo-2')?'iSilver':title);
         for(const anchor of root.querySelectorAll('a[href^="#/"]')){
           const target=parseRoute(anchor.getAttribute('href')).path;
           assert.ok(pages[target],`Broken internal link: ${target} on ${path}`);

@@ -1,10 +1,14 @@
+import {formatPhoneInput} from './phone-input.js';
+import {consumeEnquiryHandoff} from './enquiry-handoff.js';
+import {enquiryCategory} from './enquiry-routing.js';
+import {initializeContactSupport} from '../option-e/contact-support.js';
 import {getPlan,planName,planOptions,planRoute,priceLabel,pricePeriod,plansFor} from './catalogue.js';
 import {createPublicDataClient,loadWebsiteData,officialPortal,websiteData} from './public-data.js';
 import {carouselHTML,comparisonHTML} from './plan-ui.js';
 import {initializeCarousel} from './carousel.js';
 import {pages,menus,parseRoute} from './routes.js';
 import {company,publicContacts,faqs} from './content.js';
-import {renderPage,filterFAQs,renderFAQResults,link} from './pages.js';
+import {renderPage,filterFAQs,renderFAQResults,coverageResultsHTML,link} from './pages.js';
 import {addressFields,validateForm,escapeHTML as esc} from './forms.js';
 import {mountAssistant} from './assistant.js';
 
@@ -89,6 +93,7 @@ export function mountSite({root,home,template}) {
   function render(){
     const {path:requestedPath,query}=parseRoute(window.location.hash);
     const path=publicRelease&&['design-options','preview-area','comparison'].includes(requestedPath)?'home':requestedPath;
+    if(path==='residential/installation'&&query.get('area'))state.address.district=query.get('area').slice(0,240);
     const isHome=path==='home';
     root.dataset.route=path;home.hidden=!isHome;main.hidden=isHome;
     closeMenus();closeMobile();
@@ -104,8 +109,9 @@ export function mountSite({root,home,template}) {
     else{
       const detail=path.startsWith('residential/plans/demo-')?(query.get('plan')?getPlan(query.get('plan')):plansFor('residential')[path.endsWith('2')?1:0]):null;
       const accountUnavailable=publicRelease&&path.startsWith('my-ikonectt/');
-      const title=accountUnavailable?'My Ikonectt':detail?.audience==='residential'?planName(detail):pages[path]?.[0]||'Page not found';
-      const description=accountUnavailable?'Use the official Ikonectt customer portal for account and subscription functions.':detail?.audience==='residential'?`${planName(detail)} fibre broadband: ${detail.speedMbps} Mbps. ${priceLabel(detail)}${pricePeriod(detail)}. Confirm address feasibility and service terms.`:pages[path]?.[1]||'Choose a page from the navigation.';
+      const supportContact=template==='e'&&path==='support/contact';
+      const title=supportContact?"We're here to help.":accountUnavailable?'My Ikonectt':detail?.audience==='residential'?planName(detail):pages[path]?.[0]||'Page not found';
+      const description=supportContact?'Get assistance with your connection, broadband service and enquiries.':accountUnavailable?'Use the official Ikonectt customer portal for account and subscription functions.':detail?.audience==='residential'?`${planName(detail)} fibre broadband: ${detail.speedMbps} Mbps. ${priceLabel(detail)}${pricePeriod(detail)}. Confirm address feasibility and service terms.`:pages[path]?.[1]||'Choose a page from the navigation.';
       descriptionMeta.content=description;
       const section=path.split('/')[0];const sectionName=menus.find(item=>item.id===section)?.label||'Ikonectt';
       const intro=root.dataset.template==='e'?({
@@ -114,7 +120,7 @@ export function mountSite({root,home,template}) {
        coverage:'CHECK AVAILABILITY',about:'ABOUT IKONECTT',support:'HERE TO HELP',
       })[path]:null;
       const content=accountUnavailable?`<section class="ik-section"><div class="ik-wrap"><p>Manage your account through the client's official portal. Account authentication and payments are handled there.</p>${link('my-ikonectt/sign-in','Open My Ikonectt')}${link('support','View Support Information',true)}</div></section>`:renderPage(path,{state,query,template:root.dataset.template});
-      main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(title)}</span></nav>${intro?'<p class="e-section-kicker">'+intro+'</p>':''}<h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${content}`;
+      main.innerHTML=`<section class="ik-page-hero"><div class="ik-wrap"><nav class="ik-breadcrumbs" aria-label="Breadcrumb"><a href="#/home">Home</a><span aria-hidden="true">/</span>${path.includes('/')&&pages[section]?`<a href="#/${section}">${sectionName}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(supportContact?pages[path][0]:title)}</span></nav>${intro?'<p class="e-section-kicker">'+intro+'</p>':''}<h1 tabindex="-1">${esc(title)}</h1><p>${esc(description)}</p></div></section>${content}`;
       document.title=title+(detail?.audience==='residential'?' — '+detail.speedMbps+' Mbps':'')+' | ikonectt';
       initializePage();
     }
@@ -127,11 +133,16 @@ export function mountSite({root,home,template}) {
     previous=path;
   }
   function initializePage(){
+    if(template==='e'&&root.dataset.route==='support/contact')initializeContactSupport(main,publicClient,opts);
+    updateCoverageSearchView();
+    const handoff=consumeEnquiryHandoff(root.dataset.route);
     for(const form of main.querySelectorAll('form')){
       const kind=form.dataset.form;
+      if(handoff){for(const key of ['name','phone']){const field=form.elements.namedItem(key);if(field&&!field.value)field.value=handoff[key];}const message=form.elements.namedItem('message')||form.elements.namedItem('comments')||form.elements.namedItem('requirements')||form.elements.namedItem('description');if(message&&!message.value)message.value=handoff.message;if(form.querySelector('[data-phone-dial]'))formatPhoneInput(form);form.dataset.sourceChannel='ASSISTANT';}
       if(publicClient&&!['coverage-search','sign-in','recovery'].includes(kind)){
         const note=form.previousElementSibling;
         if(note?.classList.contains('ik-notice'))note.textContent='Your enquiry will be recorded for Ikonectt staff. Do not include passwords or payment details.';
+        if(!form.elements.namedItem('website')){const trap=document.createElement('input');trap.type='text';trap.name='website';trap.hidden=true;trap.tabIndex=-1;trap.autocomplete='off';trap.setAttribute('aria-hidden','true');form.append(trap);}
         const consent=document.createElement('label');consent.className='ik-full ik-enquiry-consent';consent.htmlFor=kind+'-contact-consent';
         consent.innerHTML=`<input type="checkbox" id="${kind}-contact-consent" name="contactConsent" required><span>I consent to Ikonectt recording these details to respond to this enquiry.</span>`;
         form.querySelector('.ik-actions')?.before(consent);
@@ -177,9 +188,11 @@ export function mountSite({root,home,template}) {
       const button=form.querySelector('button[type=submit]');button.disabled=true;form.dataset.submitting='true';status.textContent='Recording your enquiry…';
       try{
         if(!data.contactConsent)throw new Error('Please consent to recording your enquiry.');
-        const message=Object.entries(data).filter(([key])=>!['name','email','phone','contactConsent'].includes(key)).map(([key,value])=>`${key}: ${value}`).join('\n');
+        const message=Object.entries(data).filter(([key])=>!['name','email','phone','contactConsent','website'].includes(key)).map(([key,value])=>`${key}: ${value}`).join('\n');
         const plan=getPlan(data.plan),kindValue=state.audience==='business'||root.dataset.route.startsWith('business')||/business/i.test(String(data.type))?'BUSINESS':'RESIDENTIAL';
-        const record=await publicClient.createEnquiry({name:String(data.name||'').trim(),email:String(data.email||'').trim(),phone:String(data.phone||'').trim(),kind:kindValue,message:`Website ${kind} enquiry\n${message}`,consent:true,...(plan?{planId:plan.id}:{})});
+        const fingerprint=JSON.stringify(data);
+        if(form.dataset.requestFingerprint!==fingerprint){form.dataset.requestKey=crypto.randomUUID();form.dataset.requestFingerprint=fingerprint;}
+        const record=await publicClient.createEnquiry({category:enquiryCategory(kind,String(data.type||'')),sourceChannel:form.dataset.sourceChannel||'WEBSITE',sourcePage:root.dataset.route,idempotencyKey:form.dataset.requestKey,website:String(data.website||''),name:String(data.name||'').trim(),email:String(data.email||'').trim(),phone:String(data.phone||'').trim(),kind:kindValue,message:`Website ${kind} enquiry\n${message}`,consent:true,...(plan?{planId:plan.id}:{})});
         if(typeof record?.id!=='string')throw new Error('The service did not return a request reference.');
         status.textContent=`Enquiry recorded. Reference: ${record.id}. Keep this reference when contacting customer care.`;
         form.dataset.recorded='true';
@@ -207,12 +220,23 @@ export function mountSite({root,home,template}) {
     const hash='#/'+route;
     if(window.location.hash===hash)render();else window.location.hash=hash;
   },opts);
+  function updateCoverageSearchView(){
+    const result=main.querySelector('[data-coverage-results]');if(!result)return;
+    result.setAttribute('aria-busy',String(Boolean(state.coverageLoading)));
+    result.innerHTML=coverageResultsHTML(state,root.dataset.template==='e');
+    const form=main.querySelector('form[data-form="coverage-search"]');
+    if(form){
+      form.dataset.submitting=String(Boolean(state.coverageLoading));
+      const button=form.querySelector('button[type=submit]');
+      button.disabled=Boolean(state.coverageLoading);button.textContent=state.coverageLoading?'Searching...':'Search Coverage';
+    }
+  }
   async function searchServiceAreas(term){
     const current=++coverageVersion;state.coverageQuery=String(term||'').trim();state.coverageLoading=true;state.coverageError='';state.coverageAreas=[];
-    if(root.dataset.route?.startsWith('coverage'))render();
+    updateCoverageSearchView();
     try{if(!publicClient)throw new Error('Coverage search is not connected in this preview. Contact customer care.');const rows=await publicClient.searchCoverage(term);if(current!==coverageVersion||abort.signal.aborted)return;state.coverageAreas=rows;}
     catch(error){if(current!==coverageVersion||abort.signal.aborted)return;state.coverageError=error.message;}
-    state.coverageLoading=false;if(root.dataset.route?.startsWith('coverage'))render();
+    state.coverageLoading=false;updateCoverageSearchView();
   }
   async function refreshPublicData(){
     if(!publicClient||refreshing||Date.now()-lastRefresh<30000)return;refreshing=true;

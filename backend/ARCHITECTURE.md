@@ -100,3 +100,7 @@ PROVISIONER/ADMIN permission and evidence. Gateway selection and live provisioni
 
 These gaps do not prevent core API integration against labeled fixtures and manual workflows.
 They do prevent claiming connected production services or live network/billing/usage status.
+
+## Approved rollout consolidation — 26 November 2026
+
+The original three-application architecture is preserved. Subsequent client scope moves all public account and financial actions to https://portal.ikonectt.com; production customer routes stay disabled and corresponding Admin navigation stays dormant. Active website operations reuse the Lead aggregate with structured categories, assignment, private activity and idempotency, rather than duplicating customer identities or creating per-form tables. Coverage/knowledge/catalogue authority remains internal PostgreSQL. Operational chat actions link to existing website forms with a short-lived in-memory contact handoff; coverage and approved guidance stay interactive. Full verification and cleanup decisions are in `../docs/PRODUCTION_READINESS_REVIEW.md`.

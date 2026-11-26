@@ -1,7 +1,7 @@
 {
   "source": "Canonical contracts/openapi.json",
-  "contractSha256": "6c1f3889ef7076ba19c0f906145f16677fc6f95fcc7aad0389f6082a8944b4de",
-  "version": "1.4.0",
+  "contractSha256": "394d49b9865decb3756efb25d002fd0b2173bf8d235ce181903fc0e3f528610c",
+  "version": "1.5.0",
   "operations": [
     "GET /api/v1/health",
     "GET /api/v1/coverage/service-areas",
@@ -36,6 +36,7 @@
     "PATCH /api/v1/admin/plans/{id}",
     "POST /api/v1/leads",
     "GET /api/v1/admin/leads",
+    "GET /api/v1/admin/leads/assignees",
     "GET /api/v1/admin/leads/{id}",
     "PATCH /api/v1/admin/leads/{id}",
     "GET /api/v1/me/orders",

@@ -1,4 +1,4 @@
-# Canonical API v1.4.0 endpoint and permission map
+# Canonical API v1.5.0 endpoint and permission map
 
 Generated from the actual NestJS route and guard metadata. All successful writes return HTTP 200.
 Customer data ownership is checked inside the application in addition to route permissions.
@@ -18,8 +18,9 @@ ADMIN is the highest existing role; there is no separate SUPER_ADMIN bypass.
 | GET | `/api/v1/admin/integrations/legacy/lookup` | integrations.read; ADMIN |
 | GET | `/api/v1/admin/integrations` | integrations.read; ADMIN |
 | GET | `/api/v1/admin/knowledge` | catalogue.write; ADMIN |
-| GET | `/api/v1/admin/leads/{id}` | leads.read; ADMIN, SALES |
-| GET | `/api/v1/admin/leads` | leads.read; ADMIN, SALES |
+| GET | `/api/v1/admin/leads/assignees` | leads.read; ADMIN, SUPPORT, SALES |
+| GET | `/api/v1/admin/leads/{id}` | leads.read; ADMIN, SUPPORT, SALES |
+| GET | `/api/v1/admin/leads` | leads.read; ADMIN, SUPPORT, SALES |
 | GET | `/api/v1/admin/notifications` | notifications.read; ADMIN |
 | GET | `/api/v1/admin/orders/{id}` | orders.read; ADMIN, SUPPORT, SALES, FINANCE, PROVISIONER |
 | GET | `/api/v1/admin/orders` | orders.read; ADMIN, SUPPORT, SALES, FINANCE, PROVISIONER |
@@ -71,7 +72,7 @@ ADMIN is the highest existing role; there is no separate SUPER_ADMIN bypass.
 | PATCH | `/api/v1/admin/coverage/{id}` | coverage.write; ADMIN, PROVISIONER |
 | PATCH | `/api/v1/admin/customers/{id}` | customers.write; ADMIN, SALES |
 | PATCH | `/api/v1/admin/knowledge/{id}` | catalogue.write; ADMIN |
-| PATCH | `/api/v1/admin/leads/{id}` | leads.write; ADMIN, SALES |
+| PATCH | `/api/v1/admin/leads/{id}` | leads.write; ADMIN, SUPPORT, SALES |
 | PATCH | `/api/v1/admin/plans/{id}` | catalogue.write; ADMIN |
 | PATCH | `/api/v1/admin/service-areas/{id}` | coverage.write; ADMIN, PROVISIONER |
 | PATCH | `/api/v1/admin/staff/{id}` | staff.manage; ADMIN |

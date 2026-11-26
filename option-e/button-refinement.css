@@ -14,7 +14,6 @@
 
 /* Grey filled actions, alternating information cards and inactive plans. */
 .ik-site[data-template=e].ik-polished :is(
- #about .btn,
  #ik-main .ik-grid>.ik-panel:nth-child(even)>.ik-button:not(.ik-button-secondary),
  #ik-main .ik-section:nth-of-type(even) .ik-actions>a.ik-button:not(.ik-button-secondary):first-child,
  .ik-plan-card:not([data-active=true]) .ik-plan-card-actions .ik-button:not(.ik-button-secondary)
@@ -24,7 +23,6 @@
  color:var(--e-button-grey-text);
 }
 .ik-site[data-template=e].ik-polished :is(
- #about .btn,
  #ik-main .ik-grid>.ik-panel:nth-child(even)>.ik-button:not(.ik-button-secondary),
  #ik-main .ik-section:nth-of-type(even) .ik-actions>a.ik-button:not(.ik-button-secondary):first-child,
  .ik-plan-card:not([data-active=true]) .ik-plan-card-actions .ik-button:not(.ik-button-secondary)

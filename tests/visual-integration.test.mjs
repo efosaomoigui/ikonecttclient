@@ -57,7 +57,7 @@ test('Phase 3 preserves template heroes, navigation, journeys, logos and archive
   assert.equal(hash(home.split('<HeroSlideshow>')[1].split('</HeroSlideshow>')[0].replace(/\r\n/g,'\n')),baseline.aHeroMarkup);
 });
 
-for(const template of ['a','d','e'])test(`Template ${template}: imagery follows only the six editorial routes and leaves transactional pages clean`,async()=>{
+for(const template of ['a','d','e'])test(`Template ${template}: imagery respects approved editorial routes and the support-page photo while keeping forms clean`,async()=>{
   const dom=new JSDOM('<div id="root"><main id="home"><h1>Home</h1></main></div>',{url:`https://preview.test/option-${template}/`,pretendToBeVisual:true});
   const {window}=dom;
   for(const key of ['window','document','CustomEvent','FormData','AbortController'])globalThis[key]=key==='window'?window:window[key];
@@ -76,9 +76,9 @@ for(const template of ['a','d','e'])test(`Template ${template}: imagery follows 
     await new Promise(resolve=>window.addEventListener('hashchange',resolve,{once:true}));
     await new Promise(resolve=>setTimeout(resolve,0));
     const pictures=[...root.querySelectorAll('#ik-main [data-visual-asset]')];
-    const expectedAsset=template==='e'&&path==='about'?null:visualSlots[template][path];
+    const expectedAsset=template==='e'&&path==='support/contact'?'account-photo':template==='e'&&path==='about'?null:visualSlots[template][path];
     assert.equal(pictures.length,expectedAsset?1:0,path);
-    if(pictures.length)assert.equal(pictures[0].dataset.visualAsset,visualSlots[template][path]);
+    if(pictures.length)assert.equal(pictures[0].dataset.visualAsset,expectedAsset);
     if(template==='e')assert.equal(root.querySelectorAll('.ik-visual-credit').length,0,path);
     assert.equal(root.querySelectorAll('form [data-visual-asset],.ik-plan-card [data-visual-asset],.ik-faq [data-visual-asset]').length,0,path);
   }

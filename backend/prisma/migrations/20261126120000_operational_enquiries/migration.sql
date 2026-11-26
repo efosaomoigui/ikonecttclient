@@ -1,0 +1,11 @@
+ALTER TYPE "LeadStatus" ADD VALUE IF NOT EXISTS 'ASSIGNED';
+ALTER TYPE "LeadStatus" ADD VALUE IF NOT EXISTS 'IN_PROGRESS';
+ALTER TYPE "LeadStatus" ADD VALUE IF NOT EXISTS 'AWAITING_CUSTOMER';
+ALTER TYPE "LeadStatus" ADD VALUE IF NOT EXISTS 'RESOLVED';
+ALTER TABLE "Lead" ADD COLUMN "category" TEXT NOT NULL DEFAULT 'GENERAL', ADD COLUMN "sourceChannel" TEXT NOT NULL DEFAULT 'LEGACY', ADD COLUMN "sourcePage" TEXT NOT NULL DEFAULT '', ADD COLUMN "idempotencyKey" UUID, ADD COLUMN "requestHash" TEXT, ADD COLUMN "assignedToId" UUID;
+CREATE UNIQUE INDEX "Lead_idempotencyKey_key" ON "Lead"("idempotencyKey");
+ALTER TABLE "Lead" ADD CONSTRAINT "Lead_assignedToId_fkey" FOREIGN KEY ("assignedToId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+CREATE TABLE "LeadActivity" ("id" UUID NOT NULL, "leadId" UUID NOT NULL, "actorId" UUID, "action" TEXT NOT NULL, "note" TEXT, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "LeadActivity_pkey" PRIMARY KEY ("id"));
+CREATE INDEX "LeadActivity_leadId_createdAt_idx" ON "LeadActivity"("leadId", "createdAt");
+ALTER TABLE "LeadActivity" ADD CONSTRAINT "LeadActivity_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE INDEX "Lead_category_status_createdAt_idx" ON "Lead"("category", "status", "createdAt");

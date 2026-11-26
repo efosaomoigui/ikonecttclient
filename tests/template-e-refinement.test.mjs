@@ -43,7 +43,7 @@ test('E internal heroes retain forms and copy with the approved lowercase brand 
     window.location.hash='#/'+path;await new Promise(resolve=>window.addEventListener('hashchange',resolve,{once:true}));await tick();
     const hero=root.querySelector('.ik-page-hero');assert.equal(hero.dataset.eRefined,heroAsset(path),path);
     assert.ok(hero.classList.contains('e-hero-photo'),path+' should use the Residential photo treatment');
-    if(!path.includes('/plans/demo-')){assert.equal(hero.querySelector('h1').textContent,brandSpelling(heading));assert.equal(hero.querySelector('p:not(.e-section-kicker)').textContent,brandSpelling(description));}
+    if(!path.includes('/plans/demo-')){assert.equal(hero.querySelector('h1').textContent,brandSpelling(path==='support/contact'?"We're here to help.":heading));assert.equal(hero.querySelector('p:not(.e-section-kicker)').textContent,brandSpelling(path==='support/contact'?'Get assistance with your connection, broadband service and enquiries.':description));}
     assert.equal(root.querySelectorAll('form .e-hero-visual,.ik-plan-card .e-hero-visual,.ik-faq .e-hero-visual,.ik-visual-credit').length,0,path);
     assert.equal(root.querySelectorAll('.e-hero-visual').length,1,path);
   }

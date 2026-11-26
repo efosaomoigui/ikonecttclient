@@ -1,5 +1,8 @@
+import {prepareEnquiryHandoff,clearEnquiryHandoff} from './enquiry-handoff.js';
+import {createAssistantFlows} from './assistant-flows.js';
+import {normalizePhone,phoneCountry,formatPhoneInput} from './phone-input.js';
 import {supportContacts} from './public-data.js';
-import {formHTML,contactFields,validateForm,escapeHTML as esc} from './forms.js';
+import {escapeHTML as esc} from './forms.js';
 import {getPlan,planName,priceLabel,pricePeriod,previewPricingNote} from './catalogue.js';
 import {parseRoute} from './routes.js';
 import {demoProvider,publicContext,contextActions,initialActions,validateIntroduction} from './assistant-engine.js';
@@ -17,9 +20,13 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
   const guidance=find('[data-guidance]'),composer=find('[data-composer]'),input=composer.elements.namedItem('message');
   const abort=new AbortController(),options={signal:abort.signal};
   let started=false,localPlan='',localKey='',savedOverflow='',open=false,invitationTimer,positionFrame;
-  let revision=0,busy=false,enquiryDraft=null,enquirySent=false,contactDetails=null;
-  const history=[];
+  let revision=0,busy=false,contactDetails=null;
+  const history=[];let liveFlows;
   function scrollLatest(){const scroll=find('[data-scroll]');scroll.scrollTop=scroll.scrollHeight;}
+  function scrollFlow(){
+    const scroll=find('[data-scroll]'),anchor=messages.lastElementChild||guidance;
+    scroll.scrollTop+=anchor.getBoundingClientRect().top-scroll.getBoundingClientRect().top-12;
+  }
   const supportActions=()=>[{label:'Contact Support',route:'support/contact'},...(supportContacts.whatsappUrl?[{label:'Chat on WhatsApp',href:supportContacts.whatsappUrl}]:[]),{label:'My Ikonectt',href:'https://portal.ikonectt.com'}];
   if(guest&&publicClient)void publicClient.contacts().then(()=>{if(abort.signal.aborted)return;const link=find('[data-whatsapp]');link.href=supportContacts.whatsappUrl;link.hidden=false;}).catch(()=>{});
   function context(){
@@ -57,7 +64,7 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     open=true;launcher.hidden=true;launcher.setAttribute('aria-expanded','true');
     panel.setAttribute('aria-modal','true');
     if(typeof panel.showModal==='function')panel.showModal();else panel.setAttribute('open','');
-    if(started){if(!enquiryDraft)updateContext();input.focus();}else intro.querySelector('input')?.focus();
+    if(started){if(!liveFlows?.isActive())updateContext();input.focus({preventScroll:true});}else intro.querySelector('input')?.focus();
   }
   function close(restoreFocus=true){
     if(!open)return;
@@ -79,27 +86,30 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     const latest=document.createElement('div');latest.className='ik-assistant-next';
     latest.innerHTML=actionsHTML(response.actions||[])+(response.plans?planPickerHTML(response.plans):'')+(response.contextual?'<details class="ik-assistant-context"><summary>On this page</summary>'+actionsHTML(response.contextual)+'</details>':'');
     guidance.append(latest);
-    const menu=document.createElement('details');menu.className='ik-assistant-all-topics';
-    menu.innerHTML='<summary>All support topics</summary>'+actionsHTML(guest?guestActions(context()):initialActions);
-    guidance.append(menu);
+    if(!guest){const menu=document.createElement('details');menu.className='ik-assistant-all-topics';menu.innerHTML='<summary>All support topics</summary>'+actionsHTML(initialActions);guidance.append(menu);}
+
     const scroll=find('[data-scroll]');scroll.scrollTop=scroll.scrollHeight;
   }
-  function beginEnquiry(){
-    if(enquiryDraft||enquirySent)return;
-    enquiryDraft={stage:'details'};
-    append('assistant','Certainly! Tell us what you would like to enquire about. We will review the details together before you submit.');
-    guidance.innerHTML=formHTML('chat-enquiry',[...contactFields,{name:'kind',label:'Enquiry type',options:[['RESIDENTIAL','Home broadband'],['BUSINESS','Business broadband']]},{name:'message',label:'Your enquiry',type:'textarea'}],'Review enquiry',contactDetails||{},'','Your details are used only when you choose to submit an enquiry. Do not include passwords, payment details or verification codes.');
-    guidance.querySelector('form').dataset.chatEnquiry='true';scrollLatest();
+  function beginEnquiry(purpose='Enquiry'){
+    liveFlows?.pause();
+    const route=/installation/i.test(purpose)?'residential/installation':/quote|business/i.test(purpose)?'business/quote':/coverage|address/i.test(purpose)?'coverage/verification':/fault/i.test(purpose)?'support/fault':/service request/i.test(purpose)?'support/service-request':/support/i.test(purpose)?'support/contact':'contact';
+    append('assistant','Please use our '+(/quote/i.test(purpose)?'business quotation':/installation/i.test(purpose)?'installation request':'enquiry')+' page. Your name and phone number will be filled in for this session.');
+    guide({actions:[{label:/fault/i.test(purpose)?'Report a fault':/coverage|address/i.test(purpose)?'Make a coverage enquiry':/installation/i.test(purpose)?'Request installation':/quote|business/i.test(purpose)?'Request a business quote':/support/i.test(purpose)?'Contact Support':'Make an enquiry',route}]});
   }
   async function respond(text,intent){
     if(busy)return;
-    if(guest&&intent==='enquiry-details'){beginEnquiry();return;}
-    if(guest&&(intent==='enquiry'||/\b(?:enquir[ye]|inquir[ye]|enqury)\b/i.test(text))){const answer='Certainly! What would you like to enquire about: a new connection, business broadband, coverage, pricing or an existing service?';history.push({role:'user',content:text||'I want to make an enquiry'},{role:'assistant',content:answer});history.splice(0,Math.max(0,history.length-8));append('assistant',answer);guide({actions:[{label:'New connection or business enquiry',intent:'enquiry-details'},{label:'Check coverage',intent:'coverage'},{label:'Plans and pricing',intent:context().audience},{label:'Existing service enquiry',intent:'enquiry-details'}]});return;}
+    if(guest&&['enquiry-details','enquiry'].includes(intent)){beginEnquiry();return;}
+    if(guest&&liveFlows&&await liveFlows.handle(text,intent))return;
     const currentRevision=revision;busy=true;composer.querySelector('button').disabled=true;
     const typing=document.createElement('p');typing.className='ik-assistant-typing';typing.setAttribute('role','status');typing.textContent='Finding helpful information…';messages.append(typing);scrollLatest();
     try{
       const response=await provider.respond({text,intent,context:context(),...(guest?{history:history.slice(-8)}:{})});
       if(currentRevision!==revision)return;
+      if(guest&&liveFlows){
+        if(response.intent==='coverage'||/which (?:area|street|estate).*check/i.test(response.text)){await liveFlows.handle('','coverage');return;}
+        if(response.intent==='plans'||/are you looking for residential or business/i.test(response.text)){await liveFlows.handle('','plans');return;}
+        if(response.intent==='enquiry'||/what would you like to enquire about/i.test(response.text)){append('assistant',response.text);guide({actions:[{label:'New connection enquiry',intent:'enquiry-details'},{label:'Check coverage',intent:'coverage'},{label:'Plans and pricing',intent:'plans'},{label:'Existing service enquiry',intent:'support-enquiry'}]});return;}
+      }
       if(guest){history.push({role:'user',content:String(text||intent||'Help').slice(0,1000)},{role:'assistant',content:response.text.slice(0,1000)});history.splice(0,Math.max(0,history.length-8));}
       if(guest&&(response.mode==='fallback'||/support|human|escalat|contact/.test(response.intent||intent||text))){response.actions=[...(response.actions||[]),...supportActions()].filter((action,index,list)=>list.findIndex(other=>(other.href||other.route||other.intent)===(action.href||action.route||action.intent))===index);}
       append('assistant',response.text);guide(response);
@@ -109,26 +119,11 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
       guide({actions:[{label:'View Plans',route:context().audience+'/plans'},{label:'Check Coverage',route:'coverage'},{label:'Make an enquiry',intent:'enquiry'},...supportActions()]});
     }finally{typing.remove();if(currentRevision===revision){busy=false;composer.querySelector('button').disabled=!input.value.trim();scrollLatest();}}
   }
-  function reviewEnquiry(form){
-    if(validateForm(form).length)return;
-    const data=Object.fromEntries(new FormData(form));contactDetails=data;enquiryDraft={stage:'review',data};
-    guidance.innerHTML=`<section class="ik-assistant-enquiry-review"><h3>Review your enquiry</h3><dl>${[['Name',data.name],['Email',data.email],['Phone',data.phone],['Type',data.kind],['Enquiry',data.message]].map(([label,value])=>`<dt>${label}</dt><dd>${esc(value)}</dd>`).join('')}</dl><label class="ik-assistant-consent"><input type="checkbox" data-enquiry-consent><span>I consent to Ikonectt recording these details to respond to this enquiry.</span></label><p data-enquiry-status role="status" tabindex="-1"></p><button type="button" class="ik-assistant-primary" data-enquiry-confirm>Confirm and submit</button><button type="button" class="ik-assistant-secondary" data-enquiry-edit>Edit details</button><button type="button" class="ik-assistant-secondary" data-enquiry-cancel>Cancel</button></section>`;scrollLatest();
-  }
-  async function confirmEnquiry(){
-    if(!publicClient||enquiryDraft?.stage!=='review'||busy||enquirySent)return;
-    const status=find('[data-enquiry-status]');if(!find('[data-enquiry-consent]').checked){status.textContent='Please confirm your consent before submitting.';status.focus();return;}
-    busy=true;const draft=enquiryDraft;const button=find('[data-enquiry-confirm]');button.disabled=true;status.textContent='Recording your enquiry…';
-    try{
-      const {name,email,phone,kind,message}=draft.data;const record=await publicClient.createEnquiry({name:name.trim(),email:email.trim(),phone:phone.trim(),kind,message,consent:true});
-      if(typeof record?.id!=='string'||!record.id.trim())throw Error('No reference returned.');
-      if(enquiryDraft!==draft)return;enquirySent=true;enquiryDraft=null;
-      append('assistant',`Enquiry recorded. Reference: ${record.id}. Keep this reference when contacting customer care.`);guide({actions:supportActions()});
-    }catch{if(enquiryDraft!==draft)return;status.textContent='We could not confirm submission. Please contact customer care before retrying to avoid a duplicate enquiry.';button.disabled=true;const contacts=document.createElement('div');contacts.innerHTML=actionsHTML(supportActions());guidance.append(contacts);}
-    finally{busy=false;scrollLatest();}
-  }
   function start(){
     const form=intro.querySelector('form'),name=form.elements.namedItem('name'),phone=form.elements.namedItem('phone');
-    const errors=validateIntroduction({name:name.value,phone:phone.value});
+    const errors=validateIntroduction({name:name.value,phone:phone.value,skipPhone:guest});
+    let normalizedPhone=phone.value;
+    if(guest)try{normalizedPhone=normalizePhone(phone.value,form.elements.country.value);}catch(error){errors.phone=error.message;}
     for(const [key,control] of [['name',name],['phone',phone]]){
       control.setAttribute('aria-invalid',String(Boolean(errors[key])));
       find('#ik-assistant-'+key+'-error').textContent=errors[key]||'';
@@ -136,22 +131,22 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     const summary=find('[data-errors]');summary.hidden=!Object.keys(errors).length;
     if(!summary.hidden){summary.textContent='Please check your name and phone number below.';(errors.name?name:phone).focus();return;}
     const firstName=name.value.trim().split(/\s+/)[0],enquiry=form.elements.namedItem('enquiry').value.trim();
-    // Clear the entire form immediately; the phone is never needed by the provider.
+    if(guest)contactDetails={name:name.value.trim(),phone:normalizedPhone,country:form.elements.country.value,message:enquiry};
+    // Retain contacts only in this chat's memory; never send them to the model.
     form.reset();intro.replaceChildren();intro.hidden=true;conversation.hidden=false;started=true;panel.dataset.stage='conversation';
-    append('assistant',`Hi ${firstName}! Welcome to Ikonectt.\n\nHow can I help you today?`);
-    updateContext();find('[data-scroll]').scrollTop=0;input.focus();
+    append('assistant',`Hi ${firstName}! Welcome to Ikonectt.\n\nHow can ${guest?'we':'I'} help you today?`);
+    updateContext();find('[data-scroll]').scrollTop=0;input.focus({preventScroll:true});
     if(enquiry){append('visitor',enquiry);void respond(enquiry);}
   }
   function reset(){
-    revision++;busy=false;history.splice(0);enquiryDraft=null;enquirySent=false;contactDetails=null;started=false;localPlan='';messages.replaceChildren();guidance.replaceChildren();composer.reset();composer.querySelector('button').disabled=true;
-    conversation.hidden=true;panel.dataset.stage='welcome';intro.hidden=false;intro.innerHTML=introductionHTML(template);
-    if(guest){intro.replaceChildren();intro.hidden=true;conversation.hidden=false;started=true;panel.dataset.stage='conversation';append('assistant','Hi! Welcome to Ikonectt. How can we help you today?');updateContext();}
-    if(open)(guest?input:intro.querySelector('input'))?.focus();
+    clearEnquiryHandoff();revision++;busy=false;liveFlows?.reset();history.splice(0);contactDetails=null;started=false;localPlan='';messages.replaceChildren();guidance.replaceChildren();composer.reset();composer.querySelector('button').disabled=true;
+    conversation.hidden=true;panel.dataset.stage='welcome';intro.hidden=false;intro.innerHTML=introductionHTML(template,guest);
+    if(open)intro.querySelector('input')?.focus();
   }
   function updateContext(){
     if(!started)return;
     const current=context(),plan=getPlan(current.plan);
-    if(enquiryDraft)return;
+    if(liveFlows?.isActive())return;
     guide({actions:guest?guestActions(current):welcomeActions(current),contextual:current.path!=='home'?contextActions(current):null});
     if(plan){
       const label=document.createElement('p');label.className='ik-assistant-selected';
@@ -164,34 +159,33 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     if(target.matches('[data-launcher],[data-open]'))show();
     else if(target.matches('[data-dismiss]'))dismiss();
     else if(target.matches('[data-close]'))close();
-    else if(target.matches('[data-restart]')){if(busy&&enquiryDraft)return;reset();}
+    else if(target.matches('[data-restart]')){reset();}
     else if(target.matches('[data-help],[data-assistant-route]')){
       event.preventDefault();const route=target.getAttribute('href').replace(/^#\//,'');
+      if(guest)prepareEnquiryHandoff(route,{...contactDetails,message:[contactDetails?.message,liveFlows?.enquiryDefaults().message].filter(Boolean).join('\n')});
       close(false);navigate(route);
-    }else if(target.matches('[data-enquiry-edit]')){if(busy)return;enquiryDraft=null;beginEnquiry();}
-    else if(target.matches('[data-enquiry-cancel]')){if(busy)return;enquiryDraft=null;updateContext();}
-    else if(target.matches('[data-enquiry-confirm]')){void confirmEnquiry();}
-    else if(target.dataset.intent){if(busy)return;append('visitor',target.textContent.trim());void respond('',target.dataset.intent);input.focus();}
+    }    else if(target.dataset.intent){if(busy)return;append('visitor',target.textContent.trim());void respond('',target.dataset.intent);input.focus();}
     else if(target.dataset.selectPlan){
       const plan=getPlan(target.dataset.selectPlan),current=publicContext(getContext());
       localKey=`${current.path}|${current.audience}|${current.plan}`;localPlan=plan.id;
       append('visitor',`Explore ${planName(plan)} · ${plan.speedMbps} Mbps`);
-      append('assistant',`${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}${pricePeriod(plan)}. ${previewPricingNote}`);
-      guide({actions:contextActions({...context(),path:plan.audience+'/plans'})});input.focus();
+      append('assistant',`${planName(plan)} · ${plan.speedMbps} Mbps · ${priceLabel(plan)}${pricePeriod(plan)}. ${guest?'':previewPricingNote}`);
+      guide({actions:guest?[{label:'Check coverage',intent:'coverage'},{label:'Enquire about this plan',intent:'enquiry-details'},{label:'Compare other plans',intent:plan.audience}]:contextActions({...context(),path:plan.audience+'/plans'})});input.focus();
     }
   },options);
   host.addEventListener('submit',event=>{
-    if(event.target.matches('[data-chat-enquiry]')){event.preventDefault();reviewEnquiry(event.target);return;}
     event.preventDefault();
     if(event.target.matches('[data-intro-form]'))start();
-    if(event.target===composer){const text=input.value.trim();if(!text||busy)return;if(enquiryDraft){append('assistant','Please complete or cancel the enquiry below before continuing.');scrollLatest();return;}input.value='';composer.querySelector('button').disabled=true;append('visitor',text);void respond(text);input.focus();}
+    if(event.target===composer){const text=input.value.trim();if(!text||busy)return;input.value='';composer.querySelector('button').disabled=true;append('visitor',text);void respond(text);input.focus();}
   },options);
+  host.addEventListener('change',event=>{if(event.target.matches('[name=country]'))phoneCountry(event.target.form);},options);
+  host.addEventListener('focusout',event=>{if(guest&&event.target.matches('#ik-assistant-phone'))formatPhoneInput(event.target.form);},options);
   input.addEventListener('input',()=>composer.querySelector('button').disabled=busy||!input.value.trim(),options);
   panel.addEventListener('cancel',event=>{event.preventDefault();close();},options);
   panel.addEventListener('keydown',event=>{
     if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close();}
     if(event.key==='Tab'){
-      const controls=[...panel.querySelectorAll('a,button,input,textarea,summary')].filter(el=>!el.disabled&&!el.closest('[hidden]')&&(!el.closest('details:not([open])')||el.matches('summary')));
+      const controls=[...panel.querySelectorAll('a,button,input,select,textarea,summary')].filter(el=>!el.disabled&&!el.closest('[hidden]')&&(!el.closest('details:not([open])')||el.matches('summary')));
       const first=controls[0],last=controls.at(-1);
       if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
@@ -205,7 +199,10 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
     if(positionFrame||!window.requestAnimationFrame)return;
     positionFrame=window.requestAnimationFrame(()=>{positionFrame=0;placeLauncher();});
   },{...options,passive:true});
+  if(guest&&publicClient)liveFlows=createAssistantFlows({client:publicClient,guidance,context,append,beginEnquiry,signal:abort.signal,scroll:scrollFlow,
+    setBusy(value){busy=value;composer.querySelector('button').disabled=value||!input.value.trim();},
+    render(html,actions){guide({actions});guidance.insertAdjacentHTML('afterbegin',html);scrollFlow();}});
   reset();viewport();placeLauncher();
   invitationTimer=setTimeout(dismiss,12000);
-  return {updateContext,destroy(){revision++;close(false);abort.abort();clearTimeout(invitationTimer);if(positionFrame)window.cancelAnimationFrame(positionFrame);host.remove();}};
+  return {updateContext,destroy(){clearEnquiryHandoff();revision++;liveFlows?.destroy();close(false);abort.abort();clearTimeout(invitationTimer);if(positionFrame)window.cancelAnimationFrame(positionFrame);host.remove();}};
 }

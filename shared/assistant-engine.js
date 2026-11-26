@@ -46,9 +46,10 @@ export function contextActions(raw={}) {
   if(path.startsWith('support'))return [go('Browse FAQs','support/faqs'),ask('Troubleshooting','troubleshooting'),go('Report a Fault',withPlan('support/fault')),go('Contact Support','support/contact')];
   return [ask('Explore Plans',audience),go('Check Coverage',withPlan('coverage')),ask('Contact Sales','sales')];
 }
-export function validateIntroduction({name='',phone=''}) {
+export function validateIntroduction({name='',phone='',skipPhone=false}) {
   const errors={};
   if(name.trim().length<2||name.trim().length>80||!/^\p{L}[\p{L}\p{M}\s.'’\-]*$/u.test(name.trim()))errors.name='Enter your name with 2 to 80 characters, using letters, spaces, full stops, apostrophes or hyphens.';
+  if(skipPhone)return errors;
   const compact=phone.replace(/[\s().-]/g,'');
   const normalized=compact.startsWith('00')?'+'+compact.slice(2):compact;
   let valid=false;

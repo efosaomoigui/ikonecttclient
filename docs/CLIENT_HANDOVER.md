@@ -1,6 +1,6 @@
 # Ikonectt client operations and deployment handover
 
-Prepared 25 November 2026. This describes the current source implementation, not a claim that a production server or live AI account has been commissioned. Final verification results belong in `docs/ASSISTANT_COMPLETION_REPORT.md`.
+Prepared 25 November 2026. This describes the current source implementation, not a claim that a production server or live AI account has been commissioned. Current verification results and cleanup decisions are in `docs/PRODUCTION_READINESS_REVIEW.md`; the assistant completion report retains earlier historical checkpoints.
 
 ## Architecture and scope
 
@@ -9,6 +9,14 @@ The approved Option E website reads plans, coverage, published FAQs/knowledge an
 `option-e/` and `shared/` are public sources; `scripts/build_public.cjs` produces `dist-public/`. `admin/` is the staff application, `backend/` contains services and migrations, and `contracts/` contains shared validation contracts. Generated output is not edited manually. `public_html/` is legacy output and is not the production source.
 
 The custom customer application, local wallet and related services are retained in source but are outside this delivery. Public customer access goes to **https://portal.ikonectt.com**. Production must keep `CUSTOMER_PORTAL_ENABLED=false`; do not re-enable dormant services without a separate review. There are no temporary public Admin shortcuts.
+
+### Current assistant flow — 26 November 2026
+
+The welcome collects name, Nigeria (+234) phone and an optional initial question. Valid phone numbers are normalized to E.164. Coverage checks, selectable location matches, published troubleshooting and live plan information remain inside chat. Operational enquiries, installation, quotations, faults and service requests link to the existing website forms. The assistant no longer creates a second form-submission mechanism.
+
+Name, phone and enquiry context can prefill the destination form through a one-use, five-minute in-memory handoff. Nothing is put in URL parameters or browser storage. Restart/unmount clears it. The website form retains its validation and explicit consent and submits to the existing lead API with a structured category, source page/channel and idempotency key. My Ikonectt opens https://portal.ikonectt.com.
+
+See `docs/PRODUCTION_READINESS_REVIEW.md` for the current verification and cleanup inventory. Earlier live QA enquiries were removed after backup; their former IDs are historical evidence, not current operational records. Native browser verification remains blocked by the desktop tool initialization error.
 
 ## Daily administration
 

@@ -23,6 +23,11 @@ for (const name of ['option-e', 'shared', 'assets']) {
 }
 
 const apiBase=process.env.IKONECTT_PUBLIC_API_BASE||'/api/v1';
+const phoneVendor=path.join(output,'shared','vendor');
+fs.mkdirSync(phoneVendor,{recursive:true});
+fs.copyFileSync(path.join(root,'node_modules/libphonenumber-js/bundle/libphonenumber-max.js'),path.join(phoneVendor,'phone.js'));
+fs.copyFileSync(path.join(root,'node_modules/libphonenumber-js/LICENSE'),path.join(phoneVendor,'phone.LICENSE'));
+fs.copyFileSync(path.join(root,'node_modules/libphonenumber-js/LICENSE.Apache'),path.join(phoneVendor,'phone.LICENSE.Apache'));
 const siteOrigin=process.env.IKONECTT_SITE_ORIGIN||'';
 if(siteOrigin){
   const site=new URL(siteOrigin);

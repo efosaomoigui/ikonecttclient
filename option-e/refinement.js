@@ -4,6 +4,7 @@ import {heroAsset,isHeroPhoto,editorialAssets,imageHTML} from './visual-map.js?v
 import {mountCityExperience} from './city-experience.js?v=19';
 import {mountCorporateLight} from './corporate-light.js?v=2';
 import {mountEPlanShowcase} from './homepage-sections.js?v=3';
+import {mountInnerEditorial} from './inner-editorial.js';
 
 export function mountTemplateE({root,home}){
   if(root.dataset.template!=='e')return ()=>{};
@@ -33,6 +34,7 @@ export function mountTemplateE({root,home}){
   const slideshow=mountEHeroSlideshow({hero,root});
   const city=mountCityExperience({hero,root,onFrame:slideshow.frame});
   const polish=mountPolish({root,home});
-  return ()=>{observer.disconnect();polish();slideshow.destroy();city.destroy();corporate();plans();};
+  const editorial=mountInnerEditorial(root);
+  return ()=>{editorial();observer.disconnect();polish();slideshow.destroy();city.destroy();corporate();plans();};
 }
 if(typeof document!=='undefined'&&document.body.dataset.template==='e')mountTemplateE({root:document.body,home:document.querySelector('.ik-home')});
