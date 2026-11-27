@@ -20,7 +20,7 @@ export function createAssistantFlows({client,guidance,context,append,render,setB
   return requests.get(key);
  }
  function coverageForm(value='',message=''){
-  render(`<form data-chat-coverage class="ik-assistant-coverage" novalidate><label for="chat-coverage-location">Street, estate or area</label><input id="chat-coverage-location" name="location" data-chat-location type="text" minlength="2" maxlength="240" autocomplete="off" value="${esc(value)}" aria-describedby="chat-coverage-status"><button type="submit" class="ik-assistant-primary">Check availability</button><p id="chat-coverage-status" role="status">${esc(message||'Type an area name for matching locations, or send it in the message below.')}</p><div data-chat-locations></div></form>`,[]);
+  render(`<form data-chat-coverage class="ik-assistant-coverage" novalidate><label for="chat-coverage-location">Street, estate or area</label><input id="chat-coverage-location" name="location" data-chat-location type="text" minlength="2" maxlength="100" autocomplete="off" value="${esc(value)}" aria-describedby="chat-coverage-status"><button type="submit" class="ik-assistant-primary">Check availability</button><p id="chat-coverage-status" role="status">${esc(message||'Type an area name for matching locations, or send it in the message below.')}</p><div data-chat-locations></div></form>`,[]);
  }
  function options(rows,term){
   choices=rows;const host=guidance.querySelector('[data-chat-locations]');if(!host)return;

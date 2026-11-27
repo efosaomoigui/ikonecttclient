@@ -1,12 +1,23 @@
 import {clientImageURL,clientImageSrcSet} from '../shared/client-image-library.js';
 const cityURL=new URL('../assets/visual-library/creative/lagos-clean-v1-1725.webp',import.meta.url).href;
-export const eHeroScenes=[{id:'city',name:'Connected city',src:cityURL,width:1725,height:912,dwell:20000},{id:'family',name:'Family time',src:clientImageURL('family-tablet-1'),srcSet:clientImageSrcSet('family-tablet-1'),width:1376,height:768,dwell:7000},{id:'business',name:'Connected business',src:clientImageURL('conference-room'),srcSet:clientImageSrcSet('conference-room'),width:1376,height:768,dwell:7000}];
+export const eHeroScenes=[
+ {id:'city',name:'Connected city',headline:'Fibre broadband for home and business.',lead:'Compare service plans and find the next step for your connection.',actions:[['Check Coverage','#coverage'],['View Plans','#plans']],src:cityURL,width:1725,height:912,dwell:20000},
+ {id:'family',name:'Family time',headline:'Internet for life at home.',lead:'Fibre connectivity for work, learning, streaming and everyday life at home.',actions:[['Check Coverage','#/coverage?audience=residential'],['View Residential Plans','#/residential/plans']],src:clientImageURL('family-tablet-1'),srcSet:clientImageSrcSet('family-tablet-1'),width:1376,height:768,dwell:7000},
+ {id:'business',name:'Connected business',headline:'Connectivity for your business.',lead:'Explore fibre broadband for your team, workplace and business needs.',actions:[['Business Broadband','#/business'],['View Business Plans','#/business/plans']],src:clientImageURL('conference-room'),srcSet:clientImageSrcSet('conference-room'),width:1376,height:768,dwell:7000}
+];
 export function mountEHeroSlideshow({hero,root}){
  if(!hero)return {frame(){},destroy(){}};
  const doc=hero.ownerDocument,win=doc.defaultView,reduced=win.matchMedia('(prefers-reduced-motion:reduce)'),abort=new win.AbortController();
  let index=0,last=0,latest=0,busy=false,stopped=false,active,timer,headlineTimer;
  hero.dataset.eSlide='city';hero.setAttribute('aria-roledescription','carousel');hero.setAttribute('aria-label','Ikonectt connected life');
  const controls=doc.createElement('div');controls.className='e-scene-controls';controls.setAttribute('role','group');controls.setAttribute('aria-label','Hero slides');controls.innerHTML='<button type="button" data-e-scene-step="-1" aria-label="Previous hero slide">←</button><button type="button" data-e-scene-step="1" aria-label="Next hero slide">→</button><span class="ik-scene-announcement" aria-live="polite" aria-atomic="true"></span>';hero.append(controls);
+ function paintCopy(scene){
+  const heading=hero.querySelector('h1'),lead=hero.querySelector('.lead');
+  if(heading){const spans=heading.querySelectorAll(':scope > span');if(spans.length){spans.forEach((span,i)=>{span.dataset.active=String(i===eHeroScenes.indexOf(scene));});heading.setAttribute('aria-label',scene.headline);}else heading.textContent=scene.headline;}
+  if(lead)lead.textContent=scene.lead;
+  hero.querySelectorAll('.actions a').forEach((link,i)=>{if(scene.actions[i]){link.textContent=scene.actions[i][0];link.setAttribute('href',scene.actions[i][1]);}});
+ }
+ paintCopy(eHeroScenes[0]);
  function picture(scene){const img=doc.createElement('img');img.src=scene.src;if(scene.srcSet)img.srcset=scene.srcSet;img.sizes='100vw';img.alt='';img.width=scene.width;img.height=scene.height;img.decoding='async';return img;}
  async function select(next,{manual=false,instant=false}={}){
   if(busy||stopped)return;busy=true;controls.querySelectorAll('button').forEach(b=>b.disabled=true);
@@ -15,8 +26,8 @@ export function mountEHeroSlideshow({hero,root}){
   try{await img.decode();}catch{busy=false;controls.querySelectorAll('button').forEach(b=>b.disabled=false);return;}
   if(stopped)return;
   const previous=active;hero.append(layer);index=eHeroScenes.indexOf(scene);last=latest;
-  hero.dataset.eSlideChanging='true';headlineTimer=win.setTimeout(()=>{hero.dataset.eSlide=scene.id;delete hero.dataset.eSlideChanging;},160);
-  function finish(){if(stopped)return;previous?.remove();field.querySelector('.e-scene-tiles')?.remove();img.style.opacity='1';layer.classList.add('e-scene-settled');active=layer;hero.dataset.photoControlled='true';hero.dataset.eSlide=scene.id;delete hero.dataset.eSlideChanging;busy=false;controls.querySelectorAll('button').forEach(b=>b.disabled=false);if(manual)controls.querySelector('.ik-scene-announcement').textContent=scene.name;}
+  hero.dataset.eSlideChanging='true';win.clearTimeout(headlineTimer);headlineTimer=win.setTimeout(()=>{hero.dataset.eSlide=scene.id;paintCopy(scene);delete hero.dataset.eSlideChanging;},160);
+  function finish(){if(stopped)return;win.clearTimeout(headlineTimer);paintCopy(scene);previous?.remove();field.querySelector('.e-scene-tiles')?.remove();img.style.opacity='1';layer.classList.add('e-scene-settled');active=layer;hero.dataset.photoControlled='true';hero.dataset.eSlide=scene.id;delete hero.dataset.eSlideChanging;busy=false;controls.querySelectorAll('button').forEach(b=>b.disabled=false);if(manual)controls.querySelector('.ik-scene-announcement').textContent=scene.name;}
   if(instant||reduced.matches){finish();return;}
   const tiles=doc.createElement('div');tiles.className='e-scene-tiles';field.append(tiles);img.style.opacity='0';
   const r=field.getBoundingClientRect(),columns=r.width<600?4:6,rows=2,scale=Math.max(r.width/scene.width,r.height/scene.height),w=scene.width*scale,h=scene.height*scale;

@@ -55,8 +55,8 @@ export function mountInnerEditorial(root){
    }
   }
   if(path==='support')main.querySelector('.ik-page-hero .e-section-kicker')?.remove();
-  // One photographic statement is enough above the SME introduction.
-  if(path==='business/solutions/sme'){
+  // Retain the hero photograph and keep these business introductions text-only.
+  if(['business/solutions/sme','business/solutions/enterprise'].includes(path)){
    const slot=main.querySelector('.ik-image-slot');
    if(slot){slot.hidden=true;slot.closest('section')?.classList.add('e-plain-introduction');}
   }

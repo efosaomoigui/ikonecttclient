@@ -15,7 +15,7 @@ test('API client paginates, performs uncached requests and forwards coverage sea
  const calls=[];const client=createPublicDataClient({base:'/api/v1',fetcher:async(url,options)=>{calls.push([url,options]);return response(url.includes('service-areas')?page([{id:'a',name:'Estate',scope:'ESTATE'}]):url.includes('offset=0')?{items:[plan('one')],total:2}:{items:[plan('two')],total:2});}});
  assert.equal((await client.plans()).length,2);assert.match(calls[1][0],/offset=1/);assert.equal(calls[0][1].cache,'no-store');assert.equal(calls[0][1].credentials,'omit');
  await client.searchCoverage('A & B');assert.match(calls.at(-1)[0],/search=A%20%26%20B/);
- await assert.rejects(()=>client.searchCoverage('a'),/two characters/);
+ await assert.rejects(()=>client.searchCoverage('a'),/2 to 100 characters/);
 });
 test('live data replaces old values, unknown business prices and periods stay unclaimed',async()=>{
  await loadWebsiteData({plans:async()=>[plan('Residential'),plan('Business','BUSINESS',null)],knowledge:async()=>[{id:'k',question:'Published question',answer:'Approved answer',category:'billing',published:true}]});
@@ -72,11 +72,11 @@ test('public DOM shows API plans and official portal, retains form consent and r
  }finally{stop();win.close();for(const key of keys)globalThis[key]=saved[key];}
 });
 
-test('plan card names use approved i-dash branding while API and detail names remain intact',async()=>{
+test('plan card and detail names preserve full authoritative names with branded initials',async()=>{
  const records=[['i-Basic_50Mbps','i-Basic'],['I-Silver_100Mbps','i-Silver'],['I-Gold_300Mbps','i-Gold'],['I-Business_100Mbps','i-Business'],['I-Business Plus_300Mbps','i-Business Plus'],['I-Business Pro_500Mbps','i-Business Pro'],['I-Business Max_1000Mbps','i-Business Max']];
- for(const [raw,clean] of records){
+ for(const [raw] of records){const clean=raw;
   const record={...plan('label'),name:raw};replaceCatalogue([record]);const item=catalogue[0];assert.equal(item.displayName,raw);assert.equal(planCardName(item),clean);assert.match(detailHTML(item),new RegExp(raw));
-  const dom=new JSDOM('<div data-template="e"><main>'+planCardHTML(item)+'</main></div>');const root=dom.window.document.querySelector('[data-template]');const stop=mountBrandSignature({root,home:root.querySelector('main')});const heading=root.querySelector('h3');assert.equal(heading.textContent,clean);assert.equal(heading.querySelectorAll('.ik-plan-brand-prefix').length,1);assert.equal(heading.querySelectorAll('.ik-plan-brand-dash').length,1);assert.doesNotMatch(heading.textContent,/--|Mbps/);stop();assert.equal(heading.textContent,clean);dom.window.close();
+  const dom=new JSDOM('<div data-template="e"><main>'+planCardHTML(item)+'</main></div>');const root=dom.window.document.querySelector('[data-template]');const stop=mountBrandSignature({root,home:root.querySelector('main')});const heading=root.querySelector('h3');assert.equal(heading.textContent,clean);assert.equal(heading.querySelectorAll('.ik-plan-brand-prefix').length,1);assert.equal(heading.querySelectorAll('.ik-plan-brand-dash').length,1);assert.doesNotMatch(heading.textContent,/--/);stop();assert.equal(heading.textContent,clean);dom.window.close();
  }
 });
 

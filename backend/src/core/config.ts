@@ -5,6 +5,8 @@ import { z } from 'zod';
 const Environment = z.object({
   NODE_ENV: z.enum(['development', 'test', 'staging', 'production']).default('development'),
   DATABASE_URL: z.string().url(),
+  IKONECTT_CATALOGUE_PROVIDER:z.enum(['internal','client']).optional(),
+  WEBSITE_API_KEY:z.string().min(10).optional(),
   TRUST_LOOPBACK_PROXY: z.enum(['true','false']).default('false'),
   PORT: z.coerce.number().int().min(0).max(65535).default(4000),
   HOST: z.string().default('127.0.0.1'),

@@ -1,8 +1,8 @@
 {
-  "reason": "User-authorized Coverage mega-menu image replacement with a generated aerial city illustration; other approved imagery and layout preserved.",
+  "reason": "User-approved live client catalogue, promotional overlay and inner-page refinements; homepage copy now follows its active city, family or business image.",
   "files": {
     "option-e/index.html": {
-      "sha256LF": "22a5ebee9f5a2e50d9f3dd6572cc36c747311f80acfafa4b9d8fcc3a36dbe3c5"
+      "sha256LF": "776a1968b95f7c9a0944e7673273da5e9795afb2df9f69fdd8dc26127d33893b"
     },
     "option-e/section-showcase.js": {
       "sha256LF": "52c49a061a3bdb257b91e29c99bc77a2aab28f358f947bfdf1b5a7ee8e63888c"
@@ -20,7 +20,7 @@
       "sha256LF": "c648bc84b137c0d81423ccb4251e3edf7b8de3ae5c438ac5c02d03dd2fcf99db"
     },
     "shared/catalogue.js": {
-      "sha256LF": "c48828bff32742e859fca2c7dce6aee9d7234be2174f822dea2fc3dee3c127fc"
+      "sha256LF": "ccd134305f86aef428c57f32d403d19e314695e00bbd1aa6e853fc2ed42d100a"
     },
     "shared/content.js": {
       "sha256LF": "444b2c7c59a5b063c520ce05e77a1462287cd5d88ed5e735d0e4b4082899137a"
@@ -32,7 +32,7 @@
       "sha256LF": "0f11275aafe27fa1dd4345e0d7265be52e67b11976b4be21857724f5fa7ba38c"
     },
     "shared/plan-ui.js": {
-      "sha256LF": "8eec87cba7da64d2e07b4ef1263c8324cce1709f68f735f135e53a9bbf790f24"
+      "sha256LF": "514af902053530f5f2b5b64c6e3525400ec3142393964236f61c5402f52ab5be"
     },
     "shared/public-site.js": {
       "sha256LF": "2b90b7fcf3df38e49ec56ba058a20e3fa49486bac3352747947841cca1a6c0e7"
@@ -44,7 +44,7 @@
       "sha256LF": "f4358b5f10a345fa815184c85e7de37f4e0ee73deeb31c0d69565ecb31ed41c5"
     },
     "shared/brand-signature.js": {
-      "sha256LF": "d9d2cea2ea2644a82005f6fca0fc38493c8c5c65a3127f195055318088c8a2fd"
+      "sha256LF": "2a904aa124c1028ca8bbb260e54d94afb1f3e51c3c46a3436a4b4cd824e0a220"
     },
     "shared/company-pages.js": {
       "sha256LF": "a558867de3c29ed1890d1893434071d613f970a9d0e6df86c55b05d45ed2901e"
@@ -53,13 +53,13 @@
       "sha256LF": "9195b89bfc63ad1b99ac2cd6d003bea98dcc8626788ee5bcdc2f4b6271e63cea"
     },
     "shared/public-data.js": {
-      "sha256LF": "af38e0987791ef42eb3b48cc1d89ccfeb6606563187e82c15afbe10781a0ca01"
+      "sha256LF": "7e0cc60ff5867b9ddd6e84dfe8c5d944481b879a50d0834681f0dc1c3e0117ad"
     },
     "option-e/refinement.js": {
-      "sha256LF": "bd4b3c07ddcb75a7f8b3b5ef8711076b19d4ecbaccba03e014f8814637c9e88f"
+      "sha256LF": "606a081c406b9e69ea3601c1b180698000abd36418d7d1ec7375e9b094e99c2a"
     },
     "shared/assistant-flows.js": {
-      "sha256LF": "e6ee3f191db51dff7455a7f1acd4c3959192041a853792134ef27922db958437"
+      "sha256LF": "e9929fa0c8185dbaecc20ebc3a3be03436ac16f16f241b3cd52cc5f2eeb9d947"
     },
     "shared/phone-input.js": {
       "sha256LF": "7b1e4a642d48b50c28018d4ed3b896126adf9dba2f2b571d6399a8ad40f26838"
@@ -74,7 +74,19 @@
       "sha256LF": "040f3280729bbfa43788d0c5e554540e773fb001e31cf703fba7f514133dc92d"
     },
     "option-e/inner-editorial.js": {
-      "sha256LF": "9f4d61a68580e55dc5ae364113ef521aad1c6d8dd30b2cfec6c8d3687d71e9da"
+      "sha256LF": "bd9bccd8a9c61ab22615a316debf79e9ed72d6745345e869545fcfd706747d4e"
+    },
+    "shared/plans.css": {
+      "sha256LF": "998a6686ed36be24fa6bd31a5d6811d2a9841b943bb6495c4402b5e475b67755"
+    },
+    "option-e/inner-editorial.css": {
+      "sha256LF": "b9d71405d119600e65f24d314227b83c9003f649a7ffbe2c4f5470c88657b409"
+    },
+    "option-e/hero-slideshow.js": {
+      "sha256LF": "3162e9c7ae443b1a6e3d6e293b002248d9e6b9be23d1ff54e5c3fc9dcebd62cf"
+    },
+    "option-e/city-experience.js": {
+      "sha256LF": "f86d787a7d122250c737add47f127900b1b1e8c483610e8813cfa18f0b0d8e8e"
     }
   }
 }

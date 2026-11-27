@@ -1,3 +1,5 @@
+import {PromotionsModule} from './promotions/promotions.controller';
+import {ClientCatalogueModule} from './catalogue/client-catalogue.service';
 import {ServiceAreasModule} from './catalogue/service-areas.controller';
 import { Controller, Get, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
@@ -27,7 +29,7 @@ class HealthController {
   async health() { await this.db.$queryRaw`SELECT 1`; return { status: 'ok', database: 'connected' }; }
 }
 @Module({
-  imports: [ServiceAreasModule,ConfigModule, DatabaseModule, IntegrationsModule, NotificationsModule,
+  imports: [PromotionsModule,ClientCatalogueModule,ServiceAreasModule,ConfigModule, DatabaseModule, IntegrationsModule, NotificationsModule,
     ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 120 }]),
     IdentityModule, CustomersModule, PlansModule, CoverageModule, LeadsModule,
     OrdersModule, PaymentsModule, SubscriptionsModule, ProvisioningModule, SupportModule,

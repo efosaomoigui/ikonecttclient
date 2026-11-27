@@ -22,7 +22,7 @@ async function main(){
  const db=new Database(new Config());try{await db.mutate(async tx=>{
   const occupied=await Promise.all([tx.plan.count(),tx.serviceArea.count(),tx.knowledgeArticle.count(),tx.customer.count(),tx.lead.count(),tx.payment.count(),tx.order.count(),tx.user.count(),tx.coverageLocation.count(),tx.ticket.count(),tx.notification.count()]);
   if(occupied.some(Boolean))throw Error('Refusing to overwrite an existing dataset; use normal Admin management instead');
-  await tx.plan.createMany({data:plans});await tx.serviceArea.createMany({data:areas.map(a=>({...a,searchText:areaSearch(a.name,a.aliases)}))});await tx.knowledgeArticle.createMany({data:knowledge});
+  await tx.plan.createMany({data:plans.map(p=>({...C.PlanInput.strip().parse(p),id:p.id}))});await tx.serviceArea.createMany({data:areas.map(a=>({...a,searchText:areaSearch(a.name,a.aliases)}))});await tx.knowledgeArticle.createMany({data:knowledge});
   if(contacts)await tx.assistantSettings.upsert({where:{id:'main'},create:{id:'main',...contacts},update:contacts});
   await audit(tx,null,'client_release.imported','ClientDataset','reviewed-release',{sha256:expected,plans:plans.length,coverage:areas.length,knowledge:knowledge.length});
  });}finally{await db.$disconnect();}

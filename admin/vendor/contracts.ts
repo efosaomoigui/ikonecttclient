@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const API_VERSION = '1.5.0';
+export const API_VERSION = '1.7.0';
 export const API_PREFIX = '/api/v1';
 export const Id = z.string().uuid();
 const Text = z.string().trim().min(1).max(250);
@@ -52,7 +52,7 @@ export const AssistantRequest = z.object({message:z.string().trim().min(1).max(1
 
 // Response schemas deliberately exclude credentials, tokens, internal payment evidence and staff-only notes.
 export const Customer = z.object({ id: Id, accountNumber: z.string(), accountNumberSimulated: z.boolean(), kind: CustomerKind, name: z.string(), email: z.string(), phone: z.string(), status: CustomerStatus, buildingId: Id.nullable(), createdAt: z.string().datetime() });
-export const Plan = PlanInput.extend({ id: Id, simulated: z.boolean(), createdAt: z.string().datetime(), updatedAt: z.string().datetime() });
+export const Plan = PlanInput.extend({ id: Id, priceMinor:Money.nullable(), simulated:z.boolean(), createdAt:z.string().datetime().nullable(), updatedAt:z.string().datetime().nullable(), description:z.string().max(4000).default(''), descriptionSource:z.enum(['CLIENT','EDITORIAL']).nullable().default(null), source:z.enum(['INTERNAL','CLIENT']).default('INTERNAL'), externalId:z.string().nullable().default(null), billingPeriod:z.literal('MONTH').nullable().default(null), fetchedAt:z.string().datetime().nullable().default(null) });
 export const CoverageLocation = CoverageInput.extend({ id: Id, parentId: Id.nullable(), evidence: z.string().nullable(), simulated: z.boolean(), verifiedAt: z.string().datetime().nullable() });
 export const CoverageResult = z.object({ buildingId: Id, eligibility: Eligibility, planIds: z.array(Id), simulated: z.boolean(), source: z.enum(['NATIVE', 'SIMULATED']), checkedAt: z.string().datetime() });
 export const Order = z.object({ id: Id, customerId: Id, planId: Id, buildingId: Id, type: z.enum(['NEW_CONNECTION', 'RENEWAL', 'PLAN_CHANGE']), fundingSource: z.enum(['ORDER_PAYMENT','WALLET']).optional(), subscriptionId: Id.nullable(), status: OrderStatus, amountMinor: Money, currency: z.string(), planName: z.string(), billingDays: z.number().int(), createdAt: z.string().datetime() });
@@ -63,7 +63,7 @@ export const Subscription = z.object({ id: Id, customerId: Id, planId: Id, build
 export const Ticket = z.object({ id: Id, customerId: Id, subscriptionId: Id.nullable(), subject: z.string(), status: TicketStatus, assignedToId: Id.nullable(), createdAt: z.string().datetime() });
 export const TicketMessage = z.object({ id: Id, ticketId: Id, authorId: Id, message: z.string(), createdAt: z.string().datetime() });
 export const TicketDetail = Ticket.extend({ messages: z.array(TicketMessage) });
-export const Lead = z.object({ id: Id, name: z.string(), email: z.string(), phone: z.string(), kind: CustomerKind, message: z.string(), planId: Id.nullable(), buildingId: Id.nullable(), customerId: Id.nullable(), status: LeadStatus, consent: z.boolean(), category: RequestCategory.default('GENERAL'), sourceChannel: RequestChannel.default('LEGACY'), sourcePage: z.string().default(''), assignedToId: Id.nullable().default(null), createdAt: z.string().datetime() });
+export const Lead = z.object({ id: Id, clientPlanReference:z.string().nullable().default(null), clientPlanName:z.string().nullable().default(null), name: z.string(), email: z.string(), phone: z.string(), kind: CustomerKind, message: z.string(), planId: Id.nullable(), buildingId: Id.nullable(), customerId: Id.nullable(), status: LeadStatus, consent: z.boolean(), category: RequestCategory.default('GENERAL'), sourceChannel: RequestChannel.default('LEGACY'), sourcePage: z.string().default(''), assignedToId: Id.nullable().default(null), createdAt: z.string().datetime() });
 export const LeadDetail = Lead.extend({ activity: z.array(z.object({ id: Id, actorId: Id.nullable(), action: z.string(), note: z.string().nullable(), createdAt: z.string().datetime() })) });
 export const LeadQuery = ListQuery.extend({ search: z.string().trim().max(200).optional(), category: RequestCategory.optional(), status: LeadStatus.optional(), kind: CustomerKind.optional(), sourceChannel: RequestChannel.optional(), assignedToId: Id.optional(), sort: z.enum(['createdAt', 'name', 'status']).default('createdAt'), direction: z.enum(['asc','desc']).default('desc') }).strict();
 export const Staff = z.object({ id: Id, name: z.string(), email: z.string(), roles: z.array(Role), enabled: z.boolean(), createdAt: z.string().datetime() });
@@ -130,8 +130,8 @@ export const WalletRenewalQuery=ListQuery.extend({customerId:Id.optional(),statu
 
 export const ServiceAreaInput=z.object({name:Text,scope:z.enum(['ESTATE','AREA','SITE']),aliases:z.array(Text).max(30).default([]),active:z.boolean().default(true),displayPrimary:z.boolean().default(true),duplicateGroup:Text.nullable().optional(),reviewNote:z.string().max(2000).nullable().optional()}).strict();
 export const ServiceAreaUpdate=ServiceAreaInput.partial().strict();
-export const ServiceArea=ServiceAreaInput.omit({reviewNote:true,duplicateGroup:true}).extend({id:Id,notice:z.string()}).strip();
-export const AdminServiceArea=ServiceArea.extend({duplicateGroup:z.string().nullable(),reviewNote:z.string().nullable(),sourceKey:z.string(),sourceName:z.string(),createdAt:z.string().datetime(),updatedAt:z.string().datetime()});
+export const ServiceArea=ServiceAreaInput.omit({reviewNote:true,duplicateGroup:true}).extend({id:Id,notice:z.string(),source:z.enum(['INTERNAL','CLIENT']).default('INTERNAL'),zone:z.string().nullable().default(null)}).strip();
+export const AdminServiceArea=ServiceArea.extend({duplicateGroup:z.string().nullable(),reviewNote:z.string().nullable(),sourceKey:z.string(),sourceName:z.string(),createdAt:z.string().datetime().nullable(),updatedAt:z.string().datetime().nullable()});
 export const ServiceAreaQuery=ListQuery.extend({search:z.string().trim().max(150).optional()}).strict();
 export const AdminServiceAreaQuery=ServiceAreaQuery.extend({active:z.enum(['true','false']).optional()}).strict();
 export const KnowledgeInput=z.object({key:z.string().trim().min(1).max(100).regex(/^[a-z0-9-]+$/),category:z.string().trim().min(1).max(80),question:z.string().trim().min(1).max(250),answer:z.string().trim().min(1).max(2000),keywords:z.array(z.string().trim().min(1).max(80)).max(30).default([]),published:z.boolean().default(false)}).strict();
@@ -143,3 +143,16 @@ export const AssistantSettingsView=z.object({retrievalArticleLimit:z.number().in
 export const AssistantConnectionResult=z.object({ok:z.boolean(),status:z.string(),message:z.string()});
 export const ContactSettings=z.object({whatsappUrl:z.string(),customerCareEmail:z.literal('customercare@ikonectt.com'),portalUrl:z.literal('https://portal.ikonectt.com')});
 export const ContactSettingsInput=z.object({whatsappUrl:z.string().url().max(300).refine(v=>{try{const u=new URL(v);return u.protocol==='https:'&&u.hostname==='api.whatsapp.com'&&u.pathname==='/send/'&&/^\d{8,15}$/.test(u.searchParams.get('phone')||'')}catch{return false}},'Use an HTTPS api.whatsapp.com/send/ link with an international phone number')}).strict();
+
+// Promotional artwork is uploaded as a bounded raster image, never executable SVG/HTML.
+export const PromotionFields=z.object({title:z.string().trim().max(100).default(''),message:z.string().trim().max(240).default(''),imageData:z.string().max(1400000).nullable().default(null),imageAlt:z.string().trim().max(180).default(''),actionLabel:z.string().trim().max(45).default(''),actionUrl:z.string().trim().max(500).default(''),published:z.boolean().default(false),startsAt:z.string().datetime().nullable().default(null),endsAt:z.string().datetime().nullable().default(null)}).strict();
+export const PromotionInput=PromotionFields.superRefine((v,ctx)=>{
+ const issue=(path:string,message:string)=>ctx.addIssue({code:z.ZodIssueCode.custom,path:[path],message});
+ if(v.published&&(!v.imageData||!v.title||!v.imageAlt))issue('published','Add a title, banner image and image description before publishing.');
+ if(v.imageData&&!/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(v.imageData))issue('imageData','Upload a PNG, JPEG or WebP image.');
+ if(Boolean(v.actionUrl)!==Boolean(v.actionLabel))issue('actionUrl','Supply both an action label and destination, or leave both blank.');
+ if(v.actionUrl&&!/^#\/[a-z0-9/?&=_%.-]*$/i.test(v.actionUrl)){try{const u=new URL(v.actionUrl);if(u.protocol!=='https:'||u.username||u.password)throw Error();}catch{issue('actionUrl','Use a website #/ route or an HTTPS link.');}}
+ if(v.startsAt&&v.endsAt&&Date.parse(v.endsAt)<=Date.parse(v.startsAt))issue('endsAt','End time must follow start time.');
+});
+export const PromotionSettings=PromotionFields.extend({version:Id,updatedAt:z.string().datetime()});
+export const PublicPromotion=z.object({promotion:PromotionSettings.nullable()});

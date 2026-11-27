@@ -63,3 +63,6 @@
 @media(max-width:600px){.ik-site .ik-plan-carousel{--ik-card-width:clamp(244px,74vw,320px)}.ik-site .ik-carousel-rail{gap:16px;padding-top:18px;padding-bottom:20px}.ik-site .ik-carousel-rail .ik-plan-card{min-height:460px}.ik-site .ik-carousel-rail .ik-plan-card[data-active=true]{transform:none}.ik-site .ik-plan-card,.ik-site[data-template=e] .ik-plan-card{padding:24px}.ik-site .ik-plan-card h3{font-size:22px}.ik-site .ik-plan-price strong{font-size:27px}.ik-site .ik-carousel-arrows{gap:6px}.ik-site .ik-carousel-arrows button{width:44px;min-height:44px;flex-basis:44px}.ik-site .ik-carousel-audiences button{padding-inline:14px;font-size:13px}.ik-site .ik-carousel-bottom{align-items:flex-start;flex-direction:column}.ik-site .ik-plan-facts dl>div{grid-template-columns:1fr;gap:4px}}
 @media(max-width:359px){.ik-site .ik-carousel-toolbar{align-items:center;gap:10px}.ik-site .ik-carousel-audiences{width:100%;justify-content:center}.ik-site .ik-carousel-audiences button{flex:1}.ik-site .ik-carousel-arrows{margin-left:auto}}
 @media(prefers-reduced-motion:reduce){.ik-site .ik-carousel-rail{scroll-behavior:auto}.ik-site .ik-carousel-rail .ik-plan-card{transition:none;transform:none}}
+
+/* Full authoritative names wrap within the approved card dimensions. */
+.ik-site .ik-plan-card[data-plan-source="CLIENT"] h3{overflow-wrap:anywhere}

@@ -37,7 +37,7 @@ export function createPublicDataClient({base=settings().apiBase||'/api/v1',fetch
   return {
     plans:()=>all('/plans'),knowledge:()=>all('/knowledge'),
     searchCoverage:async query=>{
-      const term=String(query||'').trim();if(term.length<2)throw new Error('Enter at least two characters of an estate or area name.');
+      const term=String(query||'').trim();if(term.length<2||term.length>100)throw new Error('Enter an estate or area name using 2 to 100 characters.');
       const rows=await all('/coverage/service-areas?search='+encodeURIComponent(term));
       if(rows.some(row=>typeof row.id!=='string'||typeof row.name!=='string'||!['ESTATE','AREA','SITE'].includes(row.scope)))throw new Error('Invalid coverage response.');
       return rows;

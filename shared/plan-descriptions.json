@@ -1,0 +1,51 @@
+{
+  "provenance": "Client-supplied plan identities; generic editorial templates approved on 27 November 2026. Speeds are substituted from the live CRM, never stored as fallback facts. Replace templates with supplied plan-specific wording when available.",
+  "plans": [
+    {
+      "crmId": "11",
+      "name": "i-Basic_50Mbps",
+      "category": "Residential",
+      "template": "A home fibre plan with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds for everyday connectivity."
+    },
+    {
+      "crmId": "16",
+      "name": "I-Silver_100Mbps",
+      "category": "Residential",
+      "template": "Home fibre connectivity with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds."
+    },
+    {
+      "crmId": "17",
+      "name": "I-Gold_300Mbps",
+      "category": "Residential",
+      "template": "A residential fibre plan with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds for your household."
+    },
+    {
+      "crmId": "15",
+      "name": "I-Business_100Mbps",
+      "category": "Business",
+      "template": "Business fibre broadband with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds."
+    },
+    {
+      "crmId": "12",
+      "name": "I-Business Plus_300Mbps",
+      "category": "Business",
+      "template": "Fibre connectivity for your business, with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds."
+    },
+    {
+      "crmId": "13",
+      "name": "I-Business Pro_500Mbps",
+      "category": "Business",
+      "template": "A business fibre plan offering {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds."
+    },
+    {
+      "crmId": "14",
+      "name": "I-Business Max_1000Mbps",
+      "category": "Business",
+      "template": "Business fibre connectivity with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds."
+    }
+  ],
+  "generic": {
+    "Residential": "Residential fibre broadband with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds.",
+    "Business": "Business fibre broadband with {download_mbps} Mbps download and {upload_mbps} Mbps upload speeds."
+  }
+}

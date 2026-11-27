@@ -1,3 +1,4 @@
+import {ClientCatalogue} from '../catalogue/client-catalogue.service';
 import {Injectable} from '@nestjs/common';
 import * as C from '../../../contracts';
 import {Database} from '../core/database';
@@ -5,7 +6,7 @@ import {KnowledgeService} from './knowledge.service';
 import {AiSettingsService} from './ai-settings.service';
 @Injectable()
 export class AssistantOrchestration{
- constructor(private db:Database,private knowledge:KnowledgeService,private settings:AiSettingsService){}
+ constructor(private db:Database,private knowledge:KnowledgeService,private settings:AiSettingsService,private client:ClientCatalogue){}
  async guidance(input:C.Input<typeof C.AssistantRequest>):Promise<C.Input<typeof C.AssistantResponse>>{
  const contacts=await this.settings.contacts(),message=input.message.toLowerCase(),history=input.history||[];
  const links=[{label:'Help Centre',path:'/support'},{label:'Chat on WhatsApp',path:contacts.whatsappUrl},{label:'My Ikonectt',path:contacts.portalUrl}];
@@ -15,6 +16,7 @@ export class AssistantOrchestration{
  if(/enquir|enqur|enqir|enqiur|inquir|interested|new connection/.test(message)&&!/install/.test(message))return reply(enquiry,'enquiry');
  if(/human|agent|contact|whatsapp|customer care/.test(message))return reply('Customer care can help at '+contacts.customerCareEmail+' or through WhatsApp. Local enquiries are not confirmed tickets in the client support system.','support');
  if(/coverage|cover|available|availability|estate/.test(message)||history.slice(-2).some(h=>/Which area or estate/.test(h.content))){
+ if(this.client.enabled){const search=message.replace(/^(?:check )?(?:coverage|availability)(?: in| at| for)?\s*/,'').trim();if(search.length<2||search==='coverage'||search==='estate')return reply('Which area or estate would you like us to check?','coverage');const page=await this.client.areas({search,limit:100});if(page.total)return reply(page.items.slice(0,5).map(a=>a.name+' ('+a.zone+')').join(', ')+': live area coverage is listed by the client. Exact-address feasibility must still be confirmed.','coverage');return reply('The client coverage search did not confirm a matching area. Make a coverage enquiry for an address review.','coverage');}
  const areas=await this.db.serviceArea.findMany({where:{active:true,displayPrimary:true},select:{name:true,aliases:true},take:500});
  const normal=(s:string)=>s.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();const matches=areas.filter(a=>[a.name,...a.aliases].some(name=>normal(message).includes(normal(name))));
  if(matches.length)return reply(matches.slice(0,5).map(a=>a.name).join(', ')+': service availability is indicated for this area. Exact-address feasibility confirmation is required.','coverage');
@@ -22,8 +24,8 @@ export class AssistantOrchestration{
  return reply('Coverage has not been confirmed for that location in our published records. This does not prove service is unavailable. Make an enquiry or contact WhatsApp for feasibility confirmation.','coverage');
  }
  if(/plan|price|pricing|cost|mbps|broadband|package|compare|recommend|^business[.!? ]*$|^residential[.!? ]*$/.test(message)){
- const business=/business|office|company/.test(message)||input.context?.audience==='BUSINESS';const plans=await this.db.plan.findMany({where:{published:true,kind:business?'BUSINESS':'RESIDENTIAL'},orderBy:{speedMbps:'asc'},take:20});
- return reply(plans.length?plans.map(p=>p.name+': '+p.speedMbps+' Mbps download'+(p.uploadMbps?' / '+p.uploadMbps+' Mbps upload':'')+' - '+(p.priceMinor===null?'Request a quote':'NGN '+(Number(p.priceMinor)/100).toLocaleString('en-NG'))+(p.billingDays?' per '+p.billingDays+' days':'; billing period requires confirmation')).join('\n')+'\nWhich option would you like to enquire about?':'No current published plans are available. Customer care can confirm options.','plans');
+ const business=/business|office|company/.test(message)||input.context?.audience==='BUSINESS';const plans=this.client.enabled?(await this.client.plans({limit:100})).items.filter(p=>p.kind===(business?'BUSINESS':'RESIDENTIAL')):await this.db.plan.findMany({where:{published:true,kind:business?'BUSINESS':'RESIDENTIAL'},orderBy:{speedMbps:'asc'},take:20});
+ return reply(plans.length?plans.map(p=>p.name+': '+p.speedMbps+' Mbps download'+(p.uploadMbps?' / '+p.uploadMbps+' Mbps upload':'')+' - '+(p.priceMinor===null?'Request a quote':'NGN '+(Number(p.priceMinor)/100).toLocaleString('en-NG'))+(('billingPeriod' in p&&p.billingPeriod==='MONTH')?' per month':p.billingDays?' per '+p.billingDays+' days':'; billing period requires confirmation')).join('\n')+'\nWhich option would you like to enquire about?':'No current published plans are available. Customer care can confirm options.','plans');
  }
  const articles=await this.db.knowledgeArticle.findMany({where:{published:true},orderBy:{key:'asc'},take:100});const words=new Set(message.match(/[a-z0-9]+/g)||[]);
  const ranked=articles.map(a=>({a,score:a.keywords.reduce((n,k)=>n+(k.toLowerCase().split(/\s+/).every(w=>words.has(w))?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,3);

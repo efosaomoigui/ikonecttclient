@@ -105,10 +105,10 @@ test('oval introduction gradually reveals the city on the same pausable clock',a
  f.hero.querySelector('button').click();f.step(150);assert.equal(f.hero.dataset.heroOpening,'complete');assert.equal(f.hero.style.getPropertyValue('--e-city-reveal'),'1');f.close();
  const reduced=cityFixture({reduced:true});assert.equal(reduced.hero.dataset.heroOpening,'complete');assert.equal(reduced.hero.style.getPropertyValue('--e-city-reveal'),'1');reduced.close();
 });
-test('headline dwell follows elapsed render time without accumulating scheduler remainder',async()=>{
+test('headline stays on the current scene instead of rotating on a second timer',async()=>{
   const f=cityFixture();await tick();f.step(450);
   assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Fibre broadband for home and business.');
-  f.step(60);assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Internet for life at home.');assert.equal(f.imports,1,'headline change must not reload the scene');f.close();
+  f.step(60);assert.equal(f.hero.querySelector('[data-active=true]').textContent,'Fibre broadband for home and business.');assert.equal(f.imports,1,'headline change must not reload the scene');f.close();
 });
 test('reduced motion and data-saving devices avoid loading Three.js',async()=>{
   for(const config of [{reduced:true},{saveData:true}]){const f=cityFixture(config);await tick();assert.equal(f.imports,0);assert.equal(f.hero.dataset.cityState,'fallback');assert.equal(f.queue.size,0);f.close();}

@@ -122,6 +122,574 @@
         "security": []
       }
     },
+    "/api/v1/promotions/active": {
+      "get": {
+        "operationId": "PromotionsController_active",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "promotion": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string",
+                          "maxLength": 100,
+                          "default": ""
+                        },
+                        "message": {
+                          "type": "string",
+                          "maxLength": 240,
+                          "default": ""
+                        },
+                        "imageData": {
+                          "type": "string",
+                          "maxLength": 1400000,
+                          "nullable": true,
+                          "default": null
+                        },
+                        "imageAlt": {
+                          "type": "string",
+                          "maxLength": 180,
+                          "default": ""
+                        },
+                        "actionLabel": {
+                          "type": "string",
+                          "maxLength": 45,
+                          "default": ""
+                        },
+                        "actionUrl": {
+                          "type": "string",
+                          "maxLength": 500,
+                          "default": ""
+                        },
+                        "published": {
+                          "type": "boolean",
+                          "default": false
+                        },
+                        "startsAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "nullable": true,
+                          "default": null
+                        },
+                        "endsAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "nullable": true,
+                          "default": null
+                        },
+                        "version": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "version",
+                        "updatedAt"
+                      ],
+                      "additionalProperties": false,
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "promotion"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Promotions"
+        ],
+        "security": []
+      }
+    },
+    "/api/v1/admin/promotion": {
+      "get": {
+        "operationId": "PromotionsController_settings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "maxLength": 100,
+                      "default": ""
+                    },
+                    "message": {
+                      "type": "string",
+                      "maxLength": 240,
+                      "default": ""
+                    },
+                    "imageData": {
+                      "type": "string",
+                      "maxLength": 1400000,
+                      "nullable": true,
+                      "default": null
+                    },
+                    "imageAlt": {
+                      "type": "string",
+                      "maxLength": 180,
+                      "default": ""
+                    },
+                    "actionLabel": {
+                      "type": "string",
+                      "maxLength": 45,
+                      "default": ""
+                    },
+                    "actionUrl": {
+                      "type": "string",
+                      "maxLength": 500,
+                      "default": ""
+                    },
+                    "published": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "startsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "endsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "version": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "version",
+                    "updatedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Promotions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "PromotionsController_save",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "default": ""
+                  },
+                  "message": {
+                    "type": "string",
+                    "maxLength": 240,
+                    "default": ""
+                  },
+                  "imageData": {
+                    "type": "string",
+                    "maxLength": 1400000,
+                    "nullable": true,
+                    "default": null
+                  },
+                  "imageAlt": {
+                    "type": "string",
+                    "maxLength": 180,
+                    "default": ""
+                  },
+                  "actionLabel": {
+                    "type": "string",
+                    "maxLength": 45,
+                    "default": ""
+                  },
+                  "actionUrl": {
+                    "type": "string",
+                    "maxLength": 500,
+                    "default": ""
+                  },
+                  "published": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "startsAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "nullable": true,
+                    "default": null
+                  },
+                  "endsAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "nullable": true,
+                    "default": null
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "maxLength": 100,
+                      "default": ""
+                    },
+                    "message": {
+                      "type": "string",
+                      "maxLength": 240,
+                      "default": ""
+                    },
+                    "imageData": {
+                      "type": "string",
+                      "maxLength": 1400000,
+                      "nullable": true,
+                      "default": null
+                    },
+                    "imageAlt": {
+                      "type": "string",
+                      "maxLength": 180,
+                      "default": ""
+                    },
+                    "actionLabel": {
+                      "type": "string",
+                      "maxLength": 45,
+                      "default": ""
+                    },
+                    "actionUrl": {
+                      "type": "string",
+                      "maxLength": 500,
+                      "default": ""
+                    },
+                    "published": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "startsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "endsAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "version": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "version",
+                    "updatedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Promotions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/coverage/service-areas": {
       "get": {
         "operationId": "PublicServiceAreasController_list",
@@ -214,6 +782,19 @@
                           },
                           "notice": {
                             "type": "string"
+                          },
+                          "source": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL",
+                              "CLIENT"
+                            ],
+                            "default": "INTERNAL"
+                          },
+                          "zone": {
+                            "type": "string",
+                            "nullable": true,
+                            "default": null
                           }
                         },
                         "required": [
@@ -445,6 +1026,19 @@
                           "notice": {
                             "type": "string"
                           },
+                          "source": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL",
+                              "CLIENT"
+                            ],
+                            "default": "INTERNAL"
+                          },
+                          "zone": {
+                            "type": "string",
+                            "nullable": true,
+                            "default": null
+                          },
                           "duplicateGroup": {
                             "type": "string",
                             "nullable": true
@@ -461,11 +1055,13 @@
                           },
                           "createdAt": {
                             "type": "string",
-                            "format": "date-time"
+                            "format": "date-time",
+                            "nullable": true
                           },
                           "updatedAt": {
                             "type": "string",
-                            "format": "date-time"
+                            "format": "date-time",
+                            "nullable": true
                           }
                         },
                         "required": [
@@ -702,6 +1298,19 @@
                     "notice": {
                       "type": "string"
                     },
+                    "source": {
+                      "type": "string",
+                      "enum": [
+                        "INTERNAL",
+                        "CLIENT"
+                      ],
+                      "default": "INTERNAL"
+                    },
+                    "zone": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
                     "duplicateGroup": {
                       "type": "string",
                       "nullable": true
@@ -718,11 +1327,13 @@
                     },
                     "createdAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
                     },
                     "updatedAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -948,6 +1559,19 @@
                     "notice": {
                       "type": "string"
                     },
+                    "source": {
+                      "type": "string",
+                      "enum": [
+                        "INTERNAL",
+                        "CLIENT"
+                      ],
+                      "default": "INTERNAL"
+                    },
+                    "zone": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
                     "duplicateGroup": {
                       "type": "string",
                       "nullable": true
@@ -964,11 +1588,13 @@
                     },
                     "createdAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
                     },
                     "updatedAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -5082,7 +5708,6 @@
                             "type": "integer",
                             "minimum": 0,
                             "maximum": 1000000000000,
-                            "exclusiveMinimum": true,
                             "nullable": true
                           },
                           "currency": {
@@ -5142,11 +5767,54 @@
                           },
                           "createdAt": {
                             "type": "string",
-                            "format": "date-time"
+                            "format": "date-time",
+                            "nullable": true
                           },
                           "updatedAt": {
                             "type": "string",
-                            "format": "date-time"
+                            "format": "date-time",
+                            "nullable": true
+                          },
+                          "description": {
+                            "type": "string",
+                            "maxLength": 4000,
+                            "default": ""
+                          },
+                          "descriptionSource": {
+                            "type": "string",
+                            "enum": [
+                              "CLIENT",
+                              "EDITORIAL"
+                            ],
+                            "nullable": true,
+                            "default": null
+                          },
+                          "source": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL",
+                              "CLIENT"
+                            ],
+                            "default": "INTERNAL"
+                          },
+                          "externalId": {
+                            "type": "string",
+                            "nullable": true,
+                            "default": null
+                          },
+                          "billingPeriod": {
+                            "type": "string",
+                            "enum": [
+                              "MONTH"
+                            ],
+                            "nullable": true,
+                            "default": null
+                          },
+                          "fetchedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "nullable": true,
+                            "default": null
                           }
                         },
                         "required": [
@@ -5315,7 +5983,6 @@
                       "type": "integer",
                       "minimum": 0,
                       "maximum": 1000000000000,
-                      "exclusiveMinimum": true,
                       "nullable": true
                     },
                     "currency": {
@@ -5375,11 +6042,54 @@
                     },
                     "createdAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
                     },
                     "updatedAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 4000,
+                      "default": ""
+                    },
+                    "descriptionSource": {
+                      "type": "string",
+                      "enum": [
+                        "CLIENT",
+                        "EDITORIAL"
+                      ],
+                      "nullable": true,
+                      "default": null
+                    },
+                    "source": {
+                      "type": "string",
+                      "enum": [
+                        "INTERNAL",
+                        "CLIENT"
+                      ],
+                      "default": "INTERNAL"
+                    },
+                    "externalId": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "billingPeriod": {
+                      "type": "string",
+                      "enum": [
+                        "MONTH"
+                      ],
+                      "nullable": true,
+                      "default": null
+                    },
+                    "fetchedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "default": null
                     }
                   },
                   "required": [
@@ -5546,7 +6256,6 @@
                             "type": "integer",
                             "minimum": 0,
                             "maximum": 1000000000000,
-                            "exclusiveMinimum": true,
                             "nullable": true
                           },
                           "currency": {
@@ -5606,11 +6315,54 @@
                           },
                           "createdAt": {
                             "type": "string",
-                            "format": "date-time"
+                            "format": "date-time",
+                            "nullable": true
                           },
                           "updatedAt": {
                             "type": "string",
-                            "format": "date-time"
+                            "format": "date-time",
+                            "nullable": true
+                          },
+                          "description": {
+                            "type": "string",
+                            "maxLength": 4000,
+                            "default": ""
+                          },
+                          "descriptionSource": {
+                            "type": "string",
+                            "enum": [
+                              "CLIENT",
+                              "EDITORIAL"
+                            ],
+                            "nullable": true,
+                            "default": null
+                          },
+                          "source": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL",
+                              "CLIENT"
+                            ],
+                            "default": "INTERNAL"
+                          },
+                          "externalId": {
+                            "type": "string",
+                            "nullable": true,
+                            "default": null
+                          },
+                          "billingPeriod": {
+                            "type": "string",
+                            "enum": [
+                              "MONTH"
+                            ],
+                            "nullable": true,
+                            "default": null
+                          },
+                          "fetchedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "nullable": true,
+                            "default": null
                           }
                         },
                         "required": [
@@ -5864,7 +6616,6 @@
                       "type": "integer",
                       "minimum": 0,
                       "maximum": 1000000000000,
-                      "exclusiveMinimum": true,
                       "nullable": true
                     },
                     "currency": {
@@ -5924,11 +6675,54 @@
                     },
                     "createdAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
                     },
                     "updatedAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 4000,
+                      "default": ""
+                    },
+                    "descriptionSource": {
+                      "type": "string",
+                      "enum": [
+                        "CLIENT",
+                        "EDITORIAL"
+                      ],
+                      "nullable": true,
+                      "default": null
+                    },
+                    "source": {
+                      "type": "string",
+                      "enum": [
+                        "INTERNAL",
+                        "CLIENT"
+                      ],
+                      "default": "INTERNAL"
+                    },
+                    "externalId": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "billingPeriod": {
+                      "type": "string",
+                      "enum": [
+                        "MONTH"
+                      ],
+                      "nullable": true,
+                      "default": null
+                    },
+                    "fetchedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "default": null
                     }
                   },
                   "required": [
@@ -6168,7 +6962,6 @@
                       "type": "integer",
                       "minimum": 0,
                       "maximum": 1000000000000,
-                      "exclusiveMinimum": true,
                       "nullable": true
                     },
                     "currency": {
@@ -6228,11 +7021,54 @@
                     },
                     "createdAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
                     },
                     "updatedAt": {
                       "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 4000,
+                      "default": ""
+                    },
+                    "descriptionSource": {
+                      "type": "string",
+                      "enum": [
+                        "CLIENT",
+                        "EDITORIAL"
+                      ],
+                      "nullable": true,
+                      "default": null
+                    },
+                    "source": {
+                      "type": "string",
+                      "enum": [
+                        "INTERNAL",
+                        "CLIENT"
+                      ],
+                      "default": "INTERNAL"
+                    },
+                    "externalId": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "billingPeriod": {
+                      "type": "string",
+                      "enum": [
+                        "MONTH"
+                      ],
+                      "nullable": true,
+                      "default": null
+                    },
+                    "fetchedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "default": null
                     }
                   },
                   "required": [
@@ -6764,6 +7600,16 @@
                             "type": "string",
                             "format": "uuid"
                           },
+                          "clientPlanReference": {
+                            "type": "string",
+                            "nullable": true,
+                            "default": null
+                          },
+                          "clientPlanName": {
+                            "type": "string",
+                            "nullable": true,
+                            "default": null
+                          },
                           "name": {
                             "type": "string"
                           },
@@ -7133,6 +7979,16 @@
                       "type": "string",
                       "format": "uuid"
                     },
+                    "clientPlanReference": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "clientPlanName": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
                     "name": {
                       "type": "string"
                     },
@@ -7450,6 +8306,16 @@
                     "id": {
                       "type": "string",
                       "format": "uuid"
+                    },
+                    "clientPlanReference": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
+                    },
+                    "clientPlanName": {
+                      "type": "string",
+                      "nullable": true,
+                      "default": null
                     },
                     "name": {
                       "type": "string"
@@ -22914,7 +23780,7 @@
   "info": {
     "title": "Ikonectt Core API",
     "description": "Public Website, My Ikonectt and Admin/CRM. No public registration. Money in NGN minor units. All writes return HTTP 200.",
-    "version": "1.5.0",
+    "version": "1.7.0",
     "contact": {}
   },
   "tags": [],

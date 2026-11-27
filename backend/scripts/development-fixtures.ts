@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
+import { PlanInput } from '../../contracts';
 import { developmentFixtures as F } from '../../contracts/fixtures';
 import { Database, audit } from '../src/core/database';
 import { hashPassword } from '../src/core/crypto';
@@ -29,7 +30,7 @@ async function main() {
         await tx.user.upsert({ where: { id: staff.id }, update: {}, create: { id: staff.id, kind: 'STAFF', name: staff.name, email: staff.email, roles: [staff.role], passwordHash: hashes.get(staff.id), mustChangePassword: account.mustChangePassword } });
       }
       const actorId = F.staff.find(staff => staff.role === 'ADMIN')!.id;
-      for (const plan of F.plans) await tx.plan.upsert({ where: { id: plan.id }, update: {}, create: { ...plan, priceMinor: plan.priceMinor === null ? null : BigInt(plan.priceMinor), simulated: true } });
+      for (const plan of F.plans) await tx.plan.upsert({ where: { id: plan.id }, update: {}, create: { ...PlanInput.strip().parse(plan), id:plan.id, priceMinor: plan.priceMinor === null ? null : BigInt(plan.priceMinor), simulated: true } });
       for (const location of F.locations) {
         const { planIds, ...data } = location;
         await tx.coverageLocation.upsert({ where: { id: location.id }, update: {}, create: { ...data, simulated: true, plans: { create: planIds.map(planId => ({ planId })) } } });

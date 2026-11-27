@@ -1,9 +1,12 @@
 {
   "source": "Canonical contracts/openapi.json",
-  "contractSha256": "394d49b9865decb3756efb25d002fd0b2173bf8d235ce181903fc0e3f528610c",
-  "version": "1.5.0",
+  "contractSha256": "0192cfba626591e7cfd05fa9e7b74a875ea100c978eb5698763d1e058fa84306",
+  "version": "1.7.0",
   "operations": [
     "GET /api/v1/health",
+    "GET /api/v1/promotions/active",
+    "GET /api/v1/admin/promotion",
+    "PATCH /api/v1/admin/promotion",
     "GET /api/v1/coverage/service-areas",
     "GET /api/v1/admin/service-areas",
     "POST /api/v1/admin/service-areas",

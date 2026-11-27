@@ -5,10 +5,10 @@ function mountPlanNameMarks(root){
  const selector='.ik-plan-card h3,.ik-plan-detail h2,.ik-plan-comparison thead th,.ik-page-hero h1';
  function decorate(){
   for(const heading of root.querySelectorAll(selector)){
-   if(heading.dataset.planBrand||!/^i-?(?:Basic|Silver|Gold|Platinum|Diamond|Business(?: (?:Plus|Pro|Max))?)$/i.test(heading.textContent))continue;
+   if(heading.dataset.planBrand||!/^i-?(?:Basic|Silver|Gold|Platinum|Diamond|Business(?: (?:Plus|Pro|Max))?)(?:_\d+(?:\.\d+)?Mbps)?$/i.test(heading.textContent))continue;
    const first=heading.firstChild;if(first?.nodeType!==3)continue;
    const prefix=root.ownerDocument.createElement('span'),dash=root.ownerDocument.createElement('span');
-   prefix.className='ik-plan-brand-prefix';prefix.textContent='i';
+   prefix.className='ik-plan-brand-prefix';prefix.textContent=first.textContent[0];
    dash.className='ik-plan-brand-dash';dash.textContent='-';
    heading.dataset.planBrandOriginal=heading.textContent;
    first.splitText(first.textContent[1]==='-'?2:1);first.replaceWith(prefix,dash);heading.dataset.planBrand='true';

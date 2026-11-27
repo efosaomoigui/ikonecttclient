@@ -225,6 +225,8 @@ model CoveragePlan {
   @@id([locationId, planId])
 }
 model Lead {
+  clientPlanReference String?
+  clientPlanName String?
   category String @default("GENERAL")
   sourceChannel String @default("LEGACY")
   sourcePage String @default("")
@@ -589,4 +591,11 @@ model AssistantUsage {
  outputTokens Int @default(0)
  createdAt DateTime @default(now())
  @@index([day])
+}
+
+model WebsitePromotion {
+ id String @id @default("main")
+ version String @default(uuid()) @db.Uuid
+ payload Json
+ updatedAt DateTime @updatedAt
 }

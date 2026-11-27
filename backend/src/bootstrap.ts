@@ -18,6 +18,7 @@ export async function createApp(quiet = false) {
   app.use((req: Request & { requestId?: string }, res: Response, next: NextFunction) => {
     req.requestId = randomUUID(); res.setHeader('X-Request-Id', req.requestId); res.setHeader('Cache-Control', 'no-store'); next();
   });
+  app.use('/api/v1/admin/promotion',json({limit:'2mb'}));
   app.use(json({ limit: '32kb' }));
   app.use((req:Request,res:Response,next:NextFunction)=>{
     const enabled=config.values.CUSTOMER_PORTAL_ENABLED==='true'||(config.values.CUSTOMER_PORTAL_ENABLED!=='false'&&config.values.NODE_ENV!=='production');
@@ -35,7 +36,7 @@ export function openApi(app: Awaited<ReturnType<typeof createApp>>) {
   document.components.schemas ||= {};
   document.components.schemas.ApiError = schema(ErrorResponse);
   // Nest includes class bearer metadata on anonymous authentication handlers; remove it there.
-  const publicPaths = new Set(['/api/v1/auth/login','/api/v1/auth/staff/login','/api/v1/auth/recovery','/api/v1/auth/staff/recovery','/api/v1/auth/reset-password','/api/v1/plans','/api/v1/plans/{id}','/api/v1/coverage/locations','/api/v1/coverage/check','/api/v1/leads','/api/v1/assistant/guidance','/api/v1/capabilities','/api/v1/health','/api/v1/contact-settings','/api/v1/coverage/service-areas','/api/v1/knowledge']);
+  const publicPaths = new Set(['/api/v1/auth/login','/api/v1/auth/staff/login','/api/v1/auth/recovery','/api/v1/auth/staff/recovery','/api/v1/auth/reset-password','/api/v1/plans','/api/v1/plans/{id}','/api/v1/coverage/locations','/api/v1/coverage/check','/api/v1/leads','/api/v1/assistant/guidance','/api/v1/capabilities','/api/v1/health','/api/v1/contact-settings','/api/v1/coverage/service-areas','/api/v1/knowledge','/api/v1/promotions/active']);
   for (const [path, operations] of Object.entries(document.paths)) {
     for (const [method, operation] of Object.entries(operations)) {
       if (!['get','post','patch'].includes(method) || !operation || typeof operation !== 'object') continue;

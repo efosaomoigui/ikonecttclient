@@ -4,7 +4,7 @@ export default defineConfig(({mode})=>{
     const demo=mode==='demo';
     return {
         base:'/admin/',
-        define:{__IKONECTT_PREVIEW__:JSON.stringify(mode==='review'||demo),__IKONECTT_STANDALONE_DEMO__:JSON.stringify(demo)},
+        define:{__IKONECTT_CATALOGUE_PROVIDER__:JSON.stringify(process.env.IKONECTT_CATALOGUE_PROVIDER||'client'),__IKONECTT_PREVIEW__:JSON.stringify(mode==='review'||demo),__IKONECTT_STANDALONE_DEMO__:JSON.stringify(demo)},
         plugins:demo?[{name:'standalone-demo-policy',transformIndexHtml(){return [
             {tag:'meta',attrs:{name:'robots',content:'noindex, nofollow, noarchive'},injectTo:'head-prepend'},
             {tag:'meta',attrs:{'http-equiv':'Content-Security-Policy',content:demoCsp},injectTo:'head-prepend'},

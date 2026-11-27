@@ -1,3 +1,4 @@
+import {ClientCatalogue} from '../catalogue/client-catalogue.service';
 import { createHash } from 'node:crypto';
 import { BadRequestException, ConflictException, Body, Controller, Get, Module, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -12,12 +13,15 @@ import { CoverageService } from '../catalogue/catalogue.service';
 
 @ApiTags('Leads') @Controller('leads')
 export class LeadsController {
-  constructor(private readonly db: Database, private readonly coverage: CoverageService) {}
+  constructor(private readonly db: Database, private readonly coverage: CoverageService,private readonly client:ClientCatalogue) {}
   @Public() @Post() @Throttle({ default: { limit: 5, ttl: 60_000 } }) @Contract(z.object({ id: C.Id, status: C.LeadStatus }), C.CreateLeadRequest)
   async create(@Body(new ZodPipe(C.CreateLeadRequest)) input: C.Input<typeof C.CreateLeadRequest>) {
+    const {website,idempotencyKey,...data}=input;
+    const requestHash=createHash('sha256').update(JSON.stringify(data)).digest('hex');
+    if(idempotencyKey){const existing=await this.db.lead.findUnique({where:{idempotencyKey}});if(existing){if(existing.requestHash!==requestHash)throw new ConflictException('Submission reference is already used for different details');return {id:existing.id,status:existing.status};}}
+    const clientPlan=this.client.enabled&&input.planId?await this.client.plan(input.planId):null;
+    if(clientPlan&&clientPlan.kind!==input.kind)throw new BadRequestException('Selected plan does not match the customer type');
     const lead = await this.db.mutate(async tx => {
-      const {website, idempotencyKey, ...data} = input;
-      const requestHash = createHash('sha256').update(JSON.stringify(data)).digest('hex');
       if (idempotencyKey) {
         const previous = await tx.lead.findUnique({where:{idempotencyKey}});
         if (previous) {
@@ -25,9 +29,9 @@ export class LeadsController {
           return previous;
         }
       }
-      if (input.buildingId) await this.coverage.building(tx, input.buildingId);
-      if (input.planId && !await tx.plan.findFirst({ where: { id: input.planId, published: true, kind: input.kind } })) throw new BadRequestException('Published plan for this customer type is required');
-      const record = await tx.lead.create({ data: {...data, idempotencyKey, requestHash, activity:{create:{action:'SUBMITTED'}}} });
+      if (input.buildingId) {this.client.requireInternal();await this.coverage.building(tx, input.buildingId);}
+      if (input.planId && !clientPlan && !await tx.plan.findFirst({ where: { id: input.planId, published: true, kind: input.kind } })) throw new BadRequestException('Published plan for this customer type is required');
+      const record = await tx.lead.create({ data: {...data,...(clientPlan?{planId:null,clientPlanReference:clientPlan.externalId,clientPlanName:clientPlan.name}:{}), idempotencyKey, requestHash, activity:{create:{action:'SUBMITTED'}}} });
       await audit(tx, null, 'lead.submitted', 'Lead', record.id);
       return record;
     });
