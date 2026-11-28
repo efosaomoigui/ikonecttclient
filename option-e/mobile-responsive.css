@@ -1,0 +1,70 @@
+/* Responsive content and stable support controls. */
+/* Leave room for the fixed support dock without moving either control group on scroll. */
+@media(min-width:768px){.ik-site[data-template=e] .hero .e-scene-controls{right:96px}}
+@media(max-width:767px){
+ .ik-site[data-template=e] #ik-main{min-width:0}
+ .ik-site[data-template=e] #ik-main :is(.ik-grid,.ik-actions,.ik-form,.ik-editorial,.ik-panel,.e-information-item){min-width:0}
+ .ik-site[data-template=e] #ik-main .ik-wrap{padding-inline:20px}
+ .ik-site[data-template=e] #ik-main .ik-page-hero h1{font-size:clamp(30px,8vw,40px);line-height:1.15;overflow-wrap:normal;word-break:normal}
+ .ik-site[data-template=e] #ik-main .ik-section h2{font-size:clamp(27px,7vw,32px);line-height:1.2;overflow-wrap:normal;word-break:normal}
+ .ik-site[data-template=e] #ik-main :is(input,select,textarea){font-size:16px;min-width:0;max-width:100%}
+ .ik-site[data-template=e] .ik-home :is(.pane,.about,.portal){min-width:0}
+ .ik-site[data-template=e] .hero .e-scene-controls{right:auto;left:50%;transform:translateX(-50%);bottom:20px}
+ .ik-site[data-template=e] .e-audience-sections .e-audience-copy{padding:32px 24px 40px}
+ .ik-site[data-template=e] .e-audience-links{width:100%;align-items:stretch}
+ .ik-site[data-template=e] .e-audience-link{width:100%;min-width:0;min-height:48px;font-size:16px}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-extras-wrap{width:calc(100% - 32px);padding:28px 16px 48px}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-extras-heading h2{font-size:clamp(28px,7.5vw,34px);line-height:1.2}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefits-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card{grid-template-columns:48px minmax(0,1fr);grid-template-rows:auto auto;align-content:start;align-items:center;gap:14px;min-height:0;padding:20px}
+ .ik-site[data-template=e] .ik-home #home-benefits .e-benefit-badge{grid-column:1;grid-row:1;width:48px;height:48px;border-radius:14px}
+ .ik-site[data-template=e] .ik-home #home-benefits .e-benefit-badge .ik-benefit-icon{width:30px;height:30px}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card h3{grid-column:2;grid-row:1;font-size:19px;line-height:1.3;overflow-wrap:normal}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card p{grid-column:1/-1;grid-row:2;font-size:16px;line-height:1.6}
+ .ik-site[data-template=e] .e-device-row{align-items:stretch;scroll-padding-inline:20px}
+ .ik-site[data-template=e] .e-device-link{flex-shrink:0;justify-content:flex-start}
+ .ik-site[data-template=e] .e-device-label{min-height:44px;display:flex;align-items:flex-start;justify-content:center}
+ .ik-site[data-template=e] #ik-main .e-internal-plans .ik-plan-card,
+ .ik-site[data-template=e].ik-polished #ik-main .e-internal-plans .ik-plan-card[data-active=true],
+ .ik-site[data-template=e] .ik-home #plans .ik-plan-card[data-active=true]{transform:none}
+ .ik-site[data-template=e] .e-plan-showcase .ik-carousel-rail{align-items:stretch;scroll-padding-inline:18px}
+ .ik-site[data-template=e] .plans:not(:has(.ik-plan-card)) .e-plans-container{margin-top:0;padding-top:24px}
+ .ik-site[data-template=e] .plans:not(:has(.ik-plan-card)) .e-plans-introduction{padding-bottom:32px}
+ .ik-site[data-template=e] .ik-home #plans:not(:has(.ik-plan-card)) .ik-carousel-audiences button{color:#24272c}
+ .ik-site[data-template=e] .ik-home #plans:not(:has(.ik-plan-card)) .ik-carousel-audiences button[aria-pressed=true]{border-color:#e50918}
+ .ik-site[data-template=e] .ik-home #plans .ik-carousel-bottom>.ik-actions{gap:12px}
+ .ik-site[data-template=e] .e-story-card{padding:24px;flex-basis:100%;min-height:0}
+ .ik-site[data-template=e] .e-story-card h3{font-size:21px}
+ .ik-site[data-template=e] .e-story-card blockquote{min-height:0;margin-bottom:24px}
+ .ik-site[data-template=e] .e-story-card blockquote p{font-size:17px;line-height:1.6}
+ .ik-site[data-template=e] .e-story-card figcaption{gap:14px;padding-top:18px}
+ .ik-site[data-template=e] .e-story-portrait{flex-basis:60px;width:60px;height:68px}
+ .ik-site[data-template=e] .e-story-card figcaption>div{min-width:0}
+ .ik-site[data-template=e] #ik-main .e-information-item{grid-template-columns:28px minmax(0,1fr);column-gap:14px}
+ .ik-site[data-template=e] #ik-main .e-information-item h3{font-size:20px;line-height:1.35}
+ .ik-site[data-template=e] #ik-main .e-information-item p{grid-column:1/-1;font-size:16px}
+ .ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon){grid-template-columns:44px minmax(0,1fr);gap:14px;padding:20px}
+ .ik-site[data-template=e].ik-polished #ik-main article.ik-panel>.ik-card-icon{width:44px;height:44px;padding:9px;grid-row:1;align-self:center}
+ .ik-site[data-template=e] #ik-main article.ik-panel:has(>.ik-card-icon)>p{grid-column:1/-1}
+ .ik-site[data-template=e] #ik-main .e-enquiry-section .ik-table-wrap{overflow:visible}
+ .ik-site[data-template=e] #ik-main .e-enquiry-section .ik-table{display:block;min-width:0;width:100%}
+ .ik-site[data-template=e] #ik-main .e-enquiry-section .ik-table :is(caption,tbody,tr,th,td){display:block;width:auto;min-width:0}
+ .ik-site[data-template=e] #ik-main .e-enquiry-section .ik-table caption{padding:0 0 16px}
+ .ik-site[data-template=e] #ik-main .e-enquiry-section .ik-table th{padding:18px 18px 8px;border-bottom:0}
+ .ik-site[data-template=e] #ik-main .e-enquiry-section .ik-table td{padding:0 18px 18px;border-top:0;font-size:16px;line-height:1.65}
+ .ik-site[data-template=e] .ik-footer-bottom{padding-bottom:132px}
+ .ik-site[data-template=e] .ik-assistant-dock{right:max(16px,env(safe-area-inset-right,0px));gap:12px}
+}
+@media(max-width:1100px){
+ .ik-site[data-template=e] .ik-assistant-phone{grid-template-columns:24px minmax(80px,1fr) auto;gap:8px;padding:0 12px}
+ .ik-site[data-template=e] .ik-assistant-phone input{grid-column:1/-1;width:100%;border-top:1px solid var(--as-line,#dfe3e8);min-height:46px;font-size:16px}
+ .ik-site[data-template=e] .ik-assistant-phone select,.ik-site[data-template=e] #ik-main .ik-assistant-phone select{font-size:16px}
+}
+@media(hover:none){.ik-site[data-template=e] .ik-assistant-launcher:hover{transform:none}}
+
+@media(min-width:768px) and (max-width:1100px){
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card{grid-template-columns:56px minmax(0,1fr);align-content:start}
+ .ik-site[data-template=e] .ik-home #home-benefits .e-benefit-badge{grid-row:1}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card h3{grid-row:1;align-self:center;font-size:19px}
+ .ik-site[data-template=e] .ik-home #home-benefits .ik-benefit-card p{grid-column:1/-1;font-size:16px;line-height:1.6}
+}

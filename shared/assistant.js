@@ -46,6 +46,8 @@ export function mountAssistant({root,template,getContext,navigate,provider=demoP
   }
   function placeLauncher(){
     if(open)return;
+    // Option E keeps its support controls anchored; page links must not move them.
+    if(template==='e'){host.style.setProperty('--assistant-dock-bottom','20px');return;}
     const width=window.innerWidth,height=window.innerHeight;
     let bottom=20;
     const dockHeight=guest?124:56;

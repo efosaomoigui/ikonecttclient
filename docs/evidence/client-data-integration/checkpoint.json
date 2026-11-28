@@ -1,8 +1,8 @@
 {
-  "reason": "User-approved live client catalogue, promotional overlay and inner-page refinements; homepage copy now follows its active city, family or business image.",
+  "reason": "User-requested mobile responsiveness audit and stable AI/WhatsApp controls; desktop layouts and operational workflows preserved.",
   "files": {
     "option-e/index.html": {
-      "sha256LF": "776a1968b95f7c9a0944e7673273da5e9795afb2df9f69fdd8dc26127d33893b"
+      "sha256LF": "7ebfa8ba14ef53493c748886926b693d3c425fb89f9dd9d707628d9ad3eb8da0"
     },
     "option-e/section-showcase.js": {
       "sha256LF": "52c49a061a3bdb257b91e29c99bc77a2aab28f358f947bfdf1b5a7ee8e63888c"
@@ -14,7 +14,7 @@
       "sha256LF": "b11b4db3da23573806f4e0030b93fa6b04646aa2b44fd927f34a6e9f0c723750"
     },
     "shared/assistant.js": {
-      "sha256LF": "010f892c121cdcce4b211676b80e1d6dfeb87a22564dbbf4a986a7c48e922d66"
+      "sha256LF": "02df39b5b5c842d1c75c91d39483a602fef60c8a08bad1aeacc9bad31a30bad7"
     },
     "shared/carousel.js": {
       "sha256LF": "c648bc84b137c0d81423ccb4251e3edf7b8de3ae5c438ac5c02d03dd2fcf99db"
@@ -87,6 +87,9 @@
     },
     "option-e/city-experience.js": {
       "sha256LF": "f86d787a7d122250c737add47f127900b1b1e8c483610e8813cfa18f0b0d8e8e"
+    },
+    "option-e/mobile-responsive.css": {
+      "sha256LF": "ac1caf0a5e1397e80b55165f9383be9a545a6bb56df22b64e346d7df2ca89afe"
     }
   }
 }
